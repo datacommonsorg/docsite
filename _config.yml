@@ -1,0 +1,6 @@
+remote_theme: pmarsceill/just-the-docs
+
+# logo: "/assets/dc.png"
+title: "datacommons.org"
+
+search_enabled: false
