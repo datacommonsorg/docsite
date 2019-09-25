@@ -19,7 +19,7 @@ this node.
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/website/api/api_key.html) section.
+To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
 
 **Required Arguments**:
 

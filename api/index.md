@@ -41,7 +41,7 @@ Data Commons is their schema.org ID.
 
 Using the Data Commons API requires an API Key. Details on obtaining a key,
 installing Python libraries, etc. can be found in the
-[API Key](https://datacommonsorg.github.io/website/api/api_key.html) section.
+[API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
 
 <!--- TODO: update all the links below after pushing to github --->
 
@@ -51,24 +51,24 @@ installing Python libraries, etc. can be found in the
     associated with this node. In graph terminology, return the `DCID`s of the
     arc-labels of the arcs into and out of this node.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/property_label.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/property_label.html)**
 
 -   **get_property_values**: given a node and a property, return the value of
     this property for that node. In graph terminology, return the target/source
     of the arcs into/out of this node with that arc label.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/property_value.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/property_value.html)**
 
 -   **get_triples**: given a node, return all the triples in which this node is
     either the subject/source or object/target.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/triple.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/triple.html)**
 
 ### Graph Query/SPARQL
 
 -   **query**: query DataCommons via SPARQL.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/query.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/query.html)**
 
 ### Domain Specific APIs
 
@@ -84,24 +84,24 @@ these populations.
     `StatisticalPopulation`s for these places, constrained by the given property
     values.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/population.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/population.html)**
 
 -   **get observation**: given a list of `StatisticalPopulation` DCIDs, return
     the DCID of `Observation`s for these statistical populations, constrained by
     the given observations' property values.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/observation.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/observation.html)**
 
 -   **get population and observation**: given the DCID of a node, return all the
     `StatisticalPopulation`s and `Observation`s for this node.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/pop_obs.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/pop_obs.html)**
 
 -   **get place observation**: return all `Observation`s for all `Place`s of a
     certain type, for a given `observationDate`, given a set of constraints on
     the `StatisticalPopulation`.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/place_obs.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/place_obs.html)**
 
 #### Locations
 
@@ -112,5 +112,5 @@ containing areas.
     `State`, `Country`, etc...), return the DCIDs of places contained within, of
     a specified type.
 
-    -   Documentation: **[REST](https://datacommonsorg.github.io/website/api/rest/place_in.html)**
+    -   Documentation: **[REST](https://datacommonsorg.github.io/docsite/api/rest/place_in.html)**
 
