@@ -64,7 +64,7 @@ installing Python libraries, etc. can be found in the
 
 ### Graph Query/SPARQL
 
--   **query**: query DataCommons via SPARQL.
+-   **query**: query Data Commons via SPARQL.
     -   Documentation: [REST](/api/rest/query.html),
     [Python](/api/python/query.html)
 

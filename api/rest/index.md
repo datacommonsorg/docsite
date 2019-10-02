@@ -5,7 +5,7 @@ nav_order: 2
 parent: API
 has_children: true
 ---
-# DataCommons REST API
+# Data Commons REST API
 
 The **Data Commons REST API** is a REST library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package

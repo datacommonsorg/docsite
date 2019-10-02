@@ -5,7 +5,7 @@ nav_order: 2
 parent: API
 has_children: true
 ---
-# DataCommons Python API
+# Data Commons Python API
 
 The **Data Commons Python API** is a Python library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package
