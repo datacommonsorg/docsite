@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Query
+title: Sparql
 nav_order: 1
 parent: Python
 grand_parent: API
