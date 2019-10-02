@@ -17,19 +17,22 @@ given property for each node.
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `dcids`: A list of nodes to query, identified by their DCID.
+
 *   `property`: The property label to query for.
 
 **Optional Arguments**:
 
 *   `valueType`: The type of the property value to filter by, only applicable if
     the value refers to a node.
-*   `limit`: (<=500) Maximum number of values returned per node.
+
+*   `limit`: (≤ 500) Maximum number of values returned per node.
 
 ## GET Request
 

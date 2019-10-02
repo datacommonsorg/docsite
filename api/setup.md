@@ -1,11 +1,11 @@
 ---
 layout: default
-title: API Key
+title: Setting up the API
 parent: API
 nav_order: 1
 ---
 
-# Setting up an API Key
+# Setting up access to the Data Commons API
 
 ## Creating an API Key
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Place in Place
+title: Places within a Place
 nav_order: 9
 parent: REST
 grand_parent: API
@@ -8,8 +8,9 @@ grand_parent: API
 
 # Get Places Contained within Another Place
 
-Given a list of `Place` DCIDs (e.g. `County`, `State`, `Country`, etc...),
-return the DCIDs of places contained within, of a specified type.
+Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCID's,
+(e.g. `County`, `State`, `Country`, etc...), return the DCIDs of places
+contained within, of a specified type.
 
 **URL** : `/node/places-in`
 
@@ -17,14 +18,17 @@ return the DCIDs of places contained within, of a specified type.
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `dcids`: A list of (parent) places, identified by their DCIDs.
+
 *   `placeType`: The type of the contained (child) `Place`s within the given
-    DCIDs to filter by. E.g. `City` and `County` are contained within `State`.
+    DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
+    full list of available types, see [`subClassOf Place`](https://browser.datacommons.org/kg?dcid=Place).
 
 ## GET Request
 

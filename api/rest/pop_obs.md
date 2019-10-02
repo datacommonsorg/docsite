@@ -19,11 +19,12 @@ this node.
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `dcid`: The DCID of the node (mostly with type of a `Place` like `City`,
     `County` or organization like `School`).
 

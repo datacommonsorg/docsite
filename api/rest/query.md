@@ -17,11 +17,12 @@ using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `sparql`: A Sparql query string.
 
 This API only supports a subset of SPARQL keywords including:

@@ -20,7 +20,7 @@ statistical populations, constrained by the given observation's property values.
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
