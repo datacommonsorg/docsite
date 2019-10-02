@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Show Node Property Labels
+# Show Property Labels of Node(s)
 
 Returns the labels of properties defined for the given DCID's
 
@@ -16,11 +16,12 @@ Returns the labels of properties defined for the given DCID's
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `dcids`: A list of nodes to query, identified by their DCID's.
 
 ## GET Request

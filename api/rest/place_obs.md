@@ -22,15 +22,18 @@ given a set of constraints on the
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `placeType`: The type of the
     [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
+
 *   `populationType`: The population type of the
     [`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation).
+
 *   `observationDate`: The observation date in ISO-8601 format.
 
 **Optional Arguments**:

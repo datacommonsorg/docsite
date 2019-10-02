@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Show Triples Associated with a Node
+# Show Triples Associated with Node(s)
 
 Given a list of nodes, return triples which are associated with the specified
 node(s).
@@ -14,7 +14,7 @@ node(s).
 A knowledge graph can be described as a collection of *triples* which are
 3-tuples that take the form *(s, p, o)*. Here, *s* and *o* are nodes in the
 graph called the *subject* and *object* respectively, while *p* is the property
-label of a directed edge from *s* to *o* (sometimes also called the predicate).
+label of a directed edge from *s* to *o* (sometimes also called the *predicate*).
 
 **URL** : `/node/triples`
 
@@ -22,11 +22,12 @@ label of a directed edge from *s* to *o* (sometimes also called the predicate).
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `dcids`: A list of nodes to query, identified by their DCID.
 
 **Optional Arguments**:

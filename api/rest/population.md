@@ -19,15 +19,17 @@ for these places, constrained by the given property values.
 
 **Auth required** : YES
 
-To get an API key, check [API Key](https://datacommonsorg.github.io/docsite/api/api_key.html) section.
+To get an API key, check [API Key](/api/setup.html) section.
 
 **Required Arguments**:
 
 *   `key`: Your API key.
+
 *   `dcids`: A list of DCID's identifying `Place`’s of populations to query for.
     These DCID's are treated as the value associated by the property
     [`location`](https://browser.datacommons.org/kg?dcid=location) for each
     returned `StatisticalPopulation`.
+
 *   `populationType`: The
     [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
     of each `StatisticalPopulation`, e.g.
