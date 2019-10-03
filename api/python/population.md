@@ -17,19 +17,19 @@ for these places, constrained by the given property values.
 
 **Arguments**
 
-*   `dcids (Union[list of str, pandas.Series])` - DCIDs
+*   `dcids` (Union[`list` of `str`, `pandas.Series`]): DCIDs
     identifying `Place`'s of populations to query for.
     These DCID's are treated as the value associated by the property
     [`location`](https://browser.datacommons.org/kg?dcid=location) for each
     returned `StatisticalPopulation`.
 
-*   `population_type (str)` - The
+*   `population_type` (`str`): The
     [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
     of each `StatisticalPopulation`, e.g.
     [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
     [`Student`](https://browser.datacommons.org/kg?dcid=Student).
 
-*   `constraining_properties (map from str to str, optional)` -
+*   `constraining_properties` (`map` from `str` to `str`, optional):
       A map from constraining property to the value that the
       `StatisticalPopulation` should be constrained by.
 
@@ -49,13 +49,11 @@ the cell is empty.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 
 ## Examples
-
-**Examples**
 
 We would like to get
 

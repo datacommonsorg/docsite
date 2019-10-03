@@ -22,4 +22,4 @@ for more details.
 
 **Arguments**
 
-*   `api_key (str)` - The API key.
+*   `api_key` (`str`): The API key.

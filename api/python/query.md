@@ -15,7 +15,7 @@ using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
 **Arguments**
 
-*   `sparql (str)`: A SPARQL query string.
+*   `sparql` (`str`): A SPARQL query string.
 
 *   `select` (`func` accepting a row in the query result) - A function that
     selects rows to be returned by `query`. This function accepts a row in the
@@ -49,8 +49,6 @@ if and only if `select` returns `True` for that row.
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 
 ## Examples
-
-**Examples**
 
 We would like to query for the name associated with three states identified by
 their DCIDs [California](https://browser.datacommons.org/kg?dcid=geoId/06>),

@@ -14,9 +14,9 @@ Expands each cell in a Pandas DataFrame containing a list of values.
 
 **Arguments**
 
-*   `api_key (str)` - The API key.
-*   `pd_frame (pandas.DataFrame)` - The Pandas DataFrame.
-*   `cols` (`list` of `str`, optional) - A list of columns to flatten. If none
+*   `api_key` (`str`): The API key.
+*   `pd_frame` (`pandas.DataFrame`): The Pandas DataFrame.
+*   `cols` (`list` of `str`, optional): A list of columns to flatten. If none
       are provided, then all columns are flattened.
 
 **Returns**
@@ -25,7 +25,7 @@ A `pandas.DataFrame` with all columns containing lists flattened.
 
 **Raises**
 
-*   `ValueError` - If a given coluumn is not in the data frame.
+*   `ValueError`: If a given coluumn is not in the data frame.
 
 ## Examples
 

@@ -28,7 +28,7 @@ To get started using the Python Client API requires the following steps:
 First, install the `datacommons` package through `pip`.
 
 ```bash
-$ pip install -U git+https://github.com/google/datacommons.git@stable-1.x
+$ pip install -U datacommons
 ```
 
 For more information about installing `pip` and setting up other parts of

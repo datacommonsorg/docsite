@@ -15,16 +15,16 @@ given property for each node.
 
 **Arguments**
 
-*   `dcids (Union[list of str, pandas.Series])` - DCID's to get property values for
+*   `dcids` (Union[`list` of `str`, `pandas.Series`]): DCID's to get property values for
 
-*   `prop (str)` - The property to get property values for.
+*   `prop` (`str`): The property to get property values for.
 
-*   `out (bool, optional)` - Whether or not the property points away from the given list of nodes.
+*   `out` (`bool`, optional): Whether or not the property points away from the given list of nodes.
 
-*   `value_type (str, optional)` - A type to filter returned property values by, only applicable if
+*   `value_type` (`str`, optional): A type to filter returned property values by, only applicable if
     the value refers to a node.
 
-*   `limit (int, optional)` - The maximum number of property values returned per node, must be ≤ 500.
+*   `limit` (`int`, optional): The maximum number of property values returned per node, must be ≤ 500.
 
 **Returns**
 
@@ -42,13 +42,11 @@ returned series will always contain a `list` of property values.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 
 ## Examples
-
-**Examples**
 
 We would like to get the `name` of a list of states specified by their DCID:
 [geoId/06](https://browser.datacommons.org/kg?dcid=geoId/06),

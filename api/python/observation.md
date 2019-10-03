@@ -19,30 +19,30 @@ statistical populations, constrained by the given observation's property values.
 
 **Arguments**
 
-*   `dcids (Union[`list` of `str`, `pandas.Series`])`: A list of statistical
+*   `dcids` (Union[`list` of `str`, `pandas.Series`]): A list of statistical
     populations to query, identified by their DCIDs. These DCIDs are treated as
     the property value associated with returned `Observation`'s by the property
     [`observedNode`](https://browser.datacommons.org/kg?dcid=observedNode)
 
-*   `measured_property (str)`: The property value associated with returned
+*   `measured_property` (`str`): The property value associated with returned
     `Observation`'s by the property
     [`measuredProperty`](https://browser.datacommons.org/kg?dcid=measuredProperty)
 
-*   `stats_type (str)`: The statistical type of the `Observation`. This is commonly set
+*   `stats_type` (`str`): The statistical type of the `Observation`. This is commonly set
     to `measuredValue`.
 
-*   `observation_date`: The property value associated with returned
+*   `observation_date` (`str`): The property value associated with returned
     `Observation`'s by the property
     [`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate).
     This is specified in ISO8601 format.
 
-*   `observation_period (str)`: The property value associated with returned
+*   `observation_period` (`str`, optional): The property value associated with returned
     `Observation`'s by the property
     [`observationPeriod`](https://browser.datacommons.org/kg?dcid=observationPeriod)
     of the observation. If the `Observation` has this property set, this must
     be specified.
 
-*   `measurement_method (str)`: The property value associated with returned
+*   `measurement_method` (`str`, optional): The property value associated with returned
     `Observation`'s by the property
     [`measurementMethod`](https://browser.datacommons.org/kg?dcid=measurementMethod)
     of the observation. If the `Observation` has this property set, this must
@@ -63,7 +63,7 @@ such exists*. Otherwise, the cell holds NaN.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 

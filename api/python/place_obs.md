@@ -20,15 +20,15 @@ given a set of constraints on the
 
 **Arguments**
 
-*   `placeType (str)`: The type of the
+*   `placeType` (`str`): The type of the
     [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
 
-*   `observation_date (str)`: The observation date in ISO-8601 format.
+*   `observation_date` (`str`): The observation date in ISO-8601 format.
 
-*   `population_type (str)`: The population type of the
+*   `population_type` (`str`): The population type of the
     [`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation).
 
-*   `constraining_properties (map from str to str)`: An object of `property` and `value` fields
+*   `constraining_properties` (`map` from `str` to `str`, optional): An object of `property` and `value` fields
     that the `StatisticalPopulation` should be constrained by. Must be specified if defined on the population.
 
 **Returns**
@@ -39,7 +39,7 @@ for more details on how the format of the return value is structured.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 

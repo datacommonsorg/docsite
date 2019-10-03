@@ -20,9 +20,9 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 **Arguments**
 
-*   `dcids (list of str)` - DCIDs to get triples for
+*   `dcids` (`list` of `str`): DCIDs to get triples for
 
-*   `limit (int, optional)` - The maximum number of triples per combination of
+*   `limit` (`int`, optional): The maximum number of triples per combination of
     property and type associated with nodes linked by that property to fetch,
     ≤ 500.
 
@@ -38,7 +38,7 @@ following fields. Note that not all fields are always included in each triple.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 

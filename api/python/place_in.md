@@ -17,9 +17,9 @@ contained within, of a specified type.
 
 **Arguments**
 
-*   `dcids (Union[list of str, pandas.Series])` - DCIDs of parent places to query for.
+*   `dcids` (Union[`list` of `str`, `pandas.Series`]): DCIDs of parent places to query for.
 
-*   `place_type (str)` - The type of the contained child `Place`s within the given
+*   `place_type` (`str`): The type of the contained child `Place`s within the given
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
     full list of available types, see [`subClassOf Place`](https://browser.datacommons.org/kg?dcid=Place).
 
@@ -38,7 +38,7 @@ given `place_type`.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 

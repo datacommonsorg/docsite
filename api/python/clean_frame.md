@@ -14,7 +14,7 @@ A convenience function that cleans a pandas DataFrame.
 
 **Arguments**
 
-*   `pd_frame (pandas.DataFrame)` - The Pandas DataFrame.
+*   `pd_frame` (`pandas.DataFrame`): The Pandas DataFrame.
 
 **Returns**
 

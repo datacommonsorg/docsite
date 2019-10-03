@@ -14,9 +14,9 @@ Returns the labels of properties defined for the given node DCID's
 
 **Arguments**
 
-*   `dcids (list of str)` - A list of nodes to query, identified by their DCID's
+*   `dcids` (`list` of `str`): A list of nodes to query, identified by their DCID's
 
-*   `out (bool, optional)` - Whether or not the property points away from the given list of nodes.
+*   `out` (`bool`, optional): Whether or not the property points away from the given list of nodes.
 
 **Returns**
 
@@ -24,13 +24,11 @@ A `dict` mapping DCID's to lists of property labels. If `out` is `True`, then pr
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+*   `ValueError`: If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 
 ## Examples
-
-**Examples**
 
 To get all outgoing property labels for [California](https://browser.datacommons.org/kg?dcid=geoId/06>) and
 [Colorado](https://browser.datacommons.org/kg?dcid=geoId/08), we can write the following:
