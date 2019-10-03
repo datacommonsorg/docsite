@@ -8,10 +8,6 @@ To build the site locally, make sure that you have the latest version of ruby in
 
     $ gem install jekyll bundler
 
-You will then need to edit `_config.yml` by uncommenting the line
-
-    # theme: "just-the-docs"
-
-Finally, run `bundle exec` in repository to bring up a local version.
+Afterwards, run `bundle exec` in repository to bring up a local version.
 
     $ bundle exec jekyll serve
