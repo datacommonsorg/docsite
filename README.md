@@ -12,9 +12,9 @@ You will need to edit `_config.yml` by commenting out the line
 
     remote_theme: pmarsceill/just-the-docs
 
-then uncommenting
+then adding
 
-    # theme: "just-the-docs"
+    theme: "just-the-docs"
 
 Finally, run `bundle exec` in repository to bring up a local version.
 
