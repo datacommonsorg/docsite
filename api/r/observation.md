@@ -120,7 +120,7 @@ We can also specify the `dcids` as a `tibble`/`data.frame` like so:
 ```
 
 Due to natural ordering of the returned `vector` names' string representation of
-indices, we can easily assign the result back to a dataframe.
+indices, we can easily assign the result back to a dataframe:
 
 ```r
 > df = tibble(popDcids = c("dc/p/x6t44d8jd95rd", "dc/p/fs929fynprzs", "dc/p/lr52m1yr46r44"))
@@ -137,7 +137,7 @@ indices, we can easily assign the result back to a dataframe.
 ```
 
 If an observation cannot be found given the constraints for a DCID,
-the returned named `vector` will not contain the DCID as a key.:
+the returned named `vector` will not contain the DCID as a key:
 
 ```r
 > dcids = c(

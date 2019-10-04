@@ -31,7 +31,7 @@ by DCIDs of the given `place_type`.
 
 When `dcids` is an instance of a column, the returned `Place`s are formatted as
 a *named* `vector` where the names of the returned `vector` are string
-representations of `dcid`'s indices, mapping to the list of places contained in
+representations of `dcids`' indices, mapping to the list of places contained in
 the place identified by the DCID in `i`-th cell of `dcids`. The entries of the
 returned named `vector` will always contain a `vector` of place DCIDs of the
 given `place_type`.
@@ -45,7 +45,7 @@ Be sure to initialize the library, and specify the API key. Check the [R library
 ## Examples
 
 We would like to get all Counties contained in
-[California}(https://browser.datacommons.org/kg?dcid=geoId/06). Specifying the
+[California](https://browser.datacommons.org/kg?dcid=geoId/06). Specifying the
 `dcids` as a `list` result in the following:
 
 ```r
@@ -72,7 +72,7 @@ $`0`
 ```
 
 Due to natural ordering of the returned `vector` names' string representation of
-indices, we can easily assign the result back to a dataframe.
+indices, we can easily assign the result back to a dataframe:
 
 ```r
 > df <- tibble(countyDcid = c('geoId/06085', 'geoId/24031'), anotherCol = c('random', 'data'))

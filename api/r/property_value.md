@@ -34,7 +34,7 @@ values.
 
 When `dcids` is an instance of a column, the returned property values are
 formatted as a *named* `vector` where the names are string representations
-of `dcid`'s indices, each mapping to a `vector` of property values associated
+of `dcids`' indices, each mapping to a `vector` of property values associated
 with the `i`-th given DCID.
 
 **Raises**
@@ -85,7 +85,8 @@ $`2`
 
 ```
 
-Now, let's get 10 cities contained in each of the states.
+Now, let's get 10 cities contained in each of the states:
+
 ```r
 > get_property_values(c("geoId/06", "geoId/21", "geoId/24"),
 +   'containedInPlace', out = FALSE, value_type = 'City', limit = 10

@@ -47,11 +47,12 @@ With the API key created and Data Commons API activated, we can now get started
 using the Data Commons R API Client.
 
 You can set the API key by calling `set_api_key`.
-Start by loading `datacommons`, then set the API key like so.
-    ```r
-    library(datacommons)
-    set_api_key('YOUR-API-KEY')
-    ```
+Start by loading `datacommons`, then set the API key like so:
+
+```r
+library(datacommons)
+set_api_key('YOUR-API-KEY')
+```
 
 This will create an environment variable in your R runtime called
 `DC_API_KEY` holding your key. Your key will then be used whenever

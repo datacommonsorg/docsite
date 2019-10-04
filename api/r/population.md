@@ -19,7 +19,7 @@ for these places, constrained by the given property values.
 
 *   `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs
     identifying `Place`s of populations to query for.
-    These DCID's are treated as the value associated by the property
+    These DCIDs are treated as the value associated by the property
     [`location`](https://browser.datacommons.org/kg?dcid=location) for each
     returned `StatisticalPopulation`.
 
@@ -43,7 +43,7 @@ of the `vector` if such a population does not exist.
 
 When `dcids` is an instance of a column, the returned `StatisticalPopulation`s
 are formatted as a *named* `vector` where the names of the returned `vector`
-are string representations of `dcid`'s indices, mapping to the population
+are string representations of `dcids`' indices, mapping to the population
 located in the place identified by the DCID in `i`-th cell of `dcids`
 and satisfying the `population_type` and `constraining_properties`
 *if such exists*. Otherwise, the cell is empty.
@@ -100,7 +100,7 @@ We can also specify the `dcids` as a single-column dataframe like so:
 ```
 
 Due to natural ordering of the returned `vector` names' string representation of
-indices, we can easily assign the result back to a dataframe.
+indices, we can easily assign the result back to a dataframe:
 
 ```r
 > df <- tibble(states = dcids, random = c(21, 12, 3))
