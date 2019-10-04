@@ -19,15 +19,15 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 To get started using the R API Client requires the following steps:
 
-*   Install the R API Client via `devtools`.
-*   Create an API key and enable the **Data Commons API**.
-*   Provide the API key to the R API Client and begin developing.
+* Install the R API Client via `devtools`.
+* Create an API key and enable the **Data Commons API**.
+* Provide the API key to the R API Client and begin developing.
 
 ### Installing the R API Client
 
 In the R console, install the `datacommons` package using `devtools`.
 
-```R
+```r
 # If devtools is not installed yet, install devtools
 if(!require(devtools)) install.packages("devtools")
 # Load devtools

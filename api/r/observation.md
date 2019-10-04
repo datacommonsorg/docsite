@@ -19,31 +19,31 @@ statistical populations, constrained by the given observations' property values.
 
 **Arguments**
 
-*   `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]):
+* `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]):
     A list of statistical populations to query, identified by their DCIDs.
     These DCIDs are treated as the property value associated with returned
     `Observation`s by the property
     [`observedNode`](https://browser.datacommons.org/kg?dcid=observedNode).
 
-*   `measured_property` (string): The property value associated with returned
+* `measured_property` (string): The property value associated with returned
     `Observation`s by the property
     [`measuredProperty`](https://browser.datacommons.org/kg?dcid=measuredProperty).
 
-*   `stats_type` (string): The statistical type of the `Observation`. This is commonly set
+* `stats_type` (string): The statistical type of the `Observation`. This is commonly set
     to `measuredValue`.
 
-*   `observation_date` (string): The property value associated with returned
+* `observation_date` (string): The property value associated with returned
     `Observation`s by the property
     [`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate).
     This is specified in ISO8601 format.
 
-*   `observation_period` (string): The property value associated with returned
+* `observation_period` (string): The property value associated with returned
     `Observation`s by the property
     [`observationPeriod`](https://browser.datacommons.org/kg?dcid=observationPeriod)
     of the observation. If the `Observation` has this property set, this must
     be specified.
 
-*   `measurement_method` (string): The property value associated with returned
+* `measurement_method` (string): The property value associated with returned
     `Observation`s by the property
     [`measurementMethod`](https://browser.datacommons.org/kg?dcid=measurementMethod)
     of the observation. If the `Observation` has this property set, this must
@@ -105,7 +105,6 @@ $`dc/p/x6t44d8jd95rd`
 
 $`dc/p/fs929fynprzs`
 [1] 1973955
-
 ```
 
 We can also specify the `dcids` as a `tibble`/`data.frame` like so:
@@ -153,7 +152,6 @@ $`dc/p/x6t44d8jd95rd`
 
 $`dc/p/fs929fynprzs`
 [1] 1973955
-
 ```
 
 If required properties are not specified, an empty named `list` is returned.

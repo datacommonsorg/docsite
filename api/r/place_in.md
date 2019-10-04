@@ -17,9 +17,9 @@ contained within, of a specified type.
 
 **Arguments**
 
-*   `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs of parent places to query for.
+* `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs of parent places to query for.
 
-*   `place_type` (string) - The type of the contained child `Place`s within the given
+* `place_type` (string) - The type of the contained child `Place`s within the given
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
     full list of available types, see [`subClassOf Place`](https://browser.datacommons.org/kg?dcid=Place).
 
@@ -38,7 +38,7 @@ given `place_type`.
 
 **Raises**
 
-*   `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+* `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [R library setup guide](/api/r/) for more details.
 
@@ -56,7 +56,6 @@ $`geoId/06`
 [1] "geoId/06001" "geoId/06003" "geoId/06005"
 [4] "geoId/06007" "geoId/06009" "geoId/06011"
 ...  and 52 more
-
 ```
 
 We can also specify the `dcids` as a single-column `tibble`/`data.frame` like so:
@@ -68,7 +67,6 @@ $`0`
 [1] "geoId/06001" "geoId/06003" "geoId/06005"
 [2] "geoId/06007" "geoId/06009" "geoId/06011"
 ... and 52 more
-
 ```
 
 Due to natural ordering of the returned `vector` names' string representation of

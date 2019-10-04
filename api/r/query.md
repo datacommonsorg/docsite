@@ -15,7 +15,7 @@ using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
 **Arguments**
 
-*   `query_string` (string): A SPARQL query string.
+* `query_string` (string): A SPARQL query string.
 
 This API only supports a subset of SPARQL keywords including:
 
@@ -36,7 +36,7 @@ row.
 
 **Raises**
 
-*   `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+* `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [R library setup guide](/api/r/) for more details.
 

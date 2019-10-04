@@ -17,19 +17,19 @@ for these places, constrained by the given property values.
 
 **Arguments**
 
-*   `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs
+* `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs
     identifying `Place`s of populations to query for.
     These DCIDs are treated as the value associated by the property
     [`location`](https://browser.datacommons.org/kg?dcid=location) for each
     returned `StatisticalPopulation`.
 
-*   `population_type` (string) - The
+* `population_type` (string) - The
     [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
     of each `StatisticalPopulation`, e.g.
     [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
     [`Student`](https://browser.datacommons.org/kg?dcid=Student).
 
-*   `constraining_properties` (named `vector` of strings, optional) -
+* `constraining_properties` (named `vector` of strings, optional) -
       A map from constraining property to the value that the
       `StatisticalPopulation` should be constrained by.
 
@@ -50,7 +50,7 @@ and satisfying the `population_type` and `constraining_properties`
 
 **Raises**
 
-*   `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+* `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [R library setup guide](/api/r/) for more details.
 
@@ -86,7 +86,6 @@ $`geoId/21`
 
 $`geoId/24`
 [1] "dc/p/lr52m1yr46r44"
-
 ```
 
 We can also specify the `dcids` as a single-column dataframe like so:
@@ -127,7 +126,6 @@ named list()
 > get_populations(c('geoId/06', 'country/USA'), 'Person', constraining_properties=pvs)
 $`geoId/06`
 [1] "dc/p/x6t44d8jd95rd"
-
 ```
 
 ## Errors

@@ -15,16 +15,16 @@ given property for each node.
 
 **Arguments**
 
-*   `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs to get property values for.
+* `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs to get property values for.
 
-*   `prop` (string) - The property to get property values for.
+* `prop` (string) - The property to get property values for.
 
-*   `out` (`logical`, optional) - Whether or not the property points away from the given list of nodes.
+* `out` (`logical`, optional) - Whether or not the property points away from the given list of nodes.
 
-*   `value_type` (string, optional) - A type to filter returned property values by, only applicable if
+* `value_type` (string, optional) - A type to filter returned property values by, only applicable if
     the value refers to a node.
 
-*   `limit` (`numeric`, optional) - The maximum number of property values returned per node, must be ≤ 500.
+* `limit` (`numeric`, optional) - The maximum number of property values returned per node, must be ≤ 500.
 
 **Returns**
 
@@ -39,7 +39,7 @@ with the `i`-th given DCID.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+* `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [R library setup guide](/api/r/) for more details.
 
@@ -66,7 +66,6 @@ $`geoId/21`
 
 $`geoId/24`
 [1] "Maryland"
-
 ```
 
 Next, we specify `dcids` as a single-column dataframe:
@@ -82,7 +81,6 @@ $`1`
 
 $`2`
 [1] "Maryland"
-
 ```
 
 Now, let's get 10 cities contained in each of the states:
@@ -116,7 +114,6 @@ list()
 
 $`geoId/21`
 list()
-
 ```
 
 ## Errors

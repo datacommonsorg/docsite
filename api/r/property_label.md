@@ -14,9 +14,9 @@ Returns the labels of properties defined for the given node DCIDs
 
 **Arguments**
 
-*    `dcids` (`vector` of strings) - DCIDs identifying nodes to query.
+* `dcids` (`vector` of strings) - DCIDs identifying nodes to query.
 
-*   `out` (`logical`, optional) - Whether or not the property points away from the given list of nodes.
+* `out` (`logical`, optional) - Whether or not the property points away from the given list of nodes.
 
 **Returns**
 
@@ -24,7 +24,7 @@ A *named* `vector` mapping DCIDs to `vector`s of property labels. If `out` is `T
 
 **Raises**
 
-*   `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+* `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [R library setup guide](/api/r/) for more details.
 
@@ -46,7 +46,6 @@ $`geoId/06`
 $`geoId/08`
 [1] "containedInPlace" "geoId"            "kmlCoordinates"  
 [4] "name"             "provenance"       "typeOf"
-
 ```
 
 We can also get incoming property labels by setting `out=FALSE`:
@@ -60,7 +59,6 @@ $`geoId/06`
 $`geoId/08`
 [1] "addressRegion"    "containedInPlace" "location"
 [4] "overlapsWith"
-
 ```
 
 If there is no node associated with the DCID, an empty `list` is returned:
@@ -72,7 +70,6 @@ list()
 
 $bar
 list()
-
 ```
 
 ## Errors

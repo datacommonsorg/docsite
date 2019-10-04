@@ -20,9 +20,9 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 **Arguments**
 
-*   `dcids` (`vector` of strings) - DCIDs to get triples for.
+* `dcids` (`vector` of strings) - DCIDs to get triples for.
 
-*   `limit` (`numeric`, optional) - The maximum number of triples per combination of
+* `limit` (`numeric`, optional) - The maximum number of triples per combination of
     property and type associated with nodes linked by that property to fetch,
     ≤ 500.
 
@@ -33,7 +33,7 @@ strings and either the *subject* or *object* is the specified DCID.
 
 **Raises**
 
-*   `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+* `Response error` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
 
 Be sure to initialize the library, and specify the API key. Check the [R library setup guide](/api/r/) for more details.
 
@@ -243,7 +243,6 @@ $`geoId/06`[[18]][[2]]
 
 $`geoId/06`[[18]][[3]]
 [1] "geoId/06"
-
 ```
 
 If there is no node associated with the given DCID, an empty list is returned:
@@ -252,7 +251,6 @@ If there is no node associated with the given DCID, an empty list is returned:
 > get_triples(c('foo'))
 $foo
 list()
-
 ```
 
 ## Errors
