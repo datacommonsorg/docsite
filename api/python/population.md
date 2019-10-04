@@ -106,7 +106,7 @@ not contain the DCID as a key:
 {}
 
 >>> pvs = {'employment': 'BLS_Employed'}
->>> dc.get_populations(['geoId/06', 'country/USA', 'Person', constraining_properties=pvs)
+>>> dc.get_populations(['geoId/06'], 'country/USA', 'Person', constraining_properties=pvs)
 {
   'geoId/06': 'dc/p/x6t44d8jd95rd'
 }
