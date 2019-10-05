@@ -46,7 +46,7 @@ We would like to get one triple per property and type combination associated wit
 > library(datacommons)
 > set_api_key(YOUR_API_KEY_HERE)
 > triples <- get_triples(c('geoId/06'), limit=1)
-< as.tibble(t(matrix(unlist(triples), nrow=3)))
+> as.tibble(t(matrix(unlist(triples), nrow=3)))
 # A tibble: 18 x 3
    subject                                subject          object         
    <chr>                                  <chr>            <chr>      
