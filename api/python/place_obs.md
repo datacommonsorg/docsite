@@ -12,8 +12,7 @@ grand_parent: API
 
 Returns all
 [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for all
-[`Place`](https://browser.datacommons.org/kg?dcid=Place)s of a certain type, for
-a given
+[`Place`](https://browser.datacommons.org/kg?dcid=Place)s of a certain type, for a given
 [`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate),
 given a set of constraints on the
 [`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s.
