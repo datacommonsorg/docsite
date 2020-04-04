@@ -32,6 +32,8 @@ To get an API key, check [API Key](/api/setup.html) section.
 *   `valueType`: The type of the property value to filter by, only applicable if
     the value refers to a node.
 
+*   `direction`: The direction of the label, valid values are "out" and "in".
+
 *   `limit`: (≤ 500) Maximum number of values returned per node.
 
 ## GET Request
@@ -48,6 +50,12 @@ To get an API key, check [API Key](/api/setup.html) section.
 
     ```bash
     curl 'https://api.datacommons.org/node/property-values?key=API_KEY&dcids=geoId/05&property=location&valueType=Election&limit=5'
+    ```
+
+*   Query with direction
+
+    ```bash
+    curl 'https://api.datacommons.org/node/property-values?key=API_KEY&dcids=geoId/05&property=containedInPlace&direction=out'
     ```
 
 ## POST Request

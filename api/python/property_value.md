@@ -15,7 +15,7 @@ given property for each node.
 
 **Arguments**
 
-*   `dcids (Union[list of str, pandas.Series])` - DCID's to get property values for
+*   `dcids (list of str)` - DCID's to get property values for
 
 *   `prop (str)` - The property to get property values for.
 
@@ -28,17 +28,9 @@ given property for each node.
 
 **Returns**
 
-A `dict` mapping DCID's to lists of property labels. If `out` is `True`, then
-property labels correspond to edges directed away from given nodes. Otherwise,
+A `dict` mapping DCID's to lists of property values. If `out` is `True`, then
+property values correspond to edges directed away from given nodes. Otherwise,
 they correspond to edges directed towards the given nodes.
-
-When `dcids` is an instance of `list`, the returned property values are
-formatted as a `dict` from a given dcid to a list of its property values.
-
-When `dcids` is an instance of `pandas.Series`, the returned property values
-are formatted as a `pandas.Series` where the `i`-th entry corresponds to
-property values associated with the `i`-th given dcid.  The cells of the
-returned series will always contain a `list` of property values.
 
 **Raises**
 
@@ -53,9 +45,7 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 We would like to get the `name` of a list of states specified by their DCID:
 [geoId/06](https://browser.datacommons.org/kg?dcid=geoId/06),
 [geoId/21](https://browser.datacommons.org/kg?dcid=geoId/21), and
-[geoId/24](https://browser.datacommons.org/kg?dcid=geoId/24)
-
-First, let's try specifying the `dcids` as a `list` of `str`:
+[geoId/24](https://browser.datacommons.org/kg?dcid=geoId/24).
 
 ```python
 >>> import datacommons as dc
@@ -66,18 +56,6 @@ First, let's try specifying the `dcids` as a `list` of `str`:
   "geoId/21": ["Kentucky"],
   "geoId/24": ["Maryland"],
 }
-```
-
-Next, we specify `dcids` as a `pandas.Series`:
-
-```python
->>> import pandas as pd
->>> dcids = pd.Series(["geoId/06", "geoId/21", "geoId/24"])
->>> get_property_values(dcids, "name")
-0    [California]
-1      [Kentucky]
-2      [Maryland]
-dtype: object
 ```
 
 [comment]: <> (Add examples for other arguments (e.g. value_type, limit)
