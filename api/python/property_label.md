@@ -20,7 +20,9 @@ Returns the labels of properties defined for the given node DCID's
 
 **Returns**
 
-A `dict` mapping DCID's to lists of property labels. If `out` is `True`, then property labels correspond to edges directed away from given nodes. Otherwise, they correspond to edges directed towards the given nodes.
+A `dict` mapping DCID's to lists of property labels. If `out` is `True`,
+then property labels correspond to edges directed away from given nodes.
+Otherwise, they correspond to edges directed towards the given nodes.
 
 **Raises**
 

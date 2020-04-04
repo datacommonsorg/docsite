@@ -19,47 +19,41 @@ statistical populations, constrained by the given observation's property values.
 
 **Arguments**
 
-*   `dcids (Union[`list` of `str`, `pandas.Series`])`: A list of statistical
+*   `dcids (list of str)`: A list of statistical
     populations to query, identified by their DCIDs. These DCIDs are treated as
-    the property value associated with returned `Observation`'s by the property
+    the property value associated with returned list of `Observation` by the property
     [`observedNode`](https://browser.datacommons.org/kg?dcid=observedNode)
 
-*   `measured_property (str)`: The property value associated with returned
-    `Observation`'s by the property
+*   `measured_property (str)`: The property value associated with returned list of
+    `Observation` by the property
     [`measuredProperty`](https://browser.datacommons.org/kg?dcid=measuredProperty)
 
 *   `stats_type (str)`: The statistical type of the `Observation`. This is commonly set
     to `measuredValue`.
 
 *   `observation_date`: The property value associated with returned
-    `Observation`'s by the property
+    `Observation` by the property
     [`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate).
     This is specified in ISO8601 format.
 
 *   `observation_period (str)`: The property value associated with returned
-    `Observation`'s by the property
+    `Observation` by the property
     [`observationPeriod`](https://browser.datacommons.org/kg?dcid=observationPeriod)
     of the observation. If the `Observation` has this property set, this must
     be specified.
 
 *   `measurement_method (str)`: The property value associated with returned
-    `Observation`'s by the property
+    `Observation` by the property
     [`measurementMethod`](https://browser.datacommons.org/kg?dcid=measurementMethod)
     of the observation. If the `Observation` has this property set, this must
     be specified
 
 **Returns**
 
-When `dcids` is an instance of `list`, the returned `Observation`'s are
-formatted as a `dict` from a given DCID to the unique `Observation` observing
+A `dict` from a given DCID to the unique `Observation` observing
 the DCID where the observation is specified by what is given in the other
 parameters *if such exists*. A given DCID will *NOT* be a member of the `dict`
 if such an observation does not exist.
-
-When `dcids` is an instance of `pandas.Series`, the returned `Observation`'s
-are formatted as a `pandas.Series` where the `i`-th entry corresponds to
-observation observing the given DCID as specified by the other parameters *if
-such exists*. Otherwise, the cell holds NaN.
 
 **Raises**
 
@@ -98,23 +92,8 @@ population DCIDs, we can get the observations like so:
 }
 ```
 
-We can also specify the `dcids` as a `pandas.Series` like so:
-
-```python
->>> import pandas as pd
->>> dcids = pd.Series(["dc/p/x6t44d8jd95rd", "dc/p/fs929fynprzs", "dc/p/lr52m1yr46r44"])
->>> get_observations(dcids, 'count', 'measuredValue', '2018-12',
-    ...   observation_period='P1M',
-    ...   measurement_method='BLSSeasonallyAdjusted'
-    ... )
-0    18704962.0
-1     1973955.0
-2     3075662.0
-dtype: float64
-```
-
 If an observation cannot be found given the constraints for a DCID, the return `dict` will
-not contain the DCID as a key.:
+not contain the DCID as a key:
 
 ```python
 >>> dcids = [
