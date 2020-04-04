@@ -17,14 +17,12 @@ for these places, constrained by the given property values.
 
 **Arguments**
 
-*   `dcids (Union[list of str, pandas.Series])` - DCIDs
-    identifying `Place`'s of populations to query for.
+*   `dcids (list of str)` - DCIDs identifying `Place`'s of populations to query for.
     These DCID's are treated as the value associated by the property
     [`location`](https://browser.datacommons.org/kg?dcid=location) for each
     returned `StatisticalPopulation`.
 
-*   `population_type (str)` - The
-    [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
+*   `population_type (str)` - The [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
     of each `StatisticalPopulation`, e.g.
     [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
     [`Student`](https://browser.datacommons.org/kg?dcid=Student).
@@ -35,17 +33,10 @@ for these places, constrained by the given property values.
 
 **Returns**
 
-When `dcids` is an instance of `list`, the returned `StatisticalPopulation` are
-formatted as a `dict` from a given dcid to the unique `StatisticalPopulation`
+A `dict` from a given dcid to the unique `StatisticalPopulation`
 located at the dcid as specified by the `population_type` and
 `constraining_properties` *if such exists*. A given DCID will *NOT* be a member
 of the `dict` if such a population does not exist.
-
-When `dcids` is an instance of `pandas.Series`, the returned
-`StatisticalPopulation` are formatted as a `pandas.Series` where the `i`-th
-entry corresponds to populations located at the given DCID specified by the
-`population_type` and `constraining_properties` *if such exists*. Otherwise,
-the cell is empty.
 
 **Raises**
 
@@ -65,8 +56,7 @@ We would like to get
 
 These populations are specified as having a
 `population_type` as `Person` and the `constraining_properties`
-as [`employment`](https://browser.datacommons.org/kg?dcid=employment)
-`= BLS_Employed`
+as [`employment`](https://browser.datacommons.org/kg?dcid=employment) `= BLS_Employed`
 
 With a `list` of dcids for our states, we can get the populations we
 want as follows:
@@ -83,22 +73,6 @@ want as follows:
   'geoId/24': 'dc/p/lr52m1yr46r44'
 }
 ```
-
-We can also specify the `dcids` as a `pandas.Series` like so:
-
-```python
->>> import pandas as pd
->>> dcids = pd.Series(['geoId/06', 'geoId/21', 'geoId/24'])
->>> pvs = {'employment': 'BLS_Employed'}
->>> dc.get_populations(dcids, 'Person', constraining_properties=pvs)
-0    dc/p/x6t44d8jd95rd
-1     dc/p/fs929fynprzs
-2    dc/p/lr52m1yr46r44
-dtype: object
-```
-
-If a population cannot be found given the constraints for a DCID, the return `dict` will
-not contain the DCID as a key:
 
 ```python
 >>> pvs = {'foo': 'bar'}

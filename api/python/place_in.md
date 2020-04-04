@@ -17,7 +17,7 @@ contained within, of a specified type.
 
 **Arguments**
 
-*   `dcids (Union[list of str, pandas.Series])` - DCIDs of parent places to query for.
+*   `dcids (list of str)` - DCIDs of parent places to query for.
 
 *   `place_type (str)` - The type of the contained child `Place`s within the given
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
@@ -25,16 +25,8 @@ contained within, of a specified type.
 
 **Returns**
 
-When `dcids` is an instance of `list`, the returned `Place`s are formatted as
-a `dict` from a given dcid to a list of places identified by dcids of the given
+A `dict` from a given dcid to a list of places identified by dcids of the given
 `place_type`.
-
-When `dcids` is an instance of `pandas.Series`, the returned `Place`s are
-formatted as a `pandas.Series` where the `i`-th entry corresponds to places
-contained in the place identified by the DCID in `i`-th cell if `dcids`. The
-cells of the returned series will always contain a `list` of place DCIDs of the
-given `place_type`.
-
 
 **Raises**
 
@@ -62,16 +54,6 @@ We would like to get all Counties contained in
     ...  # and 53 more
   ]
 }
-```
-
-We can also specify the `dcids` as a `pandas.Series` like so.
-
-```python
->>> import pandas as pd
->>> dcids = pd.Series(["geoId/06"])
->>> get_places_in(dcids, "County")
-0    [geoId/06041, geoId/06089, geoId/06015, geoId/...
-dtype: object
 ```
 
 ## Errors

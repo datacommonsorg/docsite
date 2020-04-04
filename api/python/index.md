@@ -28,7 +28,7 @@ To get started using the Python Client API requires the following steps:
 First, install the `datacommons` package through `pip`.
 
 ```bash
-$ pip install -U git+https://github.com/google/datacommons.git@stable-1.x
+$ pip install datacommons
 ```
 
 For more information about installing `pip` and setting up other parts of
@@ -68,7 +68,6 @@ to the Python Client API package.
 
     After you've exported the variable, you can start using the Data Commons
     package!
-
 
     ```
     import datacommons as dc
