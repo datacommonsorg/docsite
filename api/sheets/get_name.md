@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Get the name of a Data Commons node given its dcid.
+title: Get node name
 nav_order: 4
-parent: SHEETS
+parent: sheets
 grand_parent: API
 ---
 

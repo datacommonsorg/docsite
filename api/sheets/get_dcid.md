@@ -2,7 +2,7 @@
 layout: default
 title: Get place DCID
 nav_order: 3
-parent: SHEETS
+parent: sheets
 grand_parent: API
 ---
 

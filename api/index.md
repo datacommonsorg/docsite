@@ -117,5 +117,5 @@ containing areas.
     a specified type.
     -   Documentation: [REST](/api/rest/place_in.html),
     [Python](/api/python/place_in.html),
-    [R](/api/r/place_in.html)
+    [R](/api/r/place_in.html), [Sheets](/api/sheets/places_in.html)
 

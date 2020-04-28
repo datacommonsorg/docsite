@@ -1,8 +1,8 @@
 ---
 layout: default
-title: SHEETS
+title: sheets
 nav_order: 2
-parent: API
+parent: sheets
 has_children: true
 ---
 # Data Commons Sheets API
