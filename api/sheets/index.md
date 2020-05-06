@@ -14,4 +14,4 @@ importing data to a spreadsheet.
 
 ## Getting Started
 
-Install the add-on from G Suite Marketplace here. It should work on any Google Sheet that you can edit.
+The add-on is currently only available to users @google.com. Install it from G Suite Marketplace [here](https://gsuite.google.com/marketplace/app/data_commons/176057373416). It should work on any Google Sheet that you can edit.
