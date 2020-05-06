@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Get Variable
+title: Get statistical variable
 nav_order: 6
-parent: SHEETS
+parent: sheets
 grand_parent: API
 ---
 
