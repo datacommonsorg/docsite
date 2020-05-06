@@ -1,6 +1,6 @@
 ---
 layout: default
-title: set_api_key
+title: Set API Key
 nav_order: 10
 parent: Python
 grand_parent: API
