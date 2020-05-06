@@ -60,7 +60,7 @@ of `Person` is specified by the following constraining properties.
 ...   'age': 'Years5To17',
 ...   'placeOfBirth': 'BornInOtherStateInTheUnitedStates'
 ... }
->>> get_place_obs('City', '2017', 'Person', constraining_properties=props)
+>>> dc.get_place_obs('City', '2017', 'Person', constraining_properties=props)
 [
   {
     'name': 'Palm Springs',
