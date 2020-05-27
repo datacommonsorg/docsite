@@ -21,7 +21,7 @@ Returns a time series of statistical values for queried places based on the
 *   `stats_var`: The dcid of the
     [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
 
-*   `obs_dates`: The dates of [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s to include. Can be 'latest', 'all', or an list of dates in 'YYYY-MM-DD' format.
+*   `obs_dates`: The dates of [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s to include. Can be 'latest', 'all', or an list of dates in ISO-8601 format, e.g. "YYYY", "YYYY-MM" or "YYYY-MM-DD".
 
 **Returns**
 
