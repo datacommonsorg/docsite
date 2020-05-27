@@ -19,7 +19,7 @@ given a set of constraints on the
 
 **Arguments**
 
-*   `placeType (str)`: The type of the
+*   `placeType (str)`: The type of
     [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
 
 *   `observation_date (str)`: The observation date in ISO-8601 format.
@@ -32,9 +32,9 @@ given a set of constraints on the
 
 **Returns**
 
-A list of dictionaries, with each dictionary containng *all* `Observation`'s of
-a place that conform to the `StatisticalPopulation` constraints. See examples
-for more details on how the format of the return value is structured.
+A list of dictionaries, with each dictionary containing *all* `Observation`s of
+a `Place` that conform to the `StatisticalPopulation` constraints. See examples
+for more details on how the return value is structured.
 
 **Raises**
 
@@ -44,8 +44,8 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 
 ## Examples
 
-We would like to get all `StatisticalPopulation` and `Observations` for all
-places of type `City` in year 2017 where the populations have a population type
+We would like to get all `StatisticalPopulation`s and `Observation`s for all
+`Place`s of type `City` in year 2017 where the populations have a population type
 of `Person` is specified by the following constraining properties.
 
 * Persons should have [`age`](https://browser.datacommons.org/kg?dcid=age)
