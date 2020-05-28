@@ -48,7 +48,9 @@ in [Arkansas](https://browser.datacommons.org/kg?dcid=geoId/05)
 and [California](https://browser.datacommons.org/kg?dcid=geoId/06).
 
 ```python
->>> get_stats(["geoId/05", "geoId/06"], "dc/0hyp6tkn18vcb", obs_dates="all")
+>>> import datacommons as dc
+>>> dc.set_api_key(YOUR_API_KEY_HERE)
+>>> dc.get_stats(["geoId/05", "geoId/06"], "dc/0hyp6tkn18vcb", obs_dates="all")
 {
   'geoId/05': {
     'place_name': 'Arkansas'
