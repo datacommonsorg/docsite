@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Statistics for Places.
 
-Returns a time series of statistics value for queried places based on the
+Returns a time series of statistical values for queried places based on the
 [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
 
 **URL** : `/bulk/stats`
@@ -24,7 +24,7 @@ To get an API key, check [API Key](/api/setup.html) section.
 *   `key`: Your API key.
 
 *   `place`: A list of dcids of the
-    [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
+    [`Place`](https://browser.datacommons.org/kg?dcid=Place)s to query for.
 
 *   `stats_var`: The dcid of the
     [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
