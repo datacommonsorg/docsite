@@ -1,6 +1,6 @@
 ---
 layout: default
-title: sheets
+title: Google Sheets
 nav_order: 2
 parent: API
 has_children: true
