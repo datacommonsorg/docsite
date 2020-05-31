@@ -15,13 +15,13 @@ Given a list of [Place](https://browser.datacommons.org/kg?dcid=Place) DCIDs, a 
 **Arguments**
 *   `dcids` - place DCIDs as a single value, a row, or a column
 *   `variable` - The StatisticalVariable to get
-*   `date` - The dates to observe, e.g. 2017, "2017", "2017-12". This can be a single value, a row, or a column.
+*   `date` - The dates to observe in ISO 8601 format (e.g. 2017, "2017", "2017-12") or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en). This can be a single value, a row, or a column.
 
 `date` is optional. If it's not specified, the function returns the latest observation of the variable.
 
 **Returns**
 
-The value of the variable at those places on that date (or on the latest available date, if no date is specified).
+The value of the variable at those places on the specified date (or on the latest available date, if no date is specified).
 
 ## Examples
 
