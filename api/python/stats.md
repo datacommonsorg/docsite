@@ -41,41 +41,41 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 
 ## Examples
 
-We would like to get the time series of the [number of males
-at least 25 years old that attended 12th grade but did not receive
-a high school diploma (`dc/0hyp6tkn18vcb`)](https://browser.datacommons.org/kg?dcid=dc/0hyp6tkn18vcb)
+We would like to get the time series of the [male population](https://browser.datacommons.org/kg?dcid=MalePopulation)
 in [Arkansas](https://browser.datacommons.org/kg?dcid=geoId/05)
-and [California](https://browser.datacommons.org/kg?dcid=geoId/06).
+and [Santa Clara County](https://browser.datacommons.org/kg?dcid=geoId/06085).
 
 ```python
->>> get_stats(["geoId/05", "geoId/06"], "dc/0hyp6tkn18vcb", obs_dates="all")
+>>> import datacommons as dc
+>>> dc.set_api_key(YOUR_API_KEY_HERE)
+>>> dc.get_stats(["geoId/05", "geoId/06085"], "MalePopulation", obs_dates="all")
 {
   'geoId/05': {
-    'place_name': 'Arkansas'
     'data': {
-      '2011':18136,
-      '2012':17279,
-      '2013':17459,
-      '2014':16966,
-      '2015':17173,
-      '2016':17041,
-      '2017':17783,
-      '2018':18003
+      '2011': 1421287,
+      '2012': 1431252,
+      '2013': 1439862,
+      '2014': 1447235,
+      '2015': 1451913,
+      '2016': 1456694,
+      '2017': 1461651,
+      '2018': 1468412
     },
+    'place_name': 'Arkansas'
   },
-  'geoId/05': {
-    'place_name': 'California'
-    'data': { 
-      '2011':316667,
-      '2012':324116,
-      '2013':331853,
-      '2014':342818,
-      '2015':348979,
-      '2016':354806,
-      '2017':360645,
-      '2018':366331
+  'geoId/06085': {
+    'data': {
+      '2011': 885307,
+      '2012': 898013,
+      '2013': 910196,
+      '2014': 924848,
+      '2015': 939004,
+      '2016': 949223,
+      '2017': 963317,
+      '2018': 970469
     },
-  },
+    'place_name': 'Santa Clara County'
+  }
 }
 ```
 
