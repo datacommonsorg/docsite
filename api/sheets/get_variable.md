@@ -23,6 +23,13 @@ Given a list of [Place](https://browser.datacommons.org/kg?dcid=Place) DCIDs, a 
 
 The value of the variable at those places on the specified date (or on the latest available date, if no date is specified).
 
+---
+**NOTE:**
+
+It's best to minimize the number of function calls to `DCGET` by using a single call to get a variable for a row/column of places and/or a column/row of times. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCGET`, expect it to be slow.
+
+---
+
 ## Examples
 
 ### Get the total population of Hawaii in 2017.
