@@ -30,6 +30,8 @@ It's best to minimize the number of function calls to `DCGET` by using a single 
 
 ---
 
+You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+
 ## Examples
 
 ### Get the total population of Hawaii in 2017.
