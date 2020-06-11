@@ -39,6 +39,8 @@ malformed.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 
+You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+
 ## Examples
 
 We would like to get the time series of the [male population](https://browser.datacommons.org/kg?dcid=MalePopulation)

@@ -29,6 +29,8 @@ To get an API key, check [API Key](/api/setup.html) section.
 *   `stats_var`: The dcid of the
     [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
 
+You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+
 ## POST Request
 
 **Example**
