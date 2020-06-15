@@ -136,7 +136,7 @@ If the given node does not have any `Observation`s, then the JSON object would
 be empty.
 
 **NOTE:** Please run `JSON.parse()` on the `payload` field to retrieve the
-compressed data and unzip the data with pako library. For example, in JavaScript:
+compressed data and unzip the data with the [pako library](https://github.com/nodeca/pako). For example, in JavaScript:
 
 ```javascript
 // API call to get response, then do the following:
