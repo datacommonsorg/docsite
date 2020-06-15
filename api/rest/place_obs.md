@@ -136,10 +136,16 @@ If the given node does not have any `Observation`s, then the JSON object would
 be empty.
 
 **NOTE:** Please run `JSON.parse()` on the `payload` field to retrieve the
-compressed data. For example, in JavaScript: `var data =
-JSON.parse(response['payload'])`.
+compressed data and unzip the data with pako library. For example, in JavaScript:
 
-<!--- TODO: provide example to do decompression --->
+```javascript
+// API call to get response, then do the following:
+var data = JSON.parse(response['payload']);
+var charData = atob(data).split('').map(x => x.charCodeAt(0));
+var inflateData = pako.inflate(new Uint8Array(charData), {});
+var jsonString = TextDecoder('utf-8').decode(inflateData);
+console.log(JSON.parse(jsonString));
+```
 
 ## Error Response
 

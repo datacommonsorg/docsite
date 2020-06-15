@@ -90,11 +90,9 @@ The json contains an object keyed by place DCID. The value contains the place
 name and a "data" object keyed by the observation date and value being the actual
 statistics.
 
-**NOTE:** Please run `JSON.parse()` on the `payload` field to retrieve the
-compressed data. For example, in JavaScript: `var data =
+**NOTE:** Please run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data =
 JSON.parse(response['payload'])`.
 
-<!--- TODO: provide example to do decompression --->
 
 ## Error Response
 
