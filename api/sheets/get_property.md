@@ -10,15 +10,15 @@ grand_parent: API
 
 ## =DCPROPERTY(dcids, property)
 
-Given a property DCID, together with a string DCID, a row of cells of DCIDs, or a column of cells of DCIDs, get the values of the given property for those DCIDs.
+Given a property, together with a single DCID, a row of DCIDs, or a column of DCIDs, get the values of the given property for those DCIDs.
 
 **Arguments**
-*    `dcids` - DCIDs to get the properties of
+*    `dcids` - DCIDs to get the property for
 *    `property` - property to get
 
 **Returns**
 
-The properties of the DCIDs. For a single DCID, the result is a column of properties. For a row of DCIDs, the result is a matrix where each column is the members of the DCID at the column's index. For a column of DCIDs, the result is a matrix where each row is the members of the DCID at the row's index.
+The properties of the DCIDs. For a single DCID, the result is a column of the given property's values for that DCID. For a row of DCIDs, the result is a matrix where each column contains the values of the given property for the DCID at the column's index. For a column of DCIDs, the result is a matrix where each row contains the values of the given property for the DCID at the row's index.
 
 ## Examples
 
