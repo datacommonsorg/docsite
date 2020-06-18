@@ -13,7 +13,7 @@ grand_parent: API
 Given a [cohort](http://browser.datacommons.org/kg?dcid=Cohort) or a row of cohort DCIDs, get the [members](http://browser.datacommons.org/kg?dcid=member) of each cohort.
 
 **Arguments**
-*    `cohort` - cohort DCIDs to get the members of
+*    `dcids` - cohort DCIDs to get the members of
 
 **Returns**
 
