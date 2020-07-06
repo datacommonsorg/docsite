@@ -52,7 +52,7 @@ We would like to get
 
 * The [population of employed persons in California](https://browser.datacommons.org/kg?dcid=dc/p/x6t44d8jd95rd)
 * The [population of employed persons in Kentucky](https://browser.datacommons.org/kg?dcid=dc/p/fs929fynprzs)
-* The [population of employed persons in Maryland](https://browser.datacommons.org/kg?dcid=dc/p/lr52m1yr46r44>)
+* The [population of employed persons in Maryland](https://browser.datacommons.org/kg?dcid=dc/p/lr52m1yr46r44)
 
 These populations are specified as having a
 `population_type` as `Person` and the `constraining_properties`
