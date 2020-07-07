@@ -8,7 +8,6 @@ nav_order: 2
 
 Many of the Data Commons APIs deal with Data Commons nodes of the type [StatisticalVariable](https://browser.datacommons.org/kg?dcid=StatisticalVariable). The following variables have human-readable dcids:
 
--   [PerCapita](https://browser.datacommons.org/kg?dcid=PerCapita)
 -   [TotalPopulation](https://browser.datacommons.org/kg?dcid=TotalPopulation)
 -   [MalePopulation](https://browser.datacommons.org/kg?dcid=MalePopulation)
 -   [FemalePopulation](https://browser.datacommons.org/kg?dcid=FemalePopulation)
