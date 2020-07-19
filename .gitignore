@@ -1,4 +1,7 @@
 ### Mac OS ###
-.DS_Store
+**/.DS_Store
 .AppleDouble
 .LSOverride
+
+.sass-cache/
+_site/
