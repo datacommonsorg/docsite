@@ -37,7 +37,7 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ```bash
 curl -X POST 'https://api.datacommons.org/bulk/stats?key=API_KEY' \
--d '{ "place": ["geoId/05", "geoId/06085"], "stats_var": "MalePopulation"}'
+-d '{ "place": ["geoId/05", "geoId/06085"], "stats_var": "Count_Person_Male"}'
 ```
 
 ## Success Response

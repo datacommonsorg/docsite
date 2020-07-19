@@ -37,7 +37,7 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 ### Get the total population of Hawaii in 2017.
 
 ```
-=DCGET("geoId/15", "TotalPopulation", 2017)
+=DCGET("geoId/15", "Count_Person", 2017)
 ```
 
 ### Get the population of multiple places with a single function call.
