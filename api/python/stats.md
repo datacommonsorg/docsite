@@ -43,14 +43,14 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ## Examples
 
-We would like to get the time series of the [male population](https://browser.datacommons.org/kg?dcid=MalePopulation)
+We would like to get the time series of the [male population](https://browser.datacommons.org/kg?dcid=Count_Person_Male)
 in [Arkansas](https://browser.datacommons.org/kg?dcid=geoId/05)
 and [Santa Clara County](https://browser.datacommons.org/kg?dcid=geoId/06085).
 
 ```python
 >>> import datacommons as dc
 >>> dc.set_api_key(YOUR_API_KEY_HERE)
->>> dc.get_stats(["geoId/05", "geoId/06085"], "MalePopulation", obs_dates="all")
+>>> dc.get_stats(["geoId/05", "geoId/06085"], "Count_Person_Male", obs_dates="all")
 {
   'geoId/05': {
     'data': {

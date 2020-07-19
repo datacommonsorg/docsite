@@ -1,7 +1,7 @@
 ---
 layout: default
 title: REST
-nav_order: 2
+nav_order: 3
 parent: API
 has_children: true
 ---

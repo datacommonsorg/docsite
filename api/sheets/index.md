@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Google Sheets
-nav_order: 2
+nav_order: 5
 parent: API
 has_children: true
 ---
@@ -15,4 +15,6 @@ importing data to a spreadsheet.
 ## Getting Started
 
 Install the add-on from G Suite Marketplace [here](https://gsuite.google.com/marketplace/app/data_commons/454343067575). To enable the add-on in a document, click "Add-ons > Data Commons > Fill place dcids". You may use the resulting sidebar to start [finding dcids](/api/sheets/get_dcid.html) in the United States, or close it and reopen it at any time. Note that none of the custom functions will work in a given document until you have enabled the add-on by choosing "Fill place dcids".
+
+
 ![](/assets/sheets_menu_bar.png)
