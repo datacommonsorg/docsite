@@ -19,7 +19,7 @@
             {% if node.has_children %}{{ caret }}{% endif %}
           </summary>
           {% if page.parent == node.title or page.grand_parent == node.title %}
-            {% assign first_level_url = node.url }
+            {% assign first_level_url = node.url %}
           {% endif %}
           {%- if node.has_children -%}
             {%- assign children_list = pages_list | where: "parent", node.title -%}
@@ -32,7 +32,7 @@
                     {% if child.has_children %}{{ caret }}{% endif %}
                   </summary>
                   {% if page.url == child.url or page.parent == child.title %}
-                    {% assign second_level_url = child.url }
+                    {% assign second_level_url = child.url %}
                   {% endif %}
                   {%- if child.has_children -%}
                     {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
