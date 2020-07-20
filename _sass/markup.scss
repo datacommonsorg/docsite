@@ -45,6 +45,17 @@ h1, h2 {
   padding-bottom: .25rem;
 }
 
+h1 + h2 {
+  border-bottom: none;
+  margin-top: .5rem;
+  margin-bottom: 1.5rem;
+}
+
+h1 + h2 code {
+  font-size: 1.2rem;
+  background-color: var(--dc-red-fade);
+}
+
 img {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;

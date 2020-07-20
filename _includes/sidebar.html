@@ -16,11 +16,11 @@
         <details class="parent"
           {% if page.url == node.url or page.parent == node.title or page.grand_parent == node.title %}open{% endif %}>
           <summary>
-            <a href="{{ node.url | absolute_url }}" class="{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            <a href="{{ node.url }}" class="{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
             {% if node.has_children %}{{ caret }}{% endif %}
           </summary>
           {% if page.parent == node.title or page.grand_parent == node.title %}
-            {% assign first_level_url = node.url | absolute_url %}
+            {% assign first_level_url = node.url }
           {% endif %}
           {%- if node.has_children -%}
             {%- assign children_list = pages_list | where: "parent", node.title -%}
@@ -29,18 +29,18 @@
               {%- unless child.nav_exclude -%}
                 <details class="child" {% if page.url == child.url or page.parent == child.title %}open{% endif %}>
                   <summary>
-                    <a href="{{ child.url | absolute_url }}" class="{% if page.url == child.url or page.parent == child.title %} active{% endif %}">{{ child.title }}</a>
+                    <a href="{{ child.url }}" class="{% if page.url == child.url or page.parent == child.title %} active{% endif %}">{{ child.title }}</a>
                     {% if child.has_children %}{{ caret }}{% endif %}
                   </summary>
                   {% if page.url == child.url or page.parent == child.title %}
-                    {% assign second_level_url = child.url | absolute_url %}
+                    {% assign second_level_url = child.url }
                   {% endif %}
                   {%- if child.has_children -%}
                     {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
                     <ul id="child-{{ forloop.index }}">
                     {%- for grand_child in grand_children_list -%}
                       <li class="{% if page.url == grand_child.url %}active{% endif %}">
-                        <a href="{{ grand_child.url | absolute_url }}" class="{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>
+                        <a href="{{ grand_child.url }}" class="{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>
                       </li>
                     {%- endfor -%}
                     </ul>
