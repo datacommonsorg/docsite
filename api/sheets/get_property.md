@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get the values of a given property for a node.
 
-## =DCPROPERTY(dcids, property)
+## `=DCPROPERTY(dcids, property)`
 
 Given a property, together with a single DCID, a row of DCIDs, or a column of DCIDs, get the values of the given property for those DCIDs.
 
@@ -38,9 +38,9 @@ in cells B1 and B2 respectively.
 
 ### Input
 
-![](/assets/sheets_get_property_input.png)
+![](/assets/images/sheets/sheets_get_property_input.png)
 
 ### Output
 
-![](/assets/sheets_get_property_output.png)
+![](/assets/images/sheets/sheets_get_property_output.png)
 

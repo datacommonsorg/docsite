@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get the values of a given property for a node.
 
-## =DCCOHORTMEMBERS(dcids)
+## `=DCCOHORTMEMBERS(dcids)`
 
 Given a [cohort](http://browser.datacommons.org/kg?dcid=Cohort) or a row of cohort DCIDs, get the [members](http://browser.datacommons.org/kg?dcid=member) of each cohort.
 
@@ -25,9 +25,9 @@ In this example, we find the members of the [CDC500_City](https://browser.dataco
 
 ### Input
 
-![](/assets/sheets_get_cohort_members_input.png)
+![](/assets/images/sheets/sheets_get_cohort_members_input.png)
 
 ### Output (truncated)
 
-![](/assets/sheets_get_cohort_members_output.png)
+![](/assets/images/sheets/sheets_get_cohort_members_output.png)
 
