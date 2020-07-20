@@ -1,1 +1,0 @@
-The files contained in this folder was downloaded from https://getbootstrap.com/docs/4.0/getting-started/download/ and are governed by the [MIT License](https://github.com/twbs/bootstrap/blob/main/LICENSE)
