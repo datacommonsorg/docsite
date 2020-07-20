@@ -1,0 +1,57 @@
+{%- capture caret -%}
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+{%- endcapture -%}
+
+<div id="sidebar">
+  {%- assign ordered_pages_list = site.html_pages | where_exp: "item", "item.nav_order != nil" -%}
+  {%- assign unordered_pages_list = site.html_pages | where_exp: "item", "item.nav_order == nil" -%}
+  {%- assign sorted_ordered_pages_list = ordered_pages_list | sort: "nav_order" -%}
+  {%- assign sorted_unordered_pages_list = unordered_pages_list | sort: "title" -%}
+  {%- assign pages_list = sorted_ordered_pages_list | concat: sorted_unordered_pages_list -%}
+  {%- for node in pages_list -%}
+    {%- unless node.nav_exclude -%}
+      {%- if node.parent == nil and node.title -%}
+        <details class="parent"
+          {% if page.url == node.url or page.parent == node.title or page.grand_parent == node.title %}open{% endif %}>
+          <summary>
+            <a href="{{ node.url | absolute_url }}" class="{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            {% if node.has_children %}{{ caret }}{% endif %}
+          </summary>
+          {% if page.parent == node.title or page.grand_parent == node.title %}
+            {% assign first_level_url = node.url | absolute_url %}
+          {% endif %}
+          {%- if node.has_children -%}
+            {%- assign children_list = pages_list | where: "parent", node.title -%}
+            <ul id="node-{{ forloop.index }}">
+            {%- for child in children_list -%}
+              {%- unless child.nav_exclude -%}
+                <details class="child" {% if page.url == child.url or page.parent == child.title %}open{% endif %}>
+                  <summary>
+                    <a href="{{ child.url | absolute_url }}" class="{% if page.url == child.url or page.parent == child.title %} active{% endif %}">{{ child.title }}</a>
+                    {% if child.has_children %}{{ caret }}{% endif %}
+                  </summary>
+                  {% if page.url == child.url or page.parent == child.title %}
+                    {% assign second_level_url = child.url | absolute_url %}
+                  {% endif %}
+                  {%- if child.has_children -%}
+                    {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
+                    <ul id="child-{{ forloop.index }}">
+                    {%- for grand_child in grand_children_list -%}
+                      <li class="{% if page.url == grand_child.url %}active{% endif %}">
+                        <a href="{{ grand_child.url | absolute_url }}" class="{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </details>
+              {%- endunless -%}
+            {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </details>
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endfor -%}
+</div>

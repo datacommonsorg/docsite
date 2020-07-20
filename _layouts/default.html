@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>{{ page.title }} | Data Commons Docs</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <div id="main">
+    <header id="main-header">
+      <nav class="navbar navbar-dark navbar-expand-lg col" id="main-nav">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <a href="https://datacommons.org">Data Commons</a>
+            <span><a href="/">Docs</a></span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="{{ main_id }}" class="container-fluid">
+      <div class="row">
+        <div id="main-side-nav" class="col-2">
+          {% include sidebar.html %}
+        </div>
+        <div class="col-10">
+          <div id="main-doc-content" class="container">
+            {% unless page.url == "/" %}
+              {% if page.parent %}
+                <nav aria-label="Breadcrumb" id="main-breadcrumb">
+                  <ol class="breadcrumb">
+                    {% if page.grand_parent %}
+                      <li class="breadcrumb-item"><a href="{{ first_level_url }}">{{ page.grand_parent }}</a></li>
+                      <li class="breadcrumb-item"><a href="{{ second_level_url }}">{{ page.parent }}</a></li>
+                    {% else %}
+                      <li class="breadcrumb-item"><a href="{{ first_level_url }}">{{ page.parent }}</a></li>
+                    {% endif %}
+                    <li class="breadcrumb-item active"><span>{{ page.title }}</span></li>
+                  </ol>
+                </nav>
+              {% endif %}
+            {% endunless %}
+            {{ content }}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="main-footer">
+      <div class="container">
+        <div class="row">
+          <div id="sub-footer" class="col-12">
+            <span><a href="https://datacommons.org">Data Commons</a> is a Google supported project</span>
+            <div class="float-md-right mt-2 mt-md-0">
+              <a href="https://policies.google.com/terms">Terms and Conditions</a> ·
+              <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a> ·
+              <a href="https://datacommons.org/disclaimers">Disclaimers</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117119267-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-117119267-1');
+  </script>
+</body>
+</html>
