@@ -29,8 +29,12 @@ $h5-font-size: $font-size-base * 1.1;
 @import "markup";
 @import "friendly_code";
 
+#main-header #main-nav {
+  padding-left: 0;
+}
+
 #main-doc-content {
-  margin: 2rem;
+  margin: 2rem 2rem 5rem;
   min-height: 80vh;
 }
 

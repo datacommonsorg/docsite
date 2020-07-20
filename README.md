@@ -21,8 +21,8 @@ To see the extent of data we have today, browse the graph using our
 
 The documentation site is built using Jekyll. To run this locally:
 1. Install [Ruby](https://jekyllrb.com/docs/installation/)
-1. `bundle update`
-1. `bundle exec jekyll serve`
+1. Run `bundle update`
+1. Run `bundle exec jekyll serve`
 
 If you make changes to yml files, re-run `bundle exec jekyll serve`
 

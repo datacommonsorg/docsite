@@ -35,6 +35,10 @@ pre code {
   border: none;
 }
 
+h1 {
+  margin-bottom: 1.5rem;
+}
+
 h2, h3, h4, h5, h6 {
   margin-top: 1.5em;
   margin-bottom: .5em;
@@ -60,4 +64,14 @@ img {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin: .5em auto;
+}
+
+blockquote {
+  padding: 1.25rem 1.25rem .25rem;
+  margin: 1.25rem auto;
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+  border-left-color: $green;
+  background: #f0fff3;
 }

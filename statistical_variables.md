@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Statistical Variables
-nav_order: 2
+nav_order: 4
 ---
 
 # Statistical Variables
@@ -12,15 +12,15 @@ The following list contains all Statistical Variables with human-readable identi
 grouped by domain and population type.
 
 <style>
-details details {
+#main-doc-content details details {
   margin-left: 24px;
 }
 
-details details summary {
+#main-doc-content details details summary {
   font-size: 16px;
 }
 
-li {
+#main-doc-content li {
   white-space: nowrap;
   margin-left: 24px;
 }
