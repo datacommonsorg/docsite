@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Places Contained within Another Place
 
-## =DCPLACESIN(dcids, placeType)
+## `=DCPLACESIN(dcids, placeType)`
 
 Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCIDs, return the DCIDs of places of a specified type
 contained within those places.
@@ -37,8 +37,8 @@ The example below shows how to use the place DCID in an existing cell:
 
 ### Input
 
-![](/assets/sheets_places_in_input.png)
+![](/assets/images/sheets/sheets_places_in_input.png)
 
 ### Output
 
-![](/assets/sheets_places_in_output.png)
+![](/assets/images/sheets/sheets_places_in_output.png)

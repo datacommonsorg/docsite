@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get the name of a node.
 
-## =DCGETNAME(dcids)
+## `=DCGETNAME(dcids)`
 
 Given a cell or a column range of cells with DCIDs, return the names of those dcids.
 
@@ -37,9 +37,9 @@ in cells B2 and B3 respectively.
 
 ### Input
 
-![](/assets/sheets_get_name_input.png)
+![](/assets/images/sheets/sheets_get_name_input.png)
 
 ### Output
 
-![](/assets/sheets_get_name_output.png)
+![](/assets/images/sheets/sheets_get_name_output.png)
 
