@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Introducing Data Commons
+title: About Data Commons
 nav_order: 1
 ---
 
@@ -104,7 +104,7 @@ here](https://datacommons.org/datasets)). We welcome all to build interesting
 and impactful applications using Data Commons.
 
 If you want to
-[find how prevalent obesity is in US Cities or analyze genomic data](/examples.html) -
+[find how prevalent obesity is in US Cities or analyze genomic data](/tutorials.html) -
 you can do that now with relatively little effort, without cleaning up disparate
 datasets with different schema or writing complex joins across tables.
 
