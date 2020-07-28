@@ -11,18 +11,18 @@ grand_parent: API
 ## `get_stats(dcids, stats_var, obs_dates='latest')`
 
 Returns a time series of statistical values for queried places based on the
-[`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable) filtered by the specified dates.
+[`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) filtered by the specified dates.
 See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Arguments**
 
 *   `dcids`: A list of dcids of the
-    [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
+    [`Place`](https://datacommons.org/browser/Place) to query for.
 
 *   `stats_var`: The dcid of the
-    [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
+    [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-*   `obs_dates`: The dates of [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s to include. Can be 'latest', 'all', or an list of dates in ISO-8601 format, e.g. "YYYY", "YYYY-MM" or "YYYY-MM-DD".
+*   `obs_dates`: The dates of [`Observation`](https://datacommons.org/browser/Observation)s to include. Can be 'latest', 'all', or an list of dates in ISO-8601 format, e.g. "YYYY", "YYYY-MM" or "YYYY-MM-DD".
 
 **Returns**
 
@@ -44,9 +44,9 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ## Examples
 
-We would like to get the time series of the [male population](https://browser.datacommons.org/kg?dcid=Count_Person_Male)
-in [Arkansas](https://browser.datacommons.org/kg?dcid=geoId/05)
-and [Santa Clara County](https://browser.datacommons.org/kg?dcid=geoId/06085).
+We would like to get the time series of the [male population](https://datacommons.org/browser/Count_Person_Male)
+in [Arkansas](https://datacommons.org/browser/geoId/05)
+and [Santa Clara County](https://datacommons.org/browser/geoId/06085).
 
 ```python
 >>> import datacommons as dc

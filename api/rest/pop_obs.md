@@ -9,8 +9,8 @@ grand_parent: API
 # Get All Populations and Observations for a Node.
 
 Given the DCID of a node, return all the
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s
-and [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s
+and [`Observation`](https://datacommons.org/browser/Observation)s for
 this node.
 
 **URL**: `/bulk/pop-obs`

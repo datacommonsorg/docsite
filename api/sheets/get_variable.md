@@ -10,7 +10,7 @@ grand_parent: API
 
 ## `=DCGET(dcids, variable, date)`
 
-Given a list of [Place](https://browser.datacommons.org/kg?dcid=Place) DCIDs, a [StatisticalVariable](https://browser.datacommons.org/kg?dcid=StatisticalVariable), and a date, get the measurements of that variable at those places on that date.
+Given a list of [Place](https://datacommons.org/browser/Place) DCIDs, a [StatisticalVariable](https://datacommons.org/browser/StatisticalVariable), and a date, get the measurements of that variable at those places on that date.
 
 **Arguments**
 *   `dcids` - place DCIDs as a single value, a row, or a column

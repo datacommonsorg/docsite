@@ -11,21 +11,21 @@ grand_parent: API
 ## `datacommons.get_place_obs(place_type, observation_date, population_type, constraining_properties={})`
 
 Returns all
-[`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for all
-[`Place`](https://browser.datacommons.org/kg?dcid=Place)s of a certain type, for a given
-[`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate),
+[`Observation`](https://datacommons.org/browser/Observation)s for all
+[`Place`](https://datacommons.org/browser/Place)s of a certain type, for a given
+[`observationDate`](https://datacommons.org/browser/observationDate),
 given a set of constraints on the
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s.
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s.
 
 **Arguments**
 
 *   `placeType (str)`: The type of
-    [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
+    [`Place`](https://datacommons.org/browser/Place) to query for.
 
 *   `observation_date (str)`: The observation date in ISO-8601 format.
 
 *   `population_type (str)`: The population type of the
-    [`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation).
+    [`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation).
 
 *   `constraining_properties (map from str to str)`: An object of `property` and `value` fields
     that the `StatisticalPopulation` should be constrained by. Must be specified if defined on the population.
@@ -48,9 +48,9 @@ We would like to get all `StatisticalPopulation`s and `Observation`s for all
 `Place`s of type `City` in year 2017 where the populations have a population type
 of `Person` is specified by the following constraining properties.
 
-* Persons should have [`age`](https://browser.datacommons.org/kg?dcid=age)
-  with value [`Years5To17`](https://browser.datacommons.org/kg?dcid=Years5To17)
-* Persons should have [`placeOfBirth`](https://browser.datacommons.org/kg?dcid=placeOfBirth)
+* Persons should have [`age`](https://datacommons.org/browser/age)
+  with value [`Years5To17`](https://datacommons.org/browser/Years5To17)
+* Persons should have [`placeOfBirth`](https://datacommons.org/browser/placeOfBirth)
   with value `BornInOtherStateInTheUnitedStates`.
 
 ```python

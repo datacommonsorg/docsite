@@ -8,9 +8,9 @@ grand_parent: API
 
 # Get Populations for Place.
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCID's,
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCID's,
 return the DCID of
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)'s
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)'s
 for these places, constrained by the given property values.
 
 **URL**: `/node/populations`
@@ -23,14 +23,14 @@ for these places, constrained by the given property values.
 
 *   `dcids`: A list of DCID's identifying `Place`’s of populations to query for.
     These DCID's are treated as the value associated by the property
-    [`location`](https://browser.datacommons.org/kg?dcid=location) for each
+    [`location`](https://datacommons.org/browser/location) for each
     returned `StatisticalPopulation`.
 
 *   `populationType`: The
-    [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
+    [`populationType`](https://datacommons.org/browser/populationType)
     of each `StatisticalPopulation`, e.g.
-    [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
-    [`Student`](https://browser.datacommons.org/kg?dcid=Student).
+    [`Person`](https://datacommons.org/browser/Person) or
+    [`Student`](https://datacommons.org/browser/Student).
 
 **Optional Arguments**:
 

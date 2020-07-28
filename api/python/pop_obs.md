@@ -11,8 +11,8 @@ grand_parent: API
 ## `datacommons.get_pop_obs(dcid)`
 
 Given the DCID of a node, return all the
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s
-and [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s
+and [`Observation`](https://datacommons.org/browser/Observation)s for
 this node.
 
 **Arguments**
@@ -38,7 +38,7 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 ## Examples
 
 We would like to get all `StatisticalPopulation` and `Observations` of
-[Santa Clara](https://browser.datacommons.org/kg?dcid=geoId/06085)
+[Santa Clara](https://datacommons.org/browser/geoId/06085)
 
 ```python
 >>> import datacommons as dc

@@ -22,7 +22,7 @@ The properties of the DCIDs. For a single DCID, the result is a column of the gi
 
 ## Examples
 
-In this example, we find the `containedInPlace` of the Data Commons nodes for [California](https://browser.datacommons.org/kg?dcid=geoId/06) and [Mountain View](https://browser.datacommons.org/kg?dcid=geoId/0649670). The function call in the image uses a single call to get the names of both nodes, but it is equivalent to typing:
+In this example, we find the `containedInPlace` of the Data Commons nodes for [California](https://datacommons.org/browser/geoId/06) and [Mountain View](https://datacommons.org/browser/geoId/0649670). The function call in the image uses a single call to get the names of both nodes, but it is equivalent to typing:
 
 ```
 =TRANSPOSE(DCPROPERTY("geoId/06", "containedInPlace"))

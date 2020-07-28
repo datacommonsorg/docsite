@@ -9,12 +9,12 @@ grand_parent: API
 # Get Observations for Places.
 
 Returns all
-[`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for all
-[`Place`](https://browser.datacommons.org/kg?dcid=Place)s of a certain type, for
+[`Observation`](https://datacommons.org/browser/Observation)s for all
+[`Place`](https://datacommons.org/browser/Place)s of a certain type, for
 a given
-[`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate),
+[`observationDate`](https://datacommons.org/browser/observationDate),
 given a set of constraints on the
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s.
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s.
 
 **URL**: `/bulk/place-obs`
 
@@ -27,10 +27,10 @@ given a set of constraints on the
 *   `key`: Your API key.
 
 *   `placeType`: The type of the
-    [`Place`](https://browser.datacommons.org/kg?dcid=Place) to query for.
+    [`Place`](https://datacommons.org/browser/Place) to query for.
 
 *   `populationType`: The population type of the
-    [`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation).
+    [`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation).
 
 *   `observationDate`: The observation date in ISO-8601 format.
 

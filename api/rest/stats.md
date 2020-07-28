@@ -9,7 +9,7 @@ grand_parent: API
 # Get Statistics for Places.
 
 Returns a time series of statistical values for queried places based on the
-[`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
+[`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **URL**: `/bulk/stats`
@@ -21,10 +21,10 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 **Required Arguments**:
 
 *   `place`: A list of dcids of the
-    [`Place`](https://browser.datacommons.org/kg?dcid=Place)s to query for.
+    [`Place`](https://datacommons.org/browser/Place)s to query for.
 
 *   `stats_var`: The dcid of the
-    [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
+    [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 

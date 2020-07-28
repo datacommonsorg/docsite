@@ -45,9 +45,9 @@ Be sure to initialize the library, and specify the API key. Check the [R library
 **Examples**
 
 We would like to query for the name associated with three states identified by
-their DCIDs [California](https://browser.datacommons.org/kg?dcid=geoId/06>),
-[Kentucky](https://browser.datacommons.org/kg?dcid=geoId/21>), and
-[Maryland](https://browser.datacommons.org/kg?dcid=geoId/24>):
+their DCIDs [California](https://datacommons.org/browser/geoId/06>),
+[Kentucky](https://datacommons.org/browser/geoId/21>), and
+[Maryland](https://datacommons.org/browser/geoId/24>):
 
 ```r
 > library(datacommons)

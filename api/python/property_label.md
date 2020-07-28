@@ -34,8 +34,8 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 
 **Examples**
 
-To get all outgoing property labels for [California](https://browser.datacommons.org/kg?dcid=geoId/06>) and
-[Colorado](https://browser.datacommons.org/kg?dcid=geoId/08), we can write the following:
+To get all outgoing property labels for [California](https://datacommons.org/browser/geoId/06>) and
+[Colorado](https://datacommons.org/browser/geoId/08), we can write the following:
 
 ```python
 >>> import datacommons as dc

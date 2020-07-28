@@ -10,9 +10,9 @@ grand_parent: API
 
 ## `get_populations(dcids, population_type, constraining_properties=NULL)`
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCIDs,
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCIDs,
 return the DCID of
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s
 for these places, constrained by the given property values.
 
 **Arguments**
@@ -20,14 +20,14 @@ for these places, constrained by the given property values.
 * `dcids` (Union[`vector` of strings, single-column `tibble`/`data.frame` of strings]) - DCIDs
     identifying `Place`s of populations to query for.
     These DCIDs are treated as the value associated by the property
-    [`location`](https://browser.datacommons.org/kg?dcid=location) for each
+    [`location`](https://datacommons.org/browser/location) for each
     returned `StatisticalPopulation`.
 
 * `population_type` (string) - The
-    [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
+    [`populationType`](https://datacommons.org/browser/populationType)
     of each `StatisticalPopulation`, e.g.
-    [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
-    [`Student`](https://browser.datacommons.org/kg?dcid=Student).
+    [`Person`](https://datacommons.org/browser/Person) or
+    [`Student`](https://datacommons.org/browser/Student).
 
 * `constraining_properties` (named `vector` of strings, optional) -
       A map from constraining property to the value that the
@@ -60,13 +60,13 @@ Be sure to initialize the library, and specify the API key. Check the [R library
 
 We would like to get
 
-* The [population of employed persons in California](https://browser.datacommons.org/kg?dcid=dc/p/x6t44d8jd95rd)
-* The [population of employed persons in Kentucky](https://browser.datacommons.org/kg?dcid=dc/p/fs929fynprzs)
-* The [population of employed persons in Maryland](https://browser.datacommons.org/kg?dcid=dc/p/lr52m1yr46r44>)
+* The [population of employed persons in California](https://datacommons.org/browser/dc/p/x6t44d8jd95rd)
+* The [population of employed persons in Kentucky](https://datacommons.org/browser/dc/p/fs929fynprzs)
+* The [population of employed persons in Maryland](https://datacommons.org/browser/dc/p/lr52m1yr46r44>)
 
 These populations are specified as having a
 `population_type` as `Person` and the `constraining_properties`
-as [`employment`](https://browser.datacommons.org/kg?dcid=employment)
+as [`employment`](https://datacommons.org/browser/employment)
 `= BLS_Employed`
 
 With a `vector` of dcids for our states, we can get the populations we

@@ -9,9 +9,9 @@ grand_parent: API
 # Get Observations for Populations.
 
 Given a list of
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)
 DCIDs, return the DCID of
-[`Observation`](https://browser.datacommons.org/kg?dcid=Observation)'s for these
+[`Observation`](https://datacommons.org/browser/Observation)'s for these
 statistical populations, constrained by the given observation's property values.
 
 **URL**: `/node/observations`
@@ -25,29 +25,29 @@ statistical populations, constrained by the given observation's property values.
 *   `dcids`: A list of statistical populations to query, identified by their
     DCIDs. These DCIDs are treated as the property value associated with
     returned `Observation`'s by the property
-    [`observedNode`](https://browser.datacommons.org/kg?dcid=observedNode)
+    [`observedNode`](https://datacommons.org/browser/observedNode)
 
 *   `statsType`: The statistical type of the `Observation`. This is commonly set
     to `measuredValue`.
 
 *   `measurementMethod`: The property value associated with returned
     `Observation`'s by the property
-    [`measurementMethod`](https://browser.datacommons.org/kg?dcid=measurementMethod)
+    [`measurementMethod`](https://datacommons.org/browser/measurementMethod)
     of the observation. If the `Observation` does not have this property
     specified, set this to an empty string.
 
 *   `measuredProperty`: The property value associated with returned
     `Observation`'s by the property
-    [`measuredProperty`](https://browser.datacommons.org/kg?dcid=measuredProperty)
+    [`measuredProperty`](https://datacommons.org/browser/measuredProperty)
 
 *   `observationDate`: The property value associated with returned
     `Observation`'s by the property
-    [`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate).
+    [`observationDate`](https://datacommons.org/browser/observationDate).
     This is specified in ISO8601 format.
 
 *   `observationPeriod`: The property value associated with returned
     `Observation`'s by the property
-    [`observationPeriod`](https://browser.datacommons.org/kg?dcid=observationPeriod)
+    [`observationPeriod`](https://datacommons.org/browser/observationPeriod)
     of the observation. If the `Observation` does not have this property
     specified, set this to an empty string.
 
