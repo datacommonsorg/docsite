@@ -75,12 +75,6 @@ to the Python API package.
     This route is particularly useful if you are building applications that
     depend on this API, and are deploying them to hosting services.
 
-    ```python
-    import datacommons as dc
-
-    dc.set_api_key('YOUR_API_KEY)
-    ```
-
 ### Using the Python API
 
 You are ready to go! From here you can view our [tutorials](/tutorials.html) on how to use the
