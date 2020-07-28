@@ -45,7 +45,7 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 ## Examples
 
 We would like to get one triple per property and type combination associated with
-[California](https://browser.datacommons.org/kg?dcid=geoId/06):
+[California](https://datacommons.org/browser/geoId/06):
 
 ```python
 >>> import datacommons as dc
@@ -80,16 +80,4 @@ If there is no node associated with the given DCID, an empty list is returned:
 ```python
 >>> dc.get_triples(['foo'])
 {'foo': []}
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_values(["geoId/06", "geoId/21", "geoId/24"], "name")
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

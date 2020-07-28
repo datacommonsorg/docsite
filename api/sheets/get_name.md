@@ -21,7 +21,7 @@ The names of the DCIDs
 
 ## Examples
 
-In this example, we find the names of the Data Commons nodes for [California](https://browser.datacommons.org/kg?dcid=geoId/06) and [Alameda County](https://browser.datacommons.org/kg?dcid=geoId/06001). The function call in the image uses a single call to get the names of "geoId/06" and "geoId/06001", but it is equivalent to typing:
+In this example, we find the names of the Data Commons nodes for [California](https://datacommons.org/browser/geoId/06) and [Alameda County](https://datacommons.org/browser/geoId/06001). The function call in the image uses a single call to get the names of "geoId/06" and "geoId/06001", but it is equivalent to typing:
 
 ```
 =DCGETNAME("geoId/06")

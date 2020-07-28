@@ -34,8 +34,8 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 
 **Examples**
 
-To get all outgoing property labels for [California](https://browser.datacommons.org/kg?dcid=geoId/06>) and
-[Colorado](https://browser.datacommons.org/kg?dcid=geoId/08), we can write the following:
+To get all outgoing property labels for [California](https://datacommons.org/browser/geoId/06>) and
+[Colorado](https://datacommons.org/browser/geoId/08), we can write the following:
 
 ```python
 >>> import datacommons as dc
@@ -85,16 +85,4 @@ If there is no node associated with the DCID, an empty list is returned:
 ```python
 >>> dc.get_property_labels(['geoId/06', 'geoId/21'])
 {'geoId/06': [], 'geoId/21': []}
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

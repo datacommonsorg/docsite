@@ -10,7 +10,7 @@ grand_parent: API
 
 ## `get_places_in(dcids, place_type)`
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCIDs,
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCIDs,
 (e.g. `County`, `State`, `Country`, etc...), return the DCIDs of places
 contained within, of a specified type.
 
@@ -21,7 +21,7 @@ contained within, of a specified type.
 
 * `place_type` (string) - The type of the contained child `Place`s within the given
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
-    full list of available types, see [`subClassOf Place`](https://browser.datacommons.org/kg?dcid=Place).
+    full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
 
 **Returns**
 
@@ -45,7 +45,7 @@ Be sure to initialize the library, and specify the API key. Check the [R library
 ## Examples
 
 We would like to get all Counties contained in
-[California](https://browser.datacommons.org/kg?dcid=geoId/06). Specifying the
+[California](https://datacommons.org/browser/geoId/06). Specifying the
 `dcids` as a `list` result in the following:
 
 ```r

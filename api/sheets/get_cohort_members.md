@@ -21,7 +21,7 @@ The DCIDs of the cohort members. For a single DCID, the result is a column of me
 
 ## Examples
 
-In this example, we find the members of the [CDC500_City](https://browser.datacommons.org/kg?dcid=CDC500_City) cohort.
+In this example, we find the members of the [CDC500_City](https://datacommons.org/browser/CDC500_City) cohort.
 
 ### Input
 

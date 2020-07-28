@@ -10,7 +10,7 @@ grand_parent: API
 
 ## `=DCPLACESIN(dcids, placeType)`
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCIDs, return the DCIDs of places of a specified type
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCIDs, return the DCIDs of places of a specified type
 contained within those places.
 
 ## Examples
@@ -19,7 +19,7 @@ contained within those places.
 *   `dcids` - place DCIDs to get places within
 *   `placeType` - The type of the contained `Place`s within the given
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
-    full list of available types, see [`subClassOf Place`](https://browser.datacommons.org/kg?dcid=Place).
+    full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
 
 **Returns**
 

@@ -6,10 +6,10 @@ has_children: true
 ---
 # Overview
 
-[Data Commons](https://datacommons.org) is an open knowledge graph that
-aggregates data from many different [data sources](https://datacommons.org/datasets)
-into a single knowledge graph. Data Commons is based on the data model <link> used by [schema.org](https://schema.org).
-Data Commons uses the Schema.org [data model](https://schema.org/docs/datamodel.html) and schema.
+The [Data Commons Graph](https://datacommons.org) aggregates data from many
+different [data sources](https://datacommons.org/datasets) into a single
+knowledge graph. Data Commons is based on the data model used by
+[schema.org](https://schema.org), for more information see [our guide to the data model](/data_model.html).
 
 The **Data Commons API** is a set of APIs that allow developers to
 programmatically access the data in the Data Commons graph. This access is
@@ -78,9 +78,18 @@ installing Python libraries, etc. can be found in the
 
 A substantial amount of the data in Data Commons is statistical in nature. The
 representation of this information uses the concept of an
-[StatisticalPopulation](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)
-with [Observation](https://browser.datacommons.org/kg?dcid=Observation)s on
+[StatisticalPopulation](https://datacommons.org/browser/StatisticalPopulation)
+with [Observation](https://datacommons.org/browser/Observation)s on
 these populations.
+
+To simplify accessing these statistics,
+[StatisticalVariable](https://datacommons.org/browser/StatisticalVariable)'s
+are human readable identifiers that represents a metric for a place and time,
+corresponding to a pair of StatisticalPopulation and Observation with some
+generalization.
+
+-   **get statistics**: given a list of place DCID's, return a time series of statistical values for the `StatisticalVariable`.
+    - Documentation: [REST](/api/rest/stats.html), [Python](/api/rest/stats.html)
 
 -   **get population**: given a list of place DCIDs, return the DCID of
     `StatisticalPopulation`s for these places, constrained by the given property

@@ -53,9 +53,9 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 **Examples**
 
 We would like to query for the name associated with three states identified by
-their DCIDs [California](https://browser.datacommons.org/kg?dcid=geoId/06>),
-[Kentucky](https://browser.datacommons.org/kg?dcid=geoId/21>), and
-[Maryland](https://browser.datacommons.org/kg?dcid=geoId/24>).
+their DCIDs [California](https://datacommons.org/browser/geoId/06>),
+[Kentucky](https://datacommons.org/browser/geoId/21>), and
+[Maryland](https://datacommons.org/browser/geoId/24>).
 
 ```python
 >>> import datacommons as dc
@@ -86,16 +86,4 @@ like so. The following returns all rows where the name is "Maryland":
 >>> for r in result:
 ...   print(r)
 {"?name": "Maryland", "?dcid": "geoId/24"}
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Population and Observation
+title: Node Populations and Observations
 nav_order: 7
 parent: Python
 grand_parent: API
@@ -11,8 +11,8 @@ grand_parent: API
 ## `datacommons.get_pop_obs(dcid)`
 
 Given the DCID of a node, return all the
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s
-and [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s
+and [`Observation`](https://datacommons.org/browser/Observation)s for
 this node.
 
 **Arguments**
@@ -38,7 +38,7 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 ## Examples
 
 We would like to get all `StatisticalPopulation` and `Observations` of
-[Santa Clara](https://browser.datacommons.org/kg?dcid=geoId/06085)
+[Santa Clara](https://datacommons.org/browser/geoId/06085)
 
 ```python
 >>> import datacommons as dc
@@ -128,15 +128,3 @@ Each `Observation` is represented by a `dict` that have the keys:
   These may include the following: `measuredValue`, `meanValue`,
   `medianValue`, `maxValue`, `minValue`, `sumValue`,
   `marginOfError`, `stdError`, `meanStdError`, and others.
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
-```

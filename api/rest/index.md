@@ -15,12 +15,26 @@ the graph into data analysis applications and much more. Please see the
 
 Before proceeding, make sure you have followed the setup instructions below.
 
-## Getting Started
+## Creating an API key (Optional)
 
-To get started using the Data Commons REST API requires creating an API key and
-enabling the **Data Commons API** on Google Cloud Platform.
-Follow [the setup guide here](/api/setup.html).
+If you would like to provide an API key, follow the steps in [the API setup
+guide](/api/setup.html). Data Commons *does not charge* users, but uses the
+API key for understanding API usage.
 
-You are now ready to go! From here you can view our tutorials on how to use the
-API to perform certain tasks, or see a full list of calls available for use
-in the left navigation menu.
+You can provide the API key as a get parameter to all REST API calls. As an example:
+
+```bash
+curl -X POST 'https://api.datacommons.org/node/observations' \
+-d '{"dcids": ["dc/p/x6t44d8jd95rd", "dc/p/lr52m1yr46r44"], \
+     "measuredProperty": "count", \
+     "statsType": "measuredValue", \
+     "observationDate": "2018-12", \
+     "observationPeriod": "P1M", \
+     "measurementMethod": "BLSSeasonallyAdjusted"}'
+```
+
+### Using the REST API
+
+You are now ready to go! From here you can view our
+[tutorials](/tutorials.html) on how to use the API to perform certain tasks,
+or see a full list of calls available for use in the left navigation menu.

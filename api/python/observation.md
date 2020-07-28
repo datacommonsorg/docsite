@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Observation
-nav_order: 6
+title: Observations
+nav_order: 7
 parent: Python
 grand_parent: API
 ---
@@ -11,9 +11,9 @@ grand_parent: API
 ## `get_observations(dcids, measured_property, stats_type, observation_date, observation_period=None, measurement_method=None)`
 
 Given a list of
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)
 DCIDs, return the DCID of
-[`Observation`](https://browser.datacommons.org/kg?dcid=Observation)'s for these
+[`Observation`](https://datacommons.org/browser/Observation)'s for these
 statistical populations, constrained by the given observation's property values.
 
 
@@ -22,29 +22,29 @@ statistical populations, constrained by the given observation's property values.
 *   `dcids (list of str)`: A list of statistical
     populations to query, identified by their DCIDs. These DCIDs are treated as
     the property value associated with returned list of `Observation` by the property
-    [`observedNode`](https://browser.datacommons.org/kg?dcid=observedNode)
+    [`observedNode`](https://datacommons.org/browser/observedNode)
 
 *   `measured_property (str)`: The property value associated with returned list of
     `Observation` by the property
-    [`measuredProperty`](https://browser.datacommons.org/kg?dcid=measuredProperty)
+    [`measuredProperty`](https://datacommons.org/browser/measuredProperty)
 
 *   `stats_type (str)`: The statistical type of the `Observation`. This is commonly set
     to `measuredValue`.
 
 *   `observation_date`: The property value associated with returned
     `Observation` by the property
-    [`observationDate`](https://browser.datacommons.org/kg?dcid=observationDate).
+    [`observationDate`](https://datacommons.org/browser/observationDate).
     This is specified in ISO8601 format.
 
 *   `observation_period (str)`: The property value associated with returned
     `Observation` by the property
-    [`observationPeriod`](https://browser.datacommons.org/kg?dcid=observationPeriod)
+    [`observationPeriod`](https://datacommons.org/browser/observationPeriod)
     of the observation. If the `Observation` has this property set, this must
     be specified.
 
 *   `measurement_method (str)`: The property value associated with returned
     `Observation` by the property
-    [`measurementMethod`](https://browser.datacommons.org/kg?dcid=measurementMethod)
+    [`measurementMethod`](https://datacommons.org/browser/measurementMethod)
     of the observation. If the `Observation` has this property set, this must
     be specified
 
@@ -64,9 +64,9 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 ## Examples
 
 We would like to get the following for December, 2018:
-* The [total count of employed persons in California](https://browser.datacommons.org/kg?dcid=dc/o/wetnm9026gf73)
-* The [total count of employed persons in Kentucky](https://browser.datacommons.org/kg?dcid=dc/o/4nklvdnkfq835)
-* The [total count of employed persons in Maryland](https://browser.datacommons.org/kg?dcid=dc/o/nkntbc4vpshn9>)
+* The [total count of employed persons in California](https://datacommons.org/browser/dc/o/wetnm9026gf73)
+* The [total count of employed persons in Kentucky](https://datacommons.org/browser/dc/o/4nklvdnkfq835)
+* The [total count of employed persons in Maryland](https://datacommons.org/browser/dc/o/nkntbc4vpshn9>)
 
 The observations we want are observations of the populations representing
 employed individuals in each state (to get these, see
@@ -119,16 +119,4 @@ Following on from the example above:
 ... ]
 >>> dc.get_observations(dcids, 'count', 'measuredValue', '2018-12')
 {}
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

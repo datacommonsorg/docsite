@@ -48,9 +48,9 @@ Be sure to initialize the library, and specify the API key. Check the [R library
 **Examples**
 
 We would like to get the `name` of a list of states specified by their DCID:
-[geoId/06](https://browser.datacommons.org/kg?dcid=geoId/06),
-[geoId/21](https://browser.datacommons.org/kg?dcid=geoId/21), and
-[geoId/24](https://browser.datacommons.org/kg?dcid=geoId/24)
+[geoId/06](https://datacommons.org/browser/geoId/06),
+[geoId/21](https://datacommons.org/browser/geoId/21), and
+[geoId/24](https://datacommons.org/browser/geoId/24)
 
 First, let's try specifying the `dcids` as a `vector` of strings:
 

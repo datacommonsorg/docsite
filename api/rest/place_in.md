@@ -1,41 +1,41 @@
 ---
 layout: default
 title: Places within a Place
-nav_order: 9
+nav_order: 10
 parent: REST
 grand_parent: API
 ---
 
 # Get Places Contained within Another Place
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCID's,
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCID's,
 (e.g. `County`, `State`, `Country`, etc...), return the DCIDs of places
 contained within, of a specified type.
 
-**URL** : `/node/places-in`
+**URL**: `/node/places-in`
 
-**Method** : `GET`, `POST`
+**Method**: `GET`, `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
-
-*   `key`: Your API key.
 
 *   `dcids`: A list of (parent) places, identified by their DCIDs.
 
 *   `placeType`: The type of the contained (child) `Place`s within the given
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
-    full list of available types, see [`subClassOf Place`](https://browser.datacommons.org/kg?dcid=Place).
+    full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
+
+**Optional Arguments**:
+
+*   `key`: Your API key.
 
 ## GET Request
 
 **Example**
 
 ```bash
-curl 'https://api.datacommons.org/node/places-in?key=API_KEY&dcids=geoId/05&dcids=geoId/06&placeType=County'
+curl 'https://api.datacommons.org/node/places-in?dcids=geoId/05&dcids=geoId/06&placeType=County'
 ```
 
 ## POST Request
@@ -43,14 +43,14 @@ curl 'https://api.datacommons.org/node/places-in?key=API_KEY&dcids=geoId/05&dcid
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/places-in?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/places-in' \
 -d '{"dcids": ["geoId/05", "geoId/06"], \
      "placeType": "County"}'
 ```
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -97,12 +97,12 @@ For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 DCIDs not specified:
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/places-in?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/places-in' \
 -d '{"dcids": []}'
 ```
 
 placeType not specified `bash curl -X POST
-'https://api.datacommons.org/node/places-in?key=API_KEY' \ -d '{"dcids":
+'https://api.datacommons.org/node/places-in' \ -d '{"dcids":
 ["geoId/06]}'`
 
 **Response content example**
@@ -111,22 +111,5 @@ placeType not specified `bash curl -X POST
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/places-in'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

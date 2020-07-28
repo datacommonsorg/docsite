@@ -1,31 +1,31 @@
 ---
 layout: default
-title: Population
-nav_order: 5
+title: Place Populations
+nav_order: 6
 parent: Python
 grand_parent: API
 ---
 
-# Get Populations for Place.
+# Get Populations for Place(s).
 
 ## `datacommons.get_populations(dcids, population_type, constraining_properties={})`
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCID's,
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCID's,
 return the DCID of
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)'s
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)'s
 for these places, constrained by the given property values.
 
 **Arguments**
 
 *   `dcids (list of str)` - DCIDs identifying `Place`'s of populations to query for.
     These DCID's are treated as the value associated by the property
-    [`location`](https://browser.datacommons.org/kg?dcid=location) for each
+    [`location`](https://datacommons.org/browser/location) for each
     returned `StatisticalPopulation`.
 
-*   `population_type (str)` - The [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
+*   `population_type (str)` - The [`populationType`](https://datacommons.org/browser/populationType)
     of each `StatisticalPopulation`, e.g.
-    [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
-    [`Student`](https://browser.datacommons.org/kg?dcid=Student).
+    [`Person`](https://datacommons.org/browser/Person) or
+    [`Student`](https://datacommons.org/browser/Student).
 
 *   `constraining_properties (map from str to str, optional)` -
       A map from constraining property to the value that the
@@ -50,13 +50,13 @@ Be sure to initialize the library, and specify the API key. Check the [Python li
 
 We would like to get
 
-* The [population of employed persons in California](https://browser.datacommons.org/kg?dcid=dc/p/x6t44d8jd95rd)
-* The [population of employed persons in Kentucky](https://browser.datacommons.org/kg?dcid=dc/p/fs929fynprzs)
-* The [population of employed persons in Maryland](https://browser.datacommons.org/kg?dcid=dc/p/lr52m1yr46r44)
+* The [population of employed persons in California](https://datacommons.org/browser/dc/p/x6t44d8jd95rd)
+* The [population of employed persons in Kentucky](https://datacommons.org/browser/dc/p/fs929fynprzs)
+* The [population of employed persons in Maryland](https://datacommons.org/browser/dc/p/lr52m1yr46r44)
 
 These populations are specified as having a
 `population_type` as `Person` and the `constraining_properties`
-as [`employment`](https://browser.datacommons.org/kg?dcid=employment) `= BLS_Employed`
+as [`employment`](https://datacommons.org/browser/employment) `= BLS_Employed`
 
 With a `list` of dcids for our states, we can get the populations we
 want as follows:
@@ -84,16 +84,4 @@ want as follows:
 {
   'geoId/06': 'dc/p/x6t44d8jd95rd'
 }
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

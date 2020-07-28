@@ -10,26 +10,26 @@ grand_parent: API
 
 Returns the labels of properties defined for the given DCID's
 
-**URL** : `/node/property-labels`
+**URL**: `/node/property-labels`
 
-**Method** : `GET`, `POST`
+**Method**: `GET`, `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
 
-*   `key`: Your API key.
-
 *   `dcids`: A list of nodes to query, identified by their DCID's.
+
+**Optional Arguments**:
+
+*   `key`: Your API key.
 
 ## GET Request
 
 **Example**
 
 ```bash
-curl 'https://api.datacommons.org/node/property-labels?key=API_KEY&dcids=geoId/05&dcids=geoId/06'
+curl 'https://api.datacommons.org/node/property-labels?dcids=geoId/05&dcids=geoId/06'
 ```
 
 ## POST Request
@@ -37,13 +37,13 @@ curl 'https://api.datacommons.org/node/property-labels?key=API_KEY&dcids=geoId/0
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/property-labels?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/property-labels' \
 -d '{"dcids": ["geoId/05", "geoId/06"]}'
 ```
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -93,7 +93,7 @@ For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 **Request example:** (DCID not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/property-labels?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/property-labels' \
 -d '{"dcids": []}'
 ```
 
@@ -103,22 +103,5 @@ curl -X POST 'https://api.datacommons.org/node/property-labels?key=API_KEY' \
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/property-labels'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

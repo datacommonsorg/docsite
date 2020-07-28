@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Population and Observation
-nav_order: 7
+nav_order: 8
 parent: REST
 grand_parent: API
 ---
@@ -9,17 +9,15 @@ grand_parent: API
 # Get All Populations and Observations for a Node.
 
 Given the DCID of a node, return all the
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s
-and [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)s for
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)s
+and [`Observation`](https://datacommons.org/browser/Observation)s for
 this node.
 
-**URL** : `/bulk/pop-obs`
+**URL**: `/bulk/pop-obs`
 
-**Method** : `GET`
+**Method**: `GET`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
 
@@ -28,17 +26,21 @@ To get an API key, check [API Key](/api/setup.html) section.
 *   `dcid`: The DCID of the node (mostly with type of a `Place` like `City`,
     `County` or organization like `School`).
 
+**Optional Arguments**:
+
+*   `key`: Your API key.
+
 ## GET Request
 
 **Example**
 
 ```bash
-curl 'https://api.datacommons.org/bulk/pop-obs?key=API_KEY&dcid=geoId/06'
+curl 'https://api.datacommons.org/bulk/pop-obs?dcid=geoId/06'
 ```
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -153,7 +155,7 @@ console.log(JSON.parse(jsonString));
 **Request example:** (dcid not specified)
 
 ```bash
-curl 'https://api.datacommons.org/bulk/pop-obs?key=API_KEY'
+curl 'https://api.datacommons.org/bulk/pop-obs'
 ```
 
 **Response content example**
@@ -162,22 +164,5 @@ curl 'https://api.datacommons.org/bulk/pop-obs?key=API_KEY'
 {
   "code": 2,
   "message": "must provide a DCID"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl 'https://api.datacommons.org/bulk/pop-obs'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

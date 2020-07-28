@@ -1,42 +1,40 @@
 ---
 layout: default
 title: Population
-nav_order: 5
+nav_order: 6
 parent: REST
 grand_parent: API
 ---
 
 # Get Populations for Place.
 
-Given a list of [`Place`](https://browser.datacommons.org/kg?dcid=Place) DCID's,
+Given a list of [`Place`](https://datacommons.org/browser/Place) DCID's,
 return the DCID of
-[`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)'s
+[`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)'s
 for these places, constrained by the given property values.
 
-**URL** : `/node/populations`
+**URL**: `/node/populations`
 
-**Method** : `POST`
+**Method**: `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
 
-*   `key`: Your API key.
-
 *   `dcids`: A list of DCID's identifying `Place`’s of populations to query for.
     These DCID's are treated as the value associated by the property
-    [`location`](https://browser.datacommons.org/kg?dcid=location) for each
+    [`location`](https://datacommons.org/browser/location) for each
     returned `StatisticalPopulation`.
 
 *   `populationType`: The
-    [`populationType`](https://browser.datacommons.org/kg?dcid=populationType)
+    [`populationType`](https://datacommons.org/browser/populationType)
     of each `StatisticalPopulation`, e.g.
-    [`Person`](https://browser.datacommons.org/kg?dcid=Person) or
-    [`Student`](https://browser.datacommons.org/kg?dcid=Student).
+    [`Person`](https://datacommons.org/browser/Person) or
+    [`Student`](https://datacommons.org/browser/Student).
 
 **Optional Arguments**:
+
+*   `key`: Your API key.
 
 *   `pvs`: A list of objects with constraining `property` and `value` fields
     that the `StatisticalPopulation` should be constrained by.
@@ -46,7 +44,7 @@ To get an API key, check [API Key](/api/setup.html) section.
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/populations?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/populations' \
 -d '{ "dcids": ["geoId/05", "geoId/06"], \
       "populationType": "Person", \
       "pvs": [{"property":"gender", "value": "Male"}, \
@@ -55,7 +53,7 @@ curl -X POST 'https://api.datacommons.org/node/populations?key=API_KEY' \
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -92,7 +90,7 @@ For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 **Request example:** (populationType not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/populations?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/populations' \
 -d '{"dcids": ["geoId/05"], "pvs": [{"property":"gender","value": "Male"}]}'
 ```
 
@@ -102,22 +100,5 @@ curl -X POST 'https://api.datacommons.org/node/populations?key=API_KEY' \
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/populations'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

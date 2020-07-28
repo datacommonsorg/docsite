@@ -40,7 +40,7 @@ Be sure to initialize the library, and specify the API key. Check the [R library
 ## Examples
 
 We would like to get one triple per property and type combination associated with
-[California](https://browser.datacommons.org/kg?dcid=geoId/06):
+[California](https://datacommons.org/browser/geoId/06):
 
 ```r
 > library(datacommons)
