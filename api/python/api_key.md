@@ -6,13 +6,13 @@ parent: Python
 grand_parent: API
 ---
 
-# Sets the API key
+# Sets the API key (Optional)
 
 ## `datacommons.set_api_key(api_key)`
 
 Sets an environment variable `"DC_API_KEY"` to given `api_key`.
 
-An API key is required to use the Python API. This can be provided to
+An API key can be provided to
 the API after importing the library, or set as an environment variable
 `"DC_API_KEY"`.
 

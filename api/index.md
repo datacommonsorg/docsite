@@ -9,7 +9,7 @@ has_children: true
 The [Data Commons Graph](https://datacommons.org) aggregates data from many
 different [data sources](https://datacommons.org/datasets) into a single
 knowledge graph. Data Commons is based on the data model used by
-[schema.org](https://schema.org), for more information see [our guide to the data model](/data_mode.html).
+[schema.org](https://schema.org), for more information see [our guide to the data model](/data_model.html).
 
 The **Data Commons API** is a set of APIs that allow developers to
 programmatically access the data in the Data Commons graph. This access is
