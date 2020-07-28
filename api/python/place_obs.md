@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Place Observation
-nav_order: 8
+title: Place Observations
+nav_order: 9
 parent: Python
 grand_parent: API
 ---
@@ -97,15 +97,3 @@ Each `Observation` is represented by a `dict` with the following keys:
   may include the following: `measuredValue`, `meanValue`, `medianValue`,
   `maxValue`, `minValue`, `sumValue`, `marginOfError`, `stdError`,
   `meanStdError`, and others.
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
-```

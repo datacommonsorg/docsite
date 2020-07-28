@@ -16,17 +16,13 @@ A knowledge graph can be described as a collection of *triples* which are
 graph called the *subject* and *object* respectively, while *p* is the property
 label of a directed edge from *s* to *o* (sometimes also called the *predicate*).
 
-**URL** : `/node/triples`
+**URL**: `/node/triples`
 
-**Method** : `GET`, `POST`
+**Method**: `GET`, `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
-
-*   `key`: Your API key.
 
 *   `dcids`: A list of nodes to query, identified by their DCID.
 
@@ -35,12 +31,14 @@ To get an API key, check [API Key](/api/setup.html) section.
 *   `limit`: The maximum number of triples per combination of property and type
     associated with nodes linked by that property to fetch, up to *500*.
 
+*   `key`: Your API key.
+
 ## GET Request
 
 **Example**
 
 ```bash
-curl 'https://api.datacommons.org/node/triples?key=API_KEY&dcids=geoId/05&dcids=geoId/06'
+curl 'https://api.datacommons.org/node/triples?dcids=geoId/05&dcids=geoId/06'
 ```
 
 ## POST Request
@@ -48,13 +46,13 @@ curl 'https://api.datacommons.org/node/triples?key=API_KEY&dcids=geoId/05&dcids=
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/triples?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/triples' \
 -d '{"dcids": ["geoId/05", "geoId/06"], "limit": 10}'
 ```
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -126,7 +124,7 @@ For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 **Request example:** (DCID not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/triples?key=API_KEY' -d '{"dcids": []}'
+curl -X POST 'https://api.datacommons.org/node/triples' -d '{"dcids": []}'
 ```
 
 **Response content example**

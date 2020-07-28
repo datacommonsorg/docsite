@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Observation
-nav_order: 6
+nav_order: 7
 parent: REST
 grand_parent: API
 ---
@@ -14,17 +14,13 @@ DCIDs, return the DCID of
 [`Observation`](https://browser.datacommons.org/kg?dcid=Observation)'s for these
 statistical populations, constrained by the given observation's property values.
 
-**URL** : `/node/observations`
+**URL**: `/node/observations`
 
-**Method** : `POST`
+**Method**: `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
-
-*   `key`: Your API key.
 
 *   `dcids`: A list of statistical populations to query, identified by their
     DCIDs. These DCIDs are treated as the property value associated with
@@ -55,12 +51,17 @@ To get an API key, check [API Key](/api/setup.html) section.
     of the observation. If the `Observation` does not have this property
     specified, set this to an empty string.
 
+
+**Optional Arguments**:
+
+*   `key`: Your API key.
+
 ## POST Request
 
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/observations?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/observations' \
 -d '{"dcids": ["dc/p/x6t44d8jd95rd", "dc/p/lr52m1yr46r44"], \
      "measuredProperty": "count", \
      "statsType": "measuredValue", \
@@ -71,7 +72,7 @@ curl -X POST 'https://api.datacommons.org/node/observations?key=API_KEY' \
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -108,7 +109,7 @@ For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 **Request example:** (observationDate not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/observations?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/observations' \
 -d '{"dcids": ["dc/p/x6t44d8jd95rd", "dc/p/lr52m1yr46r44"], \
      "measuredProperty": "count", \
      "statsType": "measuredValue"}'
@@ -120,22 +121,5 @@ curl -X POST 'https://api.datacommons.org/node/observations?key=API_KEY' \
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/observations'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

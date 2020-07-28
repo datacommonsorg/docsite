@@ -10,20 +10,20 @@ has_children: true
 The **Data Commons Python API** is a Python library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package
 allows users to explore the structure of the graph, integrate statistics from
-the graph into data analysis workflows and much more. Please see the [overview](/api)
+the graph into data analysis workflows and much more. Please see the [Data Commons API Overview](/api)
 for more details on the design and structure of the API.
 
 Before proceeding, make sure you have followed the setup instructions below.
 
 ## Getting Started
 
-To get started using the Python Client API requires the following steps:
+To get started using the Python API requires the following steps:
 
 *   Install the API using `pip`.
-*   Create an API key and enable the **Data Commons API**.
-*   Provide the API key to the Python Client API and begin developing.
+*   (Optional) Create an API key and enable the **Data Commons API**.
+*   Begin developing with the Python API
 
-### Installing the Python Client API
+### Installing the Python API
 
 First, install the `datacommons` package through `pip`.
 
@@ -36,16 +36,15 @@ your Python development environment, please refer to the
 [Python Development Environment Setup Guide](https://cloud.google.com/python/setup.html)
 for Google Cloud Platform.
 
-### Creating an API Key
+### Creating an API Key (Optional)
 
-Using the Data Commons Python API requires you to setup access to the **Data Commons API** on Google Cloud Platform.
-Follow [the setup guide here](/api/setup.html).
-
-### Using the Python Client API
+If you would like to provide an API key, follow the steps in [the API setup
+guide](/api/setup.html). Data Commons *does not charge* users, but uses the
+API key for understanding API usage.
 
 With the API key created and Data Commons API activated, we can now get started
-using the Data Commons Python Client API. There are two ways to provide your key
-to the Python Client API package.
+using the Data Commons Python API. There are two ways to provide your key
+to the Python API package.
 
 1.  You can set the API key by calling `datacommons.set_api_key`.
     Start by importing `datacommons`, then set the API key like so.
@@ -67,7 +66,7 @@ to the Python Client API package.
     ```
 
     After you've exported the variable, you can start using the Data Commons
-    package!
+    package.
 
     ```
     import datacommons as dc
@@ -76,6 +75,14 @@ to the Python Client API package.
     This route is particularly useful if you are building applications that
     depend on this API, and are deploying them to hosting services.
 
-You are now ready to go! From here you can view our tutorials on how to use the
+    ```python
+    import datacommons as dc
+
+    dc.set_api_key('YOUR_API_KEY)
+    ```
+
+### Using the Python API
+
+You are ready to go! From here you can view our [tutorials](/tutorials.html) on how to use the
 API to perform certain tasks, or see a full list of functions, classes and
-methods available for use below.
+methods available for use in the sidebar.

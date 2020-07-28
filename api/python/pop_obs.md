@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Population and Observation
+title: Node Populations and Observations
 nav_order: 7
 parent: Python
 grand_parent: API
@@ -128,15 +128,3 @@ Each `Observation` is represented by a `dict` that have the keys:
   These may include the following: `measuredValue`, `meanValue`,
   `medianValue`, `maxValue`, `minValue`, `sumValue`,
   `marginOfError`, `stdError`, `meanStdError`, and others.
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
-```

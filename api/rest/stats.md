@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics
-nav_order: 10
+nav_order: 5
 parent: REST
 grand_parent: API
 ---
@@ -10,18 +10,15 @@ grand_parent: API
 
 Returns a time series of statistical values for queried places based on the
 [`StatisticalVariable`](https://browser.datacommons.org/kg?dcid=StatisticalVariable).
+See the [full list of StatisticalVariables](/statistical_variables.html).
 
-**URL** : `/bulk/stats`
+**URL**: `/bulk/stats`
 
-**Method** : `POST`
+**Method**: `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
-
-*   `key`: Your API key.
 
 *   `place`: A list of dcids of the
     [`Place`](https://browser.datacommons.org/kg?dcid=Place)s to query for.
@@ -31,18 +28,22 @@ To get an API key, check [API Key](/api/setup.html) section.
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
+**Optional Arguments**:
+
+*   `key`: Your API key.
+
 ## POST Request
 
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/bulk/stats?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/bulk/stats' \
 -d '{ "place": ["geoId/05", "geoId/06085"], "stats_var": "Count_Person_Male"}'
 ```
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -100,7 +101,7 @@ statistics.
 **Request example:** (statistcal variable not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/bulk/stats?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/bulk/stats' \
 -d '{ "place": ["geoId/05", "geoId/06"]}'
 ```
 

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Observation
-nav_order: 6
+title: Observations
+nav_order: 7
 parent: Python
 grand_parent: API
 ---
@@ -119,16 +119,4 @@ Following on from the example above:
 ... ]
 >>> dc.get_observations(dcids, 'count', 'measuredValue', '2018-12')
 {}
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

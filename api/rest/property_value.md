@@ -11,17 +11,13 @@ grand_parent: API
 Given a list of nodes and a property label, returns values associated with the
 given property for each node.
 
-**URL** : `/node/property-values`
+**URL**: `/node/property-values`
 
-**Method** : `GET`, `POST`
+**Method**: `GET`, `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
-
-*   `key`: Your API key.
 
 *   `dcids`: A list of nodes to query, identified by their DCID.
 
@@ -36,6 +32,8 @@ To get an API key, check [API Key](/api/setup.html) section.
 
 *   `limit`: (≤ 500) Maximum number of values returned per node.
 
+*   `key`: Your API key.
+
 ## GET Request
 
 **Example**
@@ -43,19 +41,19 @@ To get an API key, check [API Key](/api/setup.html) section.
 *   Get name of two states
 
     ```bash
-    curl 'https://api.datacommons.org/node/property-values?key=API_KEY&dcids=geoId/05&dcids=geoId/06&property=name'
+    curl 'https://api.datacommons.org/node/property-values?dcids=geoId/05&dcids=geoId/06&property=name'
     ```
 
 *   Query with type filter and limit constraint
 
     ```bash
-    curl 'https://api.datacommons.org/node/property-values?key=API_KEY&dcids=geoId/05&property=location&valueType=Election&limit=5'
+    curl 'https://api.datacommons.org/node/property-values?dcids=geoId/05&property=location&valueType=Election&limit=5'
     ```
 
 *   Query with direction
 
     ```bash
-    curl 'https://api.datacommons.org/node/property-values?key=API_KEY&dcids=geoId/05&property=containedInPlace&direction=out'
+    curl 'https://api.datacommons.org/node/property-values?dcids=geoId/05&property=containedInPlace&direction=out'
     ```
 
 ## POST Request
@@ -63,13 +61,13 @@ To get an API key, check [API Key](/api/setup.html) section.
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/property-values?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/node/property-values' \
 -d '{"dcids": ["geoId/05", "geoId/06"], "property": "name"}'
 ```
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -148,7 +146,7 @@ For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 **Request example:** (property not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/node/property-values?key=API_KEY' -d '{"dcids": ["geoId/06"]}'
+curl -X POST 'https://api.datacommons.org/node/property-values' -d '{"dcids": ["geoId/06"]}'
 ```
 
 **Response content example**
@@ -157,22 +155,5 @@ curl -X POST 'https://api.datacommons.org/node/property-values?key=API_KEY' -d '
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/property-values'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

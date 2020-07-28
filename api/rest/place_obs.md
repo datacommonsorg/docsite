@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Observation
-nav_order: 8
+nav_order: 9
 parent: REST
 grand_parent: API
 ---
@@ -16,13 +16,11 @@ a given
 given a set of constraints on the
 [`StatisticalPopulation`](https://browser.datacommons.org/kg?dcid=StatisticalPopulation)s.
 
-**URL** : `/bulk/place-obs`
+**URL**: `/bulk/place-obs`
 
-**Method** : `POST`
+**Method**: `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
 
@@ -38,6 +36,8 @@ To get an API key, check [API Key](/api/setup.html) section.
 
 **Optional Arguments**:
 
+*   `key`: Your API key.
+
 *   `pvs`: A list of objects with constraining `property` and `value` fields
     that the `StatisticalPopulation` should be constrained by.
 
@@ -46,7 +46,7 @@ To get an API key, check [API Key](/api/setup.html) section.
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/bulk/place-obs?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/bulk/place-obs' \
 -d '{ "placeType": "State", \
       "populationType": "Person", \
       "observationDate": "2011", \
@@ -55,7 +55,7 @@ curl -X POST 'https://api.datacommons.org/bulk/place-obs?key=API_KEY' \
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -154,7 +154,7 @@ console.log(JSON.parse(jsonString));
 **Request example:** (observationDate not specified)
 
 ```bash
-curl -X POST 'https://api.datacommons.org/bulk/place-obs?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/bulk/place-obs' \
 -d '{ "placeType": "State", \
       "populationType": "Person"}'
 ```
@@ -165,22 +165,5 @@ curl -X POST 'https://api.datacommons.org/bulk/place-obs?key=API_KEY' \
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/bulk/place-obs'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```

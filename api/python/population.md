@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Population
-nav_order: 5
+title: Place Populations
+nav_order: 6
 parent: Python
 grand_parent: API
 ---
 
-# Get Populations for Place.
+# Get Populations for Place(s).
 
 ## `datacommons.get_populations(dcids, population_type, constraining_properties={})`
 
@@ -84,16 +84,4 @@ want as follows:
 {
   'geoId/06': 'dc/p/x6t44d8jd95rd'
 }
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

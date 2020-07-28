@@ -86,15 +86,3 @@ If there is no node associated with the DCID, an empty list is returned:
 >>> dc.get_property_labels(['geoId/06', 'geoId/21'])
 {'geoId/06': [], 'geoId/21': []}
 ```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_labels(['geoId/06'])
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
-```

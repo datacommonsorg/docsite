@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Places within a Place
-nav_order: 9
+nav_order: 10
 parent: Python
 grand_parent: API
 ---
@@ -54,16 +54,4 @@ We would like to get all Counties contained in
     ...  # and 53 more
   ]
 }
-```
-
-## Errors
-
-### `ValueError`: API key not specified
-
-```python
->>> import datacommons as dc
->>> dc.get_property_values(["geoId/06", "geoId/21", "geoId/24"], "name")
-ValueError: Request error: Must set an API key before using the API! You can
-call datacommons.set_api_key or assign the key to an environment variable named
-DC_API_KEY
 ```

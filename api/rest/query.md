@@ -11,17 +11,13 @@ grand_parent: API
 Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
-**URL** : `/query`
+**URL**: `/query`
 
-**Method** : `POST`
+**Method**: `POST`
 
-**Auth required** : YES
-
-To get an API key, check [API Key](/api/setup.html) section.
+**Auth required**: Optional
 
 **Required Arguments**:
-
-*   `key`: Your API key.
 
 *   `sparql`: A Sparql query string.
 
@@ -36,12 +32,16 @@ This API only supports a subset of SPARQL keywords including:
 In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf
 City ."`.
 
+**Optional Arguments**:
+
+*   `key`: Your API key.
+
 ## POST Request
 
 **Example**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/query?key=API_KEY' \
+curl -X POST 'https://api.datacommons.org/query' \
 -d '{"sparql": "SELECT ?name \
                 WHERE { \
                   ?state typeOf State . \
@@ -52,7 +52,7 @@ curl -X POST 'https://api.datacommons.org/query?key=API_KEY' \
 
 ## Success Response
 
-### **Code** : `200 OK`
+### **Code**: `200 OK`
 
 **Response content example**
 
@@ -91,7 +91,7 @@ The response contains two fields: `header` and `rows`:
 `sparql` parameter not specified:
 
 ```bash
-curl -X POST 'https://api.datacommons.org/query?key=API_KEY'
+curl -X POST 'https://api.datacommons.org/query'
 ```
 
 **Response content example**
