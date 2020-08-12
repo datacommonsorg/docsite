@@ -38,7 +38,7 @@ structured.
 *   `ValueError` - If the payload returned by the Data Commons REST API is
 malformed.
 
-Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
+Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
@@ -63,8 +63,7 @@ and [Santa Clara County](https://datacommons.org/browser/geoId/06085).
       '2016': 1456694,
       '2017': 1461651,
       '2018': 1468412
-    },
-    'place_name': 'Arkansas'
+    }
   },
   'geoId/06085': {
     'data': {
@@ -76,8 +75,7 @@ and [Santa Clara County](https://datacommons.org/browser/geoId/06085).
       '2016': 949223,
       '2017': 963317,
       '2018': 970469
-    },
-    'place_name': 'Santa Clara County'
+    }
   }
 }
 ```

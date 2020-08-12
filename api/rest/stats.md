@@ -68,8 +68,7 @@ queried places.
       "2016": 1456694,
       "2017": 1461651,
       "2018": 1468412
-    },
-    "place_name": "Arkansas"
+    }
   },
   "geoId/06085": {
     "data": {
@@ -81,8 +80,7 @@ queried places.
       "2016": 949223,
       "2017": 963317,
       "2018": 970469
-    },
-    "place_name": "Santa Clara County"
+    }
   }
 }
 ```
