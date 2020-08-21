@@ -51,7 +51,7 @@ curl 'https://api.datacommons.org/stat/value?place=geoId/06&stat_var=Count_Perso
 
 ```json
 {
-    "value": 200,
+    "value": 200
 }
 ```
 
@@ -70,7 +70,7 @@ curl 'https://api.datacommons.org/stat/value?stat_var=Count_Person_Male'
 ```json
 {
   "code": 2,
-  "message": "missing required arguments"
+  "message": "Missing required arguments"
 }
 ```
 
