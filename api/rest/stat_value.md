@@ -12,8 +12,8 @@ Returns a statistical value for a place based on the
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 See the [full list of StatisticalVariables](/statistical_variables.html).
 
-When there are multiple sources for the same statistical variable, the most
-authoritative source is selected.
+When there are multiple sources for the same statistical variable, a prefered
+source with more recent data or more authorative is selected.
 
 **URL**: `/stat/value`
 
@@ -23,7 +23,7 @@ authoritative source is selected.
 
 * `place`: The dcid of the [`Place`](https://datacommons.org/browser/Place) to query for.
 
-* `stats_var`: The dcid of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+* `stat_var`: The dcid of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
