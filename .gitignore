@@ -5,3 +5,5 @@
 
 .sass-cache/
 _site/
+vendor/
+.bundle/
