@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Place Statistics
+title: Place Statistics - single value
 nav_order: 11
 parent: REST
 grand_parent: API
@@ -11,6 +11,9 @@ grand_parent: API
 Returns a statistical value for a place based on the
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 See the [full list of StatisticalVariables](/statistical_variables.html).
+
+When there are multiple sources for the same statistical variable, the most
+authoritative source is selected.
 
 **URL**: `/stat/value`
 
@@ -23,6 +26,14 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 * `stats_var`: The dcid of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+
+**Optional Arguments**:
+
+* `date`: The preferred date of observation in ISO 8601 format. If not specified, returns the latest observation.
+* `measurement_method`: The dcid of the preferred `measurementMethod` value.
+* `observation_period`: The preferred `observationPeriod` value.
+* `unit`: The dcid of the preferred `unit` value.
+* `scaling_factor`: The preferred `scalingFactor` value.
 
 ## GET Request
 
@@ -66,7 +77,7 @@ curl 'https://api.datacommons.org/stat/value?stat_var=Count_Person_Male'
 **Request example:** (No data for the query)
 
 ```bash
-curl 'https://api.datacommons.org/stat/value?place=geoId&stat_var=Count_Person_Male'
+curl 'https://api.datacommons.org/stat/value?place=badPlaceDcid&stat_var=Count_Person_Male'
 ```
 
 **Response content example**
@@ -74,6 +85,6 @@ curl 'https://api.datacommons.org/stat/value?place=geoId&stat_var=Count_Person_M
 ```json
 {
   "code": 2,
-  "message": "No data for geoId, Count_Person_Male",
+  "message": "No data for badPlaceDcid, Count_Person_Male",
 }
 ```
