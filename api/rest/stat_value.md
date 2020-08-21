@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Place Statistics - single value
+title: Place Statistics - Single Value
 nav_order: 11
 parent: REST
 grand_parent: API
