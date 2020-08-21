@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Population and Observation
-nav_order: 8
+nav_order: 7
 parent: REST
 grand_parent: API
 ---

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Population
-nav_order: 6
+nav_order: 5
 parent: REST
 grand_parent: API
 ---
