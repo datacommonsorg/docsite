@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Place Statistics - Series
+title: Place Statistics - Time Series
 nav_order: 12
 parent: REST
 grand_parent: API
@@ -8,12 +8,12 @@ grand_parent: API
 
 # Get Statistical Time Series for a Place
 
-Returns a time series of statistical values for a place based on the
+Returns a time series of statistical values for a place based on a
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 See the [full list of StatisticalVariables](/statistical_variables.html).
 
 When there are multiple sources for the same statistical variable, a prefered
-source with more recent data or more authorative is selected.
+source with more recent or more authorative data is selected.
 
 **URL**: `/stat/series`
 
@@ -21,15 +21,15 @@ source with more recent data or more authorative is selected.
 
 **Required Arguments**:
 
-- `place`: The dcid of the [`Place`](https://datacommons.org/browser/Place) to query for.
+- `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
 
-- `stat_var`: The dcid of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+- `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
 **Optional Arguments**:
 
-- `measurement_method`: The dcid of the preferred `measurementMethod` value.
+- `measurement_method`: The `dcid` of the preferred `measurementMethod` value.
 - `observation_period`: The preferred `observationPeriod` value.
 - `unit`: The dcid of the preferred `unit` value.
 - `scaling_factor`: The preferred `scalingFactor` value.
