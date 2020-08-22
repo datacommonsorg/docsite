@@ -57,7 +57,7 @@ curl 'https://api.datacommons.org/stat/value?place=geoId/06&stat_var=Count_Perso
 
 ## Error Response
 
-### **Code**: `500 Internal Server Error`
+### **Code**: `400 Bad Request`
 
 **Request example:** (place not specified)
 
@@ -69,10 +69,12 @@ curl 'https://api.datacommons.org/stat/value?stat_var=Count_Person_Male'
 
 ```json
 {
-  "code": 2,
-  "message": "Missing required arguments"
+  "code": 3,
+  "message": "Missing required argument: place"
 }
 ```
+
+### **Code**: `404 Not Found`
 
 **Request example:** (No data for the query)
 
@@ -84,7 +86,7 @@ curl 'https://api.datacommons.org/stat/value?place=badPlaceDcid&stat_var=Count_P
 
 ```json
 {
-  "code": 2,
+  "code": 5,
   "message": "No data for badPlaceDcid, Count_Person_Male",
 }
 ```
