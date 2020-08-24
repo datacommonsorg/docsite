@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Single Value
-nav_order: 10
+nav_order: 11
 parent: Python
 grand_parent: API
 ---
