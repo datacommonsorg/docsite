@@ -56,7 +56,7 @@ We would like to get the  [male population](https://datacommons.org/browser/Coun
 1431252
 ```
 
-In next example, the parameter "observation=P3Y" overly constraints so the API
+In next example, the parameter "observation=P3Y" overly constrains the request so the API
 throws ValueError:
 
 ```python
