@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Node Populations and Observations
-nav_order: 7
+nav_order: 6
 parent: Python
 grand_parent: API
 ---
