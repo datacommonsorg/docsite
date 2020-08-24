@@ -36,12 +36,11 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Returns**
 
- A `float` value of the `stat_var` for `place`, filtered by the optional parameters. If the optional parameters are specified, but are unavailable for the `stat_var`, then ... is returned.
+ A `float` value of the `stat_var` for `place`, filtered by the optional parameters.
 
 **Raises**
 
-* `ValueError` - If the payload returned by the Data Commons REST API is
-malformed.
+* `ValueError` - If no statistial value found for the place with the given parameters.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
