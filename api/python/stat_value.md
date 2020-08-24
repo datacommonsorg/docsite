@@ -24,15 +24,15 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 * `stats_var (str)`: The `dcid` of the
   [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-* `date (str)`: (Optional) The preferred date of the observation in ISO-8601 format, e.g. "YYYY", "YYYY-MM" or "YYYY-MM-DD". If not specified, returns the latest observation.
+* `date (str)`: (Optional) The preferred [`observationDate`](https://datacommons.org/browser/observationDate). This is an [ISO-8601 date](https://en.wikipedia.org/wiki/ISO_8601#Dates), e.g. "YYYY", "YYYY-MM" or "YYYY-MM-DD". If not specified, returns the latest observation.
 
-* `measurement_method (str)`: (Optional) The `dcid` of the preferred `measurementMethod` for the `stat_var`.
+* `measurement_method (str)`: (Optional) The `dcid` of the preferred [`measurementMethod`](https://datacommons.org/browser/measurementMethod for the `stat_var`.
 
-* `observation_period (str)`: (Optional) The preferred `observationPeriod` for the `stat_var`.
+* `observation_period (str)`: (Optional) The preferred [`observationPeriod`](https://datacommons.org/browser/observationPeriod) for the `stat_var`. This is an [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) such as P1M (one month).
 
-* `unit (str)`: (Optional) The `dcid` of the preferred `unit` for the `stat_var`.
+* `unit (str)`: (Optional) The `dcid` of the preferred [`unit`](https://datacommons.org/browser/unit) for the `stat_var`.
 
-* `scaling_factor (str)`: (Optional) The preferred `scalingFactor` for the `stat_var`.
+* `scaling_factor (str)`: (Optional) The preferred [`scalingFactor`](https://datacommons.org/browser/scalingFactor) for the `stat_var`.
 
 **Returns**
 
