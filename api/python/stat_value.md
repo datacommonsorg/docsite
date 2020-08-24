@@ -55,3 +55,13 @@ We would like to get the  [male population](https://datacommons.org/browser/Coun
 >>> dc.get_stat_value("geoId/05", "Count_Person_Male", date="2012")
 1431252
 ```
+
+In next example, the parameter "observation=P3Y" overly constraints so the API
+throws ValueError:
+
+```python
+>>> get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
+>>> Traceback (most recent call last):
+    ...
+    raise ValueError('No data in response.')
+```
