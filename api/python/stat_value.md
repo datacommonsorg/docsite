@@ -11,32 +11,32 @@ grand_parent: API
 ## `get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 
 Returns a value for `place` based on the
-[`stat_var`](https://datacommons.org/browser/StatisticalVariable) with optional
+[`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
 filter parameters.
 
 See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Arguments**
 
-* `place (str)`: The dcid of the
+* `place (str)`: The `dcid` of the
   [`Place`](https://datacommons.org/browser/Place) to query for.
 
-* `stats_var (str)`: The dcid of the
+* `stats_var (str)`: The `dcid` of the
   [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 * `date (str)`: (Optional) The preferred date of the observation in ISO-8601 format, e.g. "YYYY", "YYYY-MM" or "YYYY-MM-DD". If not specified, returns the latest observation.
 
-* `measurement_method (str)`: (Optional) The dcid of the preferred `measurementMethod` value.
+* `measurement_method (str)`: (Optional) The `dcid` of the preferred `measurementMethod` for the `stat_var`.
 
-* `observation_period (str)`: (Optional) The preferred `observationPeriod` value.
+* `observation_period (str)`: (Optional) The preferred `observationPeriod` for the `stat_var`.
 
-* `unit (str)`: (Optional) The dcid of the preferred `unit` value.
+* `unit (str)`: (Optional) The `dcid` of the preferred `unit` for the `stat_var`.
 
-* `scaling_factor (str)`: (Optional) The preferred `scalingFactor` value.
+* `scaling_factor (str)`: (Optional) The preferred `scalingFactor` for the `stat_var`.
 
 **Returns**
 
- A `float` value of `stat_var` for `place`, filtered by optional parameters.
+ A `float` value of the `stat_var` for `place`, filtered by the optional parameters. If the optional parameters are specified, but are unavailable for the `stat_var`, then ... is returned.
 
 **Raises**
 
