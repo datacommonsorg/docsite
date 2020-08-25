@@ -64,6 +64,7 @@ In the next example, the parameter `observation_period='P3Y'` overly constrains 
 throws ValueError:
 
 ```python
+>>> import datacommons_pandas as dcpd
 >>> dcpd.build_time_series('geoId/06085', 'Count_Person', observation_period='P3Y')
 ValueError    Traceback (most recent call last)
 ...

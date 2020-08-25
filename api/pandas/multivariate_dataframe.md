@@ -75,11 +75,11 @@ places, so the API throws ValueError for no data:
 ```python
 >>> import datacommons_pandas as dcpd
 >>> dcpd.build_multivariate_dataframe(
-  ["country/MEX", "nuts/AT32"],
-  ["RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone",
-   "RetailDrugDistribution_DrugDistribution_Amphetamine"
-  ]
-)
+      ["country/MEX", "nuts/AT32"],
+      ["RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone",
+      "RetailDrugDistribution_DrugDistribution_Amphetamine"
+      ]
+    )
 ValueError    Traceback (most recent call last)
 ...
 -->    raise ValueError('No data for any of specified Places and StatisticalVariables.')
