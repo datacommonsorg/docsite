@@ -10,7 +10,7 @@ grand_parent: API
 
 ## `datacommons.get_stat_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 
-Returns a `dict` mapping date to value for `place` based on the
+Returns a `dict` mapping date to value for a `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
 filter parameters.
 
@@ -35,7 +35,7 @@ filter parameters.
 
 **Raises**
 
-* `ValueError` - If no statistial value found for the place with the given parameters.
+* `ValueError` - If no statistical value found for the place with the given parameters.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
@@ -52,7 +52,7 @@ We would like to get the [male population](https://datacommons.org/browser/Count
 {"2013":1439862,"2014":1447235,"2015":1451913,"2016":1456694,"2017":1461651,"2018":1468412,"2011":1421287,"2012":1431252}
 ```
 
-In next example, the parameter "observation=P3Y" overly constrains the request so the API
+In the next example, the parameter "observation=P3Y" overly constrains the request so the API
 throws ValueError:
 
 ```python
