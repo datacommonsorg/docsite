@@ -15,7 +15,7 @@ as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
 as columns, where each cell is latest observed statistic for
 its Place and StatisticalVariable.
 
-See the [full list of StatisticalVariable](/statistical_variables.html)s.
+See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Arguments**
 

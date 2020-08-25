@@ -17,7 +17,7 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 ## Getting Started
 
-To get started using the Python API requires the following steps:
+To get started using the Python API:
 
 *   Install the API using `pip`.
 *   (Optional) Create an API key and enable the **Data Commons API**.

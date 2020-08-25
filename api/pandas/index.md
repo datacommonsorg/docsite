@@ -7,18 +7,18 @@ has_children: true
 ---
 # Data Commons Pandas API
 
-The **Data Commons Pandas API** is a superset of the Data Commons Python API,
-meaning all functions from the Python API are also accessible from
-the pandas API. Supplemental functions directly create pandas objects using
-data from the Data Commons knowledge graph for common pandas use cases.
-Please see the [Data Commons API Overview](/api) for more details on the
-design and structure of the API.
+The **Data Commons Pandas API** is a superset of the Data Commons Python API:
+all functions from the Python API are also accessible from
+the Pandas API, and supplemental functions help with directly creating pandas
+objects using data from the Data Commons knowledge graph for common pandas
+use cases. Please see the [Data Commons API Overview](/api) for more details
+on the design and structure of the API.
 
 Before proceeding, make sure you have followed the setup instructions below.
 
 ## Getting Started
 
-To get started using the Python API requires the following steps:
+To get started using the Pandas API:
 
 *   Install the API using `pip`.
 *   (Optional) Create an API key and enable the **Data Commons API**.
@@ -44,8 +44,8 @@ guide](/api/setup.html). Data Commons *does not charge* users, but uses the
 API key for understanding API usage.
 
 With the API key created and Data Commons API activated, we can now get started
-using the Data Commons Python API. There are two ways to provide your key
-to the Python API package.
+using the pandas API. There are two ways to provide your key
+to the pandas API package.
 
 1.  You can set the API key by calling `datacommons_pandas.set_api_key`.
     Start by importing `datacommons_pandas`, then set the API key like so.
@@ -76,7 +76,7 @@ to the Python API package.
     This route is particularly useful if you are building applications that
     depend on this API, and are deploying them to hosting services.
 
-### Using the Python API
+### Using the Pandas API
 
 You are ready to go! From here you can view our [tutorials](/tutorials.html) on how to use the
 API to perform certain tasks, or see a full list of functions, classes and
