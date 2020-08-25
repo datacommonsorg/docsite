@@ -50,7 +50,7 @@ We would like to get one triple per property and type combination associated wit
 ```python
 >>> import datacommons as dc
 >>> dc.set_api_key(YOUR_API_KEY_HERE)
->>> get_triples(['geoId/06'], limit=1)
+>>> dc.get_triples(['geoId/06'], limit=1)
 {
   'geoId/06': [
     ('geoId/0653', 'containedInPlace', 'geoId/06'),
