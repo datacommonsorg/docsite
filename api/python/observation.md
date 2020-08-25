@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Observations
-nav_order: 6
+nav_order: 7
 parent: Python
 grand_parent: API
 ---
 
 # Get Observations for Populations.
 
-## `get_observations(dcids, measured_property, stats_type, observation_date, observation_period=None, measurement_method=None)`
+## `datacommons.get_observations(dcids, measured_property, stats_type, observation_date, observation_period=None, measurement_method=None)`
 
 Given a list of
 [`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)

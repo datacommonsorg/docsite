@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Populations
-nav_order: 5
+nav_order: 6
 parent: Python
 grand_parent: API
 ---

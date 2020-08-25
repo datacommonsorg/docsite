@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Triple
-nav_order: 2
+nav_order: 3
 parent: Python
 grand_parent: API
 ---
