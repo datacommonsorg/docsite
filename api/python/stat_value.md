@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Statistics Value for a Place.
+# Get Statistics Value for a Place
 
 ## `datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 

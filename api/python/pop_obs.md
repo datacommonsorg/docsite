@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get All Populations and Observations for a Node.
+# Get All Populations and Observations for a Node
 
 ## `datacommons.get_pop_obs(dcid)`
 

@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Observations for Places.
+# Get Observations for Places
 
 ## `datacommons.get_place_obs(place_type, observation_date, population_type, constraining_properties={})`
 

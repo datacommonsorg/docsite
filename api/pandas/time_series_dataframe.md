@@ -6,7 +6,7 @@ parent: Pandas
 grand_parent: API
 ---
 
-# Get Time Series for Places as pandas DataFrame.
+# Get Time Series for Places as pandas DataFrame
 
 ## `datacommons_pandas.build_time_series_dataframe(places, stat_var)`
 

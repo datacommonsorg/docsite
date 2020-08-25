@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Statistics for Places.
+# Get Statistics for Places
 
 ## `datacommons.get_stats(dcids, stats_var, obs_dates='latest')`
 

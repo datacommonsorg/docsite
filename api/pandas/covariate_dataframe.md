@@ -6,7 +6,7 @@ parent: Pandas
 grand_parent: API
 ---
 
-# Get Covariates for Places as pandas DataFrame.
+# Get Covariates for Places as pandas DataFrame
 
 ## `datacommons_pandas.build_covariate_dataframe(dcids, stats_vars)`
 
