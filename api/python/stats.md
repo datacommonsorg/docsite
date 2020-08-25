@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Statistics for Places.
 
-## `get_stats(dcids, stats_var, obs_dates='latest')`
+## `datacommons.get_stats(dcids, stats_var, obs_dates='latest')`
 
 Returns a time series of statistical values for queried places based on the
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) filtered by the specified dates.

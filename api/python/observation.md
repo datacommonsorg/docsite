@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Observations for Populations.
 
-## `get_observations(dcids, measured_property, stats_type, observation_date, observation_period=None, measurement_method=None)`
+## `datacommons.get_observations(dcids, measured_property, stats_type, observation_date, observation_period=None, measurement_method=None)`
 
 Given a list of
 [`StatisticalPopulation`](https://datacommons.org/browser/StatisticalPopulation)

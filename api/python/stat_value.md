@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Statistics Value for a Place.
 
-## `get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
+## `datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 
 Returns a value for `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional

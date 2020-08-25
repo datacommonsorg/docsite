@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Statistical Time Series for a Place
 
-## `get_stat_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
+## `datacommons.get_stat_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 
 Returns a `dict` mapping date to value for `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
