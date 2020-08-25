@@ -73,7 +73,8 @@ In the next example, there is no data about
 places, so the API throws ValueError for no data:
 
 ```python
-dcpd.build_multivariate_dataframe(
+>>> import datacommons_pandas as dcpd
+>>> dcpd.build_multivariate_dataframe(
   ["country/MEX", "nuts/AT32"],
   ["RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone",
    "RetailDrugDistribution_DrugDistribution_Amphetamine"
