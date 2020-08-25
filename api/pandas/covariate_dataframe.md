@@ -10,7 +10,7 @@ grand_parent: API
 
 ## `datacommons_pandas.build_covariate_dataframe(dcids, stats_vars)`
 
-Returns a pandas DataFrame with [`places`](https://datacommons.org/browser/Place)
+Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
 as columns, where each cell is latest observed statistic for
 its `Place` and `StatisticalVariable`.
@@ -36,7 +36,7 @@ its `Place` and `StatisticalVariable`.
 
 **Raises**
 
-* `ValueError` - If no statistial values found for with the given parameters.
+* `ValueError` - If no statistial values found for the given parameters.
 
 Be sure to initialize the library. See the
 [datacommons_pandas library setup guide](/api/pandas/) for more details.

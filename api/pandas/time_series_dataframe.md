@@ -10,7 +10,7 @@ grand_parent: API
 
 ## `datacommons_pandas.build_time_series_dataframe(places, stat_var)`
 
-Returns a pandas DataFrame with [`places`](https://datacommons.org/browser/Place)
+Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and dates as columns, where each cell is the observed statistic for
 its place and date for the 
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable).
@@ -34,7 +34,7 @@ statistic (float) for that place on that date for the
 
 **Raises**
 
-* `ValueError` - If no statistial values found for with the given parameters.
+* `ValueError` - If no statistial values found for the given parameters.
 
 Be sure to initialize the library. See the
 [datacommons_pandas library setup guide](/api/pandas/) for more details.
