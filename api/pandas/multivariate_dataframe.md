@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Multivariate DataFrame
 
-## `datacommons_pandas.build_multivariate_dataframe(dcids, stats_vars)`
+## `datacommons_pandas.build_multivariate_dataframe(places, stats_vars)`
 
 Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
@@ -19,7 +19,7 @@ See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
 **Arguments**
 
-*   `dcids (Iterable of str)`: A list of dcids of the
+*   `places (Iterable of str)`: A list of dcids of the
     [`Place`](https://datacommons.org/browser/Place)s to query for.
 
 *   `stat_vars (Iterable of str)`: A list of dcids of the

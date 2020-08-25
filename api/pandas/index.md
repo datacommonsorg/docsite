@@ -9,7 +9,8 @@ has_children: true
 
 The **Data Commons Pandas API** is a superset of the Data Commons Python API:
 all functions from the Python API are also accessible from
-the Pandas API, and supplemental functions help with directly creating pandas
+the Pandas API, and supplemental functions help with directly creating
+[pandas](https://pandas.pydata.org/)
 objects using data from the Data Commons knowledge graph for common pandas
 use cases. Please see the [Data Commons API Overview](/api) for more details
 on the design and structure of the API.
