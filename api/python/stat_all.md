@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get a Collection of Statistical Data for Multitple Places
+# Get a Collection of Statistical Data for Multiple Places
 
 ## `datacommons.get_stat_all(places, stat_vars)`
 
@@ -21,28 +21,28 @@ Returns a nested `dict` of all time series for [`places`](https://datacommons.or
 
 **Returns**
 
-A nested `dict` mapping Places to StatisticalVariables and all available
+A nested `dict` mapping `Place`s to `StatisticalVariable`s and all available
 time series for each Place and StatisticalVariable pair.
 
-The top level `dict` key is the place dcid and the second level `dict` key is the
-statistical variable dcid, with the object being an array of time series object
+The top level `dict` key is the `Place` dcid and the second level `dict` key is the
+`StatisticalVariable` dcid, with the object being an array of time series object
 with the following fields
 
-- `val`: an object from date to statistical value.
+- `val`: a dict from date to statistical value.
 - `importName`: the import name of the observations.
-- `provenanceDomain`: the provenance domain of the observations.
-- `measurementMethod`: the measurement method of the observations, if it exists.
-- `observationPeriod`: the observation period of the observations, if it exists.
-- `unit`: the unit of the observations, if it exists.
-- `scalingFactor`: the scaling factor of the observations, if it exists.
+- `provenanceDomain`: the [Provenance](https://datacommons.org/browser/Provenance) domain of the observations.
+- `measurementMethod`: the [`measurementMethod`](https://datacommons.org/browser/measurementMethod) of the observations, if it exists.
+- `observationPeriod`: the [`observationPeriod`](https://datacommons.org/browser/observationPeriod) of the observations, if it exists.
+- `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
+- `scalingFactor`: the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
 
 **Raises**
 
-- `ValueError` - If no statistical value found for the place with the given parameters.
+- `ValueError` - If no statistical value found for any `Place` and `StatisticalVariable` combinations.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
 
 ## Examples
 
@@ -107,7 +107,7 @@ We would like to get the [population](https://datacommons.org/browser/Count_Pers
 }
 ```
 
-In the next example, there is not data found so the API throws ValueError:
+In the next example, there is no data found so the API throws ValueError:
 
 ```python
 >>> dc.get_stat_all(['badGeoId'], ['BadStaVar'])
