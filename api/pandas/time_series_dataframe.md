@@ -15,7 +15,7 @@ as index and dates as columns, where each cell is the observed statistic for
 its place and date for the 
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable).
 
-See the [full list of StatisticalVariables](/statistical_variables.html).
+See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
 **Arguments**
 
@@ -39,7 +39,7 @@ statistic (float) for that place on that date for the
 Be sure to initialize the library. See the
 [datacommons_pandas library setup guide](/api/pandas/) for more details.
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
 
 ## Examples
 

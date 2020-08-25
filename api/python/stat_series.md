@@ -23,7 +23,7 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 * `stat_var (str)`: The `dcid` of the
   [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-* `measurement_method (str)`: (Optional) The `dcid` of the preferred [`measurementMethod`](https://datacommons.org/browser/measurementMethod for the `stat_var`.
+* `measurement_method (str)`: (Optional) The `dcid` of the preferred [`measurementMethod`](https://datacommons.org/browser/measurementMethod) for the `stat_var`.
 
 * `observation_period (str)`: (Optional) The preferred [`observationPeriod`](https://datacommons.org/browser/observationPeriod) for the `stat_var`. This is an [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) such as P1M (one month).
 

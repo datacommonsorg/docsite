@@ -13,9 +13,9 @@ grand_parent: API
 Returns a pandas DataFrame with [`places`](https://datacommons.org/browser/Place)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
 as columns, where each cell is latest observed statistic for
-its Place and StatisticalVariable.
+its `Place` and `StatisticalVariable`.
 
-See the [full list of StatisticalVariables](/statistical_variables.html).
+See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
 **Arguments**
 
@@ -32,7 +32,7 @@ A `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 (str)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
 (str) as columns, where each cell is latest observed statistic (float) for
-its Place and StatisticalVariable.
+its `Place` and `StatisticalVariable`.
 
 **Raises**
 
@@ -41,7 +41,7 @@ its Place and StatisticalVariable.
 Be sure to initialize the library. See the
 [datacommons_pandas library setup guide](/api/pandas/) for more details.
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
 
 ## Examples
 
