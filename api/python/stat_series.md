@@ -56,7 +56,7 @@ In the next example, the parameter "observation=P3Y" overly constrains the reque
 throws ValueError:
 
 ```python
->>> get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
+>>> dc.get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
 >>> Traceback (most recent call last):
     ...
     raise ValueError('No data in response.')
