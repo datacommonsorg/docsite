@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Time Series for Places as pd.DataFrame
+title: Time Series DataFrame
 nav_order: 2
 parent: Pandas
 grand_parent: API
 ---
 
-# Get Time Series for Places as pandas DataFrame
+# Get Time Series DataFrame
 
 ## `datacommons_pandas.build_time_series_dataframe(places, stat_var)`
 

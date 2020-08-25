@@ -6,11 +6,11 @@ parent: Pandas
 grand_parent: API
 ---
 
-# Get Time Series as pandas Series
+# Get Time Series for a Place
 
 ## `datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 
-Returns a `pandas.Series` representing a time series for the [`place']https://datacommons.org/browser/Place] and
+Returns a `pandas.Series` representing a time series for the [`place`](https://datacommons.org/browser/Place) and
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable) satisfying any optional parameters.
 
 See the [full list of `StatisticalVariable`s](/statistical_variables.html).

@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Covariates for Places as pd.DataFrame
+title: Multivariate DataFrame
 nav_order: 3
 parent: Pandas
 grand_parent: API
 ---
 
-# Get Covariates for Places as pandas DataFrame
+# Get Multivariate DataFrame
 
-## `datacommons_pandas.build_covariate_dataframe(dcids, stats_vars)`
+## `datacommons_pandas.build_multivariate_dataframe(dcids, stats_vars)`
 
 Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
@@ -45,7 +45,7 @@ You can find a list of `StatisticalVariable`s with human-readable names [here](/
 
 ## Examples
 
-We would like to get a table of the covariates
+We would like to get a DataFrame of
 
 - [Count_Person](https://datacommons.org/browser/Count_Person)
 - [Median_Age_Person](https://datacommons.org/browser/Median_Age_Person)
@@ -58,7 +58,7 @@ for
 
 ```python
 >>> import datacommons_pandas as dcpd
->>> dcpd.build_covariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],
+>>> dcpd.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],
                   ["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
              Count_Person  Median_Age_Person  UnemploymentRate_Person
 place                                                                
