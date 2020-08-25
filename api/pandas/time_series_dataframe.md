@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Time Series DataFrame
+title: Time Series Table as pd.DataFrame
 nav_order: 2
 parent: Pandas
 grand_parent: API

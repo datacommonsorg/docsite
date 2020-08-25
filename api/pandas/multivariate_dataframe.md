@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Multivariate DataFrame
+title: Multivariate Table as pd.DataFrame
 nav_order: 3
 parent: Pandas
 grand_parent: API
