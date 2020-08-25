@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get Time Series as pandas Series
 
-## `datacommons_pandas.build_time_series(place, stat_var)`
+## `datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
 
 Returns a `pandas.Series` mapping date to value for a `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
