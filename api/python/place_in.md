@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Places within a Place
-nav_order: 9
+nav_order: 10
 parent: Python
 grand_parent: API
 ---

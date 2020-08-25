@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Observations
-nav_order: 8
+nav_order: 9
 parent: Python
 grand_parent: API
 ---

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SPARQL
-nav_order: 1
+nav_order: 2
 parent: Python
 grand_parent: API
 ---
