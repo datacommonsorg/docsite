@@ -66,3 +66,22 @@ country/USA     328239523               37.9                      NaN
 geoId/06         39512223               36.3                     15.1
 geoId/06085       1927852               37.0                     10.7
 ```
+
+In the next example, there is no data about
+`RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone` nor
+`RetailDrugDistribution_DrugDistribution_Amphetamine` for non-USA
+places, so the API throws ValueError for no data:
+
+```python
+dcpd.build_multivariate_dataframe(
+  ["country/MEX", "nuts/AT32"],
+  ["RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone",
+   "RetailDrugDistribution_DrugDistribution_Amphetamine"
+  ]
+)
+ValueError    Traceback (most recent call last)
+...
+-->    raise ValueError('No data for any of specified places and stat_vars.')
+
+ValueError: No data for any of specified places and stat_vars.
+```

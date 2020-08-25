@@ -52,3 +52,19 @@ We would like to get the  [male population](https://datacommons.org/browser/Coun
 place                                ...                           
 geoId/05  1315210  1323840  1332910  ...  1469240  1475420  1480140
 ```
+
+In the next example, there is no data about
+`RetailDrugDistribution_DrugDistribution_Amphetamine` for non-USA
+places, so the API throws ValueError for no data:
+
+```python
+dcpd.build_time_series_dataframe(
+  ["country/MEX", "nuts/AT32"],
+  "RetailDrugDistribution_DrugDistribution_Amphetamine"
+)
+ValueError    Traceback (most recent call last)
+...
+-->    raise ValueError('No data for any of specified places and stat_vars.')
+
+ValueError: No data for any of specified places and stat_vars.
+```
