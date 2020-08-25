@@ -69,7 +69,7 @@ their DCIDs [California](https://datacommons.org/browser/geoId/06>),
 ...   ?a dcid ?dcid
 ... }
 ... '''
->>> result = query(query_str)
+>>> result = dc.query(query_str)
 >>> for r in result:
 ...   print(r)
 {"?name": "Maryland", "?dcid": "geoId/24"}
@@ -82,7 +82,7 @@ like so. The following returns all rows where the name is "Maryland":
 
 ```python
 >>> selector = lambda row: row['?name'] == 'Maryland'
->>> result = query(query_str, select=selector)
+>>> result = dc.query(query_str, select=selector)
 >>> for r in result:
 ...   print(r)
 {"?name": "Maryland", "?dcid": "geoId/24"}
