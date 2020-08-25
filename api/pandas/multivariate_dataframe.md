@@ -36,7 +36,7 @@ its `Place` and `StatisticalVariable`.
 
 **Raises**
 
-* `ValueError` - If no statistial values found for the given parameters.
+* `ValueError` - If no statistical values found for the given parameters.
 
 Be sure to initialize the library. See the
 [datacommons_pandas library setup guide](/api/pandas/) for more details.
@@ -81,7 +81,7 @@ dcpd.build_multivariate_dataframe(
 )
 ValueError    Traceback (most recent call last)
 ...
--->    raise ValueError('No data for any of specified places and stat_vars.')
+-->    raise ValueError('No data for any of specified Places and StatisticalVariables.')
 
 ValueError: No data for any of specified places and stat_vars.
 ```

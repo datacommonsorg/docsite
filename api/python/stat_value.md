@@ -40,7 +40,7 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Raises**
 
-* `ValueError` - If no statistial value found for the place with the given parameters.
+* `ValueError` - If no statistical value found for the place with the given parameters.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
