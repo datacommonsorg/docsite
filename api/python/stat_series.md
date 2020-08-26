@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Time Series
-nav_order: 13
+nav_order: 12
 parent: Python
 grand_parent: API
 ---
