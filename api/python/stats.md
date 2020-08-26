@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Place Statistics
-nav_order: 11
 parent: Python
 grand_parent: API
+published: false
 ---
 
 # Get Statistics for Places

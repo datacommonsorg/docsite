@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Time Series
-nav_order: 12
+nav_order: 11
 parent: REST
 grand_parent: API
 ---
