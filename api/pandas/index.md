@@ -1,34 +1,36 @@
 ---
 layout: default
-title: Python
-nav_order: 2
+title: Pandas
+nav_order: 3
 parent: API
 has_children: true
 ---
-# Data Commons Python API
+# Data Commons Pandas API
 
-The **Data Commons Python API** is a Python library that enables developers to
-programmatically access nodes in the Data Commons knowledge graph. This package
-allows users to explore the structure of the graph, integrate statistics from
-the graph into data analysis workflows and much more. Please see the [Data Commons API Overview](/api)
-for more details on the design and structure of the API.
+The **Data Commons Pandas API** is a superset of the Data Commons Python API:
+all functions from the Python API are also accessible from
+the Pandas API, and supplemental functions help with directly creating
+[pandas](https://pandas.pydata.org/)
+objects using data from the Data Commons knowledge graph for common pandas
+use cases. Please see the [Data Commons API Overview](/api) for more details
+on the design and structure of the API.
 
 Before proceeding, make sure you have followed the setup instructions below.
 
 ## Getting Started
 
-To get started using the Python API:
+To get started using the Pandas API:
 
 *   Install the API using `pip`.
 *   (Optional) Create an API key and enable the **Data Commons API**.
-*   Begin developing with the Python API
+*   Begin developing with the Pandas API
 
-### Installing the Python API
+### Installing the Pandas API
 
-First, install the `datacommons` package through `pip`.
+First, install the `datacommons_pandas` package through `pip`.
 
 ```bash
-$ pip install datacommons
+$ pip install datacommons_pandas
 ```
 
 For more information about installing `pip` and setting up other parts of
@@ -43,16 +45,16 @@ guide](/api/setup.html). Data Commons *does not charge* users, but uses the
 API key for understanding API usage.
 
 With the API key created and Data Commons API activated, we can now get started
-using the Data Commons Python API. There are two ways to provide your key
-to the Python API package.
+using the pandas API. There are two ways to provide your key
+to the pandas API package.
 
-1.  You can set the API key by calling `datacommons.set_api_key`.
-    Start by importing `datacommons`, then set the API key like so.
+1.  You can set the API key by calling `datacommons_pandas.set_api_key`.
+    Start by importing `datacommons_pandas`, then set the API key like so.
 
     ```python
-    import datacommons as dc
+    import datacommons_pandas as dcpd
 
-    dc.set_api_key('YOUR-API-KEY')
+    dcpd.set_api_key('YOUR-API-KEY')
     ```
 
     This will create an environment variable in your Python runtime called
@@ -69,13 +71,13 @@ to the Python API package.
     package.
 
     ```
-    import datacommons as dc
+    import datacommons_pandas as dcpd
     ```
 
     This route is particularly useful if you are building applications that
     depend on this API, and are deploying them to hosting services.
 
-### Using the Python API
+### Using the Pandas API
 
 You are ready to go! From here you can view our [tutorials](/tutorials.html) on how to use the
 API to perform certain tasks, or see a full list of functions, classes and

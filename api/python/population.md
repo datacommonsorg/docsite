@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Populations for Place(s).
+# Get Populations for Place(s)
 
 ## `datacommons.get_populations(dcids, population_type, constraining_properties={})`
 

@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Observations for Populations.
+# Get Observations for Populations
 
 ## `datacommons.get_observations(dcids, measured_property, stats_type, observation_date, observation_period=None, measurement_method=None)`
 

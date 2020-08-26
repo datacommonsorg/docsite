@@ -14,11 +14,13 @@ Returns a `dict` mapping date to value for a `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
 filter parameters.
 
+See the [full list of StatisticalVariables](/statistical_variables.html).
+
 **Arguments**
 
 * `place (str)`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
 
-* `stats_var (str)`: The `dcid` of the
+* `stat_var (str)`: The `dcid` of the
   [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 * `measurement_method (str)`: (Optional) The `dcid` of the preferred [`measurementMethod`](https://datacommons.org/browser/measurementMethod) for the `stat_var`.
@@ -27,7 +29,7 @@ filter parameters.
 
 * `unit (str)`: (Optional) The `dcid` of the preferred [`unit`](https://datacommons.org/browser/unit) for the `stat_var`.
 
-* `scaling_factor (str)`: (Optional) The preferred [`scalingFactor`](https://datacommons.org/browser/scalingFactor) for the `stat_var`.
+* `scaling_factor (int)`: (Optional) The preferred [`scalingFactor`](https://datacommons.org/browser/scalingFactor) for the `stat_var`.
 
 **Returns**
 
@@ -39,7 +41,7 @@ filter parameters.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
 
 ## Examples
 
@@ -52,12 +54,12 @@ We would like to get the [male population](https://datacommons.org/browser/Count
 {"2013":1439862,"2014":1447235,"2015":1451913,"2016":1456694,"2017":1461651,"2018":1468412,"2011":1421287,"2012":1431252}
 ```
 
-In the next example, the parameter "observation=P3Y" overly constrains the request so the API
+In the next example, the parameter `observation_period='P3Y'` overly constrains the request so the API
 throws ValueError:
 
 ```python
 >>> dc.get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
->>> Traceback (most recent call last):
+Traceback (most recent call last):
     ...
     raise ValueError('No data in response.')
 ```
