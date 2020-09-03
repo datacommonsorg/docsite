@@ -28,7 +28,7 @@ USA -- name --------------> United States of America
 USA -- containedInPlace --> northamerica
 ```
 
-While you can express these triples via standards like [JSON-LD](https://json-ld.org/) or [RDFa](https://en.wikipedia.org/wiki/RDFa), the Data Commons format of choice is [MCF](https://github.com/datacommonsorg/data/tree/master/docs/mcf_format.md), which is concise and human readable. Here's the translated version of the example tabular data:
+While you can express these triples via standards such as [JSON-LD](https://json-ld.org/) or [RDFa](https://en.wikipedia.org/wiki/RDFa), the Data Commons format of choice is [MCF](https://github.com/datacommonsorg/data/tree/master/docs/mcf_format.md), which is concise and human readable. Here's the translated version of the example tabular data:
 
 ```
 Node: USA
@@ -53,7 +53,7 @@ This particular example imports the COVID Tracking Project's [historical state d
 
 The dataset contains various statistics about COVID-19 testing results, including numbers of patients hospitalized, patients in the ICU, patients on ventilators, and patient outcomes.
 
-The end goal of this example is to represent each data point as a `StatVarObservation` like this:
+The end goal of this example is to represent each data point as a `StatVarObservation` akin to this:
 
 ```
 Node: Count_MedicalTest_COVID_19_Pending_geoId/04_2020-03-04
