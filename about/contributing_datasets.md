@@ -11,9 +11,9 @@ This tutorial walks through the process of structuring and inserting data into t
 
 ## Background
 
-Importing data into Data Commons boils down to taking source data and converting it into a format that can be consumed into the Data Commons graph. This section presents an example that does not require statistical data.
+Importing data into Data Commons requires converting source data into a format that the Data Commons graph can consume. This section presents an example that does not require statistical data.
 
-Given tabular data like the following:
+Given tabular data such as the following:
 
 |country_id  |  country_name	         |  continent_id|
 |-------|--------|---------|
