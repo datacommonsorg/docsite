@@ -284,4 +284,4 @@ Check in the Template MCF file together with the cleaned CSV and its preprocessi
 
 ## Conclusion
 
-After producing all three required components (`StatisticalVariable` schema MCF, cleaned CSV, and Template MCF), go ahead and submit a PR to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data).
+After producing all three required components (`StatisticalVariable` schema MCF, cleaned CSV, and Template MCF), go ahead and submit a PR to [https://github.com/datacommonsorg/data/pulls](https://github.com/datacommonsorg/data/pulls).
