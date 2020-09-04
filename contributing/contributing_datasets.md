@@ -47,7 +47,7 @@ The `schema:` prefix represents the schema.org namespace, and `dcid:` represents
 The following sections explain how to convert [statistical data into graph representations](https://github.com/datacommonsorg/data/tree/master/docs/representing_statistics.md), as well as how to leverage templating to quickly map tabular data into [instance MCF](https://github.com/datacommonsorg/data/tree/master/docs/mcf_format.md#instance-mcf).
 
 
-## Importing The COVID Tracking Project's historical state data
+## Example: Importing The COVID Tracking Project's historical state data
 
 This particular example imports the COVID Tracking Project's [historical state dataset](https://covidtracking.com/api/).
 
