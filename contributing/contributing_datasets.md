@@ -90,8 +90,7 @@ typeOf: dcs:StatisticalVariable
 populationType: dcs:MedicalTest
 ```
 
-In this example, "`Count_MedicalTest_COVID_19_Pending`" is the curated identifier. Data Commons recommends making these IDs descriptive of the stat. For example, if your data is specifically for median income among females age 12 and over, you could assign "MedianIncome_Person_Female_12YearsAndOlder".
-Here "`MedicalTest`" is the common type of the group being observed. E.g. "Person" and "Household" if measuring median income of people and households.
+In this example, the `populationType` is "`MedicalTest`" and "`Count_MedicalTest_COVID_19_Pending`" is the curated identifier. Data Commons recommends making these IDs descriptive of the stat. For example, if your data is specifically for median income among females age 12 and over, you could assign "MedianIncome_Person_Female_12YearsAndOlder".
 
 #### Optional triples
 
