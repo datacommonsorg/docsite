@@ -116,7 +116,7 @@ typeOf: dcs:StatisticalVariable
 populationType: dcs:MedicalTest
 statType: dcs:measuredValue
 measuredProperty: dcs:count
-medicalCondition:	dcs:COVID_19
+medicalCondition: dcs:COVID_19
 testResult: dcs:Pending
 ```
 
