@@ -2,7 +2,7 @@
 layout: default
 title: Contributing datasets
 nav_order: 1
-parent: About Data Commons
+parent: Contributing
 ---
 
 # Life of a Dataset
@@ -76,11 +76,11 @@ Importing data requires three main steps:
 
 This tutorial explains each step in detail and demonstrates where you can submit artifacts for Data Commons review.
 
-## Step 1: Define new `StatisticalVariable` nodes.
+### Step 1: Define new `StatisticalVariable` nodes.
 
 **Note:** If the dataset does not introduce new variables, skip this step and refer to existing `StatisticalVariable` identifiers.
 
-### Required triples
+#### Required triples
 
 At a minimum, each `StatisticalVariable` needs a `populationType` and a curated, human readable identifier. Here's an example:
 
@@ -93,7 +93,7 @@ populationType: dcs:MedicalTest
 In this example, "`Count_MedicalTest_COVID_19_Pending`" is the curated identifier. Data Commons recommends making these IDs descriptive of the stat. For example, if your data is specifically for median income among females age 12 and over, you could assign "MedianIncome_Person_Female_12YearsAndOlder".
 Here "`MedicalTest`" is the common type of the group being observed. E.g. "Person" and "Household" if measuring median income of people and households.
 
-### Optional triples
+#### Optional triples
 
 The `statType` and `measured_property` fields can be updated later. If they are not provided, Data Commons will assign `measuredValue` as the `statType` and use the `dcid` as a placeholder `measured_property`. Here is an example that includes these optional triples:
 
@@ -107,7 +107,7 @@ measuredProperty: dcs:count
 
 Other common `statType`s include `medianValue`, `meanValue` and `minValue`. Other common `measuredProperty`s include `count`, `incrementalCount`, and `age`.
 
-### Remaining triples
+#### Remaining triples
 Data Commons will take care of filling in the "constraining properties". These properties typically express information that you have already encoded in the `StatisticalVariable`'s `dcid`. In this example, the `dcid` "Count_MedicalTest_COVID_19_Pending" is split into `medicalCondition: dcs:COVID_19` and `testResult: dcs:Pending`. Here is an example final MCF:
 
 ```
@@ -120,7 +120,7 @@ medicalCondition:	dcs:COVID_19
 testResult: dcs:Pending
 ```
 
-### COVID Tracking Project `StatisticalVariable`s
+#### COVID Tracking Project `StatisticalVariable`s
 
 Most of the measures listed in this example are new to Data Commons, thus requiring corresponding new `StatisticalVariable`s. Remember that `statType` and `measuredProperty` are optional and should be left blank if the schema is not obvious.
 
@@ -167,12 +167,11 @@ measuredProperty: dcs:cumulativeCount
 medicalStatus: dcs:PatientDeceased
 ```
 
-
 The full set of `StatisticalVariable`s is checked into [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/covid_tracking_project/historic_state_data).
 
 When going through the import process, see the [GitHub Development Process](https://github.com/datacommonsorg/data#github-development-process) for how to prepare for a pull request. 
 
-## Step 2: Clean the CSV.
+### Step 2: Clean the CSV.
 
 There are no restrictions on your approach for this step, only requirements for its result.
 
@@ -182,7 +181,7 @@ There are no restrictions on your approach for this step, only requirements for 
 4. References to existing nodes in the graph must be `dcid`s.
 5. The cleaning script is reproducible and easy to run. Python or Golang is recommended.
 
-### Step 2a: Write the Preprocessing Script.
+#### Step 2a: Write the Preprocessing Script.
 
 **Note:** Renaming the columns is not necessary. It is a style choice to maintain reference to the `StatisticalVariable` ID at all times.
 
@@ -234,11 +233,11 @@ with open('COVIDTracking_States.csv', 'w', newline='') as f_out:
       writer.writerow(processed_dict)
 ```
 
-### Step 2b: Check In the Preprocessing Script.
+#### Step 2b: Check In the Preprocessing Script.
 
 Check in the script and the resulting CSV to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/covid_tracking_project/historic_state_data).
 
-## Step 3: Specify the Template MCF.
+### Step 3: Specify the Template MCF.
 
 Template MCF is essentially a mapping file that instructs Data Commons on how to convert each row of a CSV into MCF. Each entity and `StatisticalVariable` will have a template. For additional information, read [Template MCF](https://github.com/datacommonsorg/data/blob/master/docs/mcf_format.md#template-mcf).
 

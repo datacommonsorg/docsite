@@ -2,7 +2,6 @@
 layout: default
 title: About Data Commons
 nav_order: 1
-has_children: true
 ---
 
 # Data Commons:<br>Linking the world's public datasets

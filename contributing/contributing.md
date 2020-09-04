@@ -1,3 +1,9 @@
+---
+layout: default
+title: Contributing
+nav_order: 6
+has_children: true
+---
 # How to Contribute
 
 We'd love to accept your patches and contributions to this project. There are
