@@ -14,7 +14,8 @@ This page contains a selection of key terms important to understanding the struc
 **Statistical variable**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, <br />
-&nbsp;&nbsp;&nbsp;&nbsp;median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes.
+&nbsp;&nbsp;&nbsp;&nbsp;median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes. For more <br />
+&nbsp;&nbsp;&nbsp;&nbsp;information, see ["Intro to `StatisticalVariable` and `StatVarObservation`"](/contributing/background/representing_statistics.html).
 
 <!-- TODO need to define types of statistical variables -->
 
