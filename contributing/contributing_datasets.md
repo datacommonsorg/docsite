@@ -64,7 +64,7 @@ observationDate: "2020-03-04"
 value: 24
 ```
 
-For more information on the terms [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) and [`StatVarObservation`](https://datacommons.org/browser/StatVarObservation), see ["Intro to `StatisticalVariable` and `StatVarObservation`"](https://github.com/datacommonsorg/data/tree/master/docs/representing_statistics.md).
+For more information on the terms [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) and [`StatVarObservation`](https://datacommons.org/browser/StatVarObservation), see ["Intro to `StatisticalVariable` and `StatVarObservation`"](/contributing/background/representing_statistics.html).
 
 ### Roadmap
 
