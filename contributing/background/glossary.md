@@ -7,7 +7,7 @@ grand_parent: Contributing
 ---
 # Glossary of Common Terms
 
-This page contains a selection of key terms important to understanding the structure of data within DataCommons.
+This page contains a selection of key terms important to understanding the structure of data within Data Commons.
 
 ## Term List
 
@@ -31,7 +31,7 @@ This page contains a selection of key terms important to understanding the struc
 
 &nbsp;&nbsp;&nbsp;&nbsp;A three-part grouping describing node and edge objects in the Data Commons graph.
 
-**Meta Content Framework**
+**Meta Content Framework (MCF)**
 
 &nbsp;&nbsp;&nbsp;&nbsp;A simple format used to represent graph data, used extensively in Data Commons due to its simple readability. For more 
 &nbsp;&nbsp;&nbsp;&nbsp;information, see [the Data Commons guide to MCF](/contributing/background/mcf_format.html).
