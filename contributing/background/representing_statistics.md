@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Representing Statistics in Data Commons
+title: Representing statistics in Data Commons
 nav_order: 2
 parent: Background
 grand_parent: Contributing to Data Commons
 ---
-# Representing Statistics in Data Commons
+# Representing statistics in Data Commons
 
 > Note: this document assumes familiarity with the
 [Schema.org Data Model](https://schema.org/docs/datamodel.html) and
