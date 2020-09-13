@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Contributing
+title: Contributing to Data Commons
 nav_order: 6
 has_children: true
 ---

@@ -2,7 +2,7 @@
 layout: default
 title: Contributing datasets
 nav_order: 2
-parent: Contributing
+parent: Contributing to Data Commons
 ---
 
 # Life of a Dataset

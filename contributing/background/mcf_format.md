@@ -3,7 +3,7 @@ layout: default
 title: MCF Format
 nav_order: 1
 parent: Background
-grand_parent: Contributing
+grand_parent: Contributing to Data Commons
 ---
 # Meta Content Framework (MCF) in Data Commons
 

@@ -3,7 +3,7 @@ layout: default
 title: Representing Statistics in Data Commons
 nav_order: 2
 parent: Background
-grand_parent: Contributing
+grand_parent: Contributing to Data Commons
 ---
 # Representing Statistics in Data Commons
 
