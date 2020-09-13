@@ -11,7 +11,7 @@ This page contains a selection of key terms important to understanding the struc
 
 ## Term List
 
-**Statistical variable**
+**[Statistical variable](https://datacommons.org/browser/StatisticalVariable)**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, <br />
 &nbsp;&nbsp;&nbsp;&nbsp;median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes. For more <br />
@@ -19,11 +19,11 @@ This page contains a selection of key terms important to understanding the struc
 
 <!-- TODO need to define types of statistical variables -->
 
-**Statistical population**
+**[Statistical population](https://datacommons.org/browser/StatisticalPopulation)**
 
 &nbsp;&nbsp;&nbsp;&nbsp;A set of instances of a certain given type that satisfy some set of constraints. Inherited from [schema.org definition](https://schema.org/StatisticalPopulation).
 
-**Observation**
+**[Observation](https://datacommons.org/browser/Observation)**
 
 &nbsp;&nbsp;&nbsp;&nbsp;When instantiated, can be used to specify observations about an entity at a particular time. Inherited from [schema.org definition](https://schema.org/Observation).
 
