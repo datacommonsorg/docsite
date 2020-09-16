@@ -47,7 +47,7 @@ The `schema:` prefix represents the schema.org namespace, and `dcid:` represents
 The following sections explain how to convert [statistical data into graph representations](https://github.com/datacommonsorg/data/tree/master/docs/representing_statistics.md), as well as how to leverage templating to quickly map tabular data into [instance MCF](https://github.com/datacommonsorg/data/tree/master/docs/mcf_format.md#instance-mcf).
 
 
-## Importing The COVID Tracking Project's historical state data
+## Example: Importing The COVID Tracking Project's historical state data
 
 This particular example imports the COVID Tracking Project's [historical state dataset](https://covidtracking.com/api/).
 
@@ -90,8 +90,7 @@ typeOf: dcs:StatisticalVariable
 populationType: dcs:MedicalTest
 ```
 
-In this example, "`Count_MedicalTest_COVID_19_Pending`" is the curated identifier. Data Commons recommends making these IDs descriptive of the stat. For example, if your data is specifically for median income among females age 12 and over, you could assign "MedianIncome_Person_Female_12YearsAndOlder".
-Here "`MedicalTest`" is the common type of the group being observed. E.g. "Person" and "Household" if measuring median income of people and households.
+In this example, "`MedicalTest`" is the `populationType` and "`Count_MedicalTest_COVID_19_Pending`" is the curated identifier. Data Commons recommends making these IDs descriptive of the stat. For example, if your data is specifically for median income among females age 12 and over, you could assign "MedianIncome_Person_Female_12YearsAndOlder".
 
 #### Optional triples
 
@@ -185,53 +184,7 @@ There are no restrictions on your approach for this step, only requirements for 
 
 **Note:** Renaming the columns is not necessary. It is a style choice to maintain reference to the `StatisticalVariable` ID at all times.
 
-This script prepends `dcid:` to the state identifiers, allowing later global references to the states.
-
-```
-import csv
-import io
-import urllib.request
-
-output_columns = ['Date', 'GeoId',
-                  'CumulativeCount_MedicalTest_COVID_19',
-                  'CumulativeCount_MedicalTest_COVID_19_Positive',
-                  'CumulativeCount_MedicalTest_COVID_19_Negative',
-                  'Count_MedicalTest_COVID_19_Pending',
-                  'CumulativeCount_MedicalConditionIncident_COVID_19_PatientRecovered',
-                  'CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased',
-                  'Count_MedicalConditionIncident_COVID_19_PatientHospitalized',
-                  'CumulativeCount_MedicalConditionIncident_COVID_19_PatientHospitalized',
-                  'Count_MedicalConditionIncident_COVID_19_PatientInICU',
-                  'CumulativeCount_MedicalConditionIncident_COVID_19_PatientInICU',
-                  'Count_MedicalConditionIncident_COVID_19_PatientOnVentilator',
-                  'CumulativeCount_MedicalConditionIncident_COVID_19_PatientOnVentilator'
-                 ]
-with open('COVIDTracking_States.csv', 'w', newline='') as f_out:
-  writer = csv.DictWriter(f_out, fieldnames=output_columns, lineterminator='\n')
-  with urllib.request.urlopen('https://covidtracking.com/api/v1/states/daily.csv') as response:
-    reader = csv.DictReader(io.TextIOWrapper(response))
-
-    writer.writeheader()
-    for row_dict in reader:
-      processed_dict = {
-          'Date': '%s-%s-%s' % (row_dict['date'][:4], row_dict['date'][4:6], row_dict['date'][6:]),
-          'GeoId': 'dcid:geoId/%s' % row_dict['fips'],
-          'CumulativeCount_MedicalTest_COVID_19': row_dict['totalTestResults'],
-          'CumulativeCount_MedicalTest_COVID_19_Positive': row_dict['positive'],
-          'CumulativeCount_MedicalTest_COVID_19_Negative': row_dict['negative'],
-          'Count_MedicalTest_COVID_19_Pending': row_dict['pending'],
-          'CumulativeCount_MedicalConditionIncident_COVID_19_PatientRecovered': row_dict['recovered'],
-          'CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased': row_dict['death'],
-          'Count_MedicalConditionIncident_COVID_19_PatientHospitalized': row_dict['hospitalizedCurrently'],
-          'CumulativeCount_MedicalConditionIncident_COVID_19_PatientHospitalized': row_dict['hospitalizedCumulative'],
-          'Count_MedicalConditionIncident_COVID_19_PatientInICU': row_dict['inIcuCurrently'],
-          'CumulativeCount_MedicalConditionIncident_COVID_19_PatientInICU': row_dict['inIcuCumulative'],
-          'Count_MedicalConditionIncident_COVID_19_PatientOnVentilator': row_dict['onVentilatorCurrently'],
-          'CumulativeCount_MedicalConditionIncident_COVID_19_PatientOnVentilator': row_dict['onVentilatorCumulative'],
-      }   
-
-      writer.writerow(processed_dict)
-```
+An example script prepending `dcid:` to the state identifiers, thus allowing later global references to the states, is available at https://github.com/datacommonsorg/data/blob/master/scripts/covid_tracking_project/historic_state_data/preprocess_csv.py.
 
 #### Step 2b: Check In the Preprocessing Script.
 
@@ -284,4 +237,4 @@ Check in the Template MCF file together with the cleaned CSV and its preprocessi
 
 ## Conclusion
 
-After producing all three required components (`StatisticalVariable` schema MCF, cleaned CSV, and Template MCF), go ahead and submit a PR to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data).
+After producing all three required components (`StatisticalVariable` schema MCF, cleaned CSV, and Template MCF), go ahead and submit a PR to [https://github.com/datacommonsorg/data/pulls](https://github.com/datacommonsorg/data/pulls).
