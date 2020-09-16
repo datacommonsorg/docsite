@@ -3,11 +3,11 @@ layout: default
 title: Background
 nav_order: 1
 has_children: true
-parent: Contributing
+parent: Contributing to Data Commons
 ---
-# Background Information
+# Background information
 
-## Getting Started
+## Getting started
 
 To get started, we recommend the following resources (in order):
 

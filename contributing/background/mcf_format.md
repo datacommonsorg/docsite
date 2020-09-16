@@ -1,9 +1,9 @@
 ---
 layout: default
-title: MCF Format
+title: MCF format
 nav_order: 1
 parent: Background
-grand_parent: Contributing
+grand_parent: Contributing to Data Commons
 ---
 # Meta Content Framework (MCF) in Data Commons
 
@@ -21,7 +21,7 @@ which we will often refer to as a property. This is the basis of the
 ours. It is also worth noting that the Data Commons schema is a superset of
 Schema.org.
 
-## MCF Format
+## MCF format
 
 An MCF file consists of one or more blocks, each corresponding to an entity. A
 block looks like this:
@@ -64,7 +64,7 @@ name: "Just another test node in a test world"
 > *   Commas within double quotes are not considered as value separators.
 > *   Every entity has at least one property: `typeOf`.
 
-### Scoping and Namespaces
+### Scoping and namespaces
 
 The Data Commons graph is built from data that is distributed across many files,
 from different sources. One challenge is coordination and scoping of identifiers
@@ -92,7 +92,7 @@ To refer to an entity via its identifier (`id1`) in a namespace associated with
 a prefix 'foaf', we write 'foaf:id1'. To refer to an entity via its identifier
 in the local namespace, we use the prefix `l`.
 
-#### Special Namespaces
+#### Special namespaces
 
 The Data Commons graph is built on top of Schema.org vocabulary and its Data
 Commons extensions. To facilitate references to terms from these schemas, the
@@ -104,7 +104,7 @@ Data Commons assigns a unique identifier to each entity. This identifier is the
 value of the property 'dcid'. `dcid` can also be used as the prefix to refer to
 entities by their Data Commons ID (DCID).
 
-#### Namespace Summary
+#### Namespace summary
 
 **Namespaces are used for references.** Here are the types of references:
 
@@ -119,7 +119,7 @@ matter of convention. Differentiating curator and local ID reference from the
 rest is important. We will attempt to resolve curator and local IDs into
 corresponding DCIDs, while for the last three, we won't.
 
-#### Referencing Examples
+#### Referencing examples
 
 Here are MCF nodes for a city, county, and state, demonstrating usage of local
 ID, DCID, Schema.org schema, and Data Commons schema referencing:
@@ -150,7 +150,7 @@ property values that represent resolved references to other nodes are not
 strings and include a `dcid:` prefix (for example, `containedInPlace:
 dcid:country/USA`).
 
-### Relaxed Syntax
+### Relaxed syntax
 
 The syntax described so far has been slightly simplified as follows to be less
 demanding, and more accomodative of common typos. Note that following the
@@ -188,7 +188,7 @@ containedInPlace: country/USA
 Note that the `l:` in `l:USState_06` is still required, while `schema:City` has
 become `City`, etc.
 
-#### Use DCID ref as node name.
+#### Use DCID ref as node name
 
 This is a more succinct way of writing the node MCF, to avoid assigning a node
 name and a DCID.
@@ -210,7 +210,7 @@ containedInPlace: country/USA
 Note: When DCID appears in the Node name, the `dcid:` prefix is required. If
 missing, we would intepret it as a local ID.
 
-### Misc.
+### Miscellaneous
 
 #### Entities with properties coming from different datasets
 
@@ -253,7 +253,7 @@ name: No Place Town
 containedInPlace: geoId/06
 ```
 
-#### DCID and Name Conventions
+#### DCID and name conventions
 
 -   For non-schema entities, do not use underscores in identifier or DCID
     fields.
@@ -269,7 +269,7 @@ containedInPlace: geoId/06
 -   DCIDs have a length limit of 256 characters. Nodes with a DCID longer than
     256 characters will throw a syntax error upon uploading to DataCommons.
 
-## MCF Types in Data Commons
+## MCF types in Data Commons
 
 We employ two main types of MCF nodes: instance MCF and template MCF. We may
 also refer to files of instance MCF nodes as "instance MCF"; likewise for
