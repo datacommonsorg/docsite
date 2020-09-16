@@ -17,19 +17,23 @@ Python.
 
 -   **Getting Started: Analyzing Census Data with Data Commons**
 
-    [Google Colab](https://colab.sandbox.google.com/drive/1wYohDirOgVxvmL0d-oJRWdD6AXfAX_w1){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_census_data.ipynb){:target="_blank"}
+    [Google Colab](https://colab.research.google.com/drive/1wYohDirOgVxvmL0d-oJRWdD6AXfAX_w1){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_census_data.ipynb){:target="_blank"}
+
+-   **COVID-19 Feature Exploration Analysis with Data Commons (by Google Health)**
+
+    [Google Colab](https://colab.research.google.com/drive/1LLteGjXifwSsD-YsGwBnI-i96G777Q7j){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/gh-colab/notebooks/Covid_19_Feature_Exploration_Analysis_with_Data_Commons.ipynb){:target="_blank"}
 
 -   **Case Study: Analyzing Income Distribution**
 
-    [Google Colab](https://colab.sandbox.google.com/drive/1lyxb5gdD_YHKxNXLmD0poBU3G8bokWZ7){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_income_distribution.ipynb){:target="_blank"}
+    [Google Colab](https://colab.research.google.com/drive/1lyxb5gdD_YHKxNXLmD0poBU3G8bokWZ7){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_income_distribution.ipynb){:target="_blank"}
 
 -   **Case Study: Prevalence of Obesity in 500 US Cities**
 
-    [Google Colab](https://colab.sandbox.google.com/drive/1_oZYWrrwO80DBaW0rIirTYHlfHCibXxY){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_obesity_prevalence.ipynb){:target="_blank"}
+    [Google Colab](https://colab.research.google.com/drive/1_oZYWrrwO80DBaW0rIirTYHlfHCibXxY){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_obesity_prevalence.ipynb){:target="_blank"}
 
 -   **Case Study: Analyzing Genomic Data with Biomedical Data Commons**
 
-    [Google Colab](https://colab.sandbox.google.com/drive/1Io7EDr4LjfPLl_l2JYY8__WbfitfNlOf){:target="_blank"}
+    [Google Colab](https://colab.research.google.com/drive/1Io7EDr4LjfPLl_l2JYY8__WbfitfNlOf){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_genomic_data.ipynb){:target="_blank"}
 
 
 ## Google Sheets
