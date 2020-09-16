@@ -5,7 +5,7 @@ nav_order: 2
 parent: Contributing to Data Commons
 ---
 
-# Life of a Dataset
+# Life of a dataset
 
 This tutorial walks through the process of structuring and inserting data into the Data Commons graph.
 
