@@ -3,7 +3,7 @@ layout: default
 title: Glossary
 nav_order: 3
 parent: Background
-grand_parent: Contributing
+grand_parent: Contributing to Data Commons
 ---
 # Glossary of Common Terms
 
