@@ -1,7 +1,7 @@
 ---
 layout: default
 title: MCF format
-nav_order: 1
+nav_order: 2
 parent: Background
 grand_parent: Contributing to Data Commons
 ---
