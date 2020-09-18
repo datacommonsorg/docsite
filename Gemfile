@@ -8,6 +8,7 @@ source "https://rubygems.org"
 #
 # To upgrade, run `bundle update github-pages`.
 gem "github-pages", group: :jekyll_plugins
+gem 'jekyll-redirect-from'
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"

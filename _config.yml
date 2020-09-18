@@ -22,6 +22,7 @@ github_username:  datacommonsorg
 markdown: kramdown
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 sass:
   style: compressed
