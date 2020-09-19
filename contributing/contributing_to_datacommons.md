@@ -57,7 +57,7 @@ Data Commons is currently posting example analyses on [the tutorials page](/tuto
 ```
 -   **Getting Started: Analyzing Census Data**
 
-    [Google Colab](<insert Colab link here>){:target="_blank"}, [Github](<insert raw .ipynb link here>){:target="_blank"}
+    [Google Colab](*YOUR COLAB LINK HERE*){:target="_blank"}, [Github](*YOUR GITHUB .IPYNB FILE HERE){:target="_blank"}
 ```
 
 ### Updating documentation
