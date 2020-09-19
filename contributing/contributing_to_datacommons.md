@@ -33,8 +33,8 @@ again.
 
 You can find suggested reading about the domain in which Data Commons operates in [the Background section](/contributing/background/background.html).
 
-All submissions, including submissions by project members, require review. We
-use GitHub pull requests for this purpose. Consult
+All submissions, including submissions by project members, require review. Data Commons
+uses GitHub pull requests for this purpose. Consult
 [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
 information on using pull requests.
 
