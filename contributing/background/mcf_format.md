@@ -305,7 +305,7 @@ ResponseOption_Name, SurveyItem_Dcid`
 
 And you have defined a schema that looks like:
 
-![Drawing of Schema](img/example_schema_mapping_diagram.png)
+![Drawing of Schema](./../../assets/images/example_schema_mapping_diagram.png)
 
 The template MCF looks like:
 
