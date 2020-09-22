@@ -62,9 +62,9 @@ Data Commons is currently posting example analyses on [the tutorials page](/tuto
 
 ### Updating documentation
 
-Data Commons maintains its documentation website at <https://docs.datacommons.org>. You can submit a PR to update the project's documentation at <https://github.com/datacommonsorg/docsite/issues>.
+Data Commons maintains its documentation website at <https://docs.datacommons.org>. You can submit a PR to update the project's documentation at <https://github.com/datacommonsorg/docsite/pulls>.
 
 ## Other ways to get involved
 
-- If you have a concern or a suggested feature, feel free to open an issue on [Github](https://github.com/datacommonsorg/docsite/pulls).
+- If you have a concern or a suggested feature, feel free to open an issue on [Github](https://github.com/datacommonsorg/docsite/issues).
 - Email the team at <support@datacommons.org>.
