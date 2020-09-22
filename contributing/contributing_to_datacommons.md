@@ -31,7 +31,7 @@ again.
 
 ### Becoming familiar with the project
 
-You can find suggested reading about the domain in which Data Commons operates in [the Background section](/contributing/background/background.html).
+You can find suggested reading about Data Commons concepts in [the Background section](/contributing/background/background.html).
 
 All submissions, including submissions by project members, require review. Data Commons
 uses GitHub pull requests for this purpose. Consult
