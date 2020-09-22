@@ -8,10 +8,10 @@ has_children: true
 
 Data Commons contributors:
 
-- Contribute data
-- Create tools
-- Share analysis
-- Write documentation
+- [Contribute data](#contributing-a-dataset)
+- [Create tools](#creating-a-new-tool)
+- [Share analysis](#sharing-analysis)
+- [Write documentation](#updating-documentation)
 
 Data Commons welcomes patches and contributions to this project from everyone, new or experienced!
 
