@@ -48,7 +48,7 @@ Directions are available on [the 'Adding Datasets' page](/contributing/adding_da
 
 ### Creating a new tool
 
-Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. If you have developed or would like to propose a new tool, feel free to create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools) or contact the team at <support@datacommons.org>.
+Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. If you would like to propose a new tool, feel free to create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools) or contact the team at <support@datacommons.org>.
 
 ### Sharing analysis
 
