@@ -236,5 +236,4 @@ value: C:COVIDTracking_States->{stat_var}
 Check in the Template MCF file together with the cleaned CSV and its preprocessing script to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/covid_tracking_project/historic_state_data). The Template MCF generation code may also be included (as in this example).
 
 ## Conclusion
-
 After producing all three required components (`StatisticalVariable` schema MCF, cleaned CSV, and Template MCF), go ahead and submit a PR to [https://github.com/datacommonsorg/data/pulls](https://github.com/datacommonsorg/data/pulls).
