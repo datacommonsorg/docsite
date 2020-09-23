@@ -55,7 +55,7 @@ Data Commons welcomes the development of new tools that make the data on Data Co
 Data Commons is currently posting example analyses on [the tutorials page](/tutorials.html). To submit your analysis as a tutorial, open a PR in [the Data Commons documentation website repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file. Your addition to the tutorial page should look like this when raw:
 
 ```
--   ** *YOUR TITLE HERE* **
+-   ** <YOUR TITLE HERE> **
 
     [Google Colab](*YOUR COLAB LINK HERE*){:target="_blank"}, [Github](*YOUR GITHUB .IPYNB FILE HERE){:target="_blank"}
 ```
