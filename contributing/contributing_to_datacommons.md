@@ -57,7 +57,7 @@ Data Commons is currently posting example analyses on [the tutorials page](/tuto
 ```
 -   ** <YOUR TITLE HERE> **
 
-    [Google Colab](*YOUR COLAB LINK HERE*){:target="_blank"}, [Github](*YOUR GITHUB .IPYNB FILE HERE){:target="_blank"}
+    [Google Colab](<YOUR COLAB LINK HERE>){:target="_blank"}, [Github](<YOUR GITHUB .IPYNB FILE HERE>){:target="_blank"}
 ```
 
 ### Updating documentation
