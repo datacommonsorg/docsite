@@ -43,7 +43,7 @@ Once you've obtained this precise meaning, you can define your statistical varia
 
 ####  Adding fields to your statistical variable definitions
 
-Once you've named the variables you'll be adding to the graph, you need to add fields as appropriate. Data Commons requires the node name supplied, a typeOf field set to StatisticalVariable, and a [populationType]() to be specified (). Here is an example:
+Once you've named the variables you'll be adding to the graph, you need to add fields as appropriate. Data Commons requires the node name supplied, a typeOf field set to StatisticalVariable, and a populationType to be specified. Here is an example:
 
 ```
 Node: dcid:Count_HousingUnit_OwnerOccupied_AsFractionOf_Count_HousingUnit_OccupiedHousingUnit
@@ -97,7 +97,7 @@ Follow the template at <https://github.com/datacommonsorg/data/tree/master/scrip
 
 #### Final steps
 
-Check in the Template MCF file together with the cleaned CSV, its preprocessing script (if needed), and the README to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/covid_tracking_project/historic_state_data). If you wrote a script to automate the generation of the TMCF, you may also include that.
+Check in the Template MCF file together with the cleaned CSV, its preprocessing script (if needed), and the README to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/fred/homeownership). If you wrote a script to automate the generation of the TMCF, you may also include that.
 
 ## Option 2: bypassing the TMCF to directly construct the output MCF
 
