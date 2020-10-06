@@ -49,28 +49,24 @@ installing Python libraries, etc. can be found in the
     associated with this node. In graph terminology, return the `DCID`s of the
     arc-labels of the arcs into and out of this node.
     -   Documentation: [REST](/api/rest/property_label.html),
-    [Python](/api/python/property_label.html),
-    [R](/api/r/property_label.html)
+    [Python](/api/python/property_label.html)
 
 -   **get_property_values**: given a node and a property, return the value of
     this property for that node. In graph terminology, return the target/source
     of the arcs into/out of this node with that arc label.
     -   Documentation: [REST](/api/rest/property_value.html),
-    [Python](/api/python/property_value.html),
-    [R](/api/r/property_value.html)
+    [Python](/api/python/property_value.html)
 
 -   **get_triples**: given a node, return all the triples in which this node is
     either the subject/source or object/target.
     -   Documentation: [REST](/api/rest/triple.html),
-    [Python](/api/python/triple.html),
-    [R](/api/r/triple.html)
+    [Python](/api/python/triple.html)
 
 ### Graph Query/SPARQL
 
 -   **query**: query Data Commons via SPARQL.
     -   Documentation: [REST](/api/rest/query.html),
-    [Python](/api/python/query.html),
-    [R](/api/r/query.html)
+    [Python](/api/python/query.html)
 
 ### Domain Specific APIs
 
@@ -95,15 +91,13 @@ generalization.
     `StatisticalPopulation`s for these places, constrained by the given property
     values.
     -   Documentation: [REST](/api/rest/population.html),
-    [Python](/api/python/population.html),
-    [R](/api/r/population.html)
+    [Python](/api/python/population.html)
 
 -   **get observation**: given a list of `StatisticalPopulation` DCIDs, return
     the DCID of `Observation`s for these statistical populations, constrained by
     the given observations' property values.
     -   Documentation: [REST](/api/rest/observation.html),
-    [Python](/api/python/observation.html),
-    [R](/api/r/observation.html)
+    [Python](/api/python/observation.html)
 
 -   **get population and observation**: given the DCID of a node, return all the
     `StatisticalPopulation`s and `Observation`s for this node.
@@ -126,5 +120,5 @@ containing areas.
     a specified type.
     -   Documentation: [REST](/api/rest/place_in.html),
     [Python](/api/python/place_in.html),
-    [R](/api/r/place_in.html), [Sheets](/api/sheets/places_in.html)
+    [Sheets](/api/sheets/places_in.html)
 
