@@ -75,3 +75,16 @@ blockquote {
   border-left-color: $green;
   background: #f0fff3;
 }
+
+th, td {
+  border: 1px solid #ccc;
+  padding: .25rem 1rem;
+}
+
+th {
+  background: #f5f6fa;
+}
+
+table {
+  margin-bottom: 1rem;
+}
