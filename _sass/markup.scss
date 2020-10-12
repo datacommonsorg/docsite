@@ -60,13 +60,13 @@ h1 + h2 code {
   background-color: var(--dc-red-fade);
 }
 
-img {
+main img {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin: .5em auto;
 }
 
-blockquote {
+main blockquote {
   padding: 1.25rem 1.25rem .25rem;
   margin: 1.25rem auto;
   border: 1px solid #eee;
@@ -74,4 +74,17 @@ blockquote {
   border-radius: .25rem;
   border-left-color: $green;
   background: #f0fff3;
+}
+
+main th, main td {
+  border: 1px solid #ccc;
+  padding: .25rem 1rem;
+}
+
+main th {
+  background: #f5f6fa;
+}
+
+main table {
+  margin-bottom: 1rem;
 }

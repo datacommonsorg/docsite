@@ -11,17 +11,17 @@ This tutorial walks through the process of structuring and inserting data into t
 
 ## Option 1: constructing and submitting a TMCF/CSV pair
 
-If you are seeking to contribute highly structured and already clean data to the Data Commons knowledge graph, consider contributing a TMCF/CSV file pair. Your CSV will contain the actual data added to the knowledge graph, while the TMCF will provide structured direction on converting the raw data to nodes in the graph.
+If you are seeking to contribute highly structured and clean data to the Data Commons knowledge graph, consider contributing a TMCF/CSV file pair. Your CSV will contain the actual data added to the knowledge graph, while the TMCF will provide structured direction on converting the raw data to nodes in the graph.
 
 ### Cleaning the CSV
 
-Sometimes the CSV needs to be cleaned before it can be used. There are no restrictions on your approach for this step, only requirements for its result.
+Sometimes the CSV needs some processing before it can be imported. There are no restrictions on your approach for this step, only requirements for its result.
 
-1. Each `StatisticalVariable` must have its own column for its observed value.
-2. Each property in your schema must have its own column for its value, including the values of `observationAbout` and `observationDate`.
-3. Dates must be in ISO 8601 format: "YYYY-MM-DD".
-4. References to existing nodes in the graph must be `dcid`s.
-5. The cleaning script is reproducible and easy to run. Python or Golang is recommended.
+1. Each [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) must have its own column for its observed value.
+1. Each property in your schema must have its own column for its value, including the values of [`observationAbout`](https://datacommons.org/browser/observationAbout) and [`observationDate`](https://datacommons.org/browser/observationDate). ([`observationPeriod`](https://datacommons.org/browser/observationPeriod) is also helpful)
+1. Dates must be in [ISO 8601 format](https://www.w3.org/TR/NOTE-datetime): "YYYY-MM-DD", "YYYY-MM", etc.
+1. References to existing nodes in the graph must be `dcid`s.
+1. The cleaning script is reproducible and easy to run. Python or Golang is recommended.
 
 #### Writing the Preprocessing Script.
 
@@ -33,7 +33,7 @@ An example script prepending `dcid:` to the state identifiers, thus allowing lat
 
 #### Naming your new statistical variables
 
-If you are adding new types of data to the knowledge graph, you will likely need to define new [statistical variables](https://datacommons.org/browser/StatisticalVariable) for your entries. These statistical variables' names should tie pretty closely to the exact mathematical definition of the metric observed.
+If you are adding new types of data to the knowledge graph, you will likely need to define new [statistical variables](/contributing/background/representing_statistics.html) for your entries. These statistical variables' names should encapsulate the meaning of its triples.
 
 For example, consider a statistical variable intended to measure homeownership rates in a particular geographical area. To avoid confusion about the basic definition of the term _homeownership rate_, start with an equation or other precise formulation from a source of truth (like an academic or government source. For this example, you can use [the US Census Bureau's definition](https://www.census.gov/housing/hvs/definitions.pdf), which provides this formula:
 
@@ -43,7 +43,7 @@ Once you've obtained this precise meaning, you can define your statistical varia
 
 ####  Adding fields to your statistical variable definitions
 
-Once you've named the variables you'll be adding to the graph, you need to add fields as appropriate. Data Commons requires the node name supplied, a typeOf field set to StatisticalVariable, and a populationType to be specified. Here is an example:
+Once you've named the variables you'll be adding to the graph, you need to add fields as appropriate. Data Commons requires the node name supplied, a [`typeOf`](https://datacommons.org/browser/typeOf) field set to StatisticalVariable, and a [`populationType`](https://datacommons.org/browser/populationType) to be specified. Here is an example:
 
 ```
 Node: dcid:Count_HousingUnit_OwnerOccupied_AsFractionOf_Count_HousingUnit_OccupiedHousingUnit
@@ -51,7 +51,7 @@ typeOf: dcs:StatisticalVariable
 populationType: dcs:HousingUnit
 ```
 
-In addition to these required fields, you can also choose to specify the `statType` and `measuredProperty` fields. If they are not provided, Data Commons will assign `measuredValue` as the `statType` and use the first word of the node (or the `dcid`) as a placeholder `measured_property`. Here is an example that includes these optional fields:
+In addition to these required fields, you can also choose to specify the [`statType`](https://datacommons.org/browser/statType) and [`measuredProperty`](https://datacommons.org/browser/measuredProperty) fields. If they are not provided, Data Commons will assign `measuredValue` as the `statType` and use the first word of the node (or the `dcid`) as a placeholder for `measured_property`. Here is an example that includes these optional fields:
 
 ```
 Node: dcid:Count_MedicalTest_COVID_19_Pending
@@ -97,7 +97,7 @@ Follow the template at <https://github.com/datacommonsorg/data/tree/master/scrip
 
 #### Final steps
 
-Check in the Template MCF file together with the cleaned CSV, its preprocessing script (if needed), and the README to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/fred/homeownership). If you wrote a script to automate the generation of the TMCF, you may also include that.
+Submit a Pull Request with the Template MCF file together with the cleaned CSV, its preprocessing script (if needed), and the README to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/fred/homeownership). If you wrote a script to automate the generation of the TMCF, you may also include that.
 
 ## Option 2: bypassing the TMCF to directly construct the output MCF
 
@@ -114,4 +114,4 @@ observationDate: 1985-01-01
 value: 70.0
 ```
 
-Once you've generated the MCF, write a README following the template at <https://github.com/datacommonsorg/data/tree/master/scripts/example_provenance/example_dataset>. Finally, check in the MCF file together with any script used to assemble it and the README to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/covid_tracking_project/historic_state_data).
+Once you've generated the MCF, write a README following the template at <https://github.com/datacommonsorg/data/tree/master/scripts/example_provenance/example_dataset>. Finally, check in the MCF file together with any script used to assemble it and the README to [https://github.com/datacommonsorg/data](https://github.com/datacommonsorg/data) under the appropriate [`scripts/<provenance>/<dataset>` subdirectory](https://github.com/datacommonsorg/data/tree/master/scripts/example_provenance/example_dataset).
