@@ -1,21 +1,29 @@
 ---
 layout: default
 title: API
-nav_order: 5
+nav_order: 3
 has_children: true
 ---
 # Overview
 
 The [Data Commons Graph](https://datacommons.org) aggregates data from many
 different [data sources](https://datacommons.org/datasets) into a single
-knowledge graph. Data Commons is based on the data model used by
+database. Data Commons is based on the data model used by
 [schema.org](https://schema.org), for more information see [our guide to the data model](/data_model.html).
 
 The **Data Commons API** is a set of APIs that allow developers to
-programmatically access the data in the Data Commons graph. This access is
-provided through a set of REST APIs, with additional wrappers in Python and R.
+programmatically access the data in Data Commons.
+Data Commons provides APIs in each of the different views
+(graph, timeline, etc.) for use in different contexts. More specifically, we provide
+1. **REST** APIs that can be used by javascript based applications
+1. **Pandas** APIs for use in Python notebooks
+1. **Google Sheets** APIs for use in Google Sheets
+1. **Python** APIs
+1. **SQL** (Coming soon)
 
-Our APIs can be roughly grouped into the following:
+
+
+The APIs can be roughly grouped into the following:
 
 -   **Local Node Exploration**: Given a node (or set of nodes), explore the
     graph around those node(s).
