@@ -6,10 +6,10 @@ has_children: true
 ---
 # Contribute to Data Commons!
 
- Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and are looking to expand the set of collaborative projects. In particular, we are looking for partner for:
+Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and are looking to expand the set of collaborative projects. In particular, we are looking for partner for:
 
-- [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in data commons to new categories of users. 
-- [Create new Curriculum](#sharing-analysis): Using Data Commons in data science and machine learning courses.
+- [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users. 
+- [Create new curriculum](#sharing-analysis): Using Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
 
 
