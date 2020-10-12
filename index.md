@@ -13,11 +13,3 @@ Unfortunately, though the data is open, using it to answer specific questions of
 Data Commons is an attempt to ameliorate some of this tedium by doing this once, on a large scale and providing cloud accessible APIs to the cleaned, normalized and joined data. While there are millions of datasets and it will be a while before Data Commons includes a substantial fraction of them, in every domain, some collections of data get used more frequently than others. We have started with a core set of these in the hope that useful applications can be built on top of them.
 
 One of the salient aspects of Data Commons is that it is not a repository of data sets. There are many great repositories (dataverse, BQ public datasets, data.gov) that more than adequately address that need. Instead, it is a single unified database created by normalizing/aligning the schemas and entity references across these different datasets (to the extent possible). So, for example, if a researcher wants the population, violent crime rate and unemployment rate of a county, the researcher does not have to go to three different datasets (Census, FBI and BLS), but can instead, get it from a single database, using one schema, one API. Of course, she would want to know the provenance of the data, which is recorded with every data point, something enabled in the APIs.
-
-Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and are looking to expand the set of collaborative projects. In particular, we are looking for partners for:
-
-1. Building new applications that bring the data in Data Commons to new categories of users.
-1. Using Data Commons in data science and machine learning courses.
-1. Tools for visualization, data cleaning, etc.
-
-We are also looking for a small number of partnerships with government, NGO and academic organizations for growing the core of Data Commons with data about more topics and more regions of the world.
