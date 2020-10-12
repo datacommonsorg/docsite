@@ -92,8 +92,12 @@ are human readable identifiers that represents a metric for a place and time,
 corresponding to a pair of StatisticalPopulation and Observation with some
 generalization.
 
--   **get statistics**: given a list of place DCID's, return a time series of statistical values for the `StatisticalVariable`.
-    - Documentation: [REST](/api/rest/stats.html), [Python](/api/rest/stats.html)
+-   **Place Statistics - single value**: given a single `StatisticalVariable` and place DCID, return a single statistical value.
+    - Documentation: [REST](/api/rest/stat_value.html), [Python](/api/rest/stat_value.html)
+-   **Place Statistics - time series**: given a single `StatisticalVariable` and place DCID, return a time series of statistical values.
+    - Documentation: [REST](/api/rest/stat_series.html), [Python](/api/rest/stat_series.html)
+-   **Place Statistics - all**: given a list `StatisticalVariable`'s and place DCID's, return all available time series of statistical values.
+    - Documentation: [REST](/api/rest/stat_all.html), [Python](/api/rest/stat_all.html)
 
 #### Locations
 
