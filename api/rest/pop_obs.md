@@ -4,6 +4,7 @@ title: Population and Observation
 nav_order: 7
 parent: REST
 grand_parent: API
+published: false
 ---
 
 # Get All Populations and Observations for a Node.
