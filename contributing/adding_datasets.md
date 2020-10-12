@@ -15,7 +15,7 @@ If you are seeking to contribute highly structured and clean data to the Data Co
 
 ### Cleaning the CSV
 
-Sometimes the CSV needs some processing before it can be imported. There are no restrictions on your approach for this step, only requirements for its result.
+Sometimes the CSV needs processing before it can be imported. There are no restrictions on your approach for this step, only requirements for its result.
 
 1. Each [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) must have its own column for its observed value.
 1. Each property in your schema must have its own column for its value, including the values of [`observationAbout`](https://datacommons.org/browser/observationAbout) and [`observationDate`](https://datacommons.org/browser/observationDate). ([`observationPeriod`](https://datacommons.org/browser/observationPeriod) is also helpful)
