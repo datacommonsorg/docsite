@@ -4,6 +4,7 @@ title: Node Populations and Observations
 nav_order: 7
 parent: Python
 grand_parent: API
+published: false
 ---
 
 # Get All Populations and Observations for a Node

@@ -95,29 +95,6 @@ generalization.
 -   **get statistics**: given a list of place DCID's, return a time series of statistical values for the `StatisticalVariable`.
     - Documentation: [REST](/api/rest/stats.html), [Python](/api/rest/stats.html)
 
--   **get population**: given a list of place DCIDs, return the DCID of
-    `StatisticalPopulation`s for these places, constrained by the given property
-    values.
-    -   Documentation: [REST](/api/rest/population.html),
-    [Python](/api/python/population.html)
-
--   **get observation**: given a list of `StatisticalPopulation` DCIDs, return
-    the DCID of `Observation`s for these statistical populations, constrained by
-    the given observations' property values.
-    -   Documentation: [REST](/api/rest/observation.html),
-    [Python](/api/python/observation.html)
-
--   **get population and observation**: given the DCID of a node, return all the
-    `StatisticalPopulation`s and `Observation`s for this node.
-    -   Documentation: [REST](/api/rest/pop_obs.html),
-    [Python](/api/python/pop_obs.html)
-
--   **get place observation**: return all `Observation`s for all `Place`s of a
-    certain type, for a given `observationDate`, given a set of constraints on
-    the `StatisticalPopulation`.
-    -   Documentation: [REST](/api/rest/place_obs.html),
-    [Python](/api/python/place_obs.html)
-
 #### Locations
 
 Many applications need listings of places of a given type, often within
