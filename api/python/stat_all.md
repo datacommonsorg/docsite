@@ -51,58 +51,67 @@ We would like to get the [population](https://datacommons.org/browser/Count_Pers
 
 ```python
 >>> import datacommons as dc
->>> dc.get_stat_all(["geoId/05", "geoId/06"], ["Count_Person", "Count_Person_Male"])
+>>> dc.get_stat_all(["geoId/05"], ["Count_Person", "Count_Person_Male"])
 {
-  "geoId/05": {
-    "Count_Person": [
-      {
-        "val": {
-          "2010": 1633,
-          "2011": 1509,
-          "2012": 1581,
+  'geoId/05': {
+    'Count_Person_Female': {
+      'sourceSeries': [
+        {
+          'val': {
+            '2001': 1376360
+            '2002': 1382090,
+            ...
+            '2017': 1521170,
+            '2018': 1527580,
+          },
+            'measurementMethod': 'OECDRegionalStatistics',
+            'observationPeriod': 'P1Y',
+            'importName': 'OECDRegionalDemography',
+            'provenanceDomain': 'oecd.org'
         },
-        "observationPeriod": "P1Y",
-        "importName": "Wikidata",
-        "provenanceDomain": "wikidata.org"
-      },
-      {
-        "val": {
-          "2010": 1333,
-          "2011": 1309,
-          "2012": 131,
+        {
+          'val': {
+            '2011': 1474641,
+            '2012': 1485120
+            ...
+            '2017': 1516293,
+            '2018': 1522259,
+          },
+          'measurementMethod': 'CensusACS5yrSurvey',
+          'importName': 'CensusACS5YearSurvey',
+          'provenanceDomain': 'census.gov'
+        }
+      ]
+    },
+    'Count_Person_Male': {
+      'sourceSeries': [
+        {
+          'val': {
+            '2001': 1315210,
+            '2002': 1323840,
+            ...
+            '2017': 1475420,
+            '2018': 1480140,
+          },
+          'measurementMethod': 'OECDRegionalStatistics',
+          'observationPeriod': 'P1Y',
+          'importName': 'OECDRegionalDemography',
+          'provenanceDomain': 'oecd.org'
         },
-        "observationPeriod": "P1Y",
-        "importName": "CensusPEPSurvey",
-        "provenanceDomain": "census.gov"
-      }
-    ],
-    "Count_Person_Male": [
-      {
-        "val": {
-          "2010": 1633,
-          "2011": 1509,
-          "2012": 1581,
-        },
-        "observationPeriod": "P1Y",
-        "importName": "CensusPEPSurvey",
-        "provenanceDomain": "census.gov"
-      }
-    ],
-  },
-  "geoId/02": {
-    "Count_Person": [],
-    "Count_Person_Male": [
-      {
-        "val": {
-          "2010": 13,
-          "2011": 13,
-          "2012": 322,
-        },
-        "observationPeriod": "P1Y",
-        "importName": "CensusPEPSurvey",
-        "provenanceDomain": "census.gov"
-      }
-    ],
+        {
+          'val': {
+            '2011': 1421287
+            '2012': 1431252,
+            ...
+            '2017': 1461651,
+            '2018': 1468412,
+          },
+          'measurementMethod': 'CensusACS5yrSurvey',
+          'importName': 'CensusACS5YearSurvey',
+          'provenanceDomain': 'census.gov'
+        }
+      ]
+    }
   }
 }
 ```

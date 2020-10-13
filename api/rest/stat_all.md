@@ -26,12 +26,14 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ## POST Request
 
-**Example**
+**Examples**
 
 ```bash
 curl -X POST 'https://api.datacommons.org/stat/all' \
 -d '{ "places": ["geoId/05", "geoId/06085"], "stat_vars": ["Count_Person_Male", "Count_Person_Female"]}'
 ```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/bmfr590L/11/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 

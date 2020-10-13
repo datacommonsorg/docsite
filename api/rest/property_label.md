@@ -34,12 +34,14 @@ curl 'https://api.datacommons.org/node/property-labels?dcids=geoId/05&dcids=geoI
 
 ## POST Request
 
-**Example**
+**Examples**
 
 ```bash
 curl -X POST 'https://api.datacommons.org/node/property-labels' \
 -d '{"dcids": ["geoId/05", "geoId/06"]}'
 ```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/dfpxsv73/36/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 

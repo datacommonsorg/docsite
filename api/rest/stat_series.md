@@ -36,11 +36,13 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ## GET Request
 
-**Example**
+**Examples**
 
 ```bash
 curl 'https://api.datacommons.org/stat/series?place=geoId/06&stat_var=Count_Person_Male'
 ```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/w32gmo68/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 
