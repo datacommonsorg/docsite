@@ -58,12 +58,14 @@ given property for each node.
 
 ## POST Request
 
-**Example**
+**Examples**
 
 ```bash
 curl -X POST 'https://api.datacommons.org/node/property-values' \
 -d '{"dcids": ["geoId/05", "geoId/06"], "property": "name"}'
 ```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/285dcqb4/12/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 
