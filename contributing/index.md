@@ -2,20 +2,16 @@
 layout: default
 title: Contributing to Data Commons
 nav_order: 6
-has_children: true
+has_children: false
 ---
+
 # Contribute to Data Commons!
 
-Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and are looking to expand the set of collaborative projects. In particular, we are looking for partner for:
+Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and are looking to expand the set of collaborative projects. In particular, we are looking for partners to:
 
-- [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users. 
+- [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
 - [Create new curriculum](#sharing-analysis): Using Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
-
-
-
-
-
 
 Data Commons welcomes patches and contributions to this project from everyone, new or experienced!
 
@@ -35,7 +31,8 @@ again.
 
 ### Becoming familiar with the project
 
-You can find suggested reading about Data Commons concepts in [the Background section](/contributing/background/background.html).
+You can read about our [data models](/data_model.html) and explore existing data
+and tools on [datacommons.org](https://datacommons.org/).
 
 All submissions, including submissions by project members, require review. Data Commons
 uses GitHub pull requests for this purpose. Consult
@@ -45,10 +42,6 @@ information on using pull requests.
 This project follows Google's [code style guide](https://google.github.io/styleguide/), [documentation style guide](https://developers.google.com/style), and [open source community guidelines](https://opensource.google/conduct/).
 
 ## Your first contribution
-
-### Contributing a dataset
-
-Directions are available on [the 'Adding Datasets' page](/contributing/adding_datasets.html).
 
 ### Creating a new tool
 

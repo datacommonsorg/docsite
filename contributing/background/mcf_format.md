@@ -4,6 +4,7 @@ title: MCF format
 nav_order: 2
 parent: Background
 grand_parent: Contributing to Data Commons
+published: false
 ---
 # Meta Content Framework (MCF) in Data Commons
 
