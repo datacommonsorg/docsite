@@ -4,6 +4,7 @@ title: Glossary
 nav_order: 4
 parent: Background
 grand_parent: Contributing to Data Commons
+published: false
 ---
 # Glossary of Common Terms
 
