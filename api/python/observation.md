@@ -4,6 +4,7 @@ title: Observations
 nav_order: 7
 parent: Python
 grand_parent: API
+published: false
 ---
 
 # Get Observations for Populations

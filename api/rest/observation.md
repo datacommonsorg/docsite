@@ -4,6 +4,7 @@ title: Observation
 nav_order: 6
 parent: REST
 grand_parent: API
+published: false
 ---
 
 # Get Observations for Populations.

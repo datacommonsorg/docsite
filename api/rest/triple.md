@@ -43,12 +43,14 @@ curl 'https://api.datacommons.org/node/triples?dcids=geoId/05&dcids=geoId/06'
 
 ## POST Request
 
-**Example**
+**Examples**
 
 ```bash
 curl -X POST 'https://api.datacommons.org/node/triples' \
 -d '{"dcids": ["geoId/05", "geoId/06"], "limit": 10}'
 ```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0uxr1hd5/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 

@@ -4,6 +4,7 @@ title: Background
 nav_order: 1
 has_children: true
 parent: Contributing to Data Commons
+published: false
 ---
 # Background information
 

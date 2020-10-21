@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <title>{{ page.title }} | Data Commons Docs</title>
+  <title>{{ page.title }} - Docs - Data Commons</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
@@ -19,7 +19,59 @@
             <span><a href="/">Docs</a></span>
             </a>
           </div>
-        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#dc-main-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
+          <ul class="navbar-nav float-md-right">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="nav-explore-dropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Explore
+              </a>
+              <div class="dropdown-menu" aria-labelledby="nav-explore-dropdown">
+                <a class="dropdown-item" href="https://datacommons.org/place">Place
+                  Explorer</a>
+                <a class="dropdown-item" href="https://datacommons.org/browser">Graph
+                  Browser</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/tools/timeline">Timelines Explorer</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="nav-doc-dropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Documentation
+              </a>
+              <div class="dropdown-menu" aria-labelledby="nav-doc-dropdown">
+                <a class="dropdown-item" href="/">Documentation</a>
+                <a class="dropdown-item" href="/api">API's</a>
+                <a class="dropdown-item" href="/tutorials.html">Tutorials</a>
+                <a class="dropdown-item" href="/contributing/">Contribute</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="nav-about-dropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                About
+              </a>
+              <div class="dropdown-menu" aria-labelledby="nav-about-dropdown">
+                <a class="dropdown-item" href="https://datacommons.org/about">About Data
+                  Commons</a>
+                <a class="dropdown-item" href="https://datacommons.org/datasets">Data
+                  Sources</a>
+                <a class="dropdown-item" href="https://datacommons.org/faq">FAQ</a>
+              </div>
+            </li>
+            </ul>
+            <div class="gcse-searchbox-only"
+              data-resultsUrl="https://datacommons.org/search"></div>
+            </div>
+            </div>
       </nav>
     </header>
 
@@ -29,7 +81,7 @@
           {% include sidebar.html %}
         </div>
         <div class="col-9">
-          <div id="main-doc-content" class="container">
+          <div id="main-doc-content">
             {% unless page.url == "/" %}
               {% if page.parent %}
                 <nav aria-label="Breadcrumb" id="main-breadcrumb">
@@ -66,6 +118,14 @@
       </div>
     </footer>
   </div>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script async
+    src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117119267-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

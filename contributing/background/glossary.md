@@ -4,6 +4,7 @@ title: Glossary
 nav_order: 4
 parent: Background
 grand_parent: Contributing to Data Commons
+published: false
 ---
 # Glossary of Common Terms
 
@@ -26,6 +27,20 @@ When instantiated, can be used to specify observations about an entity at a part
 - **Triple**
 
 A three-part grouping describing node and edge objects in the Data Commons graph.
+
+Given tabular data such as the following:
+
+|country_id  |  country_name	         |  continent_id|
+|-------|--------|---------|
+|USA	     |  United States of America |  northamerica|
+|IND	     |  India                    |	        asia|
+
+You can represent this data as a graph via subject-predicate-object "triples" that describe the node and edge relationships.
+```
+USA -- typeOf ------------> Country
+USA -- name --------------> United States of America
+USA -- containedInPlace --> northamerica
+```
 
 - **Meta Content Framework (MCF)**
 

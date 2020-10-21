@@ -4,6 +4,7 @@ title: Place Observation
 nav_order: 8
 parent: REST
 grand_parent: API
+published: false
 ---
 
 # Get Observations for Places.

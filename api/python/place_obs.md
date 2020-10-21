@@ -4,6 +4,7 @@ title: Place Observations
 nav_order: 9
 parent: Python
 grand_parent: API
+published: false
 ---
 
 # Get Observations for Places

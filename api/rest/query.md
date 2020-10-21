@@ -38,7 +38,7 @@ City ."`.
 
 ## POST Request
 
-**Example**
+**Examples**
 
 ```bash
 curl -X POST 'https://api.datacommons.org/query' \
@@ -49,6 +49,8 @@ curl -X POST 'https://api.datacommons.org/query' \
                   ?state name ?name \
                 }"}'
 ```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 

@@ -50,8 +50,16 @@ We would like to get the [male population](https://datacommons.org/browser/Count
 ```python
 >>> import datacommons as dc
 >>> dc.get_stat_series("geoId/05", "Count_Person_Male")
-
-{"2013":1439862,"2014":1447235,"2015":1451913,"2016":1456694,"2017":1461651,"2018":1468412,"2011":1421287,"2012":1431252}
+{
+  "2013": 1439862,
+  "2014": 1447235,
+  "2015": 1451913,
+  "2016": 1456694,
+  "2017": 1461651,
+  "2018": 1468412,
+  "2011": 1421287,
+  "2012": 1431252
+}
 ```
 
 In the next example, the parameter `observation_period='P3Y'` overly constrains the request so the API
