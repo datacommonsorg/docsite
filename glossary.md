@@ -1,10 +1,7 @@
 ---
 layout: default
 title: Glossary
-nav_order: 4
-parent: Background
-grand_parent: Contributing to Data Commons
-published: false
+nav_order: 7
 ---
 # Glossary of Common Terms
 
@@ -14,7 +11,7 @@ This page contains a selection of key terms important to understanding the struc
 
 - **[Statistical variable](https://datacommons.org/browser/StatisticalVariable)**
 
-Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes. For more information, see ["Intro to `StatisticalVariable` and `StatVarObservation`"](/contributing/background/representing_statistics.html).
+Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes.
 
 - **[Statistical population](https://datacommons.org/browser/StatisticalPopulation)**
 
@@ -44,4 +41,4 @@ USA -- containedInPlace --> northamerica
 
 - **Meta Content Framework (MCF)**
 
-A simple format used to represent graph data, used extensively in Data Commons due to its simple readability. For more information, see [the Data Commons guide to MCF](/contributing/background/mcf_format.html).
+A simple format used to represent graph data, used extensively in Data Commons due to its simple readability.
