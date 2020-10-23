@@ -13,13 +13,9 @@ This page contains a selection of key terms important to understanding the struc
 
 Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes.
 
-- **[Statistical population](https://datacommons.org/browser/StatisticalPopulation)**
+- **[Statistical variable observation](https://datacommons.org/browser/StatVarObservation)**
 
-A set of instances of a certain given type that satisfy some set of constraints. Inherited from [schema.org definition](https://schema.org/StatisticalPopulation).
-
-- **[Observation](https://datacommons.org/browser/Observation)**
-
-When instantiated, can be used to specify observations about an entity at a particular time. Inherited from [schema.org definition](https://schema.org/Observation).
+A measurement of a StatisticalVariable for a particular place and time.
 
 - **Triple**
 
@@ -39,6 +35,6 @@ USA -- name --------------> United States of America
 USA -- containedInPlace --> northamerica
 ```
 
-- **Meta Content Framework (MCF)**
+- **DCID**
 
-A simple format used to represent graph data, used extensively in Data Commons due to its simple readability.
+A unique identifier itemizing and classifying an entity in the Data Commons graph. For example, Austin, Texas, has a DCID of 'geoId/4805000', while the plant species _Austrobaileya scandens_ has a DCID of 'dc/bsmvthtq89217'.
