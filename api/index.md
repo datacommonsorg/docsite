@@ -22,11 +22,11 @@ Data Commons provides APIs in each of the different views
 
 The APIs can be roughly grouped into the following:
 
--   **Local Node Exploration**: Given a node (or set of nodes), explore the
-    graph around those node(s).
+-   **Local Node Exploration**: Given a set of nodes, explore the
+    graph around those nodes.
 
 -   **Domain specific APIs**: These are groups of APIs, specific to particular
-    domains, E.g., places, statistics.
+    domains.
 
 -   **Graph Query/SPARQL**: Given a subgraph where some of the nodes are
     variables, retrieve possible matches. This corresponds to a subset of the
@@ -42,11 +42,6 @@ Almost all our APIs take references to nodes and properties as arguments. Every
 node (properties are also nodes) has a `Data Commons ID (DCID)`, which is used
 to pass nodes as arguments to API calls. The DCID of schema.org terms used in
 Data Commons is their schema.org ID.
-
-
-Using the Data Commons API requires an API Key. Details on obtaining a key,
-installing Python libraries, etc. can be found in the
-[API setup guide](/api/setup.html).
 
 ### Local Node Exploration
 
