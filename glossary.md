@@ -9,6 +9,10 @@ This page contains a selection of key terms important to understanding the struc
 
 ## Term List
 
+- **DCID**
+
+A unique identifier itemizing and classifying an entity in the Data Commons graph. For example, Austin, Texas, has a DCID of 'geoId/4805000', while the plant species _Austrobaileya scandens_ has a DCID of 'dc/bsmvthtq89217'.
+
 - **[Statistical variable](https://datacommons.org/browser/StatisticalVariable)**
 
 Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes.
@@ -34,7 +38,3 @@ USA -- typeOf ------------> Country
 USA -- name --------------> United States of America
 USA -- containedInPlace --> northamerica
 ```
-
-- **DCID**
-
-A unique identifier itemizing and classifying an entity in the Data Commons graph. For example, Austin, Texas, has a DCID of 'geoId/4805000', while the plant species _Austrobaileya scandens_ has a DCID of 'dc/bsmvthtq89217'.
