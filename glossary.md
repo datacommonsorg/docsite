@@ -15,11 +15,11 @@ A unique identifier itemizing and classifying an entity in the Data Commons grap
 
 - **[Statistical variable](https://datacommons.org/browser/StatisticalVariable)**
 
-Any type of metric, statistic, or measure that can be measured at a place and time. Examples include median income, median income of females, number of high school graduates, unemployment rate, or prevalence of diabetes.
+Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears), [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female), [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person), or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes). A complete list of statistical variables can be found at <https://datacommons.org/browser/StatisticalVariable>.
 
 - **[Statistical variable observation](https://datacommons.org/browser/StatVarObservation)**
 
-A measurement of a StatisticalVariable for a particular place and time.
+A measurement of a StatisticalVariable for a particular place and time. For example, a StatVarObservation of the StatisticalVariable Median_Income_Person for Brookmont, Maryland, in the year 2018 would be $126,199.
 
 - **Triple**
 
