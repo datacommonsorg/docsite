@@ -8,7 +8,9 @@ grand_parent: API
 
 # Use Google Maps Autocomplete to find the dcid of a place.
 
-To use this feature, select a cell where you want to put the place dcid. Go to the Sheets menu bar, and click "Add-ons > Data Commons > Fill place dcids".
+To use this feature, select a cell where you want to put the place dcid. Go to the Sheets menu bar, and click:
+
+**"Add-ons > Data Commons > Fill place dcids"**
 
 ![](/assets/images/sheets/sheets_menu_bar.png)
 
