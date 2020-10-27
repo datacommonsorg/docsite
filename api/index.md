@@ -12,8 +12,12 @@ database. Data Commons is based on the data model used by
 [schema.org](https://schema.org); for more information, see [the guide to the data model](/data_model.html).
 
 The **Data Commons API** allows developers to programmatically access the data in Data Commons.
-Data Commons provides a REST API that can be used on the command line as well as in any language with an HTTP library,
-along with a lightweight Python wrapper, a heavier Pandas wrapper, and a convenient Google Sheets add-on.
+Data Commons provides several different ways to access its API's resources:
+
+1. A [REST API](/api/rest) that can be used on the command line as well as in any language with an HTTP library.
+1. A lightweight [Python](/api/python) wrapper.
+1. A heavier [Pandas](/api/pandas) wrapper.
+1. A convenient [Google Sheets](/api/sheets) add-on.
 
 The endpoints can be roughly grouped into four categories.
 
