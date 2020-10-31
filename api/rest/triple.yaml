@@ -1,0 +1,92 @@
+---
+swagger: '2.0'
+info:
+  title: Data Commons API
+  description: Given a list of nodes, return triples which are associated with the specified node(s).
+  version: 1.0.0
+host: api.datacommons.org
+schemes:
+- https
+paths:
+  "/node/triples":
+    get:
+      summary: Given a list of nodes, return triples which are associated with the
+        specified node(s).
+      description: Intended for users willing to modify the URLs called from their
+        cURL commands.
+      security:
+        - api_key: []
+      parameters:
+      - in: query
+        name: dcids
+        type: array[string]
+        required: true
+        description: Numeric ID of the user to get.
+      - in: query
+        name: limit
+        type: integer
+        required: false
+        description: Numeric ID of the user to get.
+      - in: query
+        name: key
+        type: string
+        required: false
+        description: Numeric ID of the user to get.
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Given a list of nodes, return triples which are associated with the
+        specified node(s).
+      description: Intended for users who would like to modify only the bodies of
+        their cURL commands.
+      security:
+        - api_key: []
+      requestBody:
+        required:
+          - dcids
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/PostBody'
+            example:
+              dcids: ["dc/bsmvthtq89217"]
+              limit: 1
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payload:
+                    type: json
+                    example: '{"dc/bsmvthtq89217":[{"subjectId":"dc/bsmvthtq89217","predicate":"country","objectId":"country/AUS","objectName":"Australia","objectTypes":["Country"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"continent","objectId":"oceania","objectName":"Oceania","objectTypes":["Continent"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"typeOf","objectId":"BiologicalSpecimen","objectName":"BiologicalSpecimen","objectTypes":["Class"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"provenance","objectId":"dc/93qydx3","objectName":"http://nybg.org/","objectTypes":["Provenance"],"provenanceId":"dc/93qydx3"}]}'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        default:
+          description: Unexpected error
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    description: Optional.
+definitions:
+  PostBody:
+    type: object
+    required:
+    - dcids
+    properties:
+      dcids:
+        type: array
+        items:
+          type: string
+      limit:
+        type: integer
+      key:
+        type: string
