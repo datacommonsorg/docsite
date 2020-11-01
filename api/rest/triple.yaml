@@ -19,24 +19,36 @@ paths:
       parameters:
       - in: query
         name: dcids
-        type: array[string]
+        type: array
+        items:
+          type: string
         required: true
-        description: Numeric ID of the user to get.
+        description: DCIDs targeted by the query. Enter individually (for example, either `dcids=geoId/05&dcids=geoId/27` or `dcids=dc/bsmvthtq89217` would be acceptable query parameter syntax).
       - in: query
         name: limit
         type: integer
         required: false
-        description: Numeric ID of the user to get.
+        description: Limit on number of triples desired in response.
       - in: query
         name: key
         type: string
         required: false
-        description: Numeric ID of the user to get.
+        description: API key.
       produces:
       - application/json
       responses:
         '200':
-          description: OK
+          description: A string encoding of a JSON object keyed by the given DCIDs with the value a list of associated triples.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payload:
+                    type: string
+                    example: '{"dc/bsmvthtq89217":[{"subjectId":"dc/bsmvthtq89217","predicate":"country","objectId":"country/AUS","objectName":"Australia","objectTypes":["Country"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"continent","objectId":"oceania","objectName":"Oceania","objectTypes":["Continent"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"typeOf","objectId":"BiologicalSpecimen","objectName":"BiologicalSpecimen","objectTypes":["Class"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"provenance","objectId":"dc/93qydx3","objectName":"http://nybg.org/","objectTypes":["Provenance"],"provenanceId":"dc/93qydx3"}]}'
+        '400':
+          description: Missing argument 'dcids'.    
     post:
       summary: Given a list of nodes, return triples which are associated with the
         specified node(s).
@@ -58,19 +70,17 @@ paths:
       - application/json
       responses:
         '200':
-          description: A user object.
+          description: A string encoding of a JSON object keyed by the given DCIDs with the value a list of associated triples.
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   payload:
-                    type: json
+                    type: string
                     example: '{"dc/bsmvthtq89217":[{"subjectId":"dc/bsmvthtq89217","predicate":"country","objectId":"country/AUS","objectName":"Australia","objectTypes":["Country"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"continent","objectId":"oceania","objectName":"Oceania","objectTypes":["Continent"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"typeOf","objectId":"BiologicalSpecimen","objectName":"BiologicalSpecimen","objectTypes":["Class"],"provenanceId":"dc/93qydx3"},{"subjectId":"dc/bsmvthtq89217","predicate":"provenance","objectId":"dc/93qydx3","objectName":"http://nybg.org/","objectTypes":["Provenance"],"provenanceId":"dc/93qydx3"}]}'
         '400':
-          description: The specified user ID is invalid (not a number).
-        default:
-          description: Unexpected error
+          description: Missing argument 'dcids'.
 securityDefinitions:
   api_key:
     type: apiKey
@@ -86,7 +96,10 @@ definitions:
         type: array
         items:
           type: string
+        description: DCIDs targeted by the query.
       limit:
         type: integer
+        description: Limit on number of triples desired in response.
       key:
         type: string
+        description: API key.
