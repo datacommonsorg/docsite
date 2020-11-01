@@ -50,29 +50,7 @@ curl -X POST 'https://api.datacommons.org/query' \
                 }"}'
 ```
 
-<!-- <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe> -->
-
-# begin
-<div id="swagger-ui"></div>
-
-<script src="swagger-ui-bundle.js"></script>
-<script src="swagger-ui-standalone-preset.js"></script>
-
-<script>
-window.onload = function() {
-  const ui = SwaggerUIBundle({
-    url: "sample.json",
-    dom_id: '#swagger-ui',
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ]
-  })
-
-  window.ui = ui
-}
-</script>
-# end
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ## Success Response
 
