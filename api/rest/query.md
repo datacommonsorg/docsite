@@ -4,6 +4,7 @@ title: SPARQL
 nav_order: 1
 parent: REST
 grand_parent: API
+published: false
 ---
 
 # Query the Data Commons Knowledge Graph using SPARQL

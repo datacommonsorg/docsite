@@ -1,0 +1,82 @@
+---
+swagger: '2.0'
+info:
+  title: Data Commons API
+  description: Returns the results of running a graph query on the Data Commons knowledge graph using SPARQL.
+  version: 1.0.0
+host: api.datacommons.org
+schemes:
+- https
+paths:
+  "/query":   
+    post:
+      summary: Returns the results of running a graph query on the Data Commons knowledge graph using SPARQL.
+      description: Intended for users who would like to use query language syntax to access data in Data Commons. Only supports limited subset of SPARQL keywords, includeing ORDER BY, DISTINCT, and LIMIT.
+      security:
+        - api_key: []
+      requestBody:
+        required:
+          - sparql
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/PostBody'
+            example:
+              sparql: "SELECT ?name \
+                WHERE { \
+                  ?state typeOf State . \
+                  ?state dcid geoId/06 . \
+                  ?state name ?name \
+                }"
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: An object with `header` strings corresponding to the query variable and nested `cell` objects with `values` corresponding to the queried variable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: array
+                    items:
+                      type: string
+                    description: An array of strings corresponding to the query variable.
+                    example: '["?name"]'
+                  rows:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cells:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              value:
+                                type: "string"
+                                example: "California"
+                                description: Corresponds to the queried variable.
+                    description: An array of `row` objects, each containing an array of `cell` objects.
+        '400':
+          description: Invalid sparql query string.
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    description: Optional.
+definitions:
+  PostBody:
+    type: object
+    required:
+    - sparql
+    properties:
+      sparql:
+        type: array
+        items:
+          type: string
+        description: SPARQL query for API access.
+      key:
+        type: string
+        description: API key.
