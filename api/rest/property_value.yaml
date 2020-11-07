@@ -1,0 +1,147 @@
+---
+swagger: '2.0'
+info:
+  title: Data Commons API
+  description: Given a list of nodes and a property label, returns values associated with the given property for each node.
+  version: 1.0.0
+host: api.datacommons.org
+schemes:
+- https
+paths:
+  "/node/property-values":
+    get:
+      summary: Given a list of nodes and a property label, returns values associated with the given property for each node.
+      description: Intended for users willing to modify the URLs called from their
+        cURL commands.
+      security:
+        - api_key: []
+      parameters:
+      - in: query
+        name: dcids
+        type: array
+        items:
+          type: string
+        required: true
+        description: DCIDs targeted by the query. Enter individually (for example, either `dcids=geoId/05&dcids=geoId/27` or `dcids=dc/bsmvthtq89217` would be acceptable query parameter syntax).
+      - in: query
+        name: property
+        type: string
+        required: true
+        description: The property label to query for.
+      - in: query
+        name: direction
+        type: string
+        enum:
+          - in
+          - out
+        required: false
+        description: The direction of the label.
+      - in: query
+        name: valueType
+        type: string
+        required: false
+        description: The type of the property value to filter by, only applicable if the value refers to a node.
+      - in: query
+        name: limit
+        type: integer
+        maximum: 500
+        required: false
+        description: Maximum number of values returned per node.
+      - in: query
+        name: key
+        type: string
+        required: false
+        description: API key.
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: A string encoding of a JSON object keyed by the given DCIDs with the value a list of associated triples.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payload:
+                    type: object
+              examples: 
+                The property values are node references.:
+                  value: '{"payload": "{\"geoId/05\":{\"in\":[{\"dcid\":\"election/2022_S_AR00\",\"name\":\"2022 US Senate Elections - AR\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]},\"geoId/06\":{\"in\":[{\"dcid\":\"election/2024_S_CA00\",\"name\":\"2024 US Senate Elections - CA\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]}}"}'
+                The property values are not nodes.:
+                  value: '{"geoId/05": {"out": [{"value": "Arkansas","provenanceId": "dc/sm3m2w3"}]},"geoId/06": {"out": [{"value": "California","provenanceId": "dc/sm3m2w3"}]},}'
+        '400':
+          description: Missing required arguments.    
+    post:
+      summary: Given a list of nodes and a property label, returns values associated with the given property for each node.
+      description: Intended for users who would like to modify only the bodies of
+        their cURL commands.
+      security:
+        - api_key: []
+      requestBody:
+        required:
+          - dcids
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/PostBody'
+            example:
+              dcids: ["geoId/05", "geoId/06"]
+              property: location
+              valueType: Election
+              direction: in
+              limit: 1
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: A string encoding of a JSON object keyed by the given DCIDs with the value a list of associated triples.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payload:
+                    type: object
+              examples: 
+                The property values are node references.:
+                  value: '{"payload": "{\"geoId/05\":{\"in\":[{\"dcid\":\"election/2022_S_AR00\",\"name\":\"2022 US Senate Elections - AR\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]},\"geoId/06\":{\"in\":[{\"dcid\":\"election/2024_S_CA00\",\"name\":\"2024 US Senate Elections - CA\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]}}"}'
+                The property values are not nodes.:
+                  value: '{"geoId/05": {"out": [{"value": "Arkansas","provenanceId": "dc/sm3m2w3"}]},"geoId/06": {"out": [{"value": "California","provenanceId": "dc/sm3m2w3"}]},}'
+        '400':
+          description: Missing required arguments.
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    description: Optional.
+definitions:
+  PostBody:
+    type: object
+    required:
+    - dcids
+    - property
+    properties:
+      dcids:
+        type: array
+        items:
+          type: string
+        description: DCIDs targeted by the query.
+      property:
+        type: string
+        description: The property label to query for.
+      direction:
+        type: string
+        enum:
+          - in
+          - out
+        description: The direction of the label.
+      valueType:
+        type: string
+        description: The type of the property value to filter by, only applicable if the value refers to a node.
+      limit:
+        type: integer
+        maximum: 500
+        description: Maximum number of values returned per node.
+      key:
+        type: string
+        description: API key.

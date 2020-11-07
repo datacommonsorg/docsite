@@ -4,6 +4,7 @@ title: Property Value
 nav_order: 4
 parent: REST
 grand_parent: API
+published: false
 ---
 
 # Show Property Values for Node(s)
