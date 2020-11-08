@@ -16,6 +16,10 @@ paths:
         cURL commands.
       security:
         - api_key: []
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+            https://api.datacommons.org/node/triples?limit=1&dcids=dc%2Fbsmvthtq89217
       parameters:
       - in: query
         name: dcids
