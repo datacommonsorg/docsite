@@ -19,7 +19,7 @@ paths:
       x-codeSamples:
         - lang: 'curl'
           source: |
-            https://api.datacommons.org/node/triples?limit=1&dcids=dc%2Fbsmvthtq89217
+            curl --request GET --url 'https://api.datacommons.org/node/property-values?dcids=geoId%2F05&property=location&valueType=Election&limit=1&direction=in'
       parameters:
       - in: query
         name: dcids
