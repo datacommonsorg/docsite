@@ -19,6 +19,9 @@ paths:
         - lang: 'curl'
           source: |
             curl --request GET --url 'https://api.datacommons.org/node/property-values?dcids=geoId%2F05&dcids=geoId%2F06&property=location&valueType=Election&limit=1&direction=in'
+        - lang: 'curl'
+          source: |
+            curl --request GET --url 'https://api.datacommons.org/node/property-values?dcids=geoId%2F06&property=location&direction=in&limit=2'
       parameters:
       - in: query
         name: dcids
@@ -70,9 +73,9 @@ paths:
                     type: object
               examples: 
                 The property values are node references.:
-                  value: '{"payload": "{\"geoId/05\":{\"in\":[{\"dcid\":\"election/2022_S_AR00\",\"name\":\"2022 US Senate Elections - AR\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]},\"geoId/06\":{\"in\":[{\"dcid\":\"election/2024_S_CA00\",\"name\":\"2024 US Senate Elections - CA\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]}}"}'
+                  value: '{"payload": "{"geoId/05":{"in":[{"dcid":"election/2022_S_AR00","name":"2022 US Senate Elections - AR","provenanceId":"dc/gld24w2","types":["Election"]}]},"geoId/06":{"in":[{"dcid":"election/2024_S_CA00","name":"2024 US Senate Elections - CA","provenanceId":"dc/gld24w2","types":["Election"]}]}}"}'
                 The property values are not nodes.:
-                  value: '{"geoId/05": {"out": [{"value": "Arkansas","provenanceId": "dc/sm3m2w3"}]},"geoId/06": {"out": [{"value": "California","provenanceId": "dc/sm3m2w3"}]},}'
+                  value: '{"geoId/06":{"in":[{"dcid":"ipedsId/487597","name":"Universal Technical Institute-Southern California","provenanceId":"dc/89fk9x3","types":["CollegeOrUniversity"]},{"dcid":"ipedsId/486965","name":"Hussian College-Relativity Campus California","provenanceId":"dc/89fk9x3","types":["CollegeOrUniversity"]}]}}'
         '400':
           description: Missing required arguments.    
     post:
@@ -108,9 +111,9 @@ paths:
                     type: object
               examples: 
                 The property values are node references.:
-                  value: '{"payload": "{\"geoId/05\":{\"in\":[{\"dcid\":\"election/2022_S_AR00\",\"name\":\"2022 US Senate Elections - AR\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]},\"geoId/06\":{\"in\":[{\"dcid\":\"election/2024_S_CA00\",\"name\":\"2024 US Senate Elections - CA\",\"provenanceId\":\"dc/gld24w2\",\"types\":[\"Election\"]}]}}"}'
+                  value: '{"payload": "{"geoId/05":{"in":[{"dcid":"election/2022_S_AR00","name":"2022 US Senate Elections - AR","provenanceId":"dc/gld24w2","types":["Election"]}]},"geoId/06":{"in":[{"dcid":"election/2024_S_CA00","name":"2024 US Senate Elections - CA","provenanceId":"dc/gld24w2","types":["Election"]}]}}"}'
                 The property values are not nodes.:
-                  value: '{"geoId/05": {"out": [{"value": "Arkansas","provenanceId": "dc/sm3m2w3"}]},"geoId/06": {"out": [{"value": "California","provenanceId": "dc/sm3m2w3"}]},}'
+                  value: '{"geoId/06":{"in":[{"dcid":"ipedsId/487597","name":"Universal Technical Institute-Southern California","provenanceId":"dc/89fk9x3","types":["CollegeOrUniversity"]},{"dcid":"ipedsId/486965","name":"Hussian College-Relativity Campus California","provenanceId":"dc/89fk9x3","types":["CollegeOrUniversity"]}]}}'
         '400':
           description: Missing required arguments.
 securityDefinitions:
