@@ -22,6 +22,27 @@ paths:
         - lang: 'curl'
           source: |
             curl --request GET --url 'https://api.datacommons.org/node/property-values?dcids=geoId%2F06&property=location&direction=in&limit=2'
+        - lang: 'javascript'
+          source: |
+            const data = {
+              dcids: [ "geoId/05", "geoId/06" ],
+              property: "name"
+            }
+            const request = new XMLHttpRequest();
+            request.open("POST", "https://api.datacommons.org/node/property-values", false /* async */ );
+            request.send(JSON.stringify(data));
+
+            if (request.status == 200) {
+              let payload = JSON.parse(request.responseText)["payload"];
+              let result = JSON.parse(payload);
+              console.log(result);
+              
+              for (const key of Object.keys(result)) {
+                document.getElementById(key).innerText = result[key]["out"][0]["value"];
+              }
+            } else {
+              console.log("There was an error fetching data.");
+            }
       parameters:
       - in: query
         name: dcids
