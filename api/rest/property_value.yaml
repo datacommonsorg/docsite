@@ -22,27 +22,6 @@ paths:
         - lang: 'curl'
           source: |
             curl --request GET --url 'https://api.datacommons.org/node/property-values?dcids=geoId%2F06&property=location&direction=in&limit=2'
-        - lang: 'javascript'
-          source: |
-            const data = {
-              dcids: [ "geoId/05", "geoId/06" ],
-              property: "name"
-            }
-            const request = new XMLHttpRequest();
-            request.open("POST", "https://api.datacommons.org/node/property-values", false /* async */ );
-            request.send(JSON.stringify(data));
-
-            if (request.status == 200) {
-              let payload = JSON.parse(request.responseText)["payload"];
-              let result = JSON.parse(payload);
-              console.log(result);
-              
-              for (const key of Object.keys(result)) {
-                document.getElementById(key).innerText = result[key]["out"][0]["value"];
-              }
-            } else {
-              console.log("There was an error fetching data.");
-            }
       parameters:
       - in: query
         name: dcids
@@ -84,7 +63,29 @@ paths:
       - application/json
       responses:
         '200':
-          description: A string encoding of a JSON object keyed by the given DCIDs with the value a list of associated triples.
+          description: A string encoding of a JSON object keyed by the given (DCIDs)[google.com] with the value a list of associated triples.
+          x-codeSamples:
+          - lang: 'javascript'
+            source: |
+              const data = {
+                dcids: [ "geoId/05", "geoId/06" ],
+                property: "name"
+              }
+              const request = new XMLHttpRequest();
+              request.open("POST", "https://api.datacommons.org/node/property-values", false /* async */ );
+              request.send(JSON.stringify(data));
+
+              if (request.status == 200) {
+                let payload = JSON.parse(request.responseText)["payload"];
+                let result = JSON.parse(payload);
+                console.log(result);
+                
+                for (const key of Object.keys(result)) {
+                  document.getElementById(key).innerText = result[key]["out"][0]["value"];
+                }
+              } else {
+                console.log("There was an error fetching data.");
+              }
           content:
             application/json:
               schema:
@@ -134,7 +135,31 @@ paths:
                 The property values are node references.:
                   value: '{"payload": "{"geoId/05":{"in":[{"dcid":"election/2022_S_AR00","name":"2022 US Senate Elections - AR","provenanceId":"dc/gld24w2","types":["Election"]}]},"geoId/06":{"in":[{"dcid":"election/2024_S_CA00","name":"2024 US Senate Elections - CA","provenanceId":"dc/gld24w2","types":["Election"]}]}}"}'
                 The property values are not nodes.:
-                  value: '{"geoId/06":{"in":[{"dcid":"ipedsId/487597","name":"Universal Technical Institute-Southern California","provenanceId":"dc/89fk9x3","types":["CollegeOrUniversity"]},{"dcid":"ipedsId/486965","name":"Hussian College-Relativity Campus California","provenanceId":"dc/89fk9x3","types":["CollegeOrUniversity"]}]}}'
+                  value: '{
+                    "payload": 
+                      "{
+                        "geoId/06": {
+                          "in": [
+                            {
+                              "dcid": "ipedsId/487597",
+                              "name": "Universal Technical Institute-Southern California",
+                              "provenanceId": "dc/89fk9x3",
+                              "types": [
+                                "CollegeOrUniversity"
+                              ]
+                            },
+                            {
+                              "dcid": "ipedsId/486965",
+                              "name": "Hussian College-Relativity Campus California",
+                              "provenanceId": "dc/89fk9x3",
+                              "types": [
+                                "CollegeOrUniversity"
+                              ]
+                            }
+                          ]
+                        }
+                      }"
+                    }'
         '400':
           description: Missing required arguments.
 securityDefinitions:
