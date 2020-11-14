@@ -37,7 +37,7 @@ Python.
  
 -   **Case Study: Drug Discovery with Biomedical Data Commons**
 
-    [Google Colab](https://colab.research.google.com/drive/1dSKYiRMn3mbDsInorQzYM0yk7sqv6fIV){:target="_blank"}
+    [Google Colab](https://colab.research.google.com/drive/1dSKYiRMn3mbDsInorQzYM0yk7sqv6fIV){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
 
 
 ## Google Sheets
