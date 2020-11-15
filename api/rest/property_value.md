@@ -433,15 +433,13 @@ curl --request POST \
 }
 ```
 
-### Example 5: Retrieve a list of regions in Mauritania.
-
-**NOTE:** To determine the continent on which Mauritania is located, change the direction in the query to `out`.
+### Example 5: Retrieve the country in which Buenos Aires is located.
 
 #### GET Request
 
 ```curl
 curl --request GET \
-  --url 'https://api.datacommons.org/node/property-values?dcids=country%2FMRT&property=containedInPlace&direction=in'
+  --url 'https://api.datacommons.org/node/property-values?dcids=wikidataId%2FQ1486&property=containedInPlace&direction=out'
 ```
 
 #### POST Request
@@ -452,10 +450,10 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{
 	"dcids": [
-		"country/MRT"
+		"wikidataId/Q1486"
 	],
 	"property": "containedInPlace",
-	"direction": "in"
+	"direction": "out"
 }'
 ```
 
@@ -464,110 +462,14 @@ curl --request POST \
 ```json
 {
   "payload": {
-    "country/MRT": {
-      "in": [
+    "wikidataId/Q1486": {
+      "out": [
         {
-          "dcid": "wikidataId/Q859831",
-          "name": "Gorgol Region",
-          "provenanceId": "dc/5j06ly1",
+          "dcid": "country/ARG",
+          "name": "Argentina",
+          "provenanceId": "dc/5n63hr1",
           "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q859581",
-          "name": "Trarza Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q859573",
-          "name": "Dakhlet Nouadhibou",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q859567",
-          "name": "Tiris Zemmour Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q850435",
-          "name": "Hodh El Gharbi Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q843903",
-          "name": "Tagant Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q768119",
-          "name": "Guidimaka Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q738546",
-          "name": "Assaba Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q7231563",
-          "name": "Portendick",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "Place"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q366626",
-          "name": "Adrar Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q2661227",
-          "name": "Nouakchott",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "Place"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q12632",
-          "name": "Brakna Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
-          ]
-        },
-        {
-          "dcid": "wikidataId/Q12621",
-          "name": "Hodh Ech Chargui Region",
-          "provenanceId": "dc/5j06ly1",
-          "types": [
-            "AdministrativeArea1"
+            "Country"
           ]
         }
       ]
