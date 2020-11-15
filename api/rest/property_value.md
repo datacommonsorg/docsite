@@ -10,7 +10,7 @@ grand_parent: API
 
 This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the values of specified properties attached to those nodes. 
 
-## General Information About This Endpoint
+## General information about this endpoint
 
 **URL**: `/node/property-values`
 
@@ -387,7 +387,7 @@ curl --request POST \
 }
 ```
 
-### Example 4: Retrieve only the most recent cyclone in India.
+### Example 4: Retrieve just one cyclone in India.
 
 #### GET Request
 
