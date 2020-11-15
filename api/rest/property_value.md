@@ -433,7 +433,7 @@ curl --request POST \
 }
 ```
 
-### Example 5: Get a list of regions in Mauritania.
+### Example 5: Retrieve a list of regions in Mauritania.
 
 **NOTE:** To determine the continent on which Mauritania is located, change the direction in the query to `out`.
 
