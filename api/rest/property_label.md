@@ -30,7 +30,7 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 ### Step 1: assembling the information you will need
 
-This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons uniquely identifies nodes by assigning them DCIDs. Your query will need to specify the DCIDs for the nodes of interest.
+This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
 In addition to this required property, this endpoint also allows you to specify your API key as an optional argument.
 
