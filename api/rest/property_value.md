@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieve property values
 
-This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the values of specified properties attached to those nodes. 
+This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the values of a specified property attached to those nodes. 
 
 ## General information about this endpoint
 
@@ -341,7 +341,7 @@ curl --request POST \
 
 ## Error Responses
 
-In general, if your request is malformed in some way, you will receive a 400 status code and an error message like the following:
+If your request is malformed in some way, you will receive a 400 status code and an error message like the following:
 
 ```json
 {
