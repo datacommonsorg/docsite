@@ -44,7 +44,7 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - `valueType`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
-  - `direction`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires.)
+  - `direction`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
   
   - `limit`: (≤ 500) Maximum number of values returned per node.
 
@@ -291,6 +291,10 @@ curl --request POST \
 ```
 
 ### Example 5: Retrieve the country in which Buenos Aires is located.
+
+![](/assets/images/SAmWithDir.png)
+
+*Figure 1. Directional supercategory relationships for the city of Buenos Aires.*
 
 #### GET Request
 
