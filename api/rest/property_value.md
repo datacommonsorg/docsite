@@ -113,14 +113,14 @@ Here `"<payload string>"` is replaced by JSON, whose structure changes depending
 
 #### GET Request
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=dc%2Fbsmvthtq89217&property=order'
 ```
 
 #### POST Request
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
@@ -153,14 +153,14 @@ curl --request POST \
 
 #### GET Request
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=nces%2F360007702877&dcids=nces%2F062961004587&property=address'
 ```
 
 #### POST Request
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
@@ -202,14 +202,14 @@ curl --request POST \
 
 #### GET Request
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=country%2FMDG&property=affectedPlace&valueType=EarthquakeEvent'
 ```
 
 #### POST Request
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
@@ -248,14 +248,14 @@ curl --request POST \
 
 #### GET Request
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=country%2FIND&property=affectedPlace&valueType=CycloneEvent&limit=1'
 ```
 
 #### POST Request
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
@@ -298,14 +298,14 @@ curl --request POST \
 
 #### GET Request
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=wikidataId%2FQ1486&property=containedInPlace&direction=out'
 ```
 
 #### POST Request
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
