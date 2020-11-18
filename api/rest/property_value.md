@@ -33,7 +33,7 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 ## How to construct a request to the property value endpoint
 
-### Step 1: assembling the information you will need
+### Step 1: Assembling the information you will need
 
 This endpoint requires two arguments and offers four additional optional arguments, as listed:
 
@@ -50,7 +50,7 @@ In addition to these required properties, this endpoint also allows four optiona
 
   - `key`: Your API key.
 
-### Step 2: creating the request
+### Step 2: Creating the request
 
 When actually putting together your request, you can choose from two options. If you intend to use only a small number of parameters, you may want to use the simpler formatting offered by the GET method, which makes requests against the main endpoint while altering the query parameters incorporated into the URL. For more complex queries, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
 
