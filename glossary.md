@@ -39,3 +39,19 @@ USA -- typeOf ------------> Country
 USA -- name --------------> United States of America
 USA -- containedInPlace --> northamerica
 ```
+
+- **Measurement method**
+
+The source of and technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and `WorldHealthOrganizationEstimates`.
+
+- **Observation period**
+
+The time period over which an observation is made.
+
+- **Unit**
+
+The unit of measurement. Examples include Kelvin, Celsius, inches, light years, and slugs.
+
+- **Scaling factor**
+
+Factor by which a measurement is adjusted to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100.
