@@ -44,8 +44,8 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 This endpoint requires two arguments and offers five additional optional arguments, as listed:
 
- - `place`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
- - `stat_var`: The property whose value you are interested in.
+ - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+ - `stat_var`: The statistical variable whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments.
 
@@ -55,7 +55,7 @@ In addition to these required properties, this endpoint also allows for other, o
   
   - `observation_period`: (≤ 500) Maximum number of values returned per node.
 
-  - `unit`: Your API key.
+  - `unit`: The unit of measurement.
 
   - `scaling_factor`: 
 
@@ -129,7 +129,7 @@ curl --request GET \
 <script src="/assets/js/tabs.js"></script>
 </div>
 
-### Example 3: Retrieve the number of men in the state of California.
+### Example 3: Retrieve the number of people in Bosnia and Herzegovina as counted by the Bosnian census.
 
 <div>
 
@@ -139,7 +139,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+  --url 'https://api.datacommons.org/stat/value?place=country%2FBIH&stat_var=Count_Person&measurement_method=BosniaCensus'
 ```
 
 {% endtab %}
@@ -155,7 +155,7 @@ curl --request GET \
 <script src="/assets/js/tabs.js"></script>
 </div>
 
-### Example 4: Retrieve the number of men in the state of California.
+### Example 4: Retrieve the death count in Miami-Dade County over a period of one year.
 
 <div>
 
@@ -165,7 +165,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F12086&stat_var=Count_Death&observation_period=P1Y'
 ```
 
 {% endtab %}
@@ -181,7 +181,7 @@ curl --request GET \
 <script src="/assets/js/tabs.js"></script>
 </div>
 
-### Example 5: Retrieve the number of men in the state of California.
+### Example 5: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
 
 <div>
 
@@ -191,7 +191,33 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F12086&stat_var=RetailDrugDistribution_DrugDistribution_Naloxone&unit=Grams'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 6: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=country%2FGMB&stat_var=Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal&scalingFactor=100.0000000000'
 ```
 
 {% endtab %}
