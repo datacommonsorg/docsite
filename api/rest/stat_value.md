@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Get Statistical Value for a Place
+# Retrieve statistical value for a place
 
 Returns a statistical value for a place based on the
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
@@ -15,80 +15,227 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 When there are multiple sources for the same statistical variable, a prefered
 source with more recent data or more authorative is selected.
 
+## General information about this endpoint
+
 **URL**: `/stat/value`
 
-**Method**: `GET`
+**Methods available**: `GET`
 
-**Required Arguments**:
+**Authentication**: Optional
 
-* `place`: The dcid of the [`Place`](https://datacommons.org/browser/Place) to query for.
+**Required arguments**:
 
-* `stat_var`: The dcid of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+* `place`: The DCID of the [`Place`](https://datacommons.org/browser/Place) to query for.
+* `stat_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
-**Optional Arguments**:
+**Optional arguments**:
 
 * `date`: The preferred date of observation in ISO 8601 format. If not specified, returns the latest observation.
-* `measurement_method`: The dcid of the preferred `measurementMethod` value.
+* `measurement_method`: The DCID of the preferred `measurementMethod` value.
 * `observation_period`: The preferred `observationPeriod` value.
-* `unit`: The dcid of the preferred `unit` value.
+* `unit`: The DCID of the preferred `unit` value.
 * `scaling_factor`: The preferred `scalingFactor` value.
 
-## GET Request
+## How to construct a request to the place statistics value endpoint
 
-**Examples**
+### Step 1: Assembling the information you will need
 
-```bash
-curl 'https://api.datacommons.org/stat/value?place=geoId/06&stat_var=Count_Person_Male'
-```
+This endpoint requires two arguments and offers five additional optional arguments, as listed:
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+ - `place`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
+ - `stat_var`: The property whose value you are interested in.
 
-## Success Response
+In addition to these required properties, this endpoint also allows for other, optional arguments.
 
-### **Code**: `200 OK`
+  - `date`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
-**Response content example**
+  - `measurement_method`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  
+  - `observation_period`: (≤ 500) Maximum number of values returned per node.
+
+  - `unit`: Your API key.
+
+  - `scaling_factor`: 
+
+### Step 2: Creating the request
+
+Since only the GET method is available for this endpoint, you will need to assemble the request via query parameters in the URL.
+
+## What to expect in the response
+
+Your response will always look like this:
 
 ```json
 {
-    "value": 200
+  "value": integer
 }
 ```
 
-## Error Response
+## Example requests and responses
 
-### **Code**: `400 Bad Request`
+### Example 1: Retrieve the count of men in the state of California.
 
-**Request example:** (place not specified)
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
 
 ```bash
-curl 'https://api.datacommons.org/stat/value?stat_var=Count_Person_Male'
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
 ```
 
-**Response content example**
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 2: Retrieve the count of robberies in the state of Georgia in the year 2011.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F13&stat_var=Count_CriminalActivities_Robbery&date=2011'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<!-- TODO need to change the jsfiddle -->
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 3: Retrieve the number of men in the state of California.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 4: Retrieve the number of men in the state of California.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 5: Retrieve the number of men in the state of California.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+## Error Responses
+
+If your request does not include a required argument, you will receive a 400 status code and an error message like the following:
 
 ```json
 {
   "code": 3,
-  "message": "Missing required argument: place"
+  "message": "Missing required argument: stat_var",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
-
-### **Code**: `404 Not Found`
-
-**Request example:** (No data for the query)
-
-```bash
-curl 'https://api.datacommons.org/stat/value?place=badPlaceDcid&stat_var=Count_Person_Male'
-```
-
-**Response content example**
+If your request includes a bad argument, you will receive a 404 status code and an error message like the following:
 
 ```json
 {
   "code": 5,
-  "message": "No data for badPlaceDcid, Count_Person_Male",
+  "message": "No statistical variable found for CountPerson_Male",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
