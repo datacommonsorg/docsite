@@ -60,7 +60,7 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. After decoding the response payload string, there are two possible structures it could adhere to.
+Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`. After decoding the response payload string, there are two possible structures it could adhere to.
 
 **Structure 1:** Decoded response payload string for property values that are not node references.
 
@@ -99,9 +99,7 @@ Here `"<payload string>"` is a long encoded JSON string, whose structure changes
 }
 ```
 
-**NOTES:** 
- - The `provenanceId` is the DCID of the provenance for the corresponding value.
- - You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+**NOTE:** The `provenanceId` is the DCID of the provenance for the corresponding value.
 
 ## Example requests and responses
 
