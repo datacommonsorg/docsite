@@ -109,11 +109,27 @@ Here `"<payload string>"` is a long encoded JSON string, whose structure changes
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+  --url 'https://api.datacommons.org/node/property-values?dcids=dc%2Fbsmvthtq89217&property=order'
+```
+
+{% endtab %}
+
+{% tab log POST Request %}
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/node/property-values \
+  --header 'content-type: application/json' \
+  --data '{
+	"dcids": [
+		"dc/bsmvthtq89217"
+	],
+	"property": "order"
+}'
 ```
 
 {% endtab %}
@@ -128,27 +144,6 @@ curl --request GET \
 
 <script src="/assets/js/tabs.js"></script>
 </div>
-
-#### GET Request
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/node/property-values?dcids=dc%2Fbsmvthtq89217&property=order'
-```
-
-#### POST Request
-
-```bash
-curl --request POST \
-  --url https://api.datacommons.org/node/property-values \
-  --header 'content-type: application/json' \
-  --data '{
-	"dcids": [
-		"dc/bsmvthtq89217"
-	],
-	"property": "order"
-}'
-```
 
 #### Response
 
@@ -169,14 +164,20 @@ curl --request POST \
 
 ### Example 2: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=nces%2F360007702877&dcids=nces%2F062961004587&property=address'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -190,6 +191,19 @@ curl --request POST \
 	"property": "address"
 }'
 ```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
@@ -218,14 +232,20 @@ curl --request POST \
 
 ### Example 3: Retrieve a list of earthquakes in Madagascar.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=country%2FMDG&property=affectedPlace&valueType=EarthquakeEvent'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -239,6 +259,19 @@ curl --request POST \
 	"valueType": "EarthquakeEvent"
 }'
 ```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
@@ -264,14 +297,20 @@ curl --request POST \
 
 ### Example 4: Retrieve just one cyclone in India.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=country%2FIND&property=affectedPlace&valueType=CycloneEvent&limit=1'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -286,6 +325,19 @@ curl --request POST \
 	"limit": 1
 }'
 ```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
@@ -314,14 +366,20 @@ curl --request POST \
 
 *Figure 1. Directional supercategory relationships for the city of Buenos Aires.*
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-values?dcids=wikidataId%2FQ1486&property=containedInPlace&direction=out'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -335,6 +393,19 @@ curl --request POST \
 	"direction": "out"
 }'
 ```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
