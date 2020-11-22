@@ -60,9 +60,9 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is replaced by JSON, whose structure changes depending on whether the response contains node references.
+Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. After decoding the response payload string, there are two possible structures it could adhere to.
 
-**Structure 1:** Response for property values that are not node references.
+**Structure 1:** Decoded response payload string for property values that are not node references.
 
 ```json
 {
@@ -79,7 +79,7 @@ Here `"<payload string>"` is replaced by JSON, whose structure changes depending
 }
 ```
 
-**Structure 2:** Response for property values that are node references.
+**Structure 2:** Decoded response payload string for property values that are node references.
 
 ```json
 {
