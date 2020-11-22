@@ -15,6 +15,8 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 When there are multiple sources for the same statistical variable, a prefered
 source with more recent or more authorative data is selected.
 
+## General information about this endpoint
+
 **URL**: `/stat/series`
 
 **Method**: `GET`
@@ -22,7 +24,6 @@ source with more recent or more authorative data is selected.
 **Required Arguments**:
 
 - `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
-
 - `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
@@ -34,69 +35,200 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 - `unit`: The dcid of the preferred `unit` value.
 - `scaling_factor`: The preferred `scalingFactor` value.
 
-## GET Request
+## How to construct a request to the place statistics time series endpoint
 
-**Examples**
+### Step 1: Assembling the information you will need
 
-```bash
-curl 'https://api.datacommons.org/stat/series?place=geoId/06&stat_var=Count_Person_Male'
-```
+This endpoint requires two arguments and offers four additional optional arguments, as listed:
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/w32gmo68/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+ - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+ - `stat_var`: The statistical variable whose value you are interested in.
 
-## Success Response
+In addition to these required properties, this endpoint also allows for other, optional arguments.
 
-### **Code**: `200 OK`
+  - `date`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
-**Response content example**
+  - `measurement_method`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  
+  - `observation_period`: (≤ 500) Maximum number of values returned per node.
+
+  - `unit`: The unit of measurement.
+
+### Step 2: Creating the request
+
+Since only the GET method is available for this endpoint, you will need to assemble the request via query parameters in the URL.
+
+## What to expect in the response
+
+Your response will always look like this:
 
 ```json
 {
-  "series": {
-    "2013": 18726468,
-    "2014": 18911519,
-    "2015": 19087135,
-    "2016": 19200970,
-    "2017": 19366579,
-    "2018": 19453769,
-    "2011": 18387718,
-    "2012": 18561020
-  }
+  "value": integer
 }
 ```
 
-## Error Response
+## Example requests and responses
 
-### **Code**: `400 Bad Request`
+### Example 1: Retrieve the count of men in the state of California.
 
-**Request example:** (place not specified)
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
 
 ```bash
-curl 'https://api.datacommons.org/stat/series?stat_var=Count_Person_Male'
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/series?place=geoId%2F06&stat_var=Count_Person_Male'
 ```
 
-**Response content example**
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 2: Retrieve the number of people in Bosnia and Herzegovina as counted by the Bosnian census.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/series?place=country%2FBIH&stat_var=Count_Person&measurement_method=BosniaCensus'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 3: Retrieve the death count in Miami-Dade County over a period of one year.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/series?place=geoId%2F12086&stat_var=Count_Death&observation_period=P1Y'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 4: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/series?place=geoId%2F12086&stat_var=RetailDrugDistribution_DrugDistribution_Naloxone&unit=Grams'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Example 5: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
+
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/series?place=country%2FGMB&stat_var=Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal&scalingFactor=100.0000000000'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+## Error Responses
+
+If your request does not include a required argument, you will receive a 400 status code and an error message like the following:
 
 ```json
 {
   "code": 3,
-  "message": "Missing required argument: place"
+  "message": "Missing required argument: stat_var",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
-
-### **Code**: `404 Not Found`
-
-**Request example:** (No data for the query)
-
-```bash
-curl 'https://api.datacommons.org/stat/series?place=badPlaceDcid&stat_var=Count_Person_Male'
-```
-
-**Response content example**
+If your request includes a bad argument, you will receive a 404 status code and an error message like the following:
 
 ```json
 {
   "code": 5,
-  "message": "No data for badPlaceDcid, Count_Person_Male"
+  "message": "No statistical variable found for CountPerson_Male",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
