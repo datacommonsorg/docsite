@@ -40,15 +40,11 @@ This endpoint requires two arguments and offers four additional optional argumen
  - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
  - `property`: The property whose value you are interested in.
 
-In addition to these required properties, this endpoint also allows for other, optional arguments.
+In addition to these required properties, this endpoint also allows for other, optional arguments. Here are two helpful arguments in regular use by Data Commons developers:
 
   - `valueType`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
   - `direction`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
-  
-  - `limit`: (≤ 500) Maximum number of values returned per node.
-
-  - `key`: Your API key.
 
 ### Step 2: Creating the request
 
