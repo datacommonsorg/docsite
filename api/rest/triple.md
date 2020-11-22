@@ -16,6 +16,8 @@ A knowledge graph can be described as a collection of *triples* which are
 graph called the *subject* and *object* respectively, while *p* is the property
 label of a directed edge from *s* to *o* (sometimes also called the *predicate*).
 
+## General information about this endpoint
+
 **URL**: `/node/triples`
 
 **Method**: `GET`, `POST`
@@ -33,30 +35,21 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 *   `key`: Your API key.
 
-## GET Request
+## How to construct a request to the triples endpoint
 
-**Example**
+### Step 1: assembling the information you will need
 
-```bash
-curl 'https://api.datacommons.org/node/triples?dcids=geoId/05&dcids=geoId/06'
-```
+This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
-## POST Request
+In addition to this required property, this endpoint also allows you to specify your API key as an optional argument as well as a limit on how many triples (up to 500) you would like to see in the response.
 
-**Examples**
+### Step 2: creating the request
 
-```bash
-curl -X POST 'https://api.datacommons.org/node/triples' \
--d '{"dcids": ["geoId/05", "geoId/06"], "limit": 10}'
-```
+When actually putting together your request, you can choose from two options. If you intend to query only a small number of DCIDs, you may want to use the simpler formatting offered by the GET method. For larger numbers of DCIDs, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0uxr1hd5/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+## What to expect in the response
 
-## Success Response
-
-### **Code**: `200 OK`
-
-**Response content example**
+Your response will always look like this:
 
 ```json
 {
@@ -64,93 +57,170 @@ curl -X POST 'https://api.datacommons.org/node/triples' \
 }
 ```
 
-The "`payload string`" is a string encoding of a JSON object keyed by the given
-DCID with the value a list of associated triples. The equivalent JSON of the
-"`payload string`" is as follows:
+Here `"<payload string>"` is replaced by JSON, whose structure adheres to the following form:
 
 ```json
 {
-    "geoId/05": [
-        {
-            "subjectId": "geoId/05149952600",
-            "subjectName": "Census Tract 9526, Yell County, Arkansas",
-            "subjectTypes": ["CensusTract"],
-            "predicate": "containedInPlace",
-            "objectId": "geoId/05",
-            "objectName": "Arkansas",
-            "objectTypes": ["State"],
-            "provenanceId": "dc/sm3m2w3"
-        },
-        {
-            "subjectId": "dc/zxmm47cccwzfg",
-            "subjectName": "1022 Scogin Dr, Monticello, Arkansas",
-            "subjectTypes": ["PostalAddress"],
-            "predicate": "addressRegion",
-            "objectId": "geoId/05",
-            "objectName": "Arkansas",
-            "objectTypes": ["State"],
-            "provenanceId": "dc/mzy8we"
-        },
-        {
-            "subjectId": "geoId/05",
-            "predicate": "containedInPlace",
-            "objectId": "country/USA",
-            "objectName": "United States",
-            "objectTypes": ["Country"],
-            "provenanceId": "dc/sm3m2w3"
-        }
-    ]
+    "dcid": {
+        "inLabels": [
+            "label",
+            ...
+        ],
+        "outLabels": [
+            "label",
+            ...
+        ]
+    },
+    ...
 }
 ```
 
-Each DCID is mapped to a list of triples, where a triple is an object with the
-following fields. Note that not all fields are always included in each triple.
-<!--- TODO: add link to data model and describe the fields in a Triple --->
+For each node, `inLabels` contains labels directed towards the node while
+`outLabels` contains labels directed away from the node.
 
-*   `subjectId`
-*   `subjectName`
-*   `subjectTypes`
-*   `predicate`
-*   `objectId`
-*   `objectName`
-*   `objectTypes`
-*   `provenanceId`
+**NOTES:** 
+ - You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 
-**NOTE:** Please run `JSON.parse()` on the `payload` field to retrieve the data.
-For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+## Example requests and responses
 
-## Error Response
+### Example 1: Retrieve the property labels of Wisconsin's eighth congressional district.
 
-### **Code**: `500 Internal Server Error`
+#### GET Request
 
-**Request example:** (DCID not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/triples' -d '{"dcids": []}'
+```curl
+curl --request GET \
+  --url 'https://api.datacommons.org/node/property-labels?dcids=geoId%2F5508'
 ```
 
-**Response content example**
+#### POST Request
+
+```curl
+curl --request POST \
+  --url https://api.datacommons.org/node/property-labels \
+  --header 'content-type: application/json' \
+  --data '{
+	"dcids": [
+		"geoId/5508"
+	]
+}'
+```
+
+#### Response
 
 ```json
 {
-  "code": 2,
-  "message": "must provide DCIDs"
+  "payload": {
+    "geoId/5508": {
+      "inLabels": [
+        "containedInPlace",
+        "geoOverlaps",
+        "location"
+      ],
+      "outLabels": [
+        "containedInPlace",
+        "geoId",
+        "geoJsonCoordinates",
+        "geoOverlaps",
+        "kmlCoordinates",
+        "landArea",
+        "latitude",
+        "longitude",
+        "name",
+        "provenance",
+        "typeOf",
+        "waterArea"
+      ]
+    }
+  }
 }
 ```
 
-### **Code**: `401 Unauthorized`
+### Example 2: Retrieve the property labels of two different leukocyte cell lines.
 
-**Request example:** (API key not specified)
+#### GET Request
 
-```bash
-curl -X POST 'https://api.datacommons.org/node/triples'
+```curl
+curl --request GET \
+  --url 'https://api.datacommons.org/node/property-labels?dcids=dc%2Fc3j78rpyssdmf&dcids=dc%2F7hfhd2ek8ppd2'
 ```
 
-**Response content example**
+#### POST Request
+
+```curl
+curl --request POST \
+  --url https://api.datacommons.org/node/property-labels \
+  --header 'content-type: application/json' \
+  --data '{
+	"dcids": [
+		"dc/c3j78rpyssdmf",
+		"dc/7hfhd2ek8ppd2"
+	]
+}'
+```
+
+#### Response
 
 ```json
 {
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
+  "payload": {
+    "dc/7hfhd2ek8ppd2": {
+      "inLabels": [
+        "biosampleOntology"
+      ],
+      "outLabels": [
+        "cellSlims",
+        "classification",
+        "dbxrefs",
+        "developmentalSlims",
+        "encodeUUID",
+        "name",
+        "organSlims",
+        "provenance",
+        "sameAs",
+        "status",
+        "systemSlims",
+        "termId",
+        "termName",
+        "typeOf"
+      ]
+    },
+    "dc/c3j78rpyssdmf": {
+      "inLabels": [
+        "biosampleOntology"
+      ],
+      "outLabels": [
+        "cellSlims",
+        "classification",
+        "dbxrefs",
+        "encodeUUID",
+        "name",
+        "provenance",
+        "sameAs",
+        "status",
+        "systemSlims",
+        "termId",
+        "termName",
+        "typeOf"
+      ]
+    }
+  }
+}
+```
+
+## Error Responses
+
+In general, if your request is malformed in some way, you will receive a 400 status code and an error message like the following:
+
+```json
+{
+  "code": 3,
+  "message": "Missing required arguments: dcid",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
