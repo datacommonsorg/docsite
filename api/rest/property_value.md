@@ -105,6 +105,30 @@ Here `"<payload string>"` is a long encoded JSON string, whose structure changes
 
 ### Example 1: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
 
+<div>
+
+{% tabs log %}
+
+{% tab log curl %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
 #### GET Request
 
 ```bash
