@@ -40,18 +40,18 @@ USA -- name --------------> United States of America
 USA -- containedInPlace --> northamerica
 ```
 
-- **Measurement method**
+- **[Measurement method](https://datacommons.org/browser/measurementMethod)**
 
-The source of and technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and `WorldHealthOrganizationEstimates`.
+The source of and technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates).
 
-- **Observation period**
+- **[Observation period](https://datacommons.org/browser/observationPeriod)**
 
 The time period over which an observation is made.
 
-- **Unit**
+- **[Unit](https://datacommons.org/browser/unit)**
 
 The unit of measurement. Examples include Kelvin, Celsius, inches, light years, and slugs.
 
-- **Scaling factor**
+- **[Scaling factor](https://datacommons.org/browser/scalingFactor)**
 
 Factor by which a measurement is adjusted to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100.
