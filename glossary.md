@@ -42,7 +42,7 @@ USA -- containedInPlace --> northamerica
 
 - **[Measurement method](https://datacommons.org/browser/measurementMethod)**
 
-The source of and technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates).
+The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates).
 
 - **[Observation period](https://datacommons.org/browser/observationPeriod)**
 
