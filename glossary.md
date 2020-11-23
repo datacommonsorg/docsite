@@ -54,4 +54,4 @@ The unit of measurement. Examples include Kelvin, Celsius, inches, light years, 
 
 - **[Scaling factor](https://datacommons.org/browser/scalingFactor)**
 
-Factor by which a measurement is adjusted to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100.
+Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100, since 5 is equal to 0.05 multiplied by 0.05.
