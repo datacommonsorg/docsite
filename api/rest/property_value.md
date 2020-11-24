@@ -38,6 +38,7 @@ This endpoint is suitable for situations in which you have a node or list of nod
 This endpoint requires two arguments and offers four additional optional arguments, as listed:
 
  - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
+
  - `property`: The property whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are two helpful arguments in regular use by Data Commons developers:
@@ -60,7 +61,9 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`. After decoding the response payload string, there are two possible structures it could adhere to.
+Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+
+After decoding the response payload string, there are two possible structures it could adhere to.
 
 **Structure 1:** Decoded response payload string for property values that are not node references.
 
@@ -103,7 +106,80 @@ Here `"<payload string>"` is a long encoded JSON string, whose structure changes
 
 ## Example requests and responses
 
-### Example 1: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
+### Example 1: Retrieve the two common names of the country of Côte d'Ivoire.
+
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
+
+```bash
+curl --request GET \
+  --url 'https://api.datacommons.org/node/property-values?dcids=country%2FCIV&property=name'
+```
+
+{% endtab %}
+
+{% tab log POST Request %}
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/node/property-values \
+  --header 'content-type: application/json' \
+  --data '{
+	"dcids": [
+		"country/CIV"
+	],
+	"property": "name"
+}'
+```
+
+{% endtab %}
+
+{% tab log js %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/xbnsqo4a/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+#### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"country/CIV\":{\"out\":[{\"provenanceId\":\"dc/5n63hr1\",\"value\":\"Ivory Coast\"},{\"provenanceId\":\"dc/5n63hr1\",\"value\":\"Côte d'Ivoire\"}]}}"
+}
+```
+
+##### Parsed and prettified
+
+```json
+{
+  "payload": {
+    "country/CIV": {
+      "out": [
+        {
+          "provenanceId": "dc/5n63hr1",
+          "value": "Ivory Coast"
+        },
+        {
+          "provenanceId": "dc/5n63hr1",
+          "value": "Côte d'Ivoire"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Example 2: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
 
 <div>
 
@@ -136,7 +212,7 @@ curl --request POST \
 
 {% tab log js %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/d5npo3ue/17/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -146,6 +222,16 @@ curl --request POST \
 </div>
 
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"dc/bsmvthtq89217\":{\"out\":[{\"provenanceId\":\"dc/93qydx3\",\"value\":\"Austrobaileyales\"}]}}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
@@ -162,7 +248,7 @@ curl --request POST \
 }
 ```
 
-### Example 2: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
+### Example 3: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
 
 <div>
 
@@ -196,7 +282,7 @@ curl --request POST \
 
 {% tab log js %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/94s2c5bp/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -206,6 +292,16 @@ curl --request POST \
 </div>
 
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"nces/062961004587\":{\"out\":[{\"provenanceId\":\"dc/mzy8we\",\"value\":\"780 Arastradero Rd., Palo Alto, California\"}]},\"nces/360007702877\":{\"out\":[{\"provenanceId\":\"dc/mzy8we\",\"value\":\"345 Chambers St, New York, New York\"}]}}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
@@ -230,7 +326,7 @@ curl --request POST \
 }
 ```
 
-### Example 3: Retrieve a list of earthquakes in Madagascar.
+### Example 4: Retrieve a list of earthquakes in Madagascar.
 
 <div>
 
@@ -264,7 +360,7 @@ curl --request POST \
 
 {% tab log js %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/fp7sa9v8/16/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -274,6 +370,16 @@ curl --request POST \
 </div>
 
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"country/MDG\":{\"in\":[{\"dcid\":\"earthquake/usp000jgbb\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp000h6zw\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp000gmuf\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp000fu24\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp000dckw\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0008vc6\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0007k9j\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0005gu9\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0004qn4\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0002kfd\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp00020ud\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0001ss5\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0001fcd\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp0000afz\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp00006yt\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usp00005zf\",\"name\":\"Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/usc000evr6\",\"name\":\"8km NW of Anakao, Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/us60003r15\",\"name\":\"50km ESE of Ambanja, Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]},{\"dcid\":\"earthquake/us200040me\",\"name\":\"25km W of Antalaha, Madagascar\",\"provenanceId\":\"dc/xz8ndk3\",\"types\":[\"EarthquakeEvent\"]}]}}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
@@ -295,7 +401,7 @@ curl --request POST \
 }
 ```
 
-### Example 4: Retrieve just one cyclone in India.
+### Example 5: Retrieve just one cyclone in India.
 
 <div>
 
@@ -330,7 +436,7 @@ curl --request POST \
 
 {% tab log js %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/yf7sgz25/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -340,6 +446,16 @@ curl --request POST \
 </div>
 
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"country/IND\":{\"in\":[{\"dcid\":\"cyclone/ibtracs_2019117N05088\",\"name\":\"Fani\",\"provenanceId\":\"dc/xwq0y5\",\"types\":[\"CycloneEvent\"]}]}}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
@@ -360,7 +476,7 @@ curl --request POST \
 }
 ```
 
-### Example 5: Retrieve the country in which Buenos Aires is located.
+### Example 6: Retrieve the country in which Buenos Aires is located.
 
 ![](/assets/images/SAmWithDir.png)
 
@@ -398,7 +514,7 @@ curl --request POST \
 
 {% tab log js %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g6ctqbxj/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -408,6 +524,16 @@ curl --request POST \
 </div>
 
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"wikidataId/Q1486\":{\"out\":[{\"dcid\":\"country/ARG\",\"name\":\"Argentina\",\"provenanceId\":\"dc/5n63hr1\",\"types\":[\"Country\"]}]}}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
