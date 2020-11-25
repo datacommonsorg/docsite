@@ -35,11 +35,11 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 ### Step 1: Assembling the information you will need
 
-This endpoint requires two arguments and offers four additional optional arguments, as listed:
+Going into more detail on how to assemble the values for the required arguments:
 
  - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
- - `property`: The property whose value you are interested in.
+ - `property`: The property whose value you are interested in, such as "name" for the name of a node, or "typeOf" for the type of a node.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
