@@ -69,7 +69,7 @@ After decoding the response payload string, there are two possible structures it
 
 ```json
 {
-    "dcid": {
+    "<dcid>": {
         "direction": [
           {
             "value": "string",
@@ -86,7 +86,7 @@ After decoding the response payload string, there are two possible structures it
 
 ```json
 {
-    "dcid":
+    "<dcid>":
         {
         "direction": [
             {
