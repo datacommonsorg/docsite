@@ -401,7 +401,7 @@ curl --request POST \
 }
 ```
 
-### Example 5: Retrieve just one cyclone in India.
+### Example 5: Retrieve just one cyclone event in India.
 
 <div>
 
