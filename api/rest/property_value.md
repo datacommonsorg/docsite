@@ -326,7 +326,7 @@ curl --request POST \
 }
 ```
 
-### Example 4: Retrieve a list of earthquakes in Madagascar.
+### Example 4: Retrieve a list of earthquake events in Madagascar.
 
 <div>
 
