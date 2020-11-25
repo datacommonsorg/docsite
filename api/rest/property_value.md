@@ -478,9 +478,9 @@ curl --request POST \
 
 ### Example 6: Retrieve the country in which Buenos Aires is located.
 
-![](/assets/images/SAmWithDir.png)
+![](/assets/images/rest/property_value_direction_example.png)
 
-*Figure 1. Directional supercategory relationships for the city of Buenos Aires.*
+*Figure 1. Directional supercategory relationships for the city of Buenos Aires. Here the "in" label points from the containing place to the place with property "containedInPlace" equal to the containing place.*
 
 <div>
 
