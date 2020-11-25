@@ -41,7 +41,7 @@ This endpoint requires two arguments and offers four additional optional argumen
 
  - `property`: The property whose value you are interested in.
 
-In addition to these required properties, this endpoint also allows for other, optional arguments. Here are two helpful arguments in regular use by Data Commons developers:
+In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
   - `valueType`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
