@@ -45,7 +45,7 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - `valueType`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
-  - `direction`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  - `direction`: You can specify this argument as `out` to indicate that you desire the response to only include nodes with the value of the property `containedInPlace` equivalent to one or more of the specified `DCIDs`, or `in` to only return nodes equivalent to one or more of the values of the `containedInPlace` properties of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
 
 ### Step 2: Creating the request
 
