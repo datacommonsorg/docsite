@@ -6,19 +6,15 @@
 // The removeActiveClasses is a helper method that removes classes marked
 // as active from the specific element passed to it.
 
-// The getChildPosition method returns an element's position in the array
-// of its parent's children.
-
-// The window.addEventListener logic ensures that clicking on a tab in the 
-// UI changes your view to the clicked tab's contents, rather than scrolling
-// to the top of the page.
-
 const removeActiveClasses = function (ulElement) {
   const lis = ulElement.querySelectorAll('li');
   Array.prototype.forEach.call(lis, function (li) {
     li.classList.remove('active');
   });
 }
+
+// The getChildPosition method returns an element's position in the array
+// of its parent's children.
 
 const getChildPosition = function (element) {
   var parent = element.parentNode;
@@ -31,6 +27,10 @@ const getChildPosition = function (element) {
   // This line should not be reached but is retained for completeness.
   throw new Error('No parent found');
 }
+
+// The window.addEventListener logic ensures that clicking on a tab in the 
+// UI changes your view to the clicked tab's contents, rather than scrolling
+// to the top of the page.
 
 window.addEventListener('load', function () {
   const tabLinks = document.querySelectorAll('ul.tab li a');
