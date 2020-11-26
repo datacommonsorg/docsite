@@ -21,7 +21,7 @@ This endpoint is suitable for situations in which you have a node or list of nod
 **Required arguments**:
 
 *   `dcids`: A list of nodes to query, identified by their DCID.
-*   `property`: The property label to query for.
+*   `property`: The property to query for.
 
 **Optional arguments**:
 
