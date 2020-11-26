@@ -106,7 +106,7 @@ After decoding the response payload string, there are two possible structures it
 
 ## Example requests and responses
 
-### Example 1: Retrieve the two common names of the country of Côte d'Ivoire.
+### Example 1: Retrieve the common names of the country of Côte d'Ivoire.
 
 <div>
 
