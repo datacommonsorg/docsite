@@ -75,14 +75,20 @@ For each node, `inLabels` contains labels directed towards the node while
 
 ### Example 1: Retrieve the property labels of Wisconsin's eighth congressional district.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```curl
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-labels?dcids=geoId%2F5508'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```curl
 curl --request POST \
@@ -94,6 +100,19 @@ curl --request POST \
 	]
 }'
 ```
+
+{% endtab %}
+
+{% tab log javascript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/6n58xeyj/17/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
@@ -127,14 +146,20 @@ curl --request POST \
 
 ### Example 2: Retrieve the property labels of two different leukocyte cell lines.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```curl
 curl --request GET \
   --url 'https://api.datacommons.org/node/property-labels?dcids=dc%2Fc3j78rpyssdmf&dcids=dc%2F7hfhd2ek8ppd2'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```curl
 curl --request POST \
@@ -147,6 +172,19 @@ curl --request POST \
 	]
 }'
 ```
+
+{% endtab %}
+
+{% tab log javascript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/rauh4kyL/16/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
