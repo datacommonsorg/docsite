@@ -56,7 +56,9 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is replaced by JSON, whose structure adheres to the following form:
+Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+
+After decoding the response payload string, its structure adheres to the following form:
 
 ```json
 [
@@ -67,9 +69,6 @@ Here `"<payload string>"` is replaced by JSON, whose structure adheres to the fo
   ...
 ]
 ```
-
-**NOTES:** 
- - You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 
 ## Example requests and responses
 
@@ -164,7 +163,7 @@ curl --request POST \
 
 ## Error Responses
 
-In general, if your request is malformed in some way, you will receive a 400 status code and an error message like the following:
+If your request is malformed in some way, you will receive a 400 status code and an error message like the following:
 
 ```json
 {
