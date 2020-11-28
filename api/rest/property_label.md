@@ -28,13 +28,13 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 ## How to construct a request to the property label endpoint
 
-### Step 1: assembling the information you will need
+### Step 1: Assembling the information you will need
 
 This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
 In addition to this required property, this endpoint also allows you to specify your API key as an optional argument.
 
-### Step 2: creating the request
+### Step 2: Creating the request
 
 When actually putting together your request, you can choose from two options. If you intend to query only a small number of DCIDs, you may want to use the simpler formatting offered by the GET method. For larger numbers of DCIDs, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
 
@@ -48,7 +48,9 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is replaced by JSON, whose structure adheres to the following form:
+Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+
+Here is the structure the response payload string adheres to after decoding:
 
 ```json
 {
@@ -68,9 +70,6 @@ Here `"<payload string>"` is replaced by JSON, whose structure adheres to the fo
 
 For each node, `inLabels` contains labels directed towards the node while
 `outLabels` contains labels directed away from the node.
-
-**NOTES:** 
- - You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
 
 ## Example requests and responses
 
@@ -200,7 +199,7 @@ curl --request POST \
 
 ## Error Responses
 
-In general, if your request is malformed in some way, you will receive a 400 status code and an error message like the following:
+If your request is malformed in some way, you will receive a 400 status code and an error message like the following:
 
 ```json
 {
