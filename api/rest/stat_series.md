@@ -85,9 +85,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/w32gmo68/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -111,9 +111,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/sL4r6ckm/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -137,9 +137,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/2w9sphqc/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -163,9 +163,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/6y9tbdh5/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -189,9 +189,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/1gmewbvx/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
