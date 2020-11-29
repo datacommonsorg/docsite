@@ -42,22 +42,22 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ### Step 1: Assembling the information you will need
 
-This endpoint requires two arguments and offers five additional optional arguments, as listed:
+Going into more detail on how to assemble the values for the required arguments:
 
  - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
  - `stat_var`: The statistical variable whose value you are interested in.
 
-In addition to these required properties, this endpoint also allows for other, optional arguments.
+In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - `date`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
+  - `date`: Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
-  - `measurement_method`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  - `measurement_method`: The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates).
   
-  - `observation_period`: (≤ 500) Maximum number of values returned per node.
+  - `observation_period`: The time period over which an observation is made. Examples include `P1Y` (period of one year) and `P3M` (period of three months).
 
-  - `unit`: The unit of measurement.
+  - `unit`: The unit of measurement. Examples include Kelvin, Celsius, inches, light years, and slugs.
 
-  - `scaling_factor`: 
+  - `scaling_factor`: Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100, since 5 is equal to 0.05 multiplied by 0.05.
 
 ### Step 2: Creating the request
 
