@@ -74,14 +74,20 @@ After decoding the response payload string, its structure adheres to the followi
 
 ### Example 1: Retrieve a list of the counties in Delaware.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```curl
 curl --request GET \
   --url 'https://api.datacommons.org/node/places-in?dcids=geoId%2F10&placeType=County'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```curl
 curl --request POST \
@@ -94,6 +100,19 @@ curl --request POST \
 	"placeType": "County"
 }'
 ```
+
+{% endtab %}
+
+{% tab log javascript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/Lvt18jgd/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
@@ -118,14 +137,20 @@ curl --request POST \
 
 ### Example 2: Retrieve a list of congressional districts in Alaska and Hawaii.
 
-#### GET Request
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
 
 ```curl
 curl --request GET \
   --url 'https://api.datacommons.org/node/places-in?dcids=geoId%2F15&dcids=geoId%2F02&placeType=CongressionalDistrict'
 ```
 
-#### POST Request
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```curl
 curl --request POST \
@@ -139,6 +164,19 @@ curl --request POST \
 	"placeType": "CongressionalDistrict"
 }'
 ```
+
+{% endtab %}
+
+{% tab log javascript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/nw2dyose/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
