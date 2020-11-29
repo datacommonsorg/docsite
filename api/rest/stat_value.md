@@ -90,7 +90,7 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -116,11 +116,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<!-- TODO need to change the jsfiddle -->
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g04ydh9v/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -144,9 +142,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/dnk3bh10/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -170,9 +168,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7okp90wb/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -196,9 +194,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0steafk4/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -222,9 +220,9 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log js %}
+{% tab log javascript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/rm1kpfdn/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
