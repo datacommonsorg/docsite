@@ -11,52 +11,47 @@ grand_parent: API
 Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
+## General information about this endpoint
+
 **URL**: `/query`
 
 **Method**: `POST`
 
-**Auth required**: Optional
+**Authentication**: Optional
 
 **Required Arguments**:
 
-*   `sparql`: A Sparql query string.
-
-This API only supports a subset of SPARQL keywords including:
-
-<!--- TODO: add link to sparql doc --->
-
--   ORDER BY
--   DISTINCT
--   LIMIT
-
-In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf
-City ."`.
+*   `sparql`: A SPARQL query string.
 
 **Optional Arguments**:
 
 *   `key`: Your API key.
 
-## POST Request
+## How to construct a request to the property value endpoint
 
-**Examples**
+### Step 1: Assembling the information you will need
 
-```bash
-curl -X POST 'https://api.datacommons.org/query' \
--d '{"sparql": "SELECT ?name \
-                WHERE { \
-                  ?state typeOf State . \
-                  ?state dcid geoId/06 . \
-                  ?state name ?name \
-                }"}'
-```
+This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites whose data is formulated using [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework). It leverages the graph structure innate in the data it queries to return specific information to an end user.
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+To use SPARQL to precisely obtain the data you seek, you will need at a minimum 
 
-## Success Response
+This API only supports the following subset of SPARQL keywords:
 
-### **Code**: `200 OK`
+-   ORDER BY
+-   DISTINCT
+-   LIMIT
 
-**Response content example**
+In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
+
+This endpoint also allows you 
+
+### Step 2: Creating the request
+
+Since only the POST method is available for this endpoint, you will need to assemble the request in the form of a JSON object.
+
+## What to expect in the response
+
+A correct response will always look like this:
 
 ```json
 {
@@ -75,7 +70,9 @@ curl -X POST 'https://api.datacommons.org/query' \
 }
 ```
 
-The response contains two fields: `header` and `rows`:
+The response contains two fields, `header` and `rows`, as well as a `cell` object.
+
+**NOTES:**
 
 -   The value of `header` is an array of strings corresponding to the query
     variable.
@@ -84,40 +81,52 @@ The response contains two fields: `header` and `rows`:
 -   The `cell` object has a string field `value` corresponds to the queried
     variable.
 
-## Error Response
+## POST Request
 
-### **Code**: `500 Internal Server Error`
-
-**Request example:**
-
-`sparql` parameter not specified:
+**Examples**
 
 ```bash
-curl -X POST 'https://api.datacommons.org/query'
+curl -X POST 'https://api.datacommons.org/query' \
+-d '{"sparql": "SELECT ?name \
+                WHERE { \
+                  ?state typeOf State . \
+                  ?state dcid geoId/06 . \
+                  ?state name ?name \
+                }"}'
 ```
 
-**Response content example**
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+<!-- todo test and update error response section -->
+
+## Error Responses
+
+If your request does not include a required argument, you will receive a 400 status code and an error message like the following:
 
 ```json
 {
-  "code": 2,
-  "message": "missing required arguments"
+  "code": 3,
+  "message": "Missing required argument: stat_var",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/query'
-```
-
-**Response content example**
+If your request includes a bad argument, you will receive a 404 status code and an error message like the following:
 
 ```json
 {
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
+  "code": 5,
+  "message": "No statistical variable found for CountPerson_Male",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
-```
