@@ -32,9 +32,7 @@ A `dict` mapping DCID's to lists of property values. If `out` is `True`, then
 property values correspond to edges directed away from given nodes. Otherwise,
 they correspond to edges directed towards the given nodes.
 
-**Raises**
-
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+If the payload returned by the Data Commons REST API is malformed or the API key is not set, the endpoint returns NaN.
 
 Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
 
