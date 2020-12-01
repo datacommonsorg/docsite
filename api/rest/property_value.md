@@ -137,7 +137,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/xbnsqo4a/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -210,7 +210,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/d5npo3ue/17/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -268,7 +268,7 @@ curl --request GET \
 ```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-values \
-  --header 'content-type: application/javascripton' \
+  --header 'content-type: application/json' \
   --data '{
 	"dcids": [
 		"nces/360007702877",
@@ -280,7 +280,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/94s2c5bp/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -358,7 +358,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/fp7sa9v8/16/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -434,7 +434,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/yf7sgz25/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -512,7 +512,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g6ctqbxj/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
