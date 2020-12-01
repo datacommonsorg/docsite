@@ -57,152 +57,413 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is replaced by JSON, whose structure adheres to the following form:
+Here "<payload string>" is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run JSON.parse() on the payload field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+
+When decoded, the response adheres to this structure:
 
 ```json
 {
-    "dcid": {
-        "inLabels": [
-            "label",
-            ...
-        ],
-        "outLabels": [
-            "label",
-            ...
-        ]
+    "<dcid>": {
+        <Triples>
     },
     ...
 }
 ```
 
-For each node, `inLabels` contains labels directed towards the node while
-`outLabels` contains labels directed away from the node.
-
-**NOTES:** 
- - You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
-
 ## Example requests and responses
 
-### Example 1: Retrieve the property labels of Wisconsin's eighth congressional district.
+### Example 1: Retrieve triples associated with squareMeter 1238495 (a land tract in southern Florida).
 
-#### GET Request
+<div>
 
-```curl
+{% tabs log %}
+
+{% tab log GET Request %}
+
+```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/node/property-labels?dcids=geoId%2F5508'
+  --url 'https://api.datacommons.org/node/triples?dcids=SquareMeter1238495'
 ```
 
-#### POST Request
+{% endtab %}
 
-```curl
+{% tab log POST Request %}
+
+```bash
 curl --request POST \
-  --url https://api.datacommons.org/node/property-labels \
+  --url https://api.datacommons.org/node/triples \
   --header 'content-type: application/json' \
   --data '{
 	"dcids": [
-		"geoId/5508"
+		"SquareMeter1238495"
 	]
 }'
 ```
 
+{% endtab %}
+
+{% tab log javascript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/630fqova/19/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"SquareMeter1238495\":[{\"subjectId\":\"SquareMeter1238495\",\"predicate\":\"value\",\"objectValue\":\"1238495\",\"provenanceId\":\"dc/sm3m2w3\"},{\"subjectId\":\"SquareMeter1238495\",\"predicate\":\"unitOfMeasure\",\"objectId\":\"SquareMeter\",\"provenanceId\":\"dc/sm3m2w3\"},{\"subjectId\":\"SquareMeter1238495\",\"predicate\":\"typeOf\",\"objectId\":\"Quantity\",\"objectName\":\"Quantity\",\"objectTypes\":[\"Class\"],\"provenanceId\":\"dc/sm3m2w3\"},{\"subjectId\":\"SquareMeter1238495\",\"predicate\":\"provenance\",\"objectId\":\"dc/sm3m2w3\",\"objectName\":\"https://www.census.gov/geographies/reference-files.html\",\"objectTypes\":[\"Provenance\"],\"provenanceId\":\"dc/sm3m2w3\"},{\"subjectId\":\"SquareMeter1238495\",\"predicate\":\"name\",\"objectValue\":\"SquareMeter 1238495\",\"provenanceId\":\"dc/sm3m2w3\"},{\"subjectId\":\"geoId/12086008906\",\"subjectName\":\"Census Tract 89.06, Miami-Dade County, Florida\",\"subjectTypes\":[\"CensusTract\"],\"predicate\":\"landArea\",\"objectId\":\"SquareMeter1238495\",\"objectName\":\"SquareMeter 1238495\",\"objectTypes\":[\"Quantity\"],\"provenanceId\":\"dc/sm3m2w3\"}]}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
   "payload": {
-    "geoId/5508": {
-      "inLabels": [
-        "containedInPlace",
-        "geoOverlaps",
-        "location"
-      ],
-      "outLabels": [
-        "containedInPlace",
-        "geoId",
-        "geoJsonCoordinates",
-        "geoOverlaps",
-        "kmlCoordinates",
-        "landArea",
-        "latitude",
-        "longitude",
-        "name",
-        "provenance",
-        "typeOf",
-        "waterArea"
-      ]
-    }
+    "SquareMeter1238495": [
+      {
+        "subjectId": "SquareMeter1238495",
+        "predicate": "value",
+        "objectValue": "1238495",
+        "provenanceId": "dc/sm3m2w3"
+      },
+      {
+        "subjectId": "SquareMeter1238495",
+        "predicate": "unitOfMeasure",
+        "objectId": "SquareMeter",
+        "provenanceId": "dc/sm3m2w3"
+      },
+      {
+        "subjectId": "SquareMeter1238495",
+        "predicate": "typeOf",
+        "objectId": "Quantity",
+        "objectName": "Quantity",
+        "objectTypes": [
+          "Class"
+        ],
+        "provenanceId": "dc/sm3m2w3"
+      },
+      {
+        "subjectId": "SquareMeter1238495",
+        "predicate": "provenance",
+        "objectId": "dc/sm3m2w3",
+        "objectName": "https://www.census.gov/geographies/reference-files.html",
+        "objectTypes": [
+          "Provenance"
+        ],
+        "provenanceId": "dc/sm3m2w3"
+      },
+      {
+        "subjectId": "SquareMeter1238495",
+        "predicate": "name",
+        "objectValue": "SquareMeter 1238495",
+        "provenanceId": "dc/sm3m2w3"
+      },
+      {
+        "subjectId": "geoId/12086008906",
+        "subjectName": "Census Tract 89.06, Miami-Dade County, Florida",
+        "subjectTypes": [
+          "CensusTract"
+        ],
+        "predicate": "landArea",
+        "objectId": "SquareMeter1238495",
+        "objectName": "SquareMeter 1238495",
+        "objectTypes": [
+          "Quantity"
+        ],
+        "provenanceId": "dc/sm3m2w3"
+      }
+    ]
   }
 }
 ```
 
-### Example 2: Retrieve the property labels of two different leukocyte cell lines.
+### Example 2: Retrieve the triples associated with two American biological research labs
 
-#### GET Request
+<div>
 
-```curl
+{% tabs log %}
+
+{% tab log GET Request %}
+
+```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/node/property-labels?dcids=dc%2Fc3j78rpyssdmf&dcids=dc%2F7hfhd2ek8ppd2'
+  --url 'https://api.datacommons.org/node/triples?dcids=dc%2F02qyghln81jr4&dcids=dc%2F1jrmkql8dprv9'
 ```
 
-#### POST Request
+{% endtab %}
 
-```curl
+{% tab log POST Request %}
+
+```bash
 curl --request POST \
-  --url https://api.datacommons.org/node/property-labels \
+  --url https://api.datacommons.org/node/triples \
   --header 'content-type: application/json' \
   --data '{
 	"dcids": [
-		"dc/c3j78rpyssdmf",
-		"dc/7hfhd2ek8ppd2"
+		"dc/02qyghln81jr4",
+		"dc/1jrmkql8dprv9"
 	]
 }'
 ```
 
+{% endtab %}
+
+{% tab log javascript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/ejxgchuy/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"dc/02qyghln81jr4\":[{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"url\",\"objectValue\":\"https://www.hsph.harvard.edu/alkes-price/contact/\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"typeOf\",\"objectId\":\"Lab\",\"objectName\":\"Lab\",\"objectTypes\":[\"Class\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"status\",\"objectValue\":\"current\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"state\",\"objectValue\":\"MA\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"sameAs\",\"objectValue\":\"https://www.encodeproject.org/labs/alkes-price/\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"provenance\",\"objectId\":\"dc/h2lkz1\",\"objectName\":\"https://www.encodeproject.org/\",\"objectTypes\":[\"Provenance\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"postalCode\",\"objectValue\":\"02115\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"pi\",\"objectValue\":\"https://www.encodeproject.org/users/bf09c1e0-52a5-4efb-acbd-88671257964d/\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"phone1\",\"objectValue\":\"617-432-2262\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"name\",\"objectValue\":\"Alkes Price, Harvard\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"instituteName\",\"objectValue\":\"Harvard University\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"instituteLabel\",\"objectValue\":\"Harvard\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"encodeUUID\",\"objectValue\":\"312078ef-953b-4483-8df2-99f920237306\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"country\",\"objectValue\":\"USA\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"city\",\"objectValue\":\"Boston\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"awards\",\"objectValue\":\"https://www.encodeproject.org/awards/U01HG009379/\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"address2\",\"objectValue\":\"Building 2, Room 211\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/02qyghln81jr4\",\"predicate\":\"address1\",\"objectValue\":\"665 Huntington Ave.\",\"provenanceId\":\"dc/h2lkz1\"}],\"dc/1jrmkql8dprv9\":[{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"typeOf\",\"objectId\":\"Lab\",\"objectName\":\"Lab\",\"objectTypes\":[\"Class\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"status\",\"objectValue\":\"current\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"sameAs\",\"objectValue\":\"https://www.encodeproject.org/labs/andrew-fire/\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"provenance\",\"objectId\":\"dc/h2lkz1\",\"objectName\":\"https://www.encodeproject.org/\",\"objectTypes\":[\"Provenance\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"pi\",\"objectValue\":\"https://www.encodeproject.org/users/0db98457-a91e-4cde-b058-a0c972c008e3/\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"name\",\"objectValue\":\"Andrew Z. Fire, Stanford\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/jqclkhdw83dl5\",\"subjectTypes\":[\"EncodeBiosample\"],\"predicate\":\"lab\",\"objectId\":\"dc/1jrmkql8dprv9\",\"objectName\":\"Andrew Z. Fire, Stanford\",\"objectTypes\":[\"Lab\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/9pz5fgt9b947h\",\"subjectTypes\":[\"EncodeBiosample\"],\"predicate\":\"lab\",\"objectId\":\"dc/1jrmkql8dprv9\",\"objectName\":\"Andrew Z. Fire, Stanford\",\"objectTypes\":[\"Lab\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/8n2ybm28pe3fd\",\"subjectTypes\":[\"EncodeBiosample\"],\"predicate\":\"lab\",\"objectId\":\"dc/1jrmkql8dprv9\",\"objectName\":\"Andrew Z. Fire, Stanford\",\"objectTypes\":[\"Lab\"],\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"instituteName\",\"objectValue\":\"Stanford\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"encodeUUID\",\"objectValue\":\"db35b051-215c-4c1c-8e98-610d62d30def\",\"provenanceId\":\"dc/h2lkz1\"},{\"subjectId\":\"dc/1jrmkql8dprv9\",\"predicate\":\"awards\",\"objectValue\":\"https://www.encodeproject.org/awards/R01GM037706/\",\"provenanceId\":\"dc/h2lkz1\"}]}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
   "payload": {
-    "dc/7hfhd2ek8ppd2": {
-      "inLabels": [
-        "biosampleOntology"
-      ],
-      "outLabels": [
-        "cellSlims",
-        "classification",
-        "dbxrefs",
-        "developmentalSlims",
-        "encodeUUID",
-        "name",
-        "organSlims",
-        "provenance",
-        "sameAs",
-        "status",
-        "systemSlims",
-        "termId",
-        "termName",
-        "typeOf"
-      ]
-    },
-    "dc/c3j78rpyssdmf": {
-      "inLabels": [
-        "biosampleOntology"
-      ],
-      "outLabels": [
-        "cellSlims",
-        "classification",
-        "dbxrefs",
-        "encodeUUID",
-        "name",
-        "provenance",
-        "sameAs",
-        "status",
-        "systemSlims",
-        "termId",
-        "termName",
-        "typeOf"
-      ]
-    }
+    "dc/02qyghln81jr4": [
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "url",
+        "objectValue": "https://www.hsph.harvard.edu/alkes-price/contact/",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "typeOf",
+        "objectId": "Lab",
+        "objectName": "Lab",
+        "objectTypes": [
+          "Class"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "status",
+        "objectValue": "current",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "state",
+        "objectValue": "MA",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "sameAs",
+        "objectValue": "https://www.encodeproject.org/labs/alkes-price/",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "provenance",
+        "objectId": "dc/h2lkz1",
+        "objectName": "https://www.encodeproject.org/",
+        "objectTypes": [
+          "Provenance"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "postalCode",
+        "objectValue": "02115",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "pi",
+        "objectValue": "https://www.encodeproject.org/users/bf09c1e0-52a5-4efb-acbd-88671257964d/",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "phone1",
+        "objectValue": "617-432-2262",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "name",
+        "objectValue": "Alkes Price, Harvard",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "instituteName",
+        "objectValue": "Harvard University",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "instituteLabel",
+        "objectValue": "Harvard",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "encodeUUID",
+        "objectValue": "312078ef-953b-4483-8df2-99f920237306",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "country",
+        "objectValue": "USA",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "city",
+        "objectValue": "Boston",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "awards",
+        "objectValue": "https://www.encodeproject.org/awards/U01HG009379/",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "address2",
+        "objectValue": "Building 2, Room 211",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/02qyghln81jr4",
+        "predicate": "address1",
+        "objectValue": "665 Huntington Ave.",
+        "provenanceId": "dc/h2lkz1"
+      }
+    ],
+    "dc/1jrmkql8dprv9": [
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "typeOf",
+        "objectId": "Lab",
+        "objectName": "Lab",
+        "objectTypes": [
+          "Class"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "status",
+        "objectValue": "current",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "sameAs",
+        "objectValue": "https://www.encodeproject.org/labs/andrew-fire/",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "provenance",
+        "objectId": "dc/h2lkz1",
+        "objectName": "https://www.encodeproject.org/",
+        "objectTypes": [
+          "Provenance"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "pi",
+        "objectValue": "https://www.encodeproject.org/users/0db98457-a91e-4cde-b058-a0c972c008e3/",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "name",
+        "objectValue": "Andrew Z. Fire, Stanford",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/jqclkhdw83dl5",
+        "subjectTypes": [
+          "EncodeBiosample"
+        ],
+        "predicate": "lab",
+        "objectId": "dc/1jrmkql8dprv9",
+        "objectName": "Andrew Z. Fire, Stanford",
+        "objectTypes": [
+          "Lab"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/9pz5fgt9b947h",
+        "subjectTypes": [
+          "EncodeBiosample"
+        ],
+        "predicate": "lab",
+        "objectId": "dc/1jrmkql8dprv9",
+        "objectName": "Andrew Z. Fire, Stanford",
+        "objectTypes": [
+          "Lab"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/8n2ybm28pe3fd",
+        "subjectTypes": [
+          "EncodeBiosample"
+        ],
+        "predicate": "lab",
+        "objectId": "dc/1jrmkql8dprv9",
+        "objectName": "Andrew Z. Fire, Stanford",
+        "objectTypes": [
+          "Lab"
+        ],
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "instituteName",
+        "objectValue": "Stanford",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "encodeUUID",
+        "objectValue": "db35b051-215c-4c1c-8e98-610d62d30def",
+        "provenanceId": "dc/h2lkz1"
+      },
+      {
+        "subjectId": "dc/1jrmkql8dprv9",
+        "predicate": "awards",
+        "objectValue": "https://www.encodeproject.org/awards/R01GM037706/",
+        "provenanceId": "dc/h2lkz1"
+      }
+    ]
   }
 }
 ```
@@ -214,7 +475,7 @@ In general, if your request is malformed in some way, you will receive a 400 sta
 ```json
 {
   "code": 3,
-  "message": "Missing required arguments: dcid",
+  "message": "Missing required arguments: dcids",
   "details": [
     {
       "@type": "type.googleapis.com/google.rpc.DebugInfo",
