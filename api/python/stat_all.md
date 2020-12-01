@@ -36,9 +36,7 @@ with the following fields
 - `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
 - `scalingFactor`: the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
 
-**Raises**
-
-- `ValueError` - If no statistical value found for any `Place` and `StatisticalVariable` combinations.
+If no statistical value can be found for any `Place` and `StatisticalVariable` combinations, `NaN` is returned.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
