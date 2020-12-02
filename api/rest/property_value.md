@@ -490,7 +490,7 @@ curl --request POST \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/node/property-values?dcids=wikidataId%2FQ1486&property=containedInPlace&direction=out'
+  --url 'https://api.datacommons.org/node/property-values?dcids=country/ARG&property=containedInPlace'
 ```
 
 {% endtab %}
@@ -503,10 +503,9 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{
 	"dcids": [
-		"wikidataId/Q1486"
+		"country/ARG"
 	],
-	"property": "containedInPlace",
-	"direction": "out"
+	"property": "containedInPlace"
 }'
 ```
 
@@ -514,7 +513,7 @@ curl --request POST \
 
 {% tab log JavaScript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g6ctqbxj/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g6ctqbxj/12/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
