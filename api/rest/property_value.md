@@ -45,7 +45,7 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - `valueType`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
-  - `direction`: You can specify this argument as `out` to indicate that you desire the response to only include nodes with the value of the property `containedInPlace` equivalent to one or more of the specified `DCIDs`, or `in` to only return nodes equivalent to one or more of the values of the `containedInPlace` properties of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  - `direction`: This refers to the orientation, or direction, of the edge. You can specify this argument as `out` to indicate that you desire the response to only include nodes with the value of the property `containedInPlace` equivalent to one or more of the specified `DCIDs`, or `in` to only return nodes equivalent to one or more of the values of the `containedInPlace` properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
 
 ### Step 2: Creating the request
 
@@ -480,7 +480,7 @@ curl --request POST \
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-*Figure 1. Directional supercategory relationships for the city of Buenos Aires. Here the "in" label points from the containing place to the place with property "containedInPlace" equal to the containing place.*
+*Figure 1. Relationship diagram for the property `containedInPlace` of the country of Argentina, for which this property takes on the value `South America`, and the city of Buenos Aires, for which this property takes on the value `Argentina`.*
 
 <div>
 
