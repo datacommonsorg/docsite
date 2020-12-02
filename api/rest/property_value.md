@@ -88,7 +88,7 @@ After decoding the response payload string, there are two possible structures it
 {
     "<dcid>":
         {
-        "direction": [
+        "<direction>": [
             {
               "dcid": "string",
               "name": "string",
