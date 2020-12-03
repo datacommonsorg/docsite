@@ -45,7 +45,7 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - `valueType`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
-  - `direction`: This refers to the orientation, or direction, of the edge. You can specify this argument as `out` to indicate that you desire the response to only include nodes with the value of the property `containedInPlace` equivalent to one or more of the specified `DCIDs`, or `in` to only return nodes equivalent to one or more of the values of the `containedInPlace` properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
+  - `direction`: This refers to the orientation, or direction, of the edge. You can specify this argument as `out` to indicate that you desire the response to only include nodes with the value of the property equivalent to one or more of the specified `DCIDs`, or `in` to only return nodes equivalent to one or more of the values of the properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
 
 ### Step 2: Creating the request
 
