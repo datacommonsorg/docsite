@@ -47,6 +47,10 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - `direction`: This refers to the orientation, or direction, of the edge. You can specify this argument as `out` to indicate that you desire the response to only include nodes with the value of the property equivalent to one or more of the specified `DCIDs`, or `in` to only return nodes equivalent to one or more of the values of the properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
 
+![](/assets/images/rest/property_value_direction_example.png)
+
+*Figure 1. Relationship diagram for the property `containedInPlace` of the country of Argentina, for which this property takes on the value `South America`, and the city of Buenos Aires, for which this property takes on the value `Argentina`.*
+
 ### Step 2: Creating the request
 
 When actually putting together your request, you can choose from two options. If you intend to use only a small number of parameters, you may want to use the simpler formatting offered by the GET method, which makes requests against the main endpoint while altering the query parameters incorporated into the URL. For more complex queries, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
@@ -480,7 +484,7 @@ curl --request POST \
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-*Figure 1. Relationship diagram for the property `containedInPlace` of the country of Argentina, for which this property takes on the value `South America`, and the city of Buenos Aires, for which this property takes on the value `Argentina`.*
+*Figure 2. Relationship diagram for the property `containedInPlace` of the country of Argentina, for which this property takes on the value `South America`, and the city of Buenos Aires, for which this property takes on the value `Argentina`.*
 
 <div>
 
