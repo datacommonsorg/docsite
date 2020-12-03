@@ -49,7 +49,7 @@ In addition to these required properties, this endpoint also allows for other, o
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-*Figure 1. Relationship diagram for the property `containedInPlace` of the country of Argentina, for which this property takes on the value `South America`, and the city of Buenos Aires, for which this property takes on the value `Argentina`.*
+*Figure 1. Relationship diagram for the property `containedInPlace` of the country Argentina. Note the directionality of the property `containedInPlace`: the API returns both nodes with direction `in` (Buenos Aires is `containedInPlace` of Argentina) and nodes with direction `out` (Argentina is `containedInPlace` of South America).*
 
 ### Step 2: Creating the request
 
@@ -484,7 +484,7 @@ curl --request POST \
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-*Figure 2. Relationship diagram for the property `containedInPlace` of the country of Argentina, for which this property takes on the value `South America`, and the city of Buenos Aires, for which this property takes on the value `Argentina`.*
+*Figure 2. Relationship diagram for the property `containedInPlace` of the country Argentina. Note the directionality of the property `containedInPlace`: the API returns both nodes with direction `in` (Buenos Aires is `containedInPlace` of Argentina) and nodes with direction `out` (Argentina is `containedInPlace` of South America).*
 
 <div>
 
