@@ -114,11 +114,9 @@ We would like to get the [population](https://datacommons.org/browser/Count_Pers
 }
 ```
 
-In the next example, there is no data found so the API throws ValueError:
+In the next example, there is no data found, so the API returns a dictionary with no values:
 
 ```python
->>> dc.get_stat_all(['badGeoId'], ['BadStaVar'])
->>> Traceback (most recent call last):
-    ...
-    raise ValueError('No data in response.')
+>>> dc.get_stat_all(["bad value"],["another bad value"])
+{'bad value': {'another bad value': {}}}
 ```

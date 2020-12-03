@@ -65,7 +65,5 @@ throws ValueError:
 
 ```python
 >>> dc.get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
-Traceback (most recent call last):
-    ...
-    raise ValueError('No data in response.')
+{}
 ```
