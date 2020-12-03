@@ -35,7 +35,7 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 
  A `dict` mapping `date`(str) to the statistical value (float).
 
-If no statistical value can be found for the place with the given parameters, `NaN` is returned.
+If no statistical value can be found for the place with the given parameters, an empty dictionary is returned.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
