@@ -60,8 +60,8 @@ We would like to get the [male population](https://datacommons.org/browser/Count
 }
 ```
 
-In the next example, the parameter `observation_period='P3Y'` overly constrains the request so the API
-throws ValueError:
+In the next example, the parameter `observation_period='P3Y'` overly constrains the request, so the API
+does not return a value:
 
 ```python
 >>> dc.get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
