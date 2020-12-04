@@ -36,9 +36,7 @@ with the following fields
 - `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
 - `scalingFactor`: the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
 
-**Raises**
-
-- `ValueError` - If no statistical value found for any `Place` and `StatisticalVariable` combinations.
+If no statistical value can be found for the `Place` and `StatisticalVariable` combination passed into this method, a dictionary with no values is returned.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
@@ -116,11 +114,9 @@ We would like to get the [population](https://datacommons.org/browser/Count_Pers
 }
 ```
 
-In the next example, there is no data found so the API throws ValueError:
+In the next example, there is no data found, so the API returns a dictionary with no values:
 
 ```python
->>> dc.get_stat_all(['badGeoId'], ['BadStaVar'])
->>> Traceback (most recent call last):
-    ...
-    raise ValueError('No data in response.')
+>>> dc.get_stat_all(["bad value"],["another bad value"])
+{'bad value': {'another bad value': {}}}
 ```
