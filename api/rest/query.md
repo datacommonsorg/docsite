@@ -33,21 +33,21 @@ using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
 This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites whose data is formulated using [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework). It leverages the graph structure innate in the data it queries to return specific information to an end user.
 
-To use SPARQL to precisely obtain the data you seek, you will need at a minimum 
-
-This API only supports the following subset of SPARQL keywords:
-
--   ORDER BY
--   DISTINCT
--   LIMIT
-
-In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
-
-This endpoint also allows you 
-
 ### Step 2: Creating the request
 
-Since only the POST method is available for this endpoint, you will need to assemble the request in the form of a JSON object.
+Since only the POST method is available for this endpoint, you will need to assemble the request in the form of a JSON object adhering to the following form:
+
+```json
+{"sparql": "<query>"}
+```
+
+Here `<query>` denotes the place where the query string will be placed. For more information on assembling SPARQL queries, checkout (...)
+
+**NOTES:**
+
+- This API only supports the SPARQL keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
+
+- In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
 
 ## What to expect in the response
 
@@ -56,16 +56,17 @@ A correct response will always look like this:
 ```json
 {
   "header": [
-    "?name"
+    <String>
   ],
   "rows": [
     {
       "cells": [
         {
-          "value": "California"
+          "value": <String>
         }
       ]
-    }
+    },
+    ...
   ]
 }
 ```
@@ -75,15 +76,15 @@ The response contains two fields, `header` and `rows`, as well as a `cell` objec
 **NOTES:**
 
 -   The value of `header` is an array of strings corresponding to the query
-    variable.
--   The value of `rows` is an array of `row` object, with each containing a
-    `cells` object of an array of `cell`.
--   The `cell` object has a string field `value` corresponds to the queried
+    variables.
+-   The value of `rows` is an array of `row` objects, with each containing a
+    `cells` object of an array of `cells`.
+-   The `cell` object has a string field `value` corresponding to the queried
     variable.
 
-## POST Request
+## Example Requests and Responses
 
-**Examples**
+### Example 1. Retrieve the name of the state associated with DCID geoId/06.
 
 ```bash
 curl -X POST 'https://api.datacommons.org/query' \
@@ -97,7 +98,45 @@ curl -X POST 'https://api.datacommons.org/query' \
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-<!-- todo test and update error response section -->
+#### Response
+
+### Example 2. Retrieve a list of flash flood events in Prince George's County in Maryland.
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/query \
+  --header 'content-type: application/json' \
+  --data '{"sparql": "SELECT ?name ?flashFloodEvent \
+                WHERE { \
+                  ?county typeOf County . \
+                  ?county dcid geoId/24033 . \
+									?county name ?name . \
+									?flashFloodEvent name ?name
+                }"}'
+```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+### Example 3. Retrieve only the most recent five earthquakes in California. (...)
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/query \
+  --header 'content-type: application/json' \
+  --data '{"sparql": "SELECT ?name ?flashFloodEvent \
+                WHERE { \
+                  ?county typeOf County . \
+                  ?county dcid geoId/24033 . \
+									?county name ?name . \
+									?flashFloodEvent name ?name
+                }"}'
+```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+### order by -- plants indexed, reverse alphabetical (?)
+
+### distinct
 
 ## Error Responses
 
