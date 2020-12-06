@@ -8,81 +8,121 @@ grand_parent: API
 
 # Show Property Labels of Node(s)
 
-## `datacommons.get_property_labels(dcids, out=True)`
+Returns the labels of properties defined for the given node DCIDs.
 
-Returns the labels of properties defined for the given node DCID's
+## General information about this endpoint
 
-**Arguments**
+**Signature**: `datacommons.get_property_labels(dcids, out=True)`
 
-*   `dcids (list of str)` - A list of nodes to query, identified by their DCID's
+**Authentication**: Optional
 
-*   `out (bool, optional)` - Whether or not the property points away from the given list of nodes.
+**Required arguments**:
 
-**Returns**
+*   `dcids`: A list of nodes to query, identified by their DCID.
 
-A `dict` mapping DCID's to lists of property labels. If `out` is `True`,
-then property labels correspond to edges directed away from given nodes.
-Otherwise, they correspond to edges directed towards the given nodes.
+**Optional arguments**:
 
-**Raises**
+*   `out`: The label's direction. Defaults to `True` (only returning response nodes directed towards the requested node). If set to `False`, will only return response nodes directed away from the request node.
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+## Assembling the information you will need for a call to the get_property_values method
 
-Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
+Going into more detail on how to assemble the values for the required arguments:
 
-## Examples
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
-**Examples**
+In addition to these required properties, this endpoint also allows for the additional, optional argument `out`. This is a boolean value that refers to the orientation, or direction, of the edge. You can specify this argument as `True` to indicate that you desire the response to only include nodes with the value of the property equivalent to one or more of the specified `DCIDs`, or `False` to only return nodes equivalent to one or more of the values of the properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
 
-To get all outgoing property labels for [California](https://datacommons.org/browser/geoId/06>) and
-[Colorado](https://datacommons.org/browser/geoId/08), we can write the following:
+## What to expect in the function return
 
-```python
->>> import datacommons as dc
->>> dc.set_api_key(YOUR_API_KEY_HERE)
->>> dc.get_property_labels(['geoId/06', 'geoId/08'])
-    {
-      'geoId/06': [
-        'containedInPlace',
-        'geoId',
-        'kmlCoordinates',
-        'name',
-        'provenance',
-        'typeOf'
-      ],
-      'geoId/08',: [
-        'containedInPlace',
-        'geoId',
-        'kmlCoordinates',
-        'name',
-        'provenance',
-        'typeOf'
-      ]
-    }
+The method's return value will always be a `dict` in the following form:
+
+```json
+{
+    "<dcid>": ["string", ...]
+    ...
+}
 ```
 
-We can also get incoming property labels by setting `out=False`:
+## Example requests and responses
+
+### Example 1: Retrieve the outwardly directed property labels of Wisconsin's eighth congressional district.
+
+#### Method call
+
 ```python
->>> dc.get_property_labels(['geoId/06', 'geoId/08'], out=False)
+dc.get_property_labels(['geoId/5508'])
+```
+
+#### Response
+
+##### Raw
+
+```json
+{'geoId/5508': ['containedInPlace', 'geoId', 'geoJsonCoordinates', 'geoOverlaps', 'kmlCoordinates', 'landArea', 'latitude', 'longitude', 'name', 'provenance', 'typeOf', 'waterArea']}
+```
+
+###### Parsed and prettified
+
+```json
 {
-  'geoId/06': [
-    'addressRegion',
-    'containedInPlace',
-    'location',
-    'overlapsWith'
-  ],
-  'geoId/08',: [
-    'addressRegion',
-    'containedInPlace',
-    'location',
-    'overlapsWith'
+  "geoId/5508": [
+    "containedInPlace",
+    "geoId",
+    "geoJsonCoordinates",
+    "geoOverlaps",
+    "kmlCoordinates",
+    "landArea",
+    "latitude",
+    "longitude",
+    "name",
+    "provenance",
+    "typeOf",
+    "waterArea"
   ]
 }
 ```
 
-If there is no node associated with the DCID, an empty list is returned:
+### Example 2: Retrieve the inwardly directed property labels of two different leukocyte cell lines.
+
+```python
+dc.get_property_labels(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'],out=False)
+```
+
+#### Response
+
+##### Raw
+
+```json
+{'dc/c3j78rpyssdmf': ['biosampleOntology'], 'dc/7hfhd2ek8ppd2': ['biosampleOntology']}
+```
+
+###### Parsed and prettified
+
+```json
+{
+  "dc/c3j78rpyssdmf": [
+    "biosampleOntology"
+  ],
+  "dc/7hfhd2ek8ppd2": [
+    "biosampleOntology"
+  ]
+}
+```
+
+## Error Returns
+
+If there is no value associated with the property, an empty list is returned:
 
 ```python
 >>> dc.get_property_labels(['geoId/06', 'geoId/21'])
 {'geoId/06': [], 'geoId/21': []}
+```
+
+If you do not pass a required positional argument, a TypeError is returned:
+
+```python
+>>> dc.get_property_labels()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: get_property_labels() missing 1 required positional argument: 'dcids'
 ```
