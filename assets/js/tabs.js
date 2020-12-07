@@ -55,5 +55,4 @@ window.addEventListener('load', function () {
       liTab.classList.add('active');
     }, false);
   });
-}); 
- 
+});

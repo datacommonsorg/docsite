@@ -10,7 +10,8 @@ grand_parent: API
 
 Returns a multiple level object containing all available time series for the specified
 places and statistical variables.
-See the [full list of StatisticalVariables](/statistical_variables.html).
+Note that in Data Commons, a Statistical Variable is any type of statistical metric that can be measured at a place and
+time. See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **URL**: `/stat/all`
 
@@ -18,9 +19,9 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Required Arguments**:
 
-- `places`: A list of [`Place`](https://datacommons.org/browser/Place) `dcid`s to query for.
+- `places`: A list of [`Place`](https://datacommons.org/browser/Place) `DCIDs` to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
 
-- `stat_vars`: A list of [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) `dcid`s.
+- `stat_vars`: A list of [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) `DCIDs`.
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
