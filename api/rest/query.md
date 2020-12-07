@@ -134,18 +134,53 @@ curl --request POST \
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-### order by -- plants indexed, reverse alphabetical (?)
+### Example 4. Retrieve a list of ten biological specimens in reverse alphabetical order.
 
-### distinct
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/query \
+  --header 'content-type: application/json' \
+  --data '{
+	"sparql": "SELECT ?name \
+                WHERE { \
+									?biologicalSpecimen typeOf BiologicalSpecimen . \
+									?biologicalSpecimen name ?name
+                }
+								ORDER BY DESC(?name)
+								LIMIT 10"
+}'
+```
+
+### Example 5. Retrieve a list of five distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/query \
+  --header 'content-type: application/json' \
+  --data '{
+	"sparql": "SELECT DISTINCT ?LifeExpectancy \
+WHERE { \
+  ?pop typeOf StatisticalPopulation . \
+  ?o typeOf Observation .\
+  ?pop dcid dc/p/grjmhz7x2kc9f .\
+  ?o observedNode ?pop .\
+  ?o measuredValue ?LifeExpectancy
+}
+ORDER BY ASC(?LifeExpectancy)
+LIMIT 10"
+}'
+```
 
 ## Error Responses
 
-If your request does not include a required argument, you will receive a 400 status code and an error message like the following:
+If there are no values for your query, you won't receive an error code. Instead, the endpoint will return only the headers you sent, with no accompanying value information.
+
+If your JSON body is formatted improperly, you will receive a 400 error and an error message like the following:
 
 ```json
 {
   "code": 3,
-  "message": "Missing required argument: stat_var",
+  "message": "Node should be string, got [StatisticalPopulation ?o typeOf Observation] of type []string",
   "details": [
     {
       "@type": "type.googleapis.com/google.rpc.DebugInfo",
@@ -155,12 +190,13 @@ If your request does not include a required argument, you will receive a 400 sta
   ]
 }
 ```
-If your request includes a bad argument, you will receive a 404 status code and an error message like the following:
+
+If your SPARQL query is constructed incorrectly, you will receive a 500 error and an error message like the following:
 
 ```json
 {
-  "code": 5,
-  "message": "No statistical variable found for CountPerson_Male",
+  "code": 2,
+  "message": "googleapi: Error 400: Unrecognized name: count; Did you mean unit? at [1:389], invalidQuery",
   "details": [
     {
       "@type": "type.googleapis.com/google.rpc.DebugInfo",
@@ -169,3 +205,4 @@ If your request includes a bad argument, you will receive a 404 status code and 
     }
   ]
 }
+```
