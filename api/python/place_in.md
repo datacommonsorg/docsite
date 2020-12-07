@@ -30,9 +30,7 @@ A `dict` from a given dcid to a list of places identified by dcids of the given
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
-
-Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
+*   `ValueError` - If the payload returned by the Data Commons REST API is malformed.
 
 ## Examples
 
