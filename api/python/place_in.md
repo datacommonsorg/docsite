@@ -8,50 +8,108 @@ grand_parent: API
 
 # Get Places Contained within Another Place
 
-## `datacommons.get_places_in(dcids, place_type)`
+## General information about this endpoint
 
-Given a list of [`Place`](https://datacommons.org/browser/Place) DCID's,
-(e.g. `County`, `State`, `Country`, etc...), return the DCIDs of places
-contained within, of a specified type.
+**Signature**: `datacommons.get_places_in(dcids, place_type)`
+**Authentication**: Optional
 
+**Required arguments**:
 
-**Arguments**
+*   `dcids`: A list of nodes to query, identified by their DCID.
+*   `place_type`: The type of the contained child `Places` within the given
+    DCIDs to filter by.
 
-*   `dcids (list of str)` - DCIDs of parent places to query for.
+## Assembling the information you will need for a call to the get_places_in method
 
-*   `place_type (str)` - The type of the contained child `Place`s within the given
-    DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
-    full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
+Going into more detail on how to assemble the values for the required arguments:
 
-**Returns**
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
-A `dict` from a given dcid to a list of places identified by dcids of the given
-`place_type`.
+ - `place_type`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
 
-**Raises**
+## What to expect in the function return
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
+The method's return value will always be a `dict` in the following form:
 
-Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
+```json
+{
+    "<dcid>": ["string", ...]
+    ...
+}
+```
 
-## Examples
+## Example requests and responses
 
-We would like to get all Counties contained in
-[California}(https://datacommons.org/browser/geoId/06). Specifying the
-`dcids` as a `list` result in the following:
+### Example 1: Retrieve a list of the counties in Delaware.
+
+#### Method call
 
 ```python
->>> import datacommons as dc
->>> dc.set_api_key(YOUR_API_KEY_HERE)
->>> dc.get_places_in(["geoId/06"], "County")
+dc.get_places_in(["geoId/10"], "County")
+```
+
+#### Response
+
+##### Raw
+
+```json
+{'geoId/10': ['geoId/10001', 'geoId/10003', 'geoId/10005']}
+```
+
+###### Parsed and prettified
+
+```json
 {
-  'geoId/06': [
-    'geoId/06001',
-    'geoId/06003',
-    'geoId/06005',
-    'geoId/06007',
-    'geoId/06009',
-    ...  # and 53 more
+  "geoId/10": [
+    "geoId/10001",
+    "geoId/10003",
+    "geoId/10005"
   ]
 }
+```
+
+### Example 2: Retrieve a list of congressional districts in Alaska and Hawaii.
+
+```python
+dc.get_places_in(["geoId/15","geoId/02"], "CongressionalDistrict")
+```
+
+#### Response
+
+##### Raw
+
+```json
+{'geoId/15': ['geoId/1501', 'geoId/1502'], 'geoId/02': ['geoId/0200']}
+```
+
+###### Parsed and prettified
+
+```json
+{
+  "geoId/15": [
+    "geoId/1501",
+    "geoId/1502"
+  ],
+  "geoId/02": [
+    "geoId/0200"
+  ]
+}
+```
+
+## Error Returns
+
+If there is no value associated with the property, an empty list is returned:
+
+```python
+>>> dc.get_places_in(["geoId/1021"], "CongressionalDistrict")
+{'geoId/1021': []}
+```
+
+If you do not pass a required positional argument, a TypeError is returned:
+
+```python
+>>> dc.get_places_in(["geoId/1021"])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: get_places_in() missing 1 required positional argument: 'place_type'
 ```
