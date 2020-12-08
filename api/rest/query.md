@@ -41,7 +41,7 @@ Since only the POST method is available for this endpoint, you will need to asse
 {"sparql": "<query>"}
 ```
 
-Here `<query>` denotes the place where the query string will be placed. For more information on assembling SPARQL queries, checkout (...)
+Here `<query>` denotes the place where the query string will be placed. For more information on assembling SPARQL queries, checkout [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
 
 **NOTES:**
 
@@ -86,6 +86,12 @@ The response contains two fields, `header` and `rows`, as well as a `cell` objec
 
 ### Example 1. Retrieve the name of the state associated with DCID geoId/06.
 
+<div>
+
+{% tabs log %}
+
+{% tab log POST Request %}
+
 ```bash
 curl -X POST 'https://api.datacommons.org/query' \
 -d '{"sparql": "SELECT ?name \
@@ -96,28 +102,45 @@ curl -X POST 'https://api.datacommons.org/query' \
                 }"}'
 ```
 
+{% endtab %}
+
+{% tab log JavaScript %}
+
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
 
 #### Response
 
+```json
+{
+  "header": [
+    "?name"
+  ],
+  "rows": [
+    {
+      "cells": [
+        {
+          "value": "California"
+        }
+      ]
+    }
+  ]
+}
+```
+
 ### Example 2. Retrieve a list of flash flood events in Prince George's County in Maryland.
 
-```bash
-curl --request POST \
-  --url https://api.datacommons.org/query \
-  --header 'content-type: application/json' \
-  --data '{"sparql": "SELECT ?name ?flashFloodEvent \
-                WHERE { \
-                  ?county typeOf County . \
-                  ?county dcid geoId/24033 . \
-									?county name ?name . \
-									?flashFloodEvent name ?name
-                }"}'
-```
+<div>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+{% tabs log %}
 
-### Example 3. Retrieve only the most recent five earthquakes in California. (...)
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -132,9 +155,109 @@ curl --request POST \
                 }"}'
 ```
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+{% endtab %}
 
-### Example 4. Retrieve a list of ten biological specimens in reverse alphabetical order.
+{% tab log JavaScript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/u4bjsm7e/11/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+#### Response
+
+```json
+{
+  "header": [
+    "?name",
+    "?flashFloodEvent"
+  ],
+  "rows": [
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/khx0ltrvngts4"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/4zn37xlre4cpb"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/l58rk9xvcb543"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/nhhm9mksqpmh4"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/3619p7xsdptyc"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/tmvcgb87b9884"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "Prince George's County"
+        },
+        {
+          "value": "dc/6zx159g8hrmh2"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Example 3. Retrieve a list of ten biological specimens in reverse alphabetical order.
+
+<div>
+
+{% tabs log %}
+
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -151,7 +274,108 @@ curl --request POST \
 }'
 ```
 
-### Example 5. Retrieve a list of five distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
+{% endtab %}
+
+{% tab log JavaScript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7o469zpn/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+#### Response
+
+```json
+{
+  "header": [
+    "?name"
+  ],
+  "rows": [
+    {
+      "cells": [
+        {
+          "value": "x Triticosecale"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Silene"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Silene"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Silene"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Example 4. Retrieve a list of five distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
+
+<div>
+
+{% tabs log %}
+
+{% tab log POST Request %}
 
 ```bash
 curl --request POST \
@@ -169,6 +393,101 @@ WHERE { \
 ORDER BY ASC(?LifeExpectancy)
 LIMIT 10"
 }'
+```
+
+{% endtab %}
+
+{% tab log JavaScript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/nsfadbrw/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+#### Response
+
+```json
+{
+  "header": [
+    "?LifeExpectancy"
+  ],
+  "rows": [
+    {
+      "cells": [
+        {
+          "value": "26.4"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "26.5"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "26.7"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "26.8"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "26.9"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "27.2"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "27.4"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "27.5"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "28.1"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "28.3"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ## Error Responses
