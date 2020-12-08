@@ -11,40 +11,40 @@ grand_parent: API
 ## `datacommons.get_stat_all(places, stat_vars)`
 
 Returns a nested `dict` of all time series for [`places`](https://datacommons.org/browser/Place) and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable).
+Note that in Data Commons, a Statistical Variable is any type of statistical metric that can be measured at a place and
+time. See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Arguments**
 
-- `places (Iterable of str)`: The `dcid`s of the [`Place`](https://datacommons.org/browser/Place) to query for.
+- `places (Iterable of str)`: The `dcids` of the [`Places`](https://datacommons.org/browser/Place) to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
 
-- `stats_vars (Iterable of str)`: The `dcid`s of the
-  [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+- `stats_vars (Iterable of str)`: The `dcids` of the
+  [`StatisticalVariables`](https://datacommons.org/browser/StatisticalVariable).
 
 **Returns**
 
-A nested `dict` mapping `Place`s to `StatisticalVariable`s and all available
-time series for each Place and StatisticalVariable pair.
+A nested `dict` mapping `Places` to `StatisticalVariables` and all available
+time series for each `Place` and `StatisticalVariable` pair.
 
-The top level `dict` key is the `Place` dcid and the second level `dict` key is the
-`StatisticalVariable` dcid, with the object being an array of time series object
-with the following fields
+The top level `dict` key is the `Place` DCID and the second level `dict` key is the
+`StatisticalVariable` DCID, with the object being an array of time series object
+with the following fields:
 
-- `val`: a dict from date to statistical value.
-- `importName`: the import name of the observations.
+- `val`: a dict with dates keyed to statistical values.
+- `importName`: the dataset source name for the observations.
 - `provenanceDomain`: the [Provenance](https://datacommons.org/browser/Provenance) domain of the observations.
 - `measurementMethod`: the [`measurementMethod`](https://datacommons.org/browser/measurementMethod) of the observations, if it exists.
 - `observationPeriod`: the [`observationPeriod`](https://datacommons.org/browser/observationPeriod) of the observations, if it exists.
 - `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
 - `scalingFactor`: the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
 
-If no statistical value can be found for the `Place` and `StatisticalVariable` combination passed into this method, a dictionary with no values is returned.
+If no statistical value can be found for a `Place` and `StatisticalVariable` combination passed into this method, a dictionary with no values is returned.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
-You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
-
 ## Examples
 
-We would like to get the [population](https://datacommons.org/browser/Count_Person) and the [male population](https://datacommons.org/browser/Count_Person_Male) in [Arkansas](https://datacommons.org/browser/geoId/05) and
+This example retrieves the [population](https://datacommons.org/browser/Count_Person) and the [male population](https://datacommons.org/browser/Count_Person_Male) in [Arkansas](https://datacommons.org/browser/geoId/05) and
 [California](https://datacommons.org/browser/geoId/06).
 
 ```python
