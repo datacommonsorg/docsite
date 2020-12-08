@@ -29,7 +29,6 @@ This endpoint is suitable for situations in which you have a node or list of nod
     the value refers to a node.
 *   `direction`: The label's direction. Only valid values are `out` (returning response nodes directed towards the requested node) and `in` (returning response nodes directed away from the request node).
 *   `limit`: (≤ 500) Maximum number of values returned per node.
-*   `key`: Your API key.
 
 ## How to construct a request to the property value endpoint
 
