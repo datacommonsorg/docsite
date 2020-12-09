@@ -53,10 +53,6 @@ statistical populations, constrained by the given observation's property values.
     specified, set this to an empty string.
 
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
-
 ## POST Request
 
 **Example**
