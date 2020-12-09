@@ -9,7 +9,7 @@ grand_parent: API
 # Retrieve all places contained within a place
 
 Given a list of parent [`Place`](https://datacommons.org/browser/Place) DCIDs,
-(e.g. `County`, `State`, `Country`, etc...), return a list of child places
+(e.g. any [`State`](https://datacommons.org/browser/State), [`Country`](https://datacommons.org/browser/Country), etc.), return a list of child places
 contained within the specified DCIDs. Only returns children whose place type matches
 the request's `placeType` parameter.
 
@@ -23,7 +23,7 @@ the request's `placeType` parameter.
 
 **Required Arguments**:
 
-*   `dcids`: A list of (parent) places, identified by their DCIDs.
+*   `dcids`: A list of (parent) `Places`, identified by their DCIDs.
 
 *   `placeType`: The type of the contained (child) `Places` to filter by. For example, `City` and `County` are contained within `State`. For a
     full list of available types, see [the Data Commons graph browser entry for `Place`](https://datacommons.org/browser/Place).
@@ -63,8 +63,8 @@ After decoding the response payload string, its structure adheres to the followi
 ```json
 [
   {
-    "dcid": "string",
-    "place": "string"
+    "dcid": "stringOfParentPlaceDCID",
+    "place": "stringOfChildPlaceDCID"
   },
   ...
 ]
