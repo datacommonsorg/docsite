@@ -2,7 +2,7 @@
 layout: default
 title: Glossary
 nav_order: 7
-published: false
+published: true
 ---
 # Glossary of Common Terms
 
@@ -43,6 +43,10 @@ USA -- containedInPlace --> northamerica
 - **[Measurement method](https://datacommons.org/browser/measurementMethod)**
 
 The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include `BosniaCensus` and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates).
+
+- **[Measurement denominator](https://datacommons.org/browser/measurementDenominator)**
+
+The denominator of a fractional measurement.
 
 - **[Observation period](https://datacommons.org/browser/observationPeriod)**
 
