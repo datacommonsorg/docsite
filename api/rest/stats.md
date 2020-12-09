@@ -28,10 +28,6 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
-
 ## POST Request
 
 **Example**
