@@ -63,7 +63,7 @@ Here is the structure the response payload string adheres to after decoding:
 ```
 
 For each node, `inLabels` contains labels directed towards the node while
-`outLabels` contains labels directed away from the node.
+`outLabels` contains labels directed away from the node. For more information on the `in` and `out` directions, check out [the property value REST endpoint documentation](/api/rest/property_value.html).
 
 ## Example requests and responses
 
