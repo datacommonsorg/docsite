@@ -28,8 +28,6 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
-In addition to this required property, this endpoint also allows you to specify your API key as an optional argument.
-
 ### Step 2: Creating the request
 
 When actually putting together your request, you can choose from two options. If you intend to query only a small number of DCIDs, you may want to use the simpler formatting offered by the GET method. For larger numbers of DCIDs, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
@@ -50,7 +48,7 @@ Here is the structure the response payload string adheres to after decoding:
 
 ```json
 {
-    "dcid": {
+    "<dcid>": {
         "inLabels": [
             "label",
             ...
