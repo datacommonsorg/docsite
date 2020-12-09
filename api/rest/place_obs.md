@@ -25,8 +25,6 @@ given a set of constraints on the
 
 **Required Arguments**:
 
-*   `key`: Your API key.
-
 *   `placeType`: The type of the
     [`Place`](https://datacommons.org/browser/Place) to query for.
 
@@ -36,8 +34,6 @@ given a set of constraints on the
 *   `observationDate`: The observation date in ISO-8601 format.
 
 **Optional Arguments**:
-
-*   `key`: Your API key.
 
 *   `pvs`: A list of objects with constraining `property` and `value` fields
     that the `StatisticalPopulation` should be constrained by.

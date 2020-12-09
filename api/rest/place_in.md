@@ -28,9 +28,6 @@ the request's `placeType` parameter.
 *   `placeType`: The type of the contained (child) `Places` to filter by. For example, `City` and `County` are contained within `State`. For a
     full list of available types, see [the Data Commons graph browser entry for `Place`](https://datacommons.org/browser/Place).
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
 
 ## How to construct a request to the places within a place endpoint
 
