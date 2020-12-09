@@ -22,10 +22,6 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 *   `dcids`: A list of nodes to query, identified by their `DCIDs`.
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
-
 ## How to construct a request to the property label endpoint
 
 ### Step 1: Assembling the information you will need
