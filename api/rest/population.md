@@ -35,8 +35,6 @@ for these places, constrained by the given property values.
 
 **Optional Arguments**:
 
-*   `key`: Your API key.
-
 *   `pvs`: A list of objects with constraining `property` and `value` fields
     that the `StatisticalPopulation` should be constrained by.
 
