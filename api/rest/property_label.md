@@ -112,7 +112,11 @@ curl --request POST \
 
 ##### Raw
 
-
+```json
+{
+  "payload": "{\"geoId/5508\":{\"inLabels\":[\"containedInPlace\",\"geoOverlaps\",\"location\"],\"outLabels\":[\"containedInPlace\",\"geoId\",\"geoJsonCoordinates\",\"geoOverlaps\",\"kmlCoordinates\",\"landArea\",\"latitude\",\"longitude\",\"name\",\"provenance\",\"typeOf\",\"waterArea\"]}}"
+}
+```
 
 ##### Parsed and prettified
 
