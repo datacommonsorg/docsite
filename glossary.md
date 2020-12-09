@@ -54,7 +54,7 @@ The time period over which an observation is made.
 
 - **[Unit](https://datacommons.org/browser/unit)**
 
-The unit of measurement. Examples include Kelvin, Celsius, inches, light years, and slugs.
+The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour), [inches](https://datacommons.org/browser/Inch), and [Indian Rupees](https://datacommons.org/browser/IndianRupee).
 
 - **[Scaling factor](https://datacommons.org/browser/scalingFactor)**
 
