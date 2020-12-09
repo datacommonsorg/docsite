@@ -22,14 +22,9 @@ this node.
 
 **Required Arguments**:
 
-*   `key`: Your API key.
-
 *   `dcid`: The DCID of the node (mostly with type of a `Place` like `City`,
     `County` or organization like `School`).
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
 
 ## GET Request
 
