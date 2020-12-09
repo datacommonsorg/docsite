@@ -40,8 +40,6 @@ This endpoint requires the argument `DCIDs`. DCIDs are unique node identifiers d
 
 This endpoint also requires the argument `placeType`, specifying the type of the child places you desire in the response.
 
-In addition to these required properties, this endpoint also allows you to specify your API key as an optional argument.
-
 ### Step 2: creating the request
 
 When actually putting together your request, you can choose from two options. If you intend to query only a small number of DCIDs, you may want to use the simpler formatting offered by the GET method. For larger numbers of DCIDs, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
