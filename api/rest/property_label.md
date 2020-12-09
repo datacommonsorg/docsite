@@ -110,6 +110,12 @@ curl --request POST \
 
 #### Response
 
+##### Raw
+
+
+
+##### Parsed and prettified
+
 ```json
 {
   "payload": {
@@ -181,6 +187,16 @@ curl --request POST \
 </div>
 
 #### Response
+
+##### Raw
+
+```json
+{
+  "payload": "{\"dc/7hfhd2ek8ppd2\":{\"inLabels\":[\"biosampleOntology\"],\"outLabels\":[\"cellSlims\",\"classification\",\"dbxrefs\",\"developmentalSlims\",\"encodeUUID\",\"name\",\"organSlims\",\"provenance\",\"sameAs\",\"status\",\"systemSlims\",\"termId\",\"termName\",\"typeOf\"]},\"dc/c3j78rpyssdmf\":{\"inLabels\":[\"biosampleOntology\"],\"outLabels\":[\"cellSlims\",\"classification\",\"dbxrefs\",\"encodeUUID\",\"name\",\"provenance\",\"sameAs\",\"status\",\"systemSlims\",\"termId\",\"termName\",\"typeOf\"]}}"
+}
+```
+
+##### Parsed and prettified
 
 ```json
 {
