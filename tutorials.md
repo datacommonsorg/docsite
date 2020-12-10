@@ -34,6 +34,10 @@ Python.
 -   **Case Study: Analyzing Genomic Data with Biomedical Data Commons**
 
     [Google Colab](https://colab.research.google.com/drive/1Io7EDr4LjfPLl_l2JYY8__WbfitfNlOf){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_genomic_data.ipynb){:target="_blank"}
+ 
+-   **Case Study: Drug Discovery with Biomedical Data Commons**
+
+    [Google Colab](https://colab.research.google.com/drive/1dSKYiRMn3mbDsInorQzYM0yk7sqv6fIV){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
 
 
 ## Google Sheets
