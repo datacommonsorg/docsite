@@ -35,9 +35,7 @@ See the [full list of StatisticalVariables](/statistical_variables.html).
 
  A `dict` mapping `date`(str) to the statistical value (float).
 
-**Raises**
-
-* `ValueError` - If no statistical value found for the place with the given parameters.
+If no statistical value can be found for the place with the given parameters, an empty dictionary is returned.
 
 Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
@@ -62,12 +60,10 @@ We would like to get the [male population](https://datacommons.org/browser/Count
 }
 ```
 
-In the next example, the parameter `observation_period='P3Y'` overly constrains the request so the API
-throws ValueError:
+In the next example, the parameter `observation_period='P3Y'` overly constrains the request, so the API
+does not return a value:
 
 ```python
 >>> dc.get_stat_series('geoId/06085', 'Count_Person', observation_period='P3Y')
-Traceback (most recent call last):
-    ...
-    raise ValueError('No data in response.')
+{}
 ```
