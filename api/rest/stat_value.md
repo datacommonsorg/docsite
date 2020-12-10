@@ -175,7 +175,7 @@ curl --request GET \
 
 </div>
 
-### Example 5: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
+### Example 5: Retrieve the distrubtion of the drug naloxone in Miami-Dade County in grams.
 
 <div>
 
