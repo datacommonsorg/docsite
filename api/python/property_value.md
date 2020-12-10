@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Show Property Values for Node(s)
+# Retrieve Property Values for Node(s)
 
 Given a list of nodes and a property label, returns values associated with the
 given property for each node.
@@ -19,7 +19,7 @@ given property for each node.
 
 **Required arguments**:
 
-*   `dcids`: A list of nodes to query, identified by their DCID.
+*   `dcids`: A list of nodes to query, identified by their Data Commons identifiers.
 *   `prop`: The property to query for.
 
 **Optional arguments**:
@@ -70,21 +70,8 @@ dc.get_property_values(['country/CIV'],'name')
 
 #### Response
 
-##### Raw
-
 ```json
 {'country/CIV': ["Côte d'Ivoire", 'Ivory Coast']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "country/CIV": [
-    "Côte d'Ivoire",
-    "Ivory Coast"
-  ]
-}
 ```
 
 ### Example 2: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
@@ -95,20 +82,8 @@ dc.get_property_values(['dc/bsmvthtq89217'],'order')
 
 #### Response
 
-##### Raw
-
 ```json
 {'dc/bsmvthtq89217': ['Austrobaileyales']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "dc/bsmvthtq89217": [
-    "Austrobaileyales"
-  ]
-}
 ```
 
 ### Example 3: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
@@ -119,23 +94,8 @@ dc.get_property_values(["nces/360007702877","nces/062961004587"],'address')
 
 #### Response
 
-##### Raw
-
 ```json
 {'nces/360007702877': ['345 Chambers St, New York, New York'], 'nces/062961004587': ['780 Arastradero Rd., Palo Alto, California']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "nces/360007702877": [
-    "345 Chambers St, New York, New York"
-  ],
-  "nces/062961004587": [
-    "780 Arastradero Rd., Palo Alto, California"
-  ]
-}
 ```
 
 ### Example 4: Retrieve a list of earthquake events in Madagascar.
@@ -148,38 +108,8 @@ dc.get_property_values(dcids=["country/MDG"],prop='affectedPlace',out=False,valu
 
 #### Response
 
-##### Raw
-
 ```json
 {'country/MDG': ['earthquake/us200040me', 'earthquake/us60003r15', 'earthquake/usc000evr6', 'earthquake/usp00005zf', 'earthquake/usp00006yt', 'earthquake/usp0000afz', 'earthquake/usp0001fcd', 'earthquake/usp0001ss5', 'earthquake/usp00020ud', 'earthquake/usp0002kfd', 'earthquake/usp0004qn4', 'earthquake/usp0005gu9', 'earthquake/usp0007k9j', 'earthquake/usp0008vc6', 'earthquake/usp000dckw', 'earthquake/usp000fu24', 'earthquake/usp000gmuf', 'earthquake/usp000h6zw', 'earthquake/usp000jgbb']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "country/MDG": [
-    "earthquake/us200040me",
-    "earthquake/us60003r15",
-    "earthquake/usc000evr6",
-    "earthquake/usp00005zf",
-    "earthquake/usp00006yt",
-    "earthquake/usp0000afz",
-    "earthquake/usp0001fcd",
-    "earthquake/usp0001ss5",
-    "earthquake/usp00020ud",
-    "earthquake/usp0002kfd",
-    "earthquake/usp0004qn4",
-    "earthquake/usp0005gu9",
-    "earthquake/usp0007k9j",
-    "earthquake/usp0008vc6",
-    "earthquake/usp000dckw",
-    "earthquake/usp000fu24",
-    "earthquake/usp000gmuf",
-    "earthquake/usp000h6zw",
-    "earthquake/usp000jgbb"
-  ]
-}
 ```
 
 ### Example 5: Retrieve just one cyclone event in India.
@@ -190,20 +120,8 @@ dc.get_property_values(dcids=["country/IND"],prop='affectedPlace',out=False,valu
 
 #### Response
 
-##### Raw
-
 ```json
 {'country/IND': ['cyclone/ibtracs_2018347N07089']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "country/IND": [
-    "cyclone/ibtracs_2018347N07089"
-  ]
-}
 ```
 
 ### Example 6: Retrieve the country in which Buenos Aires is located.
@@ -218,23 +136,11 @@ dc.get_property_values(dcids=["country/ARG"],prop='containedInPlace')
 
 #### Response
 
-###### Raw
-
 ```json
 {'country/ARG': ['southamerica']}
 ```
 
-###### Parsed and prettified
-
-```json
-{
-  "country/ARG": [
-    "southamerica"
-  ]
-}
-```
-
-## Error Returns
+**NOTES:**
 
 If there is no value associated with the property, an empty list is returned:
 
@@ -242,6 +148,8 @@ If there is no value associated with the property, an empty list is returned:
 >>> dc.get_property_values(["geoId/06", "geoId/21"], "foo")
 {'geoId/06': [], 'geoId/21': []}
 ```
+
+## Error Returns
 
 If you do not pass a required positional argument, a TypeError is returned:
 
