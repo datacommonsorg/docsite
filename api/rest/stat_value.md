@@ -13,7 +13,7 @@ Returns a statistical value for a place based on the
 See the [full list of StatisticalVariables](/statistical_variables.html).
 
 When there are multiple sources for the same statistical variable, a prefered
-source with more recent data or more authorative is selected.
+source with more recent data or more authority is selected.
 
 ## General information about this endpoint
 
@@ -51,7 +51,7 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - `date`: Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
-  - `measurement_method`: The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach, and names the group making the measurement. Examples include `BosniaCensus` and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates).
+  - `measurement_method`: The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include [the American Community Survey](https://datacommons.org/browser/dc/gg17432) and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates). Multiple measurement methods may be specified for any given node. A complete list of properties can be found at <https://datacommons.org/browser/measurementMethod>.
   
   - `observation_period`: The time period over which an observation is made. Examples include `P1Y` (period of one year) and `P3M` (period of three months).
 
@@ -85,7 +85,7 @@ Your response will always look like this:
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F06&stat_var=Count_Person_Male'
+  --url 'https://api.datacommons.org/stat/value?place=geoId/06&stat_var=Count_Person_Male'
 ```
 
 {% endtab %}
@@ -98,7 +98,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 2: Retrieve the count of robberies in the state of Georgia in the year 2011.
@@ -111,7 +110,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F13&stat_var=Count_CriminalActivities_Robbery&date=2011'
+  --url 'https://api.datacommons.org/stat/value?place=geoId/13&stat_var=Count_CriminalActivities_Robbery&date=2011'
 ```
 
 {% endtab %}
@@ -124,7 +123,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 3: Retrieve the number of people in Bosnia and Herzegovina as counted by the Bosnian census.
@@ -137,7 +135,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=country%2FBIH&stat_var=Count_Person&measurement_method=BosniaCensus'
+  --url 'https://api.datacommons.org/stat/value?place=country/BIH&stat_var=Count_Person&measurement_method=BosniaCensus'
 ```
 
 {% endtab %}
@@ -150,7 +148,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 4: Retrieve the death count in Miami-Dade County over a period of one year.
@@ -163,7 +160,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F12086&stat_var=Count_Death&observation_period=P1Y'
+  --url 'https://api.datacommons.org/stat/value?place=geoId/12086&stat_var=Count_Death&observation_period=P1Y'
 ```
 
 {% endtab %}
@@ -176,7 +173,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 5: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
@@ -189,7 +185,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId%2F12086&stat_var=RetailDrugDistribution_DrugDistribution_Naloxone&unit=Grams'
+  --url 'https://api.datacommons.org/stat/value?place=geoId/12086&stat_var=RetailDrugDistribution_DrugDistribution_Naloxone&unit=Grams'
 ```
 
 {% endtab %}
@@ -202,7 +198,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 6: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
@@ -215,7 +210,7 @@ curl --request GET \
 
 ```bash
 curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=country%2FGMB&stat_var=Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal&scalingFactor=100.0000000000'
+  --url 'https://api.datacommons.org/stat/value?place=country/GMB&stat_var=Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal&scalingFactor=100.0000000000'
 ```
 
 {% endtab %}
@@ -228,7 +223,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ## Error Responses
