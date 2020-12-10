@@ -39,11 +39,7 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
-<<<<<<< HEAD
-In addition to this required property, this endpoint also allows you to optionally specify a limit on how many triples (up to 500) you would like to see in the response.
-=======
 In addition to this required property, this endpoint also allows you to specify a limit on how many triples (up to 500) you would like to see in the response.
->>>>>>> 51c208b11225054c5a8e22351e068f8a559f2b7f
 
 ### Step 2: creating the request
 
