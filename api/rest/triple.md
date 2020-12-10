@@ -33,15 +33,13 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 *   `limit`: The maximum number of triples per combination of property and type
     associated with nodes linked by that property to fetch, up to *500*.
 
-*   `key`: Your API key.
-
 ## How to construct a request to the triples endpoint
 
 ### Step 1: assembling the information you will need
 
 This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
-In addition to this required property, this endpoint also allows you to specify your API key as an optional argument as well as a limit on how many triples (up to 500) you would like to see in the response.
+In addition to this required property, this endpoint also allows you to optionally specify a limit on how many triples (up to 500) you would like to see in the response.
 
 ### Step 2: creating the request
 
