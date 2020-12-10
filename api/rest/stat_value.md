@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Retrieve statistical value for a place
+# Retrieve a statistical value for a place
 
 Returns a statistical value for a place based on the
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
