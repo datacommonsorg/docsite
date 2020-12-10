@@ -23,9 +23,9 @@ the request's `placeType` parameter.
 
 **Required Arguments**:
 
-*   `dcids`: A list of (parent) `Places`, identified by their DCIDs.
+*   `dcids`: A list of (parent) `Place` nodes, identified by their DCIDs.
 
-*   `placeType`: The type of the contained (child) `Places` to filter by. For example, `City` and `County` are contained within `State`. For a
+*   `placeType`: The type of the contained (child) `Place` nodes to filter by. For example, `City` and `County` are contained within `State`. For a
     full list of available types, see [the Data Commons graph browser entry for `Place`](https://datacommons.org/browser/Place).
 
 
@@ -33,7 +33,7 @@ the request's `placeType` parameter.
 
 ### Step 1: assembling the information you will need
 
-This endpoint requires the argument `DCIDs`. DCIDs are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest.
+This endpoint requires the argument `dcids`. DCIDs are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest.
 
 This endpoint also requires the argument `placeType`, specifying the type of the child places you desire in the response.
 
