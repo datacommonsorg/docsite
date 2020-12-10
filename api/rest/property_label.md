@@ -20,7 +20,7 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 **Required Arguments**:
 
-*   `dcids`: A list of nodes to query, identified by their `DCIDs`.
+*   `dcids`: A list of nodes to query, identified by their [`DCIDs`](https://datacommons.org/browser/dcid).
 
 ## How to construct a request to the property label endpoint
 
@@ -50,11 +50,11 @@ Here is the structure the response payload string adheres to after decoding:
 {
     "<dcid>": {
         "inLabels": [
-            "label",
+            "<label>",
             ...
         ],
         "outLabels": [
-            "label",
+            "<label>",
             ...
         ]
     },
