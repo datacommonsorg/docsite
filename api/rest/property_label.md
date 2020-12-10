@@ -20,10 +20,6 @@ Returns the labels of properties defined for the given DCID's
 
 *   `dcids`: A list of nodes to query, identified by their DCID's.
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
-
 ## GET Request
 
 **Example**
