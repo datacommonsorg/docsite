@@ -39,12 +39,12 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 ### Step 1: Assembling the information you will need
 
-This endpoint requires two arguments and offers four additional optional arguments, as listed:
+Going into more detail on how to assemble the values for the required arguments:
 
  - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
  - `stat_var`: The statistical variable whose value you are interested in.
 
-In addition to these required properties, this endpoint also allows for other, optional arguments.
+In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
   - `date`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
 
@@ -53,6 +53,8 @@ In addition to these required properties, this endpoint also allows for other, o
   - `observation_period`: (≤ 500) Maximum number of values returned per node.
 
   - `unit`: The unit of measurement.
+
+Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 
 ### Step 2: Creating the request
 
