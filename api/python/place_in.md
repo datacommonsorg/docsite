@@ -11,7 +11,6 @@ grand_parent: API
 ## General information about this endpoint
 
 **Signature**: `datacommons.get_places_in(dcids, place_type)`
-**Authentication**: Optional
 
 **Required arguments**:
 
@@ -31,7 +30,7 @@ Going into more detail on how to assemble the values for the required arguments:
 
 The method's return value will always be a `dict` in the following form:
 
-```json
+```python
 {
     "<dcid>": ["string", ...]
     ...
@@ -40,75 +39,45 @@ The method's return value will always be a `dict` in the following form:
 
 ## Example requests and responses
 
-### Example 1: Retrieve a list of the counties in Delaware.
+### Example 1: Retrieve a list of all counties in Delaware.
 
 #### Method call
 
 ```python
-dc.get_places_in(["geoId/10"], "County")
+datacommons.get_places_in(["geoId/10"], "County")
 ```
 
 #### Response
 
-##### Raw
-
-```json
+```python
 {'geoId/10': ['geoId/10001', 'geoId/10003', 'geoId/10005']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "geoId/10": [
-    "geoId/10001",
-    "geoId/10003",
-    "geoId/10005"
-  ]
-}
 ```
 
 ### Example 2: Retrieve a list of congressional districts in Alaska and Hawaii.
 
 ```python
-dc.get_places_in(["geoId/15","geoId/02"], "CongressionalDistrict")
+datacommons.get_places_in(["geoId/15","geoId/02"], "CongressionalDistrict")
 ```
 
 #### Response
 
-##### Raw
-
-```json
+```python
 {'geoId/15': ['geoId/1501', 'geoId/1502'], 'geoId/02': ['geoId/0200']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "geoId/15": [
-    "geoId/1501",
-    "geoId/1502"
-  ],
-  "geoId/02": [
-    "geoId/0200"
-  ]
-}
 ```
 
 ## Error Returns
 
-If there is no value associated with the property, an empty list is returned:
+If there is no value associated with the requested property, an empty list is returned:
 
 ```python
->>> dc.get_places_in(["geoId/1021"], "CongressionalDistrict")
+>>> datacommons.get_places_in(["geoId/1021"], "CongressionalDistrict")
 {'geoId/1021': []}
 ```
 
 If you do not pass a required positional argument, a TypeError is returned:
 
 ```python
->>> dc.get_places_in(["geoId/1021"])
+>>> datacommons.get_places_in(["geoId/1021"])
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: get_places_in() missing 1 required positional argument: 'place_type'
