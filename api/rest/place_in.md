@@ -26,9 +26,6 @@ contained within, of a specified type.
     DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
     full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
 
 ## GET Request
 
