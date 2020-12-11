@@ -121,7 +121,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 3: Retrieve the death count in Miami-Dade County over a period of one year.
@@ -147,7 +146,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 4: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
@@ -173,7 +171,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ### Example 5: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
@@ -199,7 +196,6 @@ curl --request GET \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 ## Error Responses
