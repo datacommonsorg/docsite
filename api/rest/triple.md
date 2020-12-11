@@ -68,6 +68,18 @@ When decoded, the response adheres to this structure:
 }
 ```
 
+While all triples contain subjects, predicates, and objects, those entities may be specified using any of a few possible fields. Here are possible keys that you may find associated to triples in the JSON response:
+
+  -	`SubjectID`
+  -	`SubjectName`
+  -	`SubjectTypes`
+  -	`Predicate`
+  -	`ObjectID`
+  -	`ObjectName`
+  -	`ObjectValue`
+  -	`ObjectTypes`
+  -	`ProvenanceID`
+
 ## Example requests and responses
 
 ### Example 1: Retrieve triples associated with squareMeter 1238495 (a land tract in southern Florida).
