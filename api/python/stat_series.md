@@ -49,7 +49,7 @@ The method's return value will always be a `dict` in the following form:
 
 ```python
 {
-    "<dcid>": ["string", ...]
+    "<dcid>": <integer>
     ...
 }
 ```
