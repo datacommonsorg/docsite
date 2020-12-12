@@ -39,9 +39,7 @@ for more details on how the return value is structured.
 
 **Raises**
 
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed or the API key is not set.
-
-Be sure to initialize the library, and specify the API key. Check the [Python library setup guide](/api/python/) for more details.
+*   `ValueError` - If the payload returned by the Data Commons REST API is malformed.
 
 ## Examples
 
