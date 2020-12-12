@@ -32,9 +32,6 @@ This API only supports a subset of SPARQL keywords including:
 In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf
 City ."`.
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
 
 ## POST Request
 
@@ -102,22 +99,5 @@ curl -X POST 'https://api.datacommons.org/query'
 {
   "code": 2,
   "message": "missing required arguments"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/query'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```
