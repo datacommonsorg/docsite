@@ -22,7 +22,7 @@ source with more recent data or more authority is selected.
 **Required arguments**:
 
 * `place`: The DCID of the [`Place`](https://datacommons.org/browser/Place) to query for.
-* `stats_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+* `stat_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
@@ -41,209 +41,76 @@ Going into more detail on how to assemble the values for the required arguments:
  - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
  - `stat_var`: The statistical variable whose value you are interested in.
 
-In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
+In addition to these required properties, this method also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
   - `date`: Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
-
   - `measurement_method`: The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include [the American Community Survey](https://datacommons.org/browser/dc/gg17432) and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates). Multiple measurement methods may be specified for any given node. A complete list of properties can be found at <https://datacommons.org/browser/measurementMethod>.
-  
   - `observation_period`: The time period over which an observation is made. Examples include `P1Y` (period of one year) and `P3M` (period of three months).
-
   - `unit`: The unit of measurement. Examples include Kelvin, Celsius, inches, light years, and slugs.
-
   - `scaling_factor`: Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100, since 5 is equal to 0.05 multiplied by 0.05.
 
-## What to expect in the response
+## What to expect in the return
 
-Your response will always look like this:
+The method will return a simple number, like '1.20949' or '1431252'.
 
-```json
-{
-  "value": integer
-}
-```
-
-## Example requests and responses
+## Example calls
 
 ### Example 1: Retrieve the count of men in the state of California.
 
-<div>
-
-{% tabs log %}
-
-{% tab log curl %}
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId/06&stat_var=Count_Person_Male'
+```python
+>>> datacommons.get_stat_value("geoId/05", "Count_Person_Male")
+1474705
 ```
 
-{% endtab %}
+### Example 2: Retrieve the count of men in the state of California in the year 2012.
 
-{% tab log javascript %}
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-### Example 2: Retrieve the count of robberies in the state of Georgia in the year 2011.
-
-<div>
-
-{% tabs log %}
-
-{% tab log curl %}
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId/13&stat_var=Count_CriminalActivities_Robbery&date=2011'
+```python
+>>> datacommons.get_stat_value("geoId/05", "Count_Person_Male", date="2012")
+1431252
 ```
-
-{% endtab %}
-
-{% tab log javascript %}
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g04ydh9v/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
 
 ### Example 3: Retrieve the number of people in Bosnia and Herzegovina as counted by the Bosnian census.
 
-<div>
-
-{% tabs log %}
-
-{% tab log curl %}
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=country/BIH&stat_var=Count_Person&measurement_method=BosniaCensus'
+```python
+>>> datacommons.get_stat_value("country/BIH", "Count_Person", measurement_method="BosniaCensus")
+3791622
 ```
-
-{% endtab %}
-
-{% tab log javascript %}
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/dnk3bh10/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
 
 ### Example 4: Retrieve the death count in Miami-Dade County over a period of one year.
 
-<div>
-
-{% tabs log %}
-
-{% tab log curl %}
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId/12086&stat_var=Count_Death&observation_period=P1Y'
+```python
+>>> datacommons.get_stat_value("geoId/12086", "Count_Death", observation_period="P1Y")
+20703
 ```
-
-{% endtab %}
-
-{% tab log javascript %}
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7okp90wb/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
 
 ### Example 5: Retrieve the distrubtion of the drug naloxone in Miami-Dade County in grams.
 
-<div>
-
-{% tabs log %}
-
-{% tab log curl %}
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=geoId/12086&stat_var=RetailDrugDistribution_DrugDistribution_Naloxone&unit=Grams'
+```python
+>>> datacommons.get_stat_value("geoId/12086", "RetailDrugDistribution_DrugDistribution_Naloxone", unit="Grams")
+118.79
 ```
-
-{% endtab %}
-
-{% tab log javascript %}
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0steafk4/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
 
 ### Example 6: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
 
-<div>
-
-{% tabs log %}
-
-{% tab log curl %}
-
-```bash
-curl --request GET \
-  --url 'https://api.datacommons.org/stat/value?place=country/GMB&stat_var=Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal&scalingFactor=100.0000000000'
+```python
+>>> datacommons.get_stat_value("country/GMB", "Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal", scaling_factor="100.0000000000")
+2.43275
 ```
 
-{% endtab %}
+## Error Returns
 
-{% tab log javascript %}
+If there is no value associated with the requested property, `nan` is returned:
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/rm1kpfdn/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-## Error Responses
-
-If your request does not include a required argument, you will receive a 400 status code and an error message like the following:
-
-```json
-{
-  "code": 3,
-  "message": "Missing required argument: stat_var",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "internal"
-    }
-  ]
-}
+```python
+>>> datacommons.get_stat_value("geoId/1001", "Count_Person_Male")
+nan
 ```
-If your request includes a bad argument, you will receive a 404 status code and an error message like the following:
 
-```json
-{
-  "code": 5,
-  "message": "No statistical variable found for CountPerson_Male",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "internal"
-    }
-  ]
-}
+If you do not pass a required positional argument, a TypeError is returned:
+
+```python
+>>> datacommons.get_stat_value("geoId/1001")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: get_stat_value() missing 1 required positional argument: 'stat_var'
 ```
