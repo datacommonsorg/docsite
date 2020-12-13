@@ -65,7 +65,7 @@ The method's return value will always be a `dict` in the following form:
 
 ## Error Returns
 
-If there is no value associated with the property, an empty list is returned:
+If there are no nodes associated with the property, an empty list is returned:
 
 ```python
 >>> datacommons.get_property_labels(['geoId/123123123123123'])
