@@ -26,8 +26,6 @@ source with more recent or more authorative data is selected.
 - `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
 - `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
-
 **Optional Arguments**:
 
 - `measurement_method`: The `dcid` of the preferred `measurementMethod` value.
