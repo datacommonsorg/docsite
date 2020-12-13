@@ -81,7 +81,7 @@ Your response will always look like this:
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -90,7 +90,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -106,7 +112,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -115,7 +121,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g04ydh9v/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -131,7 +143,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -140,7 +152,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/dnk3bh10/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -156,7 +174,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -165,7 +183,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7okp90wb/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -181,7 +205,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -190,7 +214,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0steafk4/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -206,7 +236,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -215,7 +245,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/rm1kpfdn/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
