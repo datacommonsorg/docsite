@@ -112,7 +112,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/630fqova/19/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -227,7 +227,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/ejxgchuy/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
