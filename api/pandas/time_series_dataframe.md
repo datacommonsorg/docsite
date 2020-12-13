@@ -8,8 +8,6 @@ grand_parent: API
 
 # Get Time Series DataFrame
 
-## `datacommons_pandas.build_time_series_dataframe(places, stat_var)`
-
 Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and dates as columns, where each cell is the observed statistic for
 its place and date for the 
@@ -17,55 +15,66 @@ its place and date for the
 
 See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
-**Arguments**
+## General information about this method
 
-* `places (Iterable of str)`: A list of `dcid`s of the
-  [`Place`](https://datacommons.org/browser/Place)s to query for.
+**Signature**: `datacommons_pandas.build_time_series_dataframe(places, stat_var)`
 
-* `stat_var (str)`: The `dcid` of the
-  [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+**Required arguments**:
 
-**Returns**
+* `places`: The `dcid` or `dcid` list of the [`Place`](https://datacommons.org/browser/Place) objects to query for.
+* `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-A `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
-(str) as index and dates (str) as columns, where each cell is the observed
-statistic (float) for that place on that date for the 
-[`stat_var`](https://datacommons.org/browser/StatisticalVariable).
+**NOTE:** In Data Commons, `dcid` stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
-**Raises**
+## Assembling the information you will need for a call to the build_time_series method
 
-* `ValueError` - If no statistical values found for the given parameters.
+Going into more detail on how to assemble the values for the required arguments:
 
-Be sure to initialize the library. See the
-[datacommons_pandas library setup guide](/api/pandas/) for more details.
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
-You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
+ - `place_type`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place.
 
-## Examples
+## Example method calls and returns
 
-We would like to get the  [male population](https://datacommons.org/browser/Count_Person_Male) in [Arkansas](https://datacommons.org/browser/geoId/05)
+### Example 1: Retrieve the count of men in the state of California.
 
 ```python
->>> import datacommons_pandas as dcpd
->>> dcpd.build_time_series_dataframe("geoId/05", "Count_Person_Male")
-             2001     2002     2003  ...     2016     2017     2018
+>>> datacommons_pandas.build_time_series_dataframe("geoId/05", "Count_Person_Male")
+             2010     2011     2012  ...     2017     2018     2019
 place                                ...                           
-geoId/05  1315210  1323840  1332910  ...  1469240  1475420  1480140
+geoId/05  1430837  1447850  1449265  ...  1479682  1476680  1474705
+
+[1 rows x 10 columns]
 ```
 
-In the next example, there is no data about
-`RetailDrugDistribution_DrugDistribution_Amphetamine` for non-USA
-places, so the API throws ValueError for no data:
+### Example 2: Compare the historic populations of Sudan and South Sudan.
 
 ```python
->>> import datacommons_pandas as dcpd
->>> dcpd.build_time_series_dataframe(
-      ["country/MEX", "nuts/AT32"],
-      "RetailDrugDistribution_DrugDistribution_Amphetamine"
-    )
-ValueError    Traceback (most recent call last)
-...
--->    raise ValueError('No data for any of specified Places and StatisticalVariables.')
+>>> datacommons_pandas.build_time_series_dataframe(["country/SSD","country/SDN"], "Count_Person")
+                   2019     2019-06
+place                              
+country/SDN         NaN  41592539.0
+country/SSD  12778250.0         NaN
+```
 
-ValueError: No data for any of specified places and stat_vars.
+## Error Returns
+
+If a nonexistent place is passed as an argument, it will not render in the dataframe, as follows:
+
+```python
+>>> datacommons_pandas.build_time_series_dataframe(["geoId/123123123123123123","geoId/36"], "Count_Person")
+              2001      2002      2003  ...      2017      2018      2019
+place                                   ...                              
+geoId/36  19082800  19137800  19175900  ...  19589600  19530400  19453600
+
+[1 rows x 19 columns]
+```
+
+If you do not pass a required positional argument, a TypeError is returned:
+
+```python
+>>> datacommons_pandas.build_time_series_dataframe(["geoId/123123123123123123","geoId/36"])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: build_time_series_dataframe() missing 1 required positional argument: 'stat_var'
 ```
