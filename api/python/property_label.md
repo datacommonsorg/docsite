@@ -14,8 +14,6 @@ Returns the labels of properties defined for the given node DCIDs.
 
 **Signature**: `datacommons.get_property_labels(dcids, out=True)`
 
-**Authentication**: Optional
-
 **Required arguments**:
 
 *   `dcids`: A list of nodes to query, identified by their DCID.
@@ -26,11 +24,17 @@ Returns the labels of properties defined for the given node DCIDs.
 
 ## Assembling the information you will need for a call to the get_property_values method
 
-Going into more detail on how to assemble the values for the required arguments:
+Going into more detail on how to assemble the values for the required argument:
 
  - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
-In addition to these required properties, this endpoint also allows for the additional, optional argument `out`. This is a boolean value that refers to the orientation, or direction, of the edge. You can specify this argument as `True` to indicate that you desire the response to only include nodes with the value of the property equivalent to one or more of the specified `DCIDs`, or `False` to only return nodes equivalent to one or more of the values of the properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
+In addition to this required property, this endpoint also allows for an additional, optional argument:
+
+  - `out`: This is a boolean value that refers to the orientation, or direction, of the edge. You can specify this argument as `True` to indicate that you desire the response to only include nodes with the value of the property equivalent to one or more of the specified `DCIDs`, or `False` to only return nodes equivalent to one or more of the values of the properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
+
+![](/assets/images/rest/property_value_direction_example.png)
+
+*Figure 1. Relationship diagram for the property `containedInPlace` of the country Argentina. Note the directionality of the property `containedInPlace`: the API returns both nodes with direction `in` (Buenos Aires is `containedInPlace` of Argentina) and nodes with direction `out` (Argentina is `containedInPlace` of South America).*
 
 ## What to expect in the function return
 
