@@ -39,7 +39,7 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - `value_type`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
+  - `value_type`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type. For example, if you query the property `containedInPlace` on the DCID `geoId/06085`, your response will contain many results that may not be relevant to your question. If you instead specify the `value_type` as `City`, your result list will be shorter, narrower, and easier to parse.
 
   - `out`: This is a boolean value that refers to the orientation, or direction, of the edge. You can specify this argument as `True` to indicate that you desire the response to only include nodes with the value of the property equivalent to one or more of the specified `DCIDs`, or `False` to only return nodes equivalent to one or more of the values of the properties of the specified `DCIDs`. (To visualize this, Figure 1 illustrates the directions for the property `containedInPlace` of the node for Argentina.)
 
