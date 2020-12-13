@@ -51,66 +51,16 @@ The method's return value will always be a `dict` in the following form:
 
 ### Example 1: Retrieve the outwardly directed property labels of Wisconsin's eighth congressional district.
 
-#### Method call
-
 ```python
-dc.get_property_labels(['geoId/5508'])
-```
-
-#### Response
-
-##### Raw
-
-```json
+>>> datacommons.get_property_labels(['geoId/5508'])
 {'geoId/5508': ['containedInPlace', 'geoId', 'geoJsonCoordinates', 'geoOverlaps', 'kmlCoordinates', 'landArea', 'latitude', 'longitude', 'name', 'provenance', 'typeOf', 'waterArea']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "geoId/5508": [
-    "containedInPlace",
-    "geoId",
-    "geoJsonCoordinates",
-    "geoOverlaps",
-    "kmlCoordinates",
-    "landArea",
-    "latitude",
-    "longitude",
-    "name",
-    "provenance",
-    "typeOf",
-    "waterArea"
-  ]
-}
 ```
 
 ### Example 2: Retrieve the inwardly directed property labels of two different leukocyte cell lines.
 
 ```python
-dc.get_property_labels(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'],out=False)
-```
-
-#### Response
-
-##### Raw
-
-```json
+>>> datacommons.get_property_labels(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'],out=False)
 {'dc/c3j78rpyssdmf': ['biosampleOntology'], 'dc/7hfhd2ek8ppd2': ['biosampleOntology']}
-```
-
-###### Parsed and prettified
-
-```json
-{
-  "dc/c3j78rpyssdmf": [
-    "biosampleOntology"
-  ],
-  "dc/7hfhd2ek8ppd2": [
-    "biosampleOntology"
-  ]
-}
 ```
 
 ## Error Returns
@@ -118,14 +68,14 @@ dc.get_property_labels(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'],out=False)
 If there is no value associated with the property, an empty list is returned:
 
 ```python
->>> dc.get_property_labels(['geoId/06', 'geoId/21'])
-{'geoId/06': [], 'geoId/21': []}
+>>> datacommons.get_property_labels(['geoId/123123123123123'])
+{'geoId/123123123123123': []}
 ```
 
 If you do not pass a required positional argument, a TypeError is returned:
 
 ```python
->>> dc.get_property_labels()
+>>> datacommons.get_property_labels()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: get_property_labels() missing 1 required positional argument: 'dcids'
