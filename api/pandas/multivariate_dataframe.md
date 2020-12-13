@@ -8,8 +8,6 @@ grand_parent: API
 
 # Get Multivariate DataFrame
 
-## `datacommons_pandas.build_multivariate_dataframe(places, stats_vars)`
-
 Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
 as columns, where each cell is latest observed statistic for
@@ -17,72 +15,66 @@ its `Place` and `StatisticalVariable`.
 
 See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
-**Arguments**
+## General information about this method
 
-*   `places (Iterable of str)`: A list of dcids of the
-    [`Place`](https://datacommons.org/browser/Place)s to query for.
+**Signature**: `datacommons_pandas.build_multivariate_dataframe(places, stat_var)`
 
-*   `stat_vars (Iterable of str)`: A list of dcids of the
-    [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable)s
-    to query for.
+**Required arguments**:
 
-**Returns**
+* `places`: The `dcid` or `dcid` list of the [`Place`](https://datacommons.org/browser/Place) objects to query for.
+* `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-A `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
-(str)
-as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
-(str) as columns, where each cell is latest observed statistic (float) for
-its `Place` and `StatisticalVariable`.
+**NOTE:** In Data Commons, `dcid` stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
-**Raises**
+## Assembling the information you will need for a call to the build_multivariate_dataframe method
 
-* `ValueError` - If no statistical values found for the given parameters.
+Going into more detail on how to assemble the values for the required arguments:
 
-Be sure to initialize the library. See the
-[datacommons_pandas library setup guide](/api/pandas/) for more details.
+ - `places`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
-You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
+ - `stat_var`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place.
 
-## Examples
+## Example method calls and returns
 
-We would like to get a DataFrame of
-
-- [Count_Person](https://datacommons.org/browser/Count_Person)
-- [Median_Age_Person](https://datacommons.org/browser/Median_Age_Person)
-- [UnemploymentRate_Person](https://datacommons.org/browser/UnemploymentRate_Person)
-
-for
-[the United States](https://datacommons.org/browser/country/USA),
-[California](https://datacommons.org/browser/geoId/06),and
-[Santa Clara County](https://datacommons.org/browser/geoId/06085).
+### Example 1: Retrieve the count of men in the state of California.
 
 ```python
->>> import datacommons_pandas as dcpd
->>> dcpd.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],
-                  ["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
-             Count_Person  Median_Age_Person  UnemploymentRate_Person
-place                                                                
-country/USA     328239523               37.9                      NaN
-geoId/06         39512223               36.3                     15.1
-geoId/06085       1927852               37.0                     10.7
+>>> datacommons_pandas.build_time_series_dataframe("geoId/05", "Count_Person_Male")
+             2010     2011     2012  ...     2017     2018     2019
+place                                ...                           
+geoId/05  1430837  1447850  1449265  ...  1479682  1476680  1474705
+
+[1 rows x 10 columns]
 ```
 
-In the next example, there is no data about
-`RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone` nor
-`RetailDrugDistribution_DrugDistribution_Amphetamine` for non-USA
-places, so the API throws ValueError for no data:
+### Example 2: Compare the historic populations of Sudan and South Sudan.
 
 ```python
->>> import datacommons_pandas as dcpd
->>> dcpd.build_multivariate_dataframe(
-      ["country/MEX", "nuts/AT32"],
-      ["RetailDrugDistribution_DrugDistribution_14Hydroxycodeinone",
-      "RetailDrugDistribution_DrugDistribution_Amphetamine"
-      ]
-    )
-ValueError    Traceback (most recent call last)
-...
--->    raise ValueError('No data for any of specified Places and StatisticalVariables.')
+>>> datacommons_pandas.build_time_series_dataframe(["country/SSD","country/SDN"], "Count_Person")
+                   2019     2019-06
+place                              
+country/SDN         NaN  41592539.0
+country/SSD  12778250.0         NaN
+```
 
-ValueError: No data for any of specified places and stat_vars.
+## Error Returns
+
+If a nonexistent place is passed as an argument, it will not render in the dataframe, as follows:
+
+```python
+>>> datacommons_pandas.build_time_series_dataframe(["geoId/123123123123123123","geoId/36"], "Count_Person")
+              2001      2002      2003  ...      2017      2018      2019
+place                                   ...                              
+geoId/36  19082800  19137800  19175900  ...  19589600  19530400  19453600
+
+[1 rows x 19 columns]
+```
+
+If you do not pass a required positional argument, a TypeError is returned:
+
+```python
+>>> datacommons_pandas.build_time_series_dataframe(["geoId/123123123123123123","geoId/36"])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: build_time_series_dataframe() missing 1 required positional argument: 'stat_var'
 ```
