@@ -66,7 +66,7 @@ Your response will always look like this:
 
 ```json
 {
-  "value": integer
+  "value": <number>
 }
 ```
 
