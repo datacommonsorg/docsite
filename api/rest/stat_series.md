@@ -46,13 +46,13 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - `date`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
-
   - `measurement_method`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
   
   - `observation_period`: (≤ 500) Maximum number of values returned per node.
 
   - `unit`: The unit of measurement.
+
+  - `scaling_factor`: Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100, since 5 is equal to 0.05 multiplied by 0.05.
 
 Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 
