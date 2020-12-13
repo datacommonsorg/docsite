@@ -78,7 +78,7 @@ Your response will always look like this:
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -87,7 +87,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/w32gmo68/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -104,7 +110,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -113,7 +119,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/sL4r6ckm/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -129,7 +141,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -138,7 +150,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/2w9sphqc/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -148,13 +166,13 @@ curl --request GET \
 
 </div>
 
-### Example 4: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
+### Example 4: Retrieve the distrubtion of the drug naloxone in Miami-Dade County in grams.
 
 <div>
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -163,7 +181,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/6y9tbdh5/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -179,7 +203,7 @@ curl --request GET \
 
 {% tabs log %}
 
-{% tab log curl %}
+{% tab log GET Request %}
 
 ```bash
 curl --request GET \
@@ -188,7 +212,13 @@ curl --request GET \
 
 {% endtab %}
 
-{% tab log javascript %}
+{% tab log POST Request %}
+
+This endpoint does not support POST requests.
+
+{% endtab %}
+
+{% tab log JavaScript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/1gmewbvx/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
