@@ -9,7 +9,8 @@ grand_parent: API
 # Query the Data Commons Knowledge Graph using SPARQL
 
 Returns the results of running a graph query on the Data Commons knowledge graph
-using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
+using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
+able to support a limited subsection of SPARQL functionality at this time.
 
 ## General information about this endpoint
 
@@ -90,6 +91,12 @@ The response contains two fields, `header` and `rows`, as well as a `cell` objec
 
 {% tabs log %}
 
+{% tab log GET Request %}
+
+This endpoint does not support GET requests.
+
+{% endtab %}
+
 {% tab log POST Request %}
 
 ```bash
@@ -139,6 +146,12 @@ curl -X POST 'https://api.datacommons.org/query' \
 <div>
 
 {% tabs log %}
+
+{% tab log GET Request %}
+
+This endpoint does not support GET requests.
+
+{% endtab %}
 
 {% tab log POST Request %}
 
@@ -257,6 +270,12 @@ curl --request POST \
 
 {% tabs log %}
 
+{% tab log GET Request %}
+
+This endpoint does not support GET requests.
+
+{% endtab %}
+
 {% tab log POST Request %}
 
 ```bash
@@ -369,7 +388,269 @@ curl --request POST \
 }
 ```
 
-### Example 4. Retrieve a list of five distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
+### Example 4. Retrieve a list of GNI observations by country.
+
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
+
+This endpoint does not support GET requests.
+
+{% endtab %}
+
+{% tab log POST Request %}
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/query \
+  --header 'content-type: application/json' \
+  --data '{"sparql": "SELECT ?observation ?place WHERE { ?observation typeOf Observation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country .} ORDER BY ASC (?place) LIMIT 10"}'
+```
+
+{% endtab %}
+
+{% tab log JavaScript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/8baetyso/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+#### Response
+
+```json
+{
+  "header": [
+    "?observation",
+    "?place"
+  ],
+  "rows": [
+    {
+      "cells": [
+        {
+          "value": "dc/o/5h86g14fj2fr8"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/kg6pryqvbgd78"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/7gzjqhbwpekd6"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/fw0bk0ekyt94d"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/rksjr0spfsq83"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/7thj4d54jeb6h"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/pgym0z20p7v05"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/h1c0f24b48132"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/q86f2x7n069w7"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/wv0lv3mfgdvh4"
+        },
+        {
+          "value": "country/ABW"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Example 5. Retrieve a sample list of observations with the unit InternationalDollar.
+
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
+
+This endpoint does not support GET requests.
+
+{% endtab %}
+
+{% tab log POST Request %}
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/query \
+  --header 'content-type: application/json' \
+  --data '{ "sparql": "SELECT ?observation WHERE { ?observation typeOf Observation . ?observation unit InternationalDollar } LIMIT 10" }'
+```
+
+{% endtab %}
+
+{% tab log JavaScript %}
+
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/vkj5qm4f/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+{% endtab %}
+
+{% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+#### Response
+
+```json
+{
+  "header": [
+    "?observation"
+  ],
+  "rows": [
+    {
+      "cells": [
+        {
+          "value": "dc/o/fyxy1y8s0g7n"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/xmvxcs7e22ycd"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/f2hrq42xh10sf"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/b8pb4n9qy3x3f"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/2klbr8pjf06m6"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/y1cmgcsdp2ywd"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/1ypyy54edxbv6"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/105gnls2e1ng9"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/y1z2jv1y644q5"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "dc/o/wqdjmf2vhgx75"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Example 6. Retrieve a list of ten distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
 
 <div>
 
