@@ -38,7 +38,7 @@ Since only the POST method is available for this endpoint, you will need to asse
 {"sparql": "<query>"}
 ```
 
-Here `<query>` denotes the SPARQL query string. For more information on assembling SPARQL queries, checkout [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
+Here `<query>` denotes the SPARQL query string. For more information on assembling SPARQL queries, check out [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
 
 **NOTES:**
 
