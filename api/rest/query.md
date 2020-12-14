@@ -24,15 +24,11 @@ able to support a limited subsection of SPARQL functionality at this time.
 
 *   `sparql`: A SPARQL query string.
 
-**Optional Arguments**:
-
-*   `key`: Your API key.
-
 ## How to construct a request to the property value endpoint
 
 ### Step 1: Assembling the information you will need
 
-This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites whose data is formulated using [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework). It leverages the graph structure innate in the data it queries to return specific information to an end user.
+This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites. It leverages the graph structure innate in the data it queries to return specific information to an end user.
 
 ### Step 2: Creating the request
 
