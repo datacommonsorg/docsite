@@ -32,7 +32,7 @@ with the following fields:
 
 - `val`: a dict with dates keyed to statistical values.
 - `importName`: the dataset source name for the observations.
-- `provenanceDomain`: the [Provenance](https://datacommons.org/browser/Provenance) domain of the observations.
+- `provenanceDomain`: the [Provenance](https://datacommons.org/browser/Provenance) domain URL of the observations.
 - `measurementMethod`: the [`measurementMethod`](https://datacommons.org/browser/measurementMethod) of the observations, if it exists.
 - `observationPeriod`: the [`observationPeriod`](https://datacommons.org/browser/observationPeriod) of the observations, if it exists.
 - `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
@@ -114,7 +114,14 @@ This example retrieves the [population](https://datacommons.org/browser/Count_Pe
 }
 ```
 
-In the next example, there is no data found, so the API returns a dictionary with no values:
+In the next example, compare the populations of people with doctoral degrees in Minnesota and Wisconsin:
+
+```python
+>>> datacommons.get_stat_all(["geoId/27","geoId/55"], ["Count_Person_EducationalAttainmentDoctorateDegree"])
+{'geoId/27': {'Count_Person_EducationalAttainmentDoctorateDegree': {'sourceSeries': [{'val': {'2016': 50039, '2017': 52737, '2018': 54303, '2012': 40961, '2013': 42511, '2014': 44713, '2015': 47323}, 'measurementMethod': 'CensusACS5yrSurvey', 'importName': 'CensusACS5YearSurvey', 'provenanceDomain': 'census.gov', 'provenanceUrl': 'https://www.census.gov/'}]}}, 'geoId/55': {'Count_Person_EducationalAttainmentDoctorateDegree': {'sourceSeries': [{'val': {'2017': 43737, '2018': 46071, '2012': 38052, '2013': 38711, '2014': 40133, '2015': 41387, '2016': 42590}, 'measurementMethod': 'CensusACS5yrSurvey', 'importName': 'CensusACS5YearSurvey', 'provenanceDomain': 'census.gov', 'provenanceUrl': 'https://www.census.gov/'}]}}}
+```
+
+In the last example, there is no data found, so the API returns a dictionary with no values:
 
 ```python
 >>> dc.get_stat_all(["bad value"],["another bad value"])
