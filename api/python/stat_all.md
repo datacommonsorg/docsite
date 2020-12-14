@@ -16,7 +16,7 @@ time. See the [full list of StatisticalVariables](/statistical_variables.html).
 
 **Arguments**
 
-- `places (Iterable of str)`: The `dcids` of the [`Places`](https://datacommons.org/browser/Place) to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
+- `places (Iterable of str)`: The DCIDs of the [`Place`](https://datacommons.org/browser/Place) objects to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
 
 - `stats_vars (Iterable of str)`: The `dcids` of the
   [`StatisticalVariables`](https://datacommons.org/browser/StatisticalVariable).
