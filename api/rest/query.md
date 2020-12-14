@@ -14,7 +14,7 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 
 ## General information about this endpoint
 
-**URL**: `/query`
+**Endpoint**: `/query`
 
 **Method**: `POST`
 
