@@ -40,7 +40,7 @@ Since only the POST method is available for this endpoint, you will need to asse
 
 Here `<query>` denotes the SPARQL query string. For more information on assembling SPARQL queries, check out [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
 
-**NOTES:**
+**NOTE:**
 
 - In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
 
