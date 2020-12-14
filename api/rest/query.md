@@ -10,7 +10,7 @@ grand_parent: API
 
 Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
-able to support a limited subsection of SPARQL functionality at this time.
+able to support a limited subsection of SPARQL functionality at this time: specifically only the keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
 
 ## General information about this endpoint
 
@@ -38,11 +38,9 @@ Since only the POST method is available for this endpoint, you will need to asse
 {"sparql": "<query>"}
 ```
 
-Here `<query>` denotes the place where the query string will be placed. For more information on assembling SPARQL queries, checkout [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
+Here `<query>` denotes the SPARQL query string. For more information on assembling SPARQL queries, checkout [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
 
 **NOTES:**
-
-- This API only supports the SPARQL keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
 
 - In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
 
@@ -115,7 +113,6 @@ curl -X POST 'https://api.datacommons.org/query' \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
@@ -174,7 +171,6 @@ curl --request POST \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
@@ -299,7 +295,6 @@ curl --request POST \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
@@ -561,7 +556,6 @@ curl --request POST \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
@@ -682,7 +676,6 @@ LIMIT 10"
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
