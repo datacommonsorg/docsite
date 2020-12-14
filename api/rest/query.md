@@ -134,129 +134,7 @@ curl -X POST 'https://api.datacommons.org/query' \
 }
 ```
 
-### Example 2. Retrieve a list of flash flood events in Prince George's County in Maryland.
-
-<div>
-
-{% tabs log %}
-
-{% tab log GET Request %}
-
-This endpoint does not support GET requests.
-
-{% endtab %}
-
-{% tab log POST Request %}
-
-```bash
-curl --request POST \
-  --url https://api.datacommons.org/query \
-  --header 'content-type: application/json' \
-  --data '{"sparql": "SELECT ?name ?flashFloodEvent \
-                WHERE { \
-                  ?county typeOf County . \
-                  ?county dcid geoId/24033 . \
-                  ?county name ?name . \
-                  ?flashFloodEvent name ?name
-                }"}'
-```
-
-{% endtab %}
-
-{% tab log JavaScript %}
-
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/u4bjsm7e/11/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-#### Response
-
-```json
-{
-  "header": [
-    "?name",
-    "?flashFloodEvent"
-  ],
-  "rows": [
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/khx0ltrvngts4"
-        }
-      ]
-    },
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/4zn37xlre4cpb"
-        }
-      ]
-    },
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/l58rk9xvcb543"
-        }
-      ]
-    },
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/nhhm9mksqpmh4"
-        }
-      ]
-    },
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/3619p7xsdptyc"
-        }
-      ]
-    },
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/tmvcgb87b9884"
-        }
-      ]
-    },
-    {
-      "cells": [
-        {
-          "value": "Prince George's County"
-        },
-        {
-          "value": "dc/6zx159g8hrmh2"
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Example 3. Retrieve a list of ten biological specimens in reverse alphabetical order.
+### Example 2. Retrieve a list of ten biological specimens in reverse alphabetical order.
 
 <div>
 
@@ -289,7 +167,7 @@ curl --request POST \
 
 {% tab log JavaScript %}
 
-<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7o469zpn/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7o469zpn/6/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 {% endtab %}
 
@@ -381,7 +259,7 @@ curl --request POST \
 }
 ```
 
-### Example 4. Retrieve a list of GNI observations by country.
+### Example 3. Retrieve a list of GNI observations by country.
 
 <div>
 
@@ -527,7 +405,7 @@ curl --request POST \
 }
 ```
 
-### Example 5. Retrieve a sample list of observations with the unit InternationalDollar.
+### Example 4. Retrieve a sample list of observations with the unit InternationalDollar.
 
 <div>
 
@@ -642,7 +520,7 @@ curl --request POST \
 }
 ```
 
-### Example 6. Retrieve a list of ten distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
+### Example 5. Retrieve a list of ten distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
 
 <div>
 
