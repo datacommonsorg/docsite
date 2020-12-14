@@ -156,8 +156,8 @@ curl --request POST \
                 WHERE { \
                   ?county typeOf County . \
                   ?county dcid geoId/24033 . \
-									?county name ?name . \
-									?flashFloodEvent name ?name
+                  ?county name ?name . \
+                  ?flashFloodEvent name ?name
                 }"}'
 ```
 
@@ -277,11 +277,11 @@ curl --request POST \
   --data '{
 	"sparql": "SELECT ?name \
                 WHERE { \
-									?biologicalSpecimen typeOf BiologicalSpecimen . \
-									?biologicalSpecimen name ?name
+                  ?biologicalSpecimen typeOf BiologicalSpecimen . \
+                  ?biologicalSpecimen name ?name
                 }
-								ORDER BY DESC(?name)
-								LIMIT 10"
+                ORDER BY DESC(?name)
+                LIMIT 10"
 }'
 ```
 
@@ -294,6 +294,8 @@ curl --request POST \
 {% endtab %}
 
 {% endtabs %}
+
+<script src="/assets/js/tabs.js"></script>
 
 </div>
 
