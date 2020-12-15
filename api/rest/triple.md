@@ -31,8 +31,6 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 *   `limit`: The maximum number of triples per combination of property and type
     associated with nodes linked by that property to fetch, up to *500*.
 
-*   `key`: Your API key.
-
 ## GET Request
 
 **Example**
@@ -135,22 +133,5 @@ curl -X POST 'https://api.datacommons.org/node/triples' -d '{"dcids": []}'
 {
   "code": 2,
   "message": "must provide DCIDs"
-}
-```
-
-### **Code**: `401 Unauthorized`
-
-**Request example:** (API key not specified)
-
-```bash
-curl -X POST 'https://api.datacommons.org/node/triples'
-```
-
-**Response content example**
-
-```json
-{
-  "code": 16,
-  "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API."
 }
 ```
