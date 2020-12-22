@@ -63,3 +63,11 @@ Property of statistical variables that measure proportions, used in conjunction 
 As an example, in 1999, [approximately 36% of Canadians were Internet users](https://datacommons.org/browser/dc/o/2mthzyv99kd73). Here the measured value of `Count_Person_IsInternetUser_PerCapita` is 36, and the scaling factor or denominator for this per capita measurement is 100. Without the scaling factor, we would interpret the value to be 36/1, or 3600%.
 
 A complete list of properties can be found at <https://datacommons.org/browser/scalingFactor>.
+
+- **[Cohort](http://browser.datacommons.org/kg?dcid=CohortSet)**
+
+A group of entities sharing some characteristic. Interchangeably referred to in a Data Commons context as `Cohort` and `CohortSet`. Examples include [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
+
+>  **NOTE:**
+>
+>  The type `Cohort` documented at <https://datacommons.org/browser/Cohort> is a legacy type not used by the Sheets method `DCCOHORTMEMBERS()`.
