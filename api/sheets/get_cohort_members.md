@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieve the values of a given property for a node
 
-Get the [members](http://browser.datacommons.org/kg?dcid=member) of each cohort provided. Here a cohort is a general term for a group of entities, like [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
+Get the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort](/glossary.html) provided. Here a cohort is a general term for a group of entities, like [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
 ## General information about this method
 
