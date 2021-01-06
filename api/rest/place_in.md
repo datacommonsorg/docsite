@@ -41,6 +41,8 @@ This endpoint also requires the argument `placeType`, specifying the type of the
 
 When actually putting together your request, you can choose from two options. If you intend to query only a small number of DCIDs, you may want to use the simpler formatting offered by the GET method. For larger numbers of DCIDs, or if you prefer to utilize a static URL, a POST request likely makes more sense. To use it, make a POST request against the main endpoint while changing the fields of the JSON body it sends.
 
+Examples of usage for both GET and POST can be found below.
+
 ## What to expect in the response
 
 Your response will always look like this:
