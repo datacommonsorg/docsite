@@ -25,10 +25,10 @@ source with more recent data or more authority is selected.
 
 **Required arguments**:
 
-* `place`: The DCID of the [`Place`](https://datacommons.org/browser/Place) to query for.
-* `stat_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+* `place`: The [DCID](https://docs.datacommons.org/glossary.html) of the [`Place`](https://datacommons.org/browser/Place) to query for.
+* `stat_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable). More information is available in [the glossary](https://docs.datacommons.org/glossary.html).
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+You can find a list of StatisticalVariables with human-readable names [within this documentation](/statistical_variables.html).
 
 **Optional arguments**:
 
@@ -44,20 +44,20 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
- - `stat_var`: The statistical variable whose value you are interested in.
+ - `place`: For this parameter, you will need to specify the [DCID](https://docs.datacommons.org/glossary.html) (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+ - `stat_var`: The [statistical variable](https://docs.datacommons.org/glossary.html) whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - `date`: Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
+  - [`date`](https://docs.datacommons.org/glossary.html): The date of the desired statistical value, specified in ISO 8601 format.
 
-  - `measurement_method`: The technique used for measuring a statistical variable. Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include [the American Community Survey](https://datacommons.org/browser/dc/gg17432) and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates). Multiple measurement methods may be specified for any given node. A complete list of properties can be found at <https://datacommons.org/browser/measurementMethod>.
+  - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
   
-  - `observation_period`: The time period over which an observation is made. Examples include `P1Y` (period of one year) and `P3M` (period of three months).
+  - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
-  - `unit`: The unit of measurement. Examples include Kelvin, Celsius, inches, light years, and slugs.
+  - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
 
-  - `scaling_factor`: Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100, since 5 is equal to 0.05 multiplied by 0.05.
+  - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 ### Step 2: Creating the request
 
