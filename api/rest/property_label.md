@@ -20,7 +20,7 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 **Required Arguments**:
 
-*   `dcids`: A list of nodes to query, identified by their [`DCIDs`](https://datacommons.org/browser/dcid).
+*   `dcids`: A list of nodes to query, identified by [`DCID`](https://docs.datacommons.org/glossary.html).
 
 ## How to construct a request to the property label endpoint
 
