@@ -75,7 +75,7 @@ After decoding the response payload string, its structure adheres to the followi
 
 {% tab log GET Request %}
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/places-in?dcids=geoId%2F10&placeType=County'
 ```
@@ -84,7 +84,7 @@ curl --request GET \
 
 {% tab log POST Request %}
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/places-in \
   --header 'content-type: application/json' \
@@ -138,7 +138,7 @@ curl --request POST \
 
 {% tab log GET Request %}
 
-```curl
+```bash
 curl --request GET \
   --url 'https://api.datacommons.org/node/places-in?dcids=geoId%2F15&dcids=geoId%2F02&placeType=CongressionalDistrict'
 ```
@@ -147,7 +147,7 @@ curl --request GET \
 
 {% tab log POST Request %}
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/places-in \
   --header 'content-type: application/json' \
