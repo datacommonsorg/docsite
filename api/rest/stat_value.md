@@ -49,7 +49,7 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - [`date`](https://docs.datacommons.org/glossary.html): The date of the desired statistical value, specified in ISO 8601 format.
+  - `date`: Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
   - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
   
