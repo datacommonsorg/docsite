@@ -26,7 +26,7 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 **Required Arguments**:
 
-*   `dcids`: A list of nodes to query, identified by their DCID.
+*   `dcids`: A list of nodes to query, identified by their [DCID](https://docs.datacommons.org/glossary.html).
 
 **Optional Arguments**:
 
@@ -37,7 +37,7 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 ### Step 1: assembling the information you will need
 
-This endpoint requires the argument `dcids`, which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
+This endpoint requires the argument [`dcids`](https://docs.datacommons.org/glossary.html), which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
 In addition to this required property, this endpoint also allows you to specify a limit on how many triples (up to 500) you would like to see in the response.
 
