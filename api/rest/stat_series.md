@@ -44,13 +44,13 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - `measurement_method`: You can specify this argument as `out` to indicate that you desire the response to only include nodes which are supercategories of the specified `DCIDs`, or `in` to only return nodes that are subcategories of the specified `DCIDs`. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
   
-  - `observation_period`: (≤ 500) Maximum number of values returned per node.
+  - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
-  - `unit`: The unit of measurement.
+  - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
 
-  - `scaling_factor`: Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format. For example, a proportion of 0.05 displayed as 5% has a scaling factor of 100, since 5 is equal to 0.05 multiplied by 0.05.
+  - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 
@@ -164,7 +164,7 @@ This endpoint does not support POST requests.
 
 </div>
 
-### Example 4: Retrieve the distrubtion of the drug naloxone in Miami-Dade County in grams.
+### Example 4: Retrieve the distribution of the drug naloxone in Miami-Dade County in grams.
 
 <div>
 
