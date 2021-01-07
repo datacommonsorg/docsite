@@ -50,7 +50,7 @@ The denominator of a fractional measurement. A complete list of properties can b
 
 - **[Observation period](https://datacommons.org/browser/observationPeriod)**
 
-The time period over which an observation is made. A complete list of properties can be found at <https://datacommons.org/browser/observationPeriod>.
+The time period over which an observation is made. Specified in [ISO 8601 formatting for durations](https://en.wikipedia.org/wiki/ISO_8601#Durations). A complete list of properties can be found at <https://datacommons.org/browser/observationPeriod>.
 
 - **[Unit](https://datacommons.org/browser/unit)**
 
