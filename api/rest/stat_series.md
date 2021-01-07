@@ -37,6 +37,10 @@ source with more recent or more authorative data is selected.
 
 ### Step 1: Assembling the information you will need
 
+>  **NOTE:**
+>
+>  Specifying arguments that do not exist for the target place and variable will result in an empty response.
+
 Going into more detail on how to assemble the values for the required arguments:
 
  - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
@@ -51,10 +55,6 @@ In addition to these required properties, this endpoint also allows for other, o
   - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
 
   - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
-
->  **NOTE:**
->
->  Specifying arguments that do not exist for the target place and variable will result in an empty response.
 
 ### Step 2: Creating the request
 
