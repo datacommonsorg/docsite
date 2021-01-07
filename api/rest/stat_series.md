@@ -52,7 +52,9 @@ In addition to these required properties, this endpoint also allows for other, o
 
   - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
-Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
+>  **NOTE:**
+>
+>  Specifying arguments that do not exist for the target place and variable will result in an empty response.
 
 ### Step 2: Creating the request
 
