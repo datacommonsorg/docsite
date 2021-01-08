@@ -433,7 +433,13 @@ This endpoint does not support GET requests.
 curl --request POST \
   --url https://api.datacommons.org/query \
   --header 'content-type: application/json' \
-  --data '{ "sparql": "SELECT ?observation WHERE { ?observation typeOf Observation . ?observation unit InternationalDollar } LIMIT 10" }'
+  --data { "sparql": "SELECT ?observation \
+ WHERE { \
+ ?observation typeOf Observation . \
+ ?observation unit InternationalDollar \
+} \
+LIMIT 10" 
+}
 ```
 
 {% endtab %}
