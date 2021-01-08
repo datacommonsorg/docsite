@@ -277,7 +277,17 @@ This endpoint does not support GET requests.
 curl --request POST \
   --url https://api.datacommons.org/query \
   --header 'content-type: application/json' \
-  --data '{"sparql": "SELECT ?observation ?place WHERE { ?observation typeOf Observation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country .} ORDER BY ASC (?place) LIMIT 10"}'
+  --data '{
+	"sparql": "SELECT ?observation ?place \
+	           WHERE { \ 
+              ?observation typeOf Observation . \
+	            ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . \
+	            ?observation observedNodeLocation ?place . \
+	            ?place typeOf Country .\
+             } \
+	           ORDER BY ASC (?place) \
+	           LIMIT 10"
+}'
 ```
 
 {% endtab %}
