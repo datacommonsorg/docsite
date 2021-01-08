@@ -433,13 +433,14 @@ This endpoint does not support GET requests.
 curl --request POST \
   --url https://api.datacommons.org/query \
   --header 'content-type: application/json' \
-  --data { "sparql": "SELECT ?observation \
- WHERE { \
- ?observation typeOf Observation . \
- ?observation unit InternationalDollar \
-} \
-LIMIT 10" 
-}
+  --data '{ 
+  "sparql": "SELECT ?observation \
+             WHERE { \
+               ?observation typeOf Observation . \
+               ?observation unit InternationalDollar \
+             } \
+            LIMIT 10" 
+  }'
 ```
 
 {% endtab %}
@@ -550,15 +551,15 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{
 	"sparql": "SELECT DISTINCT ?LifeExpectancy \
-WHERE { \
-  ?pop typeOf StatisticalPopulation . \
-  ?o typeOf Observation .\
-  ?pop dcid dc/p/grjmhz7x2kc9f .\
-  ?o observedNode ?pop .\
-  ?o measuredValue ?LifeExpectancy
-}
-ORDER BY ASC(?LifeExpectancy)
-LIMIT 10"
+             WHERE { \
+              ?pop typeOf StatisticalPopulation . \
+              ?o typeOf Observation .\
+              ?pop dcid dc/p/grjmhz7x2kc9f .\
+              ?o observedNode ?pop .\
+              ?o measuredValue ?LifeExpectancy
+             }
+             ORDER BY ASC(?LifeExpectancy)
+             LIMIT 10"
 }'
 ```
 
