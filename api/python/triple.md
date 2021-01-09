@@ -8,74 +8,88 @@ grand_parent: API
 
 # Show Triples Associated with Node(s)
 
-## `datacommons.get_triples(dcids, limit=datacommons.utils._MAX_LIMIT)`
-
-Given a list of nodes, return triples which are associated with the specified
+Given a list of nodes, return [triples](https://docs.datacommons.org/glossary.html) which are associated with the specified
 node(s).
 
-A knowledge graph can be described as a collection of *triples* which are
-3-tuples that take the form *(s, p, o)*. Here, *s* and *o* are nodes in the
-graph called the *subject* and *object* respectively, while *p* is the property
-label of a directed edge from *s* to *o* (sometimes also called the *predicate*).
+## General information about this endpoint
 
-**Arguments**
+**Signature**: `datacommons.get_triples(dcids, limit=datacommons.utils._MAX_LIMIT)`
 
-*   `dcids (list of str)` - DCIDs to get triples for
+**Required arguments**:
 
-*   `limit (int, optional)` - The maximum number of triples per combination of
+*   `dcids` - A list of nodes to query, identified by their [DCID](https://docs.datacommons.org/glossary.html).
+
+**Optional arguments**:
+
+*   `limit` - The maximum number of triples per combination of
     property and type associated with nodes linked by that property to fetch,
     ≤ 500.
 
-**Returns**
+## Assembling the information you will need for a call to the get_triples method
 
-A `dict` mapping DCIDs to a `list` of triples *(s, p, o)* where *s*, *p*, and *o* are
-instances of `str` and either the *subject* or *object* is the specified DCID.
+This endpoint requires the argument [`dcids`](https://docs.datacommons.org/glossary.html), which are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the nodes of interest.
 
-Each DCID is mapped to a list of triples, where a triple is an object with the
-following fields. Note that not all fields are always included in each triple.
+In addition to this required property, this endpoint also allows you to specify a limit on how many triples (up to 500) you would like to see in the response.
 
-[comment]: <> (TODO: add link to data model and describe the fields in a Triple)
+## What to expect in the function return
 
-**Raises**
-
-*   `ValueError` - If the payload returned by the Data Commons REST API is malformed.
-
-## Examples
-
-We would like to get one triple per property and type combination associated with
-[California](https://datacommons.org/browser/geoId/06):
+The method's return value will always be a `dict` in the following form:
 
 ```python
->>> import datacommons as dc
->>> dc.set_api_key(YOUR_API_KEY_HERE)
->>> dc.get_triples(['geoId/06'], limit=1)
 {
-  'geoId/06': [
-    ('geoId/0653', 'containedInPlace', 'geoId/06'),
-    ('geoId/06', 'provenance', 'dc/sm3m2w3'),
-    ('dc/p/zyjy2jq2xme02', 'location', 'geoId/06'),
-    ('geoId/06', 'containedInPlace', 'country/USA'),
-    ('geoId/0686440', 'containedInPlace', 'geoId/06'),
-    ('geoId/sch0699014', 'containedInPlace', 'geoId/06'),
-    ('geoId/0686944', 'containedInPlace', 'geoId/06'),
-    ('geoId/sch0699997', 'containedInPlace', 'geoId/06'),
-    ('election/2024_S_CA00', 'location', 'geoId/06'),
-    ('ipedsId/487597', 'location', 'geoId/06'),
-    ('geoId/sch0643380', 'containedInPlace', 'geoId/06'),
-    ('geoId/06113011002', 'containedInPlace', 'geoId/06'),
-    ('geoId/C49700', 'overlapsWith', 'geoId/06'),
-    ('geoId/0611593830', 'containedInPlace', 'geoId/06'),
-    ('geoId/06U', 'containedInPlace', 'geoId/06'),
-    ('geoId/06115', 'containedInPlace', 'geoId/06'),
-    ('965EYosemiteAvenueSuite2MantecaCA95336', 'addressRegion', 'geoId/06'),
-    ('geoId/06', 'typeOf', 'State')
-  ]
+    "<dcid>": [<Triple>, ...]
+    ...
 }
 ```
 
-If there is no node associated with the given DCID, an empty list is returned:
+## Example requests and responses
+
+### Example 1: Retrieve triples associated with squareMeter 1238495 (a land tract in southern Florida).
+
+#### Method call
 
 ```python
->>> dc.get_triples(['foo'])
-{'foo': []}
+datacommons.get_triples(['SquareMeter1238495'])
+```
+
+#### Response
+
+```python
+{'SquareMeter1238495': [('SquareMeter1238495', 'typeOf', 'Quantity'), ('SquareMeter1238495', 'provenance', 'dc/sm3m2w3'), ('geoId/12086008906', 'landArea', 'SquareMeter1238495')]}
+```
+
+### Example 2: Retrieve triples associated with two American biological research labs.
+
+#### Method call
+
+```python
+datacommons.get_triples(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'])
+```
+
+#### Response
+
+```python
+{'dc/c3j78rpyssdmf': [('dc/c3j78rpyssdmf', 'provenance', 'dc/h2lkz1'), ('dc/zn6l0flenf3m6', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/tkcknpfwxfrhf', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/jdzbbfhgzghv1', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/4f9w8lhcwggxc', 'biosampleOntology', 'dc/c3j78rpyssdmf')], 'dc/7hfhd2ek8ppd2': [('dc/7hfhd2ek8ppd2', 'provenance', 'dc/h2lkz1'), ('dc/4mjs95b1meh1h', 'biosampleOntology', 'dc/7hfhd2ek8ppd2'), ('dc/13xcyzcr819cb', 'biosampleOntology', 'dc/7hfhd2ek8ppd2')]}
+```
+
+## Error Returns
+
+If a non-existent triple is passed, a KeyError is thrown:
+
+```python
+>>> datacommons.get_triples(['geoId/123'])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/porpentina/miniconda3/lib/python3.7/site-packages/datacommons/core.py", line 251, in get_triples
+    for t in payload[dcid]:
+KeyError: 'geoId/123'
+```
+
+If you do not pass the required positional argument, a TypeError is returned:
+
+```python
+>>> datacommons.get_triples()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: get_triples() missing 1 required positional argument: 'dcids'
 ```
