@@ -64,7 +64,7 @@ Your response will always look like this:
 }
 ```
 
-Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in JavaScript: `var data = JSON.parse(response['payload'])`.
+Here `"<payload string>"` is a long encoded JSON string, whose structure changes depending on whether the response contains node references. You can run `JSON.parse()` on the `payload` field to retrieve the data. For example, in javascript: `var data = JSON.parse(response['payload'])`.
 
 After decoding the response payload string, there are two possible structures it could adhere to.
 
@@ -140,7 +140,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/xbnsqo4a/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -213,7 +213,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/d5npo3ue/17/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -283,7 +283,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/94s2c5bp/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -361,7 +361,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/fp7sa9v8/16/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -437,7 +437,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/yf7sgz25/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -514,7 +514,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g6ctqbxj/12/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
