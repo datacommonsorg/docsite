@@ -28,8 +28,14 @@ See the [full list of `StatisticalVariable` classes](/statistical_variables.html
 
 Going into more detail on how to assemble the values for the required arguments:
 
+<<<<<<< HEAD
 - [`place`](/glossary.html): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
 - [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
+=======
+ - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+ 
+ - `stat_var`: The statistical variable whose value you are interested in.
+>>>>>>> 5671dabaaff766087515068700f7cf1154d875f1
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
