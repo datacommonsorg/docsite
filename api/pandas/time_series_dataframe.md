@@ -24,17 +24,17 @@ See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 * `places`: The `dcid` or `dcid` list of the [`Place`](https://datacommons.org/browser/Place) objects to query for.
 * `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-**NOTE:** In Data Commons, `dcid` stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
+**NOTE:** In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
 ## Assembling the information you will need for a call to the build_time_series method
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
+ - [`places`](/glossary.html): Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the places of interest.
 
- - `place_type`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place.
+ - [`stat_var`](/glossary.html): This argument specifies the statistical variable whose measurement you seek.
 
-## Example method calls and returns
+## Examples
 
 ### Example 1: Retrieve the count of men in the state of California.
 
