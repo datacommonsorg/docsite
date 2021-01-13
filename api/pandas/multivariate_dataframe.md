@@ -13,7 +13,7 @@ as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
 as columns, where each cell is latest observed statistic for
 its `Place` and `StatisticalVariable`.
 
-See the [full list of `StatisticalVariable`s](/statistical_variables.html).
+See the [full list of `StatisticalVariable` classes](/statistical_variables.html).
 
 ## General information about this method
 
@@ -21,10 +21,10 @@ See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
 **Required arguments**:
 
-* `places`: The `dcid` or `dcid` list of the [`Place`](https://datacommons.org/browser/Place) objects to query for.
-* `stat_vars`: The `dcid` or `dcid` list of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) objects to query for.
+* [`places`](/glossary.html): The `dcid` or `dcid` list of the [`Place`](https://datacommons.org/browser/Place) objects to query for.
+* [`stat_vars`](/glossary.html): The `dcid` or `dcid` list of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) objects to query for.
 
-**NOTE:** In Data Commons, `dcid` stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
+**NOTE:** In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
 ## Assembling the information you will need for a call to the build_multivariate_dataframe method
 
