@@ -15,11 +15,9 @@ given property for each node.
 
 **Signature**: `datacommons.get_property_values(dcids, prop, out=True, value_type=None, limit=datacommons.utils._MAX_LIMIT)`
 
-**Authentication**: Optional
-
 **Required arguments**:
 
-*   `dcids`: A list of nodes to query, identified by their Data Commons identifiers.
+*   [`dcids`](/glossary.html): A list of nodes to query, identified by their Data Commons identifiers.
 *   `prop`: The property to query for.
 
 **Optional arguments**:
@@ -58,70 +56,45 @@ The method's return value will always be a `dict` in the following form:
 }
 ```
 
-## Example requests and responses
+## Examples
 
 ### Example 1: Retrieve the common names of the country of Côte d'Ivoire.
 
 #### Method call
 
 ```python
-dc.get_property_values(['country/CIV'],'name')
-```
-
-#### Response
-
-```json
+>>> datacommons.get_property_values(['country/CIV'],'name')
 {'country/CIV': ["Côte d'Ivoire", 'Ivory Coast']}
 ```
 
 ### Example 2: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
 
 ```python
-dc.get_property_values(['dc/bsmvthtq89217'],'order')
-```
-
-#### Response
-
-```json
+>>> datacommons.get_property_values(['dc/bsmvthtq89217'],'order')
 {'dc/bsmvthtq89217': ['Austrobaileyales']}
 ```
 
 ### Example 3: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
 
 ```python
-dc.get_property_values(["nces/360007702877","nces/062961004587"],'address')
-```
-
-#### Response
-
-```json
+>>> datacommons.get_property_values(["nces/360007702877","nces/062961004587"],'address')
 {'nces/360007702877': ['345 Chambers St, New York, New York'], 'nces/062961004587': ['780 Arastradero Rd., Palo Alto, California']}
 ```
 
 ### Example 4: Retrieve a list of earthquake events in Madagascar.
 
-```python
-dc.get_property_values(dcids=["country/MDG"],prop='affectedPlace',out=False,value_type='EarthquakeEvent')
-```
-
 **NOTE:** Unlike in the REST API, the Python endpoint returns only one direction. Hence, you must specify `out` as False to obtain results _in_ Madagascar.
 
-#### Response
-
-```json
+```python
+>>> datacommons.get_property_values(dcids=["country/MDG"],prop='affectedPlace',out=False,value_type='EarthquakeEvent')
 {'country/MDG': ['earthquake/us200040me', 'earthquake/us60003r15', 'earthquake/usc000evr6', 'earthquake/usp00005zf', 'earthquake/usp00006yt', 'earthquake/usp0000afz', 'earthquake/usp0001fcd', 'earthquake/usp0001ss5', 'earthquake/usp00020ud', 'earthquake/usp0002kfd', 'earthquake/usp0004qn4', 'earthquake/usp0005gu9', 'earthquake/usp0007k9j', 'earthquake/usp0008vc6', 'earthquake/usp000dckw', 'earthquake/usp000fu24', 'earthquake/usp000gmuf', 'earthquake/usp000h6zw', 'earthquake/usp000jgbb']}
 ```
 
 ### Example 5: Retrieve just one cyclone event in India.
 
 ```python
-dc.get_property_values(dcids=["country/IND"],prop='affectedPlace',out=False,value_type='CycloneEvent',limit=1)
-```
-
-#### Response
-
-```json
-{'country/IND': ['cyclone/ibtracs_2018347N07089']}
+>>> datacommons.get_property_values(dcids=["country/IND"],prop='affectedPlace',out=False,value_type='CycloneEvent',limit=1)
+{'country/IND': ['cyclone/ibtracs_2018314N12093']}
 ```
 
 ### Example 6: Retrieve the country in which Buenos Aires is located.
@@ -131,12 +104,7 @@ dc.get_property_values(dcids=["country/IND"],prop='affectedPlace',out=False,valu
 *Figure 2. Relationship diagram for the property `containedInPlace` of the country Argentina. Note the directionality of the property `containedInPlace`: the API returns both nodes with direction `in` (Buenos Aires is `containedInPlace` of Argentina) and nodes with direction `out` (Argentina is `containedInPlace` of South America).*
 
 ```python
-dc.get_property_values(dcids=["country/ARG"],prop='containedInPlace')
-```
-
-#### Response
-
-```json
+>>> datacommons.get_property_values(dcids=["country/ARG"],prop='containedInPlace')
 {'country/ARG': ['southamerica']}
 ```
 
