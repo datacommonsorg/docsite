@@ -30,9 +30,15 @@ See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
 Going into more detail on how to assemble the values for the required arguments:
 
+<<<<<<< HEAD
  - [`places`](/glossary.html): Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the places of interest.
 
  - [`stat_var`](/glossary.html): This argument specifies the statistical variable whose measurement you seek.
+=======
+ - `places`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place or places you are interested in.
+ 
+ - `stat_var`: The statistical variable whose value you are interested in.
+>>>>>>> 0577171dcb04dee866215376d56985769147bee7
 
 ## Examples
 
