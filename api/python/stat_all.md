@@ -33,10 +33,10 @@ with the following fields:
 - `val`: a dict with dates keyed to statistical values.
 - `importName`: the dataset source name for the observations.
 - `provenanceDomain`: the [Provenance](https://datacommons.org/browser/Provenance) domain URL of the observations.
-- `measurementMethod`: the [`measurementMethod`](https://datacommons.org/browser/measurementMethod) of the observations, if it exists.
-- `observationPeriod`: the [`observationPeriod`](https://datacommons.org/browser/observationPeriod) of the observations, if it exists.
-- `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
-- `scalingFactor`: the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
+- [`measurementMethod`](/glossary.html): the [`measurementMethod`](https://datacommons.org/browser/measurementMethod) of the observations, if it exists.
+- [`observationPeriod`](/glossary.html): the [`observationPeriod`](https://datacommons.org/browser/observationPeriod) of the observations, if it exists.
+- [`unit`](/glossary.html): the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
+- [`scalingFactor`](/glossary.html): the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
 
 If no statistical value can be found for a `Place` and `StatisticalVariable` combination passed into this method, a dictionary with no values is returned.
 
