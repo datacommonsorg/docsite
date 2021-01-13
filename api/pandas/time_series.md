@@ -11,7 +11,7 @@ grand_parent: API
 Returns a `pandas.Series` representing a time series for the [`place`](https://datacommons.org/browser/Place) and
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable) satisfying any optional parameters.
 
-See the [full list of `StatisticalVariable`s](/statistical_variables.html).
+See the [full list of `StatisticalVariable` classes](/statistical_variables.html).
 
 ## General information about this method
 
@@ -22,29 +22,28 @@ See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 * `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
 * `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-**NOTE:** In Data Commons, `dcid` stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
+**NOTE:** In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
 ## Assembling the information you will need for a call to the build_time_series method
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
-
- - `place_type`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place.
+- [`place`](/glossary.html): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+- [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-- `measurement_method`: You can specify this argument as out to indicate that you desire the response to only include nodes which are supercategories of the specified DCIDs, or in to only return nodes that are subcategories of the specified DCIDs. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+- [`measurement_method`](/glossary.html): You can specify this argument as out to indicate that you desire the response to only include nodes which are supercategories of the specified DCIDs, or in to only return nodes that are subcategories of the specified DCIDs. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
 
-- `observation_period`: (≤ 500) Maximum number of values returned per node.
+- [`observation_period`](/glossary.html): (≤ 500) Maximum number of values returned per node.
 
-- `unit`: The unit of measurement.
+- [`unit`](/glossary.html): The unit of measurement.
 
-- `scaling_factor (int)`: (Optional) The preferred [`scalingFactor`](https://datacommons.org/browser/scalingFactor) for the `stat_var`.
+- [`scaling_factor`](/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 
-## Example requests and responses
+## Examples
 
 ### Example 1: Retrieve the count of men in the state of California.
 
