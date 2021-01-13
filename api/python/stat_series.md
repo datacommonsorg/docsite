@@ -21,25 +21,24 @@ filter parameters.
 * `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
 * `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-**NOTE:** In Data Commons, `dcid` stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
+**NOTE:** In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
 ## Assembling the information you will need for a call to the get_stat_series method
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
-
- - `place_type`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place.
+- [`place`](/glossary.html): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+- [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-- `date`: If the property queried only takes on node values, you can use this argument to filter nodes in the response, ensuring the response only contains nodes with the specified type.
+- [`measurement_method`](/glossary.html): You can specify this argument as out to indicate that you desire the response to only include nodes which are supercategories of the specified DCIDs, or in to only return nodes that are subcategories of the specified DCIDs. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
 
-- `measurement_method`: You can specify this argument as out to indicate that you desire the response to only include nodes which are supercategories of the specified DCIDs, or in to only return nodes that are subcategories of the specified DCIDs. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+- [`observation_period`](/glossary.html): (≤ 500) Maximum number of values returned per node.
 
-- `observation_period`: (≤ 500) Maximum number of values returned per node.
+- [`unit`](/glossary.html): The unit of measurement.
 
-- `unit`: The unit of measurement.
+- [`scaling_factor`](/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 
@@ -54,7 +53,7 @@ The method's return value will always be a `dict` in the following form:
 }
 ```
 
-## Example requests and responses
+## Examples
 
 ### Example 1: Retrieve the count of men in the state of California.
 
@@ -93,7 +92,7 @@ The method's return value will always be a `dict` in the following form:
 
 ## Error Returns
 
-If there is no value associated with the requested property, an empty list is returned:
+If there is no series associated with the requested property, an empty list is returned:
 
 ```python
 >>> datacommons.get_stat_series("geoId/1001", "Count_Person_Male")
