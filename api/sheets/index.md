@@ -21,13 +21,13 @@ Install the add-on from [G Suite Marketplace](https://gsuite.google.com/marketpl
 
 ## Finding a place's DCID
 
-Data Commons' Sheets add-on ships with the ability to look up a location's DCID, or unique Data Commons identifier, within the application. To use this feature, select the final destination cell of the place DCID. Go to the Sheets menu bar, and click:
+Data Commons' Sheets add-on ships with the ability to look up a location's [DCID](/glossary.html), or unique Data Commons identifier, within the application. To use this feature, select the final destination cell of the place [DCID](/glossary.html). Go to the Sheets menu bar, and click:
 
 **"Add-ons > Data Commons > Fill place dcids"**
 
 ![](/assets/images/sheets/sheets_menu_bar.png)
 
-A sidebar will appear on the right of the sheet, with a search bar where you can start typing the name of the place you want. From the drop down menu, select the place you want, and its DCID will appear in the cell that you selected.
+A sidebar will appear on the right of the sheet, with a search bar where you can start typing the name of the place you want. From the drop down menu, select the place you want, and its [DCID](/glossary.html) will appear in the cell that you selected.
 
 ![](/assets/images/sheets/sheets_search_box.png)
 
