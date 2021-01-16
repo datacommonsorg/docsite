@@ -16,7 +16,7 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 
 **Signature**: `datacommons.query(query_string, select=None)`
 
-**Required Arguments**:
+**Required arguments**:
 
 *   `query_string`: A SPARQL query string.
 
