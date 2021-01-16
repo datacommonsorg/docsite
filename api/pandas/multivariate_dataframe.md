@@ -38,9 +38,6 @@ its `Place` and `StatisticalVariable`.
 
 * `ValueError` - If no statistical values found for the given parameters.
 
-Be sure to initialize the library. See the
-[datacommons_pandas library setup guide](/api/pandas/) for more details.
-
 You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
 
 ## Examples
