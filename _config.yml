@@ -39,5 +39,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - STYLE_GUIDE.md
 
 include: ['CNAME']

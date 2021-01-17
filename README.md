@@ -56,7 +56,8 @@ git push -u origin new_branch_name
 
 Then in your forked repo, you can send a Pull Request. If this is your first
 time contributing to a Google Open Source project, you may need to follow the
-steps in [contributing.md](contributing.md).
+steps in [contributing.md](contributing.md). Be sure to follow [the style guide](STYLE_GUIDE.md)
+when submitting documentation PRs.
 
 Wait for approval of the Pull Request and merge the change.
 
