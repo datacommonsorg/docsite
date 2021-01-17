@@ -23,8 +23,7 @@ the request's `placeType` parameter.
 
 *   [`dcids`](/glossary.html): A list of (parent) `Place` nodes, identified by their DCIDs.
 
-*   [`placeType`](/glossary.html): The type of the contained (child) `Place` nodes to filter by.
-
+*   `placeType`: The type of the contained (child) `Place` nodes to filter by.
 
 ## How to construct a request to the places within a place endpoint
 
