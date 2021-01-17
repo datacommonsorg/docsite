@@ -188,7 +188,7 @@ Variable `dcid`, with the object having the following fields:
 
 Failure to specify the place in the request will result in an error response.
 
-**Request example:** (place not specified)
+**Request example:**
 
 ```bash
 curl -X POST 'https://api.datacommons.org/stat/all' \
