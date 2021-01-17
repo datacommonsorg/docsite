@@ -13,34 +13,53 @@ places and statistical variables.
 Note that in Data Commons, a Statistical Variable is any type of statistical metric that can be measured at a place and
 time. See the [full list of StatisticalVariables](/statistical_variables.html).
 
+## General information about this endpoint
+
 **URL**: `/stat/all`
 
 **Method**: `POST`
 
-**Required Arguments**:
+**Required arguments**:
 
-- `places`: A list of [`Place`](https://datacommons.org/browser/Place) `DCIDs` to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
+- [`places`](/glossary.html): A list of [`Place`](https://datacommons.org/browser/Place) `DCIDs` to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
 
-- `stat_vars`: A list of [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) `DCIDs`.
+- [`stat_vars`](/glossary.html): A list of [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable) `DCIDs`.
 
-You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
+## Example
 
-## POST Request
+### Request
 
-**Examples**
+<div>
+
+{% tabs log %}
+
+{% tab log GET Request %}
+
+This endpoint does not support GET requests.
+
+{% endtab %}
+
+{% tab log POST Request %}
 
 ```bash
 curl -X POST 'https://api.datacommons.org/stat/all' \
 -d '{ "places": ["geoId/05", "geoId/06085"], "stat_vars": ["Count_Person_Male", "Count_Person_Female"]}'
 ```
 
+{% endtab %}
+
+{% tab log javascript %}
+
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/bmfr590L/11/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-## Success Response
+{% endtab %}
 
-### **Code**: `200 OK`
+{% endtabs %}
 
-**Response content example**
+<script src="/assets/js/tabs.js"></script>
+</div>
+
+### Response
 
 ```json
 {
@@ -167,7 +186,7 @@ Variable `dcid`, with the object having the following fields:
 
 ## Error Response
 
-### **Code**: `400 Bad Request`
+Failure to specify the place in the request will result in an error response.
 
 **Request example:** (place not specified)
 
