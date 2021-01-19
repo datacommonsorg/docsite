@@ -14,13 +14,11 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 
 ## General information about this endpoint
 
-**Endpoint**: `/query`
+**URL**: `/query`
 
-**Method**: `POST`
+**Methods available**: `POST`
 
-**Authentication**: Optional
-
-**Required Arguments**:
+**Required arguments**:
 
 *   `sparql`: A SPARQL query string.
 
@@ -40,9 +38,8 @@ Since only the POST method is available for this endpoint, you will need to asse
 
 Here `<query>` denotes the SPARQL query string. For more information on assembling SPARQL queries, check out [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
 
-**NOTE:**
-
-- In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
+> **NOTE:**
+> - In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
 
 ## What to expect in the response
 
@@ -105,7 +102,7 @@ curl -X POST 'https://api.datacommons.org/query' \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0694bhse/10/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -165,7 +162,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7o469zpn/6/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -292,7 +289,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/8baetyso/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -445,7 +442,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/vkj5qm4f/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -565,7 +562,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/nsfadbrw/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 

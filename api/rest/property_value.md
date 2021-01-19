@@ -16,18 +16,16 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 **Methods available**: `GET`, `POST`
 
-**Authentication**: Optional
-
 **Required arguments**:
 
-*   `dcids`: A list of nodes to query, identified by their DCID.
+*   [`dcids`](/glossary.html): A list of nodes to query, identified by their [DCID](/glossary.html).
 *   `property`: The property to query for.
 
 **Optional arguments**:
 
 *   `valueType`: The type of the property value to filter by. Only applicable if
     the value refers to a node.
-*   `direction`: The label's direction. Only valid values are `out` (returning response nodes directed towards the requested node) and `in` (returning response nodes directed away from the request node).
+*   [`direction`](/glossary.html): The label's direction. Only valid values are `out` (returning response nodes directed towards the requested node) and `in` (returning response nodes directed away from the request node).
 *   `limit`: (≤ 500) Maximum number of values returned per node.
 
 ## How to construct a request to the property value endpoint
