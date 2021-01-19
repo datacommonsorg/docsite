@@ -21,22 +21,20 @@ source with more recent data or more authority is selected.
 
 **Methods available**: `GET`
 
-**Authentication**: Optional
-
 **Required arguments**:
 
 * `place`: The [DCID](https://docs.datacommons.org/glossary.html) of the [`Place`](https://datacommons.org/browser/Place) to query for.
-* `stat_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable). More information is available in [the glossary](https://docs.datacommons.org/glossary.html).
+* [`stat_var`](/glossary.html): The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable). More information is available in [the glossary](https://docs.datacommons.org/glossary.html).
 
 You can find a list of StatisticalVariables with human-readable names [within this documentation](/statistical_variables.html).
 
 **Optional arguments**:
 
 * `date`: The preferred date of observation in ISO 8601 format. If not specified, returns the latest observation.
-* `measurement_method`: The DCID of the preferred `measurementMethod` value.
-* `observation_period`: The preferred `observationPeriod` value.
-* `unit`: The DCID of the preferred `unit` value.
-* `scaling_factor`: The preferred `scalingFactor` value.
+* [`measurement_method`](/glossary.html): The DCID of the preferred `measurementMethod` value.
+* [`observation_period`](/glossary.html): The preferred `observationPeriod` value.
+* [`unit`](/glossary.html): The DCID of the preferred `unit` value.
+* [`scaling_factor`](/glossary.html): The preferred `scalingFactor` value.
 
 ## How to construct a request to the place statistics value endpoint
 
@@ -96,7 +94,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/43c8arob/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -127,7 +125,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/g04ydh9v/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -158,7 +156,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/dnk3bh10/3/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -189,7 +187,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/7okp90wb/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -220,7 +218,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/0steafk4/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -251,7 +249,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/rm1kpfdn/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
