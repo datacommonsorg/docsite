@@ -40,7 +40,7 @@ In addition to this required property, this endpoint also allows for an addition
 
 The method's return value will always be a `dict` in the following form:
 
-```json
+```python
 {
     "<dcid>": ["string", ...]
     ...
