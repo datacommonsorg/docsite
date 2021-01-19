@@ -19,19 +19,19 @@ source with more recent or more authorative data is selected.
 
 **URL**: `/stat/series`
 
-**Method**: `GET`
+**Methods available**: `GET`
 
-**Required Arguments**:
+**Required arguments**:
 
 - `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
-- `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+- [`stat_var`](/glossary.html): The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-**Optional Arguments**:
+**Optional arguments**:
 
-- `measurement_method`: The `dcid` of the preferred `measurementMethod` value.
-- `observation_period`: The preferred `observationPeriod` value.
-- `unit`: The dcid of the preferred `unit` value.
-- `scaling_factor`: The preferred `scalingFactor` value.
+- [`measurement_method`](/glossary.html): The `dcid` of the preferred `measurementMethod` value.
+- [`observation_period`](/glossary.html): The preferred `observationPeriod` value.
+- [`unit`](/glossary.html): The dcid of the preferred `unit` value.
+- [`scaling_factor`](/glossary.html): The preferred `scalingFactor` value.
 
 ## How to construct a request to the place statistics time series endpoint
 
