@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Statistics Value for a Place
+# Retrieve statistics value for a place
 
 Returns a statistical value for a place based on the
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
