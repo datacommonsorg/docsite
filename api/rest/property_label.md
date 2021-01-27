@@ -14,11 +14,9 @@ This endpoint is suitable for situations in which you have a node or list of nod
 
 **URL**: `/node/property-labels`
 
-**Method**: `GET`, `POST`
+**Methods available**: `GET`, `POST`
 
-**Auth required**: Optional
-
-**Required Arguments**:
+**Required arguments**:
 
 *   `dcids`: A list of nodes to query, identified by [`DCID`](https://docs.datacommons.org/glossary.html).
 

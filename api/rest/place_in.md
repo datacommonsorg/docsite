@@ -17,17 +17,13 @@ the request's `placeType` parameter.
 
 **URL**: `/node/places-in`
 
-**Method**: `GET`, `POST`
+**Methods available**: `GET`, `POST`
 
-**Auth required**: Optional
+**Required arguments**:
 
-**Required Arguments**:
+*   [`dcids`](/glossary.html): A list of (parent) `Place` nodes, identified by their DCIDs.
 
-*   `dcids`: A list of (parent) `Place` nodes, identified by their DCIDs.
-
-*   `placeType`: The type of the contained (child) `Place` nodes to filter by. For example, `City` and `County` are contained within `State`. For a
-    full list of available types, see [the Data Commons graph browser entry for `Place`](https://datacommons.org/browser/Place).
-
+*   `placeType`: The type of the contained (child) `Place` nodes to filter by.
 
 ## How to construct a request to the places within a place endpoint
 
