@@ -47,11 +47,15 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this method also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - [`date`](/glossary.html): Specified in ISO 8601 format.
-  - [`measurement_method`](/glossary.html): The technique used for measuring a statistical variable.
-  - [`observation_period`](/glossary.html): The time period over which an observation is made.
-  - [`unit`](/glossary.html): The unit of measurement.
-  - [`scaling_factor`](/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
+  - [`date`](https://docs.datacommons.org/glossary.html): Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
+
+  - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
+  
+  - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
+
+  - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
+
+  - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 ## What to expect in the return
 
