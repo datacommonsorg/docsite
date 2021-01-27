@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get a collection of statistical data for multiple places
+# Retrieve a collection of statistical data for multiple places
 
 Returns a nested `dict` of all time series for [`places`](https://datacommons.org/browser/Place) and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable).
 Note that in Data Commons, a `StatisticalVariable` is any type of statistical metric that can be measured at a place and
