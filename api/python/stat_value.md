@@ -17,7 +17,11 @@ source with more recent data or more authority is selected.
 
 ## General information about this endpoint
 
-**Signature**: `datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
+**Signature**: 
+
+```python
+datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
+```
 
 **Required arguments**:
 
