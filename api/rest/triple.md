@@ -20,15 +20,13 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 **URL**: `/node/triples`
 
-**Method**: `GET`, `POST`
+**Methods available**: `GET`, `POST`
 
-**Auth required**: Optional
-
-**Required Arguments**:
+**Required arguments**:
 
 *   `dcids`: A list of nodes to query, identified by their [DCID](https://docs.datacommons.org/glossary.html).
 
-**Optional Arguments**:
+**Optional arguments**:
 
 *   `limit`: The maximum number of triples per combination of property and type
     associated with nodes linked by that property to fetch, up to *500*.
