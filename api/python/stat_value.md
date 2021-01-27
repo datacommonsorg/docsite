@@ -25,7 +25,7 @@ datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,o
 
 **Required arguments**:
 
-* `place`: The DCID of the [`Place`](https://datacommons.org/browser/Place) to query for.
+* `place`: The [DCID](https://docs.datacommons.org/glossary.html) of the [`Place`](https://datacommons.org/browser/Place) to query for.
 * `stat_var`: The DCID of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
