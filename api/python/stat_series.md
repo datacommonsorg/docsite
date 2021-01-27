@@ -14,7 +14,11 @@ filter parameters.
 
 ## General information about this endpoint
 
-**Signature**: `datacommons.get_stat_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
+**Signature**: 
+
+```python
+datacommons.get_stat_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
+```
 
 **Required arguments**:
 
