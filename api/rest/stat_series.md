@@ -19,19 +19,19 @@ source with more recent or more authorative data is selected.
 
 **URL**: `/stat/series`
 
-**Method**: `GET`
+**Methods available**: `GET`
 
-**Required Arguments**:
+**Required arguments**:
 
 - `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
-- `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+- [`stat_var`](/glossary.html): The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-**Optional Arguments**:
+**Optional arguments**:
 
-- `measurement_method`: The `dcid` of the preferred `measurementMethod` value.
-- `observation_period`: The preferred `observationPeriod` value.
-- `unit`: The dcid of the preferred `unit` value.
-- `scaling_factor`: The preferred `scalingFactor` value.
+- [`measurement_method`](/glossary.html): The `dcid` of the preferred `measurementMethod` value.
+- [`observation_period`](/glossary.html): The preferred `observationPeriod` value.
+- [`unit`](/glossary.html): The dcid of the preferred `unit` value.
+- [`scaling_factor`](/glossary.html): The preferred `scalingFactor` value.
 
 ## How to construct a request to the place statistics time series endpoint
 
@@ -93,7 +93,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/w32gmo68/8/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -125,7 +125,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/sL4r6ckm/4/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -156,7 +156,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/2w9sphqc/2/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -187,7 +187,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/6y9tbdh5/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -218,7 +218,7 @@ This endpoint does not support POST requests.
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/1gmewbvx/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
