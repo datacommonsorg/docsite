@@ -36,13 +36,13 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-- [`measurement_method`](/glossary.html): You can specify this argument as out to indicate that you desire the response to only include nodes which are supercategories of the specified DCIDs, or in to only return nodes that are subcategories of the specified DCIDs. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+  - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
+  
+  - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
-- [`observation_period`](/glossary.html): (≤ 500) Maximum number of values returned per node.
+  - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
 
-- [`unit`](/glossary.html): The unit of measurement.
-
-- [`scaling_factor`](/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
+  - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 
