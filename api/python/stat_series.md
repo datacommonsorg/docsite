@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Statistical Time Series for a Place
+# Retrieve statistical time series for a place
 
 Returns a `dict` mapping date to value for a `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
