@@ -14,7 +14,11 @@ time. See the [full list of StatisticalVariables](/statistical_variables.html).
 
 ## General information about this method
 
-**Signature**: `datacommons.get_stat_all(places, stat_vars)`
+**Signature**:
+
+```python
+datacommons.get_stat_all(places, stat_vars)
+```
 
 **Required arguments**
 
