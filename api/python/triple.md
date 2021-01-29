@@ -72,7 +72,6 @@ While all triples contain subjects, predicates, and objects, those entities may 
 ```python
 >>> datacommons.get_triples(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'])
 {'dc/c3j78rpyssdmf': [('dc/c3j78rpyssdmf', 'provenance', 'dc/h2lkz1'), ('dc/zn6l0flenf3m6', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/tkcknpfwxfrhf', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/jdzbbfhgzghv1', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/4f9w8lhcwggxc', 'biosampleOntology', 'dc/c3j78rpyssdmf')], 'dc/7hfhd2ek8ppd2': [('dc/4mjs95b1meh1h', 'biosampleOntology', 'dc/7hfhd2ek8ppd2'), ('dc/13xcyzcr819cb', 'biosampleOntology', 'dc/7hfhd2ek8ppd2'), ('dc/7hfhd2ek8ppd2', 'provenance', 'dc/h2lkz1')]}
-
 ```
 
 ## Error Returns
