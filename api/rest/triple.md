@@ -20,15 +20,13 @@ label of a directed edge from *s* to *o* (sometimes also called the *predicate*)
 
 **URL**: `/node/triples`
 
-**Method**: `GET`, `POST`
+**Methods available**: `GET`, `POST`
 
-**Auth required**: Optional
-
-**Required Arguments**:
+**Required arguments**:
 
 *   `dcids`: A list of nodes to query, identified by their [DCID](https://docs.datacommons.org/glossary.html).
 
-**Optional Arguments**:
+**Optional arguments**:
 
 *   `limit`: The maximum number of triples per combination of property and type
     associated with nodes linked by that property to fetch, up to *500*.
@@ -112,7 +110,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/630fqova/19/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
@@ -120,7 +118,6 @@ curl --request POST \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
@@ -227,7 +224,7 @@ curl --request POST \
 
 {% endtab %}
 
-{% tab log JavaScript %}
+{% tab log javascript %}
 
 <iframe width="100%" height="300" src="//jsfiddle.net/datacommonsorg/ejxgchuy/5/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
