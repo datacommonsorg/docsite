@@ -6,14 +6,18 @@ parent: Python
 grand_parent: API
 ---
 
-# Show Triples Associated with Node(s)
+# Retrieve triples associated with nodes
 
 Given a list of nodes, return [triples](https://docs.datacommons.org/glossary.html) which are associated with the specified
 node(s).
 
 ## General information about this endpoint
 
-**Signature**: `datacommons.get_triples(dcids, limit=datacommons.utils._MAX_LIMIT)`
+**Signature**: 
+
+```python
+datacommons.get_triples(dcids, limit=datacommons.utils._MAX_LIMIT)
+```
 
 **Required arguments**:
 
@@ -42,34 +46,33 @@ The method's return value will always be a `dict` in the following form:
 }
 ```
 
+While all triples contain subjects, predicates, and objects, those entities may be specified using any of a few possible fields. Here are possible keys that you may find associated to triples in the JSON response:
+
+  -	`SubjectID`
+  -	`SubjectName`
+  -	`SubjectTypes`
+  -	`Predicate`
+  -	`ObjectID`
+  -	`ObjectName`
+  -	`ObjectValue`
+  -	`ObjectTypes`
+  -	`ProvenanceID`
+
 ## Example requests and responses
 
-### Example 1: Retrieve triples associated with squareMeter 1238495 (a land tract in southern Florida).
-
-#### Method call
+### Example 1: Retrieve triples associated with zip code 94043.
 
 ```python
-datacommons.get_triples(['SquareMeter1238495'])
-```
-
-#### Response
-
-```python
-{'SquareMeter1238495': [('SquareMeter1238495', 'typeOf', 'Quantity'), ('SquareMeter1238495', 'provenance', 'dc/sm3m2w3'), ('geoId/12086008906', 'landArea', 'SquareMeter1238495')]}
+>>> datacommons.get_triples(['zip/94043'])
+{'zip/94043': [('dc/p/zx34sdjfl5v75', 'location', 'zip/94043'), ... ]}
 ```
 
 ### Example 2: Retrieve triples associated with two American biological research labs.
 
-#### Method call
-
 ```python
-datacommons.get_triples(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'])
-```
+>>> datacommons.get_triples(['dc/c3j78rpyssdmf','dc/7hfhd2ek8ppd2'])
+{'dc/c3j78rpyssdmf': [('dc/c3j78rpyssdmf', 'provenance', 'dc/h2lkz1'), ('dc/zn6l0flenf3m6', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/tkcknpfwxfrhf', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/jdzbbfhgzghv1', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/4f9w8lhcwggxc', 'biosampleOntology', 'dc/c3j78rpyssdmf')], 'dc/7hfhd2ek8ppd2': [('dc/4mjs95b1meh1h', 'biosampleOntology', 'dc/7hfhd2ek8ppd2'), ('dc/13xcyzcr819cb', 'biosampleOntology', 'dc/7hfhd2ek8ppd2'), ('dc/7hfhd2ek8ppd2', 'provenance', 'dc/h2lkz1')]}
 
-#### Response
-
-```python
-{'dc/c3j78rpyssdmf': [('dc/c3j78rpyssdmf', 'provenance', 'dc/h2lkz1'), ('dc/zn6l0flenf3m6', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/tkcknpfwxfrhf', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/jdzbbfhgzghv1', 'biosampleOntology', 'dc/c3j78rpyssdmf'), ('dc/4f9w8lhcwggxc', 'biosampleOntology', 'dc/c3j78rpyssdmf')], 'dc/7hfhd2ek8ppd2': [('dc/7hfhd2ek8ppd2', 'provenance', 'dc/h2lkz1'), ('dc/4mjs95b1meh1h', 'biosampleOntology', 'dc/7hfhd2ek8ppd2'), ('dc/13xcyzcr819cb', 'biosampleOntology', 'dc/7hfhd2ek8ppd2')]}
 ```
 
 ## Error Returns
