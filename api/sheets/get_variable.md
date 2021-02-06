@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get the value of a statistical variable at a given place and time.
 
-Given a list of [Place](https://datacommons.org/browser/Place) [DCIDs](/glossary.html), a [StatisticalVariable](https://datacommons.org/browser/StatisticalVariable), and optionally a date, get the measurements of the specified variable in the specified places with a date (if specified).
+Given a list of [DCIDs](/glossary.html) representing [Place](https://datacommons.org/browser/Place) objects, a [StatisticalVariable](https://datacommons.org/browser/StatisticalVariable), and optionally a date, get the measurements of the specified variable in the specified places with a date (if specified).
 
 ## General information about this endpoint
 
@@ -16,19 +16,19 @@ Given a list of [Place](https://datacommons.org/browser/Place) [DCIDs](/glossary
 
 **Required Arguments**:
 
-*   `dcids`: A list of (parent) `Place` nodes, identified by their DCIDs.
+*   [`dcids`](/glossary.html): A list of `Place` nodes, identified by their DCIDs.
 
-*   `variable` - The StatisticalVariable whose measurement is sought.
+*   `variable` - The [StatisticalVariable](/glossary.html) whose measurement is sought.
 
 **Optional arguments**:
 
-*   `date` - The date or dates of interest.
+*   `date` - The date or dates of interest. If this argument is not specified, the API will return the latest observation of the variable.
 
 ## Assembling the information you will need a request to the places within a place endpoint
 
 This endpoint requires the arguments `dcids` and `variable`. [DCIDs](/glossary.html) are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest. You are also required to specify the [statistical variable](/glossary.html) whose measurement you seek. Statistical variables are the metrics tracked by Data Commons.
 
-You may choose to specify the `date` argument. You may specify this argument as a single value, a row, or a column. All dates must be in ISO 8601 format (e.g. 2017, "2017", "2017-12") or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en). If this argument is not specified, the API will return the latest observation of the variable.
+You may choose to specify the `date` argument. You may specify this argument as a single value, a row, or a column. All dates must be in ISO 8601 format (e.g. 2017, "2017", "2017-12") or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en).
 
 **Returns**
 
