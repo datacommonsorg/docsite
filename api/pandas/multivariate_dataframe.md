@@ -6,7 +6,7 @@ parent: Pandas
 grand_parent: API
 ---
 
-# Get Multivariate DataFrame
+# Retrieve multivariate DataFrame
 
 Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable)
@@ -17,7 +17,11 @@ See the [full list of `StatisticalVariable` classes](/statistical_variables.html
 
 ## General information about this method
 
-**Signature**: `datacommons_pandas.build_multivariate_dataframe(places, stat_vars)`
+**Signature**:
+
+```python
+datacommons_pandas.build_multivariate_dataframe(places, stat_vars)
+```
 
 **Required arguments**:
 
@@ -32,7 +36,7 @@ Going into more detail on how to assemble the values for the required arguments:
 
  - `places`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
 
- - `stat_vars`: This argument specifies the types of places sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place.
+ - `stat_vars`: This argument specifies the types of places sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
 
 ## Example: Compare the historic populations, median ages, and unemployment rates of the US, California, and Santa Clara County.
 
@@ -47,7 +51,7 @@ geoId/06085               37.0       1927852                      7.5
 
 ## Error Returns
 
-If a nonexistent place is passed as an argument, it will not render in the dataframe, as follows:
+If a nonexistent place is passed as an argument, it will not render in the dataframe. In the following example, "geoId/123123123123123123" is one such nonexistent place.
 
 ```python
 >>> datacommons_pandas.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/123123123123123123"],["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
