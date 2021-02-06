@@ -27,6 +27,14 @@ Going into more detail on how to assemble the values for the required arguments:
 
  - `property`: The property whose value you are interested in, such as "name" for the name of a node, or "typeOf" for the type of a node.
 
+ **Returns**
+
+The value of the property label for the specified DCIDs.
+
+>  **NOTE:**
+>
+>  It's best to minimize the number of function calls to `DCPROPERTY` by using a single call to get a variable for a row/column of places and/or a column/row of times. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCPROPERTY`, expect it to be slow.
+
 ## Example requests and responses
 
 ### Example 1: Retrieve the common names of the country of Côte d'Ivoire.
