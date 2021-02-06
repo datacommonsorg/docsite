@@ -12,7 +12,7 @@ Given a list of [DCIDs](/glossary.html) representing [Place](https://datacommons
 
 ## General information about this endpoint
 
-**Signature**: `=DCGET(dcids, variable, date)`
+**Formula**: `=DCGET(dcids, variable, date)`
 
 **Required Arguments**:
 
