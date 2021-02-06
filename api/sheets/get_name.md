@@ -12,7 +12,7 @@ Given a cell or a column range of cells with [DCIDs](/glossary.md) (unique ident
 
 ## General information about this method
 
-**Signature**: `=DCGETNAME(dcids)`
+**Formula**: `=DCGETNAME(dcids)`
 
 **Required arguments**:
 
@@ -22,7 +22,7 @@ Given a cell or a column range of cells with [DCIDs](/glossary.md) (unique ident
 
 Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
 
-### Example 1: Retrieve the common name of the country of Côte d'Ivoire.
+### Example 1: Retrieve the name of a country by its DCID.
 
 ![](/assets/images/sheets/sheets_get_name_cote_d_ivoire_cropped.png)
 
