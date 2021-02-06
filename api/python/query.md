@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Query the Data Commons knowledge graph using SPARQL
+# Query the Data Commons Graph using SPARQL
 
 Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
