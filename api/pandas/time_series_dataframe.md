@@ -6,7 +6,7 @@ parent: Pandas
 grand_parent: API
 ---
 
-# Get Time Series DataFrame
+# Retrieve time series DataFrame
 
 Returns a `pandas.DataFrame` with [`places`](https://datacommons.org/browser/Place)
 as index and dates as columns, where each cell is the observed statistic for
@@ -17,7 +17,11 @@ See the [full list of `StatisticalVariable`s](/statistical_variables.html).
 
 ## General information about this method
 
-**Signature**: `datacommons_pandas.build_time_series_dataframe(places, stat_var)`
+**Signature**: 
+
+```python
+datacommons_pandas.build_time_series_dataframe(places, stat_var)
+```
 
 **Required arguments**:
 
@@ -33,6 +37,8 @@ Going into more detail on how to assemble the values for the required arguments:
  - [`places`](/glossary.html): Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the places of interest.
 
  - [`stat_var`](/glossary.html): This argument specifies the statistical variable whose measurement you seek.
+
+For more information, check out [the glossary](/glossary.html).
 
 ## Examples
 
