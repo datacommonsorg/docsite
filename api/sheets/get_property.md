@@ -12,7 +12,7 @@ Given a list of nodes and a property label, returns values associated with the g
 
 ## General information about this endpoint
 
-**Signature**: `=DCPROPERTY(dcids, property)`
+**Formula**: `=DCPROPERTY(dcids, property)`
 
 **Required arguments**:
 
