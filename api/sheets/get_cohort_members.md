@@ -12,7 +12,7 @@ Get the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort
 
 ## General information about this method
 
-**Signature:** `=DCCOHORTMEMBERS(dcids)`
+**Formula:** `=DCCOHORTMEMBERS(dcids)`
 
 **Arguments**
 *    `dcids` - cohort DCIDs whose members are sought. Here a DCID refers to the unique ID assigned by Data Commons to every node in the knowledge graph. 
