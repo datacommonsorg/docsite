@@ -15,7 +15,7 @@ the request's `placeType` parameter.
 
 ## General information about this endpoint
 
-**Signature**: `=DCPLACESIN(dcids, placeType)`
+**Formula**: `=DCPLACESIN(dcids, placeType)`
 
 **Required Arguments**:
 
