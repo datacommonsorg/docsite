@@ -6,7 +6,7 @@ parent: Pandas
 grand_parent: API
 ---
 
-# Get Time Series for a Place
+# Retrieve time series for a place
 
 Returns a `pandas.Series` representing a time series for the [`place`](https://datacommons.org/browser/Place) and
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable) satisfying any optional parameters.
@@ -15,7 +15,10 @@ See the [full list of `StatisticalVariable` classes](/statistical_variables.html
 
 ## General information about this method
 
-**Signature**: `datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)`
+**Signature**: 
+```python
+datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
+```
 
 **Required arguments**:
 
@@ -33,15 +36,15 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-- [`measurement_method`](/glossary.html): You can specify this argument as out to indicate that you desire the response to only include nodes which are supercategories of the specified DCIDs, or in to only return nodes that are subcategories of the specified DCIDs. (For example, South America is a supercategory of Argentina, which in turn is a supercategory of Buenos Aires, as illustrated in Figure 1.)
+- [`measurement_method`](/glossary.html): The technique used for measuring a statistical variable.
 
-- [`observation_period`](/glossary.html): (≤ 500) Maximum number of values returned per node.
+- [`observation_period`](/glossary.html): The time period over which an observation is made.
 
 - [`unit`](/glossary.html): The unit of measurement.
 
 - [`scaling_factor`](/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
-Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
+Note that specifying arguments that do not exist for the target place and variable will result in an empty response. For more information on any of these arguments, check out [the glossary](/glossary.html).
 
 ## Examples
 
