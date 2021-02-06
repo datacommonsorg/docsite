@@ -33,7 +33,7 @@ A sidebar will appear on the right of the sheet, with a search bar where you can
 
 Note that this feature only supports places in the United States.
 
-**Sorting your results**
+## Sorting your results
 
 <p>To sort columns of data from the API, we suggest using the "filter views" Google Sheet feature.
 
