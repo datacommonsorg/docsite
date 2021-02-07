@@ -1,6 +1,6 @@
 ---
 layout: default
-title: COVID-19 Analysis With Sheets
+title: Sheets COVID-19 Analysis
 nav_order: 2
 parent: Tutorials
 ---
@@ -8,7 +8,7 @@ parent: Tutorials
 # Using Data Commons' Google Sheets API to analyze the COVID-19 pandemic
 
 ## Introduction
-Throughout the ongoing COVID-19 pandemic, engineers at Google have been working to upload COVID-19 data as it becomes available, helping public and private sector analysts create evidence-based policy to combat the public health crisis. This tutorial presents an example of how to obtain this data from the Data Commons API and use Google Sheets for visualization of it.
+Throughout the ongoing COVID-19 pandemic, the Data Commons team has been working to upload COVID-19 data as it becomes available, helping public and private sector analysts create evidence-based policy to combat the public health crisis. This tutorial presents an example of how to obtain this data from the Data Commons API and use Google Sheets for visualization of it.
 
 ## Step 1: Setup
 Pull up Google Sheets and create a new, blank spreadsheet. You can title it `Data Commons COVID-19 analysis` or any other name of your choosing.
@@ -19,7 +19,7 @@ To enable the Data Commons API in your spreadsheet, ensure that the Data Commons
 
 ![](/assets/images/tutorials/sheets_covid_tutorial_2.png)
 
-A menu should pop up on the right side of the Sheets web application. Type the name of any place desired; its DCID should populate into the A1 entry of the chart.
+A menu should pop up on the right side of the Sheets web application. Type the name of any place desired; its DCID should populate into the A1 entry of the chart. This step is required to enable the Data Commons API.
 
 ![](/assets/images/tutorials/sheets_covid_tutorial_3.png)
 
@@ -37,7 +37,7 @@ Finally, you’ll want to retrieve the state names and position them convenientl
 ![](/assets/images/tutorials/sheets_covid_tutorial_6.png)
 
 ## Step 3: Populating the spreadsheet with COVID information
-In this tutorial, you will be analyzing each state’s cumulative count of deaths due to COVID as of December 15, 2020. To do this, you will need to get the value of the statistical variable `CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased` for each state on the date specified. You can use the `DCGET` method to do this.
+In this tutorial, you will be analyzing each state’s cumulative count of deaths due to COVID as of December 15, 2020. To do this, you will need to get the value of the [statistical variable](/glossary.html) `CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased` for each state on the date specified. You can use the `DCGET` method to do this.
 
 Type `=DCGET(B1, "CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased", "2020-12-15")` into cell D1, then click and drag to repeat this formula throughout the D column. Your final output should look like this:
 
@@ -52,5 +52,5 @@ Feel free to drag the histogram out of the way of the numbers! As a final step, 
 
 ![](/assets/images/tutorials/sheets_covid_tutorial_9.png)
 
-If you’d like to experiment more with the data and methods from this tutorial, check out <https://docs.google.com/spreadsheets/d/1yK4YCpwF2AeiaVIfINXVHXw5O3BEjPyWnCSsqonfVBM/edit?usp=sharing>.
+If you’d like to experiment more with the data and methods from this tutorial, check out <https://docs.google.com/spreadsheets/d/1yK4YCpwF2AeiaVIfINXVHXw5O3BEjPyWnCSsqonfVBM/edit?usp=sharing>. You can copy the spreadsheet at <https://docs.google.com/spreadsheets/d/1yK4YCpwF2AeiaVIfINXVHXw5O3BEjPyWnCSsqonfVBM/copy>. Note that you will need to enable the Sheets API as in Step 1 to retrieve the data for analysis.
 
