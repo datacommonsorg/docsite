@@ -29,6 +29,17 @@ This method accepts the additional optional argument `select`. This function sel
 >    **NOTE:**
 >    - In the query, each variable should have a `typeOf` condition, e.g. `"?var typeOf City ."`.
 
+## What to expect in the function return
+
+A correct response will always look like this:
+
+```json
+[{'<field name>': '<field value>', ...},
+ ...]
+```
+
+The response contains an array of dictionaries, each corresponding to one node matching the conditions of the query. Each dictionary's keys match the variables in the query SELECT clause, and the values in the dictionaries are those associated to the given node's query-specified properties.
+
 ## Examples and error returns
 
 A collection of examples of correctly and poorly formed calls to this method is available at <https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing>.
