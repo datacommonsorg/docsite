@@ -6,40 +6,36 @@ parent: Google Sheets
 grand_parent: API
 ---
 
-# Get the name of a node.
+# Get a node's name
 
-## `=DCGETNAME(dcids)`
+Given a cell or a column range of cells with [DCIDs](/glossary.md) (unique identifiers for all entities in the Data Commons knowledge graph), return the names associated with the given DCIDs.
 
-Given a cell or a column range of cells with DCIDs, return the names of those dcids.
+## General information about this method
 
-**Arguments**
-*    `dcids` - DCIDs to get the names of
+**Formula**: `=DCGETNAME(dcids)`
 
-**Returns**
+**Required arguments**:
 
-The names of the DCIDs
+* `dcids` - A list of nodes to query, identified by their DCIDs.
 
 ## Examples
 
-In this example, we find the names of the Data Commons nodes for [California](https://datacommons.org/browser/geoId/06) and [Alameda County](https://datacommons.org/browser/geoId/06001). The function call in the image uses a single call to get the names of "geoId/06" and "geoId/06001", but it is equivalent to typing:
+Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
 
-```
-=DCGETNAME("geoId/06")
-```
+### Example 1: Retrieve the name of a country by its DCID.
 
-and
+![](/assets/images/sheets/sheets_get_name_cote_d_ivoire_cropped.png)
 
-```
-=DCGETNAME("geoId/06001")
-```
+### Example 2: Retrieve the names of a collection of cell lines.
 
-in cells B2 and B3 respectively.
+![](/assets/images/sheets/sheets_get_name_cell_lines_cropped.png)
 
-### Input
+## Error returns
 
-![](/assets/images/sheets/sheets_get_name_input.png)
+If a DCID does not exist, this method returns nothing:
 
-### Output
+![](/assets/images/sheets/sheets_get_name_wrong_dcid_cropped.png)
 
-![](/assets/images/sheets/sheets_get_name_output.png)
+If an empty cell is provided as a DCID, this method returns an error value:
 
+![](/assets/images/sheets/sheets_get_name_no_input_cropped.png)
