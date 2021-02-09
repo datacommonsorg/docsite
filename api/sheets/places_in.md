@@ -6,7 +6,7 @@ parent: Google Sheets
 grand_parent: API
 ---
 
-# Get Places Contained within Another Place
+# Retrieve places contained within another place
 
 ## `=DCPLACESIN(dcids, placeType)`
 
