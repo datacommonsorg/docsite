@@ -11,8 +11,6 @@ grand_parent: API
 Returns a `pandas.Series` representing a time series for the [`place`](https://datacommons.org/browser/Place) and
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable) satisfying any optional parameters.
 
-See the [full list of `StatisticalVariable` classes](/statistical_variables.html).
-
 ## General information about this method
 
 **Signature**: 
@@ -23,7 +21,7 @@ datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,ob
 **Required arguments**:
 
 * `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
-* `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+* `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable). See the [full list of `StatisticalVariable` variables](/statistical_variables.html).
 
 **NOTE:** In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
