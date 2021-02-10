@@ -6,7 +6,7 @@ parent: Google Sheets
 grand_parent: API
 ---
 
-# Get Places Contained within Another Place
+# Retrieve places contained within another place
 
 Given a list of parent [`Place`](https://datacommons.org/browser/Place) [DCIDs](glossary.md),
 (e.g. any [`State`](https://datacommons.org/browser/State), [`Country`](https://datacommons.org/browser/Country), etc.), return a list of child places
@@ -27,7 +27,7 @@ the request's `placeType` parameter.
 
 ## Assembling the information you will need a request to the places within a place endpoint
 
-This endpoint requires the argument `dcids`. [DCIDs](glossary.md) are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest.
+This endpoint requires the argument `dcids`. [DCIDs](/glossary.html) are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest.
 
 This endpoint also requires the argument `placeType`, specifying the type of the child places you desire in the response.
 
