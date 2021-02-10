@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Node name
+title: Node Name
 nav_order: 4
 parent: Google Sheets
 grand_parent: API
