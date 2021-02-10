@@ -6,46 +6,67 @@ parent: Python
 grand_parent: API
 ---
 
-# Get a Collection of Statistical Data for Multiple Places
-
-## `datacommons.get_stat_all(places, stat_vars)`
+# Retrieve a collection of statistical data for multiple places
 
 Returns a nested `dict` of all time series for [`places`](https://datacommons.org/browser/Place) and [`stat_vars`](https://datacommons.org/browser/StatisticalVariable).
+Note that in Data Commons, a `StatisticalVariable` is any type of statistical metric that can be measured at a place and
+time. See the [full list of StatisticalVariables](/statistical_variables.html).
 
-**Arguments**
+## General information about this method
 
-- `places (Iterable of str)`: The `dcid`s of the [`Place`](https://datacommons.org/browser/Place) to query for.
+**Signature**:
 
-- `stats_vars (Iterable of str)`: The `dcid`s of the
-  [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
+```python
+datacommons.get_stat_all(places, stat_vars)
+```
 
-**Returns**
+**Required arguments**
 
-A nested `dict` mapping `Place`s to `StatisticalVariable`s and all available
-time series for each Place and StatisticalVariable pair.
+- `places`: The [`DCID`](/glossary.html) IDs of the [`Place`](https://datacommons.org/browser/Place) objects to query for. (Here DCID stands for Data Commons ID, the unique identifier assigned to all entities in Data Commons.)
+- [`stat_vars`](/glossary.html): The `dcids` of the [`StatisticalVariables`](https://datacommons.org/browser/StatisticalVariable).
 
-The top level `dict` key is the `Place` dcid and the second level `dict` key is the
-`StatisticalVariable` dcid, with the object being an array of time series object
-with the following fields
+## Assembling the information you will need for a call to the get_stat_all method
+ 
+Going into more detail on how to assemble the values for the required arguments:
 
-- `val`: a dict from date to statistical value.
-- `importName`: the import name of the observations.
-- `provenanceDomain`: the [Provenance](https://datacommons.org/browser/Provenance) domain of the observations.
-- `measurementMethod`: the [`measurementMethod`](https://datacommons.org/browser/measurementMethod) of the observations, if it exists.
-- `observationPeriod`: the [`observationPeriod`](https://datacommons.org/browser/observationPeriod) of the observations, if it exists.
-- `unit`: the [`unit`](https://datacommons.org/browser/unit) of the observations, if it exists.
-- `scalingFactor`: the [`scalingFactor`](https://datacommons.org/browser/scalingFactor) of the observations, if it exists.
+- `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+- [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
 
-If no statistical value can be found for the `Place` and `StatisticalVariable` combination passed into this method, a dictionary with no values is returned.
+>  **NOTE:**
+>  Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
 
-Be sure to initialize the library. Check the [Python library setup guide](/api/python/) for more details.
+## What to expect in the function return
 
-You can find a list of `StatisticalVariable`s with human-readable names [here](/statistical_variables.html).
+The method's return value will always be an object in the following form:
+
+```python
+{
+    "<dcid>": {
+      "stat_var": {
+        "sourceSeries": [
+          {
+            "val": {
+              <"time series">
+            }
+            "measurementMethod": "<String>",
+            "observationPeriod": "<String>",
+            "importName": "<String>",
+            "provenanceDomain": "<String>"
+          }
+          ...
+        ]
+      }
+      ...
+    }
+    ...
+}
+```
+
+For more information on the key terms in this sample response, see [the glossary](/glossary.html).
 
 ## Examples
 
-We would like to get the [population](https://datacommons.org/browser/Count_Person) and the [male population](https://datacommons.org/browser/Count_Person_Male) in [Arkansas](https://datacommons.org/browser/geoId/05) and
-[California](https://datacommons.org/browser/geoId/06).
+### Example 1: Retrieve the total population as well as the male population of Arkansas.
 
 ```python
 >>> import datacommons as dc
@@ -114,9 +135,19 @@ We would like to get the [population](https://datacommons.org/browser/Count_Pers
 }
 ```
 
-In the next example, there is no data found, so the API returns a dictionary with no values:
+### Example 2: Retrieve the populations of people with doctoral degrees in Minnesota and Wisconsin.
 
 ```python
+>>> datacommons.get_stat_all(["geoId/27","geoId/55"], ["Count_Person_EducationalAttainmentDoctorateDegree"])
+{'geoId/27': {'Count_Person_EducationalAttainmentDoctorateDegree': {'sourceSeries': [{'val': {'2016': 50039, '2017': 52737, '2018': 54303, '2012': 40961, '2013': 42511, '2014': 44713, '2015': 47323}, 'measurementMethod': 'CensusACS5yrSurvey', 'importName': 'CensusACS5YearSurvey', 'provenanceDomain': 'census.gov', 'provenanceUrl': 'https://www.census.gov/'}]}}, 'geoId/55': {'Count_Person_EducationalAttainmentDoctorateDegree': {'sourceSeries': [{'val': {'2017': 43737, '2018': 46071, '2012': 38052, '2013': 38711, '2014': 40133, '2015': 41387, '2016': 42590}, 'measurementMethod': 'CensusACS5yrSurvey', 'importName': 'CensusACS5YearSurvey', 'provenanceDomain': 'census.gov', 'provenanceUrl': 'https://www.census.gov/'}]}}}
+```
+
+## Error returns
+
+When no data is found, the API returns a dictionary with no values:
+
+```python
+>>> import datacommons as dc
 >>> dc.get_stat_all(["bad value"],["another bad value"])
 {'bad value': {'another bad value': {}}}
 ```
