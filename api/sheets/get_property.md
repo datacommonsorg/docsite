@@ -37,7 +37,7 @@ The value of the property label for the specified DCIDs.
 
 ## Example requests and responses
 
-### Example 1: Retrieve the common names of the country of Côte d'Ivoire.
+### Example 1: Retrieve the common names of a country by its `DCID`.
 
 ![](/assets/images/sheets/sheets_get_property_ivory_coast.png)
 
