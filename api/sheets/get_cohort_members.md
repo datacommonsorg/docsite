@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get Cohort Members
+title: Cohort members
 nav_order: 8
 parent: Google Sheets
 grand_parent: API

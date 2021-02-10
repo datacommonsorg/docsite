@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get Place DCID
+title: Place DCID
 nav_order: 3
 parent: Google Sheets
 grand_parent: API
