@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Node property value
+title: Node Property
 nav_order: 7
 parent: Google Sheets
 grand_parent: API
