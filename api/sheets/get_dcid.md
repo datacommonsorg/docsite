@@ -19,3 +19,4 @@ A sidebar will appear on the right of the sheet, with a search bar where you can
 ![](/assets/images/sheets/sheets_search_box.png)
 
 This feature only supports places in the United States.
+ 
