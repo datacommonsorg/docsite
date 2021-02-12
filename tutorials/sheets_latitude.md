@@ -43,4 +43,4 @@ Now, to get the latitude of each capital, type `=DCPROPERTY(D1:D, "latitude")` i
 
 ![](/assets/images/tutorials/sheets_latitude_tutorial_7.png)
 
-If you’d like to experiment more with the data and methods from this tutorial, check out <https://docs.google.com/spreadsheets/d/1AYOD9yX59aKNNHoLLsmy00uihU72EKDFDZVo5KdX7H0/edit#gid=0>.
+If you’d like to experiment more with the data and methods from this tutorial, check out <https://docs.google.com/spreadsheets/d/1AYOD9yX59aKNNHoLLsmy00uihU72EKDFDZVo5KdX7H0/edit#gid=0>. You can clone the sheet by clicking on the File dropdown, then choosing the 'Make a copy' option.
