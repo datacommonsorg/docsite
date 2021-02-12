@@ -19,6 +19,10 @@ Given a list of nodes and a property label, returns values associated with the g
 *   `dcids`: A list of nodes to query, identified by their Data Commons identifiers.
 *   `property`: The property to query for.
 
+ **Returns**
+
+The value of the property label for the specified DCIDs.
+
 ## Assembling the information you will need for a call to this method
 
 Going into more detail on how to assemble the values for the required arguments:
@@ -26,10 +30,6 @@ Going into more detail on how to assemble the values for the required arguments:
  - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest. More information about DCIDs is available in [the glossary](/glossary.html).
 
  - `property`: The property whose value you are interested in, such as "name" for the name of a node, or "typeOf" for the type of a node. If you aren't sure what properties are available for a particular DCID, you can use the [Data Commons graph browser](https://datacommons.org/browser/) to look up the DCID of interest and see what properties it is associated with.
-
- **Returns**
-
-The value of the property label for the specified DCIDs.
 
 >  **NOTE:**
 >
