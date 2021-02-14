@@ -76,12 +76,12 @@ The response contains an array of dictionaries, each corresponding to one node m
 [{'?observation': 'dc/o/s3gzszzvj34f1'}, {'?observation': 'dc/o/gd41m7qym86d4'}, {'?observation': 'dc/o/wq62twxx902p4'}, {'?observation': 'dc/o/d93kzvns8sq4c'}, {'?observation': 'dc/o/6s741lstdqrg4'}, {'?observation': 'dc/o/2kcq1xjkmrzmd'}, {'?observation': 'dc/o/ced6jejwv224f'}, {'?observation': 'dc/o/q31my0dmcryzd'}, {'?observation': 'dc/o/96frt9w0yjwxf'}, {'?observation': 'dc/o/rvjz5xn9mlg73'}]
 ```
 
-#### Example 5. Retrieve a list of ten distinct yearly estimates of life expectancy for forty-seven-year-old Hungarians.
+#### Example 5. Retrieve a list of ten distinct annual estimates of life expectancy, along with the year of estimation, for forty-seven-year-old Hungarians.
 
 ```python
->>> life_expectancy_query = 'SELECT DISTINCT ?LifeExpectancy WHERE { ?pop typeOf StatisticalPopulation . ?o typeOf Observation . ?pop dcid dc/p/grjmhz7x2kc9f . ?o observedNode ?pop . ?o measuredValue ?LifeExpectancy } ORDER BY ASC(?LifeExpectancy) LIMIT 10'
+>>> life_expectancy_query = 'SELECT DISTINCT ?LifeExpectancy ?year WHERE { ?pop typeOf StatisticalPopulation . ?o typeOf Observation . ?pop dcid dc/p/grjmhz7x2kc9f . ?o observedNode ?pop . ?o measuredValue ?LifeExpectancy . ?o observationDate ?year } ORDER BY ASC(?LifeExpectancy) LIMIT 10'
 >>> datacommons.query(life_expectancy_query)
-[{'?LifeExpectancy': '26.4'}, {'?LifeExpectancy': '26.5'}, {'?LifeExpectancy': '26.7'}, {'?LifeExpectancy': '26.8'}, {'?LifeExpectancy': '26.9'}, {'?LifeExpectancy': '27.2'}, {'?LifeExpectancy': '27.4'}, {'?LifeExpectancy': '27.5'}, {'?LifeExpectancy': '28.1'}, {'?LifeExpectancy': '28.3'}]
+[{'?LifeExpectancy': '26.4', '?year': '1993'}, {'?LifeExpectancy': '26.5', '?year': '1992'}, {'?LifeExpectancy': '26.7', '?year': '1990'}, {'?LifeExpectancy': '26.7', '?year': '1994'}, {'?LifeExpectancy': '26.8', '?year': '1991'}, {'?LifeExpectancy': '26.9', '?year': '1995'}, {'?LifeExpectancy': '27.2', '?year': '1996'}, {'?LifeExpectancy': '27.4', '?year': '1999'}, {'?LifeExpectancy': '27.5', '?year': '1997'}, {'?LifeExpectancy': '27.5', '?year': '1998'}]
 ```
 
 #### Example 6: Use the `select` function to filter returns based on name.
