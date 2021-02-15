@@ -20,21 +20,21 @@ To enable the Data Commons API in your spreadsheet, ensure that the Data Commons
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_2.png)
 
-Next, double-click on A1 in the chart and type `CDC500_City`.
+## Step 2: Get the DCIDs and names of cohort members
+Data Commons provides the method `DCCOHORTMEMBERS` for obtaining the members of a Data Commons cohort. Here, you’ll use this method to retrieve the cities in the CDC 500 cohort. Start by double-clicking on A1 in the chart and enter `CDC500_City`.
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_3.png)
 
-## Step 2: Get the DCIDs and names of cohort members
-Data Commons provides the method `DCCOHORTMEMBERS` for obtaining the members of a Data Commons cohort. Here, you’ll use this method to retrieve the cities in the CDC 500 cohort. In cell B1, type `=DCCOHORTMEMBERS(A1)`. The output should look like this:
+In cell B1, enter `=DCCOHORTMEMBERS(A1)`. The output should look like this:
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_4.png)
 
-To get the names of these cities, type `=DCGETNAME(B1:B500)` into cell C1. The output should look like this:
+To get the names of these cities, enter `=DCGETNAME(B1:B500)` into cell C1. The output should look like this:
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_5.png)
 
 ## Step 3: Obtain the sleep health level for each city.
-We will use the percentage of chronically restless residents in each city to determine using the `DCGET` method with the statistical variable `Percent_Person_SleepLessThan7Hours`. (More information on statistical variables is available in the glossary. Note that this is one of quite a number of statistical variables that can be measured for the CDC 500.) Type `=DCGET(B1:B500, "Percent_Person_SleepLessThan7Hours", "2016")` into cell D1 in your spreadsheet. The output should look like this:
+We will use the percentage of chronically restless residents in each city to determine using the `DCGET` method with the statistical variable `Percent_Person_SleepLessThan7Hours`. (More information on statistical variables is available in the glossary. Note that this is one of quite a number of statistical variables that can be measured for the CDC 500.) Enter `=DCGET(B1:B500, "Percent_Person_SleepLessThan7Hours", "2016")` into cell D1 in your spreadsheet. The output should look like this:
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_6.png)
 
@@ -45,4 +45,4 @@ Data Commons has made a tutorial on sorting in Sheets available at <https://docs
 
 Note the added headers and resized column widths for increased clarity. Also, if you’re experiencing slow sorting in the sheet, consider replacing the method calls in the C and D columns with their values. To do this, copy the columns, then paste by value only into their original locations in the spreadsheet.
 
-To further explore data from this tutorial, check out https://docs.google.com/spreadsheets/d/1aSilceR2fZR-pTfMuilGebg9yDzOiR993bCtAk7GwlI/edit?usp=sharing
+To further explore data from this tutorial, check out <https://docs.google.com/spreadsheets/d/1aSilceR2fZR-pTfMuilGebg9yDzOiR993bCtAk7GwlI/edit?usp=sharing>.
