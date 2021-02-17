@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieve places contained within another place
 
-Given a list of parent [`Place`](https://datacommons.org/browser/Place) [DCIDs](glossary.md),
+Given a list of parent [`Place`](https://datacommons.org/browser/Place) [DCIDs](/glossary.html),
 (e.g. any [`State`](https://datacommons.org/browser/State), [`Country`](https://datacommons.org/browser/Country), etc.), return a list of child places
 contained within the specified DCIDs. Only returns children whose place type matches
 the request's `placeType` parameter.
