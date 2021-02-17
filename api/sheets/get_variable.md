@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get Variable
+title: Statistical Variable Value
 nav_order: 6
 parent: Google Sheets
 grand_parent: API
