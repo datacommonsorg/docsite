@@ -8,37 +8,49 @@ grand_parent: API
 
 # Retrieve places contained within another place
 
-## `=DCPLACESIN(dcids, placeType)`
+Given a list of parent [`Place`](https://datacommons.org/browser/Place) [DCIDs](glossary.md),
+(e.g. any [`State`](https://datacommons.org/browser/State), [`Country`](https://datacommons.org/browser/Country), etc.), return a list of child places
+contained within the specified DCIDs. Only returns children whose place type matches
+the request's `placeType` parameter.
 
-Given a list of [`Place`](https://datacommons.org/browser/Place) DCIDs, return the DCIDs of places of a specified type
-contained within those places.
+## General information about this endpoint
+
+**Formula**: `=DCPLACESIN(dcids, placeType)`
+
+**Required Arguments**:
+
+*   `dcids`: A list of (parent) `Place` nodes, identified by their DCIDs.
+
+*   `placeType`: The type of the contained (child) `Place` nodes to filter by. For example, `City` and `County` are contained within `State`. For a
+    full list of available types, see [the Data Commons graph browser entry for `Place`](https://datacommons.org/browser/Place).
+
+
+## Assembling the information you will need a request to the places within a place endpoint
+
+This endpoint requires the argument `dcids`. [DCIDs](/glossary.html) are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest.
+
+This endpoint also requires the argument `placeType`, specifying the type of the child places you desire in the response.
 
 ## Examples
 
-**Arguments**
-*   `dcids` - place DCIDs to get places within
-*   `placeType` - The type of the contained `Place`s within the given
-    DCIDs to filter by. E.g. `City` and `County` are contained within `State`. For a
-    full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
+### Example 1: Retrieve a list of the counties in Delaware.
 
-**Returns**
+![](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
 
-The dcids of type `placeType` contained within the place.
+### Example 2: Retrieve a list of congressional districts in Alaska and Hawaii.
 
-## Examples
+![](/assets/images/sheets/sheets_places_in_congressional_districts_ak_hi.png)
 
-To get all of the counties in the state of Hawaii:
+## Error Responses
 
-```
-=DCPLACESIN("geoId/15", "County")
-```
+If you pass a bad DCID value, you will see a reference error appear:
 
-The example below shows how to use the place DCID in an existing cell:
+![](/assets/images/sheets/sheets_places_in_bad_dcid.png)
 
-### Input
+Likewise, if you pass a nonexistent place type, you will also see a reference error appear:
 
-![](/assets/images/sheets/sheets_places_in_input.png)
+![](/assets/images/sheets/sheets_places_in_bad_place_type.png)
 
-### Output
+If you pass an empty DCID, an error will appear:
 
-![](/assets/images/sheets/sheets_places_in_output.png)
+![](/assets/images/sheets/sheets_places_in_empty_cell.png)
