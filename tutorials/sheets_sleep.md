@@ -21,7 +21,7 @@ To enable the Data Commons API in your spreadsheet, ensure that the Data Commons
 ![](/assets/images/tutorials/sheets_sleep_tutorial_2.png)
 
 ## Step 2: Get the DCIDs and names of cohort members
-Data Commons provides the method `DCCOHORTMEMBERS` for obtaining the members of a Data Commons cohort. Here, you’ll use this method to retrieve the cities in the CDC 500 cohort. Start by double-clicking on A1 in the chart and enter `CDC500_City`.
+Data Commons provides the method [`DCCOHORTMEMBERS`](https://docs.datacommons.org/api/sheets/get_cohort_members.html) for obtaining the members of a Data Commons cohort. Here, you’ll use this method to retrieve the cities in the CDC 500 cohort. Start by double-clicking on A1 in the chart and enter `CDC500_City`.
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_3.png)
 
@@ -34,12 +34,12 @@ To get the names of these cities, enter `=DCGETNAME(B1:B500)` into cell C1. The 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_5.png)
 
 ## Step 3: Obtain the sleep health level for each city.
-We will use the percentage of chronically restless residents in each city to determine using the `DCGET` method with the statistical variable `Percent_Person_SleepLessThan7Hours`. (More information on statistical variables is available in the glossary. Note that this is one of quite a number of statistical variables that can be measured for the CDC 500.) Enter `=DCGET(B1:B500, "Percent_Person_SleepLessThan7Hours", "2016")` into cell D1 in your spreadsheet. The output should look like this:
+We will use the percentage of chronically restless residents in each city using the `DCGET` method with the statistical variable `Percent_Person_SleepLessThan7Hours`. (More information on statistical variables is available in the [glossary](https://docs.datacommons.org/glossary.html).) Enter `=DCGET(B1:B500, "Percent_Person_SleepLessThan7Hours", "2016")` into cell D1 in your spreadsheet. The output should look like this:
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_6.png)
 
 ## Step 4: Sort on sleep score.
-Data Commons has made a tutorial on sorting in Sheets available at <https://docs.datacommons.org/api/sheets/sort.html>. Follow the example in the video to sort your spreadsheet on the F column. Your final output should look like this:
+Data Commons has made a tutorial on sorting in Sheets available at <https://docs.datacommons.org/api/sheets/>. Follow the example in the video to sort your spreadsheet on the F column. Your final output should look like this:
 
 ![](/assets/images/tutorials/sheets_sleep_tutorial_7.png)
 
