@@ -33,7 +33,7 @@ Next, you’ll want to retrieve the country names and position them conveniently
 ![](/assets/images/tutorials/sheets_latitude_tutorial_5.png)
 
 ## Step 3: Populating the spreadsheet with capital and latitude information
-In this step, you will obtain all South American countries’ capitals and latitudes. To do this, you will need to get the value of the property names `latitude` and [`administrativeCapital`](https://datacommons.org/browser/administrativeCapital) for each country on the date specified. (As an aside, if you'd like to see what properties are available for any given entity, Data Commons provides a [graph browser](https://datacommons.org/browser) tool enabling you to look up any entity in the graph and view its associated properties.) You can use the [`DCPROPERTY`](/api/sheets/get_property.html) method to do this.
+In this step, you will obtain all South American countries’ capitals and latitudes. To do this, you will need to get the value of the property names [`latitude`](https://datacommons.org/browser/latitude) and [`administrativeCapital`](https://datacommons.org/browser/administrativeCapital) for each country on the date specified. (As an aside, if you'd like to see what properties are available for any given entity, Data Commons provides a [graph browser](https://datacommons.org/browser) tool enabling you to look up any entity in the graph and view its associated properties.) You can use the [`DCPROPERTY`](/api/sheets/get_property.html) method to do this.
 
 Type `=DCPROPERTY(B1:B, "administrativeCapital")` into cell D1. Your output should look like this:
 
