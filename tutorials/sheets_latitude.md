@@ -20,7 +20,7 @@ To enable the Data Commons API in your spreadsheet, ensure that the Data Commons
  ![](/assets/images/tutorials/sheets_latitude_tutorial_2.png)
 
 ## Step 2: Retrieving place names and DCIDs from Data Commons
-Double-click on A1 in the chart and enter `southamerica` (the DCID for the continent of South America).
+Double-click on A1 in the chart and enter [`southamerica`](https://datacommons.org/browser/southamerica) (the DCID for the continent of South America).
 
 ![](/assets/images/tutorials/sheets_latitude_tutorial_3.png)
 
@@ -43,4 +43,4 @@ Now, to get the latitude of each capital, type `=DCPROPERTY(D1:D, "latitude")` i
 
 ![](/assets/images/tutorials/sheets_latitude_tutorial_7.png)
 
-If you’d like to experiment more with the data and methods from this tutorial, check out <https://docs.google.com/spreadsheets/d/1AYOD9yX59aKNNHoLLsmy00uihU72EKDFDZVo5KdX7H0/edit#gid=0>. You can clone the sheet by clicking on the File dropdown, then choosing the 'Make a copy' option.
+If you’d like to experiment more with the data and methods from this tutorial, check out <https://docs.google.com/spreadsheets/d/1AYOD9yX59aKNNHoLLsmy00uihU72EKDFDZVo5KdX7H0/edit#gid=0>. You can clone the sheet by clicking on the File dropdown, then choosing the 'Make a copy' option. Note that you will need to enable the Sheets API as in Step 1 to retrieve the data for analysis.
