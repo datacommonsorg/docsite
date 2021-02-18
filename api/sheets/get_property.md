@@ -1,46 +1,68 @@
 ---
 layout: default
-title: Get Node Property
+title: Node Property
 nav_order: 7
 parent: Google Sheets
 grand_parent: API
 ---
 
-# Get the values of a given property for a node.
+# Retrieve property values for nodes
 
-## `=DCPROPERTY(dcids, property)`
+Given a list of nodes and a property label, returns values associated with the given property for each node.
 
-Given a property, together with a single DCID, a row of DCIDs, or a column of DCIDs, get the values of the given property for those DCIDs.
+## General information about this endpoint
 
-**Arguments**
-*    `dcids` - DCIDs to get the property for
-*    `property` - property to get
+**Formula**: `=DCPROPERTY(dcids, property)`
 
-**Returns**
+**Required arguments**:
 
-The properties of the DCIDs. For a single DCID, the result is a column of the given property's values for that DCID. For a row of DCIDs, the result is a matrix where each column contains the values of the given property for the DCID at the column's index. For a column of DCIDs, the result is a matrix where each row contains the values of the given property for the DCID at the row's index.
+*   `dcids`: A list of nodes to query, identified by their Data Commons identifiers.
+*   `property`: The property to query for.
 
-## Examples
+ **Returns**
 
-In this example, we find the `containedInPlace` of the Data Commons nodes for [California](https://datacommons.org/browser/geoId/06) and [Mountain View](https://datacommons.org/browser/geoId/0649670). The function call in the image uses a single call to get the names of both nodes, but it is equivalent to typing:
+The value of the property label for the specified DCIDs.
 
-```
-=TRANSPOSE(DCPROPERTY("geoId/06", "containedInPlace"))
-```
+## Assembling the information you will need for a call to this method
 
-and
+Going into more detail on how to assemble the values for the required arguments:
 
-```
-=TRANSPOSE(DCPROPERTY("geoId/0649670", "containedInPlace"))
-```
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest. More information about DCIDs is available in [the glossary](/glossary.html).
 
-in cells B1 and B2 respectively.
+ - `property`: The property whose value you are interested in, such as "name" for the name of a node, or "typeOf" for the type of a node. If you aren't sure what properties are available for a particular DCID, you can use the [Data Commons graph browser](https://datacommons.org/browser/) to look up the DCID of interest and see what properties it is associated with.
 
-### Input
+>  **NOTE:**
+>
+>  It's best to minimize the number of function calls to `DCPROPERTY` by using a single call to get a variable for a row/column of places and/or a column/row of times. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCPROPERTY`, expect it to be slow.
 
-![](/assets/images/sheets/sheets_get_property_input.png)
+## Example requests and responses
 
-### Output
+### Example 1: Retrieve the common names of a country by its `DCID`.
 
-![](/assets/images/sheets/sheets_get_property_output.png)
+![](/assets/images/sheets/sheets_get_property_ivory_coast.png)
 
+### Example 2: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
+
+![](/assets/images/sheets/sheets_get_property_austrobaileyales_order.png)
+
+### Example 3: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
+
+![](/assets/images/sheets/sheets_get_property_school_addresses.png)
+
+## Error Returns
+
+If you pass a nonexistent property, an empty value is returned:
+
+![](/assets/images/sheets/sheets_get_property_bad_property.png)
+
+If you pass a bad DCID, an empty value is returned:
+
+![](/assets/images/sheets/sheets_get_property_bad_dcid.png)
+
+If you pass an empty DCID, an error is returned:
+
+![](/assets/images/sheets/sheets_get_property_empty_dcid.png)
+
+If you do not pass a required positional argument, an error is returned:
+
+![](/assets/images/sheets/sheets_get_property_bad_args.png)
