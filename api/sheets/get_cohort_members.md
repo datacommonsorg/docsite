@@ -1,27 +1,29 @@
 ---
 layout: default
-title: Get Cohort Members
+title: Cohort Members
 nav_order: 8
 parent: Google Sheets
 grand_parent: API
 ---
 
-# Get the values of a given property for a node.
+# Retrieve the values of a given property for a node
 
-## `=DCCOHORTMEMBERS(dcids)`
+Get the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort](/glossary.html) provided. Here a cohort is a general term for a group of entities, like [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
-Given a [cohort](http://browser.datacommons.org/kg?dcid=Cohort) or a row of cohort DCIDs, get the [members](http://browser.datacommons.org/kg?dcid=member) of each cohort.
+## General information about this method
+
+**Formula:** `=DCCOHORTMEMBERS(dcids)`
 
 **Arguments**
-*    `dcids` - cohort DCIDs to get the members of
+*    `dcids` - cohort DCIDs whose members are sought. Here a DCID refers to the unique ID assigned by Data Commons to every node in the knowledge graph. 
 
 **Returns**
 
-The DCIDs of the cohort members. For a single DCID, the result is a column of members. For a row of DCIDs, the result is a matrix with each column being the members of the DCID at the column's index. For a column of DCIDs, the result is a matrix with each row being the members of the DCID at the row's index.
+The DCIDs of the cohort members. For a single DCID, the result is a column of members of the cohort represented by that DCID. For a row of DCIDs, the result is a matrix with each column the members of the cohort whose DCID serves as the column's index. For a column of DCIDs, the result is a matrix with each row the members of the cohort whose DCID serves as the row's index.
 
-## Examples
+## Example
 
-In this example, we find the members of the [CDC500_City](https://datacommons.org/browser/CDC500_City) cohort.
+This example uses the `DCCOHORTMEMBERS` method to retrieve the members of the [CDC500_City](https://datacommons.org/browser/CDC500_City) cohort.
 
 ### Input
 
@@ -30,4 +32,3 @@ In this example, we find the members of the [CDC500_City](https://datacommons.or
 ### Output (truncated)
 
 ![](/assets/images/sheets/sheets_get_cohort_members_output.png)
-
