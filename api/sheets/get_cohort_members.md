@@ -10,11 +10,11 @@ grand_parent: API
 
 Get the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort](/glossary.html) provided. Here a cohort is a general term for a group of entities, like [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
-## General information about this method
+## General information about this formula
 
-**Formula:** `=DCCOHORTMEMBERS(dcids)`
+**Formula**: `=DCCOHORTMEMBERS(dcids)`
 
-**Arguments**
+**Arguments**:
 *    `dcids` - cohort DCIDs whose members are sought. Here a DCID refers to the unique ID assigned by Data Commons to every node in the knowledge graph. 
 
 **Returns**
@@ -23,7 +23,7 @@ The DCIDs of the cohort members. For a single DCID, the result is a column of me
 
 ## Example
 
-This example uses the `DCCOHORTMEMBERS` method to retrieve the members of the [CDC500_City](https://datacommons.org/browser/CDC500_City) cohort.
+This example uses the `DCCOHORTMEMBERS` method to retrieve the members of the [CDC500_City](https://datacommons.org/browser/CDC500_City) cohort. Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
 
 ### Input
 

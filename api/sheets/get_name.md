@@ -10,7 +10,7 @@ grand_parent: API
 
 Given a cell or a column range of cells with [DCIDs](/glossary.md) (unique identifiers for all entities in the Data Commons knowledge graph), return the names associated with the given DCIDs.
 
-## General information about this method
+## General information about this formula
 
 **Formula**: `=DCGETNAME(dcids)`
 
