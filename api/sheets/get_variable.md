@@ -6,15 +6,15 @@ parent: Google Sheets
 grand_parent: API
 ---
 
-# Get the value of a statistical variable at a given place and time.
+# Get the value of a statistical variable at a given place and time
 
 Given a list of [DCIDs](/glossary.html) representing [Place](https://datacommons.org/browser/Place) objects, a [StatisticalVariable](https://datacommons.org/browser/StatisticalVariable), and optionally a date, get the measurements of the specified variable in the specified places with a date (if specified).
 
-## General information about this endpoint
+## General information about this formula
 
 **Formula**: `=DCGET(dcids, variable, date)`
 
-**Required Arguments**:
+**Required arguments**:
 
 *   [`dcids`](/glossary.html): A list of `Place` nodes, identified by their DCIDs.
 
@@ -24,7 +24,7 @@ Given a list of [DCIDs](/glossary.html) representing [Place](https://datacommons
 
 *   `date` - The date or dates of interest. If this argument is not specified, the API will return the latest observation of the variable.
 
-## Assembling the information you will need a request to the places within a place endpoint
+## Assembling the information you will need to use this formula
 
 This endpoint requires the arguments `dcids` and `variable`. [DCIDs](/glossary.html) are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest. You are also required to specify the [statistical variable](/glossary.html) whose measurement you seek. Statistical variables are the metrics tracked by Data Commons.
 
@@ -41,6 +41,8 @@ The value of the variable at those places on the specified date (or on the lates
 You can find a list of StatisticalVariables with human-readable names [here](/statistical_variables.html).
 
 ## Examples
+
+Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
 
 ### Get the total population of Hawaii in 2017.
 

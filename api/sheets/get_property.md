@@ -10,7 +10,7 @@ grand_parent: API
 
 Given a list of nodes and a property label, returns values associated with the given property for each node.
 
-## General information about this endpoint
+## General information about this formula
 
 **Formula**: `=DCPROPERTY(dcids, property)`
 
@@ -19,11 +19,11 @@ Given a list of nodes and a property label, returns values associated with the g
 *   `dcids`: A list of nodes to query, identified by their Data Commons identifiers.
 *   `property`: The property to query for.
 
- **Returns**
+**Returns**
 
 The value of the property label for the specified DCIDs.
 
-## Assembling the information you will need for a call to this method
+## Assembling the information you will need to use this formula
 
 Going into more detail on how to assemble the values for the required arguments:
 
@@ -36,6 +36,8 @@ Going into more detail on how to assemble the values for the required arguments:
 >  It's best to minimize the number of function calls to `DCPROPERTY` by using a single call to get a variable for a row/column of places and/or a column/row of times. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCPROPERTY`, expect it to be slow.
 
 ## Example requests and responses
+
+Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
 
 ### Example 1: Retrieve the common names of a country by its `DCID`.
 
