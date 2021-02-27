@@ -262,6 +262,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-code-tabs (~> 1.1)
   jekyll-feed (~> 0.6)
   jekyll-redirect-from
   jekyll-tabs
