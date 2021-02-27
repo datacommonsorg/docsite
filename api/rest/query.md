@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Query the Data Commons Knowledge Graph using SPARQL
+# Query the Data Commons knowledge graph using SPARQL
 
 Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
@@ -22,7 +22,7 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 
 *   `sparql`: A SPARQL query string.
 
-## How to construct a request to the property value endpoint
+## How to construct a request to the SPARQL query endpoint
 
 ### Step 1: Assembling the information you will need
 

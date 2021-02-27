@@ -6,13 +6,16 @@ parent: Python
 grand_parent: API
 ---
 
-# Retrieve Property Labels of Node(s)
+# Retrieve property labels of nodes
 
 Returns the labels of properties defined for the given node DCIDs.
 
-## General information about this endpoint
+## General information about this method
 
-**Signature**: `datacommons.get_property_labels(dcids, out=True)`
+**Signature**: 
+```python
+datacommons.get_property_labels(dcids, out=True)
+```
 
 **Required arguments**:
 
@@ -26,7 +29,7 @@ Returns the labels of properties defined for the given node DCIDs.
 
 Going into more detail on how to assemble the values for the required argument:
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest. More information about DCIDs is available in [the glossary](/glossary.html).
 
 In addition to this required property, this endpoint also allows for an additional, optional argument:
 

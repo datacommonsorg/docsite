@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Retrieve property values
+# Retrieve property values of nodes
 
 This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the values of a specified property attached to those nodes. 
 

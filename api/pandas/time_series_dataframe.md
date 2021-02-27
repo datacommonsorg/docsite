@@ -13,7 +13,7 @@ as index and dates as columns, where each cell is the observed statistic for
 its place and date for the 
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable).
 
-See the [full list of `StatisticalVariable`s](/statistical_variables.html).
+See the [full list of `StatisticalVariable` classes](/statistical_variables.html).
 
 ## General information about this method
 
