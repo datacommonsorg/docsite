@@ -17,7 +17,7 @@ the request's `placeType` parameter.
 
 **Formula**: `=DCPLACESIN(dcids, placeType)`
 
-**Required Arguments**:
+**Required arguments**:
 
 *   `dcids`: A list of (parent) `Place` nodes, identified by their DCIDs.
 
@@ -25,13 +25,15 @@ the request's `placeType` parameter.
     full list of available types, see [the Data Commons graph browser entry for `Place`](https://datacommons.org/browser/Place).
 
 
-## Assembling the information you will need a request to the places within a place endpoint
+## Assembling the information you will need to use this formula
 
 This endpoint requires the argument `dcids`. [DCIDs](/glossary.html) are unique node identifiers defined by Data Commons. Your query will need to specify the DCIDs for the parent places of interest.
 
 This endpoint also requires the argument `placeType`, specifying the type of the child places you desire in the response.
 
 ## Examples
+
+Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
 
 ### Example 1: Retrieve a list of the counties in Delaware.
 
