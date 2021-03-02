@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Retrieve property labels
+# Retrieve property labels of nodes
 
 This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the labels of all properties defined for those nodes. 
 

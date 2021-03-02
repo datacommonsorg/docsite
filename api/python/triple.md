@@ -11,7 +11,7 @@ grand_parent: API
 Given a list of nodes, return [triples](https://docs.datacommons.org/glossary.html) which are associated with the specified
 node(s).
 
-## General information about this endpoint
+## General information about this method
 
 **Signature**: 
 

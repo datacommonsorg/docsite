@@ -6,11 +6,14 @@ parent: Python
 grand_parent: API
 ---
 
-# Get Places Contained within Another Place
+# Retrieve places contained within other places
 
 ## General information about this endpoint
 
-**Signature**: `datacommons.get_places_in(dcids, place_type)`
+**Signature**: 
+```python
+datacommons.get_places_in(dcids, place_type)
+```
 
 **Required arguments**:
 
@@ -22,7 +25,7 @@ grand_parent: API
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest. More information about DCIDs is available in [the glossary](/glossary.html).
 
  - `place_type`: This argument specifies the type of place sought in the response. For example, when examining places contained within American `States`, you would be able to select `City` or `County` (among others). For a full list of available types, see [`subClassOf Place`](https://datacommons.org/browser/Place).
 
