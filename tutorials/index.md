@@ -14,7 +14,7 @@ You can also clone these to use as a base for your own analysis.
 ## Python
 Example [Google Colab
 notebooks](https://colab.sandbox.google.com/notebooks/intro.ipynb) written in
-Python.
+Python:
 
 -   **Getting Started: Analyzing Census Data**
 
@@ -35,12 +35,16 @@ Python.
 -   **Case Study: Analyzing Genomic Data with Biomedical Data Commons**
 
     [Google Colab](https://colab.research.google.com/drive/1Io7EDr4LjfPLl_l2JYY8__WbfitfNlOf){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/analyzing_genomic_data.ipynb){:target="_blank"}
- 
+
 -   **Case Study: Drug Discovery with Biomedical Data Commons**
 
     [Google Colab](https://colab.research.google.com/drive/1dSKYiRMn3mbDsInorQzYM0yk7sqv6fIV){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
 
 
 ## Google Sheets
-Example Google Sheets using the Data Commons API.
-- [Sample choropleths](https://docs.google.com/spreadsheets/d/1XH1iCTK07dN81VvjT63IaPpSzu1YD9Zyxr_i-71lhDY/edit?usp=sharing){:target="_blank"}
+
+Step-by-step guides to using the Google Sheets API:
+
+-   [Analyze the COVID-19 pandemic](/tutorials/sheets_covid.html)
+-   [Obtain latitude information for country capitals in South America](/tutorials/sheets_latitude.html)
+-   [Sorting the CDC 500 cohort on sleep](/tutorials/sheets_sleep.html)
