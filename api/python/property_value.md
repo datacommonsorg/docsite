@@ -6,7 +6,7 @@ parent: Python
 grand_parent: API
 ---
 
-# Retrieve Property Values for Node(s)
+# Retrieve property values of nodes
 
 Given a list of nodes and a property label, returns values associated with the
 given property for each node.
@@ -34,7 +34,7 @@ datacommons.get_property_values(dcids, prop, out=True, value_type=None, limit=da
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest.
+ - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest. More information about DCIDs is available in [the glossary](/glossary.html).
 
  - `prop`: The property whose value you are interested in, such as "name" for the name of a node, or "typeOf" for the type of a node.
 
@@ -86,7 +86,8 @@ The method's return value will always be a `dict` in the following form:
 
 ### Example 4: Retrieve a list of earthquake events in Madagascar.
 
-**NOTE:** Unlike in the REST API, the Python endpoint returns only one direction. Hence, you must specify `out` as False to obtain results _in_ Madagascar.
+>    **NOTE:**
+>    Unlike in the REST API, the Python endpoint returns only one direction. Hence, you must specify `out` as False to obtain results _in_ Madagascar.
 
 ```python
 >>> datacommons.get_property_values(dcids=["country/MDG"],prop='affectedPlace',out=False,value_type='EarthquakeEvent')
@@ -111,14 +112,12 @@ The method's return value will always be a `dict` in the following form:
 {'country/ARG': ['southamerica']}
 ```
 
-**NOTES:**
-
-If there is no value associated with the property, an empty list is returned:
-
-```python
->>> dc.get_property_values(["geoId/06", "geoId/21"], "foo")
-{'geoId/06': [], 'geoId/21': []}
-```
+>    **NOTE:**
+>    If there is no value associated with the property, an empty list is returned:
+>    ```python
+>    >>> dc.get_property_values(["geoId/06", "geoId/21"], "foo")
+>    {'geoId/06': [], 'geoId/21': []}
+>    ```
 
 ## Error Returns
 

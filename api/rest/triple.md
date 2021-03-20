@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Show Triples Associated with Node(s)
+# Retrieve triples associated with nodes
 
 Given a list of nodes, return triples which are associated with the specified
 node(s).

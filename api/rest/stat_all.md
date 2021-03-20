@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Get a Collection of Statistical Data for Multiple Places
+# Get a collection of statistical data for one or more places
 
 Returns a multiple level object containing all available time series for the specified
 places and statistical variables.

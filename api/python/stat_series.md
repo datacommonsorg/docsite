@@ -10,7 +10,7 @@ grand_parent: API
 
 Returns a `dict` mapping date to value for a `place` based on the
 [`stat_var`](https://datacommons.org/browser/StatisticalVariable), with optional
-filter parameters.
+filter parameters. See the [full list of `StatisticalVariable` classes](/statistical_variables.html).
 
 ## General information about this endpoint
 
@@ -25,13 +25,15 @@ datacommons.get_stat_series(place, stat_var, measurement_method=None,observation
 * `place`: The `dcid` of the [`Place`](https://datacommons.org/browser/Place) to query for.
 * `stat_var`: The `dcid` of the [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
 
-**NOTE:** In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
+>    **NOTE:**
+>    - In Data Commons, [`dcid`](/glossary.html) stands for Data Commons ID and indicates the unique identifier assigned to every node in the knowledge graph.
 
 ## Assembling the information you will need for a call to the get_stat_series method
 
 Going into more detail on how to assemble the values for the required arguments:
 
 - [`place`](/glossary.html): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+
 - [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:

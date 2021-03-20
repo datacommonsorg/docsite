@@ -6,7 +6,7 @@ parent: REST
 grand_parent: API
 ---
 
-# Get Statistical Time Series for a Place
+# Get statistical time series for a place
 
 Returns a time series of statistical values for a place based on a
 [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable).
