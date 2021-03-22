@@ -54,7 +54,6 @@ curl --request POST \
 
 {% endtabs %}
 
-<script src="/assets/js/tabs.js"></script>
 </div>
 
 #### Response
