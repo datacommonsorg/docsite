@@ -30,6 +30,11 @@ Before trying this method out, make sure to follow the setup directions in [the 
 
 ![](/assets/images/sheets/sheets_get_name_cell_lines_cropped.png)
 
+>  **TIP:**
+>
+>  It's best to minimize the number of function calls to `DCGETNAME` by using a single call to get names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCGETNAME`, expect it to be slow and with errors.
+
+
 ## Error returns
 
 If a DCID does not exist, this method returns nothing:
