@@ -14,7 +14,7 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 
 ## General information about this method
 
-**Signature**: 
+**Signature**:
 ```python
 datacommons.query(query_string, select=None)
 ```
@@ -66,7 +66,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 #### Example 3. Retrieve a list of GNI observations by country.
 
 ```python
->>> gni_by_country_query = 'SELECT ?observation ?place WHERE { ?observation typeOf Observation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
+>>> gni_by_country_query = 'SELECT ?observation ?place WHERE { ?observation typeOf StatVarObservation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
 >>> datacommons.query(gni_by_country_query)
 [{'?observation': 'dc/o/syrpc3m8q34z7', '?place': 'country/ABW'}, {'?observation': 'dc/o/bqtfmc351v0f2', '?place': 'country/ABW'}, {'?observation': 'dc/o/md36fx6ty4d64', '?place': 'country/ABW'}, {'?observation': 'dc/o/bm28zvchsyf4b', '?place': 'country/ABW'}, {'?observation': 'dc/o/3nleez1feevw6', '?place': 'country/ABW'}, {'?observation': 'dc/o/x2yg38d0xecnf', '?place': 'country/ABW'}, {'?observation': 'dc/o/7swdqf6yjdyw8', '?place': 'country/ABW'}, {'?observation': 'dc/o/yqmsmbx1qskfg', '?place': 'country/ABW'}, {'?observation': 'dc/o/6hlhrz3k8p5wf', '?place': 'country/ABW'}, {'?observation': 'dc/o/txfw505ydg629', '?place': 'country/ABW'}]
 ```
@@ -74,7 +74,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 #### Example 4. Retrieve a sample list of observations with the unit InternationalDollar.
 
 ```python
->>> internationalDollar_obs_query = 'SELECT ?observation WHERE {   ?observation typeOf Observation .   ?observation unit InternationalDollar  } LIMIT 10'
+>>> internationalDollar_obs_query = 'SELECT ?observation WHERE {   ?observation typeOf StatVarObservation .   ?observation unit InternationalDollar  } LIMIT 10'
 >>> datacommons.query(internationalDollar_obs_query)
 [{'?observation': 'dc/o/s3gzszzvj34f1'}, {'?observation': 'dc/o/gd41m7qym86d4'}, {'?observation': 'dc/o/wq62twxx902p4'}, {'?observation': 'dc/o/d93kzvns8sq4c'}, {'?observation': 'dc/o/6s741lstdqrg4'}, {'?observation': 'dc/o/2kcq1xjkmrzmd'}, {'?observation': 'dc/o/ced6jejwv224f'}, {'?observation': 'dc/o/q31my0dmcryzd'}, {'?observation': 'dc/o/96frt9w0yjwxf'}, {'?observation': 'dc/o/rvjz5xn9mlg73'}]
 ```
@@ -82,7 +82,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 #### Example 5. Retrieve a list of ten distinct annual estimates of life expectancy, along with the year of estimation, for forty-seven-year-old Hungarians.
 
 ```python
->>> life_expectancy_query = 'SELECT DISTINCT ?LifeExpectancy ?year WHERE { ?pop typeOf StatisticalPopulation . ?o typeOf Observation . ?pop dcid dc/p/grjmhz7x2kc9f . ?o observedNode ?pop . ?o measuredValue ?LifeExpectancy . ?o observationDate ?year } ORDER BY ASC(?LifeExpectancy) LIMIT 10'
+>>> life_expectancy_query = 'SELECT DISTINCT ?LifeExpectancy ?year WHERE { ?o typeOf StatVarObservation . ?o variableMeasured LifeExpectancy_Person_47Years . ?o observationAbout country/HUN . ?o value ?LifeExpectancy . ?o observationDate ?year } ORDER BY ASC(?LifeExpectancy) LIMIT 10'
 >>> datacommons.query(life_expectancy_query)
 [{'?LifeExpectancy': '26.4', '?year': '1993'}, {'?LifeExpectancy': '26.5', '?year': '1992'}, {'?LifeExpectancy': '26.7', '?year': '1990'}, {'?LifeExpectancy': '26.7', '?year': '1994'}, {'?LifeExpectancy': '26.8', '?year': '1991'}, {'?LifeExpectancy': '26.9', '?year': '1995'}, {'?LifeExpectancy': '27.2', '?year': '1996'}, {'?LifeExpectancy': '27.4', '?year': '1999'}, {'?LifeExpectancy': '27.5', '?year': '1997'}, {'?LifeExpectancy': '27.5', '?year': '1998'}]
 ```
@@ -95,7 +95,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 >>> result = datacommons.query(names_for_places_query, select=maryland_selector)
 >>> for r in result:
 ...     print(r)
-... 
+...
 {'?name': 'Maryland', '?dcid': 'geoId/24'}
 ```
 
@@ -104,7 +104,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 #### Error return 1: Malformed SPARQL query.
 
 ```python
->>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf Observation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
+>>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf StatVarObservation . ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
 >>> datacommons.query(gni_by_country_query)
 Traceback (most recent call last):
   File "/home/porpentina/miniconda3/lib/python3.7/site-packages/datacommons/query.py", line 102, in query
@@ -136,7 +136,7 @@ b'{\n "code": 2,\n "message": "googleapi: Error 400: Unrecognized name: place; D
 #### Error return 2: Malformed SPARQL query string.
 
 ```python
->>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf Observation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
+>>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf StatVarObservation . ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
 >>> datacommons.query(gni_by_country_query)
 Traceback (most recent call last):
   File "/home/porpentina/miniconda3/lib/python3.7/site-packages/datacommons/query.py", line 102, in query
@@ -163,7 +163,7 @@ Traceback (most recent call last):
     raise ValueError('Response error {}:\n{}'.format(e.code, e.read()))
 ValueError: Response error 500:
 b'{\n "code": 2,\n "message": "googleapi: Error 400: Unrecognized name: place; Did you mean name? at [1:802], invalidQuery",\n "details": [\n  {\n   "@type": "type.googleapis.com/google.rpc.DebugInfo",\n   "stackEntries": [],\n   "detail": "internal"\n  }\n ]\n}\n'
->>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf Observation . \\\\\ ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
+>>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf StatVarObservation . \\\\\ ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
 ```
 
 #### Error return 3: Bad selector.
