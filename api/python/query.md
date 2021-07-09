@@ -15,6 +15,7 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 ## General information about this method
 
 **Signature**:
+
 ```python
 datacommons.query(query_string, select=None)
 ```
@@ -37,8 +38,13 @@ This method accepts the additional optional argument `select`. This function sel
 A correct response will always look like this:
 
 ```json
-[{'<field name>': '<field value>', ...},
- ...]
+[
+  {
+    "<field name>": "<field value>",
+    ...
+  },
+ ...
+]
 ```
 
 The response contains an array of dictionaries, each corresponding to one node matching the conditions of the query. Each dictionary's keys match the variables in the query SELECT clause, and the values in the dictionaries are those associated to the given node's query-specified properties.
@@ -66,7 +72,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 #### Example 3. Retrieve a list of GNI observations by country.
 
 ```python
->>> gni_by_country_query = 'SELECT ?observation ?place WHERE { ?observation typeOf StatVarObservation . ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observedNodeLocation ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
+>>> gni_by_country_query = 'SELECT ?observation ?place WHERE { ?observation typeOf StatVarObservation . ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
 >>> datacommons.query(gni_by_country_query)
 [{'?observation': 'dc/o/syrpc3m8q34z7', '?place': 'country/ABW'}, {'?observation': 'dc/o/bqtfmc351v0f2', '?place': 'country/ABW'}, {'?observation': 'dc/o/md36fx6ty4d64', '?place': 'country/ABW'}, {'?observation': 'dc/o/bm28zvchsyf4b', '?place': 'country/ABW'}, {'?observation': 'dc/o/3nleez1feevw6', '?place': 'country/ABW'}, {'?observation': 'dc/o/x2yg38d0xecnf', '?place': 'country/ABW'}, {'?observation': 'dc/o/7swdqf6yjdyw8', '?place': 'country/ABW'}, {'?observation': 'dc/o/yqmsmbx1qskfg', '?place': 'country/ABW'}, {'?observation': 'dc/o/6hlhrz3k8p5wf', '?place': 'country/ABW'}, {'?observation': 'dc/o/txfw505ydg629', '?place': 'country/ABW'}]
 ```
@@ -180,4 +186,4 @@ Traceback (most recent call last):
 KeyError: '?earthquake'
 ```
 
-These examples and errors, along with explanations and fixes for the errors, are available in notebook form at <https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing>.
+These examples and errors, along with explanations and fixes for the errors, are available in this [notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing).

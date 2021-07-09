@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Places within a Place
-nav_order: 10
+title: Places Within a Place
+nav_order: 6
 parent: Python
 grand_parent: API
 ---
@@ -10,7 +10,7 @@ grand_parent: API
 
 ## General information about this endpoint
 
-**Signature**: 
+**Signature**:
 ```python
 datacommons.get_places_in(dcids, place_type)
 ```

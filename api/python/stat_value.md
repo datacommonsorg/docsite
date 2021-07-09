@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Single Value
-nav_order: 11
+nav_order: 7
 parent: Python
 grand_parent: API
 ---
@@ -17,7 +17,7 @@ source with more recent data or more authority is selected.
 
 ## General information about this endpoint
 
-**Signature**: 
+**Signature**:
 
 ```python
 datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
@@ -50,7 +50,7 @@ In addition to these required properties, this method also allows for other, opt
   - [`date`](https://docs.datacommons.org/glossary.html): Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
   - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
-  
+
   - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
   - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.

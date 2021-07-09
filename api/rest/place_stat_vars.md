@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistical Variables
-nav_order: 9
+nav_order: 6
 parent: REST
 grand_parent: API
 ---
@@ -75,10 +75,10 @@ curl --request POST \
   --url https://api.datacommons.org/place/stat-vars \
   --header 'content-type: application/json' \
   --data '{
-	"dcids": [
-		"country/PLW"
-	]
-}'
+    "dcids": [
+      "country/PLW"
+    ]
+  }'
 ```
 
 {% endtab %}
@@ -122,7 +122,7 @@ curl --request POST \
 
 ```bash
 curl --request GET \
-  --url 'http://api.datacommons.org/place/stats-var?dcids=wikidataId%2FQ1960&dcids=wikidataId%2FQ3866'
+  --url 'https://api.datacommons.org/place/stat-var?dcids=wikidataId%2FQ1960&dcids=wikidataId%2FQ3866'
 ```
 
 {% endtab %}

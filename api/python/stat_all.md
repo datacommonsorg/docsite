@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - All
-nav_order: 13
+nav_order: 9
 parent: Python
 grand_parent: API
 ---
@@ -26,7 +26,7 @@ datacommons.get_stat_all(places, stat_vars)
 - [`stat_vars`](/glossary.html): The `dcids` of the [`StatisticalVariables`](https://datacommons.org/browser/StatisticalVariable).
 
 ## Assembling the information you will need for a call to the get_stat_all method
- 
+
 Going into more detail on how to assemble the values for the required arguments:
 
 - `place`: For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.

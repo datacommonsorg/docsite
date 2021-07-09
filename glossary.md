@@ -10,7 +10,7 @@ This page contains a selection of key terms important to understanding the struc
 
 ## Term List
 
-- **[Cohort](http://browser.datacommons.org/kg?dcid=CohortSet)**
+- **[Cohort](https://datacommons.org/browser/CohortSet)**
 
 A group of entities sharing some characteristic. Interchangeably referred to in a Data Commons context as `Cohort` and `CohortSet`. Examples include [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
