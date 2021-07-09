@@ -12,7 +12,8 @@ Returns the labels of properties defined for the given node DCIDs.
 
 ## General information about this method
 
-**Signature**: 
+**Signature**:
+
 ```python
 datacommons.get_property_labels(dcids, out=True)
 ```

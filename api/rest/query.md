@@ -278,8 +278,8 @@ curl --request POST \
     "sparql": "SELECT ?observation ?place \
               WHERE { \
                 ?observation typeOf StatVarObservation . \
-                ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . \
-                ?observation observedNodeLocation ?place . \
+                ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . \
+                ?observation observationAbout ?place . \
                 ?place typeOf Country .\
               } \
               ORDER BY ASC (?place) \

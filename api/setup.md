@@ -17,6 +17,7 @@ Platform (GCP). Follow these steps to create your own key.
     [GCP Project](https://console.developers.google.com/projectcreate) and
     [enabling billing](https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project)
     for that project.
+
 2.  After creating your project, you can navigate to the GCP Console to create
     an API key.
 

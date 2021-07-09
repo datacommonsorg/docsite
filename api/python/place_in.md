@@ -11,6 +11,7 @@ grand_parent: API
 ## General information about this endpoint
 
 **Signature**:
+
 ```python
 datacommons.get_places_in(dcids, place_type)
 ```

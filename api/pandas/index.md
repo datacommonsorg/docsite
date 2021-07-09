@@ -29,7 +29,7 @@ To get started using the Pandas API:
 First, install the `datacommons_pandas` package through `pip`.
 
 ```bash
-$ pip install datacommons_pandas
+pip install datacommons_pandas
 ```
 
 For more information about installing `pip` and setting up other parts of
