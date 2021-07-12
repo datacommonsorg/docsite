@@ -37,6 +37,6 @@ for Google Cloud Platform.
 
 ### Using the Python API
 
-You are ready to go! From here you can view our [tutorials](/tutorials.html) on how to use the
+You are ready to go! From here you can view our [tutorials](/tutorials) on how to use the
 API to perform certain tasks, or see a full list of functions, classes and
 methods available for use in the sidebar.
