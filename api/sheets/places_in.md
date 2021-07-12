@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Places within a Place
-nav_order: 5
+nav_order: 2
 parent: Google Sheets
 grand_parent: API
 ---

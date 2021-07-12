@@ -41,9 +41,9 @@ Going into more detail on how to assemble the values for the required arguments:
 ## Example: Compare the historic populations, median ages, and unemployment rates of the US, California, and Santa Clara County.
 
 ```python
->>> datacommons_pandas.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"]) 
+>>> datacommons_pandas.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
              Median_Age_Person  Count_Person  UnemploymentRate_Person
-place                                                                
+place
 country/USA               37.9     328239523                      NaN
 geoId/06                  36.3      39512223                     11.6
 geoId/06085               37.0       1927852                      7.5
@@ -56,7 +56,7 @@ If a nonexistent place is passed as an argument, it will not render in the dataf
 ```python
 >>> datacommons_pandas.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/123123123123123123"],["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
              Count_Person  Median_Age_Person  UnemploymentRate_Person
-place                                                                
+place
 country/USA     328239523               37.9                      NaN
 geoId/06         39512223               36.3                     11.4
 ```
