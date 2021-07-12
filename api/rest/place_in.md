@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Places Within a Place
+title: Places within a Place
 nav_order: 5
 parent: REST
 grand_parent: API

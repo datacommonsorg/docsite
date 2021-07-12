@@ -13,8 +13,7 @@ given property for each node.
 
 ## General information about this endpoint
 
-**Signature**:
-
+**Signature**: 
 ```python
 datacommons.get_property_values(dcids, prop, out=True, value_type=None, limit=datacommons.utils._MAX_LIMIT)
 ```

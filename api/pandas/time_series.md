@@ -15,8 +15,7 @@ See the [full list of `StatisticalVariable` classes](/statistical_variables.html
 
 ## General information about this method
 
-**Signature**:
-
+**Signature**: 
 ```python
 datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
 ```
@@ -33,7 +32,6 @@ datacommons_pandas.build_time_series(place, stat_var, measurement_method=None,ob
 Going into more detail on how to assemble the values for the required arguments:
 
 - [`place`](/glossary.html): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
-
 - [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:

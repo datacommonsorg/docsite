@@ -186,4 +186,4 @@ Traceback (most recent call last):
 KeyError: '?earthquake'
 ```
 
-These examples and errors, along with explanations and fixes for the errors, are available in this [notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing).
+These examples and errors, along with explanations and fixes for the errors, are available in this [Python notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing).
