@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Sheets South American Latitudes
-nav_order: 2
+nav_order: 4
 parent: Tutorials
 ---
 
 # Obtaining latitude information for country capitals in South America
 
 ## Introduction
-The Data Commons API enables end users to obtain basic information about the entities in the graph by retrieving their properties. This tutorial walks you through the `DCPROPERTY` method in the Sheets API that enables this. 
+The Data Commons API enables end users to obtain basic information about the entities in the graph by retrieving their properties. This tutorial walks you through the `DCPROPERTY` method in the Sheets API that enables this.
 
 ## Step 1: Setup
 Pull up Google Sheets and create a new, blank spreadsheet. You can title it `Data Commons South American capitals’ latitude` or any other name of your choosing.

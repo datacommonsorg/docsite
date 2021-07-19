@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Single Value
-nav_order: 11
+nav_order: 7
 parent: Python
 grand_parent: API
 ---
@@ -17,7 +17,7 @@ source with more recent data or more authority is selected.
 
 ## General information about this endpoint
 
-**Signature**: 
+**Signature**:
 
 ```python
 datacommons.get_stat_value(place, stat_var, date=None, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
@@ -42,20 +42,20 @@ You can find a list of StatisticalVariables with human-readable names [here](/st
 
 Going into more detail on how to assemble the values for the required arguments:
 
- - [`place`]((/glossary.html)): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
- - [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
+- [`place`]((/glossary.html)): For this parameter, you will need to specify the DCID (the unique ID assigned by Data Commons to each node in the graph) of the place you are interested in.
+- [`stat_var`](/glossary.html): The statistical variable whose value you are interested in.
 
 In addition to these required properties, this method also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - [`date`](https://docs.datacommons.org/glossary.html): Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
+- [`date`](https://docs.datacommons.org/glossary.html): Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
-  - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
-  
-  - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
+- [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
 
-  - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
+- [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
-  - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
+- [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
+
+- [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 ## What to expect in the return
 

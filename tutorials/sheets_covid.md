@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sheets COVID-19 Analysis
-nav_order: 2
+nav_order: 3
 parent: Tutorials
 ---
 

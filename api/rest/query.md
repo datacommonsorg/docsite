@@ -275,16 +275,16 @@ curl --request POST \
   --url https://api.datacommons.org/query \
   --header 'content-type: application/json' \
   --data '{
-	"sparql": "SELECT ?observation ?place \
-	           WHERE { \ 
-              ?observation typeOf Observation . \
-	            ?observation statisticalVariable Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . \
-	            ?observation observedNodeLocation ?place . \
-	            ?place typeOf Country .\
-             } \
-	           ORDER BY ASC (?place) \
-	           LIMIT 10"
-}'
+    "sparql": "SELECT ?observation ?place \
+              WHERE { \
+                ?observation typeOf StatVarObservation . \
+                ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . \
+                ?observation observationAbout ?place . \
+                ?place typeOf Country .\
+              } \
+              ORDER BY ASC (?place) \
+              LIMIT 10"
+  }'
 ```
 
 {% endtab %}
@@ -430,13 +430,13 @@ This endpoint does not support GET requests.
 curl --request POST \
   --url https://api.datacommons.org/query \
   --header 'content-type: application/json' \
-  --data '{ 
+  --data '{
   "sparql": "SELECT ?observation \
              WHERE { \
-               ?observation typeOf Observation . \
+               ?observation typeOf StatVarObservation . \
                ?observation unit InternationalDollar \
              } \
-            LIMIT 10" 
+            LIMIT 10"
   }'
 ```
 
@@ -547,17 +547,16 @@ curl --request POST \
   --url https://api.datacommons.org/query \
   --header 'content-type: application/json' \
   --data '{
-	"sparql": "SELECT DISTINCT ?LifeExpectancy \
-             WHERE { \
-              ?pop typeOf StatisticalPopulation . \
-              ?o typeOf Observation .\
-              ?pop dcid dc/p/grjmhz7x2kc9f .\
-              ?o observedNode ?pop .\
-              ?o measuredValue ?LifeExpectancy
-             }
-             ORDER BY ASC(?LifeExpectancy)
-             LIMIT 10"
-}'
+    "sparql": "SELECT DISTINCT ?LifeExpectancy \
+              WHERE { \
+                ?o typeOf StatVarObservation .\
+                ?o variableMeasured LifeExpectancy_Person_47Years .\
+                ?o observationAbout country/HUN .\
+                ?o value ?LifeExpectancy
+              }
+              ORDER BY ASC(?LifeExpectancy)
+              LIMIT 10"
+  }'
 ```
 
 {% endtab %}
@@ -663,7 +662,7 @@ If your JSON body is formatted improperly, you will receive a 400 error and an e
 ```json
 {
   "code": 3,
-  "message": "Node should be string, got [StatisticalPopulation ?o typeOf Observation] of type []string",
+  "message": "Node should be string, got [StatisticalPopulation ?o typeOf StatVarObservation] of type []string",
   "details": [
     {
       "@type": "type.googleapis.com/google.rpc.DebugInfo",

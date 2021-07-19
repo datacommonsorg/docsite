@@ -1,7 +1,7 @@
 # Data Commons Documentation Site
 
 This repo hosts Data Commons API documentation
-available at http://docs.datacommons.org/.
+available at https://docs.datacommons.org/.
 
 ## About Data Commons
 
@@ -15,11 +15,12 @@ meant to be for community, by the community. We're excited to work with you
 to make public data accessible to everyone.
 
 To see the extent of data we have today, browse the graph using our
-[browser](https://browser.datacommons.org/).
+[browser](https://datacommons.org/browser).
 
 ## Developing locally
 
 The documentation site is built using Jekyll. To run this locally:
+
 1. Install [Ruby](https://jekyllrb.com/docs/installation/)
 1. Run `bundle update`
 1. Run `bundle exec jekyll serve`
