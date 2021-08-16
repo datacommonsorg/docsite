@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Contributing to Data Commons
-nav_order: 6
+nav_order: 7
 has_children: false
 ---
 

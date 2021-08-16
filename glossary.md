@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Glossary
-nav_order: 7
+nav_order: 8
 published: true
 ---
 # Glossary of Common Terms
