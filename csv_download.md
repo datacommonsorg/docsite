@@ -19,7 +19,7 @@ The public bucket is organized by vertical, each in a different folder:
 Each vertical folder contains tables for various Place categories: `all` (all places), `us` (US places), `non_us` (non-US places), `county` (US counties), and `zip` (US zip codes). For each vertical and Place category, there are three types of tables:
 * `value`: Each cell contains the value of the latest observation for a given Statistical Variable and Place.
 * `date`: Each cell contains the date of the latest observation for a given Statistical Variable and Place.
-* `provenance`: Each cell contains the provenance of the latest observation for a given Statistical Variable and Place, as well as the [measurement method](https://datacommons.org/browser/measurementMethod), if provided. Measurement methods that are prefixed with `dcAggregate/` represent Data Commons aggregated values.
+* `provenance`: Each cell contains the provenance of the latest observation for a given Statistical Variable and Place, as well as the [measurement method](https://docs.datacommons.org/glossary.html), if provided. Measurement methods that are prefixed with `dcAggregate/` represent Data Commons aggregated values.
 
 The corresponding `value`, `date`, and `provenance` tables can be joined using the first three columns, which contain information about the place:
 * `place_name`: The name(s) of the Place.
