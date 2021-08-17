@@ -7,7 +7,7 @@ has_children: false
 
 # CSV Download
 
-We provide access to some of our data in a relational format, which is available for CSV download in a [public GCS bucket](https://console.cloud.google.com/storage/browser/relational_tables). The tables are constructed such that each row represents a [Place](https://datacommons.org/browser/Place) and each column represents a [Statistical Variable](https://datacommons.org/browser/StatisticalVariable).
+We provide access to some of our data in a relational format, which is available for CSV download in a [public Google Cloud Storage bucket](https://console.cloud.google.com/storage/browser/relational_tables). The tables are constructed such that each row represents a [Place](https://datacommons.org/browser/Place) and each column represents a [Statistical Variable](https://datacommons.org/browser/StatisticalVariable).
 
 The public bucket is organized into different vertical folders:
 * [Demogaphics](https://console.cloud.google.com/storage/browser/relational_tables/demographics)
