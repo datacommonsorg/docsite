@@ -30,7 +30,7 @@ The corresponding `value`, `date`, and `provenance` tables can be joined using t
 
 ## Example Table Structure
 
-Below is a subset of the `housing_zip_value` table:
+Below is a subset of the `housing_county_value` table:
 
 | place_name | place_dcid | place_type | Count_HousingUnit | Count_HousingUnit_NoCashRent | ... |
 | :---: | :---: | :---: | :---: | :---:| :---:|
