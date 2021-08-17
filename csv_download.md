@@ -33,7 +33,7 @@ The corresponding `value`, `date`, and `provenance` tables can be joined using t
 Below is a subset of the `housing_county_value` table:
 
 | place_name | place_dcid | place_type | Count_HousingUnit | Count_HousingUnit_NoCashRent | ... |
-| :---: | :---: | :---: | :---: | :---: | :---:|
+| :---: | :---: | :---: | :---: | :---: | :---: |
 |  Nuckolls County | geoId/31129 | County | 2445 | 74 | ... |
 | Wells County | geoId/38103 | County | 2422 | 74 | ... |
 | ... | ... | ... | ... | ... | ... |
