@@ -23,5 +23,5 @@ Each vertical folder contains tables for various Place categories: `all` (all pl
 
 The corresponding `value`, `date`, and `provenance` tables can be joined using the first three columns, which contain information about the place:
 * `place_name`: The name(s) of the Place.
-* `place_dcid`: The [Data Commons ID](https://datacommons.org/browser/dcid) for the Place.
+* `place_dcid`: The [Data Commons ID](https://docs.datacommons.org/glossary.html) for the Place.
 * `place_type`: The type(s) of the Place.
