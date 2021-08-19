@@ -39,6 +39,10 @@ Python:
 -   **Case Study: Drug Discovery with Biomedical Data Commons**
 
     [Google Colab](https://colab.research.google.com/drive/1dSKYiRMn3mbDsInorQzYM0yk7sqv6fIV){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
+    
+-   **Case Study: Protein charts and networks using Biomedical Data Commons**
+    
+    [Google Colab](https://colab.research.google.com/drive/1Kh-ufqobdChZ2qQgEY0rdPA2_DBmOiSG){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/protein-charts.ipynb){:target="_blank"}
 
 
 ## Google Sheets
