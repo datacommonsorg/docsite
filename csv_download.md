@@ -19,6 +19,7 @@ These relational tables are organized by vertical, each within a different zip f
 * [Housing](https://storage.googleapis.com/relational_tables/housing.zip)
 
 Each vertical zip folder contains tables for various Place categories: `all` (all places), `us` (US places), `non_us` (non-US places), `county` (US counties), and `zip` (US zip codes). For each vertical and Place category, there are three types of tables:
+
 * `value`: Each cell contains the value of the latest observation for a given Statistical Variable and Place.
 * `date`: Each cell contains the date of the latest observation for a given Statistical Variable and Place.
 * `provenance`: Each cell contains the provenance URL of the latest observation for a given Statistical Variable and Place, as well as the [measurement method](https://docs.datacommons.org/glossary.html), if provided. Measurement methods that are prefixed with `dcAggregate/` represent Data Commons aggregated values.
