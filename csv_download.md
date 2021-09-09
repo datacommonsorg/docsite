@@ -7,18 +7,19 @@ has_children: false
 
 # CSV Bulk Download
 
-We provide access to some of our data in a relational format, which is available for CSV download in a [public Google Cloud Storage bucket](https://console.cloud.google.com/storage/browser/relational_tables). The tables are constructed such that each row represents a [Place](https://datacommons.org/browser/Place) and each column represents a [Statistical Variable](https://datacommons.org/browser/StatisticalVariable).
+We provide access to some of our data in a relational format in a public Google Cloud Storage bucket, which is available for CSV download. The tables are constructed such that each row represents a [Place](https://datacommons.org/browser/Place) and each column represents a [Statistical Variable](https://datacommons.org/browser/StatisticalVariable).
 
-The public bucket is organized by vertical, each in a different folder:
-* [Climate](https://console.cloud.google.com/storage/browser/relational_tables/climate)
-* [Demogaphics](https://console.cloud.google.com/storage/browser/relational_tables/demographics)
-* [Education](https://console.cloud.google.com/storage/browser/relational_tables/education)
-* [Employment](https://console.cloud.google.com/storage/browser/relational_tables/employment)
-* [Energy](https://console.cloud.google.com/storage/browser/relational_tables/energy)
-* [Health](https://console.cloud.google.com/storage/browser/relational_tables/health)
-* [Housing](https://console.cloud.google.com/storage/browser/relational_tables/housing)
+These relational tables are organized by vertical, each within a different zip folder, which can be downloaded from the links below:
+* [Climate](https://storage.googleapis.com/relational_tables/climate.zip)
+* [Demogaphics](https://storage.googleapis.com/relational_tables/demographics.zip)
+* [Education](https://storage.googleapis.com/relational_tables/education.zip)
+* [Employment](https://storage.googleapis.com/relational_tables/employment.zip)
+* [Energy](https://storage.googleapis.com/relational_tables/energy.zip)
+* [Health](https://storage.googleapis.com/relational_tables/health.zip)
+* [Housing](https://storage.googleapis.com/relational_tables/housing.zip)
 
-Each vertical folder contains tables for various Place categories: `all` (all places), `us` (US places), `non_us` (non-US places), `county` (US counties), and `zip` (US zip codes). For each vertical and Place category, there are three types of tables:
+Each vertical zip folder contains tables for various Place categories: `all` (all places), `us` (US places), `non_us` (non-US places), `county` (US counties), and `zip` (US zip codes). For each vertical and Place category, there are three types of tables:
+
 * `value`: Each cell contains the value of the latest observation for a given Statistical Variable and Place.
 * `date`: Each cell contains the date of the latest observation for a given Statistical Variable and Place.
 * `provenance`: Each cell contains the provenance URL of the latest observation for a given Statistical Variable and Place, as well as the [measurement method](https://docs.datacommons.org/glossary.html), if provided. Measurement methods that are prefixed with `dcAggregate/` represent Data Commons aggregated values.
