@@ -11,7 +11,7 @@ We provide access to some of our data in a relational format in a public Google 
 
 These relational tables are organized by vertical, each within a different zip folder, which can be downloaded from the links below:
 * [Climate](https://storage.googleapis.com/relational_tables/climate.zip)
-* [Demogaphics](https://storage.googleapis.com/relational_tables/demographics.zip)
+* [Demographics](https://storage.googleapis.com/relational_tables/demographics.zip)
 * [Education](https://storage.googleapis.com/relational_tables/education.zip)
 * [Employment](https://storage.googleapis.com/relational_tables/employment.zip)
 * [Energy](https://storage.googleapis.com/relational_tables/energy.zip)
