@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Time Series
-nav_order: 12
+nav_order: 8
 parent: Python
 grand_parent: API
 ---
@@ -14,7 +14,7 @@ filter parameters. See the [full list of `StatisticalVariable` classes](/statist
 
 ## General information about this endpoint
 
-**Signature**: 
+**Signature**:
 
 ```python
 datacommons.get_stat_series(place, stat_var, measurement_method=None,observation_period=None, unit=None, scaling_factor=None)
@@ -38,13 +38,13 @@ Going into more detail on how to assemble the values for the required arguments:
 
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
-  - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
-  
-  - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
+- [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
 
-  - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
+- [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
-  - [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
+- [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
+
+- [`scaling_factor`](https://docs.datacommons.org/glossary.html): Property of statistical variables indicating factor by which a measurement is multiplied to fit a certain format.
 
 Note that specifying arguments that do not exist for the target place and variable will result in an empty response.
 

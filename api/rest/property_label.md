@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieve property labels of nodes
 
-This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the labels of all properties defined for those nodes. 
+This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the labels of all properties defined for those nodes.
 
 ## General information about this endpoint
 
@@ -163,16 +163,16 @@ curl --request GET \
 
 {% tab log POST Request %}
 
-```curl
+```bash
 curl --request POST \
   --url https://api.datacommons.org/node/property-labels \
   --header 'content-type: application/json' \
   --data '{
-	"dcids": [
-		"dc/c3j78rpyssdmf",
-		"dc/7hfhd2ek8ppd2"
-	]
-}'
+    "dcids": [
+      "dc/c3j78rpyssdmf",
+      "dc/7hfhd2ek8ppd2"
+    ]
+  }'
 ```
 
 {% endtab %}

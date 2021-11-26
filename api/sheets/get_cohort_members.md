@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Cohort Members
-nav_order: 8
+nav_order: 5
 parent: Google Sheets
 grand_parent: API
 ---
@@ -15,7 +15,7 @@ Get the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort
 **Formula**: `=DCCOHORTMEMBERS(dcids)`
 
 **Arguments**:
-*    `dcids` - cohort DCIDs whose members are sought. Here a DCID refers to the unique ID assigned by Data Commons to every node in the knowledge graph. 
+*    `dcids` - cohort DCIDs whose members are sought. Here a DCID refers to the unique ID assigned by Data Commons to every node in the knowledge graph.
 
 **Returns**
 

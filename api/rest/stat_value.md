@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Single Value
-nav_order: 10
+nav_order: 7
 parent: REST
 grand_parent: API
 ---
@@ -50,7 +50,7 @@ In addition to these required properties, this endpoint also allows for other, o
   - [`date`](https://docs.datacommons.org/glossary.html): Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
   - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
-  
+
   - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
   - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.

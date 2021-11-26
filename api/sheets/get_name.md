@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Node Name
-nav_order: 4
+nav_order: 1
 parent: Google Sheets
 grand_parent: API
 ---
@@ -29,6 +29,11 @@ Before trying this method out, make sure to follow the setup directions in [the 
 ### Example 2: Retrieve the names of a collection of cell lines.
 
 ![](/assets/images/sheets/sheets_get_name_cell_lines_cropped.png)
+
+>  **TIP:**
+>
+>  It's best to minimize the number of function calls to `DCGETNAME` by using a single call to get names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCGETNAME`, expect it to be slow and with errors.
+
 
 ## Error returns
 

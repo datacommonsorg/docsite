@@ -29,7 +29,7 @@ To get started using the Pandas API:
 First, install the `datacommons_pandas` package through `pip`.
 
 ```bash
-$ pip install datacommons_pandas
+pip install datacommons_pandas
 ```
 
 For more information about installing `pip` and setting up other parts of
@@ -39,6 +39,6 @@ for Google Cloud Platform.
 
 ### Using the Pandas API
 
-You are ready to go! From here you can view our [tutorials](/tutorials.html) on how to use the
+You are ready to go! From here you can view our [tutorials](/tutorials) on how to use the
 API to perform certain tasks, or see a full list of functions, classes and
 methods available for use in the sidebar.

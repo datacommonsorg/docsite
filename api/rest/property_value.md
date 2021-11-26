@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieve property values of nodes
 
-This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the values of a specified property attached to those nodes. 
+This endpoint is suitable for situations in which you have a node or list of nodes and desire to obtain the values of a specified property attached to those nodes.
 
 ## General information about this endpoint
 
@@ -129,11 +129,11 @@ curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
   --data '{
-	"dcids": [
-		"country/CIV"
-	],
-	"property": "name"
-}'
+    "dcids": [
+      "country/CIV"
+    ],
+    "property": "name"
+  }'
 ```
 
 {% endtab %}
@@ -202,11 +202,11 @@ curl --request POST \
   --url https://api.datacommons.org/node/property-values \
   --header 'content-type: application/json' \
   --data '{
-	"dcids": [
-		"dc/bsmvthtq89217"
-	],
-	"property": "order"
-}'
+    "dcids": [
+      "dc/bsmvthtq89217"
+    ],
+    "property": "order"
+  }'
 ```
 
 {% endtab %}

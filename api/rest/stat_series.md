@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics - Time Series
-nav_order: 11
+nav_order: 8
 parent: REST
 grand_parent: API
 ---
@@ -49,7 +49,7 @@ Going into more detail on how to assemble the values for the required arguments:
 In addition to these required properties, this endpoint also allows for other, optional arguments. Here are helpful arguments in regular use by Data Commons developers:
 
   - [`measurement_method`](https://docs.datacommons.org/glossary.html): The technique used for measuring a statistical variable.
-  
+
   - [`observation_period`](https://docs.datacommons.org/glossary.html): The time period over which an observation is made.
 
   - [`unit`](https://docs.datacommons.org/glossary.html): The unit of measurement.
