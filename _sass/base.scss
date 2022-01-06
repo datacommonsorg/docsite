@@ -51,7 +51,11 @@ lg: 960px
 );
 
 /** Icon sizes **/
-.material-icons.md-16 { font-size: 16px; }
+.material-icons.md-16 { 
+  font-size: 16px;
+  padding-right: 8px;
+  vertical-align: middle;
+}
 .material-icons-outlined.md-16 { font-size: 16px; }
 
 @import "third_party/bootstrap-4.0.0/bootstrap";

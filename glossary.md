@@ -14,7 +14,7 @@ This page contains a selection of key terms important to understanding the struc
 
 A group of entities sharing some characteristic. Interchangeably referred to in a Data Commons context as `Cohort` and `CohortSet`. Examples include [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
-<div markdown="span" class="alert alert-success" role="alert">
+<div markdown="span" class="alert alert-info" role="alert">
     <span class="material-icons md-16">info </span><b>Note:</b>
     The type [`Cohort`](https://datacommons.org/browser/Cohort) is a legacy type not used by the Sheets method `DCCOHORTMEMBERS()`.
 </div>
