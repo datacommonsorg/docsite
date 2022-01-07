@@ -17,6 +17,7 @@ title: "Data Commons Docs"
 description: Data Commons Documentation
 url: "https://docs.datacommons.org"
 github_username:  datacommonsorg
+repository: datacommonsorg/docsite
 
 # Build settings
 markdown: kramdown
