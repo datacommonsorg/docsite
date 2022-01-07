@@ -1,3 +1,5 @@
+[![Build and deploy to GitHub Pages](https://github.com/datacommonsorg/docsite/actions/workflows/github-pages.yml/badge.svg)](https://github.com/datacommonsorg/docsite/actions/workflows/github-pages.yml)
+
 # Data Commons Documentation Site
 
 This repo hosts Data Commons API documentation
