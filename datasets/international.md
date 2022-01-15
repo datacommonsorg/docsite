@@ -43,15 +43,11 @@ Wage and salary data from the [Periodic Labour Force Survey](https://mospi.gov.i
 #### [Reserve Bank of India](https://rbi.org.in/)
 Data Commons includes variables related to poverty and unemployment in Indian states from the Reserve Bank of India.
 
-#### [UNdata](http://data.un.org/)
-[Population data](http://data.un.org/): for countries, capital cities, urban and rural areas not covered by other sources.
+#### [United Nations](https://www.un.org/)
+* [Population data](http://data.un.org/): for countries, capital cities, urban and rural areas not covered by other sources.
+* Data Commons has imported [energy data](https://unstats.un.org/unsd/energystats/data/) about annual energy production, transformation, and consumption for countries.
 
 [Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
-
-#### [United Nations](https://www.un.org/)
-Data Commons has imported [energy data](https://unstats.un.org/unsd/energystats/data/) about annual energy production, transformation, and consumption for countries.
-
-[Terms of Use](https://unstats.un.org/unsd/energystats/data/)
 
 #### [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)
 [Data Commons includes some information about administrative divisions, municipalities, cities, villages and neighborhoods of all countries in the world from Wikidata. This also includes population statistics and various well-known identifiers associated with the places](https://www.wikidata.org/wiki/Wikidata:Main_Page).
