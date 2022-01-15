@@ -6,7 +6,7 @@ parent: Data Sources
 ---
 ## Upcoming Data Imports
 
-The following sources are currently being imported or high on our priority list:
+The following sources are currently being imported or are high on our priority list:
 
 * Climate Watch [Historical Greenhouse Gas Emissions](https://www.climatewatchdata.org/ghg-emissions?end_year=2018&start_year=1990)
 * EDM [India Energy Dashboard](https://edm.niti.gov.in/)
