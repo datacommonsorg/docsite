@@ -9,7 +9,7 @@ has_children: false
 
 Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and is looking to expand the set of collaborative projects. In particular, we are looking for partners to:
 
-- [Add data](#add-data): Contribute data to the graph which will be accessible via Data Commons tools and APIs.
+- [Add data](#add-data): Contribute data to the Data Commons Graph.
 - [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
 - [Create new curriculum](#sharing-analysis): Using Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
@@ -20,7 +20,7 @@ Data Commons welcomes patches and contributions to this project from everyone, n
 
 ### Add data
 
-We welcome contributions of public data to the Data Commons Graph. We’ve bootstrapped the graph with [data](/datasets) from US Census, World Bank, CDC, NOAA, IPCC, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. Please see [the Data Commons data repository](https://github.com/datacommonsorg/data) for more information, and a [list of imports](https://github.com/orgs/datacommonsorg/projects/10/views/1) that would be helpful to add.
+We welcome contributions of public data to the Data Commons Graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the graph with these [datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. To get started, please take a look at [these resources](https://github.com/datacommonsorg/data/tree/master/docs) and follow [this development process](https://github.com/datacommonsorg/data). Here is [list of imports](https://github.com/orgs/datacommonsorg/projects/10/views/1) that would be helpful to add.
 
 ### Creating a new tool
 
@@ -28,7 +28,7 @@ Data Commons welcomes the development of new tools that make the data on Data Co
 
 ### Sharing analysis
 
-Data Commons is currently posting example analyses on [the case studies page](/tutorials). To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file. Your addition to the tutorial page should look like this when raw:
+Data Commons is currently posting example analyses on [the case studies page](/tutorials). To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file.
 
 ### Updating documentation
 
