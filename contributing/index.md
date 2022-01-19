@@ -7,13 +7,32 @@ has_children: false
 
 # Contribute to Data Commons!
 
-Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and are looking to expand the set of collaborative projects. In particular, we are looking for partners to:
+Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and is looking to expand the set of collaborative projects. In particular, we are looking for partners to:
 
+- [Add data](#add-data): Contribute data to the graph which will be accessible via Data Commons tools and APIs.
 - [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
 - [Create new curriculum](#sharing-analysis): Using Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
 
 Data Commons welcomes patches and contributions to this project from everyone, new or experienced!
+
+## Ways to contribute
+
+### Add data
+
+We welcome contributions of public data to the Data Commons Graph. We’ve bootstrapped the graph with [data](/datasets) from US Census, World Bank, CDC, NOAA, IPCC, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. Please see [the Data Commons data repository](https://github.com/datacommonsorg/data) for more information, and a [list of imports](https://github.com/orgs/datacommonsorg/projects/10/views/1) that would be helpful to add.
+
+### Creating a new tool
+
+Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest) that can be used to power applications on top of our data. If you would like to build a new tool, contact the team at support@datacommons.org or create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools).
+
+### Sharing analysis
+
+Data Commons is currently posting example analyses on [the case studies page](/tutorials). To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file. Your addition to the tutorial page should look like this when raw:
+
+### Updating documentation
+
+Data Commons maintains its documentation website at <https://docs.datacommons.org>. You can submit a PR to update the project's documentation at <https://github.com/datacommonsorg/docsite/pulls>.
 
 ## Getting started
 
@@ -40,26 +59,6 @@ uses GitHub pull requests for this purpose. Consult
 information on using pull requests.
 
 This project follows Google's [code style guide](https://google.github.io/styleguide/), [documentation style guide](https://developers.google.com/style), and [open source community guidelines](https://opensource.google/conduct/).
-
-## Your first contribution
-
-### Creating a new tool
-
-Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. If you would like to propose a new tool, feel free to create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools) or contact the team at <support@datacommons.org>.
-
-### Sharing analysis
-
-Data Commons is currently posting example analyses on [the tutorials page](/tutorials). To submit your analysis as a tutorial, open a PR in [the Data Commons documentation website repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file. Your addition to the tutorial page should look like this when raw:
-
-```
--   ** <YOUR TITLE HERE> **
-
-    [Google Colab](<YOUR COLAB LINK HERE>){:target="_blank"}, [Github](<YOUR GITHUB .IPYNB FILE HERE>){:target="_blank"}
-```
-
-### Updating documentation
-
-Data Commons maintains its documentation website at <https://docs.datacommons.org>. You can submit a PR to update the project's documentation at <https://github.com/datacommonsorg/docsite/pulls>.
 
 ## Other ways to get involved
 
