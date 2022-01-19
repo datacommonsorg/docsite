@@ -7,4 +7,4 @@ has_children: true
 
 # Courseware
 
-[Data Science with Real Data](/courseware/intro_data_science.html)
+[Intro to Data Science](/courseware/intro_data_science.html)
