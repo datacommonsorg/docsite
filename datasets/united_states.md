@@ -26,14 +26,6 @@ parent: Data Sources
 
 [Terms of Serivce](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
 
-#### [Center for Disease Control and Prevention](https://www.cdc.gov/)
-* [CDC 500 Cities: Local Data for Better Health](https://chronicdata.cdc.gov/500-Cities-Places/500-Cities-Local-Data-for-Better-Health-2019-relea/6vp6-wxuq): The 500 Cities Project datasets contain model-based small area estimates for 27 measures of chronic disease related to unhealthy behaviors (5), health outcomes (13), and use of preventive services (9) for the 500 largest cities in the US.
-* [CDC Wonder Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html): mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year. [CDC Wonder Data Terms of Service](https://wonder.cdc.gov/datause.html).
-* [CDC Diabetes Surveillance System](https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html): estimates of the number and percentage of US adults with diabetes.
-* [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22): Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
-
-[CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
-
 #### [Census Bureau](https://www.census.gov/)
 * [American Community Survey](https://www.census.gov/programs-surveys/acs) covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population. The ACS 5-year (and 1-year) estimates are updated every year, based on the last 5 years (1 year) of collected data. Data Commons includes thousands of variables across the full range of ACS topics at the country, state, county, city, zip code tabulation area, school district, census tract levels, and more.
 * [American Community Survey Education Tabulation (ACS-ED)](https://nces.ed.gov/programs/edge/demographic/acs): The National Center for Education Statistics collaborates with the US Census Bureau to create a variety of custom data files that describe the condition of school-age children in the United States at the country, state, and school district level. ACS-ED is updated annually based on ACS five-year period estimates.
@@ -46,10 +38,23 @@ parent: Data Sources
 
 [US Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
+#### [Center for Disease Control and Prevention](https://www.cdc.gov/)
+* [CDC 500 Cities: Local Data for Better Health](https://chronicdata.cdc.gov/500-Cities-Places/500-Cities-Local-Data-for-Better-Health-2019-relea/6vp6-wxuq): The 500 Cities Project datasets contain model-based small area estimates for 27 measures of chronic disease related to unhealthy behaviors (5), health outcomes (13), and use of preventive services (9) for the 500 largest cities in the US.
+* [CDC Wonder Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html): mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year. [CDC Wonder Data Terms of Service](https://wonder.cdc.gov/datause.html).
+* [CDC Diabetes Surveillance System](https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html): estimates of the number and percentage of US adults with diabetes.
+* [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22): Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
+
+[CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
+
 #### [College Scorecard](https://collegescorecard.ed.gov/)
 [University Data](https://collegescorecard.ed.gov/data): data about all undergraduate degree-granting institutions of higher education.
 
 [Terms of Service](https://www2.ed.gov/notices/copyright/index.html).
+
+#### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
+The Dartmouth Atlas Project "uses Medicare and Medicaid data to provide information and analysis about national, regional, and local markets, as well as hospitals and their affiliated physicians." Data Commons includes the Medicare Reimbursements, Medicare Mortality Rates, and Selected Primary Care Access and Quality Measures datasets.
+
+Data is made available under the [Dartmouth Atlas Project Terms of Use](https://data.dartmouthatlas.org/).
 
 #### [DeepSolar](http://web.stanford.edu/group/deepsolar/home)
 Location and size of solar photovoltaic panels in the US based on satellite imagery.
@@ -119,6 +124,12 @@ Data Commons has imported the potential for solar energy generation in different
 
 [US Forest Service Terms of Service](https://www.fs.usda.gov/about-agency/disclaimers-important-notices).
 
+#### [Opportunity Insights](https://opportunityinsights.org/)
+* Outcomes (social mobility and a variety of other outcomes from life expectancy to patent rates) by neighbourhood, college, parental income level and racial background. For Census tracts, county and commuting zone.
+* Neighbourhood characteristics for Census tracts, county and commuting zones.
+
+[Terms of Use](https://opportunityinsights.org/data/).
+
 #### [United States Department of Agriculture](https://www.usda.gov/)
 The [Census of Agriculture](https://www.nass.usda.gov/AgCensus/) contains information about land use, operators, production, and finances of US farms and ranches. Data Commons contains several of the Census tables relating to crop production and operator demographics from the 2017 Census.
 
@@ -129,15 +140,3 @@ The [Census of Agriculture](https://www.nass.usda.gov/AgCensus/) contains inform
 * [United States Geological Survey (USGS) Geographic Names Information System (GNIS) - National Federal Codes](https://www.usgs.gov/u.s.-board-on-geographic-names/download-gnis-data): codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
 
 [USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
-
-#### [The Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
-The Dartmouth Atlas Project "uses Medicare and Medicaid data to provide information and analysis about national, regional, and local markets, as well as hospitals and their affiliated physicians." Data Commons includes the Medicare Reimbursements, Medicare Mortality Rates, and Selected Primary Care Access and Quality Measures datasets.
-
-Data is made available under the [Dartmouth Atlas Project Terms of Use](https://data.dartmouthatlas.org/).
-
-#### [Opportunity Insights](https://opportunityinsights.org/)
-* Outcomes (social mobility and a variety of other outcomes from life expectancy to patent rates) by neighbourhood, college, parental income level and racial background. For Census tracts, county and commuting zone.
-* Neighbourhood characteristics for Census tracts, county and commuting zones.
-
-[Terms of Use](https://opportunityinsights.org/data/).
-
