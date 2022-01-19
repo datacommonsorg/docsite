@@ -54,6 +54,9 @@ MINT is a part of [ELIXIR Core Data Resources](https://elixir-europe.org/platfor
 
 Licata, Luana, Leonardo Briganti, Daniele Peluso, Livia Perfetto, Marta Iannuccelli, Eugenia Galeota, Francesca Sacco et al. "MINT, the molecular interaction database: 2012 update." Nucleic acids research 40, no. D1 (2012): D857-D861.
 
+#### [New York Botanical Garden (NYBG) - C. V. Starr Virtual Herbarium (Collaboration)](http://sweetgum.nybg.org/science/vh/learn-more/)
+C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
+
 #### [NIH National Center for Biotechnology Information ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
 "ClinVar is a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence." It contains reports of genetic "variants found in patient samples, assertions made regarding their clinical significance, information about the submitter, and other supporting data." Data Commons includes the January 6, 2020 release of the ClinVar archive supporting both hg19 and hg38 genome assemblies.
 
@@ -125,8 +128,5 @@ The data is made available by the [Creative Commons Attribution (CC BY 4.0) Lice
 UniProt’s Controlled Vocabulary of Species contains organism species UniProt identification codes, [NCBI Taxonomy database identifiers](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), scientific names, common names, synonyms, and organism kingdoms.
 
 The dataset is available under [(CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license as shown by the [UniProt License and Disclaimer](https://www.uniprot.org/help/license).
-
-#### [New York Botanical Garden (NYBG) - C. V. Starr Virtual Herbarium (Collaboration)](http://sweetgum.nybg.org/science/vh/learn-more/)
-C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
 
 
