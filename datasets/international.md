@@ -8,7 +8,7 @@ parent: Data Sources
 {:.no_toc}
 # International Data
 
-1. TOC
+* TOC
 {:toc}
 
 #### [Census of India](https://censusindia.gov.in/)

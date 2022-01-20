@@ -8,7 +8,7 @@ parent: Data Sources
 {:.no_toc}
 # Biomedical Data
 
-1. TOC
+* TOC
 {:toc}
 
 #### [ChEMBL](https://www.ebi.ac.uk/chembl/)

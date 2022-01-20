@@ -8,7 +8,7 @@ parent: Data Sources
 {:.no_toc}
 # United States Data
 
-1. TOC
+* TOC
 {:toc}
 
 #### [Bureau of Economic Analysis (BEA)](https://www.bea.gov/)

@@ -8,7 +8,7 @@ parent: Data Sources
 {:.no_toc}
 # COVID-19 Data
 
-1. TOC
+* TOC
 {:toc}
 
 #### [The COVID Tracking Project](https://covidtracking.com/)
