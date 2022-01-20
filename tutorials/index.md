@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Tutorials
+title: Case studies
 nav_order: 5
-has_children: true
+has_children: false
 ---
 
-# Tutorials
+# Case studies
 
 Get familiar with the Data Commons Graph and API's using these analysis examples.
 You can also clone these to use as a base for your own analysis.
@@ -39,12 +39,3 @@ Python:
 -   **Case Study: Drug Discovery with Biomedical Data Commons**
 
     [Google Colab](https://colab.research.google.com/drive/1dSKYiRMn3mbDsInorQzYM0yk7sqv6fIV){:target="_blank"}, [Github](https://github.com/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
-
-
-## Google Sheets
-
-Step-by-step guides to using the Google Sheets API:
-
--   [Analyze the COVID-19 pandemic](/tutorials/sheets_covid.html)
--   [Obtain latitude information for country capitals in South America](/tutorials/sheets_latitude.html)
--   [Sorting the CDC 500 cohort on sleep](/tutorials/sheets_sleep.html)

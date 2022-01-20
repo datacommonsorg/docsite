@@ -12,6 +12,8 @@ users to import data from the Data Commons knowledge graph. The add-on provides 
 interface for finding a location's [DCID](/glossary.html), as well as some custom functions for
 importing data to a spreadsheet.
 
+Also read our [step-by-step guides](tutorials/) for more examples.
+
 ## Getting started
 
 Install the add-on from [G Suite Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575). To enable the add-on in a document, click "Add-ons > Data Commons > Fill place dcids". You may use the resulting sidebar to start [finding dcids](/api/sheets/get_dcid.html) in the United States, or close it and reopen it at any time. Note that none of the custom functions will work in a given document until you have enabled the add-on by choosing "Fill place dcids".
@@ -38,10 +40,12 @@ Note that this feature only supports places in the United States.
 
 <p>Please check the following video for a complete example:</p>
 
+<div>
 <video width="960" height="520" controls>
   <source src="/assets/video/sort.webm" type="video/webm">
 Your browser does not support the video tag.
 </video>
+</div>
 
 <p>To summarize, the steps are:</p>
 
