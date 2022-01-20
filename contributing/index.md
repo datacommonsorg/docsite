@@ -11,7 +11,8 @@ Data Commons has benefited greatly from our collaborations with different govern
 
 - [Add data](#add-data): Contribute data to the Data Commons Graph.
 - [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
-- [Create new curriculum](#sharing-analysis): Using Data Commons in data science and machine learning courses.
+- [Share analyses](#sharing-analysis): Use Data Commons to build models and share new, interesting insights.
+- [Create new curriculum](#create-new-curriculum): Use Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
 
 Data Commons welcomes patches and contributions to this project from everyone, new or experienced!
@@ -29,6 +30,10 @@ Data Commons welcomes the development of new tools that make the data on Data Co
 ### Sharing analysis
 
 Data Commons is currently posting example analyses on [the case studies page](/tutorials). To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file.
+
+### Create new curriculum
+
+Text here
 
 ### Updating documentation
 
