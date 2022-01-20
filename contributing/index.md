@@ -20,7 +20,7 @@ Data Commons welcomes patches and contributions to this project from everyone, n
 
 ### Add data
 
-We welcome contributions of public data to the Data Commons Graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the graph with these [datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. To get started, please take a look at [these resources](https://github.com/datacommonsorg/data/tree/master/docs) and follow [this development process](https://github.com/datacommonsorg/data). Here is [list of imports](https://github.com/orgs/datacommonsorg/projects/10/views/1) that would be helpful to add.
+We welcome contributions of public data to the Data Commons Graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the graph with [these datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. To get started, please take a look at [these resources](https://github.com/datacommonsorg/data/tree/master/docs) and follow [this development process](https://github.com/datacommonsorg/data). Here is a [list of imports](https://github.com/orgs/datacommonsorg/projects/10/views/1) that would be helpful to add.
 
 ### Creating a new tool
 
