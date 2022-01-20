@@ -5,7 +5,11 @@ nav_order: 4
 parent: Data Sources
 ---
 
+{:.no_toc}
 # COVID-19 Data
+
+* TOC
+{:toc}
 
 #### [The COVID Tracking Project](https://covidtracking.com/)
 [The COVID Tracking Project US State & County Data](https://covidtracking.com/about-data): The COVID Tracking Project collects, cross-checks, and publishes COVID-19 testing and patient outcome data from 56 US states and territories.
