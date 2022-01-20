@@ -5,7 +5,11 @@ nav_order: 1
 parent: Data Sources
 ---
 
+{:.no_toc}
 # United States Data
+
+1. TOC
+{:toc}
 
 #### [Bureau of Economic Analysis (BEA)](https://www.bea.gov/)
 * [Gross domestic product](https://www.bea.gov/data/gdp) for counties, metropolitan statistical areas and states, broken down by industry.
