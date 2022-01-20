@@ -5,7 +5,11 @@ nav_order: 2
 parent: Data Sources
 ---
 
+{:.no_toc}
 # International Data
+
+* TOC
+{:toc}
 
 #### [Census of India](https://censusindia.gov.in/)
 Data Commons has imported variables related to demographics, in particular concerning literacy, work, housing, and religion from the Indian Census on the state, district, and city level.
