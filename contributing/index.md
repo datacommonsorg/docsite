@@ -11,7 +11,7 @@ Data Commons has benefited greatly from our collaborations with different govern
 
 - [Add data](#add-data): Contribute data to the Data Commons Graph.
 - [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
-- [Share analyses](#sharing-analysis): Use Data Commons to build models and share new, interesting insights.
+- [Share analyses](#sharing-analysis): Use Data Commons to build models and share interesting insights.
 - [Create new curriculum](#create-new-curriculum): Use Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
 
@@ -33,7 +33,7 @@ Data Commons is currently posting example analyses on [the case studies page](/t
 
 ### Create new curriculum
 
-Text here
+Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware.html). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Contact us at [courses@datacommons.org](mailto:courses@datacommons.org).
 
 ### Updating documentation
 
