@@ -40,7 +40,7 @@ As an example, MIT's large [Introduction to Machine Learning](https://introml.od
 
 We strongly encourage you to change and adapt these notebooks to fit your needs! You can download any notebook in either .ipynb or .py format by clicking on its link and File > Download.
 
-Datasets can be changed by editing the list of variables queried (see the [“Data Commons for Data Science”](https://colab.research.google.com/drive/1FUQGfoIFr9vwa1wRTmVXVdTYHwr7ntHM) tutorial for more on this); editing framing and questions is as easy as editing text cells.
+Datasets can be changed by editing the list of variables queried (see the [“Data Commons for Data Science”](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) tutorial for more on this); editing framing and questions is as easy as editing text cells.
 
 Some ideas:
 * Add additional cells for any additional topics you want covered.
@@ -50,28 +50,28 @@ Some ideas:
 
 ## Python Notebooks
 
-* [**Data Commons for Data Science Tutorial**](https://colab.research.google.com/drive/1FUQGfoIFr9vwa1wRTmVXVdTYHwr7ntHM#sandboxMode=true) \\
-A quick tutorial introducing the key concepts of working with the Data Commons Python API. Great for familiarizing yourself with how to adapt datasets to your particular needs.  
+* [**Data Commons for Data Science Tutorial**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) \\
+A quick tutorial introducing the key concepts of working with the Data Commons Python API. Great for familiarizing yourself with how to adapt datasets to your particular needs.
 
 
-* [**Feature Engineering**](https://colab.research.google.com/drive/1aXMMJMSRB6dbpByEa5HjSTjcIPm8XFbu#sandboxMode=true) \\
-Explores the first steps of any data science pipeline: feature selection, data visualization, preprocessing and standardization. Pairs well with “Classification and Model Evaluation”.  
+* [**Feature Engineering**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Feature_Engineering.ipynb) \\
+Explores the first steps of any data science pipeline: feature selection, data visualization, preprocessing and standardization. Pairs well with “Classification and Model Evaluation”.
 
 
-* [**Classification and Model Evaluation**](https://colab.research.google.com/drive/1fdiBUZoTClfDu_Jq7PahacfTsMs2bOJj#sandboxMode=true) \\
-Explores the second half of a data science pipeline: training and test splits, cross validation, metrics for model evaluation. Focus is on classification models. Pairs well with “Feature Engineering”.  
+* [**Classification and Model Evaluation**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Classification_and_Model_Evaluation.ipynb) \\
+Explores the second half of a data science pipeline: training and test splits, cross validation, metrics for model evaluation. Focus is on classification models. Pairs well with “Feature Engineering”.
 
 
-* [**Regression: Basics and Prediction**](https://colab.research.google.com/drive/1pE4Fnx0DsopSVsGOtsC6qVT1RSLdEH_R#sandboxMode=true) \\
-An introduction to linear regression as a tool for prediction, from a modern machine learning perspective.  
+* [**Regression: Basics and Prediction**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Regression_Basics_and_Prediction.ipynb) \\
+An introduction to linear regression as a tool for prediction, from a modern machine learning perspective.
 
 
-* [**Regression: Evaluation and Interpretation**](https://colab.research.google.com/drive/1e3WnMGGQOyMqEQgydGPz7e9RxIXE8JCi#sandboxMode=true) \\
-A more in-depth look at linear regression, with an emphasis on interpreting model parameters and evaluation metrics beyond simple accuracy. Provides a more statistical perspective.  
+* [**Regression: Evaluation and Interpretation**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Regression_Evaluation_and_Interpretation.ipynb) \\
+A more in-depth look at linear regression, with an emphasis on interpreting model parameters and evaluation metrics beyond simple accuracy. Provides a more statistical perspective.
 
 
-* [**Clustering**](https://colab.research.google.com/drive/1C_lmGaE4DwDkMCNi0wYdFVedmReSBi0R#sandboxMode=true) \\
-An introduction to clustering analysis for unsupervised learning. Explores the mechanics of K-means clustering and cluster interpretation.  
+* [**Clustering**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Introduction_to_Clustering.ipynb) \\
+An introduction to clustering analysis for unsupervised learning. Explores the mechanics of K-means clustering and cluster interpretation.
 
 
 
