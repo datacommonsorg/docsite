@@ -65,6 +65,11 @@ Data Commons has imported the potential for solar energy generation in different
 
 [Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
 
+#### [United States Department of Agriculture](https://www.usda.gov/)
+The [Census of Agriculture](https://www.nass.usda.gov/AgCensus/) contains information about land use, operators, production, and finances of US farms and ranches. Data Commons contains several of the Census tables relating to crop production and operator demographics from the 2017 Census.
+
+[Policies and Links](https://www.usda.gov/policies-and-links).
+
 #### [United States Geological Service](https://www.usgs.gov/)
 * [USGS Advanced National Seismic System Comprehensive Earthquake Catalog (ComCat)](https://earthquake.usgs.gov/data/comcat/): earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and amplitudes) and other products (e.g. moment tensor solutions, macroseismic information, tectonic summaries, maps) produced by contributing seismic networks. Data Commons includes date, time, location, magnitudes, magnitude errors, depth, depth error, and review status of earthquakes of magnitude 3 onwards starting from 1900.
 * [United States Geological Survey (USGS) Geographic Names Information System (GNIS) - National Federal Codes](https://www.usgs.gov/u.s.-board-on-geographic-names/download-gnis-data): codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
