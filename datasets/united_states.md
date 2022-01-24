@@ -46,7 +46,6 @@ parent: Data Sources
 * [CDC 500 Cities: Local Data for Better Health](https://chronicdata.cdc.gov/500-Cities-Places/500-Cities-Local-Data-for-Better-Health-2019-relea/6vp6-wxuq): The 500 Cities Project datasets contain model-based small area estimates for 27 measures of chronic disease related to unhealthy behaviors (5), health outcomes (13), and use of preventive services (9) for the 500 largest cities in the US.
 * [CDC Wonder Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html): mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year. [CDC Wonder Data Terms of Service](https://wonder.cdc.gov/datause.html).
 * [CDC Diabetes Surveillance System](https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html): estimates of the number and percentage of US adults with diabetes.
-* [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22): Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
@@ -60,11 +59,6 @@ The Dartmouth Atlas Project "uses Medicare and Medicaid data to provide informat
 
 Data is made available under the [Dartmouth Atlas Project Terms of Use](https://data.dartmouthatlas.org/).
 
-#### [DeepSolar](http://web.stanford.edu/group/deepsolar/home)
-Location and size of solar photovoltaic panels in the US based on satellite imagery.
-
-[Paper for Citation](https://www.cell.com/joule/fulltext/S2542-4351(18)30570-1).
-
 #### [Department of Labor](https://oui.doleta.gov/unemploy/DataDownloads.asp)
 [Weekly Claims and Extended Benefits Trigger Data](https://oui.doleta.gov/unemploy/DataDownloads.asp): weekly new and continuing unemployment insurance claims for US states.
 
@@ -74,19 +68,6 @@ Location and size of solar photovoltaic panels in the US based on satellite imag
 [Retail Drug Distributions by Drug at County level](https://www.deadiversion.usdoj.gov/arcos/retail_drug_summary/): data from the Automated Reports and Consolidated Ordering System (ARCOS) is a data collection system in which manufacturers and distributors report their controlled substances transactions to the Drug Enforcement Administration (DEA). Data Commons includes quarterly retail drug distributions from ARCOS Report 1, provided annually from 2006-2017. The 3-digit zip prefixes from the report were aggregated to the county level using [2010 ZIP Code Tabulation Area (ZCTA) Relationship records](https://www2.census.gov/geo/docs/maps-data/data/rel/zcta_county_rel_10.txt) from the [US Census](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html). Please see the [disclaimers](https://datacommons.org/disclaimers) page about the scope of the data.
 
 [US Department of Justice Legal Policies and Disclaimers Terms of Use](https://www.justice.gov/legalpolicies).
-
-#### [Energy Information Adminsitration](https://www.eia.gov/)
-* EIA's [Open Data](https://www.eia.gov/opendata/qb.php) provides county, state, and plant-level data on  generation, consumption, and sales for different energy sources and "sectors" (residential, commercial, etc). Data Commons has imported data about coal, electricity, natural gas, nuclear outages, and petroleum.
-* The [EIA-860](https://www.eia.gov/electricity/data/eia860/) survey form collects generator-level data about electric power plants.
-
-[Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php).
-
-#### [Environmental Protection Agency](https://www.epa.gov)
-* [Greenhouse Gas Reporting Program](https://www.epa.gov/enviro/greenhouse-gas-overview): Annual reporting of greenhouse gases from large emission sources.
-* [Air Data](https://www.epa.gov/outdoor-air-quality-data): Air quality data collected from outdoor monitors on the county, CBSA, and site monitor level.
-* [EJSCREEN](https://www.epa.gov/ejscreen): Environmental justice mapping tool based on environmental and demographic indicators.
-
-[Copyright Status](https://www.epa.gov/web-policies-and-procedures/epa-disclaimers).
 
 #### [Federal Bureau of Investigation](https://www.fbi.gov/)
 [FBI Uniform Crime Reporting (UCR) Program](https://www.fbi.gov/services/cjis/ucr): volume of violent crime by type as reported by city and town law enforcement agencies.
@@ -103,44 +84,13 @@ Location and size of solar photovoltaic panels in the US based on satellite imag
 
 The data is in the public domain.
 
-#### [National Aeronautics and Space Administration](https://www.nasa.gov/)
-[Center for Climate Simulation](https://www.nccs.nasa.gov/): Earth Exchange Global Daily Downscaled Projections for [CMIP5](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-dcp30), which contains atmospheric variables from multiple climate models. Data Commons has aggregated the data for counties and cities in the US.
-
-[Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-DCP30_Tech_Note.pdf).
-
 #### [National Center for Education Statistics](https://nces.ed.gov/)
 [Public School and School District Data](https://nces.ed.gov/ccd/elsi/): general descriptive information such as name, address, and phone number; select demographic characteristics about students and staff; and fiscal data such as revenues and current expenditures. Data Commons includes school and school district level data about student populations by race, gender, lunch eligibility, and grade, as well as student-teacher ratio and teacher count statistics.
 
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
-
-#### [National Oceanic and Atmospheric Administration](https://www.noaa.gov/)
-[National Climatic Data Center Storm Events Database](https://www.ncdc.noaa.gov/stormevents/ftp.jsp): occurrence of storms and other significant weather phenomena having sufficient intensity to cause loss of life, injuries, significant property damage, and/or disruption to commerce; rare, unusual, weather phenomena that generate media attention, such as snow flurries in South Florida or the San Diego coastal area; and other significant meteorological events, such as record maximum or minimum temperatures or precipitation that occur in connection with another event.
-
-[National Weather Service Use of NOAA/NWS Data and Products Terms of Service](https://www.weather.gov/disclaimer).
-
-#### [National Renewable Energy Laboratory](https://www.nrel.gov/index.html)
-Data Commons has imported the potential for solar energy generation in different counties in the US from NREL's [RE Atlas](https://maps.nrel.gov/re-atlas).
-
-[Disclaimer](https://maps.nrel.gov/re-atlas/).
-
-#### [National Wildfire Coordinating Group](https://www.nwcg.gov/)
-[National Interagency Fire Center Interagency Situation Report - 209 (SIT-209)](https://famit.nwcg.gov/): information related to the wildland fire management incidents and resources.
-
-[US Forest Service Terms of Service](https://www.fs.usda.gov/about-agency/disclaimers-important-notices).
 
 #### [Opportunity Insights](https://opportunityinsights.org/)
 * Outcomes (social mobility and a variety of other outcomes from life expectancy to patent rates) by neighbourhood, college, parental income level and racial background. For Census tracts, county and commuting zone.
 * Neighbourhood characteristics for Census tracts, county and commuting zones.
 
 [Terms of Use](https://opportunityinsights.org/data/).
-
-#### [United States Department of Agriculture](https://www.usda.gov/)
-The [Census of Agriculture](https://www.nass.usda.gov/AgCensus/) contains information about land use, operators, production, and finances of US farms and ranches. Data Commons contains several of the Census tables relating to crop production and operator demographics from the 2017 Census.
-
-[Policies and Links](https://www.usda.gov/policies-and-links).
-
-#### [United States Geological Service](https://www.usgs.gov/)
-* [USGS Advanced National Seismic System Comprehensive Earthquake Catalog (ComCat)](https://earthquake.usgs.gov/data/comcat/): earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and amplitudes) and other products (e.g. moment tensor solutions, macroseismic information, tectonic summaries, maps) produced by contributing seismic networks. Data Commons includes date, time, location, magnitudes, magnitude errors, depth, depth error, and review status of earthquakes of magnitude 3 onwards starting from 1900.
-* [United States Geological Survey (USGS) Geographic Names Information System (GNIS) - National Federal Codes](https://www.usgs.gov/u.s.-board-on-geographic-names/download-gnis-data): codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
-
-[USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
