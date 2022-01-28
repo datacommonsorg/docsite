@@ -10,12 +10,16 @@ has_children: false
 We provide access to some of our data in a relational format in a public Google Cloud Storage bucket, which is available for CSV download. The tables are constructed such that each row represents a [Place](https://datacommons.org/browser/Place) and each column represents a [Statistical Variable](https://datacommons.org/browser/StatisticalVariable).
 
 These relational tables are organized by vertical, each within a different zip folder, which can be downloaded from the links below:
+* [Agriculture](https://storage.googleapis.com/relational_tables/agriculture.zip)
 * [Climate](https://storage.googleapis.com/relational_tables/climate.zip)
+* [Crime](https://storage.googleapis.com/relational_tables/crime.zip)
 * [Demographics](https://storage.googleapis.com/relational_tables/demographics.zip)
+* [Economics](https://storage.googleapis.com/relational_tables/economics.zip)
 * [Education](https://storage.googleapis.com/relational_tables/education.zip)
 * [Employment](https://storage.googleapis.com/relational_tables/employment.zip)
 * [Energy](https://storage.googleapis.com/relational_tables/energy.zip)
 * [Health](https://storage.googleapis.com/relational_tables/health.zip)
+* [Household](https://storage.googleapis.com/relational_tables/household.zip)
 * [Housing](https://storage.googleapis.com/relational_tables/housing.zip)
 
 Each vertical zip folder contains tables for various Place categories: `all` (all places), `us` (US places), `non_us` (non-US places), `county` (US counties), and `zip` (US zip codes). For each vertical and Place category, there are three types of tables:
