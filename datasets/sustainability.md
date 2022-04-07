@@ -8,6 +8,8 @@ parent: Data Sources
 {:.no_toc}
 # Sustainability Data
 
+Please also see related data sources about health, demographics and more from the [United States](united_states.html) and [internationally](international.html).
+
 * TOC
 {:toc}
 
@@ -36,6 +38,7 @@ Location and size of solar photovoltaic panels in the US based on satellite imag
 * [Greenhouse Gas Reporting Program](https://www.epa.gov/enviro/greenhouse-gas-overview): Annual reporting of greenhouse gases from large emission sources.
 * [Air Data](https://www.epa.gov/outdoor-air-quality-data): Air quality data collected from outdoor monitors on the county, CBSA, and site monitor level.
 * [EJSCREEN](https://www.epa.gov/ejscreen): Environmental justice mapping tool based on environmental and demographic indicators.
+* [Superfund Sites](https://www.epa.gov/superfund): Site contamination data, hazard scores and more.
 
 [Copyright Status](https://www.epa.gov/web-policies-and-procedures/epa-disclaimers).
 
@@ -59,6 +62,9 @@ Data Commons has imported the potential for solar energy generation in different
 [National Interagency Fire Center Interagency Situation Report - 209 (SIT-209)](https://famit.nwcg.gov/): information related to the wildland fire management incidents and resources.
 
 [US Forest Service Terms of Service](https://www.fs.usda.gov/about-agency/disclaimers-important-notices).
+
+#### [Randolph Glacier Inventory](https://www.glims.org/RGI/rgi60_dl.html)
+A global inventory of glaciers, including surface areas.
 
 #### [United Nations](https://www.un.org/)
 * Data Commons has imported [energy data](https://unstats.un.org/unsd/energystats/data/) about annual energy production, transformation, and consumption for countries.

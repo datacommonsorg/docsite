@@ -44,7 +44,8 @@ parent: Data Sources
 
 #### [Center for Disease Control and Prevention](https://www.cdc.gov/)
 * [CDC 500 Cities: Local Data for Better Health](https://chronicdata.cdc.gov/500-Cities-Places/500-Cities-Local-Data-for-Better-Health-2019-relea/6vp6-wxuq): The 500 Cities Project datasets contain model-based small area estimates for 27 measures of chronic disease related to unhealthy behaviors (5), health outcomes (13), and use of preventive services (9) for the 500 largest cities in the US.
-* [CDC Wonder Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html): mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year. [CDC Wonder Data Terms of Service](https://wonder.cdc.gov/datause.html).
+* [CDC Wonder: Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html): mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year. [CDC Wonder Data Terms of Service](https://wonder.cdc.gov/datause.html).
+* [CDC Wonder: Natality](https://wonder.cdc.gov/natality.html): counts of live births occurring within the United States to U.S. residents. Counts can be obtained by a variety of demographic characteristics, such as state and county of residence, mother's race, and mother's age, and health and medical items, such as tobacco use, method of delivery, and congenital anomalies. The data are derived from birth certificates.
 * [CDC Diabetes Surveillance System](https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html): estimates of the number and percentage of US adults with diabetes.
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
@@ -70,7 +71,8 @@ Data is made available under the [Dartmouth Atlas Project Terms of Use](https://
 [US Department of Justice Legal Policies and Disclaimers Terms of Use](https://www.justice.gov/legalpolicies).
 
 #### [Federal Bureau of Investigation](https://www.fbi.gov/)
-[FBI Uniform Crime Reporting (UCR) Program](https://www.fbi.gov/services/cjis/ucr): volume of violent crime by type as reported by city and town law enforcement agencies.
+* [FBI Uniform Crime Reporting (UCR) Program](https://www.fbi.gov/services/cjis/ucr): volume of violent crime by type as reported by city and town law enforcement agencies.
+* [FBI Hate Crime Statistics](https://www.fbi.gov/services/cjis/ucr/hate-crime): data about crimes motivated by prejudice based on race, gender and gender identity, religion, disability, sexual orientations, or ethnicity.
 
 [US Department of Justice Legal Policies and Disclaimers Terms of Use](https://www.justice.gov/legalpolicies).
 
