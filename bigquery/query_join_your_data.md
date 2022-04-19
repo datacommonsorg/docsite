@@ -37,7 +37,7 @@ ORDER BY FatalAccidentsPerCapita DESC
 
 ### Using Zip codes
 
-We use Google's [Project SunRoof](https://console.cloud.google.com/marketplace/product/project-sunroof/project-sunroof) dataset to compute solar potential for low-income Zip code areas in the US.  From the Zip code areas with the lowest median income, we compute those Zips that have the highest solar potential (among those that were sufficiently qualified). Of the 500, we find that 133 of them had > 50% potential.
+We use Google's [Project SunRoof](https://console.cloud.google.com/marketplace/product/project-sunroof/project-sunroof) dataset to compute solar potential for low-income Zip code areas in the US.  From 500 Zip code areas with the lowest median income, we compute those Zips that have the highest solar potential (among those that were sufficiently qualified). Of the 500, we find that 133 of them had > 50% potential.
 
 ```sql
 WITH LowestEarnerZips AS (
