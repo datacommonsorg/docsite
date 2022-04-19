@@ -6,9 +6,9 @@ parent: DC to BQ Sample Queries
 grand_parent: BigQuery
 ---
 
-# Query Category: Properties of Places (and other entities)
+# Query Category: Properties (Statistics/Variables) of (about) Places (and other entities)
 
-* Latest value from preferred source for a single variable:
+* Latest value from preferred source for a single variable, e.g. the latest population of CA:
 
 ```sql
 SELECT Obs.Value AS Value
@@ -39,7 +39,7 @@ WHERE Obs.observation_about = 'geoId/06'
 ORDER BY Var;
 ```
 
-* Sources available for a given place/variable combination, sources for count of housing units in California:
+* Sources available for a given place/variable combination, e.g. sources for count of housing units in California:
 
 ```sql
 SELECT DISTINCT
@@ -54,7 +54,7 @@ WHERE Obs.observation_about = 'geoId/06' AND
 ORDER BY Name
 ```
 
-* Time series from preferred source for a single variable, CA population time-series from preferred source:
+* Time series from preferred source for a single variable, CA population over time from preferred source:
 
 ```sql
 SELECT Obs.observation_date AS Date,

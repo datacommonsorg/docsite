@@ -8,9 +8,13 @@ grand_parent: BigQuery
 
 # Query Category: Places
 
+The queries below include specific place dcid (e.g., 'geoId/06') and place type (e.g., 'County') string constants. Replace those to customize the queries to your needs.
+
 ## Place containment
 
-* List all the places of type X contained in Y, e.g. counties in USA:
+### List all the places of type X contained in Y
+
+As an example, selecting all counties in USA:
 
 ```sql
 SELECT id AS PlaceId, name AS PlaceName
@@ -20,7 +24,7 @@ WHERE EXISTS(SELECT * FROM UNNEST(all_types) AS T WHERE T = 'County') AND
              WHERE C = 'country/USA')
 ```
 
-* List all the places of type X neighboring Y:
+### List all the places of type X within Z range of Y, e.g we can use the "nearbyPlaces" triples to compute cities within 10KM distance of San Francisco:
 
 ```sql
 -- “nearbyPlaces” triple is coded as <place>@<distance_in_meters>
@@ -36,7 +40,9 @@ WHERE Place1.id = 'geoId/0667000' AND Place1.id = Triple.subject_id AND
 
 ```
 
-* List all the places of type X within Z range of Y (do this using BQ geo apis), e.g. counties in 50km vicinity of Palo Alto:
+### List all the places of type X within Z range of Y using the [BQ Geography functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions)
+
+As an example, counties in 50km vicinity of Palo Alto:
 
 ```sql
 SELECT County.id AS CountyId, County.name AS CountyName
@@ -57,9 +63,12 @@ WHERE
 ```
 
 ## Entities of a certain type in a Place
+
 This is the same sequence as above, except replace place with entities of type X, where X could be School, Facility, etc.
 
-* List all entities of type  X contained in Y, e.g. EPA reporting facilities in Texas:
+### List all entities of non-place types (School, Facility, etc.) contained in Y
+
+As an example, getting all [EPA Reporting Facilities (within the Greenhouse Gas Reporting Program)](https://enviro.epa.gov/enviro/ad_hoc_table_column_select_v2.retrieval_list?database_type=GHG&selected_subjects=Facility+Information&subject_selection=+&table_1=+) in Texas:
 
 ```sql
 SELECT I.id AS Id, I.name AS name
