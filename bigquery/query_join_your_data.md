@@ -10,7 +10,7 @@ grand_parent: BigQuery
 
 ### Using [FIPS](https://www.census.gov/library/reference/code-lists/ansi.html) codes
 
-Join with Fatal Accidents report from National Highway Traffic Safety Administration (source: [Google Cloud Public Datasets](https://pantheon.corp.google.com/marketplace/product/nhtsa-data/nhtsa-traffic-fatalities?project=) to compute counties with highest fatal accidents per capita. Winner is Loving County, TX (the least populated county in main US), followed by Kenedy County, TX.
+Join with Fatal Accidents report from National Highway Traffic Safety Administration (source: [Google Cloud Public Datasets](https://console.cloud.google.com/marketplace/product/nhtsa-data/nhtsa-traffic-fatalities?project=) to compute counties with highest fatal accidents per capita. Winner is Loving County, TX (the least populated county in main US), followed by Kenedy County, TX.
 
 ```sql
 WITH FatalAccidents AS (
@@ -35,7 +35,7 @@ ORDER BY FatalAccidentsPerCapita DESC
 
 ### Using Zip codes
 
-Join with [Project SunRoof](https://pantheon.corp.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/d29ba6d0d3a64b6284d0fe57eedc9355)?project=) data to compute solar potential for low-income Zip codes. In the lowest income 500 zips, this query computes those with the most solar-potent places (among those that were sufficiently qualified). Of the 500, 133 of them had > 50% potential.
+Join with [Project SunRoof](https://console.cloud.google.com/marketplace/product/project-sunroof/project-sunroof) data to compute solar potential for low-income Zip codes. In the lowest income 500 zips, this query computes those with the most solar-potent places (among those that were sufficiently qualified). Of the 500, 133 of them had > 50% potential.
 
 ```sql
 WITH LowestEarnerZips AS (
@@ -59,7 +59,7 @@ ORDER BY PercentSunRoof DESC
 
 ### Lat-Long based join
 
-From [OpenStreetsMap public dataset](https://pantheon.corp.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/openstreetmap_public_dataset_17f8979a16c)?project=), we get all fire-hydrants associated with lat/lng and compute the US counties with the most number of hydrants per unit area using geographic join. Winner is Alexandria County Virginia by a distance.
+From [OpenStreetsMap public dataset](https://console.cloud.google.com/marketplace/product/openstreetmap/geo-openstreetmap), we get all fire-hydrants associated with lat/lng and compute the US counties with the most number of hydrants per unit area using geographic join. Winner is Alexandria County Virginia by a distance.
 
 ```sql
 WITH CountyFireHydrantCount AS(

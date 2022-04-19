@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Property of Places
+title: Properties of Places
 nav_order: 2
 parent: DC to BQ Sample Queries
 grand_parent: BigQuery
 ---
 
-# Query Category: Properties (Statistics/Variables) of (about) Places (and other entities)
+# Query Category: Statistical Variables Associated with Places (and other entities)
 
 ### Latest value from preferred source for a single variable
 
@@ -22,7 +22,7 @@ WHERE Obs.observation_about = 'geoId/06' AND
 
 ### Latest value from specific source for a single variable
 
-As an example, the latest CA population from ACS 5 Year Survey:
+As an example, the latest CA population from [ACS 5 Year Survey](https://www.census.gov/programs-surveys/acs):
 
 ```sql
 SELECT Obs.value AS Value

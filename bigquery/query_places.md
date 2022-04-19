@@ -24,7 +24,9 @@ WHERE EXISTS(SELECT * FROM UNNEST(all_types) AS T WHERE T = 'County') AND
              WHERE C = 'country/USA')
 ```
 
-### List all the places of type X within Z range of Y, e.g we can use the "nearbyPlaces" triples to compute cities within 10KM distance of San Francisco:
+### List all the places of type X within Z range of Y
+
+As an example, we can use the "nearbyPlaces" triples to compute cities within 10KM distance of San Francisco:
 
 ```sql
 -- “nearbyPlaces” triple is coded as <place>@<distance_in_meters>
