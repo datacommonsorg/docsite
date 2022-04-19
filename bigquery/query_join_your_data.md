@@ -12,7 +12,7 @@ This page illustrates how you can join external datasets with Data Commons by re
 
 ### Using [FIPS](https://www.census.gov/library/reference/code-lists/ansi.html) codes
 
-We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges/projects/datcom-external/locations/us/dataExchanges/data_commons_17d0b72b0b2(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We find Loving County, TX (the least populated county in main US), followed by Kenedy County, TX, to be at the top.
+We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges/projects/datcom-external/locations/us/dataExchanges/data_commons_17d0b72b0b2(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We map to DC counties by using the FIPS or geoId, and use total population statistics. We find Loving County, TX (the least populated county in main US), followed by Kenedy County, TX, to be at the top.
 
 ```sql
 WITH FatalAccidents AS (
