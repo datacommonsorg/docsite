@@ -9,7 +9,7 @@ has_children: true
 
 The Data Commons repository is available as Bigquery tables in the **[Analytics Hub](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/841968438789/locations/us/dataExchanges/data_commons_17d0b72b0b2/listings/data_commons_1803e67fbc9))**.
 
-For an introduction to Analytics Hub, see documentation [here](https://cloud.google.com/bigquery/docs/analytics-hub-introduction). In these pages you can learn how to use the Data Commons tables and find various sample SQL queries.
+For an introduction to Analytics Hub, see documentation [here](https://cloud.google.com/bigquery/docs/analytics-hub-introduction). In these pages you can learn how to use the Data Commons tables and find sample SQL queries.
 
 ## In a Nutshell: What's Different about Data Commons
 
