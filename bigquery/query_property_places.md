@@ -8,7 +8,9 @@ grand_parent: BigQuery
 
 # Query Category: Properties (Statistics/Variables) of (about) Places (and other entities)
 
-* Latest value from preferred source for a single variable, e.g. the latest population of CA:
+### Latest value from preferred source for a single variable
+
+As an example, the latest population of CA:
 
 ```sql
 SELECT Obs.Value AS Value
@@ -18,7 +20,9 @@ WHERE Obs.observation_about = 'geoId/06' AND
       Obs.is_preferred_obs_across_facets
 ```
 
-* Latest value from specific source for a single variable, e.g. latest CA population from ACS 5 Year Survey:
+### Latest value from specific source for a single variable
+
+As an example, the latest CA population from ACS 5 Year Survey:
 
 ```sql
 SELECT Obs.value AS Value
@@ -30,7 +34,9 @@ ORDER BY Obs.observation_date DESC
 LIMIT 1
 ```
 
-* Variables available for a given place, e.g. variables available for California state:
+### Variables available for a given place
+
+As an example, the variables available for California state:
 
 ```sql
 SELECT DISTINCT Obs.variable_measured AS Var
@@ -39,7 +45,9 @@ WHERE Obs.observation_about = 'geoId/06'
 ORDER BY Var;
 ```
 
-* Sources available for a given place/variable combination, e.g. sources for count of housing units in California:
+### Sources available for a given place/variable combination
+
+As an example, the sources for count of housing units in California:
 
 ```sql
 SELECT DISTINCT
@@ -54,7 +62,9 @@ WHERE Obs.observation_about = 'geoId/06' AND
 ORDER BY Name
 ```
 
-* Time series from preferred source for a single variable, CA population over time from preferred source:
+### Time series from preferred source for a single variable
+
+As an example, CA population over time from preferred source:
 
 ```sql
 SELECT Obs.observation_date AS Date,
@@ -66,7 +76,9 @@ WHERE Obs.observation_about = 'geoId/06' AND
 ORDER BY Date
 ```
 
-* Latest value from preferred source for all the places of a given type contain in, e.g. unemployment rate in counties of USA:
+### Latest value from preferred source for all the places of a given type contain in
+
+As an example, the unemployment rate in counties of USA:
 
 ```sql
 WITH ChildPlace AS (

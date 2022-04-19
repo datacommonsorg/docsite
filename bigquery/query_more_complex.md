@@ -8,7 +8,9 @@ grand_parent: BigQuery
 
 # Query Category: More Complex Queries
 
-* Places matching some criterion, e.g. European equivalent (aka [NUTS 3](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics)) geos with < 2.1 fertility rate:
+### Places matching some criterion
+
+As an example, listing the European equivalent (aka [NUTS 3](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics)) geos with < 2.1 fertility rate:
 
 ```sql
 WITH ChildPlace AS (
@@ -30,7 +32,9 @@ WHERE O.is_preferred_obs_across_facets AND
 ORDER BY Value
 ```
 
-* Computing a new Statistic. Countries of the world with highest electricity consumption per unit GDP:
+### Computing a new Statistic.
+
+As an example, listing countries of the world with highest electricity consumption per unit GDP:
 
 ```sql
 WITH ChildPlace AS (
