@@ -7,7 +7,7 @@ has_children: false
 
 # Case studies
 
-Get familiar with the Data Commons Graph and API's using these analysis examples.
+Get familiar with the Data Commons Graph and APIs using these analysis examples.
 You can also clone these to use as a base for your own analysis.
 
 
