@@ -6,11 +6,13 @@ parent: DC to BQ Sample Queries
 grand_parent: BigQuery
 ---
 
-# Query Category: Joining with Your Own Data
+# Query Category: Joining with Data outside Data Commons
+
+This page illustrates how you can join external datasets with Data Commons by relying on unique IDs and geo locations.  For the examples below, we use other public datasets in BigQuery Analytics Hub, but they can be any other private/public dataset.
 
 ### Using [FIPS](https://www.census.gov/library/reference/code-lists/ansi.html) codes
 
-Join with Fatal Accidents report from National Highway Traffic Safety Administration (source: [Google Cloud Public Datasets](https://console.cloud.google.com/marketplace/product/nhtsa-data/nhtsa-traffic-fatalities?project=) to compute counties with highest fatal accidents per capita. Winner is Loving County, TX (the least populated county in main US), followed by Kenedy County, TX.
+We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges/projects/datcom-external/locations/us/dataExchanges/data_commons_17d0b72b0b2(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We map to DC counties by using the FIPS or geoId, and use total population statistics. We find Loving County, TX (the least populated county in main US), followed by Kenedy County, TX, to be at the top.
 
 ```sql
 WITH FatalAccidents AS (
@@ -35,7 +37,7 @@ ORDER BY FatalAccidentsPerCapita DESC
 
 ### Using Zip codes
 
-Join with [Project SunRoof](https://console.cloud.google.com/marketplace/product/project-sunroof/project-sunroof) data to compute solar potential for low-income Zip codes. In the lowest income 500 zips, this query computes those with the most solar-potent places (among those that were sufficiently qualified). Of the 500, 133 of them had > 50% potential.
+We use Google's [Project SunRoof](https://console.cloud.google.com/marketplace/product/project-sunroof/project-sunroof) dataset to compute solar potential for low-income Zip code areas in the US.  From 500 Zip code areas with the lowest median income, we compute those Zip codes that have the highest solar potential (among those that were sufficiently qualified). Of the 500, we find that 133 of them had > 50% potential.
 
 ```sql
 WITH LowestEarnerZips AS (
@@ -57,9 +59,9 @@ WHERE CONCAT('zip/', SunRoof.region_name) = DC.PlaceId AND
 ORDER BY PercentSunRoof DESC
 ```
 
-### Lat-Long based join
+### Latitude/Longitude based join
 
-From [OpenStreetsMap public dataset](https://console.cloud.google.com/marketplace/product/openstreetmap/geo-openstreetmap), we get all fire-hydrants associated with lat/lng and compute the US counties with the most number of hydrants per unit area using geographic join. Winner is Alexandria County Virginia by a distance.
+From the [OpenStreetsMap public dataset](https://console.cloud.google.com/marketplace/product/openstreetmap/geo-openstreetmap), we look up fire-hydrants and their associated geo locations to compute the US counties with most fire-hydrants per unit area.  To do this, we use the geo boundaries in DC to map latitude/longitude to US counties and also use the land area value from DC.  We find that Alexandria County, Virginia comes up at the top.
 
 ```sql
 WITH CountyFireHydrantCount AS(

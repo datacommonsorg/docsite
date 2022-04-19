@@ -7,6 +7,9 @@ has_children: true
 
 # Data Commons in BigQuery
 
+The entire Data Commons repository is available in the [BigQuery Analytics Hub](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/841968438789/locations/us/dataExchanges/data_commons_17d0b72b0b2/listings/data_commons_1803e67fbc9))
+data exchange for linking into your GCP Project. These pages describe how you can work with the Data Commons tables and include sample SQL queries.
+
 ## In a Nutshell: What's Different about Data Commons
 
 Data Commons (DC) synthesizes a single graph from a [large number of sources](https://docs.datacommons.org/datasets/) into a single _data source_. It resolves references to the same entities (such as cities, counties, organizations, etc.) across different datasets so that users can access data about a particular entity aggregated from different sources without data cleaning or joining.
@@ -21,4 +24,4 @@ We first go over some DC basics and then give a sequence of examples of increasi
 
 [Unique Identifiers](/bigquery/unique_identifiers.html)
 
-[DC to BQ: Sample Queries](/bigquery/dc_to_bq_queries.html)
+[Sample Queries](/bigquery/dc_to_bq_queries.html)
