@@ -59,7 +59,7 @@ WHERE CONCAT('zip/', SunRoof.region_name) = DC.PlaceId AND
 ORDER BY PercentSunRoof DESC
 ```
 
-### Lat-Long based join
+### Latitude/Longitude based join
 
 From the [OpenStreetsMap public dataset](https://console.cloud.google.com/marketplace/product/openstreetmap/geo-openstreetmap), we look up fire-hydrants and their associated geo locations to compute the US counties with most fire-hydrants per unit area.  To do this, we use the geo boundaries in DC to map latitude/longitude to US counties and also use the land area value from DC.  We find that Alexandria County, Virginia comes up at the top.
 
