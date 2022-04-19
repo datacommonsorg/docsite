@@ -21,4 +21,4 @@ Use the following categories of queries in BigQuery about the data in DC:
 
 [More Complex Queries](/bigquery/query_more_complex.html)
 
-[Joining with Your Own Data](/bigquery/query_join_your_data.html)
+[Joining with External Data](/bigquery/query_join_your_data.html)
