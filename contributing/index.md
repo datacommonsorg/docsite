@@ -35,10 +35,6 @@ Data Commons welcomes the development of new tools that make the data on Data Co
 
 Data Commons is currently posting example analyses on [the case studies page](/tutorials). To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls) with the title of the analysis and links to its Colab notebook and Github raw .ipynb file.
 
-### Create new curriculum
-
-Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware.html). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Contact us at [courses@datacommons.org](mailto:courses@datacommons.org).
-
 ### Updating documentation
 
 Data Commons maintains its documentation website at <https://docs.datacommons.org>. You can submit a PR to update the project's documentation at <https://github.com/datacommonsorg/docsite/pulls>.
