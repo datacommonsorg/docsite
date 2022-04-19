@@ -10,9 +10,9 @@ has_children: false
 Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and is looking to expand the set of collaborative projects. In particular, we are looking for partners to:
 
 - [Add data](#add-data): Contribute data to the Data Commons Graph.
+- [Create new curriculum](#create-new-curriculum): Use Data Commons in data science and machine learning courses.
 - [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
 - [Share analyses](#sharing-analysis): Use Data Commons to build models and share interesting insights.
-- [Create new curriculum](#create-new-curriculum): Use Data Commons in data science and machine learning courses.
 - [Write documentation](#updating-documentation)
 
 Data Commons welcomes patches and contributions to this project from everyone, new or experienced!
@@ -22,6 +22,10 @@ Data Commons welcomes patches and contributions to this project from everyone, n
 ### Add data
 
 We welcome contributions of public data to the Data Commons Graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the graph with [these datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. To get started, please take a look at [these resources](https://github.com/datacommonsorg/data/tree/master/docs) and follow [this development process](https://github.com/datacommonsorg/data). Here is a [list of imports](https://github.com/orgs/datacommonsorg/projects/10/views/1) that would be helpful to add.
+
+### Create new curriculum
+
+Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware.html). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Contact us at [courses@datacommons.org](mailto:courses@datacommons.org).
 
 ### Creating a new tool
 
