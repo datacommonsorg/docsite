@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Joining with Your Own Data
+title: Joining with External Data
 nav_order: 4
 parent: DC to BQ Sample Queries
 grand_parent: BigQuery
@@ -12,7 +12,7 @@ This page illustrates how you can join external datasets with Data Commons by re
 
 ### Using [FIPS](https://www.census.gov/library/reference/code-lists/ansi.html) codes
 
-We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges/projects/datcom-external/locations/us/dataExchanges/data_commons_17d0b72b0b2(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We map to DC counties by using the FIPS or geoId, and use total population statistics. We find Loving County, TX (the least populated county in main US), followed by Kenedy County, TX, to be at the top.
+We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We map to DC counties using the FIPS or geoId, and use total population statistics. Loving County, TX (the least populated county in main US) and Kenedy County, TX are at the top.
 
 ```sql
 WITH FatalAccidents AS (
@@ -37,13 +37,13 @@ ORDER BY FatalAccidentsPerCapita DESC
 
 ### Using Zip codes
 
-We use Google's [Project SunRoof](https://console.cloud.google.com/marketplace/product/project-sunroof/project-sunroof) dataset to compute solar potential for low-income Zip code areas in the US.  From 500 Zip code areas with the lowest median income, we compute those Zip codes that have the highest solar potential (among those that were sufficiently qualified). Of the 500, we find that 133 of them had > 50% potential.
+We use Google's [Project SunRoof](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/d29ba6d0d3a64b6284d0fe57eedc9355)) dataset to compute solar potential for low-income Zip code areas in the US.  From 500 Zip code areas with the lowest median income, we compute those Zip codes that have the highest solar potential (among those that were sufficiently qualified). Of the 500, we find that 133 of them had > 50% potential.
 
 ```sql
 WITH LowestEarnerZips AS (
     SELECT Obs.observation_about AS PlaceId,
            Obs.Value AS Income
-    FROM `datcom-external.data_commons.Observation` AS Obs
+    FROM `data_commons.Observation` AS Obs
     WHERE
         Obs.is_preferred_obs_across_facets AND
         Obs.variable_measured = 'Median_Income_Person' AND
@@ -52,7 +52,7 @@ WITH LowestEarnerZips AS (
     LIMIT 500)
 SELECT SunRoof.region_name AS Zip, SunRoof.state_name AS State, SunRoof.percent_qualified AS PercentSunRoof
 FROM LowestEarnerZips AS DC
-JOIN `datcom-external.project_sunroof.solar_potential_by_postal_code` AS SunRoof ON TRUE
+JOIN `project_sunroof.solar_potential_by_postal_code` AS SunRoof ON TRUE
 WHERE CONCAT('zip/', SunRoof.region_name) = DC.PlaceId AND
       SunRoof.percent_qualified > 0 AND
       SunRoof.percent_covered > 80
@@ -61,7 +61,7 @@ ORDER BY PercentSunRoof DESC
 
 ### Latitude/Longitude based join
 
-From the [OpenStreetsMap public dataset](https://console.cloud.google.com/marketplace/product/openstreetmap/geo-openstreetmap), we look up fire-hydrants and their associated geo locations to compute the US counties with most fire-hydrants per unit area.  To do this, we use the geo boundaries in DC to map latitude/longitude to US counties and also use the land area value from DC.  We find that Alexandria County, Virginia comes up at the top.
+From the [OpenStreetMap Public Dataset](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/openstreetmap_public_dataset_17f8979a16c)), we compute the US counties with most fire-hydrants per unit area.  To do this, we use the geo boundaries in DC to map latitude/longitude to US counties and get their corresponding land area values.  Alexandria County, Virginia is at the top of the list.
 
 ```sql
 WITH CountyFireHydrantCount AS(
