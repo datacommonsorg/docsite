@@ -6,7 +6,6 @@ See api/rest/rest_api_template.md for an example of how these are used.
 
 //custom REQUIRED label for parameters
 required-tag {
-<<<<<<< HEAD
   background: #0e84b5;
   font-size: 0.75em;
   color: #ffffff;
@@ -29,36 +28,11 @@ optional-tag {
   border: 1px solid #0e84b5;
   border-radius: 4px;
   padding: 2px;
-=======
-    background: #0e84b5;
-    font-size: 0.75em;
-    color: #ffffff;
-    font-family: monospace;
-    font-weight: bold;
-    letter-spacing: -1px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    padding: 2px;
-    }
-
-// custom OPTIONAL label for parameters
-optional-tag {
-    font-size: 0.75em;
-    color: #0e84b5;
-    font-family: monospace;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    border: 1px solid #0e84b5;
-    border-radius: 4px;
-    padding:2px;
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
 }
 
 //default formatting for response code signature
 //modeled after the <pre> tag's css
 #api-signature {
-<<<<<<< HEAD
   color: #4070a0;
   font-family: monospace;
   font-size: 0.9em;
@@ -66,72 +40,38 @@ optional-tag {
   background-color: #f5f6fa;
   border: #ccc;
   border-radius: 3px;
-=======
-    color: #4070a0;
-    font-family: monospace;
-    font-size: 0.9em;
-    padding: 1rem;
-    background-color: #f5f6fa;
-    border: #ccc;
-    border-radius: 3px;
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
 }
 
 //highlighting for {parameter}
 .param {
-<<<<<<< HEAD
   color: #902000;
   font-weight: bold;
   font-family: monospace;
-=======
-    color: #902000;
-    font-weight: bold;
-    font-family: monospace;
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
 }
 
 //highlighting for GET / POST keywords
 .keyword {
-<<<<<<< HEAD
   color: #062873;
   font-weight: bold;
   font-family: monospace;
-=======
-    color: #062873;
-    font-weight: bold;
-    font-family: monospace;
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
 }
 
 // for parameter & response field tables
 .doc-table {
-<<<<<<< HEAD
   border-collapse: collapse;
   width: 100%;
-=======
-    border-collapse: collapse;
-    width: 100%;
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
 }
 
 // styles text in first column
 .doc-table td:nth-child(1) {
-<<<<<<< HEAD
   color: #062873;
   font-weight: bold;
   font-family: monospace;
   font-size: 0.9em;
-=======
-    color: #062873;
-    font-weight: bold;
-    font-family: monospace;
-    font-size: 0.9em;
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
 }
 
 // for the "REQUEST:" and "RESPONSE" boxes in the example sections
 .example-box-title {
-<<<<<<< HEAD
   background-color: #dcdde1;
   border: 1px solid var(--dc-gray-lite);
   border-top-right-radius: 10px;
@@ -156,31 +96,3 @@ optional-tag {
   max-height: 20em;
   overflow: scroll;
 }
-=======
-    background-color: #dcdde1;
-    border: 1px solid var(--dc-gray-lite);
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    font-size: 1em;
-    font-family: var(--font-family);
-    color: var(--dc-gray);
-    text-transform: uppercase;
-    padding: 0.15em 0.5em 0.15em 0.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0;
-}
-
-.example-box-content {
-    background: #f5f6fa; //this should match background color of ``` code blocks
-    border: 1px solid var(--dc-gray-lite);
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding-bottom: 0;
-    margin-top: 0;
-    margin-bottom: 0.5em;
-    max-height: 20em;
-    overflow: scroll;
-}
-
-
->>>>>>> e6efe44ea7ee438a8cfb52749789d4bb75531ae7
