@@ -12,7 +12,7 @@ This page illustrates how you can join external datasets with Data Commons by re
 
 ### Using [FIPS](https://www.census.gov/library/reference/code-lists/ansi.html) codes
 
-We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We map to DC counties by using the FIPS or geoId, and use total population statistics. We find Loving County, TX (the least populated county in main US), followed by Kenedy County, TX, to be at the top.
+We use the [Fatal Accidents dataset from National Highway Traffic Safety Administration](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/nhtsa_traffic_fatalities_17f892354f9)) to compute counties with highest fatal accidents per capita. We map to DC counties using the FIPS or geoId, and use total population statistics. Loving County, TX (the least populated county in main US) and Kenedy County, TX are at the top.
 
 ```sql
 WITH FatalAccidents AS (
@@ -61,7 +61,7 @@ ORDER BY PercentSunRoof DESC
 
 ### Latitude/Longitude based join
 
-From the [OpenStreetMap Public Dataset](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/openstreetmap_public_dataset_17f8979a16c)), we look up fire-hydrants and their associated geo locations to compute the US counties with most fire-hydrants per unit area.  To do this, we use the geo boundaries in DC to map latitude/longitude to US counties and also use the land area value from DC.  We find that Alexandria County, Virginia comes up at the top.
+From the [OpenStreetMap Public Dataset](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/1057666841514/locations/us/dataExchanges/google_cloud_public_datasets_17e74966199/listings/openstreetmap_public_dataset_17f8979a16c)), we compute the US counties with most fire-hydrants per unit area.  To do this, we use the geo boundaries in DC to map latitude/longitude to US counties and get their corresponding land area values.  Alexandria County, Virginia is at the top of the list.
 
 ```sql
 WITH CountyFireHydrantCount AS(
