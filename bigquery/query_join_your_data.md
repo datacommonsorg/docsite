@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Joining with Your Own Data
+title: Joining with External Data
 nav_order: 4
 parent: DC to BQ Sample Queries
 grand_parent: BigQuery
