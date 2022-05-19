@@ -11,10 +11,18 @@ parent: Data Sources
 * TOC
 {:toc}
 
-#### [Energy Information Adminsitration (EIA) - 860](https://www.eia.gov/electricity/data/eia860/)
-Survey form collects generator-level data about electric power plants.
+### [Stanford University](https://www.stanford.edu/)
 
-[Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php).
+#### [DeepSolar](http://web.stanford.edu/group/deepsolar/home)
+Location and size of solar photovoltaic panels in the US based on satellite imagery.
+
+[Paper for Citation](https://www.cell.com/joule/fulltext/S2542-4351(18)30570-1).
+
+
+### [U.S. Energy Information Administration (EIA)](https://www.eia.gov/)
+
+#### [Energy Information Adminsitration (EIA) - Form EIA-860](https://www.eia.gov/electricity/data/eia860/)
+Survey form collects generator-level data about electric power plants.
 
 
 #### [Energy Information Adminsitration (EIA) - Open Data](https://www.eia.gov/opendata/qb.php)
@@ -23,24 +31,25 @@ County, state, and plant-level data on generation, consumption, and sales for di
 [Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php).
 
 
-#### [National Renewable Energy Laboratory (NREL) - RE Atlas](https://maps.nrel.gov/re-atlas)
+### [U.S. National Renewable Energy Laboratory (NREL)](https://www.nrel.gov/)
+
+#### [RE Atlas](https://maps.nrel.gov/re-atlas)
 Data Commons has imported the potential for solar energy generation in different counties in the US.
 
 [Disclaimer](https://maps.nrel.gov/re-atlas/).
 
 
-#### [Stanford - DeepSolar](http://web.stanford.edu/group/deepsolar/home)
-Location and size of solar photovoltaic panels in the US based on satellite imagery.
+### [United Nations (UN)](https://www.un.org/en/)
 
-[Paper for Citation](https://www.cell.com/joule/fulltext/S2542-4351(18)30570-1).
-
-
-#### [United Nations - Energy Statistics](https://unstats.un.org/unsd/energystats/data/)
+#### [Energy Statistics](https://unstats.un.org/unsd/energystats/data/)
 Data Commons has imported energy data about annual energy production, transformation, and consumption for countries.
 
 [Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
 
-#### [World Bank - World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
+
+### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.
 
 [Terms of Use](https://datacatalog.worldbank.org/public-licenses).
