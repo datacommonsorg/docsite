@@ -29,3 +29,4 @@ Data about crimes motivated by prejudice based on race, gender and gender identi
 Volume of violent crime by type as reported by city and town law enforcement agencies.
 
 [U.S. Department of Justice Legal Policies and Disclaimers Terms of Use](https://www.justice.gov/legalpolicies).
+

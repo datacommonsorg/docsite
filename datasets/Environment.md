@@ -103,3 +103,4 @@ Earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and ampl
 Codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
 
 [USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
+
