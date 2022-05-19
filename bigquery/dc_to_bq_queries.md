@@ -9,7 +9,7 @@ has_children: true
 # Data Commons to BigQuery: Sample Queries
 
 ## BQ Query in Data Commons (DC) Tools
-For every visualization in the Map and Timeline tools, you can use the **Open in BigQuery** at the bottom of the page to go to the BQ interactive query terminal to run the query for generating the data used in that visualization. For an example, see [this timeline chart](https://datacommons.org/tools/timeline#&place=geoId/0606000,geoId/2511000,geoId/2603000,geoId/1777005,geoId/1225175,geoId/4815976&statsVar=Count_CriminalActivities_ViolentCrime) and notice the **Open in BigQuery** button at the bottom.
+For every visualization in the Map and Timeline tools, you can use the **Get BigQuery SQL** button at the bottom of the page to get the SQL query for generating the data used in that visualization. For an example, see [this timeline chart](https://datacommons.org/tools/timeline#&place=geoId/0606000,geoId/2511000,geoId/2603000,geoId/1777005,geoId/1225175,geoId/4815976&statsVar=Count_CriminalActivities_ViolentCrime) and notice the **Get BigQuery SQL** button at the bottom.
 
 ## Categories of Queries
 
