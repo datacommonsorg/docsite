@@ -1,8 +1,4 @@
-"""
-Script to copy generated dataset pages from /tmp/dataset_info/ to the local docsite repo.
-To run (from the root directory of the repo):
-./scripts/generate_datasets.sh
-"""
+# Script to copy generated dataset pages to the local docsite repo.
 
 if [ ! -d "/tmp/dataset_info" ];
 then
@@ -15,6 +11,6 @@ else
     do
       cp $file "./datasets/"
     done
-  rm -r "/tmp/dataset_info"
+  #rm -r "/tmp/dataset_info"
 fi
 

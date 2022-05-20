@@ -62,7 +62,7 @@ Employment, unemployment, and labor force data for Census regions and divisions,
 #### [Quarterly Census of Employment and Wages (QCEW)](https://www.bls.gov/cew)
 Quarterly and annual employment and wage statistics broken down by industry and ownership.
 
-[Terms of Serivce](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
+[Terms of Service](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
 
 
 ### [U.S. Census Bureau](https://www.census.gov/)

@@ -73,7 +73,7 @@ Estimates of the number and percentage of US adults with diabetes.
 
 
 #### [PLACES: Local Data for Better Health](https://www.cdc.gov/places/index.html)
-"PLACES provides model-based, population-level analysis and community estimates of health measures to all counties, places (incorporated and census designated places), census tracts, and ZIP Code Tabulation Areas (ZCTAs) across the United States." 
+"PLACES provides model-based, population-level analysis and community estimates of health measures to all counties, places (incorporated and census designated places), census tracts, and ZIP Code Tabulation Areas (ZCTAs) across the United States."
 
 
 #### [Wonder: Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html)

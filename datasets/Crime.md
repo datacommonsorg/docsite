@@ -16,7 +16,7 @@ parent: Data Sources
 #### [National Prisoner Statistics (NPS) Program](https://bjs.ojp.gov/data-collection/national-prisoner-statistics-nps-program)
 Data on jurisdiction, custody, admission, and dischange for prisoners incarcerated in state and federal prisons.
 
-[Terms of Serivce](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
+[Terms of Service](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
 
 
 ### [U.S. Federal Bureau of Investigation (FBI)](https://www.fbi.gov/)
