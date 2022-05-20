@@ -11,6 +11,6 @@ else
     do
       cp $file "./datasets/"
     done
-  #rm -r "/tmp/dataset_info"
+  rm -r "/tmp/dataset_info"
 fi
 
