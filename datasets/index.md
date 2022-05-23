@@ -7,7 +7,7 @@ has_children: true
 
 # Data Sources
 
-Data in the Data Commons Graph comes from a variety of sources, each of which often includes multiple surveys. Some sources/surveys include a very large number of variables, some of which might not yet have been imported into Data Commons. The sources have been grouped by vertical and are listed alphabetically within each vertical.
+Data in the Data Commons Graph comes from a variety of sources, each of which often includes multiple surveys. Some sources/surveys include a very large number of variables, some of which might not yet have been imported into Data Commons. The sources have been grouped by category and are listed alphabetically within each category.
 
 1. [Agriculture](/datasets/Agriculture.html)
 2. [Biomedical](/datasets/Biomedical.html)
