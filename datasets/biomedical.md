@@ -1,4 +1,4 @@
 ---
-layout: forward
-target: /datasets/Biomedical.html
+layout: redirect
+redirect: /datasets/Biomedical.html
 ---
