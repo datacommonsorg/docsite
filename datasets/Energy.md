@@ -21,11 +21,11 @@ Location and size of solar photovoltaic panels in the US based on satellite imag
 
 ### [U.S. Energy Information Administration (EIA)](https://www.eia.gov/)
 
-#### [Energy Information Adminsitration (EIA) - Form EIA-860](https://www.eia.gov/electricity/data/eia860/)
+#### [Form EIA-860](https://www.eia.gov/electricity/data/eia860/)
 Survey form collects generator-level data about electric power plants.
 
 
-#### [Energy Information Adminsitration (EIA) - Open Data](https://www.eia.gov/opendata/qb.php)
+#### [Open Data](https://www.eia.gov/opendata/qb.php)
 County, state, and plant-level data on generation, consumption, and sales for different energy sources and "sectors" (residential, commercial, etc). Data Commons has imported data about coal, electricity, natural gas, nuclear outages, and petroleum.
 
 [Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php).
