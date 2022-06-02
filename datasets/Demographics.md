@@ -34,6 +34,14 @@ Data Commons has imported variables related to demographics, in particular conce
 [Terms of Use](https://opportunityinsights.org/data/).
 
 
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Population estimates](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710000501#tables)
+Yearly population estimates for Canada.
+
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
+
 ### [U.S. Census Bureau](https://www.census.gov/)
 
 #### [American Community Survey (ACS)](https://www.census.gov/programs-surveys/acs)

@@ -109,7 +109,7 @@ This data is from an NIH human genome unrestricted-access data repository and ma
 ### [U.S. National Institutes of Health: National Library of Medicine](https://www.nlm.nih.gov/)
 
 #### [Medical Subject Headings (MeSH)](https://meshb.nlm.nih.gov/search)
-MeSH is a "thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Descriptor, Concept, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
+"The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Descriptor, Concept, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
 
 This data is from the National Library of Medicine (NLM) and is not subject to copyright and is freely reproducible as stated in the [NLM’s copyright policy](https://www.nlm.nih.gov/web_policies.html). This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
 
@@ -152,7 +152,7 @@ Data Commons includes protein sequence and functional information including prot
 #### [UniProt Controlled Vocabulary of Species](https://www.uniprot.org/docs/speclist)
 UniProt’s Controlled Vocabulary of Species contains organism species UniProt identification codes, [NCBI Taxonomy database identifiers](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), scientific names, common names, synonyms, and organism kingdoms.
 
-The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license) The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) Uniprot data used in a journal article. This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) Uniprot data used in a journal article. This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
 
 
 ### [University of California San Francisco](https://www.ucsf.edu/)
