@@ -15,6 +15,12 @@ parent: Data Sources
 Data Commons has imported variables related to demographics, in particular concerning literacy, work, housing, and religion from the Indian Census on the state, district, and city level.
 
 
+### [DataMeet](https://datameet.org/)
+
+#### [DataMeet Maps](http://projects.datameet.org/maps)
+Maps of India sourced from different government websites. ([Terms of Use](http://projects.datameet.org/covid19/contributing/).)
+
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
@@ -26,6 +32,17 @@ Data Commons has imported variables related to demographics, in particular conce
 
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
+
+### [Google](https://www.google.com/)
+
+#### [Google Places](https://www.google.com/)
+Mapping of Google maps place identifiers to Data Commons entities.
+Data made publicly available under the standard [Google Terms of Service](https://policies.google.com/terms?hl=en).
+
+
+### [India Local Government Directory](https://lgdirectory.gov.in/)
+India Local Government Directory provides unique codes for revenue entities such as districts, villages, local government bodies.
+[Copyright](https://lgdirectory.gov.in/copyRightPolicy.do), [Terms of Use](https://lgdirectory.gov.in/termsconditions.do).
 
 ### [Opportunity Insights](https://opportunityinsights.org/)
 * Outcomes (social mobility and a variety of other outcomes from life expectancy to patent rates) by neighbourhood, college, parental income level and racial background. For Census tracts, county and commuting zone.
@@ -106,6 +123,9 @@ Data Commons includes some information about administrative divisions, municipal
 
 
 ### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Official Boundaries](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries)
+World Bank-approved administrative boundaries including international boundaries.
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.

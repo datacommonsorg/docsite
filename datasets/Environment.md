@@ -19,11 +19,29 @@ Land cover data from the Copernicus Land Cover viewer. Data Commons currently in
 [Citation for Use](https://lcviewer.vito.be/about).
 
 
+### [Federal Emergency Management Agency](https://www.fema.gov/)
+
+#### [National Risk Index](https://hazards.fema.gov/nri/)
+Data Commons includes relative measures of risk from the 18 natural hazards included in the study for counties and census tracts, as well as annual expected loss figures in USD from individual hazards and in aggregate. This study and associated data are released with [this disclaimer](https://hazards.fema.gov/nri/disclaimer).
+
+
 ### [Global Land Ice Measurements from Space (GLIMS)](https://www.glims.org/)
 
 #### [Randolph Glacier Inventory](https://www.glims.org/RGI/rgi60_dl.html)
 A global inventory of glaciers, including surface areas.
 
+
+### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
+The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
+
+#### [India Water Quality](https://indiawris.gov.in/wiki/doku.php?id=water_quality_data_and_parameters)
+Water quality data measured at ground and surface water qualiy stations across India providing concentrations of dissolved constituents in water in terms of physical, chemical and biological parameters.
+
+### [Resources for the Future (RFF)](https://www.rff.org/)
+
+#### [US County Weather Variability](https://www.rff.org/publications/data-tools/)
+This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
+This data is made available for non-commercial purposes only.
 
 ### [U.S. Center for Disease Control and Prevention (CDC)](https://www.cdc.gov/)
 
