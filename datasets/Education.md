@@ -27,6 +27,9 @@ parent: Data Sources
 Data on schools, such as dropout rate and access to computers and toilets, in Indian states and school districts.
 
 
+#### [Unified District Information System for Education (UDISE)](https://udiseplus.gov.in/#/home)
+The Unified District Information System for Education (UDISE), by the Ministry of Education, India, collects and provides data related to schools and their resources.
+
 ### [U.S. Census Bureau](https://www.census.gov/)
 
 #### [American Community Survey Education Tabulation (ACS-ED)](https://nces.ed.gov/programs/edge/demographic/acs)

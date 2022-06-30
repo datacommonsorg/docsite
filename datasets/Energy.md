@@ -21,6 +21,9 @@ Location and size of solar photovoltaic panels in the US based on satellite imag
 
 ### [U.S. Energy Information Administration (EIA)](https://www.eia.gov/)
 
+#### [Commercial Buildings Energy Consumption Survey (CBECS)](https://www.eia.gov/consumption/commercial/)
+Energy consumption and expenditures for U.S. commercial buildings including energy sources across U.S. census regions and divisions.
+
 #### [Form EIA-860](https://www.eia.gov/electricity/data/eia860/)
 Survey form collects generator-level data about electric power plants.
 

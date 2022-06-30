@@ -43,6 +43,12 @@ Google's COVID-19 Community Mobility Reports "chart movement trends over time by
 Data made publicly available under the standard [Google Terms of Service](https://policies.google.com/terms?hl=en).
 
 
+### [India National Health Mission](https://nhm.gov.in/)
+National Health Mission (NHM) is a flagship programme of the Government of India to address the health needs of under-served ruralareas and health concerns of the urban poor population.
+
+#### [Health Management Information System](https://hmis.nhp.gov.in/)
+The Health management Information System (HMIS) of the National Health Mission, India captures medical facility-wise information such as reproductive, meternal and child health, immunization, family planning and vector borne diseases on a monthly basis ats district, state and national levels.
+
 ### [Our World in Data](https://ourworldindata.org/)
 
 #### [COVID-19 Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations)
