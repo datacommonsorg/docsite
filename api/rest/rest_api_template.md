@@ -20,10 +20,16 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 
 ## Request
 
+
+
 GET http://api.datacommons.org/v1/end/point/{param1}/{param2}
 {: #api-signature}
 
 <script src="/assets/js/syntax_highlighting.js"></script>
+
+
+
+
 
 ### Parameters
 
