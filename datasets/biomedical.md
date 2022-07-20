@@ -1,6 +1,8 @@
 ---
-layout: redirect
-redirect: /datasets/Biomedical.html
+layout: default
+title: Biomedical
+nav_order: 2
+parent: Data Sources
 ---
 
 {:.no_toc}
