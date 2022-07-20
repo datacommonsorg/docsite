@@ -2,7 +2,7 @@
 layout: default
 title: SPARQL
 nav_order: 1
-parent: REST
+parent: v0 REST
 grand_parent: API
 ---
 

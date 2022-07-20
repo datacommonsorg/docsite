@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Statistics
-parent: REST
+parent: v0 REST
 grand_parent: API
 published: false
 ---
