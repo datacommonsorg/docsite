@@ -1,13 +1,13 @@
 ---
 layout: default
 title: REST API Page Template
-nav_order: -1
+nav_order: 999
 parent: v1 REST
 grand_parent: API
 published: false
 ---
 
-# GET v1/end/point
+# /v1/end/point
 
 One line summary of what it does.
 
@@ -15,7 +15,7 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To do some other related, but different thing, see [v1/other/end/point](https://docs.datacommons.org)
+    To do some other related, but different thing, see [/v1/other/end/point](https://docs.datacommons.org)
 </div>
 
 
