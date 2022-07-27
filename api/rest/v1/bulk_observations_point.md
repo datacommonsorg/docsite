@@ -247,7 +247,6 @@ Response:
    }
 }
 ```
-
 {: .example-box-content}
  
 
@@ -263,7 +262,6 @@ Request:
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&all_facets=true'
 ```
-
 {: .example-box-content}
  
 Response:
@@ -433,7 +431,6 @@ Response:
    }
 }
 ```
-
 {: .example-box-content}
  
 <script src="/assets/js/tabs.js"></script>
