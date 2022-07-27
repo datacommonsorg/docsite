@@ -9,10 +9,8 @@ permalink: /api/rest/v1/bulk/observations/series
  
 ---
  
-
 # /v1/bulk/observations/series
 
- 
 Retrieve all values for multiple variables and entities.
  
  
@@ -22,10 +20,8 @@ Retrieve all values for multiple variables and entities.
    For single queries with a simpler output, see the [simple version](/api/rest/v1/observations/series) of this endpoint.
 </div>
  
-
 ## Request
 
- 
 <div>
 {% tabs keyword %}
  
@@ -60,33 +56,24 @@ POST \
 {% endtabs %}
 </div>
  
-
 ### Parameters
-
- 
 
 #### Path Parameters
 
- 
 There are no path parameters for this endpoint.
- 
 
 #### Query Parameters
 
- 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | entities <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the entities the variables describe. |
 | variables <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the variables to query observations for.
 | all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all facets available. If true, data from all facets available  will be returned. If false, only data  from the preferred facet will be returned. Defaults to false.
 {: .doc-table }
- 
 
 ## Response
 
- 
 The response will look something like:
- 
 
 ```json
 {
@@ -161,25 +148,18 @@ The response will look something like:
 }
 ```
 
- 
-
 ### Response fields
 
- 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by facet.|
 | facets    | object   | Metadata on the facet(s) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
- 
 
 ## Examples
 
- 
-
 ### Example 1: Get time series for multiple variables and entities
 
- 
 Get total annual electric power consumption (DCID: `Annual_Consumption_Coal_ElectricPower` ) and water withdrawal rates (DCID: `WithdrawalRate_Water` ) for both Virginia (DCID: `geoId/51` ) and Texas (DCID: `geoId/48` )
  
 <div>
@@ -211,7 +191,6 @@ $ curl --request POST \
 --header 'content-type: application/json' \
 --data '{"entities":["geoId/51", "geoId/48"], "variables":["Annual_Consumption_Coal_ElectricPower", "WithdrawalRate_Water"]}'
 ```
-
 {: .example-box-content}
  
 {% endtab %}
@@ -356,7 +335,6 @@ Response:
    ]
 }
 ```
-
 {: .example-box-content}
  
 <script src="/assets/js/tabs.js"></script>
