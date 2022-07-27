@@ -2,7 +2,7 @@
 layout: default
 title: Property Label
 nav_order: 3
-parent: v0 REST
+parent: REST
 grand_parent: API
 ---
 

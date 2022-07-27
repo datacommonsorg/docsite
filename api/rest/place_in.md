@@ -2,7 +2,7 @@
 layout: default
 title: Places within a Place
 nav_order: 5
-parent: v0 REST
+parent: REST
 grand_parent: API
 ---
 

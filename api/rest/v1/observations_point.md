@@ -1,12 +1,14 @@
 ---
 layout: default
 title: Get an observation
-nav_order: 1
+nav_order: 2
 parent: v1 REST
 grand_parent: API
-has_children: true
-published: false
+published: true
+permalink: /api/rest/v1/observations/point
 ---
+
+
 
 # v1/observations/point
 
@@ -14,16 +16,17 @@ Retrieve a specific value from a variable for an entity.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To retrieve the entire series of values, use [v1/observations/series](observations_series.html)
+    To retrieve the entire series of values, use [v1/observations/series]({{ site.baseurl }}/api/rest/v1/observations/series)<br />
+    For querying mulitple variables or entities, see the [bulk version]({{ site.baseurl }}/api/rest/v1/bulk/observations/point) of this endpoint.
 </div>
+
+
 
 ## Request
 
 
 GET https://api.datacommons.org/v1/observations/point/{VARIABLE_DCID}/{ENTITY_DCID}
 {: #api-signature}
-
-<script src="/assets/js/syntax_highlighting.js"></script>
 
 ### Parameters
 
@@ -39,7 +42,7 @@ GET https://api.datacommons.org/v1/observations/point/{VARIABLE_DCID}/{ENTITY_DC
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| date <br /> <optional-tag>Optional</optional-tag> | type | Datetime of  measurement of the value requested in ISO 8601 format. To see the dates available, lookup the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the lastest available datapoint is returned.  |
+| date <br /> <optional-tag>Optional</optional-tag> | type | Datetime of  measurement of the value requested in ISO 8601 format. To see the dates available, lookup the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
 {: .doc-table }
 
 ## Response
@@ -60,7 +63,7 @@ The response will look something like:
 | -------- | ------ | -------------------------- |
 | value    | type   | Value of the variable queried for the queried entity. |
 | date     | string | Datetime the value returned was measured. |
-| facet    | dict   | Metadata on the facet the data came from. Can include things like provenance, measurement method, and units. |
+| facet    | dict   | Metadata on the [facet]({{ site.baseurl }}/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
 
 ## Examples
@@ -101,7 +104,7 @@ Request:
 {: .example-box-title}
 ```bash
 $ curl --request GET --url \ 
-‘https://api.datacommons.org/v1/observations/point/Annual_Generation_Electricity/geoId/06&date=2018’
+‘https://api.datacommons.org/v1/observations/point/Annual_Generation_Electricity/geoId/06?date=2018’
 ```
 {: .example-box-content}
 
@@ -117,6 +120,8 @@ Response:
       "provenanceUrl": "https://www.eia.gov/opendata/qb.php?category=0",
       "unit": "KilowattHour"
     }
+  }
 }
 ```
 {: .example-box-content}
+

@@ -18,17 +18,14 @@ Longer details if necessary can go in a short paragraph here. This is where to d
     To do some other related, but different thing, see [v1/other/end/point](https://docs.datacommons.org)
 </div>
 
+
+
 ## Request
-
-
 
 GET http://api.datacommons.org/v1/end/point/{param1}/{param2}
 {: #api-signature}
 
 <script src="/assets/js/syntax_highlighting.js"></script>
-
-
-
 
 
 ### Parameters
@@ -47,6 +44,8 @@ GET http://api.datacommons.org/v1/end/point/{param1}/{param2}
 | -------------------------------------------------- | ---- | ------------------------- |
 | query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
+
+
 
 ## Response
 
@@ -68,6 +67,8 @@ The response will look something like:
 | date     | string | description of output here |
 | metadata | dict   | description of output here |
 {: .doc-table}
+
+
 
 ## Examples
 

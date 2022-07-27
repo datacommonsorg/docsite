@@ -2,7 +2,7 @@
 layout: default
 title: Place Statistics - Single Value
 nav_order: 7
-parent: v0 REST
+parent: REST
 grand_parent: API
 ---
 
