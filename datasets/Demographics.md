@@ -12,6 +12,8 @@ parent: Data Sources
 {:toc}
 
 ### [Census of India](https://censusindia.gov.in/)
+
+#### [India Census Tables](https://censusindia.gov.in/census.website/data/census-tables)
 Data Commons has imported variables related to demographics, in particular concerning literacy, work, housing, and religion from the Indian Census on the state, district, and city level.
 
 
@@ -40,11 +42,15 @@ Mapping of Google maps place identifiers to Data Commons entities.
 Data made publicly available under the standard [Google Terms of Service](https://policies.google.com/terms?hl=en).
 
 
-### [India Local Government Directory](https://lgdirectory.gov.in/)
+### [India National Informatics Centre](https://www.nic.in/)
+
+#### [India Local Government Directory](https://lgdirectory.gov.in/)
 India Local Government Directory provides unique codes for revenue entities such as districts, villages, local government bodies.
 [Copyright](https://lgdirectory.gov.in/copyRightPolicy.do), [Terms of Use](https://lgdirectory.gov.in/termsconditions.do).
 
 ### [Opportunity Insights](https://opportunityinsights.org/)
+
+#### [The Opportunity Atlas](https://opportunityinsights.org/data/)
 * Outcomes (social mobility and a variety of other outcomes from life expectancy to patent rates) by neighbourhood, college, parental income level and racial background. For Census tracts, county and commuting zone.
 * Neighbourhood characteristics for Census tracts, county and commuting zones.
 
@@ -81,6 +87,14 @@ The Census Bureau's Population Estimates Program (PEP) produces yearly estimates
 
 ### [U.S. Center for Disease Control and Prevention (CDC)](https://www.cdc.gov/)
 
+#### [BRFSS-NCHS Asthma Prevalence](https://app.powerbigov.us/view?r=eyJrIjoiZmZmOWU2N2ItYzllZi00N2I4LWE1NGItYWMxNmU3MTJmYmY4IiwidCI6IjljZTcwODY5LTYwZGItNDRmZC1hYmU4LWQyNzY3MDc3ZmM4ZiJ9)
+The statistics for prevalence of asthma among adults is for counties in 50 states and prevalence of asthma among children is for counties in 27 participating states. The data source is the 2016–2018 Behavioral Risk Factor Surveillance System (BRFSS) which is merged with the 2013 National Center for Health Statistics (NCHS) Urban-Rural Classification Scheme for Counties.
+
+
+#### [National Notifiable Diseases Surveillance System (NNDSS)](https://www.cdc.gov/nndss/data-statistics/index.html)
+Weekly and Annual cases of selected national notifiable (infectious and non-infectious) diseases reported by the 50 states, New York City, the District of Columbia, and the U.S. territories.
+
+
 #### [Wonder: Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html)
 Mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year.
 
@@ -116,7 +130,9 @@ Population data for countries, capital cities, urban and rural areas not covered
 [Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
 
 
-### [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)
+### [Wikimedia Foundation](https://wikimediafoundation.org/)
+
+#### [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)
 Data Commons includes some information about administrative divisions, municipalities, cities, villages and neighborhoods of all countries in the world from Wikidata. This also includes population statistics and various well-known identifiers associated with the places.
 
 [Terms of Use](https://creativecommons.org/publicdomain/zero/1.0/).

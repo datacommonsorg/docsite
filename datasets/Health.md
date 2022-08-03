@@ -11,7 +11,9 @@ parent: Data Sources
 * TOC
 {:toc}
 
-### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
+### [Dartmouth Atlas Project](https://www.dartmouthatlas.org/)
+
+#### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
 The Dartmouth Atlas Project "uses Medicare and Medicaid data to provide information and analysis about national, regional, and local markets, as well as hospitals and their affiliated physicians." Data Commons includes the Medicare Reimbursements, Medicare Mortality Rates, and Selected Primary Care Access and Quality Measures datasets.
 
 Data is made available under the [Dartmouth Atlas Project Terms of Use](https://data.dartmouthatlas.org/).
@@ -24,6 +26,10 @@ DataMeet provides cleaned datasets relating to COVID-19 in India, sourced from v
 
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
+
+#### [EuroStat Health](https://ec.europa.eu/eurostat/web/health/data/database)
+Health statistics measure both objective and subjective aspects of people's health. They cover different kinds of health-related aspects, including key indicators on the functioning of the health care systems and health and safety at work.
+
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
 * [Regions and Cities](https://ec.europa.eu/eurostat/web/regions-and-cities): NUTS (Nomenclature of territorial units for statistics) geocodes, covering NUTS levels 1 through 3.
@@ -74,8 +80,20 @@ The Small Area Health Insurance Estimates program provides yearly estimates of h
 
 ### [U.S. Center for Disease Control and Prevention (CDC)](https://www.cdc.gov/)
 
+#### [BRFSS-NCHS Asthma Prevalence](https://app.powerbigov.us/view?r=eyJrIjoiZmZmOWU2N2ItYzllZi00N2I4LWE1NGItYWMxNmU3MTJmYmY4IiwidCI6IjljZTcwODY5LTYwZGItNDRmZC1hYmU4LWQyNzY3MDc3ZmM4ZiJ9)
+The statistics for prevalence of asthma among adults is for counties in 50 states and prevalence of asthma among children is for counties in 27 participating states. The data source is the 2016–2018 Behavioral Risk Factor Surveillance System (BRFSS) which is merged with the 2013 National Center for Health Statistics (NCHS) Urban-Rural Classification Scheme for Counties.
+
+
 #### [Diabetes Surveillance System](https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html)
 Estimates of the number and percentage of US adults with diabetes.
+
+
+#### [National Notifiable Diseases Surveillance System (NNDSS)](https://www.cdc.gov/nndss/data-statistics/index.html)
+Weekly and Annual cases of selected national notifiable (infectious and non-infectious) diseases reported by the 50 states, New York City, the District of Columbia, and the U.S. territories.
+
+
+#### [National Outbreak Reporting System (NORS)](https://wwwn.cdc.gov/norsdashboard/)
+National Outbreak Reporting System (NORS) data from reports of foodborne and waterborne disease outbreaks and enteric (intestinal) disease outbreaks spread by contact with environmental sources, infected people or animals, and other means.
 
 
 #### [PLACES: Local Data for Better Health](https://www.cdc.gov/places/index.html)

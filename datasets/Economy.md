@@ -30,6 +30,8 @@ Wage and salary data for Indian states.
 
 
 ### [Reserve Bank of India](https://rbi.org.in/)
+
+#### [Database on Indian Economy](https://dbie.rbi.org.in/DBIE/dbie.rbi?site=statistics)
 Data Commons includes variables related to poverty and unemployment in Indian states from the Reserve Bank of India.
 
 
