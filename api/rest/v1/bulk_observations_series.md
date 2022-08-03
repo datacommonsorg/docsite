@@ -11,12 +11,12 @@ permalink: /api/rest/v1/bulk/observations/series
  
 # /v1/bulk/observations/series
 
-Retrieve all values for multiple variables and entities.
+Retrieve a series of observations for multiple variables and entities.
  
  
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-   To retrieve single points within a series, use [/v1/bulk/observations/point](/api/rest/v1/observations/point)<br />.
+   To retrieve a single observation within a series, use [/v1/bulk/observations/point](/api/rest/v1/observations/point)<br />.
    For single queries with a simpler output, see the [simple version](/api/rest/v1/observations/series) of this endpoint.
 </div>
  
