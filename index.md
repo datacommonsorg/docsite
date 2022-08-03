@@ -6,7 +6,7 @@ nav_order: 1
 
 # Why Data Commons?
 
-Data underlies everything, from science and public policy to journalism, but often, the data does not get used as much as it should be. The problem often (not always) is not the lack of data. There is a substantial amount of data that  is publicly available, most notably from organizations such  as the World Bank, Census Bureaus of different countries, CDC, etc. The problem is the difficulty in using the data.
+Data underlies everything, from science and public policy to journalism, but often, the data does not get used as much as it should be. The problem often (not always) is not the lack of data. There is a substantial amount of data that is publicly available, most notably from organizations such as the World Bank, Census Bureaus of different countries, CDC, etc. The problem is the difficulty in using the data.
 
 Unfortunately, though the data is open, using it to answer specific questions often involves tedious 'foraging' --- finding the data, cleaning the data, reconciling different formats and schemas, figuring out how to merge data about the same entity from different sources, etc. This error prone and tedious process is repeated, once (or more) by each organization. This is a problem in almost every area of study involving data, from the social sciences and physical sciences to public policy.
 

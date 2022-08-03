@@ -41,7 +41,7 @@ There are no query string parameters for this method.
  
 ## Response
 
-The response will look something like:
+The response looks like:
  
 
 ```json

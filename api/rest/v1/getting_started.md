@@ -85,7 +85,7 @@ Most requests require the DCID of the entity or variable you wish to query. Curi
 
 #### Finding Datetimes for Observations
 
-Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the  [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
 ### Bulk Retrieval
 
@@ -127,35 +127,40 @@ POST \
 ## Troubleshooting
 
 #### Common Error Responses
-
-If your request are missing a required argument, you will receive a 400 status code and an error message like the following:
+If the endpoint is misspelled or otherwise malformed, you will receive an error code like the following:
 
 ```json
 {
-  "code": 3,
-  "message": "Missing required argument: stat_var",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "internal"
-    }
-  ]
+ "code": 5,
+ "message": "Method does not exist.",
+ "details": [
+  {
+   "@type": "type.googleapis.com/google.rpc.DebugInfo",
+   "stackEntries": [],
+   "detail": "service_control"
+  }
+ ]
 }
 ```
 
-If your request includes a bad argument, you will receive a 404 status code and an error message like the following:
+If your request are missing a required argument, you will receive an error message like the following:
 
 ```json
 {
-  "code": 5,
-  "message": "No statistical variable found for CountPerson_Male",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "internal"
-    }
-  ]
+ "code": 3,
+ "message": "Invalid request URI",
+ "details": [
+  {
+   "@type": "type.googleapis.com/google.rpc.DebugInfo",
+   "stackEntries": [],
+   "detail": "internal"
+  }
+ ]
 }
+```
+
+If your request includes a bad argument, you'll receive an empty response like the following:
+
+```json
+{}
 ```

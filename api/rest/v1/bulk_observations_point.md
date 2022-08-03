@@ -82,8 +82,8 @@ There are no path parameters for this endpoint.
 | -------------------------------------------------- | ---- | ------------------------- |
 | entities <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the entities the variables describe. |
 | variables <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the variables to query observations for.|
-| date <br /> <optional-tag>Optional</optional-tag> | string | Datetime of  measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
-| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all facets available. If true, data from all facets available  will be returned. If false, only data  from the preferred facet will be returned. Defaults to false.
+| date <br /> <optional-tag>Optional</optional-tag> | string | Datetime of measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
+| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/api/rest/v1/) available. If true, data from all facets available will be returned. If false, only data from the preferred facet will be returned. Defaults to false.
 {: .doc-table }
  
  
@@ -91,7 +91,7 @@ There are no path parameters for this endpoint.
 ## Response
 
  
-The response will look something like:
+The response looks like:
  
 
 ```json

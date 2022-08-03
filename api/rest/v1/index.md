@@ -12,7 +12,7 @@ permalink: /api/rest/v1
 # Data Commons REST API
 
  
-The Data Commons REST API is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library that enables developers to programmatically access nodes in the Data Commons knowledge graph. This package allows users to explore the structure of the graph, integrate statistics from the graph into data analysis applications and much more.
+The Data Commons REST API is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library that enables developers to programmatically access data in the Data Commons knowledge graph. This package allows users to explore the structure of the graph, integrate statistics from the graph into data analysis applications and much more.
  
  
 
@@ -44,7 +44,7 @@ Methods for exploring the graph around a set of nodes.
  
 | API | URI | Description |
 | --- | --- | ------------|
-| Get a triple | /v1/triples | Get neighboring nodes and property labels of directed edges of a specific entity
+| Get triples | /v1/triples | Get neighboring nodes and property labels of directed edges of a specific entity
 | Get properties | /v1/properties | Get all properties (labels of directed edges) available for a specific entity |
 | Get variables | /v1/variables | Get all variables associated with a specific entity |
 | Get info on a place |/v1/info/place | Get basic information about a specific entity that is a place |
