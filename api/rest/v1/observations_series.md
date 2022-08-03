@@ -10,11 +10,11 @@ permalink: /api/rest/v1/observations/series
  
 # /v1/observations/series
 
-Retrieve time series from a specific variable for an entity from the [preferred facet](/api/intro_to_data_commons#preferred).
+Retrieve series of observations from a specific variable for an entity from the preferred facet.
  
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-   To retrieve a single point in a series of values, use [/v1/observations/point](/api/rest/v1/observations/point)<br />
+   To retrieve a single observation in a series of values, use [/v1/observations/point](/api/rest/v1/observations/point)<br />
    For querying multiple variables or entities, see the [bulk version](/api/rest/v1/bulk/observations/series) of this endpoint.
 </div>
  
@@ -66,7 +66,7 @@ The response looks like:
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | observations    | list | A list of {date, value} pairs for the variable queried, where date is the date of measurement and value the measured value for the variable. Pairs are returned in chronological order. |
-| facet    | dict   | Metadata on the [facet](/api/rest/v1/intro_to_data_commons#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| facet    | dict   | Metadata on the facet the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
  
 ## Examples

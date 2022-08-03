@@ -15,12 +15,12 @@ permalink: /api/rest/v1/bulk/observations/point
 # /v1/bulk/observations/point
 
  
-Retrieve a specific value from multiple variables for multiple entities.
+Retrieve a specific observation at a set date from multiple variables for multiple entities.
  
  
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-   To retrieve the entire series of values, use [/v1/bulk/observations/series](/api/rest/v1/observations/series)<br />
+   To retrieve the entire series of observations, use [/v1/bulk/observations/series](/api/rest/v1/observations/series)<br />
    For single queries with a simpler output, see the [simple version](/api/rest/v1/observations/point) of this endpoint
 </div>
  
