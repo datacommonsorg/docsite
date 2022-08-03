@@ -11,6 +11,14 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [ELIXIR Core Data Resources](https://elixir-europe.org/platforms/data/core-data-resources)
+
+#### [The Molecular INTeraction (MINT) Database](https://mint.bio.uniroma2.it/)
+The MINT Database "focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators."
+
+Licata, Luana, Leonardo Briganti, Daniele Peluso, Livia Perfetto, Marta Iannuccelli, Eugenia Galeota, Francesca Sacco et al. "MINT, the molecular interaction database: 2012 update." Nucleic acids research 40, no. D1 (2012): D857-D861.
+
+
 ### [Encyclopedia of DNA Elements (ENCODE)](https://www.encodeproject.org/)
 
 #### [BED (Browser Extensible Data) Files](https://www.encodeproject.org/help/project-overview/)
@@ -28,15 +36,11 @@ This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/abo
 
 
 ### [Genotype-Tissue Expression (GTEx)](https://www.gtexportal.org/home/)
+
+#### [GTEx Analysis V8](https://www.gtexportal.org/home/datasets)
 The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used. Due to the size of the datasets only Skin - Not Sun Exposed and Skin - Sun Exposed are made available on the main graph. The data for all tissues can be accessed on the Biomedical Data Commons knowledge graph.
 
 GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
-
-
-### [HUPO-PSI Working Groups and Outputs](https://psidev.info/)
-The Molecular Interactions Controlled Vocabulary from the HUPO Proteomics Standards Initiative working groups is "a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions". The ontologies dictionary is represented in a tree structure in the [EMBL-EBI Ontology Lookup Service](https://www.ebi.ac.uk/ols/ontologies/mi). Data Commons includes three subsets of the ontologies: "interaction detection method", "interaction type" and "database citation", which are commonly used in protein-protein interactions.
-
-Data Made available under [Apache License 2.0](https://github.com/EBISPOT/OLS/blob/main/LICENSE). The license information of HUPO PSI can be found at the [Community Practice](http://www.psidev.info/sites/default/files/CommunityPractice-revised.doc). See also [EBI term of use](http://www.ebi.ac.uk/about/terms-of-use/).
 
 
 ### [Institute of Genome Sciences](https://www.igs.umaryland.edu/)
@@ -53,21 +57,25 @@ The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedic
 C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
 
 
+### [Proteomics Standards Initiative](https://psidev.info/)
+
+#### [HUPO-PSI Working Groups and Outputs](https://psidev.info/)
+The Molecular Interactions Controlled Vocabulary from the HUPO Proteomics Standards Initiative working groups is "a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions". The ontologies dictionary is represented in a tree structure in the [EMBL-EBI Ontology Lookup Service](https://www.ebi.ac.uk/ols/ontologies/mi). Data Commons includes three subsets of the ontologies: "interaction detection method", "interaction type" and "database citation", which are commonly used in protein-protein interactions.
+
+Data Made available under [Apache License 2.0](https://github.com/EBISPOT/OLS/blob/main/LICENSE). The license information of HUPO PSI can be found at the [Community Practice](http://www.psidev.info/sites/default/files/CommunityPractice-revised.doc). See also [EBI term of use](http://www.ebi.ac.uk/about/terms-of-use/).
+
+
 ### [Side Effect Resource (SIDER)](http://sideeffects.embl.de/)
-Sider is a database of adverse drug reactions curated by the EMBL collaboration. "SIDER contains information on marketed medicines and their recorded adverse drug reactions. The information is extracted from public documents and package inserts. The available information include side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations." Data Commons hosts version 4.1 of SIDER released on October 21, 2015.
+
+#### [SIDER 4.1](http://sideeffects.embl.de/)
+SIDER is a database of adverse drug reactions curated by the EMBL collaboration. "SIDER contains information on marketed medicines and their recorded adverse drug reactions. The information is extracted from public documents and package inserts. The available information include side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations." Data Commons hosts version 4.1 of SIDER released on October 21, 2015.
 
 This data is made available under the [Creative Commons Attribution-Noncommercial-Share Alike 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/). This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
 
 
-### [The Molecular INTeraction (MINT) Database](https://mint.bio.uniroma2.it/)
-The MINT Database "focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators."
+### [The Human Protein Atlas](https://www.proteinatlas.org/)
 
-MINT is a part of [ELIXIR Core Data Resources](https://elixir-europe.org/platforms/data/core-data-resources), of which the resources are all committed to open access. Any use of this database should cite:
-
-Licata, Luana, Leonardo Briganti, Daniele Peluso, Livia Perfetto, Marta Iannuccelli, Eugenia Galeota, Francesca Sacco et al. "MINT, the molecular interaction database: 2012 update." Nucleic acids research 40, no. D1 (2012): D857-D861.
-
-
-### [The Tissue Atlas](https://www.proteinatlas.org/humanproteome/tissue)
+#### [The Tissue Atlas](https://www.proteinatlas.org/humanproteome/tissue)
 The Human Protein Tissue Atlas contains information about the distribution of proteins on human tissues derived from the antibody-based protein profiling from 44 normal human tissues types and mRNA expression data from 37 different normal tissue types.
 
 This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Please also see their [Disclaimer](https://www.proteinatlas.org/about/disclaimer) and [Licence & Citation](https://www.proteinatlas.org/about/licence).

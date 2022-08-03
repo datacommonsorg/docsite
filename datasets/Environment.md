@@ -39,8 +39,17 @@ Water quality data measured at ground and surface water qualiy stations across I
 
 ### [Resources for the Future (RFF)](https://www.rff.org/)
 
-#### [US County Weather Variability](https://www.rff.org/publications/data-tools/)
-This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
+#### [US Forecast Weather Variability - 0.25 degree resolution](https://www.rff.org/publications/data-tools/)
+This dataset includes US forecast (till 2100) weather variability at 0.25 degree resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
+
+#### [US Forecast Weather Variability - County](https://www.rff.org/publications/data-tools/)
+This dataset includes US county-level forecast (till 2100) weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 0.25 degree resolution by Data Commons.
+
+#### [US Historical Weather Variability - 4km resolution](https://www.rff.org/publications/data-tools/)
+This dataset includes US historical weather variability at 4 KM resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
+
+#### [US Historical Weather Variability - County](https://www.rff.org/publications/data-tools/)
+This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 4 KM resolution by RFF.
 This data is made available for non-commercial purposes only.
 
 ### [U.S. Center for Disease Control and Prevention (CDC)](https://www.cdc.gov/)
