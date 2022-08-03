@@ -68,12 +68,12 @@ There are no path parameters for this endpoint.
 | -------------------------------------------------- | ---- | ------------------------- |
 | entities <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the entities the variables describe. |
 | variables <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the variables to query observations for.
-| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all facets available. If true, data from all facets available  will be returned. If false, only data  from the preferred facet will be returned. Defaults to false.
+| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all facets available. If true, data from all facets available will be returned. If false, only data from the preferred facet will be returned. Defaults to false.
 {: .doc-table }
 
 ## Response
 
-The response will look something like:
+The response looks like:
 
 ```json
 {

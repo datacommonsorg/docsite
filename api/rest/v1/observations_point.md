@@ -44,7 +44,7 @@ GET https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DC
 
 ## Response
 
-The response will look something like:
+The response looks like:
 
 ```json
 {
@@ -65,7 +65,7 @@ The response will look something like:
 
 ## Examples
 
-### Example 1: Get single value for given variable and entity
+### Example 1: Get latest observation for given variable and entity
 
 Get the population count (DCID: `Count_Person` ) for the United States of America (DCID: `country/USA` ). Note that the latest entry available will be returned.
 
@@ -94,7 +94,7 @@ Response:
 ```
 {: .example-box-content}
 
-### Example 2: Get single value at a **specific date**, for given variable and entity
+### Example 2: Get single observation at a **specific date**, for given variable and entity
 
 Get the annual electricity generation (DCID: `Annual_Generation_Electricity` ) of California (DCID: `geoId/06` ) in 2018.
 
