@@ -13,7 +13,7 @@ function customRESTSyntaxHighlighting(id) {
   var signature = document.getElementById(id);
   var html = signature.innerHTML;
   var keyword_regex = /(GET|POST|HEAD|DELETE|PUT|PATCH)/g;
-  var param_regex = /{[A-Za-z0-9]+}/g;
+  var param_regex = /{[A-Za-z0-9_]+}/g;
 
   html = html.replace(keyword_regex, '<span class="keyword">$&</span>');
   html = html.replace(param_regex, '<span class="param">$&</span>');

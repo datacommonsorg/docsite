@@ -38,9 +38,11 @@
                     {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
                     <ul id="child-{{ forloop.index }}">
                     {%- for grand_child in grand_children_list -%}
-                      <li class="{% if page.url == grand_child.url %}active{% endif %}">
-                        <a href="{{ grand_child.url }}" class="{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>
-                      </li>
+                      {%- unless grand_child.nav_exclude -%}
+                        <li class="{% if page.url == grand_child.url %}active{% endif %}">
+                          <a href="{{ grand_child.url }}" class="{% if page.title == grand_child.title %} active{% endif %}">{{ grand_child.title }}</a>
+                        </li>
+                      {%- endunless -%}
                     {%- endfor -%}
                     </ul>
                   {%- endif -%}
