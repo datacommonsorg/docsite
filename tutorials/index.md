@@ -38,7 +38,7 @@ Python:
 
 -   [Analyzing the Relation between Fertility Rate along with Life Expectancy and Infant Mortality Rate](https://colab.research.google.com/drive/1rYjWjeZFU6b2lvaNvs9hKTfx75d4_r7i){:target="_blank"}
 
--   [Analyzing Earthquake Magnitude Levels of India]([https://colab.research.google.com/drive/1rYjWjeZFU6b2lvaNvs9hKTfx75d4_r7i](https://colab.research.google.com/drive/15EPTLU3bKyf95av87xHUMKzXL_WehtNA)){:target="_blank"}
+-   [Analyzing Earthquake Magnitude Levels of India](https://colab.research.google.com/drive/15EPTLU3bKyf95av87xHUMKzXL_WehtNA){:target="_blank"}
 
 -   [Analyzing the relation between Fertility Rate and the Number of Vasectomies and Tubectomies](https://colab.research.google.com/drive/1_heEp-E6dEMJoJmlbKu5avb2R2WdJnGI){:target="_blank"}
 
