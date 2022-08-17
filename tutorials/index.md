@@ -31,7 +31,7 @@ Python:
 -   [Case Study: Drug Discovery with Biomedical Data Commons](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
 
 
-### INDIA
+### India
 -   [Analysis of Mean Daily Wages of Men and Women of India](https://colab.research.google.com/drive/1oL0v6ZB4InHnMYo3bTQcSs4ZIHz6XIQ7#scrollTo=GE0b7K-Tiq8p){:target="_blank"}
 
 -   [State-wise Infant Heath Analysis](https://colab.research.google.com/drive/1hiDoxB46QR8ZoV5yEm4WIFfNF8E-jDbs#scrollTo=BG_H4WFiKj5B){:target="_blank"}
