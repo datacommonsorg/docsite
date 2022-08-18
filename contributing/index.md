@@ -25,7 +25,7 @@ We welcome contributions of public data to the Data Commons Graph. Data added wi
 
 ### Create new curriculum
 
-Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware.html). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Contact us at [courses@datacommons.org](mailto:courses@datacommons.org).
+Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Contact us at [courses@datacommons.org](mailto:courses@datacommons.org).
 
 ### Creating a new tool
 
