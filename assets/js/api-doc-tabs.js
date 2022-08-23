@@ -1,3 +1,10 @@
+/*
+Custom tabs for v1 REST API documentation pages.
+
+See api/rest/v1/rest_bulk_api_template.md for an example of where this code is used.
+
+Based on https://www.w3schools.com/howto/howto_js_tabs.asp
+*/
 function openTab(evt, elementName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("api-tabcontent");
@@ -12,4 +19,5 @@ function openTab(evt, elementName) {
     evt.currentTarget.className += " active";
   }
 
+// open "GET Request" tab by default
 document.getElementById("get-button").click()
