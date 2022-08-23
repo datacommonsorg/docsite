@@ -19,23 +19,25 @@ Retrieve a specific observation at a set date from a variable for an entity.
 </div>
 
 ## Request
-
-GET https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
-{: #api-signature}
+GET Request
+{: .api-header}
+```
+https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
+```
+{: .api-signature .scroll}
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 
-### Parameters
 
-#### Path Parameters
+### Path Parameters
 
 | Name                                                       | Description                                     |
 | ---------------------------------------------------------- | ----------------------------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for.      |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | DCID of the entity that the variable describes. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for.      |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | [DCID](/api/rest/v1/getting_started#dcid) of the entity that the variable describes. |
 {: .doc-table }
 
-#### Query Parameters
+### Query Parameters
 
 | Name                                              | Type | Description                                                                                                                                                                                                                                                             |
 | ------------------------------------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -53,6 +55,7 @@ The response looks like:
  "facet": {...},
 }
 ```
+{: .response-signature .scroll}
 
 ### Response fields
 
@@ -76,7 +79,7 @@ Request:
 $ curl --request GET --url \
 ‘https://api.datacommons.org/v1/observations/point/country/USA/Count_Person’
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
@@ -105,7 +108,7 @@ Request:
 $ curl --request GET --url \
 ‘https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018’
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
@@ -123,4 +126,4 @@ Response:
  }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
