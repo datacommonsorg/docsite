@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get an observation
+title: Observation (single value)
 nav_exclude: true
 parent: v1 REST
 grand_parent: API
@@ -75,10 +75,10 @@ There are no path parameters for this endpoint.
  
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/api/rest/v1/getting_started#dcid) of the entities the variables describe. |
-| variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query observations for.|
+| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the entities the variables describe. |
+| variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the variables to query observations for.|
 | date <br /> <optional-tag>Optional</optional-tag> | string | Datetime of measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
-| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/api/rest/v1/getting_started#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/api/rest/v1/getting_started#preferred-facet) will be returned. Defaults to false.
+| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.
 {: .doc-table }
  
  
@@ -126,7 +126,7 @@ The response looks like:
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by facet.|
-| facets    | object   | Metadata on the [facet(s)](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| facets    | object   | Metadata on the [facet(s)](/glossary.html#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
  
 

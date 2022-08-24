@@ -1,33 +1,26 @@
 /**
-Custom CSS for API Method Documentation pages
+* Custom CSS for API Method Documentation pages
+*
+* See api/rest/rest_api_template.md for an example of how these are used.
+*/
 
-See api/rest/rest_api_template.md for an example of how these are used.
-**/
-
-/***********************
-Variables (Page settings)
-************************/
-
-$round-corner-radius: 10px;
+$api-tag-blue: #0e84b5;
+$api-titlebar-color: #f1f1f1;
 $code-font-size: 0.8em;
 $code-background-color: #f5f6fa;
-$api-tag-blue: #0e84b5;
+$example-titlebar-color: #a3a8bb;
 $keyword-blue: #062873;
 $param-red: #ff686b;
+$round-corner-radius: 10px;
 $scrollbar-size: 5px;
-
-/***********
-Placeholders
-************/
+$shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
 %param-tag {
-  font-size: 0.75em;
-  font-family: monospace;
-  font-weight: bold;
-  letter-spacing: -1px;
   border-radius: 4px;
+  font: bold 0.75em monospace;
+  letter-spacing: -1px;
+  padding: 2px 6px;
   text-transform: uppercase;
-  padding: 2px;
 }
 
 %box-top {
@@ -45,97 +38,86 @@ Placeholders
 }
 
 %code-box {
-  font-size: 0.8em;
-  font-family: monospace;
   background: $code-background-color;
+  font: 0.8em monospace;
 }
 
-/**********
-Style
-**********/
+/** "Required" and "Optional" labels for parameters */
 
-// REQUIRED label for parameters
 required-tag {
   @extend %param-tag;
   background-color: $api-tag-blue;
-  color: #fff;
+  color: white;
 }
 
-// OPTIONAL label for parameters
 optional-tag {
   @extend %param-tag;
-  color: $api-tag-blue;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid $api-tag-blue;
+  color: $api-tag-blue;
 }
 
-/*
-Custom syntax highlighting
-*/
+/** Custom syntax highlighting */
 
-//highlighting for {parameter}
 .param {
   color: $param-red;
-  font-weight: bold;
   font-family: monospace;
+  font-weight: bold;
 }
 
-//highlighting for URL / JSON Data keywords
 .keyword {
   color: $keyword-blue;
-  font-weight: bold;
   font-family: monospace;
+  font-weight: bold;
 }
 
-/*
-Styling for the API signature/format box
-*/
+/** Styling for the API signature/format box */
 
-//title bar for simple APIs
 .api-header {
   @extend %box-top;
-  background-color: #f1f1f1;
-  padding: 10px 20px;
-  filter: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
+  background-color: $api-titlebar-color;
   font-size: 17px;
+  filter: $shadow;
+  padding: 10px 20px;
 }
 
-//signature/format box contents
 .api-signature {
   @extend %box-bottom;
+  filter: $shadow;
   overflow: hidden;
-  filter: drop-shadow(0 0.2em 0.2em rgba(0, 0, 0, 0.1));
 
   pre {
-    margin-bottom: 0;
-    overflow: auto;
     background-color: $code-background-color;
+    margin-bottom: 0;
+    overflow-wrap: break-word;
+    overflow-y: auto;
     padding: 30px;
   }
 
   code {
+    background-color: $code-background-color;
     color: #0e84b5;
     font-family: monospace;
     font-size: 1em;
-    background-color: $code-background-color;
   }
 }
 
-// tabs for Bulk pages
+/** tabs for Bulk pages */
+
 .api-tab {
   @extend %box-top;
-  background-color: #f1f1f1;
+  background-color: $api-titlebar-color;
+  filter: $shadow;
   overflow: hidden;
-  filter: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
   button {
     background-color: inherit;
     border: none;
-    outline: none;
     cursor: pointer;
+    font-size: 17px;
+    outline: none;
     padding: 14px 16px;
     transition: 0.3s;
-    font-size: 17px;
 
     &:hover {
       background-color: #ddd;
@@ -151,26 +133,22 @@ Styling for the API signature/format box
   display: none;
 }
 
-/*
-"Response looks like" box
-*/
+/** "Response looks like" box */
 
 .response-signature {
   @extend %code-box;
-  overflow: hidden;
   border-radius: $round-corner-radius;
+  overflow: hidden;
 
   pre,
   code {
-    max-height: 40em;
     margin-bottom: 0;
+    max-height: 40em;
     overflow: auto;
   }
 }
 
-/*
-Parameter & response field tables
-*/
+/** Parameter & response field tables */
 
 .doc-table {
   border-collapse: collapse;
@@ -178,38 +156,37 @@ Parameter & response field tables
 
   td:nth-child(1) {
     color: $keyword-blue;
-    font-weight: bold;
     font-family: monospace;
     font-size: 0.9em;
+    font-weight: bold;
   }
 }
 
-/*
-"REQUEST:" and "RESPONSE:" boxes in the example sections
-*/
+/** "REQUEST:" and "RESPONSE:" boxes in the example sections */
 
 .example-box-title {
   @extend %box-top;
-  background-color: #a3a8bb;
+  background-color: $example-titlebar-color;
+  color: white;
+  font-family: sans-serif;
   font-size: 0.75em;
-  font-family: var(--font-family);
-  color: #fff;
-  text-transform: uppercase;
-  padding: 0.35em 0.5em 0.35em 0.75em;
   margin-top: 0.5em;
+  padding: 0.35em 0.5em 0.35em 0.75em;
+  text-transform: uppercase;
 }
 
 .example-box-content {
   @extend %box-bottom;
   @extend %code-box;
   max-height: 20em;
+  overflow: hidden;
   scrollbar-color: var(--dc-gray-lite);
   scrollbar-width: 5px;
-  overflow: hidden;
 
   pre {
     max-height: 20em;
-    overflow: auto;
+    overflow-wrap: break-word;
+    overflow-y: auto;
   }
 
   .highlight {
@@ -217,17 +194,15 @@ Parameter & response field tables
   }
 }
 
-/*
-Custom scrollbars for code boxes
-*/
+/** Custom scrollbars for code boxes */
 
 .scroll pre {
   scrollbar-color: var(--dc-gray-lite);
   scrollbar-width: $scrollbar-size;
 
   &::-webkit-scrollbar {
-    width: $scrollbar-size;
     height: $scrollbar-size;
+    width: $scrollbar-size;
 
     &-thumb {
       background-color: #d2d3d8;

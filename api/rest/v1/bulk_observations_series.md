@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get a series of observations
+title: Observation (series)
 nav_exclude: true
 parent: v1 REST
 grand_parent: API
@@ -16,7 +16,7 @@ Retrieve a series of observations for multiple variables and entities.
  
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-   To retrieve a single observation within a series, use [/v1/bulk/observations/point](/api/rest/v1/observations/point)<br />.
+   To retrieve a single observation within a series, use [/v1/bulk/observations/point](/api/rest/v1/observations/point).<br />
    For single queries with a simpler output, see the [simple version](/api/rest/v1/observations/series) of this endpoint.
 </div>
  
@@ -68,9 +68,9 @@ There are no path parameters for this endpoint.
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/api/rest/v1/getting_started#dcid) of the entities the variables describe. |
-| variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query observations for.
-| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/api/rest/v1/getting_started#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/api/rest/v1/getting_started#preferred-facet) will be returned. Defaults to false.
+| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the entities the variables describe. |
+| variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the variables to query observations for.
+| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.
 {: .doc-table }
 
 ## Response
@@ -155,8 +155,8 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by [facet](/api/rest/v1/getting_started#facet).|
-| facets    | object   | Metadata on the [facet(s)](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by [facet](/glossary.html#facet).|
+| facets    | object   | Metadata on the [facet(s)](/glossary.html#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
 
 ## Examples
@@ -175,7 +175,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water’
+'https://api.datacommons.org/v1/bulk/observations/series?entities=geoId/51&entities=geoId/48&variables=Annual_Consumption_Coal_ElectricPower&variables=WithdrawalRate_Water'
 ```
 {: .example-box-content .scroll}
  

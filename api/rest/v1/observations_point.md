@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get an observation
+title: Observation (single value)
 nav_order: 1
 parent: v1 REST
 grand_parent: API
@@ -33,8 +33,8 @@ https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
 
 | Name                                                       | Description                                     |
 | ---------------------------------------------------------- | ----------------------------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query a value for.      |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | [DCID](/api/rest/v1/getting_started#dcid) of the entity that the variable describes. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the variable to query a value for.      |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | [DCID](/glossary.html#dcid) of the entity that the variable describes. |
 {: .doc-table }
 
 ### Query Parameters
@@ -63,7 +63,7 @@ The response looks like:
 | ----- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | value | type   | Value of the variable queried for the queried entity.                                                                                              |
 | date  | string | Datetime the value returned was measured.                                                                                                          |
-| facet | dict   | Metadata on the [facet](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| facet | dict   | Metadata on the [facet](/glossary.html#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
 
 ## Examples
@@ -77,7 +77,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/country/USA/Count_Person’
+'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person'
 ```
 {: .example-box-content .scroll}
 
@@ -95,7 +95,7 @@ Response:
   }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 ### Example 2: Get single observation at a **specific date**, for given variable and entity
 
@@ -106,7 +106,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018’
+'https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018'
 ```
 {: .example-box-content .scroll}
 
