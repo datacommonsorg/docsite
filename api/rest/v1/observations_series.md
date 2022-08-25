@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Observation (series)
-nav_order: 1.5
+nav_order: 4
 parent: v1 REST
 grand_parent: API
 published: false
@@ -21,10 +21,9 @@ Retrieve series of observations from a specific variable for an entity from the 
 GET Request
 {: .api-header}
 
-```
+<div class="api-signature">
 https://api.datacommons.org/v1/observations/series/{ENTITY_DCID}/{VARIABLE_DCID}
-```
-{: .api-signature .scroll}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
  

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: REST API Docmentation Page Template
+title: REST API Page Template
 nav_order: 999
 parent: v1 REST
 grand_parent: API
@@ -24,10 +24,9 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 GET Request
 {: .api-header}
 
-```
+<div class="api-signature">
 http://api.datacommons.org/v1/end/point/{param1}/{param2}
-```
-{: .api-signature .scroll}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 

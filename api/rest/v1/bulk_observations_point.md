@@ -32,12 +32,11 @@ Retrieve a specific observation at a set date from multiple variables for multip
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
 </div> 
 
-```
+<div id="GET-request" class="api-tabcontent api-signature">
 https://api.datacommons.org/v1/bulk/observations/point?entities={entity_dcid_1}&entities={entity_dcid_2}&variables={variable_dcid_1}&variables={variable_dcid_2}
-```
-{: #GET-request .api-tabcontent .api-signature .scroll}
+</div>
 
-```
+<div id="POST-request" class="api-tabcontent api-signature">
 URL:
 https://api.datacommons.org/v1/bulk/observations/point
 
@@ -54,8 +53,7 @@ JSON Data:
     ...
   ]
 }
-```
-{: #POST-request .api-tabcontent .api-signature .scroll}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>

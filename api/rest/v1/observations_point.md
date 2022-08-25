@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Observation (single value)
-nav_order: 1
+nav_order: 3
 parent: v1 REST
 grand_parent: API
 published: false
@@ -21,10 +21,10 @@ Retrieve a specific observation at a set date from a variable for an entity.
 ## Request
 GET Request
 {: .api-header}
-```
+
+<div class="api-signature">
 https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
-```
-{: .api-signature .scroll}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 

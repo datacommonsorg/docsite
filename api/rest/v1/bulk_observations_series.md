@@ -28,13 +28,12 @@ Retrieve a series of observations for multiple variables and entities.
 </div>
 
 
-```
+<div id="GET-request" class="api-tabcontent api-signature">
 https://api.datacommons.org/v1/bulk/observations/series?entities={entity_dcid_1}&entities={entity_dcid_2}&variables={variable_dcid_1}&variables={variable_dcid_2}
-```
-{: #GET-request .api-tabcontent .api-signature .scroll}
+</div>
 
 
-```
+<div id="POST-request" class="api-tabcontent api-signature">
 URL:
 https://api.datacommons.org/v1/bulk/observations/series
 
@@ -51,8 +50,7 @@ JSON Data:
     ...
   ]
 }
-```
-{: #POST-request .api-tabcontent .api-signature .scroll}
+</div>
 
 
 <script src="/assets/js/syntax_highlighting.js"></script>

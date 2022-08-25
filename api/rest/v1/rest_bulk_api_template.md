@@ -26,12 +26,11 @@ Longer details if necessary can go in a short paragraph here. This is where to d
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
 </div> 
 
-```
+<div id="GET-request" class="api-tabcontent api-signature">
 https://api.datacommons.org/v1/bulk/end/point?query={value}&query={value}
-```
-{: #GET-request .api-tabcontent .api-signature .scroll}
+</div>
 
-```
+<div id="POST-request" class="api-tabcontent api-signature">
 URL:
 https://api.datacommons.org/v1/bulk/end/point
 
@@ -48,8 +47,7 @@ JSON Data:
     ...
   ]
 }
-```
-{: #POST-request .api-tabcontent .api-signature .scroll}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>

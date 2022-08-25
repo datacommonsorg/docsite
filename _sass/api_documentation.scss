@@ -84,22 +84,14 @@ optional-tag {
 .api-signature {
   @extend %box-bottom;
   filter: $shadow;
-  overflow: hidden;
-
-  pre {
-    background-color: $code-background-color;
-    margin-bottom: 0;
-    overflow-wrap: break-word;
-    overflow-y: auto;
-    padding: 30px;
-  }
-
-  code {
-    background-color: $code-background-color;
-    color: #0e84b5;
-    font-family: monospace;
-    font-size: 1em;
-  }
+  background-color: $code-background-color;
+  color: #0e84b5;
+  font-family: monospace;
+  font-size: 16px;
+  overflow-wrap: break-word;
+  padding: 30px;
+  padding-top: 0;
+  white-space: pre-wrap;
 }
 
 /** tabs for Bulk pages */
