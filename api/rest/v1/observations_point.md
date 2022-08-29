@@ -78,7 +78,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -107,7 +107,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
+'https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 

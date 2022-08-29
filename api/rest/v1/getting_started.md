@@ -148,7 +148,7 @@ We've provided a trial API key for general public use.  This key will let you tr
 
 <div markdown="span" class="alert alert-secondary" role="alert" style="color:black; font-size: 0.8em">
    <b>Trial Key: </b>
-   `AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo`
+   `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
 <b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
