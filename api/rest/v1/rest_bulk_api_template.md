@@ -27,12 +27,15 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 </div> 
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/end/point?query={value}&query={value}
+https://api.datacommons.org/v1/bulk/end/point?query={value}&query={value}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
 URL:
 https://api.datacommons.org/v1/bulk/end/point
+
+Header:
+key: {your_api_key}
 
 JSON Data:
 {
@@ -68,6 +71,7 @@ JSON Data:
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
  
@@ -136,7 +140,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/end/point/'
+'https://api.datacommons.org/v1/bulk/end/point?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
 ```
 {: .example-box-content .scroll}
  
@@ -151,7 +155,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/end/point \
---header 'content-type: application/json' \
+--header 'key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
 --data '{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'
 ```
 {: .example-box-content .scroll}

@@ -23,7 +23,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
+https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}?key={your_api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -41,6 +41,7 @@ https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
 
 | Name                                              | Type | Description                                                                                                                                                                                                                                                             |
 | ------------------------------------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | date <br /> <optional-tag>Optional</optional-tag> | type | Datetime of measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned. |
 {: .doc-table }
 
@@ -77,7 +78,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person'
+'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person?key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
 ```
 {: .example-box-content .scroll}
 
@@ -106,7 +107,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018'
+'https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018&key=AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo'
 ```
 {: .example-box-content .scroll}
 

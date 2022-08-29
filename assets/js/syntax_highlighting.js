@@ -3,8 +3,8 @@
  * documentation pages.
  *
  * Highlights text with the class "api-signature"
- * Selects all instances of POST, GET, DELETE, PUT, PATCH, 'URL:' and 'JSON
- * Data:' and applies the "keyword" class to it. Selects all instances of
+ * Selects all instances of POST, GET, DELETE, PUT, PATCH, 'URL:', 'JSON
+ * Data:' and 'Header:' and applies the "keyword" class to it. Selects all instances of
  * '[in|out]' and all words surrounded by {} and applies the "param" class to
  * it.
  *
@@ -15,7 +15,7 @@
  */
 
 function customRESTSyntaxHighlighting(className) {
-  const keyword_regex = /(GET|POST|HEAD|DELETE|PUT|PATCH|URL:|JSON Data:)/g;
+  const keyword_regex = /(GET|POST|HEAD|DELETE|PUT|PATCH|URL:|JSON Data:|Header:)/g;
   const param_regex = /{\w+}/g;
   const in_out_regex = /\[in\|out\]/g;
 
