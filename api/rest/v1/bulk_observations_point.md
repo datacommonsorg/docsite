@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get an observation
+title: Observation (single value)
 nav_exclude: true
 parent: v1 REST
 grand_parent: API
@@ -27,63 +27,56 @@ Retrieve a specific observation at a set date from multiple variables for multip
 
 ## Request
 
- 
-<div>
-{% tabs keyword %}
- 
-{% tab keyword GET Request %}
-GET https://api.datacommons.org/v1/bulk/observations/point?entities=entity_dcid_1&entities=entity_dcid_2&variables=variable_dcid_1&variables=variable_dcid_2
-{: #api-signature}
-<script src="/assets/js/syntax_highlighting.js"></script>
- 
-{% endtab %}
- 
-{% tab keyword POST Request %}
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">GET Request</button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
+</div> 
 
-```bash
-POST \
---url https://api.datacommons.org/v1/bulk/observations/point \
---header 'content-type: application/json' \
---data '{
-   "entities": [
-       "entity_dcid_1",
-       "entity_dcid_2",
-       ...
-   ],
-   "variables: [
-       "variable_dcid_1",
-       "variable_dcid_2",
-       ...
-   ]
-}'
-```
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-{% endtab %}
- 
-{% endtabs %}
+<div id="GET-request" class="api-tabcontent api-signature">
+https://api.datacommons.org/v1/bulk/observations/point?entities={entity_dcid_1}&entities={entity_dcid_2}&variables={variable_dcid_1}&variables={variable_dcid_2}
 </div>
+
+<div id="POST-request" class="api-tabcontent api-signature">
+URL:
+https://api.datacommons.org/v1/bulk/observations/point
+
+JSON Data:
+{
+  "entities": [
+    "{entity_dcid_1}",
+    "{entity_dcid_2}",
+    ...
+  ],
+  "variables": [
+    "{variable_dcid_1}",
+    "{variable_dcid_2}",
+    ...
+  ]
+}
+</div>
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+
+
  
 
-### Parameters
-
- 
-
-#### Path Parameters
+### Path Parameters
 
  
 There are no path parameters for this endpoint.
  
 
-#### Query Parameters
+### Query Parameters
 
  
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| entities <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the entities the variables describe. |
-| variables <br /><required-tag>Required</required-tag> | Repeated string | DCIDs of the variables to query observations for.|
+| entities <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the entities the variables describe. |
+| variables <br /><required-tag>Required</required-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of the variables to query observations for.|
 | date <br /> <optional-tag>Optional</optional-tag> | string | Datetime of measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
-| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/api/rest/v1/) available. If true, data from all facets available will be returned. If false, only data from the preferred facet will be returned. Defaults to false.
+| all_facets <br /><optional-tag>Optional</optional-tag> | Boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.
 {: .doc-table }
  
  
@@ -96,33 +89,33 @@ The response looks like:
 
 ```json
 {
- "observationsByVariable": [
-   {
-     "variable": "variable1_DCID",
-     "observationsByEntity": [
-       {
-         "entity": "entity1_DCID",
-         "pointsByFacet": [
-           {
-             "date": "YYYY",
-             "value": 1234,
-             "facet": 1234567890
-           }, ...
-         ]
-       },
-     ]
-   }
- ],
- "facets": {
-   "1234567890": {
-     "importName": "Import_name_string",
-     "provenanceUrl": "https://provenance.url",
-     "measurementMethod": "MeasurementMethod"
-   } ...     
- }
+  "observationsByVariable": [
+    {
+      "variable": "variable1_DCID",
+      "observationsByEntity": [
+        {
+          "entity": "entity1_DCID",
+          "pointsByFacet": [
+            {
+              "date": "YYYY",
+              "value": 1234,
+              "facet": 1234567890
+            }, ...
+          ]
+        },
+      ]
+    }
+  ],
+  "facets": {
+    "1234567890": {
+      "importName": "Import_name_string",
+      "provenanceUrl": "https://provenance.url",
+      "measurementMethod": "MeasurementMethod"
+    } ...     
+  }
 }
 ```
-
+{: .response-signature .scroll}
  
 
 ### Response fields
@@ -131,7 +124,7 @@ The response looks like:
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | observationsByVariable   | list   | List of observations organized by variable. These are further organized by entity, and then by facet.|
-| facets    | object   | Metadata on the facet(s) the data came from. Can include things like provenance, measurement method, and units. |
+| facets    | object   | Metadata on the [facet(s)](/glossary.html#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
  
 
@@ -156,8 +149,7 @@ Request:
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&date=2019'
 ```
-
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 {% endtab %}
  
@@ -173,8 +165,7 @@ $ curl --request POST \
 --header 'content-type: application/json' \
 --data '{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'
 ```
-
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 {% endtab %}
  
@@ -186,68 +177,68 @@ Response:
 
 ```json
 {
-   "observationsByVariable": [
-       {
-           "variable": "Count_Person_Male",
-           "observationsByEntity": [
-               {
-                   "entity": "geoId/06",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 19526298,
-                           "facet": 1145703171
-                       }
-                   ]
-               },
-               {
-                   "entity": "geoId/48",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 14034009,
-                           "facet": 1145703171
-                       }
-                   ]
-               }
-           ]
-       },
-       {
-           "variable": "Count_Person_Female",
-           "observationsByEntity": [
-               {
-                   "entity": "geoId/06",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 19757199,
-                           "facet": 1145703171
-                       }
-                   ]
-               },
-               {
-                   "entity": "geoId/48",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 14226847,
-                           "facet": 1145703171
-                       }
-                   ]
-               }
-           ]
-       }
-   ],
-   "facets": {
-       "1145703171": {
-           "importName": "CensusACS5YearSurvey",
-           "provenanceUrl": "https://www.census.gov/",
-           "measurementMethod": "CensusACS5yrSurvey"
-       }
-   }
+  "observationsByVariable": [
+    {
+      "variable": "Count_Person_Male",
+      "observationsByEntity": [
+        {
+          "entity": "geoId/06",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 19526298,
+              "facet": 1145703171
+            }
+          ]
+        },
+        {
+          "entity": "geoId/48",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 14034009,
+              "facet": 1145703171
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variable": "Count_Person_Female",
+      "observationsByEntity": [
+        {
+          "entity": "geoId/06",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 19757199,
+              "facet": 1145703171
+            }
+          ]
+        },
+        {
+          "entity": "geoId/48",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 14226847,
+              "facet": 1145703171
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "facets": {
+    "1145703171": {
+      "importName": "CensusACS5YearSurvey",
+      "provenanceUrl": "https://www.census.gov/",
+      "measurementMethod": "CensusACS5yrSurvey"
+    }
+  }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 
 ### Example 2: Get values for multiple variables and entities **from all facets**
@@ -262,176 +253,176 @@ Request:
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/observations/point?entities=geoId/06&entities=geoId/48&variables=Count_Person_Male&variables=Count_Person_Female&all_facets=true'
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 Response:
 {: .example-box-title}
 
 ```json
 {
-   "observationsByVariable": [
-       {
-           "variable": "Count_Person_Male",
-           "observationsByEntity": [
-               {
-                   "entity": "geoId/06",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 19526298,
-                           "facet": 1145703171
-                       },
-                       {
-                           "date": "2019",
-                           "value": 19640794,
-                           "facet": 1226172227
-                       },
-                       {
-                           "date": "2019",
-                           "value": 19523898.009,
-                           "facet": 10983471
-                       },
-                       {
-                           "date": "2019",
-                           "value": 19523898.009,
-                           "facet": 196790193
-                       },
-                       {
-                           "date": "2018",
-                           "value": 19663600,
-                           "facet": 1151455814
-                       }
-                   ]
-               },
-               {
-                   "entity": "geoId/48",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 14034009,
-                           "facet": 1145703171
-                       },
-                       {
-                           "date": "2019",
-                           "value": 14385762,
-                           "facet": 1226172227
-                       },
-                       {
-                           "date": "2019",
-                           "value": 14045645.432,
-                           "facet": 10983471
-                       },
-                       {
-                           "date": "2019",
-                           "value": 14045645.432,
-                           "facet": 196790193
-                       },
-                       {
-                           "date": "2018",
-                           "value": 14260100,
-                           "facet": 1151455814
-                       }
-                   ]
-               }
-           ]
-       },
-       {
-           "variable": "Count_Person_Female",
-           "observationsByEntity": [
-               {
-                   "entity": "geoId/06",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 19757199,
-                           "facet": 1145703171
-                       },
-                       {
-                           "date": "2019",
-                           "value": 19871429,
-                           "facet": 1226172227
-                       },
-                       {
-                           "date": "2019",
-                           "value": 19759598.991,
-                           "facet": 10983471
-                       },
-                       {
-                           "date": "2019",
-                           "value": 19759598.991,
-                           "facet": 196790193
-                       },
-                       {
-                           "date": "2018",
-                           "value": 19817700,
-                           "facet": 1151455814
-                       }
-                   ]
-               },
-               {
-                   "entity": "geoId/48",
-                   "pointsByFacet": [
-                       {
-                           "date": "2019",
-                           "value": 14226847,
-                           "facet": 1145703171
-                       },
-                       {
-                           "date": "2019",
-                           "value": 14610119,
-                           "facet": 1226172227
-                       },
-                       {
-                           "date": "2019",
-                           "value": 14215210.568,
-                           "facet": 10983471
-                       },
-                       {
-                           "date": "2019",
-                           "value": 14215210.568,
-                           "facet": 196790193
-                       },
-                       {
-                           "date": "2018",
-                           "value": 14250900,
-                           "facet": 1151455814
-                       }
-                   ]
-               }
-           ]
-       }
-   ],
-   "facets": {
-       "10983471": {
-           "importName": "CensusACS5YearSurvey_SubjectTables_S2601A",
-           "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A",
-           "measurementMethod": "CensusACS5yrSurveySubjectTable"
-       },
-       "196790193": {
-           "importName": "CensusACS5YearSurvey_SubjectTables_S2602",
-           "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602",
-           "measurementMethod": "CensusACS5yrSurveySubjectTable"
-       },
-       "1145703171": {
-           "importName": "CensusACS5YearSurvey",
-           "provenanceUrl": "https://www.census.gov/",
-           "measurementMethod": "CensusACS5yrSurvey"
-       },
-       "1151455814": {
-           "importName": "OECDRegionalDemography",
-           "provenanceUrl": "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#",
-           "measurementMethod": "OECDRegionalStatistics",
-           "observationPeriod": "P1Y"
-       },
-       "1226172227": {
-           "importName": "CensusACS1YearSurvey",
-           "provenanceUrl": "https://www.census.gov/",
-           "measurementMethod": "CensusACS1yrSurvey"
-       }
-   }
+  "observationsByVariable": [
+    {
+      "variable": "Count_Person_Male",
+      "observationsByEntity": [
+        {
+          "entity": "geoId/06",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 19526298,
+              "facet": 1145703171
+            },
+            {
+              "date": "2019",
+              "value": 19640794,
+              "facet": 1226172227
+            },
+            {
+              "date": "2019",
+              "value": 19523898.009,
+              "facet": 10983471
+            },
+            {
+              "date": "2019",
+              "value": 19523898.009,
+              "facet": 196790193
+            },
+            {
+              "date": "2018",
+              "value": 19663600,
+              "facet": 1151455814
+            }
+          ]
+        },
+        {
+          "entity": "geoId/48",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 14034009,
+              "facet": 1145703171
+            },
+            {
+              "date": "2019",
+              "value": 14385762,
+              "facet": 1226172227
+            },
+            {
+              "date": "2019",
+              "value": 14045645.432,
+              "facet": 10983471
+            },
+            {
+              "date": "2019",
+              "value": 14045645.432,
+              "facet": 196790193
+            },
+            {
+              "date": "2018",
+              "value": 14260100,
+              "facet": 1151455814
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variable": "Count_Person_Female",
+      "observationsByEntity": [
+        {
+          "entity": "geoId/06",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 19757199,
+              "facet": 1145703171
+            },
+            {
+              "date": "2019",
+              "value": 19871429,
+              "facet": 1226172227
+            },
+            {
+              "date": "2019",
+              "value": 19759598.991,
+              "facet": 10983471
+            },
+            {
+              "date": "2019",
+              "value": 19759598.991,
+              "facet": 196790193
+            },
+            {
+              "date": "2018",
+              "value": 19817700,
+              "facet": 1151455814
+            }
+          ]
+        },
+        {
+          "entity": "geoId/48",
+          "pointsByFacet": [
+            {
+              "date": "2019",
+              "value": 14226847,
+              "facet": 1145703171
+            },
+            {
+              "date": "2019",
+              "value": 14610119,
+              "facet": 1226172227
+            },
+            {
+              "date": "2019",
+              "value": 14215210.568,
+              "facet": 10983471
+            },
+            {
+              "date": "2019",
+              "value": 14215210.568,
+              "facet": 196790193
+            },
+            {
+              "date": "2018",
+              "value": 14250900,
+              "facet": 1151455814
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "facets": {
+    "10983471": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2601A",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable"
+    },
+    "196790193": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2602",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable"
+    },
+    "1145703171": {
+      "importName": "CensusACS5YearSurvey",
+      "provenanceUrl": "https://www.census.gov/",
+      "measurementMethod": "CensusACS5yrSurvey"
+    },
+    "1151455814": {
+      "importName": "OECDRegionalDemography",
+      "provenanceUrl": "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#",
+      "measurementMethod": "OECDRegionalStatistics",
+      "observationPeriod": "P1Y"
+    },
+    "1226172227": {
+      "importName": "CensusACS1YearSurvey",
+      "provenanceUrl": "https://www.census.gov/",
+      "measurementMethod": "CensusACS1yrSurvey"
+    }
+  }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
  
 <script src="/assets/js/tabs.js"></script>
  
