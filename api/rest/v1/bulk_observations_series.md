@@ -38,7 +38,7 @@ URL:
 https://api.datacommons.org/v1/bulk/observations/series
 
 Header:
-key: {your_api_key}
+X-API-Key: {your_api_key}
 
 JSON Data:
 {
@@ -192,7 +192,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/observations/series \
---header 'key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
 --data '{"entities":["geoId/51", "geoId/48"], "variables":["Annual_Consumption_Coal_ElectricPower", "WithdrawalRate_Water"]}'
 ```
 {: .example-box-content .scroll}

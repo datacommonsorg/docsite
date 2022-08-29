@@ -127,7 +127,7 @@ For POST requests, pass the key as a header. For example, in cURL, this looks li
 ```bash
 curl -X POST \
 --url https://api.datacommons.org/v1/bulk/end/point \
---header 'key: <YOUR_KEY_HERE>' \
+--header 'X-API-Key: <YOUR_KEY_HERE>' \
 --data '{
   "entities": [
     "entity_dcid_1",

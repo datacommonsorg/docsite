@@ -35,7 +35,7 @@ URL:
 https://api.datacommons.org/v1/bulk/end/point
 
 Header:
-key: {your_api_key}
+X-Api-Key: {your_api_key}
 
 JSON Data:
 {
@@ -155,7 +155,7 @@ Request:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/end/point \
---header 'key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
+--header 'X-API-Key: AIzaSyCnBLQK-ODEklqXc99yo7G8vKmoBYW_2wo' \
 --data '{"entities":["geoId/06", "geoId/48"], "variables":["Count_Person_Male", "Count_Person_Female"], "date":"2019"}'
 ```
 {: .example-box-content .scroll}
