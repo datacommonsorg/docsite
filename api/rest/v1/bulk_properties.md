@@ -25,8 +25,12 @@ More specifically, this endpoint returns the labels of the edges connected to a 
 ## Request
 
 <div class="api-tab">
-  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">GET Request</button>
-  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">POST Request</button>
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
+    GET Request
+  </button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
+    POST Request
+  </button>
 </div> 
 
 <div id="GET-request" class="api-tabcontent api-signature">
