@@ -40,6 +40,7 @@ $shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 %code-box {
   background: $code-background-color;
   font: 0.8em monospace;
+  line-height: 1.5;
 }
 
 /** "Required" and "Optional" labels for parameters */
@@ -179,6 +180,7 @@ optional-tag {
     max-height: 20em;
     overflow-wrap: break-word;
     overflow-y: auto;
+    line-height: 1.5;
   }
 
   .highlight {

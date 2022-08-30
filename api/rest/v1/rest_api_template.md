@@ -25,7 +25,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-http://api.datacommons.org/v1/end/point/{param1}/{param2}
+http://api.datacommons.org/v1/end/point/{param1}/{param2}?key={api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -42,6 +42,7 @@ http://api.datacommons.org/v1/end/point/{param1}/{param2}
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
 
@@ -75,7 +76,7 @@ Request:
 {: .example-box-title}
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/end/point/param1/param2?query=value'
+  'https://api.datacommons.org/v1/end/point/param1/param2?query=value&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
