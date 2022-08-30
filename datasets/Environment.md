@@ -11,6 +11,12 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Climate TRACE](https://climatetrace.org/)
+
+#### [Climate TRACE GHG Emissions](https://climatetrace.org/inventory)
+Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
+The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
+
 ### [European Union (EU) Copernicus](https://www.copernicus.eu/en)
 
 #### [Copernicus Global Land Cover](https://lcviewer.vito.be/2015)
@@ -66,6 +72,10 @@ Data Commons has imported data on Palmer Drought Severity Index, Standardiazed P
 Air quality data collected from outdoor monitors on the county, CBSA, and site monitor level.
 
 
+#### [Air Pollutants - Tier 1 Emissions](https://www.epa.gov/air-emissions-inventories/air-pollutant-emissions-trends-data)
+Air Pollution data shows the trends for Tier 1 categories which distinguish pollutant emission contributions on a National and State Level among major source types directly available from EPA source.
+
+
 #### [EJSCREEN](https://www.epa.gov/ejscreen)
 Environmental justice mapping tool based on environmental and demographic indicators.
 
@@ -88,13 +98,13 @@ Atmospheric variables from multiple CMIP5 climate models for the United States.
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-DCP30_Tech_Note.pdf).
 
 
-#### [NEX-GGDP](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp)
+#### [NEX-GDDP](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp)
 Atmospheric variables from multiple CMIP5 climate models for the entire world.
 
 [Tech Note](https://esgf.nccs.nasa.gov/esgdoc/NEX-GDDP_Tech_Note_v0.pdf).
 
 
-#### [NEX-GGDP-CMIP6](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6)
+#### [NEX-GDDP-CMIP6](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6)
 Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-GDDP-CMIP6-Tech_Note.pdf).
