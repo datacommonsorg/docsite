@@ -149,7 +149,7 @@ Request:
 
 ```bash
 $ curl --request POST \
---url https://api.datacommons.org/v1/bulk/end/point \
+--url https://api.datacommons.org/v1/bulk/properties \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"entities":["geoId/51", "geoId/24", "geoId/10"]}'
 ```
