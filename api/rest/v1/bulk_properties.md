@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Rest API Bulk Page Template
+title: Properties
 parent: v1 REST
 grand_parent: API
 nav_exclude: true
