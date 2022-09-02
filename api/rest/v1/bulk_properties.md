@@ -61,7 +61,7 @@ JSON Data:
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | description of parameter here |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns properties represented by edges pointing _toward_ the entity provided. If `out`, returns properties represented by edges pointing _away_ from the entity provided. |
 {: .doc-table }
 
 ### Query Parameters
