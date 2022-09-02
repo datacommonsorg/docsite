@@ -105,7 +105,7 @@ The response looks like:
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
 | entity   | string   | [DCID](/glossary.html#dcid) of the entity queried. |
-| properties | list | List of properties connected to the entity queried, for the direction specified in the request. |
+| variables | list | List of variables connected to the entity queried. |
 {: .doc-table}
  
 
