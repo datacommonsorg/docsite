@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Info on a variable
+title: Info of a variable
 nav_order: 2
 parent: v1 REST
 grand_parent: API
@@ -14,7 +14,7 @@ permalink: /api/rest/v1/info/variable
  
 Get basic information about a [variable](/api/rest/v1/getting_started#variable).
  
-This API returns basic information on a variable, given the variable's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the number of places that have data for the variable, the minimum and maximum value observed, and the name and DCID of the top 3 entities with highest observed values for that variable. The information is grouped by place type (country, state, county, etc.).
+This API returns basic information on a variable, given the variable's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the number of entities that have data for the variable, the minimum and maximum value observed, and the name and DCID of the top 3 entities with highest observed values for that variable. The information is grouped by place type (country, state, county, etc.).
  
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -215,6 +215,3 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
- 
- 
-

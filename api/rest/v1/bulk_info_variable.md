@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Info on a variable
+title: Info of a variable
 nav_exclude: true
 parent: v1 REST
 grand_parent: API
@@ -14,7 +14,7 @@ permalink: /api/rest/v1/bulk/info/variable
 
 Get basic information about multiple [variables](/api/rest/v1/getting_started#variable).
 
-This API returns basic information on multiple variables, given each of their [DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per variable, and includes the number of places with data on each variable, the minimum and maximum values observed, and the name and DCID of the top 3 entities with highest observed values for each variable.
+This API returns basic information on multiple variables, given each of their [DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per variable, and includes the number of entities with data on each variable, the minimum and maximum values observed, and the name and DCID of the top 3 entities with highest observed values for each variable.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -113,47 +113,49 @@ The response looks like:
             "minValue": 1,
             "maxValue": 12345
           }, ...
-        "provenanceSummary":
-        {
-          "DCID":
+          "provenanceSummary":
           {
-            "importName": "Import_Name",
-            "releaseFrequency": "P<N>Y",
-            "seriesSummary":
-            [
-              {
-                "seriesKey":
+            "DCID":
+            {
+              "importName": "Import_Name",
+              "releaseFrequency": "P<N>Y",
+              "seriesSummary":
+              [
                 {
-                  "observationPeriod": "P<N>Y"
-                },
-                "earliestDate": "YYYY-MM-DD",
-                "latestDate": "YYYY-MM-DD",
-                "placeTypeSummary":
-                {
-                  "Country/State/City/Etc":
+                  "seriesKey":
                   {
-                    "topPlaces":
-                    [
-                      {
-                        "dcid": "Place DCID",
-                        "name": "Place Name"
-                      }
-                    ],
-                    "placeCount": 123,
+                    "observationPeriod": "P<N>Y"
+                  },
+                  "earliestDate": "YYYY-MM-DD",
+                  "latestDate": "YYYY-MM-DD",
+                  "placeTypeSummary":
+                  {
+                    "Country/State/City/Etc":
+                    {
+                      "topPlaces":
+                      [
+                        {
+                          "dcid": "Place DCID",
+                          "name": "Place Name"
+                        }
+                      ],
+                      "placeCount": 123,
+                      "minValue": 1,
+                      "maxValue": 123456
+                    }, ...
                     "minValue": 1,
-                    "maxValue": 123456
-                  }, ...
-                "minValue": 1,
-                "maxValue": 123456,
-                "observationCount": 123,
-                "timeSeriesCount": 123
-              }, ...
-            ],
-            "observationCount": 123,
-            "timeSeriesCount": 123
+                    "maxValue": 123456,
+                    "observationCount": 123,
+                    "timeSeriesCount": 123
+                  }
+                }, ...
+              ],
+              "observationCount": 123,
+              "timeSeriesCount": 123
+            }
           }
         }
-      }
+      },
     },
     {
       "entity": "Variable_2_DCID",
