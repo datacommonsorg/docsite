@@ -12,7 +12,8 @@ permalink: /api/rest/v1/triples
 
 Get a [triple](/glossary.html#triple).
 
-Useful for finding local connections between nodes of the Data Commons knowledge graph.
+Useful for finding local connections between nodes of the Data Commons knowledge
+graph.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
@@ -32,17 +33,18 @@ http://api.datacommons.org/v1/triples/{EDGE_DIRECTION}/{ENTITY_DCID}?key={api_ke
 
 ### Path Parameters
 
-| Name                                                | Description                   |
-| --------------------------------------------------- | ----------------------------- |
+| Name                                                        | Description                                                                                                                                                                                                                                |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the entity provided. If `out`, returns triples with edges pointing _away_ from the entity provided. |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the entity to query. |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag>    | [DCID](/glossary.html#dcid) of the entity to query.                                                                                                                                                                                        |
+
 {: .doc-table }
 
 ### Query Parameters
 
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| Name                                             | Type   | Description                                                                                                                                                     |
+| ------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 {: .doc-table }
 
 ## Response
@@ -71,19 +73,21 @@ The response looks like:
 
 ### Response fields
 
-| Name     | Type   | Description                |
-| -------- | ------ | -------------------------- |
-| triples    | object   | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the entity queried, and nodes connected to the queried entity via those properties. |
+| Name    | Type   | Description                                                                                                                                                                       |
+| ------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| triples | object | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the entity queried, and nodes connected to the queried entity via those properties. |
 {: .doc-table}
 
 ## Examples
 
 ### Example 1: Get triples of outgoing edges
 
-Get triples for the node representing Carbon Dioxide (DCID: `CarbonDioxide`), where edges point _away_ from the node for Carbon Dioxide.
+Get triples for the node representing Carbon Dioxide (DCID: `CarbonDioxide`),
+where edges point _away_ from the node for Carbon Dioxide.
 
 Request:
 {: .example-box-title}
+
 ```bash
   $ curl --request GET --url \
   'https://api.datacommons.org/v1/triples/out/CarbonDioxide&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
@@ -92,34 +96,28 @@ Request:
 
 Response:
 {: .example-box-title}
+
 ```json
 {
-  "triples":
-  {
-    "description":
-    {
-      "entities":
-      [
+  "triples": {
+    "description": {
+      "entities": [
         {
           "provenanceId": "dc/5l5zxr1",
           "value": "A colorless gas consisting of a carbon atom covalently double bonded to two oxygen atoms."
         }
       ]
     },
-    "descriptionUrl":
-    {
-      "entities":
-      [
+    "descriptionUrl": {
+      "entities": [
         {
           "provenanceId": "dc/5l5zxr1",
           "value": "https://en.wikipedia.org/wiki/Carbon_dioxide"
         }
       ]
     },
-    "name":
-    {
-      "entities":
-      [
+    "name": {
+      "entities": [
         {
           "provenanceId": "dc/5l5zxr1",
           "value": "Carbon Dioxide"
@@ -130,40 +128,27 @@ Response:
         }
       ]
     },
-    "provenance":
-    {
-      "entities":
-      [
+    "provenance": {
+      "entities": [
         {
           "name": "https://datacommons.org",
-          "types":
-          [
-            "Provenance"
-          ],
+          "types": ["Provenance"],
           "dcid": "dc/5l5zxr1",
           "provenanceId": "dc/5l5zxr1"
         }
       ]
     },
-    "typeOf":
-    {
-      "entities":
-      [
+    "typeOf": {
+      "entities": [
         {
           "name": "GasType",
-          "types":
-          [
-            "Class"
-          ],
+          "types": ["Class"],
           "dcid": "GasType",
           "provenanceId": "dc/5l5zxr1"
         },
         {
           "name": "GreenhouseGas",
-          "types":
-          [
-            "Class"
-          ],
+          "types": ["Class"],
           "dcid": "GreenhouseGas",
           "provenanceId": "dc/5l5zxr1"
         }
@@ -176,10 +161,12 @@ Response:
 
 ### Example 2: Get triples of incoming edges
 
-Get triples for the node representing Carbon Dioxide (DCID: `CarbonDioxide`), where edges point _towards_ the node Carbon Dioxide. 
+Get triples for the node representing Carbon Dioxide (DCID: `CarbonDioxide`),
+where edges point _towards_ the node Carbon Dioxide.
 
 Request:
 {: .example-box-title}
+
 ```bash
   $ curl --request GET --url \
   'https://api.datacommons.org/v1/triples/in/CarbonDioxide?query=value&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
@@ -188,46 +175,32 @@ Request:
 
 Response:
 {: .example-box-title}
+
 ```json
 {
-  "triples":
-  {
-    "emittedThing":
-    {
-      "entities":
-      [
+  "triples": {
+    "emittedThing": {
+      "entities": [
         {
           "name": "CO2 Emissions Per Capita",
-          "types":
-          [
-            "StatisticalVariable"
-          ],
+          "types": ["StatisticalVariable"],
           "dcid": "Amount_Emissions_CarbonDioxide_PerCapita",
           "provenanceId": "dc/d7tbsb1"
         },
         {
           "name": "Annual Amount of Emissions: Biogenic Emission Source, Carbon Dioxide",
-          "types":
-          [
-            "StatisticalVariable"
-          ],
+          "types": ["StatisticalVariable"],
           "dcid": "Annual_Emissions_CarbonDioxide_Biogenic",
           "provenanceId": "dc/d7tbsb1"
         },
         {
           "name": "Annual Amount of Emissions: Non Biogenic Emission Source, Carbon Dioxide",
-          "types":
-          [
-            "StatisticalVariable"
-          ],
+          "types": ["StatisticalVariable"],
           "dcid": "Annual_Emissions_CarbonDioxide_NonBiogenic",
           "provenanceId": "dc/d7tbsb1"
         },
         {
-          "types":
-          [
-            "StatisticalVariable"
-          ],
+          "types": ["StatisticalVariable"],
           "dcid": "dc/pelkj2pkyww1",
           "provenanceId": "dc/6zzrcr2"
         }
