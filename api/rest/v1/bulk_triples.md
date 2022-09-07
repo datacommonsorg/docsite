@@ -39,9 +39,17 @@ https://api.datacommons.org/v1/bulk/triples/{EDGE_DIRECTION}?entities={entity_dc
 URL:
 https://api.datacommons.org/v1/bulk/triples/{EDGE_DIRECTION}
 
-Header: X-API-Key: {your_api_key}
+Header:
+X-API-Key: {your_api_key}
 
-JSON Data: { "entities": [ "{value_1}", "{value_2}", ... ] }
+JSON Data:
+{
+  "entities": [
+    "{value_1}",
+    "{value_2}",
+    ...
+  ]
+}
 
 </div>
 
