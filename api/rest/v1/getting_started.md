@@ -41,7 +41,7 @@ The base URL for all REST endpoints is:
 https://api.datacommons.org
 ```
 
-And a URI looks like [ `/v1/observation/point` ](/api/rest/v1/observation/point). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v1/observation/point` ).
+And a URI looks like [`/v1/observation/point`](/api/rest/v1/observation/point). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v1/observation/point` ).
 
 #### Parameters
 
@@ -111,7 +111,8 @@ curl -X POST \
 </div>
 
 #### Using API Keys
-API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending `?key=<YOUR_API_KEY_HERE>`. 
+
+API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending `?key=<YOUR_API_KEY_HERE>`.
 
 For GET requests, this looks like:
 ```bash
@@ -140,7 +141,7 @@ curl -X POST \
     ...
   ]
 }'
-``` 
+```
 
 #### Getting API Keys
 
@@ -153,12 +154,57 @@ We've provided a trial API key for general public use.  This key will let you tr
 
 <b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
 
+### Pagination
+
+When the response to a request is too long, the returned payload is **paginated**. Only the first 500 entries are returned, along with a long string of characters called a **token**. To get the next 500 entries, repeat the request with `nextToken` as an query parameter, with the token as its value.
+
+For example, the request:
+
+```bash
+ $ curl --request GET \
+   `https://api.datacommons.org/v1/triple/in/geoId/06`
+```
+
+will return something like:
+
+```json
+{
+  "triples": {
+
+    < ... output truncated for brevity ...>
+
+    "name":"Business Fire 2014 (472130)",
+    "types":["WildlandFireEvent"],
+    "dcid":"fire/imsrBusinessFire2014472130",
+    "provenanceId":"dc/y6lf8n",
+  },
+"nextToken":"SoME_veRy_L0ng_S+rIng"
+}
+```
+
+To get the next 500 entries, use the command:
+
+```bash
+ $ curl --request GET \
+   `https://api.datacommons.org/v1/triple/in/geoId/06?nextToken=SoME_veRy_L0ng_S+rIng`
+```
+Similarly for POST requests, this would look like:
+
+```bash
+$ curl --request POST \
+--url https://api.datacommons.org/v1/bulk/triples/in \
+--data {
+  "entities": "geoId/06"
+  "nextToken": "SoME_veRy_L0ng_S+rIng"
+}
+```
 
 ## Troubleshooting
 
 ### Common Error Responses
 
 #### "Method does not exist"
+
 ```json
 {
   "code": 5,
@@ -175,6 +221,7 @@ We've provided a trial API key for general public use.  This key will let you tr
 This is most commonly seen when the endpoint is misspelled or otherwise malformed. Check the spelling of your endpoint and that all required path parameters are provided in the right order.
 
 #### "Invalid request URI"
+
 ```json
 {
   "code": 3,
@@ -191,12 +238,14 @@ This is most commonly seen when the endpoint is misspelled or otherwise malforme
 This is most commonly seen when your request is missing a required path parameter. Make sure endpoints and parameters are both spelled correctly and provided in the right order.
 
 #### Empty Response
+
 ```json
 {}
 ```
 Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
 
 #### "Could not find field <field> in the type"
+
 ```json
 {
  "code": 3,
