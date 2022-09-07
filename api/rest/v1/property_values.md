@@ -12,9 +12,13 @@ permalink: /api/rest/v1/property/values
 
 Get the values of a [property](/glossary.html#property) for a specific entity.
 
-Data Commons represents properties as labels of directed edges between nodes, where the successor node is a value of the property. Thus, this endpoint returns nodes connected to the queried entity via the property queried.
+Data Commons represents properties as labels of directed edges between nodes,
+where the successor node is a value of the property. Thus, this endpoint returns
+nodes connected to the queried entity via the property queried.
 
-_Note: If you want to query values for the property `containedInPlace`, consider using [/v1/property/values/linked](/api/rest/v1/property/values/linked) instead._
+_Note: If you want to query values for the property `containedInPlace`, consider
+using [/v1/property/values/linked](/api/rest/v1/property/values/linked)
+instead._
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
@@ -35,18 +39,18 @@ http://api.datacommons.org/v1/property/values/{EDGE_DIRECTION}/{ENTITY}/{PROPERT
 
 ### Path Parameters
 
-| Name                                                | Description                   |
-| --------------------------------------------------- | ----------------------------- |
+| Name                                                        | Description                                                                                                                                                                      |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns nodes for which the queried entity is a property value. If `out`, returns values of properties describing the entity queried. |
-| ENTITY <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the entity to query.|
-| PROPERTY <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the property to query. |
+| ENTITY <br /> <required-tag>Required</required-tag>         | [DCID](/glossary.html#dcid) of the entity to query.                                                                                                                              |
+| PROPERTY <br /> <required-tag>Required</required-tag>       | [DCID](/glossary.html#dcid) of the property to query.                                                                                                                            |
 {: .doc-table }
 
 ### Query Parameters
 
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| Name                                             | Type   | Description                                                                                                                                                     |
+| ------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 {: .doc-table }
 
 ## Response
@@ -69,19 +73,21 @@ The response looks like:
 
 ### Response fields
 
-| Name     | Type   | Description                |
-| -------- | ------ | -------------------------- |
-| values    | object   | values of the property queried, for the entity queried. |
+| Name   | Type   | Description                                             |
+| ------ | ------ | ------------------------------------------------------- |
+| values | object | values of the property queried, for the entity queried. |
 {: .doc-table}
 
 ## Examples
 
 ### Example 1: Get the value of a property for an entity
 
-Get the name of the node with DCID `geoId/sch3620580` by querying the property `name`.
+Get the name of the node with DCID `geoId/sch3620580` by querying the property
+`name`.
 
 Request:
 {: .example-box-title}
+
 ```bash
   $ curl --request GET --url \
   'https://api.datacommons.org/v1/property/values/out/geoId/sch3620580/name&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
@@ -90,10 +96,10 @@ Request:
 
 Response:
 {: .example-box-title}
+
 ```json
 {
-  "values":
-  [
+  "values": [
     {
       "provenanceId": "dc/sm3m2w3",
       "value": "New York City Department Of Education"
@@ -105,10 +111,12 @@ Response:
 
 ### Example 2: Get the nodes that have the queried entity as a property value
 
-Get a list of natural disasters in Madagascar (DCID: `country/MDG`) by querying the property `affectedPlace`.
+Get a list of natural disasters in Madagascar (DCID: `country/MDG`) by querying
+the property `affectedPlace`.
 
 Request:
 {: .example-box-title}
+
 ```bash
   $ curl --request GET --url \
   'https://api.datacommons.org/v1/property/values/in/country/MDG/affectedPlace&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
@@ -117,6 +125,7 @@ Request:
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "values":

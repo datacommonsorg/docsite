@@ -12,9 +12,14 @@ permalink: /api/rest/v1/bulk/property/values
 
 Get the values of a [property](/glossary.html#property) for multiple entities.
 
-Data Commons represents properties as labels of directed edges between nodes, where the successor node is a value of the property. Thus, this endpoint returns nodes connected to the queried entity via the property queried.
+Data Commons represents properties as labels of directed edges between nodes,
+where the successor node is a value of the property. Thus, this endpoint returns
+nodes connected to the queried entity via the property queried.
 
-_Note: If you want to query values for the property `containedInPlace`, consider using [/v1/bulk/property/values/linked](/api/rest/v1/bulk/property/values/linked) instead._
+_Note: If you want to query values for the property `containedInPlace`, consider
+using
+[/v1/bulk/property/values/linked](/api/rest/v1/bulk/property/values/linked)
+instead._
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
@@ -41,7 +46,7 @@ Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
-{
+{ 
   "property": "property_dcid",
   "entities": [
     "{entity_dcid_1}",
@@ -49,6 +54,7 @@ JSON Data:
     ...
   ]
 }
+
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -56,18 +62,18 @@ JSON Data:
 
 ### Path Parameters
 
-| Name                                                | Description                   |
-| --------------------------------------------------- | ----------------------------- |
+| Name                                                        | Description                                                                                                                                                                      |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns nodes for which the queried entity is a property value. If `out`, returns values of properties describing the entity queried. |
 {: .doc-table }
 
 ### Query Parameters
 
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the entitis to query.|
-| property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. |
+| Name                                                  | Type   | Description                                                                                                                                                     |
+| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| entities <br /> <required-tag>Required</required-tag> | list   | [DCIDs](/glossary.html#dcid) of the entitis to query.                                                                                                           |
+| property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query.                                                                                                           |
 {: .doc-table }
 
 ## Response
@@ -117,17 +123,18 @@ The response looks like:
 
 ### Response fields
 
-| Name     | Type   | Description                |
-| -------- | ------ | -------------------------- |
-| entity   | string | [DCID](/glossary.html#dcid) of the entity queried. |
-| values   | list   | list of nodes connected by the property queried. |
+| Name   | Type   | Description                                        |
+| ------ | ------ | -------------------------------------------------- |
+| entity | string | [DCID](/glossary.html#dcid) of the entity queried. |
+| values | list   | list of nodes connected by the property queried.   |
 {: .doc-table}
 
 ## Examples
 
 ### Example 1: Get property values for multiple entities
 
-Get the names (property: `name`) of nodes with DCIDs `wikidataId/Q27119`, `wikidataId/Q27116`, and `wikidataId/Q21181`.
+Get the names (property: `name`) of nodes with DCIDs `wikidataId/Q27119`,
+`wikidataId/Q27116`, and `wikidataId/Q21181`.
 
 <div>
 {% tabs example1 %}
@@ -161,6 +168,7 @@ $ curl --request POST \
 {% endtab %}
 
 {% endtabs %}
+
 </div>
 
 Response:
@@ -168,12 +176,10 @@ Response:
 
 ```json
 {
-  "data":
-  [
+  "data": [
     {
       "entity": "wikidataId/Q27119",
-      "values":
-      [
+      "values": [
         {
           "provenanceId": "dc/5n63hr1",
           "value": "Kolding"
@@ -182,8 +188,7 @@ Response:
     },
     {
       "entity": "wikidataId/Q27116",
-      "values":
-      [
+      "values": [
         {
           "provenanceId": "dc/5n63hr1",
           "value": "Vejle"
@@ -192,8 +197,7 @@ Response:
     },
     {
       "entity": "wikidataId/Q21181",
-      "values":
-      [
+      "values": [
         {
           "provenanceId": "dc/5n63hr1",
           "value": "Fredericia"
