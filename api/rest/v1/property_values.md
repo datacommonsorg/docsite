@@ -10,11 +10,11 @@ permalink: /api/rest/v1/property/values
 
 # /v1/property/values
 
-Get the values of a [property](/glossary.html#property) for a specific entity.
+Get the values of a [property](/glossary.html#property) for a specific node.
 
 Data Commons represents properties as labels of directed edges between nodes,
 where the successor node is a value of the property. Thus, this endpoint returns
-nodes connected to the queried entity via the property queried.
+nodes connected to the queried node via the property queried.
 
 _Note: If you want to query values for the property `containedInPlace`, consider
 using [/v1/property/values/linked](/api/rest/v1/property/values/linked)
@@ -22,7 +22,7 @@ instead._
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To get a list of properties available for an entity, see [/v1/properties](/api/rest/v1/properties).<br />
+    To get a list of properties available for an node, see [/v1/properties](/api/rest/v1/properties).<br />
     To query multiple entites or properties, see the [bulk version](/api/rest/v1/bulk/property/values) of this endpoint.
 </div>
 
@@ -32,7 +32,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-http://api.datacommons.org/v1/property/values/{EDGE_DIRECTION}/{ENTITY}/{PROPERTY}?key={your_api_key}
+http://api.datacommons.org/v1/property/values/{EDGE_DIRECTION}/{NODE}/{PROPERTY}?key={your_api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -41,8 +41,8 @@ http://api.datacommons.org/v1/property/values/{EDGE_DIRECTION}/{ENTITY}/{PROPERT
 
 | Name                                                        | Description                                                                                                                                                                      |
 | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns nodes for which the queried entity is a property value. If `out`, returns values of properties describing the entity queried. |
-| ENTITY <br /> <required-tag>Required</required-tag>         | [DCID](/glossary.html#dcid) of the entity to query.                                                                                                                              |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. <br /><br />If `in`, returns nodes for which the queried node is a property value. If `out`, returns values of properties describing the node queried. |
+| NODE <br /> <required-tag>Required</required-tag>         | [DCID](/glossary.html#dcid) of the node to query.                                                                                                                              |
 | PROPERTY <br /> <required-tag>Required</required-tag>       | [DCID](/glossary.html#dcid) of the property to query.                                                                                                                            |
 {: .doc-table }
 
@@ -75,12 +75,12 @@ The response looks like:
 
 | Name   | Type   | Description                                             |
 | ------ | ------ | ------------------------------------------------------- |
-| values | object | values of the property queried, for the entity queried. |
+| values | object | values of the property queried, for the node queried. |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: Get the value of a property for an entity
+### Example 1: Get the value of a property for an node
 
 Get the name of the node with DCID `geoId/sch3620580` by querying the property
 `name`.
@@ -109,7 +109,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get the nodes that have the queried entity as a property value
+### Example 2: Get the nodes that have the queried node as a property value
 
 Get a list of natural disasters in Madagascar (DCID: `country/MDG`) by querying
 the property `affectedPlace`.
