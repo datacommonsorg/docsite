@@ -212,8 +212,8 @@ without any quota limits. We'll be happy to hear from you!
 ### Pagination
 
 When the response to a request is too long, the returned payload is
-**paginated**. Only the first 500 entries are returned, along with a long string
-of characters called a **token**. To get the next 500 entries, repeat the
+**paginated**. Only a subset of the response is returned, along with a long string
+of characters called a **token**. To get the next set of entries, repeat the
 request with `nextToken` as an query parameter, with the token as its value.
 
 For example, the request:
