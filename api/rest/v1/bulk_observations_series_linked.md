@@ -2,22 +2,21 @@
 layout: default
 title: Observation (series, linked)
 nav_order: 4.5
-parent: REST (v1)
+parent: v1 REST
 grand_parent: API
-published: true
+published: false
 permalink: /api/rest/v1/bulk/observations/series/linked
 ---
 
 # /v1/bulk/observations/series/linked
 
-Retrieve a series of observations for all places within a parent place.
+Returns [observations](/glossary.html#observation) of a specific [variable](/glossary.html#variable) for entities linked to a parent entity by the same property.
 
-More specifically, this endpoint returns [observations](/glossary.html#observation) of a specific [variable](/glossary.html#variable) for entities
-linked to a parent entity by the same property. For example, this could be getting the population of women for all states in the United States. In this example
+This is useful for retrieving observations for all places within a parent place. For example, this could be getting the population of women for all states in the United States.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
-   Currently, this endpoint only supports the `containedInPlace` property.
+   Currently, this endpoint only supports the `containedInPlace` property and `Place` entities. Support for other properties and entity types will be added in the future.
 </div>
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
@@ -45,7 +44,7 @@ X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "property": "containedInPlace",
+  "linked_property": "containedInPlace",
   "linked_entity": "{parent_place_dcid}"
   "entity_type": "{place_type}",
   "variables": [
@@ -71,7 +70,7 @@ There are no path parameters for this endpoint.
 | linked_entity <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the parent place to query.|
 | entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Graph Browser page on Place](https://datacommons.org/browser/Place). |
 | variables <br /> <requried-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the [variables](/glossary.html#variables) to query. |
-| property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
+| linked_property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
 {: .doc-table }
 
 ## Response
