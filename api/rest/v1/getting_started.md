@@ -236,7 +236,7 @@ will return something like:
     "dcid":"fire/imsrBusinessFire2014472130",
     "provenanceId":"dc/y6lf8n",
   },
-"nextToken":"SoME_veRy_L0ng_S+rIng"
+  "nextToken":"SoME_veRy_L0ng_S+rIng"
 }
 ```
 
