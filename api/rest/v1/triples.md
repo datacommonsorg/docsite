@@ -17,7 +17,7 @@ graph.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To query triples for multiple entities, see the [bulk version](/api/rest/v1/bulk/triples) of this endpoint.
+    To query triples for multiple nodes, see the [bulk version](/api/rest/v1/bulk/triples) of this endpoint.
 </div>
 
 ## Request
@@ -26,7 +26,7 @@ GET Request
 {: .api-header}
 
 <div class="api-signature">
-http://api.datacommons.org/v1/triples/{EDGE_DIRECTION}/{ENTITY_DCID}?key={api_key}
+http://api.datacommons.org/v1/triples/{EDGE_DIRECTION}/{NODE_DCID}?key={api_key}
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -35,8 +35,8 @@ http://api.datacommons.org/v1/triples/{EDGE_DIRECTION}/{ENTITY_DCID}?key={api_ke
 
 | Name                                                        | Description                                                                                                                                                                                                                                |
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the entity provided. If `out`, returns triples with edges pointing _away_ from the entity provided. |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag>    | [DCID](/glossary.html#dcid) of the entity to query.                                                                                                                                                                                        |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the node provided. If `out`, returns triples with edges pointing _away_ from the node provided. |
+| NODE_DCID <br /> <required-tag>Required</required-tag>    | [DCID](/glossary.html#dcid) of the node to query.                                                                                                                                                                                        |
 
 {: .doc-table }
 
@@ -55,13 +55,13 @@ The response looks like:
 {
   "triples":
   {
-    "property_describing_entity_queried_1":
+    "property_describing_node_queried_1":
     {
-      "entities":
+      "nodes":
       [
         {
-          "property_of_connected_node_1": "value",
-          "property_of_connected_node_2": "value",
+          "property_1": "value",
+          "property_2": "value",
           ...
         }, ...
       ]
@@ -75,7 +75,7 @@ The response looks like:
 
 | Name    | Type   | Description                                                                                                                                                                       |
 | ------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| triples | object | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the entity queried, and nodes connected to the queried entity via those properties. |
+| triples | object | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the node queried, and nodes connected to the queried node via those properties. |
 {: .doc-table}
 
 ## Examples
@@ -101,7 +101,7 @@ Response:
 {
   "triples": {
     "description": {
-      "entities": [
+      "nodes": [
         {
           "provenanceId": "dc/5l5zxr1",
           "value": "A colorless gas consisting of a carbon atom covalently double bonded to two oxygen atoms."
@@ -109,7 +109,7 @@ Response:
       ]
     },
     "descriptionUrl": {
-      "entities": [
+      "nodes": [
         {
           "provenanceId": "dc/5l5zxr1",
           "value": "https://en.wikipedia.org/wiki/Carbon_dioxide"
@@ -117,7 +117,7 @@ Response:
       ]
     },
     "name": {
-      "entities": [
+      "nodes": [
         {
           "provenanceId": "dc/5l5zxr1",
           "value": "Carbon Dioxide"
@@ -129,7 +129,7 @@ Response:
       ]
     },
     "provenance": {
-      "entities": [
+      "nodes": [
         {
           "name": "https://datacommons.org",
           "types": ["Provenance"],
@@ -139,7 +139,7 @@ Response:
       ]
     },
     "typeOf": {
-      "entities": [
+      "nodes": [
         {
           "name": "GasType",
           "types": ["Class"],
@@ -180,7 +180,7 @@ Response:
 {
   "triples": {
     "emittedThing": {
-      "entities": [
+      "nodes": [
         {
           "name": "CO2 Emissions Per Capita",
           "types": ["StatisticalVariable"],

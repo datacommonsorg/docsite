@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/triples
 
 # /v1/bulk/triples
 
-Get [triples](/glossary.html#triple) for multiple entities.
+Get [triples](/glossary.html#triple) for multiple nodes.
 
 Useful for finding local connections between nodes of the Data Commons knowledge
 graph.
@@ -32,7 +32,7 @@ graph.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/triples/{EDGE_DIRECTION}?entities={entity_dcid_1}&entities={entity_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/triples/{EDGE_DIRECTION}?nodes={node_dcid_1}&nodes={node_dcid_2}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -44,7 +44,7 @@ X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "entities": [
+  "nodes": [
     "{value_1}",
     "{value_2}",
     ...
@@ -60,7 +60,7 @@ JSON Data:
 
 | Name                                                        | Description                                                                                                                                                                                                                                |
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the entity provided. If `out`, returns triples with edges pointing _away_ from the entity provided. |
+| EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the node provided. If `out`, returns triples with edges pointing _away_ from the node provided. |
 {: .doc-table }
 
 ### Query Parameters
@@ -68,7 +68,7 @@ JSON Data:
 | Name                                                  | Type   | Description                                                                                                                                                     |
 | ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.html#dcid) of the entities to query.                                                                                                          |
+| nodes <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                          |
 {: .doc-table }
 
 ## Response
@@ -80,16 +80,16 @@ The response looks like:
   "data":
   [
     {
-      "entity": "entity_dcid_1",
+      "node": "node_dcid_1",
       "triples":
       {
-        "property_of_entity":
+        "property_of_node":
         {
-          "entities":
+          "nodes":
           [
             {
-              "property_of_connected_node_1": "value",
-              "property_of_connected_node_2": "value",
+              "property_1": "value",
+              "property_2": "value",
               ...
             }, ...
           ]
@@ -98,16 +98,16 @@ The response looks like:
       }
     },
     {
-      "entity": "entity_dcid_2",
+      "node": "node_dcid_2",
       "triples":
       {
-        "property_of_entity":
+        "property_of_node":
         {
-          "entities":
+          "nodes":
           [
             {
-              "property_of_connected_node_1": "value",
-              "property_of_connected_node_2": "value",
+              "property_1": "value",
+              "property_2": "value",
               ...
             }, ...
           ]
@@ -123,13 +123,13 @@ The response looks like:
 
 | Name    | Type   | Description                                                                                                                                                                       |
 | ------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| entity  | string | [DCID](/glossary.html#dcid) of the entity queried.                                                                                                                                |
-| triples | object | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the entity queried, and nodes connected to the queried entity via those properties. |
+| node  | string | [DCID](/glossary.html#dcid) of the node queried.                                                                                                                                |
+| triples | object | A nested JSON object containing [DCIDs](/glossary.html#dcid) of both properties that describe the node queried, and nodes connected to the queried node via those properties. |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: Get outgoing triples for multiple entities.
+### Example 1: Get outgoing triples for multiple nodes.
 
 Get triples for the greenhouse gases carbon dioxide (DCID: `CarbonDioxide`) and
 methane (DCID: `Methane`), for edges going _away_ from those nodes.
@@ -144,7 +144,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/triples/out?entities=CarbonDioxide&entities=Methane&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/triples/out?nodes=CarbonDioxide&nodes=Methane&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -159,7 +159,7 @@ Request:
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/triples/out \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":["CarbonDioxide", "Methane"]}'
+--data '{"nodes":["CarbonDioxide", "Methane"]}'
 ```
 {: .example-box-content .scroll}
 
@@ -176,10 +176,10 @@ Response:
 {
   "data": [
     {
-      "entity": "CarbonDioxide",
+      "node": "CarbonDioxide",
       "triples": {
         "description": {
-          "entities": [
+          "nodes": [
             {
               "provenanceId": "dc/5l5zxr1",
               "value": "A colorless gas consisting of a carbon atom covalently double bonded to two oxygen atoms."
@@ -187,7 +187,7 @@ Response:
           ]
         },
         "descriptionUrl": {
-          "entities": [
+          "nodes": [
             {
               "provenanceId": "dc/5l5zxr1",
               "value": "https://en.wikipedia.org/wiki/Carbon_dioxide"
@@ -195,7 +195,7 @@ Response:
           ]
         },
         "name": {
-          "entities": [
+          "nodes": [
             {
               "provenanceId": "dc/5l5zxr1",
               "value": "Carbon Dioxide"
@@ -207,7 +207,7 @@ Response:
           ]
         },
         "provenance": {
-          "entities": [
+          "nodes": [
             {
               "name": "https://datacommons.org",
               "types": ["Provenance"],
@@ -217,7 +217,7 @@ Response:
           ]
         },
         "typeOf": {
-          "entities": [
+          "nodes": [
             {
               "name": "GasType",
               "types": ["Class"],
@@ -235,10 +235,10 @@ Response:
       }
     },
     {
-      "entity": "Methane",
+      "node": "Methane",
       "triples": {
         "isProvisional": {
-          "entities": [
+          "nodes": [
             {
               "name": "True",
               "types": ["Boolean"],
@@ -248,7 +248,7 @@ Response:
           ]
         },
         "name": {
-          "entities": [
+          "nodes": [
             {
               "provenanceId": "dc/5l5zxr1",
               "value": "Methane"
@@ -256,7 +256,7 @@ Response:
           ]
         },
         "provenance": {
-          "entities": [
+          "nodes": [
             {
               "name": "https://datacommons.org",
               "types": ["Provenance"],
@@ -266,7 +266,7 @@ Response:
           ]
         },
         "typeOf": {
-          "entities": [
+          "nodes": [
             {
               "name": "ChemicalCompound",
               "types": ["Class"],
@@ -288,7 +288,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get incoming triples for multiple entities.
+### Example 2: Get incoming triples for multiple nodes.
 
 Get triples for the greenhouse gases carbon dioxide (DCID: `CarbonDioxide`) and
 methane (DCID: `Methane`), for edges going _towards_ those nodes.
@@ -303,7 +303,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/triples/in?entities=geoId/51&entities=CarbonDioxide&entities=Methane&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/triples/in?nodes=geoId/51&nodes=CarbonDioxide&nodes=Methane&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -318,7 +318,7 @@ Request:
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/triples/in \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":["CarbonDioxide", "Methane"]}'
+--data '{"nodes":["CarbonDioxide", "Methane"]}'
 ```
 {: .example-box-content .scroll}
 
@@ -335,10 +335,10 @@ Response:
 {
   "data": [
     {
-      "entity": "CarbonDioxide",
+      "node": "CarbonDioxide",
       "triples": {
         "emittedThing": {
-          "entities": [
+          "nodes": [
             {
               "name": "CO2 Emissions Per Capita",
               "types": ["StatisticalVariable"],
@@ -367,10 +367,10 @@ Response:
       }
     },
     {
-      "entity": "Methane",
+      "node": "Methane",
       "triples": {
         "contaminant": {
-          "entities": [
+          "nodes": [
             {
               "name": "Whether Atmosphere is contaminated with Methane.",
               "types": ["StatisticalVariable"],
@@ -422,7 +422,7 @@ Response:
           ]
         },
         "emittedThing": {
-          "entities": [
+          "nodes": [
             {
               "name": "Annual Amount of Emissions: Non Biogenic Emission Source, Methane",
               "types": ["StatisticalVariable"],
