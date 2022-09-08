@@ -8,13 +8,16 @@ published: false
 permalink: /api/rest/v1/bulk/info/variable
 ---
 
-
-
 ## /v1/bulk/info/variable
 
-Get basic information about multiple [variables](/api/rest/v1/getting_started#variable).
+Get basic information about multiple
+[variables](/api/rest/v1/getting_started#variable).
 
-This API returns basic information on multiple variables, given each of their [DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per variable, and includes the number of entities with data on each variable, the minimum and maximum values observed, and the name and DCID of the top 3 entities with highest observed values for each variable.
+This API returns basic information on multiple variables, given each of their
+[DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per
+variable, and includes the number of entities with data on each variable, the
+minimum and maximum values observed, and the name and DCID of the top 3 entities
+with highest observed values for each variable.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -27,8 +30,6 @@ This API returns basic information on multiple variables, given each of their [D
     For querying a single variable and a simpler output, see the [simple version](/api/rest/v1/info/variable) of this endpoint.
 </div>
 
-
-
 ## Request
 
 <div class="api-tab">
@@ -38,12 +39,11 @@ This API returns basic information on multiple variables, given each of their [D
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
     POST Request
   </button>
-</div> 
+</div>
 
 <div id="GET-request" class="api-tabcontent api-signature"><div class="scroll">
 https://api.datacommons.org/v1/bulk/info/variable?entities={variable_dcid_1}&entities={variable_dcid_2}&key={your_api_key}
 </div></div>
-
 
 <div id="POST-request" class="api-tabcontent api-signature"><div class="scroll">
 URL:
@@ -54,17 +54,18 @@ X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "entities": [
-    "{variable_dcid_1}",
-    "{variable_dcid_2}",
-    ...
-  ]
+  "entities":
+    [
+      "{variable_dcid_1}",
+      "{variable_dcid_2}",
+      ...
+    ]
 }
+
 </div></div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
-
 
 ### Path Parameters
 
@@ -72,10 +73,10 @@ This endpoint has no path parameters.
 
 ### Query Parameters
 
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag> | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for. |
+| Name                                                  | Type   | Description                                                                                                                                                     |
+| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for.                                                                           |
 {: .doc-table }
 
 ## Response
@@ -168,17 +169,18 @@ The response looks like:
 
 ### Response fields
 
-| Name     | Type   | Description                |
-| -------- | ------ | -------------------------- |
-| entity   | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried. |
-| info     | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
+| Name   | Type   | Description                                                                                                                                                                                                                                                                                                                 |
+| ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| entity | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
+| info   | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
 
 ## Examples
 
 ### Example 1: Get information for multiple variables
 
-Get information on the variables for number of farms (DCID: `Count_Farm`) and number of teachers (DCID: `Count_Teacher`).
+Get information on the variables for number of farms (DCID: `Count_Farm`) and
+number of teachers (DCID: `Count_Teacher`).
 
 <div>
 {% tabs example1 %}
@@ -189,16 +191,15 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \ 
+$ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
- 
+
 {% endtab %}
- 
- 
+
 {% tab example1 POST Request %}
- 
+
 Request:
 {: .example-box-title}
 
@@ -209,28 +210,25 @@ $ curl --request POST \
 --data '{"entities":["Count_Farm", "Count_Teacher"]}'
 ```
 {: .example-box-content .scroll}
- 
+
 {% endtab %}
- 
+
 {% endtabs %}
+
 </div>
 
 Response:
 {: .example-box-title}
+
 ```json
 {
-  "data":
-  [
+  "data": [
     {
       "entity": "Count_Farm",
-      "info":
-      {
-        "placeTypeSummary":
-        {
-          "County":
-          {
-            "topPlaces":
-            [
+      "info": {
+        "placeTypeSummary": {
+          "County": {
+            "topPlaces": [
               {
                 "dcid": "geoId/06037",
                 "name": "Los Angeles County"
@@ -248,10 +246,8 @@ Response:
             "minValue": 2,
             "maxValue": 5551
           },
-          "Country":
-          {
-            "topPlaces":
-            [
+          "Country": {
+            "topPlaces": [
               {
                 "dcid": "country/USA",
                 "name": "United States"
@@ -261,10 +257,8 @@ Response:
             "minValue": 2042220,
             "maxValue": 2042220
           },
-          "State":
-          {
-            "topPlaces":
-            [
+          "State": {
+            "topPlaces": [
               {
                 "dcid": "geoId/06",
                 "name": "California"
@@ -283,27 +277,20 @@ Response:
             "maxValue": 248416
           }
         },
-        "provenanceSummary":
-        {
-          "dc/m02b5p":
-          {
+        "provenanceSummary": {
+          "dc/m02b5p": {
             "importName": "USDA_AgricultureCensus",
             "releaseFrequency": "P5Y",
-            "seriesSummary":
-            [
+            "seriesSummary": [
               {
-                "seriesKey":
-                {
+                "seriesKey": {
                   "observationPeriod": "P5Y"
                 },
                 "earliestDate": "2017",
                 "latestDate": "2017",
-                "placeTypeSummary":
-                {
-                  "Country":
-                  {
-                    "topPlaces":
-                    [
+                "placeTypeSummary": {
+                  "Country": {
+                    "topPlaces": [
                       {
                         "dcid": "country/USA",
                         "name": "United States"
@@ -313,10 +300,8 @@ Response:
                     "minValue": 2042220,
                     "maxValue": 2042220
                   },
-                  "State":
-                  {
-                    "topPlaces":
-                    [
+                  "State": {
+                    "topPlaces": [
                       {
                         "dcid": "geoId/06",
                         "name": "California"
@@ -334,10 +319,8 @@ Response:
                     "minValue": 990,
                     "maxValue": 248416
                   },
-                  "County":
-                  {
-                    "topPlaces":
-                    [
+                  "County": {
+                    "topPlaces": [
                       {
                         "dcid": "geoId/06037",
                         "name": "Los Angeles County"
@@ -370,14 +353,10 @@ Response:
     },
     {
       "entity": "Count_Teacher",
-      "info":
-      {
-        "placeTypeSummary":
-        {
-          "SchoolDistrict":
-          {
-            "topPlaces":
-            [
+      "info": {
+        "placeTypeSummary": {
+          "SchoolDistrict": {
+            "topPlaces": [
               {
                 "dcid": "geoId/sch3620580",
                 "name": "New York City Department Of Education"
@@ -394,10 +373,8 @@ Response:
             "placeCount": 18952,
             "maxValue": 28769.06
           },
-          "School":
-          {
-            "topPlaces":
-            [
+          "School": {
+            "topPlaces": [
               {
                 "dcid": "nces/568025400549"
               },
@@ -414,25 +391,18 @@ Response:
             "maxValue": 1702
           }
         },
-        "provenanceSummary":
-        {
-          "dc/mzy8we":
-          {
+        "provenanceSummary": {
+          "dc/mzy8we": {
             "importName": "K12",
             "releaseFrequency": "P1Y",
-            "seriesSummary":
-            [
+            "seriesSummary": [
               {
-                "seriesKey":
-                {},
+                "seriesKey": {},
                 "earliestDate": "2011",
                 "latestDate": "2016",
-                "placeTypeSummary":
-                {
-                  "SchoolDistrict":
-                  {
-                    "topPlaces":
-                    [
+                "placeTypeSummary": {
+                  "SchoolDistrict": {
+                    "topPlaces": [
                       {
                         "dcid": "geoId/sch3620580",
                         "name": "New York City Department Of Education"
@@ -449,10 +419,8 @@ Response:
                     "placeCount": 18952,
                     "maxValue": 28769.06
                   },
-                  "School":
-                  {
-                    "topPlaces":
-                    [
+                  "School": {
+                    "topPlaces": [
                       {
                         "dcid": "nces/568025400549"
                       },

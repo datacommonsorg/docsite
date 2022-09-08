@@ -7,15 +7,18 @@ grand_parent: API
 published: false
 permalink: /api/rest/v1/info/variable
 ---
- 
- 
- 
+
 ## /v1/info/variable
- 
+
 Get basic information about a [variable](/api/rest/v1/getting_started#variable).
- 
-This API returns basic information on a variable, given the variable's [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the number of entities that have data for the variable, the minimum and maximum value observed, and the name and DCID of the top 3 entities with highest observed values for that variable. The information is grouped by place type (country, state, county, etc.).
- 
+
+This API returns basic information on a variable, given the variable's
+[DCID](/api/rest/v1/getting_started#dcid). The information provided includes the
+number of entities that have data for the variable, the minimum and maximum
+value observed, and the name and DCID of the top 3 entities with highest
+observed values for that variable. The information is grouped by place type
+(country, state, county, etc.).
+
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
    To explore variables available in the Data Commons knowledge graph, take a look at the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
@@ -26,10 +29,9 @@ This API returns basic information on a variable, given the variable's [DCID](/a
    To get information on a place instead of a variable, see [/v1/info/place](/api/rest/v1/info/place).<br />
    For querying multiple variables, see the [bulk version](/api/rest/v1/bulk/info/variable) of this endpoint.
 </div>
- 
- 
- 
+
 ## Request
+
 GET Request
 {: .api-header}
 
@@ -39,25 +41,24 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}?key={your_api_key}
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 
- 
 ### Path Parameters
- 
-| Name                                                | Description                   |
-| --------------------------------------------------- | ----------------------------- |
+
+| Name                                                       | Description                                                                         |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query information for. |
 {: .doc-table}
- 
+
 ### Query Parameters
- 
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
+
+| Name                                             | Type   | Description                                                                                                                                                     |
+| ------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 {: .doc-table }
- 
+
 ## Response
- 
+
 The response looks like:
- 
+
 ```json
 {
   "entity": "dcid",
@@ -105,31 +106,34 @@ The response looks like:
 }
 ```
 {: .response-signature .scroll}
- 
+
 ### Response fields
- 
-| Name     | Type   | Description                |
-| -------- | ------ | -------------------------- |
-| entity   | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried. |
-| info     | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
+
+| Name   | Type   | Description                                                                                                                                                                                                                                                                                                                 |
+| ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| entity | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
+| info   | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
- 
+
 ## Examples
- 
+
 ### Example 1: Get information on a single variable
- 
-Get basic information about the variable for number of farms (DCID: `Count_Farm`). 
- 
-Request:
+
+Get basic information about the variable for number of farms (DCID:
+`Count_Farm`).
+
+Request: 
 {: .example-box-title}
+
 ```bash
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/info/variable/Count_Farm?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
- 
+
 Response:
 {: .example-box-title}
+
 ```json
 {
   "entity": "Count_Farm",
