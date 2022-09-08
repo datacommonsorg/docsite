@@ -10,7 +10,7 @@ permalink: /api/rest/v1/variables
 
 # /v1/variables
 
-Get all [variables](/glossary.html#variable) associated with a specific entity.
+Get all [variables](/glossary.html#variable) with data associated with a specific entity.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
