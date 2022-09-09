@@ -77,8 +77,8 @@ This endpoint has no path parameters.
 | Name                                                              | Type            | Description                                                                                                                                                     |
 | ----------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| constrained_entities <br /> <required-tag>Required</required-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
 | nodes <br /> <optional-tag>Optional</optional-tag>                | string          | [DCIDs](/glossary.html#dcid) of the variable groups to query information for.                                                                     |
-| constrained_entities <br /> <optional-tag>Required</optional-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
 {: .doc-table }
 
 ## Response

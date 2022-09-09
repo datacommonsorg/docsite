@@ -22,6 +22,10 @@ with their information and the number of descendent variables.
    Variable group is used in the statistical variable hierarchy UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
 
+<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+   <span class="material-icons md-16">info </span><b>See Also:</b><br />
+   For querying multiple variables groups, see the [bulk version](/api/rest/v1/bulk/info/variable-group) of this endpoint.
+</div>
 ## Request
 
 GET Request
