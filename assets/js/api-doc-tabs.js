@@ -1,5 +1,5 @@
 /**
- * Custom tabs for v1 REST API documentation pages.
+ * Custom tabs for REST (v1) API documentation pages.
  *
  * See api/rest/v1/rest_bulk_api_template.md for an example of where this code
  * is used.

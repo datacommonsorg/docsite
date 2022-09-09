@@ -5,6 +5,7 @@
 */
 
 $api-tag-blue: #0e84b5;
+$api-tag-green: #5cb85c;
 $api-titlebar-color: #f1f1f1;
 $code-font-size: 0.8em;
 $code-background-color: #f5f6fa;
@@ -56,6 +57,16 @@ optional-tag {
   background-color: white;
   border: 1px solid $api-tag-blue;
   color: $api-tag-blue;
+}
+
+/** "Bulk" label for the index page */
+
+bulk-tag {
+  @extend %param-tag;
+  background-color: $api-tag-green;
+  color: white;
+  font-weight: normal;
+  letter-spacing: normal;
 }
 
 /** Custom syntax highlighting */

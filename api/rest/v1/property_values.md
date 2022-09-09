@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Property Values
-nav_order: 6
-parent: v1 REST
+nav_order: 3
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/property/values

@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Observation (series)
-nav_order: 4
-parent: v1 REST
+title: Series of Observations
+nav_order: 10
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/observations/series

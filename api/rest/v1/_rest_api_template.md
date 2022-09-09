@@ -2,7 +2,7 @@
 layout: default
 title: REST API Page Template
 nav_order: 999
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/end/point

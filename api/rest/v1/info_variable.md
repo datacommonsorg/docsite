@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Info of a variable
-nav_order: 2
-parent: v1 REST
+title: Variable Info
+nav_order: 6
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/info/variable

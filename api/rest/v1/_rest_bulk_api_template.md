@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Rest API Bulk Page Template
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/bulk/end/point

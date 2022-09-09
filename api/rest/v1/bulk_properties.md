@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Properties
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 nav_exclude: true
 published: false

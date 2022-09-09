@@ -2,7 +2,7 @@
 layout: default
 title: Property Values
 nav_exclude: true
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/bulk/property/values

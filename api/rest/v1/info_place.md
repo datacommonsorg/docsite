@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Info of a place
-nav_order: 1
-parent: v1 REST
+title: Place Info
+nav_order: 5
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/info/place

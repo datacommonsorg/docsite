@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Info of a place
+title: Place Info
 nav_exclude: true
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/bulk/info/place

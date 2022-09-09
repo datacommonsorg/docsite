@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Observation (single value)
-nav_order: 3
-parent: v1 REST
+title: Single Observation
+nav_order: 8
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/observations/point
