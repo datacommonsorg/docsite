@@ -8,7 +8,7 @@ grand_parent: API
 
 # Get a node's name
 
-Given a cell or a column range of cells with [DCIDs](/glossary.md) (unique identifiers for all entities in the Data Commons knowledge graph), return the names associated with the given DCIDs.
+Given a cell or a column range of cells with [DCIDs](/glossary.html#dcid) (unique identifiers for all entities in the Data Commons knowledge graph), return the names associated with the given DCIDs.
 
 ## General information about this formula
 
