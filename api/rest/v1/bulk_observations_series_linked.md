@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/observations/series/linked
 
 # /v1/bulk/observations/series/linked
 
-Returns [observations](/glossary.html#observation) of a specific [variable](/glossary.html#variable) for entities linked to a parent entity by the same property.
+Returns [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) for entities linked to a parent entity by the same property.
 
 This is useful for retrieving observations for all places within a parent place. For example, this could be getting the population of women for all states in the United States.
 
@@ -71,6 +71,7 @@ There are no path parameters for this endpoint.
 | entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Graph Browser page on Place](https://datacommons.org/browser/Place). |
 | variables <br /> <requried-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the [variables](/glossary.html#variables) to query. |
 | linked_property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
+| all_facets <br /><optional-tag>Optional</optional-tag> | boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.|
 {: .doc-table }
 
 ## Response
