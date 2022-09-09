@@ -53,14 +53,17 @@ Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
+
+```json
 {
-"nodes":
-[
-"{variable_dcid_1}",
-"{variable_dcid_2}",
-...
-]
+  "nodes":
+  [
+    "{variable_dcid_1}",
+    "{variable_dcid_2}",
+    ...
+  ]
 }
+```
 
 </div></div>
 
