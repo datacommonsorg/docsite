@@ -50,7 +50,6 @@ Methods for exploring the graph around a set of nodes.
 | Properties [bulk]               | [/v1/bulk/properties](/api/rest/v1/bulk/properties)                               | Get all properties for multiple nodes.                                         |
 | Property values [bulk]          | [/v1/bulk/property/values](/api/rest/v1/bulk/property/values)                     | Get property values for multiple properties and multiple nodes                 |
 | Property Values (linked) [bulk] | [/v1/bulk/property/values/in/linked](/api/rest/v1/bulk/property/values/in/linked) | Get all places of a specific type for mulitple parent places                   |
-
 {: .main}
 
 ### Node Information
@@ -79,7 +78,6 @@ Methods for retrieving statistical observations associated with a set of entitie
 | Observation (single value) [bulk]   | [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point)                 | Get a single value from a time-series variables for multiple entities |
 | Observation (series) [bulk]         | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                   |
 | Observation (series, linked) [bulk] | [/v1/bulk/observations/series/linked](/api/rest/v1/bulk/observations/series/linked) | Get all values from a variable for all places in a parent place       |
-
 {: .main}
 
 ### Statistical Variable
@@ -90,5 +88,4 @@ Methods for retrieving statistical variable related data
 | ---------------- | ------------------------------------------------- | --------------------------------------------------- |
 | Variables        | [/v1/variables](/api/rest/v1/variables)           | Get all variables associated with a specific entity |
 | Variables [bulk] | [/v1/bulk/variables](/api/rest/v1/bulk/variables) | Get all variables available for multiple entities   |
-
 {: .main}
