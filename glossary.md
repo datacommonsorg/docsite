@@ -11,11 +11,10 @@ published: true
 This page contains a selection of key terms important to understanding the structure of data within Data Commons.
 
 ## Term List
-
 {: .no_toc}
 
-- TOC
-  {:toc}
+* TOC
+{:toc}
 
 ### [Cohort](https://datacommons.org/browser/CohortSet)
 

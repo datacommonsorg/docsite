@@ -14,8 +14,8 @@ Welcome! Whether you're new to Data Commons or are just looking for a refresher,
 
 Use the links below to jump to any section:
 
-- TOC
-  {:toc}
+* TOC
+{:toc}
 
 ## What is a REST API?
 

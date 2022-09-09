@@ -77,7 +77,6 @@ This endpoint has no path parameters.
 | -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for.                                                                           |
-
 {: .doc-table }
 
 ## Response
@@ -166,7 +165,6 @@ The response looks like:
   ]
 }
 ```
-
 {: .response-signature .scroll}
 
 ### Response fields
@@ -175,7 +173,6 @@ The response looks like:
 | ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
 | info | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
-
 {: .doc-table}
 
 ## Examples
@@ -197,7 +194,6 @@ Request:
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/info/variable?nodes=Count_Farm&nodes=Count_Teacher&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
-
 {: .example-box-content .scroll}
 
 {% endtab %}
@@ -213,7 +209,6 @@ $ curl --request POST \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
 --data '{"nodes":["Count_Farm", "Count_Teacher"]}'
 ```
-
 {: .example-box-content .scroll}
 
 {% endtab %}
@@ -456,5 +451,4 @@ Response:
   ]
 }
 ```
-
 {: .example-box-content .scroll}

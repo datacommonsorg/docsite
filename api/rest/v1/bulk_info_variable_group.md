@@ -12,15 +12,15 @@ permalink: /api/rest/v1/bulk/info/variable-group
 
 Get basic information about multiple [variable groups](/api/rest/v1/getting_started#variable-group).
 
-This API returns basic information on muliple variable groups, given the variable grouops'
+This API returns basic information on muliple variable groups, given the variable groups'
 [DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per variable group, and includes the
 display name, a list of child variables with their information, a list of child variable groups
-with their information and the number of descendent variables. If varible groups DCIDs are not provide, then
+with their information and the number of descendent variables. If variable groups DCIDs are not provided, then
 all the variable group information will be retrieved.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
-   Variable group is used in the statistical variable hierarch UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+   Variable group is used in the statistical variable hierarchy UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
@@ -51,14 +51,17 @@ Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
+
+```json
 {
-"nodes":
-[
-"{variable_group_dcid_1}",
-"{variable_group_dcid_2}",
-...
-]
+  "nodes":
+  [
+    "{variable_group_dcid_1}",
+    "{variable_group_dcid_2}",
+    ...
+  ]
 }
+```
 
 </div></div>
 
@@ -76,7 +79,6 @@ This endpoint has no path parameters.
 | key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <optional-tag>Optional</optional-tag>                | string          | [DCIDs](/api/rest/v1/getting_started#dcid) of the variable groups to query information for.                                                                     |
 | constrained_entities <br /> <optional-tag>Required</optional-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
-
 {: .doc-table }
 
 ## Response
@@ -127,7 +129,6 @@ The response looks like:
 
 }
 ```
-
 {: .response-signature .scroll}
 
 ### Response fields
@@ -136,7 +137,6 @@ The response looks like:
 | ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable group queried.                                                                                                  |
 | info | object | Information about the variable group queried. Includes child variables and variable group information, number of descendent variables and all the parent variable groups. |
-
 {: .doc-table}
 
 ## Examples
@@ -150,7 +150,6 @@ Request:
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/info/variable-group?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
@@ -194,5 +193,4 @@ Response:
   ]
 }
 ```
-
 {: .example-box-content .scroll}

@@ -12,14 +12,14 @@ permalink: /api/rest/v1/info/variable-group
 
 Get basic information about a [variable group](/api/rest/v1/getting_started#variable-group).
 
-This API returns basic information of a variable group, given the variable grouop's
+This API returns basic information of a variable group, given the variable group's
 [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the
 display name, a list of child variables with their information, a list of child variable groups
 with their information and the number of descendent variables.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
-   Variable group is used in the statistical variable hierarch UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+   Variable group is used in the statistical variable hierarchy UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
 
 ## Request
@@ -38,7 +38,6 @@ https://api.datacommons.org/v1/info/variable-group/{VARIABLE_GROUP_DCID}?key={yo
 | Name                                                             | Description                                                                               |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | VARIABLE_GROUP_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable group to query information for. |
-
 {: .doc-table}
 
 ### Query Parameters
@@ -47,7 +46,6 @@ https://api.datacommons.org/v1/info/variable-group/{VARIABLE_GROUP_DCID}?key={yo
 | ----------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | constrained_entities <br /> <optional-tag>Required</optional-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
-
 {: .doc-table }
 
 ## Response
@@ -87,7 +85,6 @@ The response looks like:
   }
 }
 ```
-
 {: .response-signature .scroll}
 
 ### Response fields
@@ -96,7 +93,6 @@ The response looks like:
 | ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable group queried.                                                                                                  |
 | info | object | Information about the variable group queried. Includes child variables and variable group information, number of descendent variables and all the parent variable groups. |
-
 {: .doc-table}
 
 ## Examples
@@ -113,7 +109,6 @@ Request:
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/info/variable-group/dc/g/Person_Gender-Female?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
@@ -152,5 +147,4 @@ Response:
   }
 }
 ```
-
 {: .example-box-content .scroll}
