@@ -159,6 +159,54 @@ We've provided a trial API key for general public use. This key will let you try
 
 <b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
 
+### Pagination
+{: #pagination}
+
+When the response to a request is too long, the returned payload is
+**paginated**. Only a subset of the response is returned, along with a long string
+of characters called a **token**. To get the next set of entries, repeat the
+request with `nextToken` as an query parameter, with the token as its value.
+
+For example, the request:
+
+```bash
+ $ curl --request GET \
+   `https://api.datacommons.org/v1/triple/in/geoId/06`
+```
+
+will return something like:
+
+```json
+{
+  "triples": {
+    < ... output truncated for brevity ...>
+    "name":"Business Fire 2014 (472130)",
+    "types":["WildlandFireEvent"],
+    "dcid":"fire/imsrBusinessFire2014472130",
+    "provenanceId":"dc/y6lf8n",
+  },
+  "nextToken":"SoME_veRy_L0ng_S+rIng"
+}
+```
+
+To get the next set of entries, use the command:
+
+```bash
+ $ curl --request GET \
+   `https://api.datacommons.org/v1/triple/in/geoId/06?nextToken=SoME_veRy_L0ng_S+rIng`
+```
+
+Similarly for POST requests, this would look like:
+
+```bash
+$ curl --request POST \
+--url https://api.datacommons.org/v1/bulk/triples/in \
+--data {
+  "entities": "geoId/06"
+  "nextToken": "SoME_veRy_L0ng_S+rIng"
+}
+```
+
 ## Troubleshooting
 
 ### Common Error Responses

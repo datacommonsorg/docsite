@@ -8,7 +8,7 @@ published: false
 permalink: /api/rest/v1/info/variable-group
 ---
 
-## /v1/info/variable-group
+# /v1/info/variable-group
 
 Get basic information about a [variable group](/glossary.html#variable-group).
 
@@ -22,6 +22,10 @@ with their information and the number of descendent variables.
    Variable group is used in the statistical variable hierarchy UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
 
+<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+   <span class="material-icons md-16">info </span><b>See Also:</b><br />
+   For querying multiple variables groups, see the [bulk version](/api/rest/v1/bulk/info/variable-group) of this endpoint.
+</div>
 ## Request
 
 GET Request
@@ -42,10 +46,10 @@ https://api.datacommons.org/v1/info/variable-group/{VARIABLE_GROUP_DCID}?key={yo
 
 ### Query Parameters
 
-| Name                                                              | Type            | Description                                                                                                                                                     |
-| ----------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| constrained_entities <br /> <optional-tag>Required</optional-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
+| Name                                                              | Type            | Description                                                                                                                                                                                                 |
+| ----------------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key.                                             |
+| constrained_entities <br /> <optional-tag>Optional</optional-tag> | Repeated string | [DCIDs](/glossary.html#dcid) of entities to filter by. If provided, the results will be filtered to only include the queried variable group's descendent variables that have data for the queried entities. |
 {: .doc-table }
 
 ## Response
