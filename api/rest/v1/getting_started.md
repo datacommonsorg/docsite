@@ -203,7 +203,7 @@ Similarly for POST requests, this would look like:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/triples/in \
---data {'
+--data '{
   "entities": "geoId/06",
   "nextToken": "SoME_veRy_L0ng_S+rIng"
 }'
