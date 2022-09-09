@@ -33,7 +33,7 @@ https://api.datacommons.org
 ## Simple vs Bulk Query
 
 Some APIs have bulk version, designed for handling multiple queries at a time,
-with more detailed output.
+with more detailed output. Bulk endpoints are tagged with <bulk-tag>bulk</bulk-tag> below.
 
 ### Local Graph Exploration
 
@@ -46,10 +46,10 @@ Methods for exploring the graph around a set of nodes.
 | Property Values                 | [/v1/property/values/](/api/rest/v1/property/values)                              | Get the value for a property of a specific node                                |
 | Property Values (linked)        | [/v1/property/values/in/linked](/api/rest/v1/property/values/in/linked)           | Get all places of a specific type contained in a parent place                  |
 |                                 |                                                                                   |                                                                                |
-| Triples [bulk]                  | [/v1/bulk/triples](/api/rest/v1/bulk/triples)                                     | Get neighboring nodes and edge labels for multiple nodes                       |
-| Properties [bulk]               | [/v1/bulk/properties](/api/rest/v1/bulk/properties)                               | Get all properties for multiple nodes.                                         |
-| Property values [bulk]          | [/v1/bulk/property/values](/api/rest/v1/bulk/property/values)                     | Get property values for multiple properties and multiple nodes                 |
-| Property Values (linked) [bulk] | [/v1/bulk/property/values/in/linked](/api/rest/v1/bulk/property/values/in/linked) | Get all places of a specific type for mulitple parent places                   |
+| Triples <bulk-tag>bulk</bulk-tag>                  | [/v1/bulk/triples](/api/rest/v1/bulk/triples)                                     | Get neighboring nodes and edge labels for multiple nodes                       |
+| Properties <bulk-tag>bulk</bulk-tag>               | [/v1/bulk/properties](/api/rest/v1/bulk/properties)                               | Get all properties for multiple nodes.                                         |
+| Property values <bulk-tag>bulk</bulk-tag>          | [/v1/bulk/property/values](/api/rest/v1/bulk/property/values)                     | Get property values for multiple properties and multiple nodes                 |
+| Property Values (linked) <bulk-tag>bulk</bulk-tag> | [/v1/bulk/property/values/in/linked](/api/rest/v1/bulk/property/values/in/linked) | Get all places of a specific type for mulitple parent places                   |
 {: .main}
 
 ### Node Information
@@ -62,9 +62,9 @@ Methods for retrieving information of certain types of nodes.
 | Variable Info              | [/v1/info/variable](/api/rest/v1/info/variable)                       | Get information about a variable               |
 | Variable Group Info        | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
 |                            |                                                                       |                                                |
-| Place Info [bulk]          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
-| Variable Info [bulk]       | [/v1/bulk/info/variables](/api/rest/v1/bulk/info/variables)           | Get information about multiple variables       |
-| Variable Group Info [bulk] | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
+| Place Info <bulk-tag>bulk</bulk-tag>          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
+| Variable Info <bulk-tag>bulk</bulk-tag>       | [/v1/bulk/info/variables](/api/rest/v1/bulk/info/variables)           | Get information about multiple variables       |
+| Variable Group Info <bulk-tag>bulk</bulk-tag> | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
 
 ### Statistical Observations
 
@@ -75,9 +75,9 @@ Methods for retrieving statistical observations associated with a set of entitie
 | Observation (single value)          | [/v1/observations/point](/api/rest/v1/observations/point)                           | Get a single value from a time-series variable for a specific entity  |
 | Observation (series)                | [/v1/observations/series](/api/rest/v1/observations/series)                         | Get all values from a variable for a specific entity                  |
 |                                     |                                                                                     |                                                                       |
-| Observation (single value) [bulk]   | [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point)                 | Get a single value from a time-series variables for multiple entities |
-| Observation (series) [bulk]         | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                   |
-| Observation (series, linked) [bulk] | [/v1/bulk/observations/series/linked](/api/rest/v1/bulk/observations/series/linked) | Get all values from a variable for all places in a parent place       |
+| Observation (single value) <bulk-tag>bulk</bulk-tag>   | [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point)                 | Get a single value from a time-series variables for multiple entities |
+| Observation (series) <bulk-tag>bulk</bulk-tag>         | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                   |
+| Observation (series, linked) <bulk-tag>bulk</bulk-tag> | [/v1/bulk/observations/series/linked](/api/rest/v1/bulk/observations/series/linked) | Get all values from a variable for all places in a parent place       |
 {: .main}
 
 ### Statistical Variable
@@ -87,5 +87,5 @@ Methods for retrieving statistical variable related data
 | API              | URI                                               | Description                                         |
 | ---------------- | ------------------------------------------------- | --------------------------------------------------- |
 | Variables        | [/v1/variables](/api/rest/v1/variables)           | Get all variables associated with a specific entity |
-| Variables [bulk] | [/v1/bulk/variables](/api/rest/v1/bulk/variables) | Get all variables available for multiple entities   |
+| Variables <bulk-tag>bulk</bulk-tag> | [/v1/bulk/variables](/api/rest/v1/bulk/variables) | Get all variables available for multiple entities   |
 {: .main}
