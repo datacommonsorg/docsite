@@ -11,10 +11,10 @@ permalink: /api/rest/v1/bulk/info/variable
 ## /v1/bulk/info/variable
 
 Get basic information about multiple
-[variables](/api/rest/v1/getting_started#variable).
+[variables](/glossary.md#variable).
 
 This API returns basic information on multiple variables, given each of their
-[DCIDs](/api/rest/v1/getting_started#dcid). The information is provided per
+[DCIDs](/glossary.md#dcid). The information is provided per
 variable, and includes the number of entities with data on each variable, the
 minimum and maximum values observed, and the name and DCID of the top 3 entities
 with highest observed values for each variable.
@@ -79,7 +79,7 @@ This endpoint has no path parameters.
 | Name                                               | Type   | Description                                                                                                                                                     |
 | -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for.                                                                           |
+| nodes <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.md#dcid) of the variables to query information for.                                                                           |
 {: .doc-table }
 
 ## Response
@@ -174,7 +174,7 @@ The response looks like:
 
 | Name | Type   | Description                                                                                                                                                                                                                                                                                                                 |
 | ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
+| node | string | [DCID](/glossary.md#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
 | info | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
 

@@ -12,7 +12,7 @@ permalink: /api/rest/v1/bulk/info/place
 
 ## /v1/bulk/info/place
 
-Get basic information about multiple [places](/api/rest/v1/getting_started#place).
+Get basic information about multiple [places](/glossary.md#place).
 
 This API returns basic information on multiple places, given each of their DCIDs. The information provided is per place, and includes the place's name, type (city, state, country, etc.), as well as information on all parent places that contain the place queried.
 
@@ -38,7 +38,7 @@ This API returns basic information on multiple places, given each of their DCIDs
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
     POST Request
   </button>
-</div> 
+</div>
 
 <div id="GET-request" class="api-tabcontent api-signature"><div class="scroll">
 https://api.datacommons.org/v1/bulk/info/place?entities={place_dcid_1}&entities={place_dcid_2}&key={your_api_key}
@@ -75,7 +75,7 @@ This endpoint has no path parameters.
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag> | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the places to query information for. |
+| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.md#dcid) of the places to query information for. |
 {: .doc-table }
 
 ## Response
@@ -119,7 +119,7 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| entity   | string | [DCID](/api/rest/v1/getting_started#dcid) of the places queried. |
+| entity   | string | [DCID](/glossary.md#dcid) of the places queried. |
 | info     | object | Information about the place queried. Includes the name and type (city, state, country, etc.) of the place, as well as those of all "parent" places that contain the place queried (e.g. North America is a parent place of the United States). |
 {: .doc-table}
 
@@ -131,22 +131,22 @@ Get information on the US states of California (DCID: `geoId/06`) and Alaska (DC
 
 <div>
 {% tabs example1 %}
- 
+
 {% tab example1 GET Request %}
- 
+
 Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \ 
+$ curl --request GET --url \
 'https://api.datacommons.org/v1/bulk/info/place?entities=geoId/06&entities=geoId/06&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
- 
+
 {% endtab %}
- 
+
 {% tab example1 POST Request %}
- 
+
 Request:
 {: .example-box-title}
 
@@ -157,9 +157,9 @@ $ curl --request POST \
 --data '{"entities":["geoId/06", "geoId/02"]}'
 ```
 {: .example-box-content .scroll}
- 
+
 {% endtab %}
- 
+
 {% endtabs %}
 </div>
 
