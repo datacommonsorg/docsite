@@ -56,15 +56,15 @@ Methods for exploring the graph around a set of nodes.
 
 Methods for retrieving information of certain types of nodes.
 
-| API                        | URI                                                         | Description                                    |
-| -------------------------- | ----------------------------------------------------------- | ---------------------------------------------- |
-| Place Info                 | [/v1/info/place](/api/rest/v1/info/place)                   | Get information about a place                  |
-| Variable Info              | [/v1/info/variable](/api/rest/v1/info/variable)             | Get information about a variable               |
-| Variable Group Info        | [/v1/info/variable-group](/api/rest/v1/info/variable-group) | Get information about a variable group         |
-|                            |                                                             |                                                |
-| Place Info [bulk]          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)         | Get information about multiple places          |
-| Variable Info [bulk]       | [/v1/bulk/info/variables](/api/rest/v1/bulk/info/variables) | Get information about multiple variables       |
-| Variable Group Info [bulk] | [/v1/info/variable-group](/api/rest/v1/info/variable-group) | Get information about multiple variable groups |
+| API                        | URI                                                                   | Description                                    |
+| -------------------------- | --------------------------------------------------------------------- | ---------------------------------------------- |
+| Place Info                 | [/v1/info/place](/api/rest/v1/info/place)                             | Get information about a place                  |
+| Variable Info              | [/v1/info/variable](/api/rest/v1/info/variable)                       | Get information about a variable               |
+| Variable Group Info        | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
+|                            |                                                                       |                                                |
+| Place Info [bulk]          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
+| Variable Info [bulk]       | [/v1/bulk/info/variables](/api/rest/v1/bulk/info/variables)           | Get information about multiple variables       |
+| Variable Group Info [bulk] | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
 
 ### Statistical Observations
 
