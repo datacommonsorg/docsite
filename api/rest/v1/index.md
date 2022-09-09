@@ -63,7 +63,7 @@ Methods for retrieving information of certain types of nodes.
 | Variable Group Info        | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
 |                            |                                                                       |                                                |
 | Place Info <bulk-tag>bulk</bulk-tag>          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
-| Variable Info <bulk-tag>bulk</bulk-tag>       | [/v1/bulk/info/variables](/api/rest/v1/bulk/info/variables)           | Get information about multiple variables       |
+| Variable Info <bulk-tag>bulk</bulk-tag>       | [/v1/bulk/info/variable](/api/rest/v1/bulk/info/variable)           | Get information about multiple variables       |
 | Variable Group Info <bulk-tag>bulk</bulk-tag> | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
 
 ### Statistical Observations
