@@ -42,7 +42,7 @@ with highest observed values for each variable.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature"><div class="scroll">
-https://api.datacommons.org/v1/bulk/info/variable?entities={variable_dcid_1}&entities={variable_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/info/variable?nodes={variable_dcid_1}&nodes={variable_dcid_2}&key={your_api_key}
 </div></div>
 
 <div id="POST-request" class="api-tabcontent api-signature"><div class="scroll">
@@ -53,14 +53,17 @@ Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
+
+```json
 {
-  "entities":
-    [
-      "{variable_dcid_1}",
-      "{variable_dcid_2}",
-      ...
-    ]
+  "nodes":
+  [
+    "{variable_dcid_1}",
+    "{variable_dcid_2}",
+    ...
+  ]
 }
+```
 
 </div></div>
 
@@ -73,10 +76,10 @@ This endpoint has no path parameters.
 
 ### Query Parameters
 
-| Name                                                  | Type   | Description                                                                                                                                                     |
-| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for.                                                                           |
+| Name                                               | Type   | Description                                                                                                                                                     |
+| -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| nodes <br /> <required-tag>Required</required-tag> | string | [DCIDs](/api/rest/v1/getting_started#dcid) of the variables to query information for.                                                                           |
 {: .doc-table }
 
 ## Response
@@ -88,7 +91,7 @@ The response looks like:
   "data":
   [
     {
-      "entity": "Variable_1_DCID",
+      "node": "Variable_1_DCID",
       "info":
       {
         "placeTypeSummary":
@@ -159,7 +162,7 @@ The response looks like:
       },
     },
     {
-      "entity": "Variable_2_DCID",
+      "node": "Variable_2_DCID",
       "info": {...}
     }, ...
   ]
@@ -169,10 +172,10 @@ The response looks like:
 
 ### Response fields
 
-| Name   | Type   | Description                                                                                                                                                                                                                                                                                                                 |
-| ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| entity | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
-| info   | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
+| Name | Type   | Description                                                                                                                                                                                                                                                                                                                 |
+| ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
+| info | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
 
 ## Examples
@@ -184,15 +187,15 @@ number of teachers (DCID: `Count_Teacher`).
 
 <div>
 {% tabs example1 %}
- 
+
 {% tab example1 GET Request %}
- 
+
 Request:
 {: .example-box-title}
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/info/variable?entities=Count_Farm&entities=Count_Teacher&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/info/variable?nodes=Count_Farm&nodes=Count_Teacher&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -207,7 +210,7 @@ Request:
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/info/variable \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":["Count_Farm", "Count_Teacher"]}'
+--data '{"nodes":["Count_Farm", "Count_Teacher"]}'
 ```
 {: .example-box-content .scroll}
 
@@ -224,7 +227,7 @@ Response:
 {
   "data": [
     {
-      "entity": "Count_Farm",
+      "node": "Count_Farm",
       "info": {
         "placeTypeSummary": {
           "County": {
@@ -352,7 +355,7 @@ Response:
       }
     },
     {
-      "entity": "Count_Teacher",
+      "node": "Count_Teacher",
       "info": {
         "placeTypeSummary": {
           "SchoolDistrict": {
