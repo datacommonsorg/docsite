@@ -10,7 +10,7 @@ permalink: /api/rest/v1/info/variable
 
 ## /v1/info/variable
 
-Get basic information about a [variable](/api/rest/v1/getting_started#variable).
+Get basic information about a [variable](/glossary.html#variable).
 
 This API returns basic information on a variable, given the variable's
 [DCID](/api/rest/v1/getting_started#dcid). The information provided includes the
@@ -23,7 +23,7 @@ observed values for that variable. The information is grouped by place type
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
    To explore variables available in the Data Commons knowledge graph, take a look at the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
- 
+
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
    To get information on a place instead of a variable, see [/v1/info/place](/api/rest/v1/info/place).<br />
@@ -46,6 +46,7 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}?key={your_api_key}
 | Name                                                       | Description                                                                         |
 | ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query information for. |
+
 {: .doc-table}
 
 ### Query Parameters
@@ -53,6 +54,7 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}?key={your_api_key}
 | Name                                             | Type   | Description                                                                                                                                                     |
 | ------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+
 {: .doc-table }
 
 ## Response
@@ -61,7 +63,7 @@ The response looks like:
 
 ```json
 {
-  "entity": "dcid",
+  "node": "dcid",
   "info": {
     "placeTypeSummary": {
       "Country/State/City/Etc": {
@@ -105,14 +107,16 @@ The response looks like:
   }
 }
 ```
+
 {: .response-signature .scroll}
 
 ### Response fields
 
-| Name   | Type   | Description                                                                                                                                                                                                                                                                                                                 |
-| ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| entity | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
-| info   | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
+| Name | Type   | Description                                                                                                                                                                                                                                                                                                                 |
+| ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
+| info | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
+
 {: .doc-table}
 
 ## Examples
@@ -122,13 +126,14 @@ The response looks like:
 Get basic information about the variable for number of farms (DCID:
 `Count_Farm`).
 
-Request: 
+Request:
 {: .example-box-title}
 
 ```bash
 $ curl --request GET --url \
 'https://api.datacommons.org/v1/info/variable/Count_Farm?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
+
 {: .example-box-content .scroll}
 
 Response:
@@ -136,7 +141,7 @@ Response:
 
 ```json
 {
-  "entity": "Count_Farm",
+  "node": "Count_Farm",
   "info": {
     "placeTypeSummary": {
       "Country": {
@@ -218,4 +223,5 @@ Response:
   }
 }
 ```
+
 {: .example-box-content .scroll}
