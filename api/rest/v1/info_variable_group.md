@@ -8,7 +8,7 @@ published: false
 permalink: /api/rest/v1/info/variable-group
 ---
 
-## /v1/info/variable-group
+# /v1/info/variable-group
 
 Get basic information about a [variable group](/glossary.html#variable-group).
 
@@ -45,7 +45,7 @@ https://api.datacommons.org/v1/info/variable-group/{VARIABLE_GROUP_DCID}?key={yo
 | Name                                                              | Type            | Description                                                                                                                                                     |
 | ----------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| constrained_entities <br /> <optional-tag>Required</optional-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
+| constrained_entities <br /> <required-tag>Required</required-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
 {: .doc-table }
 
 ## Response

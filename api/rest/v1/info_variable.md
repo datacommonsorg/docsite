@@ -8,7 +8,7 @@ published: false
 permalink: /api/rest/v1/info/variable
 ---
 
-## /v1/info/variable
+# /v1/info/variable
 
 Get basic information about a [variable](/glossary.html#variable).
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Info on a place
+title: Info of a place
 nav_exclude: true
 parent: v1 REST
 grand_parent: API
@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/info/place
 
 
 
-## /v1/bulk/info/place
+# /v1/bulk/info/place
 
 Get basic information about multiple [places](/glossary.html#place).
 

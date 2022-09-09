@@ -8,7 +8,7 @@ published: false
 permalink: /api/rest/v1/bulk/info/variable
 ---
 
-## /v1/bulk/info/variable
+# /v1/bulk/info/variable
 
 Get basic information about multiple
 [variables](/glossary.html#variable).

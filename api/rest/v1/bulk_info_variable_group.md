@@ -8,7 +8,7 @@ published: false
 permalink: /api/rest/v1/bulk/info/variable-group
 ---
 
-## /v1/bulk/info/variable-group
+# /v1/bulk/info/variable-group
 
 Get basic information about multiple [variable groups](/glossary.html#variable-group).
 

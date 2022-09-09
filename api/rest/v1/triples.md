@@ -37,7 +37,6 @@ http://api.datacommons.org/v1/triples/{EDGE_DIRECTION}/{NODE_DCID}?key={api_key}
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | EDGE_DIRECTION <br /> <required-tag>Required</required-tag> | One of `in` or `out`. Denotes direction of edges to get triples for. <br /><br />If `in`, returns triples with edges pointing _toward_ the node provided. If `out`, returns triples with edges pointing _away_ from the node provided. |
 | NODE_DCID <br /> <required-tag>Required</required-tag>    | [DCID](/glossary.html#dcid) of the node to query.                                                                                                                                                                                        |
-
 {: .doc-table }
 
 ### Query Parameters
