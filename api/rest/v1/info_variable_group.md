@@ -10,10 +10,10 @@ permalink: /api/rest/v1/info/variable-group
 
 ## /v1/info/variable-group
 
-Get basic information about a [variable group](/api/rest/v1/getting_started#variable-group).
+Get basic information about a [variable group](/glossary.html#variable-group).
 
 This API returns basic information of a variable group, given the variable group's
-[DCID](/api/rest/v1/getting_started#dcid). The information provided includes the
+[DCID](/glossary.html#dcid). The information provided includes the
 display name, a list of child variables with their information, a list of child variable groups
 with their information and the number of descendent variables.
 
@@ -37,7 +37,7 @@ https://api.datacommons.org/v1/info/variable-group/{VARIABLE_GROUP_DCID}?key={yo
 
 | Name                                                             | Description                                                                               |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| VARIABLE_GROUP_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable group to query information for. |
+| VARIABLE_GROUP_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the variable group to query information for. |
 {: .doc-table}
 
 ### Query Parameters
@@ -91,7 +91,7 @@ The response looks like:
 
 | Name | Type   | Description                                                                                                                                                               |
 | ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable group queried.                                                                                                  |
+| node | string | [DCID](/glossary.html#dcid) of the variable group queried.                                                                                                  |
 | info | object | Information about the variable group queried. Includes child variables and variable group information, number of descendent variables and all the parent variable groups. |
 {: .doc-table}
 

@@ -13,7 +13,7 @@ permalink: /api/rest/v1/info/variable
 Get basic information about a [variable](/glossary.html#variable).
 
 This API returns basic information on a variable, given the variable's
-[DCID](/api/rest/v1/getting_started#dcid). The information provided includes the
+[DCID](/glossary.html#dcid). The information provided includes the
 number of entities that have data for the variable, the minimum and maximum
 value observed, and the name and DCID of the top 3 entities with highest
 observed values for that variable. The information is grouped by place type
@@ -45,7 +45,7 @@ https://api.datacommons.org/v1/info/variable/{VARIABLE_DCID}?key={your_api_key}
 
 | Name                                                       | Description                                                                         |
 | ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/api/rest/v1/getting_started#dcid) of the variable to query information for. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the variable to query information for. |
 {: .doc-table}
 
 ### Query Parameters
@@ -111,7 +111,7 @@ The response looks like:
 
 | Name | Type   | Description                                                                                                                                                                                                                                                                                                                 |
 | ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| node | string | [DCID](/api/rest/v1/getting_started#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
+| node | string | [DCID](/glossary.html#dcid) of the variable queried.                                                                                                                                                                                                                                                          |
 | info | object | Information about the variable queried. Includes maximum and minimum values, and number of places with data on the variable queried, grouped by place type (country-level, state-level, city-level, etc. statistics are grouped together). Also includes information about the provenance of data for the variable queried. |
 {: .doc-table}
 
