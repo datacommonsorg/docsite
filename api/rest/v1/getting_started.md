@@ -180,10 +180,12 @@ will return something like:
 {
   "triples": {
     < ... output truncated for brevity ...>
-    "name":"Business Fire 2014 (472130)",
-    "types":["WildlandFireEvent"],
-    "dcid":"fire/imsrBusinessFire2014472130",
-    "provenanceId":"dc/y6lf8n",
+    {
+      "name":"Business Fire 2014 (472130)",
+      "types":["WildlandFireEvent"],
+      "dcid":"fire/imsrBusinessFire2014472130",
+      "provenanceId":"dc/y6lf8n"
+    }
   },
   "nextToken":"SoME_veRy_L0ng_S+rIng"
 }
@@ -201,10 +203,10 @@ Similarly for POST requests, this would look like:
 ```bash
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/triples/in \
---data {
-  "entities": "geoId/06"
+--data {'
+  "entities": "geoId/06",
   "nextToken": "SoME_veRy_L0ng_S+rIng"
-}
+}'
 ```
 
 ## Troubleshooting
@@ -255,7 +257,7 @@ This is most commonly seen when your request is missing a required path paramete
 
 Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
 
-#### "Could not find field <field> in the type"
+#### "Could not find field \<field\> in the type"
 
 ```json
 {
