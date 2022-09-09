@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Observation (single value)
+title: Single Observation
 nav_exclude: true
 parent: REST (v1)
 grand_parent: API

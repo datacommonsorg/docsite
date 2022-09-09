@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Observation (series, linked)
-nav_order: 4.5
+title: Series of Observations (linked)
+nav_order: 11
 parent: REST (v1)
 grand_parent: API
 published: false

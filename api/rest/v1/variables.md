@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Variables
-nav_order: 8
+nav_order: 12
 parent: REST (v1)
 grand_parent: API
 published: false

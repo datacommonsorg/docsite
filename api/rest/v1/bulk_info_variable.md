@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Info of a variable
+title: Variable Info
 nav_exclude: true
 parent: REST (v1)
 grand_parent: API

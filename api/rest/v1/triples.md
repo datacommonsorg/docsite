@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Triples
-nav_order: 7
+nav_order: 1
 parent: REST (v1)
 grand_parent: API
 published: false
