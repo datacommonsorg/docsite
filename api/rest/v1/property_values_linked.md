@@ -2,7 +2,7 @@
 layout: default
 title: Property Values (linked)
 nav_order: 6.5
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/property/values/in/linked

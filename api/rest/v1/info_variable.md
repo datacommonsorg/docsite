@@ -2,7 +2,7 @@
 layout: default
 title: Info of a variable
 nav_order: 2
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/info/variable

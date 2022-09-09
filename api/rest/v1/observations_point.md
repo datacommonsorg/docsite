@@ -2,7 +2,7 @@
 layout: default
 title: Observation (single value)
 nav_order: 3
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/observations/point

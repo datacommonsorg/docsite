@@ -2,7 +2,7 @@
 layout: default
 title: Triples
 nav_order: 7
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/triples
