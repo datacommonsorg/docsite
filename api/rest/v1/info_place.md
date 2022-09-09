@@ -12,9 +12,9 @@ permalink: /api/rest/v1/info/place
 
 ## /v1/info/place
 
-Get basic information about a [place](/glossary.md#place).
+Get basic information about a [place](/glossary.html#place).
 
-This API returns basic information on a place, given the place's [DCID](/glossary.md#dcid). The information provided includes the place's name, type (city, state, country, etc.), as well as information on all parent places that contain the place queried.
+This API returns basic information on a place, given the place's [DCID](/glossary.html#dcid). The information provided includes the place's name, type (city, state, country, etc.), as well as information on all parent places that contain the place queried.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
@@ -44,7 +44,7 @@ https://api.datacommons.org/v1/info/place/{PLACE_DCID}?key={your_api_key}
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
-| PLACE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.md#dcid) of the place to query information for. |
+| PLACE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the place to query information for. |
 {: .doc-table}
 
 ### Query Parameters
@@ -86,7 +86,7 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| entity   | string | [DCID](/glossary.md#dcid) of the place queried. |
+| entity   | string | [DCID](/glossary.html#dcid) of the place queried. |
 | info     | object | Information about the place queried. Includes the name and type (city, state, country, etc.) of the place, as well as those of all "parent" places that contain the place queried (e.g. North America is a parent place of the United States). |
 {: .doc-table}
 

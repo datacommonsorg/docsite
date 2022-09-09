@@ -10,10 +10,10 @@ permalink: /api/rest/v1/bulk/info/variable-group
 
 ## /v1/bulk/info/variable-group
 
-Get basic information about multiple [variable groups](/glossary.md#variable-group).
+Get basic information about multiple [variable groups](/glossary.html#variable-group).
 
 This API returns basic information on muliple variable groups, given the variable groups'
-[DCIDs](/glossary.md#dcid). The information is provided per variable group, and includes the
+[DCIDs](/glossary.html#dcid). The information is provided per variable group, and includes the
 display name, a list of child variables with their information, a list of child variable groups
 with their information and the number of descendent variables. If variable groups DCIDs are not provided, then
 all the variable group information will be retrieved.
@@ -77,7 +77,7 @@ This endpoint has no path parameters.
 | Name                                                              | Type            | Description                                                                                                                                                     |
 | ----------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>                  | string          | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <optional-tag>Optional</optional-tag>                | string          | [DCIDs](/glossary.md#dcid) of the variable groups to query information for.                                                                     |
+| nodes <br /> <optional-tag>Optional</optional-tag>                | string          | [DCIDs](/glossary.html#dcid) of the variable groups to query information for.                                                                     |
 | constrained_entities <br /> <optional-tag>Required</optional-tag> | Repeated string | Entities that the queried variable group's descendent variables have data for.                                                                                  |
 {: .doc-table }
 
@@ -135,7 +135,7 @@ The response looks like:
 
 | Name | Type   | Description                                                                                                                                                               |
 | ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| node | string | [DCID](/glossary.md#dcid) of the variable group queried.                                                                                                  |
+| node | string | [DCID](/glossary.html#dcid) of the variable group queried.                                                                                                  |
 | info | object | Information about the variable group queried. Includes child variables and variable group information, number of descendent variables and all the parent variable groups. |
 {: .doc-table}
 
