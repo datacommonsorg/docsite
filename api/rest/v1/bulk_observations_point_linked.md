@@ -127,7 +127,7 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get the
+### Example 1: Get single observations from multiple variables at a set date for all places within a parent place.
 
 Get the population (DCID: `Count_Person`) and median income (DCID: `Median_Income_Person`) for all states in the US (DCID: `country/USA`) in the year 2020.
 
