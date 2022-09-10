@@ -33,8 +33,7 @@ https://api.datacommons.org
 ### Simple vs Bulk Query
 
 Some APIs have bulk version, designed for handling multiple queries at a time,
-with more detailed output. Bulk endpoints are tagged with
-<bulk-tag>bulk</bulk-tag> below.
+with more detailed output. Bulk endpoints are tagged with <bulk-tag>bulk</bulk-tag> below.
 
 ### Local Graph Exploration
 
