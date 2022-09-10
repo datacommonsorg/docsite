@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Series of Observations (linked)
-nav_order: 11
+title: Single Observation (linked)
+nav_order: 9
 parent: REST (v1)
 grand_parent: API
 published: false
-permalink: /api/rest/v1/bulk/observations/series/linked
+permalink: /api/rest/v1/bulk/observations/point/linked
 ---
 
-# /v1/bulk/observations/series/linked
+# /v1/bulk/observations/point/linked
 
-Returns [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) for entities linked to a parent entity by the same property.
+Retrieve single [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) at a set date for entities linked to a parent entity by the same property.
 
-This is useful for retrieving observations for all places within a parent place. For example, this could be getting the population of women for all states in the United States.
+This is useful for retrieving observations for all places within a parent place. For example, this could be getting the population of women in 2018 for all states in the United States.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -21,8 +21,8 @@ This is useful for retrieving observations for all places within a parent place.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To get a series of observations for a single place, see [/v1/observations/series](/api/rest/v1/observations/series).<br />
-    To get single observations for all places within a parent place, see [/v1/bulk/observations/point/linked](/api/rest/v1/observations/point/linked).
+    To get single observations for a single place, see [/v1/observations/point](/api/rest/v1/observations/point).<br />
+    To get a series of observations for all places within a parent place, see [/v1/bulk/observations/series/linked](/api/rest/v1/observations/series/linked).
 </div>
 
 ## Request
@@ -33,12 +33,12 @@ This is useful for retrieving observations for all places within a parent place.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/observations/series/linked?linked_property=containedInPlace&linked_entity={parent_place_dcid}&entity_type={place_type}&variables={variable_dcid_1}&variables={variable_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/observations/point/linked?linked_property=containedInPlace&linked_entity={parent_place_dcid}&entity_type={place_type}&variables={variable_dcid_1}&variables={variable_dcid_2}&date={date}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
 URL:
-https://api.datacommons.org/v1/bulk/observations/series/linked
+https://api.datacommons.org/v1/bulk/observations/point/linked
 
 Header:
 X-API-Key: {your_api_key}
@@ -48,6 +48,7 @@ JSON Data:
   "linked_property": "containedInPlace",
   "linked_entity": "{parent_place_dcid}"
   "entity_type": "{place_type}",
+  "date": "{date}",
   "variables": [
     "{variable_dcid_1}",
     "{variable_dcid_2}",
@@ -72,6 +73,7 @@ There are no path parameters for this endpoint.
 | entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Graph Browser page on Place](https://datacommons.org/browser/Place). |
 | variables <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the [variables](/glossary.html#variables) to query. |
 | linked_property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
+| date <br /> <optional-tag>Optional</optional-tag> | string | Datetime of measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned.  |
 | all_facets <br /><optional-tag>Optional</optional-tag> | boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.|
 {: .doc-table }
 
@@ -84,21 +86,16 @@ The response looks like:
   "observationsByVariable":
   [
     {
-      "variable": "variable_dcid_1",
+      "variable": "variable_dcid",
       "observationsByEntity":
       [
         {
-          "entity": "entity_dcid_1",
-          "seriesByFacet":
+          "entity": "entity_dcid",
+          "pointsByFacet":
           [
             {
-              "series":
-              [
-                {
-                  "date": "YYYY-MM-DD",
-                  "value": 1234
-                }, ...
-              ],
+              "date": "YYYY-MM-DD",
+              "value": 1234,
               "facet": 0123456789
             }
           ]
@@ -110,11 +107,11 @@ The response looks like:
   {
     "0123456789":
     {
-      "importName": "import_name_here",
+      "importName": "ImoprtName",
       "provenanceUrl": "https://provenance.url/here",
-      "measurementMethod": "measurement_method_here",
+      "measurementMethod": "MeasurementMethod",
       "observationPeriod": "P<N>Y"
-    }
+    }, ...
   }
 }
 ```
@@ -130,9 +127,9 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get observations for all places within a parent place.
+### Example 1: Get the
 
-Get the population (DCID: `Count_Person`) for all counties in the US state of Delaware (DCID: `geoId/10`).
+Get the population (DCID: `Count_Person`) and median income (DCID: `Median_Income_Person`) for all states in the US (DCID: `country/USA`) in the year 2020.
 
 <div>
 {% tabs example1 %}
@@ -144,7 +141,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/observations/series/linked?linked_entity=geoId/10&linked_property=containedInPlace&variables=Count_Person&entity_type=County&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/observations/point/linked?linked_entity=country/USA&linked_property=containedInPlace&variables=Count_Person&variables=Median_Income_Person&entity_type=State&date=2020&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -157,9 +154,9 @@ Request:
 
 ```bash
 $ curl --request POST \
---url https://api.datacommons.org/v1/bulk/observations/series/linked \
+--url https://api.datacommons.org/v1/bulk/observations/point/linked \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"linked_entity":"geoId/10", "linked_property":"containedInPlace", "entity_type":"County", variables:"Count_Person"}'
+--data '{"linked_property":"containedInPlace", "linked_entity":"country/USA", "entity_type":"State", "date":"2020", "variables":["Count_Person", "Median_Income_Person"]}'
 ```
 {: .example-box-content .scroll}
 
@@ -180,65 +177,98 @@ Response:
       "observationsByEntity":
       [
         {
-          "entity": "geoId/10001",
-          "seriesByFacet":
+          "entity": "geoId/01",
+          "pointsByFacet":
           [
             {
-              "series":
-              [
-                {
-                  "date": "1970",
-                  "value": 81892
-                },
-                < ... output truncated for brevity ... >
-                {
-                  "date": "2021",
-                  "value": 184149
-                }
-              ],
+              "date": "2020",
+              "value": 4921532,
               "facet": 2176550201
             }
           ]
         },
         {
-          "entity": "geoId/10003",
-          "seriesByFacet":
+          "entity": "geoId/02",
+          "pointsByFacet":
           [
             {
-              "series":
-              [
-                {
-                  "date": "1970",
-                  "value": 385856
-                },
-                < ... output truncated for brevity ... >
-                {
-                  "date": "2021",
-                  "value": 571708
-                }
-              ],
+              "date": "2020",
+              "value": 731158,
+              "facet": 2176550201
+            }
+          ]
+        },
+        < ... output truncated for brevity ... >
+        {
+          "entity": "geoId/56",
+          "pointsByFacet":
+          [
+            {
+              "date": "2020",
+              "value": 582328,
               "facet": 2176550201
             }
           ]
         },
         {
-          "entity": "geoId/10005",
-          "seriesByFacet":
+          "entity": "geoId/72",
+          "pointsByFacet":
           [
             {
-              "series":
-              [
-                {
-                  "date": "1970",
-                  "value": 80356
-                },
-                < ... output truncated for brevity ... >
-                {
-                  "date": "2021",
-                  "value": 247527
-                }
-              ],
-              "facet": 2176550201
+              "date": "2020",
+              "value": 3255642,
+              "facet": 1145703171
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variable": "Median_Income_Person",
+      "observationsByEntity":
+      [
+        {
+          "entity": "geoId/01",
+          "pointsByFacet":
+          [
+            {
+              "date": "2020",
+              "value": 27030,
+              "facet": 1305418269
+            }
+          ]
+        },
+        {
+          "entity": "geoId/02",
+          "pointsByFacet":
+          [
+            {
+              "date": "2020",
+              "value": 34881,
+              "facet": 1305418269
+            }
+          ]
+        },
+        < ... output truncated for brevity ... >
+        {
+          "entity": "geoId/56",
+          "pointsByFacet":
+          [
+            {
+              "date": "2020",
+              "value": 33031,
+              "facet": 1305418269
+            }
+          ]
+        },
+        {
+          "entity": "geoId/72",
+          "pointsByFacet":
+          [
+            {
+              "date": "2020",
+              "value": 13814,
+              "facet": 1305418269
             }
           ]
         }
@@ -253,6 +283,14 @@ Response:
       "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables",
       "measurementMethod": "CensusPEPSurvey",
       "observationPeriod": "P1Y"
+    },
+    < ... output truncated for brevity ... >
+    "1305418269":
+    {
+      "importName": "CensusACS5YearSurvey",
+      "provenanceUrl": "https://www.census.gov/",
+      "measurementMethod": "CensusACS5yrSurvey",
+      "unit": "USDollar"
     }
   }
 }
