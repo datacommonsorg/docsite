@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Getting Started Guide
-nav_order: 1
-parent: v1 REST
+nav_order: 0
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/getting_started
@@ -11,15 +11,6 @@ permalink: /api/rest/v1/getting_started
 # Getting Started Guide
 
 Welcome! Whether you're new to Data Commons or are just looking for a refresher, this guide gives an overview of what you need to know to get started using our REST API.
-
-<!-- See also section will be added once documentation is consolidated>
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
-
-    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    Take a look at the [Intro to Data Commons]({{ site.baseurl}}/api/intro_to_data_commons) page for an overview of the key terms and concepts you should know.
-
-</div>
--->
 
 Use the links below to jump to any section:
 
@@ -40,7 +31,6 @@ Following HTTP, a REST API call consists of a **request** that you provide, and 
 
 #### Endpoints
 
-<!-- TODO: add what is an endpoint? requests go through endpoint, include parameters-->
 Requests are made through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). We provide endpoints for many different queries (see the list of available endpoints [here](/api/rest/v1)).
 
 Each endpoint can be acessed using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
@@ -51,7 +41,7 @@ The base URL for all REST endpoints is:
 https://api.datacommons.org
 ```
 
-And a URI looks like [ `/v1/observation/point` ]({{ site.baseurl}}/api/rest/v1/observation/point). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v1/observation/point` ).
+And a URI looks like [`/v1/observation/point`](/api/rest/v1/observation/point). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v1/observation/point` ).
 
 #### Parameters
 
@@ -75,13 +65,14 @@ https://api.datacommons.org/v1/observations/point/variable_DCID/entity_DCID?date
 
 Still confused? Each endpoint's documentation page has examples at the bottom tailored to the endpoint you're trying to use.
 
-#### Finding DCIDs
+#### Finding Available Entities, Variables, and their DCIDs
 
-Most requests require the DCID of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
+Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
 
-* [Graph Browser](https://datacommons.org/browser/) Click through the graph to see what’s available or understand its structure
-* [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
-* [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables that are statistical in nature
+- [Search](https://datacommons.org/search) Search Data Commons
+- [Graph Browser](https://datacommons.org/browser/) Click through the knowledge graph
+- [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
+- [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
 
 #### Finding Datetimes for Observations
 
@@ -89,78 +80,197 @@ Many endpoints allow the user to filter their results to specific dates. When qu
 
 ### Bulk Retrieval
 
-Many of our APIs come in both “simple” and “bulk” versions. The simple versions of endpoints have prefix `/v1/` and are designed for handling single requests with a simplified return structure. The bulk versions of endpoints have prefix `/v1/bulk/` and are meant for querying multiple variables or entities at once, and provide richer details in the response. 
+Many of our APIs come in both “simple” and “bulk” versions. The simple versions of endpoints have prefix `/v1/` and are designed for handling single requests with a simplified return structure. The bulk versions of endpoints have prefix `/v1/bulk/` and are meant for querying multiple variables or entities at once, and provide richer details in the response.
 
 #### POST requests
 
-Some bulk endpoints allow for `POST` requests. For `POST` requests, feed all parameters in JSON format as a data flag. For example, in cURL, this would look like:
+Some bulk endpoints allow for `POST` requests. For `POST` requests, feed all parameters in JSON format. For example, in cURL, this would look like:
 
 ```bash
-POST \
+curl -X POST \
 --url https://api.datacommons.org/v1/bulk/observations/point \
---header 'content-type: application/json' \
 --data '{
-    "entities": [
-        "entity_dcid_1",
-        "entity_dcid_2",
-        ...
-    ],
-    "variables: [
-        "variable_dcid_1",
-        "variable_dcid_2",
-        ...
-    ]
+  "entities": [
+    "entity_dcid_1",
+    "entity_dcid_2",
+    ...
+  ],
+  "variables: [
+    "variable_dcid_1",
+    "variable_dcid_2",
+    ...
+  ]
 }'
 ```
 
-<!--
-
-##### Pagination
-
-(Description of how pagination for bulk APIs works will go here.)
-
 ### Authentication
 
-(Details about getting and setting API keys will go here.)
--->
+{: #authentication}
+
+<div markdown="span" class="alert alert-danger" role="alert" style="color:black; font-size: 0.8em">
+   <span class="material-icons md-16">priority_high</span><b>Important:</b><br />
+   API keys are now required. To use the REST API, a valid API key must be included in all requests.
+</div>
+
+#### Using API Keys
+
+API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending `?key=<YOUR_API_KEY_HERE>`.
+
+For GET requests, this looks like:
+
+```bash
+https://api.datacommons.org/v1/end/point?key=<YOUR_KEY_HERE>
+```
+
+If the key is not the first query parameter, use `&key=<YOUR_API_KEY_HERE>` instead. This looks like:
+
+```bash
+https://api.datacommons.org/v1/end/point?query=value&key=<YOUR_KEY_HERE>
+```
+
+For POST requests, pass the key as a header. For example, in cURL, this looks like:
+
+```bash
+curl -X POST \
+--url https://api.datacommons.org/v1/bulk/end/point \
+--header 'X-API-Key: <YOUR_KEY_HERE>' \
+--data '{
+  "entities": [
+    "entity_dcid_1",
+    "entity_dcid_2",
+    ...
+  ],
+  "variables: [
+    "variable_dcid_1",
+    "variable_dcid_2",
+    ...
+  ]
+}'
+```
+
+#### Getting API Keys
+
+We've provided a trial API key for general public use. This key will let you try the API and make single requests.
+
+<div markdown="span" class="alert alert-secondary" role="alert" style="color:black; font-size: 0.8em">
+   <b>Trial Key: </b>
+   `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
+</div>
+
+<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
+
+### Pagination
+{: #pagination}
+
+When the response to a request is too long, the returned payload is
+**paginated**. Only a subset of the response is returned, along with a long string
+of characters called a **token**. To get the next set of entries, repeat the
+request with `nextToken` as an query parameter, with the token as its value.
+
+For example, the request:
+
+```bash
+ $ curl --request GET \
+   `https://api.datacommons.org/v1/triple/in/geoId/06`
+```
+
+will return something like:
+
+```json
+{
+  "triples": {
+    < ... output truncated for brevity ...>
+    {
+      "name":"Business Fire 2014 (472130)",
+      "types":["WildlandFireEvent"],
+      "dcid":"fire/imsrBusinessFire2014472130",
+      "provenanceId":"dc/y6lf8n"
+    }
+  },
+  "nextToken":"SoME_veRy_L0ng_S+rIng"
+}
+```
+
+To get the next set of entries, use the command:
+
+```bash
+ $ curl --request GET \
+   `https://api.datacommons.org/v1/triple/in/geoId/06?nextToken=SoME_veRy_L0ng_S+rIng`
+```
+
+Similarly for POST requests, this would look like:
+
+```bash
+$ curl --request POST \
+--url https://api.datacommons.org/v1/bulk/triples/in \
+--data '{
+  "entities": "geoId/06",
+  "nextToken": "SoME_veRy_L0ng_S+rIng"
+}'
+```
 
 ## Troubleshooting
 
-#### Common Error Responses
-If the endpoint is misspelled or otherwise malformed, you will receive an error code like the following:
+### Common Error Responses
+
+#### "Method does not exist"
 
 ```json
 {
- "code": 5,
- "message": "Method does not exist.",
- "details": [
-  {
-   "@type": "type.googleapis.com/google.rpc.DebugInfo",
-   "stackEntries": [],
-   "detail": "service_control"
-  }
- ]
+  "code": 5,
+  "message": "Method does not exist.",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "service_control"
+    }
+  ]
 }
 ```
 
-If your request are missing a required argument, you will receive an error message like the following:
+This is most commonly seen when the endpoint is misspelled or otherwise malformed. Check the spelling of your endpoint and that all required path parameters are provided in the right order.
+
+#### "Invalid request URI"
 
 ```json
 {
- "code": 3,
- "message": "Invalid request URI",
- "details": [
-  {
-   "@type": "type.googleapis.com/google.rpc.DebugInfo",
-   "stackEntries": [],
-   "detail": "internal"
-  }
- ]
+  "code": 3,
+  "message": "Invalid request URI",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
 }
 ```
 
-If your request includes a bad argument, you'll receive an empty response like the following:
+This is most commonly seen when your request is missing a required path parameter. Make sure endpoints and parameters are both spelled correctly and provided in the right order.
+
+#### Empty Response
 
 ```json
 {}
 ```
+
+Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
+
+#### "Could not find field \<field\> in the type"
+
+```json
+{
+  "code": 3,
+  "message": "Could not find field \"variables\" in the type \"datacommons.v1.BulkVariableInfoRequest\".",
+  "details": [
+    {
+      "@type": "type.googleapis.com/google.rpc.DebugInfo",
+      "stackEntries": [],
+      "detail": "internal"
+    }
+  ]
+}
+```
+
+This is most commonly seen when a query parameter is misspelled or incorrect. Check the spelling of query parameters.

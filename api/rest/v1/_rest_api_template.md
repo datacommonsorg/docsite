@@ -2,9 +2,10 @@
 layout: default
 title: REST API Page Template
 nav_order: 999
-parent: v1 REST
+parent: REST (v1)
 grand_parent: API
 published: false
+permalink: /api/rest/v1/end/point
 ---
 
 # /v1/end/point
@@ -20,14 +21,16 @@ Longer details if necessary can go in a short paragraph here. This is where to d
 
 ## Request
 
-GET http://api.datacommons.org/v1/end/point/{param1}/{param2}
-{: #api-signature}
+GET Request
+{: .api-header}
+
+<div class="api-signature">
+http://api.datacommons.org/v1/end/point/{param1}/{param2}?key={api_key}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 
-### Parameters
-
-#### Path Parameters
+### Path Parameters
 
 | Name                                                | Description                   |
 | --------------------------------------------------- | ----------------------------- |
@@ -35,16 +38,17 @@ GET http://api.datacommons.org/v1/end/point/{param1}/{param2}
 | param2 <br /> <required-tag>Required</required-tag> | description of parameter here |
 {: .doc-table }
 
-#### Query Parameters
+### Query Parameters
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | query <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
 
 ## Response
 
-The response will look something like:
+The response looks like:
 
 ```json
 {
@@ -53,14 +57,13 @@ The response will look something like:
   "Metadata": {}
 }
 ```
+{: .response-signature .scroll}
 
 ### Response fields
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| value    | type   | description of output here |
-| date     | string | description of output here |
-| metadata | dict   | description of output here |
+| field    | type   | description of output here |
 {: .doc-table}
 
 ## Examples
@@ -73,9 +76,9 @@ Request:
 {: .example-box-title}
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/end/point/param1/param2?query=value'
+  'https://api.datacommons.org/v1/end/point/param1/param2?query=value&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
@@ -90,4 +93,4 @@ Response:
   }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}

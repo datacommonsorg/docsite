@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Get an observation
-nav_order: 1
-parent: v1 REST
+title: Single Observation
+nav_order: 8
+parent: REST (v1)
 grand_parent: API
 published: false
 permalink: /api/rest/v1/observations/point
@@ -19,26 +19,29 @@ Retrieve a specific observation at a set date from a variable for an entity.
 </div>
 
 ## Request
+GET Request
+{: .api-header}
 
-GET https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}
-{: #api-signature}
+<div class="api-signature">
+https://api.datacommons.org/v1/observations/point/{ENTITY_DCID}/{VARIABLE_DCID}?key={your_api_key}
+</div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 
-### Parameters
 
-#### Path Parameters
+### Path Parameters
 
 | Name                                                       | Description                                     |
 | ---------------------------------------------------------- | ----------------------------------------------- |
-| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | DCID of the variable to query a value for.      |
-| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | DCID of the entity that the variable describes. |
+| VARIABLE_DCID <br /> <required-tag>Required</required-tag> | [DCID](/glossary.html#dcid) of the variable to query a value for.      |
+| ENTITY_DCID <br /> <required-tag>Required</required-tag>   | [DCID](/glossary.html#dcid) of the entity that the variable describes. |
 {: .doc-table }
 
-#### Query Parameters
+### Query Parameters
 
 | Name                                              | Type | Description                                                                                                                                                                                                                                                             |
 | ------------------------------------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | date <br /> <optional-tag>Optional</optional-tag> | type | Datetime of measurement of the value requested in ISO 8601 format. To see the dates available, look up the variable in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). If date is not provided, the latest available datapoint is returned. |
 {: .doc-table }
 
@@ -53,6 +56,7 @@ The response looks like:
  "facet": {...},
 }
 ```
+{: .response-signature .scroll}
 
 ### Response fields
 
@@ -60,7 +64,7 @@ The response looks like:
 | ----- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | value | type   | Value of the variable queried for the queried entity.                                                                                              |
 | date  | string | Datetime the value returned was measured.                                                                                                          |
-| facet | dict   | Metadata on the [facet](/api/rest/v1/getting_started#facet) the data came from. Can include things like provenance, measurement method, and units. |
+| facet | dict   | Metadata on the [facet](/glossary.html#facet) the data came from. Can include things like provenance, measurement method, and units. |
 {: .doc-table}
 
 ## Examples
@@ -74,9 +78,9 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/country/USA/Count_Person’
+'https://api.datacommons.org/v1/observations/point/country/USA/Count_Person?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
@@ -92,7 +96,7 @@ Response:
   }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 ### Example 2: Get single observation at a **specific date**, for given variable and entity
 
@@ -103,9 +107,9 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-‘https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018’
+'https://api.datacommons.org/v1/observations/point/geoId/06/Annual_Generation_Electricity?date=2018&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
@@ -123,4 +127,4 @@ Response:
  }
 }
 ```
-{: .example-box-content}
+{: .example-box-content .scroll}

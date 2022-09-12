@@ -1,99 +1,220 @@
 /**
-Custom CSS for API Method Documentation pages
+* Custom CSS for API Method Documentation pages
+*
+* See api/rest/rest_api_template.md for an example of how these are used.
+*/
 
-See api/rest/rest_api_template.md for an example of how these are used.
-**/
+$api-tag-blue: #0e84b5;
+$api-tag-green: #5cb85c;
+$api-titlebar-color: #f1f1f1;
+$code-font-size: 0.8em;
+$code-background-color: #f5f6fa;
+$example-titlebar-color: #a3a8bb;
+$keyword-blue: #062873;
+$param-red: #ff686b;
+$round-corner-radius: 10px;
+$scrollbar-size: 5px;
+$shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
-//custom REQUIRED label for parameters
-required-tag {
-  background: #0e84b5;
-  font-size: 0.75em;
-  color: #ffffff;
-  font-family: monospace;
-  font-weight: bold;
-  letter-spacing: -1px;
+%param-tag {
   border-radius: 4px;
-  text-transform: uppercase;
-  padding: 2px;
-}
-
-// custom OPTIONAL label for parameters
-optional-tag {
-  font-size: 0.75em;
-  color: #0e84b5;
-  font-family: monospace;
-  font-weight: bold;
-  text-transform: uppercase;
+  font: bold 0.75em monospace;
   letter-spacing: -1px;
-  border: 1px solid #0e84b5;
-  border-radius: 4px;
-  padding: 2px;
+  padding: 2px 6px;
+  text-transform: uppercase;
 }
 
-//default formatting for response code signature
-//modeled after the <pre> tag's css
-#api-signature {
-  color: #4070a0;
-  font-family: monospace;
-  font-size: 0.9em;
-  padding: 1rem;
-  background-color: #f5f6fa;
-  border: #ccc;
-  border-radius: 3px;
-  overflow-x: scroll;
-}
-
-//highlighting for {parameter}
-.param {
-  color: #902000;
-  font-weight: bold;
-  font-family: monospace;
-}
-
-//highlighting for GET / POST keywords
-.keyword {
-  color: #062873;
-  font-weight: bold;
-  font-family: monospace;
-}
-
-// for parameter & response field tables
-.doc-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-// styles text in first column
-.doc-table td:nth-child(1) {
-  color: #062873;
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 0.9em;
-}
-
-// for the "REQUEST:" and "RESPONSE" boxes in the example sections
-.example-box-title {
-  background-color: #dcdde1;
+%box-top {
   border: 1px solid var(--dc-gray-lite);
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  font-size: 1em;
-  font-family: var(--font-family);
-  color: var(--dc-gray);
-  text-transform: uppercase;
-  padding: 0.15em 0.5em 0.15em 0.5em;
-  margin-top: 0.5em;
+  border-top-left-radius: $round-corner-radius;
+  border-top-right-radius: $round-corner-radius;
   margin-bottom: 0;
 }
 
-.example-box-content {
-  background: #f5f6fa; //this should match background color of ``` code blocks
+%box-bottom {
   border: 1px solid var(--dc-gray-lite);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-bottom: 0;
-  margin-top: 0;
-  margin-bottom: 0.5em;
+  border-top: none;
+  border-bottom-left-radius: $round-corner-radius;
+  border-bottom-right-radius: $round-corner-radius;
+}
+
+%code-box {
+  background: $code-background-color;
+  font: 0.8em monospace;
+  line-height: 1.5;
+}
+
+/** "Required" and "Optional" labels for parameters */
+
+required-tag {
+  @extend %param-tag;
+  background-color: $api-tag-blue;
+  color: white;
+}
+
+optional-tag {
+  @extend %param-tag;
+  background-color: white;
+  border: 1px solid $api-tag-blue;
+  color: $api-tag-blue;
+}
+
+/** "Bulk" label for the index page */
+
+bulk-tag {
+  @extend %param-tag;
+  background-color: $api-tag-green;
+  color: white;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+/** Custom syntax highlighting */
+
+.param {
+  color: $param-red;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.keyword {
+  color: $keyword-blue;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/** Styling for the API signature/format box */
+
+.api-header {
+  @extend %box-top;
+  background-color: $api-titlebar-color;
+  font-size: 17px;
+  filter: $shadow;
+  padding: 10px 20px;
+}
+
+.api-signature {
+  @extend %box-bottom;
+  filter: $shadow;
+  background-color: $code-background-color;
+  color: #0e84b5;
+  font-family: monospace;
+  font-size: 16px;
+  overflow-wrap: break-word;
+  padding: 30px;
+  padding-top: 0;
+  white-space: pre-wrap;
+}
+
+/** tabs for Bulk pages */
+
+.api-tab {
+  @extend %box-top;
+  background-color: $api-titlebar-color;
+  filter: $shadow;
+  overflow: hidden;
+
+  button {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    outline: none;
+    padding: 14px 16px;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #ddd;
+    }
+
+    &.active {
+      background-color: #ccc;
+    }
+  }
+}
+
+.api-tabcontent {
+  display: none;
+}
+
+/** "Response looks like" box */
+
+.response-signature {
+  @extend %code-box;
+  border-radius: $round-corner-radius;
+  overflow: hidden;
+
+  pre,
+  code {
+    margin-bottom: 0;
+    max-height: 40em;
+    overflow: auto;
+  }
+}
+
+/** Parameter & response field tables */
+
+.doc-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  td:nth-child(1) {
+    color: $keyword-blue;
+    font-family: monospace;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+
+/** "REQUEST:" and "RESPONSE:" boxes in the example sections */
+
+.example-box-title {
+  @extend %box-top;
+  background-color: $example-titlebar-color;
+  color: white;
+  font-family: sans-serif;
+  font-size: 0.75em;
+  margin-top: 0.5em;
+  padding: 0.35em 0.5em 0.35em 0.75em;
+  text-transform: uppercase;
+}
+
+.example-box-content {
+  @extend %box-bottom;
+  @extend %code-box;
   max-height: 20em;
-  overflow: scroll;
+  overflow: hidden;
+  scrollbar-color: var(--dc-gray-lite);
+  scrollbar-width: 5px;
+
+  pre {
+    max-height: 20em;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    line-height: 1.5;
+  }
+
+  .highlight {
+    margin-bottom: 0px;
+  }
+}
+
+/** Custom scrollbars for code boxes */
+
+.scroll pre {
+  scrollbar-color: var(--dc-gray-lite);
+  scrollbar-width: $scrollbar-size;
+
+  &::-webkit-scrollbar {
+    height: $scrollbar-size;
+    width: $scrollbar-size;
+
+    &-thumb {
+      background-color: #d2d3d8;
+    }
+
+    &-corner {
+      background-color: transparent;
+    }
+  }
 }
