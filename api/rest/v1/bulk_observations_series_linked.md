@@ -10,9 +10,9 @@ permalink: /api/rest/v1/bulk/observations/series/linked
 
 # /v1/bulk/observations/series/linked
 
-Returns [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) for entities linked to a parent entity by the same property.
+Returns [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) for entities linked to an ancestor entity by the same property.
 
-This is useful for retrieving observations for all places within a parent place. For example, this could be getting the population of women for all states in the United States.
+This is useful for retrieving observations for all places within an ancestor place. For example, this could be getting the population of women for all states in the United States.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -22,7 +22,7 @@ This is useful for retrieving observations for all places within a parent place.
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get a series of observations for a single place, see [/v1/observations/series](/api/rest/v1/observations/series).<br />
-    To get single observations for all places within a parent place, see [/v1/bulk/observations/point/linked](/api/rest/v1/observations/point/linked).
+    To get single observations for all places within an ancestor place, see [/v1/bulk/observations/point/linked](/api/rest/v1/observations/point/linked).
 </div>
 
 ## Request
@@ -33,7 +33,7 @@ This is useful for retrieving observations for all places within a parent place.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/observations/series/linked?linked_property=containedInPlace&linked_entity={parent_place_dcid}&entity_type={place_type}&variables={variable_dcid_1}&variables={variable_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/observations/series/linked?linked_property=containedInPlace&linked_entity={ancestor_place_dcid}&entity_type={place_type}&variables={variable_dcid_1}&variables={variable_dcid_2}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -46,7 +46,7 @@ X-API-Key: {your_api_key}
 JSON Data:
 {
   "linked_property": "containedInPlace",
-  "linked_entity": "{parent_place_dcid}"
+  "linked_entity": "{ancestor_place_dcid}"
   "entity_type": "{place_type}",
   "variables": [
     "{variable_dcid_1}",
@@ -68,7 +68,7 @@ There are no path parameters for this endpoint.
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| linked_entity <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the parent place to query.|
+| linked_entity <br /> <required-tag>Required</required-tag> | list | [DCID](/glossary.html#dcid) of the ancestor place to query.|
 | entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Graph Browser page on Place](https://datacommons.org/browser/Place). |
 | variables <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the [variables](/glossary.html#variables) to query. |
 | linked_property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
@@ -130,7 +130,7 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get observations for all places within a parent place.
+### Example 1: Get observations for all places within an ancestor place.
 
 Get the population (DCID: `Count_Person`) for all counties in the US state of Delaware (DCID: `geoId/10`).
 

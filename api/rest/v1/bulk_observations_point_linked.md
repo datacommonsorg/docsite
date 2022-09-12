@@ -10,9 +10,9 @@ permalink: /api/rest/v1/bulk/observations/point/linked
 
 # /v1/bulk/observations/point/linked
 
-Retrieve single [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) at a set date for entities linked to a parent entity by the same property.
+Retrieve a single [observation](/glossary.html#observation) of multiple [variables](/glossary.html#variable) at a set date for entities linked to an ancestor entity by the same property.
 
-This is useful for retrieving observations for all places within a parent place. For example, this could be getting the population of women in 2018 for all states in the United States.
+This is useful for retrieving an observation for all places within an ancestor place. For example, this could be getting the population of women in 2018 for all states in the United States.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -21,8 +21,8 @@ This is useful for retrieving observations for all places within a parent place.
 
 <div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To get single observations for a single place, see [/v1/observations/point](/api/rest/v1/observations/point).<br />
-    To get a series of observations for all places within a parent place, see [/v1/bulk/observations/series/linked](/api/rest/v1/observations/series/linked).
+    To get a single observation for a single place, see [/v1/observations/point](/api/rest/v1/observations/point).<br />
+    To get a series of observations for all places within an ancestor place, see [/v1/bulk/observations/series/linked](/api/rest/v1/observations/series/linked).
 </div>
 
 ## Request
@@ -33,7 +33,7 @@ This is useful for retrieving observations for all places within a parent place.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v1/bulk/observations/point/linked?linked_property=containedInPlace&linked_entity={parent_place_dcid}&entity_type={place_type}&variables={variable_dcid_1}&variables={variable_dcid_2}&date={date}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/observations/point/linked?linked_property=containedInPlace&linked_entity={ancestor_place_dcid}&entity_type={place_type}&variables={variable_dcid_1}&variables={variable_dcid_2}&date={date}&key={your_api_key}
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -46,7 +46,7 @@ X-API-Key: {your_api_key}
 JSON Data:
 {
   "linked_property": "containedInPlace",
-  "linked_entity": "{parent_place_dcid}"
+  "linked_entity": "{ancestor_place_dcid}"
   "entity_type": "{place_type}",
   "date": "{date}",
   "variables": [
@@ -69,7 +69,7 @@ There are no path parameters for this endpoint.
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| linked_entity <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the parent place to query.|
+| linked_entity <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the ancestor place to query.|
 | entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Graph Browser page on Place](https://datacommons.org/browser/Place). |
 | variables <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the [variables](/glossary.html#variables) to query. |
 | linked_property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
@@ -127,7 +127,7 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get single observations from multiple variables at a set date for all places within a parent place.
+### Example 1: Get a single observation from multiple variables at a set date for all places within a ancestor place.
 
 Get the population (DCID: `Count_Person`) and median income (DCID: `Median_Income_Person`) for all states in the US (DCID: `country/USA`) in the year 2020.
 

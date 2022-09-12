@@ -44,12 +44,12 @@ Methods for exploring the graph around a set of nodes.
 | Triples                                            | [/v1/triples](/api/rest/v1/triples)                                               | Get neighboring nodes and property labels of directed edges of a specific node |
 | Properties                                         | [/v1/properties](/api/rest/v1/properties)                                         | Get all properties (labels of directed edges) available for a specific node    |
 | Property Values                                    | [/v1/property/values/](/api/rest/v1/property/values)                              | Get the value for a property of a specific node                                |
-| Property Values (linked)                           | [/v1/property/values/in/linked](/api/rest/v1/property/values/in/linked)           | Get all places of a specific type contained in a parent place                  |
+| Property Values (linked)                           | [/v1/property/values/in/linked](/api/rest/v1/property/values/in/linked)           | Get all places of a specific type contained in an ancestor place               |
 |                                                    |                                                                                   |                                                                                |
 | Triples <bulk-tag>bulk</bulk-tag>                  | [/v1/bulk/triples](/api/rest/v1/bulk/triples)                                     | Get neighboring nodes and edge labels for multiple nodes                       |
 | Properties <bulk-tag>bulk</bulk-tag>               | [/v1/bulk/properties](/api/rest/v1/bulk/properties)                               | Get all properties for multiple nodes.                                         |
 | Property values <bulk-tag>bulk</bulk-tag>          | [/v1/bulk/property/values](/api/rest/v1/bulk/property/values)                     | Get property values for multiple properties and multiple nodes                 |
-| Property Values (linked) <bulk-tag>bulk</bulk-tag> | [/v1/bulk/property/values/in/linked](/api/rest/v1/bulk/property/values/in/linked) | Get all places of a specific type for mulitple parent places                   |
+| Property Values (linked) <bulk-tag>bulk</bulk-tag> | [/v1/bulk/property/values/in/linked](/api/rest/v1/bulk/property/values/in/linked) | Get all places of a specific type for mulitple ancestor places                 |
 
 ### Node Information
 
@@ -70,15 +70,15 @@ Methods for retrieving information of certain types of nodes.
 Methods for retrieving statistical observations associated with a set of
 entities.
 
-| API                                                          | URI                                                                                 | Description                                                          |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Observation (single value)                                   | [/v1/observations/point](/api/rest/v1/observations/point)                           | Get a single value from a time-series variable for a specific entity |
-| Observation (series)                                         | [/v1/observations/series](/api/rest/v1/observations/series)                         | Get all values from a variable for a specific entity                 |
-|                                                              |                                                                                     |                                                                      |
-| Observation (single value) <bulk-tag>bulk</bulk-tag>         | [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point)                 | Get a single value from variables for multiple entities              |
-| Observation (single value, linked) <bulk-tag>bulk</bulk-tag> | [/v1/bulk/observations/point/linked](/api/rest/v1/bulk/observations/point/linked)   | Get a single values from variables for all places in a parent place  |
-| Observation (series) <bulk-tag>bulk</bulk-tag>               | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                  |
-| Observation (series, linked) <bulk-tag>bulk</bulk-tag>       | [/v1/bulk/observations/series/linked](/api/rest/v1/bulk/observations/series/linked) | Get all values from a variable for all places in a parent place      |
+| API                                                          | URI                                                                                 | Description                                                           |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Observation (single value)                                   | [/v1/observations/point](/api/rest/v1/observations/point)                           | Get a single value from a time-series variable for a specific entity  |
+| Observation (series)                                         | [/v1/observations/series](/api/rest/v1/observations/series)                         | Get all values from a variable for a specific entity                  |
+|                                                              |                                                                                     |                                                                       |
+| Observation (single value) <bulk-tag>bulk</bulk-tag>         | [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point)                 | Get a single value from variables for multiple entities               |
+| Observation (single value, linked) <bulk-tag>bulk</bulk-tag> | [/v1/bulk/observations/point/linked](/api/rest/v1/bulk/observations/point/linked)   | Get a single value from variables for all places in an ancestor place |
+| Observation (series) <bulk-tag>bulk</bulk-tag>               | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                   |
+| Observation (series, linked) <bulk-tag>bulk</bulk-tag>       | [/v1/bulk/observations/series/linked](/api/rest/v1/bulk/observations/series/linked) | Get all values from a variable for all places in an ancestor place    |
 
 ### Statistical Variable
 
