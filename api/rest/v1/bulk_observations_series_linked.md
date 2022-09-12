@@ -10,9 +10,21 @@ permalink: /api/rest/v1/bulk/observations/series/linked
 
 # /v1/bulk/observations/series/linked
 
-Returns [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) for entities linked to an ancestor entity by the same property.
+Returns [observations](/glossary.html#observation) of multiple [variables](/glossary.html#variable) 
+for entities linked to an ancestor entity by the same property.
 
-This is useful for retrieving observations for all places within an ancestor place. For example, this could be getting the population of women for all states in the United States.
+More specifically, in the following diagram:
+
+![Example of a linked property](/assets/images/rest/property_value_direction_example.png){:width=100%}
+
+The property `containedInPlace` is linked. Buenos Aires is contained in
+Argentina, which is itself contained in South America -- implying Buenos Aires
+is also contained in South America. With this endpoint, you could query for
+countries in South America (returning observations for Argentina) or for cities 
+in South America (returning observations for Buenos Aires).
+
+This is useful for retrieving observations for all places within an ancestor place.
+For example, this could be getting the population of women for all states in the United States.
 
 <div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
