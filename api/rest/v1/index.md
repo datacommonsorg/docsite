@@ -88,3 +88,11 @@ Methods for retrieving statistical variable related data.
 | ----------------------------------- | ------------------------------------------------- | --------------------------------------------------- |
 | Variables                           | [/v1/variables](/api/rest/v1/variables)           | Get all variables associated with a specific entity |
 | Variables <bulk-tag>bulk</bulk-tag> | [/v1/bulk/variables](/api/rest/v1/bulk/variables) | Get all variables available for multiple entities   |
+
+### Other Query Languages
+
+Methods for querying the Data Commons knowledge graph with other query languages
+
+| API              | URI                                               | Description                                         |
+| ---------------- | ------------------------------------------------- | --------------------------------------------------- |
+| SPARQL           | [/v1/query](/api/rest/v1/query)                   | Use SPARQL queries                                  |
