@@ -21,6 +21,7 @@ observation is returned.
 </div>
 
 ## Request
+
 GET Request
 {: .api-header}
 
