@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SPARQL
-nav_order: 15
+nav_order: 12
 parent: REST (v1)
 grand_parent: API
 published: false
@@ -10,14 +10,13 @@ permalink: /api/rest/v1/query
 
 # /v1/query
 
-Query the Data Commons knowledge graph using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
+Query the Data Commons knowledge graph using
+[SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
-This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites. It leverages the graph structure innate in the data it queries to return specific information to an end user.
-
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
-    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    To do some other related, but different thing, see [/v1/other/end/point](https://docs.datacommons.org)
-</div>
+This endpoint makes it possible to query the Data Commons knowledge graph using
+SPARQL. SPARQL is a query language developed to retrieve data from websites. It
+leverages the graph structure innate in the data it queries to return specific
+information to an end user.
 
 ## Request
 
@@ -32,9 +31,7 @@ Header:
 X-API-Key: {your_api_key}
 
 JSON Data:
-{
-  "sparql": "your SPARQL query here",
-}
+{ "sparql": "your SPARQL query here" }
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -45,10 +42,10 @@ There are no path parameters for this endpoint.
 
 ### Query Parameters
 
-| Name                                               | Type | Description               |
-| -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| sparql <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, each variable should have a `typeOf` condition (e.g. `?var typeOf City`). |
+| Name                                                | Type   | Description                                                                                                                                                     |
+| --------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| sparql <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, each variable should have a `typeOf` condition (e.g. `?var typeOf City`).                                              |
 {: .doc-table }
 
 ## Response
@@ -76,21 +73,23 @@ The response looks like:
 
 ### Response fields
 
-| Name     | Type   | Description                |
-| -------- | ------ | -------------------------- |
-| header    | list   | List of strings corresponding to the query variables. |
-| rows | list | List of `row` objects, with each containing a list of cells and its cell values. |
-| cells | object | Contains string field `value` corresponding to the queried variable. |
+| Name   | Type   | Description                                                                      |
+| ------ | ------ | -------------------------------------------------------------------------------- |
+| header | list   | List of strings corresponding to the query variables.                            |
+| rows   | list   | List of `row` objects, with each containing a list of cells and its cell values. |
+| cells  | object | Contains string field `value` corresponding to the queried variable.             |
 {: .doc-table}
 
 ## Examples
 
 ### Example 1: Query the Data Commons knowledge graph with SPARQL
 
-Retrieve a list of 10 biological specimens (DCID: `BiologicalSpecimen`) in reverse  alphabetical order.
+Retrieve a list of 10 biological specimens (DCID: `BiologicalSpecimen`) in
+reverse alphabetical order.
 
 Request:
 {: .example-box-title}
+
 ```bash
 curl --request POST \
   --url https://api.datacommons.org/v1/query \
@@ -109,11 +108,10 @@ curl --request POST \
 
 Response:
 {: .example-box-title}
+
 ```json
 {
-  "header": [
-    "?name"
-  ],
+  "header": ["?name"],
   "rows": [
     {
       "cells": [
