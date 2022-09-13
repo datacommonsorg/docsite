@@ -18,9 +18,8 @@ $shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
 %param-tag {
   border-radius: 4px;
-  font: bold 0.75em monospace;
-  letter-spacing: -1px;
-  padding: 2px 6px;
+  font: normal 0.85em monospace;
+  padding: 1px 6px;
   text-transform: uppercase;
 }
 
@@ -40,8 +39,13 @@ $shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
 %code-box {
   background: $code-background-color;
-  font: 0.8em monospace;
+  font: normal 0.9em monospace;
   line-height: 1.5;
+
+  // override red border around `...`
+  .err {
+    border: none;
+  }
 }
 
 /** "Required" and "Optional" labels for parameters */
@@ -65,8 +69,6 @@ bulk-tag {
   @extend %param-tag;
   background-color: $api-tag-green;
   color: white;
-  font-weight: normal;
-  letter-spacing: normal;
 }
 
 /** Custom syntax highlighting */
@@ -98,8 +100,7 @@ bulk-tag {
   filter: $shadow;
   background-color: $code-background-color;
   color: #0e84b5;
-  font-family: monospace;
-  font-size: 16px;
+  font: normal 0.9em monospace;
   overflow-wrap: break-word;
   padding: 30px;
   padding-top: 0;
@@ -217,4 +218,19 @@ bulk-tag {
       background-color: transparent;
     }
   }
+}
+
+/** Alerts and info boxes */
+
+.alert {
+  font-size: 1em;
+  color: black;
+}
+
+.exclamation-icon {
+  background: var(--dc-red-lite);
+  color: white;
+  font-size: 1em;
+  margin-right: 0.5em;
+  padding-right: 0;
 }

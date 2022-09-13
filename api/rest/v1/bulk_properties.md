@@ -19,7 +19,7 @@ directed, so properties can either be labels for edges _towards_ or _away_ from
 the node. Outgoing edges correspond to properties of the node. Incoming edges
 denote that the node is the value of this property for some other node.
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To the values of properties, see [/v1/bulk/property/values](/api/rest/v1/bulk/property/values).<br />
     To find connected edges and nodes, see [/v1/bulk/triples](/api/rest/v1/bulk/triples).<br />

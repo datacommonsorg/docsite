@@ -13,7 +13,7 @@ permalink: /api/rest/v1/bulk/variables
 Get all [variables](/glossary.html#variable) with data associated with a
 specific entity, for multiple entities.
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     For querying a single entity with simpler output, see the [simple version](/api/rest/v1/variables) of this endpoint.
 </div>

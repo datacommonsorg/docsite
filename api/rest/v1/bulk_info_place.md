@@ -16,12 +16,12 @@ Get basic information about multiple [places](/glossary.html#place).
 
 This API returns basic information on multiple places, given each of their DCIDs. The information provided is per place, and includes the place's name, type (city, state, country, etc.), as well as information on all parent places that contain the place queried.
 
-<div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
    For a rich, graphical exploration of places available in the Data Commons knowledge graph, take a look at the [Place Explorer](https://datacommons.org/place).
 </div>
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get information on a variable instead of a place, see [/v1/bulk/info/variable](/api/rest/v1/info/variable).<br />
     For querying a single variable and a simpler output, see the [simple version](/api/rest/v1/info/place) of this endpoint.
