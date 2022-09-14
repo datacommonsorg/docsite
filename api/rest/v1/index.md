@@ -91,7 +91,7 @@ Methods for retrieving statistical variable related data.
 
 ### Graph Query
 
-Methods for querying the Data Commons knowledge graph with other query languages
+Methods for querying the Data Commons knowledge graph with [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
 | API              | URI                                               | Description                                         |
 | ---------------- | ------------------------------------------------- | --------------------------------------------------- |
