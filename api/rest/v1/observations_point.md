@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Single Observation
-nav_order: 8
+nav_order: 5
 parent: REST (v1)
 grand_parent: API
 published: false
