@@ -39,7 +39,11 @@ $shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
 %code-box {
   background: $code-background-color;
+<<<<<<< HEAD
   font: normal $code-font-size monospace;
+=======
+  font: normal 0.9em monospace;
+>>>>>>> 5766ff50ea4ef01fc469d6fcbe1a7dfc5de9b70e
   line-height: 1.5;
 
   // override red border around `...`
@@ -100,7 +104,11 @@ bulk-tag {
   filter: $shadow;
   background-color: $code-background-color;
   color: #0e84b5;
+<<<<<<< HEAD
   font: normal $code-font-size monospace;
+=======
+  font: normal 0.9em monospace;
+>>>>>>> 5766ff50ea4ef01fc469d6fcbe1a7dfc5de9b70e
   overflow-wrap: break-word;
   padding: 30px;
   padding-top: 0;
@@ -230,7 +238,11 @@ bulk-tag {
 .exclamation-icon {
   background: var(--dc-red-lite);
   color: white;
+<<<<<<< HEAD
   font-size: 0.8em;
+=======
+  font-size: 1em;
+>>>>>>> 5766ff50ea4ef01fc469d6fcbe1a7dfc5de9b70e
   margin-right: 0.5em;
   padding-right: 0;
 }
