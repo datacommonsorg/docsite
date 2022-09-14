@@ -14,9 +14,9 @@ Query the Data Commons knowledge graph using
 [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
 This endpoint makes it possible to query the Data Commons knowledge graph using
-SPARQL. SPARQL is a query language developed to retrieve data from websites. It
-leverages the graph structure innate in the data it queries to return specific
-information to an end user.
+SPARQL. SPARQL is a query language developed to retrieve data from RDF graph 
+content on the web. It leverages the graph structure innate in the data it 
+queries to return specific information to an end user.
 
 ## Request
 
