@@ -14,7 +14,7 @@ Retrieve a specific observation at a set date from a variable for an entity from
 [preferred facet](/glossary.html#preferred-facet). If no date is provided, the latest
 observation is returned.
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
    To retrieve the entire series of observations, use [/v1/observations/series](/api/rest/v1/observations/series)<br />
    For querying multiple variables or entities, see the [bulk version](/api/rest/v1/bulk/observations/point) of this endpoint.

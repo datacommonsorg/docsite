@@ -13,7 +13,7 @@ permalink: /api/rest/v1/bulk/property/values/in/linked
 Return property values for [properties](/glossary.html#property) that can be
 chained for multiple degrees in the knowledge graph.
 
-<div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
    This API currently only supports the `containedInPlace` property to fetch `Place` nodes. Support for more properties and node types will be added in the future.
 </div>
@@ -28,7 +28,7 @@ is also contained in South America. With this endpoint, you could query for
 countries in South America (returning Argentina) or for cities in South America
 (returning Buenos Aires).
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     For single requests with a simpler output, see the [simple version](/api/rest/v1/property/values/in/linked) of this endpoint.
 </div>

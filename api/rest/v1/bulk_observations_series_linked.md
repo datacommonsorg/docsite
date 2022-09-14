@@ -26,12 +26,12 @@ in South America (returning observations for Buenos Aires).
 This is useful for retrieving observations for all places within an ancestor place.
 For example, this could be getting the population of women for all states in the United States.
 
-<div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
    Currently, this endpoint only supports the `containedInPlace` property and `Place` entities. Support for other properties and entity types will be added in the future.
 </div>
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get a series of observations for a single place, see [/v1/observations/series](/api/rest/v1/observations/series).<br />
     To get single observations for all places within an ancestor place, see [/v1/bulk/observations/point/linked](/api/rest/v1/observations/point/linked).

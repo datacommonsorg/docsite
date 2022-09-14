@@ -21,7 +21,7 @@ using
 [/v1/bulk/property/values/linked](/api/rest/v1/bulk/property/values/linked)
 instead._
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get a list of properties available for an node, see [/v1/bulk/properties](/api/rest/v1/bulk/properties).<br />
     For single queries with a simpler output, see the [simple version](/api/rest/v1/property/values) of this endpoint.

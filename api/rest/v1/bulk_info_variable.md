@@ -19,12 +19,12 @@ variable, and includes the number of entities with data on each variable, the
 minimum and maximum values observed, and the name and DCID of the top 3 entities
 with highest observed values for each variable.
 
-<div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-info" role="alert">
     <span class="material-icons md-16">info </span><b>Tip:</b><br />
     To explore variables available in the Data Commons knowledge graph, take a look at the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get information on a place instead of a variable, see [/v1/bulk/info/place](/api/rest/v1/info/place).<br />
     For querying a single variable and a simpler output, see the [simple version](/api/rest/v1/info/variable) of this endpoint.

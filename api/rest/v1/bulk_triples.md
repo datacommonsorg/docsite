@@ -15,7 +15,7 @@ Get [triples](/glossary.html#triple) for multiple nodes.
 Useful for finding local connections between nodes of the Data Commons knowledge
 graph.
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     For single queries with a simpler output, see the [simple version](/api/rest/v1/triples) of this endpoint.
 </div>

@@ -107,8 +107,8 @@ curl -X POST \
 
 {: #authentication}
 
-<div markdown="span" class="alert alert-danger" role="alert" style="color:black; font-size: 0.8em">
-   <span class="material-icons md-16">priority_high</span><b>Important:</b><br />
+<div markdown="span" class="alert alert-danger" role="alert">
+   <span class="material-icons exclamation-icon">priority_high</span><b>IMPORTANT:</b><br />
    API keys are now required. To use the REST API, a valid API key must be included in all requests.
 </div>
 
@@ -152,7 +152,7 @@ curl -X POST \
 
 We've provided a trial API key for general public use. This key will let you try the API and make single requests.
 
-<div markdown="span" class="alert alert-secondary" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-secondary" role="alert">
    <b>Trial Key: </b>
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>

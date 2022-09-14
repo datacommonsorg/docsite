@@ -20,7 +20,7 @@ _Note: If you want to query values for the property `containedInPlace`, consider
 using [/v1/property/values/linked](/api/rest/v1/property/values/linked)
 instead._
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     To get a list of properties available for an node, see [/v1/properties](/api/rest/v1/properties).<br />
     To query multiple entites or properties, see the [bulk version](/api/rest/v1/bulk/property/values) of this endpoint.

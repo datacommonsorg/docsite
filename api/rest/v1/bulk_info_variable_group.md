@@ -18,12 +18,12 @@ display name, a list of child variables with their information, a list of child 
 with their information and the number of descendent variables. If variable groups DCIDs are not provided, then
 all the variable group information will be retrieved.
 
-<div markdown="span" class="alert alert-info" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Tip:</b><br />
    Variable group is used in the statistical variable hierarchy UI widget as shown in [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 </div>
 
-<div markdown="span" class="alert alert-warning" role="alert" style="color:black; font-size: 0.8em">
+<div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
     For querying a single variable group and a simpler output, see the [simple version](/api/rest/v1/info/variable-group) of this endpoint.
 </div>
