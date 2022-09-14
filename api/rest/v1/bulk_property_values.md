@@ -4,7 +4,7 @@ title: Property Values
 nav_exclude: true
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/bulk/property/values
 ---
 
