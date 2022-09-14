@@ -6,7 +6,7 @@ title: New Data Download Tool
 
 In the last year, we have added a ton of new data and many exciting new features. One such feature is the new Data Download tool that allows you to easily download statistical variable data for a large number of places with just a few button clicks.
 
-![](/assets/images/posts/download_tool.png)
+![The new data download tool](/assets/images/posts/download_tool.png)
 
 The Data Commons knowledge graph is huge – there are over 240B data points for over 120K statistical variables. Sometimes, you may want to export just some of this data and use it in a custom tool. We now make that easy to do with the new data download tool. The new tool gives you the data in a csv file, does not require any coding experience to use, and allows you to select the statistical variables, places, and dates that you’re interested in.
 
