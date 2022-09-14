@@ -10,11 +10,11 @@ permalink: /api/rest/v1/observations/series
  
 # /v1/observations/series
 
-Retrieve series of observations from a specific variable for an entity from the preferred facet.
+Retrieve series of observations from a specific variable for an entity from the [preferred facet](/glossary.html#preferred-facet).
  
 <div markdown="span" class="alert alert-warning" role="alert">
    <span class="material-icons md-16">info </span><b>See Also:</b><br />
-   To retrieve a single observation in a series of values, use [/v1/observations/point](/api/rest/v1/observations/point) <br />For querying multiple variables or entities, see the [bulk version](/api/rest/v1/bulk/observations/series) of this endpoint.
+   To retrieve a single observation in a series of values, use [/v1/observations/point](/api/rest/v1/observations/point) <br />For querying multiple variables or entities, or to get observations from other [facets](/glossary.html#facet), see the [bulk version](/api/rest/v1/bulk/observations/series) of this endpoint.
 </div>
  
 ## Request

@@ -32,7 +32,7 @@ https://api.datacommons.org
 
 ### Simple vs Bulk Query
 
-Some APIs have bulk version, designed for handling multiple queries at a time,
+Some APIs have a bulk version, designed for handling multiple queries at a time,
 with more detailed output. Bulk endpoints are tagged with <bulk-tag>bulk</bulk-tag> below.
 
 ### Local Graph Exploration
@@ -88,3 +88,11 @@ Methods for retrieving statistical variable related data.
 | ----------------------------------- | ------------------------------------------------- | --------------------------------------------------- |
 | Variables                           | [/v1/variables](/api/rest/v1/variables)           | Get all variables associated with a specific entity |
 | Variables <bulk-tag>bulk</bulk-tag> | [/v1/bulk/variables](/api/rest/v1/bulk/variables) | Get all variables available for multiple entities   |
+
+### Graph Query
+
+Methods for querying the Data Commons knowledge graph with [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
+
+| API              | URI                                               | Description                                         |
+| ---------------- | ------------------------------------------------- | --------------------------------------------------- |
+| SPARQL           | [/v1/query](/api/rest/v1/query)                   | Use SPARQL queries                                  |

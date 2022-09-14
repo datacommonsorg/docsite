@@ -26,7 +26,7 @@ able to support a limited subsection of SPARQL functionality at this time: speci
 
 ### Step 1: Assembling the information you will need
 
-This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites. It leverages the graph structure innate in the data it queries to return specific information to an end user.
+This endpoint makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from RDF graph content on the web. It leverages the graph structure innate in the data it queries to return specific information to an end user.
 
 ### Step 2: Creating the request
 

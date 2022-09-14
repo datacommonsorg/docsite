@@ -92,7 +92,7 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get information on a single variable
+### Example 1: Get information on a single place
 
 Get basic information about New York City (DCID: `geoId/3651000`).
 
