@@ -4,7 +4,7 @@ author: Jennifer Chen
 title: New Data Download Tool
 ---
 
-In the last year, we have added several interesting datasets and exciting new features to Data Commons. One such feature is the new Data Download tool that allows you to easily download statistical variable data for a large number of places with just a few button clicks.
+In the last year, we have added several interesting datasets and exciting new features to Data Commons. One such feature is the new [Data Download tool](https://datacommons.org/tools/download) that allows you to easily download statistical variable data for a large number of places with just a few button clicks.
 
 ![The new data download tool](/assets/images/posts/download_tool.png)
 
