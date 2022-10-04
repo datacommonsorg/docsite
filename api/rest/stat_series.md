@@ -2,7 +2,7 @@
 layout: default
 title: Place Statistics - Time Series
 nav_order: 8
-parent: REST
+parent: REST (v0)
 grand_parent: API
 ---
 

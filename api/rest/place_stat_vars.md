@@ -2,7 +2,7 @@
 layout: default
 title: Place Statistical Variables
 nav_order: 6
-parent: REST
+parent: REST (v0)
 grand_parent: API
 ---
 

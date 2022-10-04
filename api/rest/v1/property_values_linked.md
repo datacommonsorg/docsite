@@ -4,7 +4,7 @@ title: Property Values (linked)
 nav_order: 4
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/property/values/in/linked
 ---
 

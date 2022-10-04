@@ -4,7 +4,7 @@ title: Getting Started Guide
 nav_order: 0
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/getting_started
 ---
 

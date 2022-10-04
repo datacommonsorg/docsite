@@ -2,7 +2,7 @@
 layout: default
 title: Triple
 nav_order: 2
-parent: REST
+parent: REST (v0)
 grand_parent: API
 ---
 

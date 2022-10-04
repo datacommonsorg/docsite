@@ -1,6 +1,6 @@
 ---
 layout: default
-title: REST
+title: REST (v0)
 nav_order: 1
 parent: API
 has_children: true

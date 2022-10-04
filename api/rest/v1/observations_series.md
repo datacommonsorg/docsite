@@ -4,7 +4,7 @@ title: Series of Observations
 nav_order: 7
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/observations/series
 ---
  

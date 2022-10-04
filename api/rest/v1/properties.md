@@ -4,7 +4,7 @@ title: Properties
 nav_order: 2
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/properties
 ---
 
