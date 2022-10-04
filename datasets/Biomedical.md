@@ -43,14 +43,6 @@ The GTEx eGene and significant variant-gene association data were generated from
 GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
 
 
-### [Institute of Genome Sciences](https://www.igs.umaryland.edu/)
-
-#### [The Disease Ontology](https://disease-ontology.org/)
-The Disease Ontology was developed as a project by the Institute of Genome Sciences at the University of Maryland School of Medicine. It "is a community driven, open source ontology that is designed to link disparate datasets through disease concepts". It provides a "standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts".
-
-The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do). Data Commons includes the 3/7/19 update of the Disease Ontology. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
-
-
 ### [New York Botanical Garden (NYBG)](http://sweetgum.nybg.org/science/)
 
 #### [C. V. Starr Virtual Herbarium (Collaboration)](http://sweetgum.nybg.org/science/vh/learn-more/)
@@ -117,9 +109,13 @@ This data is from an NIH human genome unrestricted-access data repository and ma
 ### [U.S. National Institutes of Health: National Library of Medicine](https://www.nlm.nih.gov/)
 
 #### [Medical Subject Headings (MeSH)](https://meshb.nlm.nih.gov/search)
-"The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Descriptor, Concept, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
+The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Descriptor, Concept, Qualifier, Supplementary Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
 
-This data is from the National Library of Medicine (NLM) and is not subject to copyright and is freely reproducible as stated in the [NLM’s copyright policy](https://www.nlm.nih.gov/web_policies.html). This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+
+#### [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
+PubChem is the world's largest collection of freely accessible chemical information. Search chemicals by name, molecular formula, structure, and other identifiers. Find chemical and physical properties, biological activities, safety and toxicity information, patents, literature citations and more.
+
+This data is from the National Library of Medicine (NLM) and is not subject to copyright and is freely reproducible as stated in the [NLM’s copyright policy](https://www.nlm.nih.gov/web_policies.html).
 
 
 ### [UCSC Genomics Institute](https://genome.ucsc.edu/)
@@ -169,4 +165,12 @@ The data is made available by the [Creative Commons Attribution (CC BY 4.0) Lice
 These are statistical associations using a Fisher’s exact test co-occurrence of disease and symptom terms in Pubmed entries by performing as described in [Himmelstein, et al (2017)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640425/).
 
 The data was previously hosted by [UCSF Scalable Precision Medicine Knowledge Engine SPOKE](https://spoke.ucsf.edu/). It was made available by the data’s owner, Sergio Baranzini, for use on Data Commons. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+
+
+### [University of Maryland School of Medicine, Institute of Genome Sciences](https://www.igs.umaryland.edu/)
+
+#### [Disease Ontology](https://disease-ontology.org/)
+The Disease Ontology was developed as a project by the Institute of Genome Sciences at the University of Maryland School of Medicine. It "is a community driven, open source ontology that is designed to link disparate datasets through disease concepts". It provides a "standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts".
+
+The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do). Data Commons includes the 3/7/19 update of the Disease Ontology. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
 
