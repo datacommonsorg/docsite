@@ -4,7 +4,7 @@ title: Place Info
 nav_order: 9
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/info/place
 ---
 

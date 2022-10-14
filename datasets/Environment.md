@@ -19,6 +19,10 @@ The Climate TRACE data is made available through the [Climate TRACE terms of use
 
 ### [European Union (EU) Copernicus](https://www.copernicus.eu/en)
 
+#### [Copernicus ECMWF - ERA5 Climate Reanalysis Data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels)
+ERA5 is the fifth generation ECMWF atmospheric reanalysis of the global climate. Reanalysis combines model data with weather observations from across the world into a globally complete and consistent dataset.
+
+
 #### [Copernicus Global Land Cover](https://lcviewer.vito.be/2015)
 Land cover data from the Copernicus Land Cover viewer. Data Commons currently includes observations for US states and counties.
 
@@ -57,6 +61,12 @@ This dataset includes US historical weather variability at 4 KM resolution, expr
 #### [US Historical Weather Variability - County](https://www.rff.org/publications/data-tools/)
 This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 4 KM resolution by RFF.
 This data is made available for non-commercial purposes only.
+
+### [U.S. Bureau of Transportation Statistics](https://www.bts.dot.gov/)
+
+#### [US Tract Transportation Characteristics for Households](https://www.bts.dot.gov/latch/latch-data)
+Information related to transportation characteristics for households which includes data at Census Tract level on daily personal travel, including information on household and demographic characteristics, employment status, vehicle ownership, trips taken, modal choice, and other related transportation data pertinent to U.S. households.
+
 
 ### [U.S. Center for Disease Control and Prevention (CDC)](https://www.cdc.gov/)
 
@@ -114,6 +124,10 @@ Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 #### [International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncdc.noaa.gov/ibtracs/index.php?name=ib-v4-access)
 The IBTrACS project provides tropical cyclone best track data in a centralized location. Data Commons includes cyclone name, start date, end date, max wind speed, minimum pressure, max classification, oceanic basin, and affected places.
+
+
+#### [NOAA-EPA Observed Weather Data](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily)
+Historical weather data from stations reported largely from NOAA Global Historical Climate Network (GHCN).
 
 
 #### [National Climatic Data Center Storm Events Database](https://www.ncdc.noaa.gov/stormevents/ftp.jsp)

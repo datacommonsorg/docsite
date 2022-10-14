@@ -7,8 +7,8 @@
 $api-tag-blue: #0e84b5;
 $api-tag-green: #5cb85c;
 $api-titlebar-color: #f1f1f1;
-$code-font-size: 0.8em;
 $code-background-color: #f5f6fa;
+$code-font-size: 0.9em;
 $example-titlebar-color: #a3a8bb;
 $keyword-blue: #062873;
 $param-red: #ff686b;
@@ -39,7 +39,7 @@ $shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 
 %code-box {
   background: $code-background-color;
-  font: normal 0.9em monospace;
+  font: normal $code-font-size monospace;
   line-height: 1.5;
 
   // override red border around `...`
@@ -100,7 +100,7 @@ bulk-tag {
   filter: $shadow;
   background-color: $code-background-color;
   color: #0e84b5;
-  font: normal 0.9em monospace;
+  font: normal $code-font-size monospace;
   overflow-wrap: break-word;
   padding: 30px;
   padding-top: 0;
@@ -230,7 +230,7 @@ bulk-tag {
 .exclamation-icon {
   background: var(--dc-red-lite);
   color: white;
-  font-size: 1em;
+  font-size: 0.8em;
   margin-right: 0.5em;
   padding-right: 0;
 }

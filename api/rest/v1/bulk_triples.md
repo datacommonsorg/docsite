@@ -4,7 +4,7 @@ title: Triples
 parent: REST (v1)
 grand_parent: API
 nav_exclude: true
-published: false
+published: true
 permalink: /api/rest/v1/bulk/triples
 ---
 

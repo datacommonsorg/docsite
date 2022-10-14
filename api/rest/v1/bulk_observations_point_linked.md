@@ -4,7 +4,7 @@ title: Single Observation (linked)
 nav_order: 6
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/bulk/observations/point/linked
 ---
 

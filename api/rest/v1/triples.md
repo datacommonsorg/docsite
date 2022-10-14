@@ -4,7 +4,7 @@ title: Triples
 nav_order: 1
 parent: REST (v1)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v1/triples
 ---
 
