@@ -90,7 +90,7 @@ Request:
 
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/property/values/out/geoId/sch3620580/name&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+  'https://api.datacommons.org/v1/property/values/out/geoId/sch3620580/name?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -119,7 +119,7 @@ Request:
 
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/property/values/in/country/MDG/affectedPlace&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+  'https://api.datacommons.org/v1/property/values/in/country/MDG/affectedPlace?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
