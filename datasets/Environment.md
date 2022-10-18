@@ -82,16 +82,16 @@ Data Commons has imported data on Palmer Drought Severity Index, Standardiazed P
 Air quality data collected from outdoor monitors on the county, CBSA, and site monitor level.
 
 
-#### [Air Pollutants - Tier 1 Emissions](https://www.epa.gov/air-emissions-inventories/air-pollutant-emissions-trends-data)
-Air Pollution data shows the trends for Tier 1 categories which distinguish pollutant emission contributions on a National and State Level among major source types directly available from EPA source.
-
-
 #### [EJSCREEN](https://www.epa.gov/ejscreen)
 Environmental justice mapping tool based on environmental and demographic indicators.
 
 
 #### [Greenhouse Gas Reporting Program](https://www.epa.gov/enviro/greenhouse-gas-overview)
 Annual reporting of greenhouse gases from large emission sources.
+
+
+#### [National Emissions Inventory](https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei)
+The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 OnRoad air emission sources (such as Mobile Sources Highway Vehicles Electricity and Mobile Sources Border Crossing), 248 NonRoad air emissions sources (such as Mobile Sources Off-highway Vehicle Gasoline and LPG Construction Mining Equipment), 703 NonPoint air emissions sources (such as Industrial Processes Oil Gas Exploration Production and LPG Distribution) and 5818 Point air emissions sources (such as Chemical Evaporation Organic Solvent Evaporation and External Combustion Electric Generation Boilers)at US County Level.
 
 
 #### [Superfund Sites](https://www.epa.gov/superfund)
@@ -121,6 +121,10 @@ Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 
 ### [U.S. National Oceanic and Atmospheric Administration (NOAA)](https://www.noaa.gov/)
+
+#### [GPCC Monthly SPI Data](https://www.ncei.noaa.gov/pub/data/nidis/gpcc/spi-pearson)
+Historical monthly SPI calculated from data observed from German Meteorological Service(Deutscher Wetterdienst).
+
 
 #### [International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncdc.noaa.gov/ibtracs/index.php?name=ib-v4-access)
 The IBTrACS project provides tropical cyclone best track data in a centralized location. Data Commons includes cyclone name, start date, end date, max wind speed, minimum pressure, max classification, oceanic basin, and affected places.
@@ -154,4 +158,12 @@ Earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and ampl
 Codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
 
 [USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
+
+
+### [Wildland Fire Interagency Geospatial Services](https://data-nifc.opendata.arcgis.com/)
+
+#### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
+Point Locations for all reported wildland fires in the United States.
+
+[Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 
