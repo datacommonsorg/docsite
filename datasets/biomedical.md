@@ -176,3 +176,4 @@ The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedic
 Anatomical Therapeutic Chemical (ATC) is a heirarchical classification system for pharmacological substances. 'In the ATC classification system, the active substances are classified in a hierarchy with five different levels. The system has fourteen main anatomical/pharmacological groups or 1st levels. Each ATC main group is divided into 2nd levels which could be either pharmacological or therapeutic groups. The 3rd and 4th levels are chemical, pharmacological or therapeutic subgroups and the 5th level is the chemical substance. The 2nd, 3rd and 4th levels are often used to identify pharmacological subgroups when that is considered more appropriate than therapeutic or chemical subgroups.'
 
 Data made available under [CC BY-NC-SA 3.0 IGO](https://www.who.int/about/policies/publishing/copyright).
+
