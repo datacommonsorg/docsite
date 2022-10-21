@@ -28,4 +28,4 @@ Python:
 
 -   [Case Study: Drug Discovery with Biomedical Data Commons](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
 
--   [Case Study: Analyzing Superfund Sites with Data Commons](https://colab.sandbox.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Analyzing_SuperfundSites_with_Data_Commons.ipynb#scrollTo=cdv6gMAdxK2d){:target="_blank"}
+-   [Case Study: Analyzing Superfund Sites with Data Commons](https://colab.sandbox.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Analyzing_SuperfundSites_with_Data_Commons.ipynb){:target="_blank"}
