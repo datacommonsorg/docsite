@@ -31,6 +31,10 @@ Land cover data from the Copernicus Land Cover viewer. Data Commons currently in
 
 ### [Federal Emergency Management Agency](https://www.fema.gov/)
 
+#### [National Flood Insurance Program (NFIP)](https://www.fema.gov/flood-insurance)
+The National Flood Insurance Program (NFIP), managed by the Federal Emergency Management Agency (FEMA), enables homeowners, business owners and renters in participating communities to purchase federally backed flood insurance. The data includes insurance claims and amounts paid for flood damage to buildings and its contents aggregated by census-tracts, counties and states.
+This product uses the Federal Emergency Management Agency’s OpenFEMA API, but is not endorsed by FEMA. The Federal Government or FEMA cannot vouch for the data or analyses derived from these data after the data have been retrieved from the Agency's website(s).
+
 #### [National Risk Index](https://hazards.fema.gov/nri/)
 Data Commons includes relative measures of risk from the 18 natural hazards included in the study for counties and census tracts, as well as annual expected loss figures in USD from individual hazards and in aggregate. This study and associated data are released with [this disclaimer](https://hazards.fema.gov/nri/disclaimer).
 
