@@ -168,7 +168,7 @@ Request:
 
 ```bash
   $ curl --request GET --url \
-  'https://api.datacommons.org/v1/triples/in/CarbonDioxide?query=value&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+  'https://api.datacommons.org/v1/triples/in/CarbonDioxide?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
