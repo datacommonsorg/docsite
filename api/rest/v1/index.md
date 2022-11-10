@@ -61,6 +61,7 @@ Methods for retrieving information of certain types of nodes.
 | Variable Info                                 | [/v1/info/variable](/api/rest/v1/info/variable)                       | Get information about a variable               |
 | Variable Group Info                           | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
 |                                               |                                                                       |                                                |
+| Find DCIDs <bulk-tag>bulk</bulk-tag>          | [/v1/bulk/find/entities](/api/rest/v1/bulk/find/entities)             | Find the DCID of an entity                     |
 | Place Info <bulk-tag>bulk</bulk-tag>          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
 | Variable Info <bulk-tag>bulk</bulk-tag>       | [/v1/bulk/info/variable](/api/rest/v1/bulk/info/variable)             | Get information about multiple variables       |
 | Variable Group Info <bulk-tag>bulk</bulk-tag> | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
@@ -93,6 +94,6 @@ Methods for retrieving statistical variable related data.
 
 Methods for querying the Data Commons knowledge graph with [SPARQL](https://www.w3.org/TR/rdf-sparql-query/).
 
-| API              | URI                                               | Description                                         |
-| ---------------- | ------------------------------------------------- | --------------------------------------------------- |
-| SPARQL           | [/v1/query](/api/rest/v1/query)                   | Use SPARQL queries                                  |
+| API    | URI                             | Description        |
+| ------ | ------------------------------- | ------------------ |
+| SPARQL | [/v1/query](/api/rest/v1/query) | Use SPARQL queries |
