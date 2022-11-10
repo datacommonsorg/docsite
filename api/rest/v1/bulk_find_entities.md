@@ -12,7 +12,17 @@ permalink: /api/rest/v1/bulk/find/entities
 
 Find the [DCID](/glossary.html#dcid) of an entity.
 
-Given the name of the entity, this endpoint searches for an entry in the Data Common knowledge graph and returns the DCID of the best match. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state).
+Given the name of the entity, this endpoint searches for an entry in the Data Commons knowledge graph and returns the DCID of the best match. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state).
+
+<div markdown="span" class="alert alert-danger" role="alert">
+   <span class="material-icons exclamation-icon">priority_high</span><b>IMPORTANT:</b><br />
+   This endpoint relies on name-based geocoding and is prone to inaccuracies. One common pattern is ambiguous place names that exist in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, please provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can.
+</div>
+
+<div markdown="span" class="alert alert-info" role="alert">
+   <span class="material-icons md-16">info </span><b>Note:</b><br />
+   Currently, this endpoint only supports [place](/glossary.html#place) entities.
+</div>
 
 ## Request
 
