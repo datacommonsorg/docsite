@@ -10,7 +10,7 @@ permalink: /api/rest/v1/bulk/find/entities
 
 # /v1/bulk/find/entities
 
-Find the DCID of an entity.
+Find the [DCID](/glossary.html#dcid) of an entity.
 
 Given the name of the entity, this endpoint searches for an entry in the Data Common knowledge graph and returns the DCID of the best match. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state).
 
