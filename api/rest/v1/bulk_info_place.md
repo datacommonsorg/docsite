@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Place Info
-nav_exclude: true
+title: <bulk-tag>BULK</bulk-tag> Place Info
+nav_order: 109
 parent: REST (v1)
 grand_parent: API
 published: true

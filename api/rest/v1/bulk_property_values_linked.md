@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Property Values (linked)
-nav_exclude: true
+title: <bulk-tag>BULK</bulk-tag>  Property Values (linked)
+nav_order: 105
 parent: REST (v1)
 grand_parent: API
 published: true

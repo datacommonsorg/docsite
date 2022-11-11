@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Variables
+title: <bulk-tag>BULK</bulk-tag> Variables
 parent: REST (v1)
 grand_parent: API
-nav_exclude: true
+nav_order: 112
 published: true
 permalink: /api/rest/v1/bulk/variables
 ---
