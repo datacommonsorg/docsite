@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Variable Group Info
-nav_order: 11
+nav_order: 12
 parent: REST (v1)
 grand_parent: API
 published: true

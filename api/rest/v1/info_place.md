@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Place Info
-nav_order: 9
+nav_order: 10
 parent: REST (v1)
 grand_parent: API
 published: true

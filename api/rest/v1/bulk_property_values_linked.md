@@ -1,6 +1,6 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag>  Property Values (linked)
+title: <bulk-tag>BULK</bulk-tag> Property Values (linked)
 nav_order: 105
 parent: REST (v1)
 grand_parent: API

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Series of Observations
-nav_order: 7
+nav_order: 8
 parent: REST (v1)
 grand_parent: API
 published: true

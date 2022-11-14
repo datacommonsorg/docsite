@@ -3,7 +3,7 @@ layout: default
 title: <bulk-tag>BULK</bulk-tag> Variables
 parent: REST (v1)
 grand_parent: API
-nav_order: 112
+nav_order: 113
 published: true
 permalink: /api/rest/v1/bulk/variables
 ---
