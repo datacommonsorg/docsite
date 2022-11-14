@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Property Values (linked)
-nav_order: 4
+nav_order: 5
 parent: REST (v1)
 grand_parent: API
 published: true
