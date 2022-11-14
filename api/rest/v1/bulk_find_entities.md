@@ -138,7 +138,7 @@ Response:
 
 ### Example 2: Find the DCID of places, using different descriptions
 
-This queries for the DCIDs of "_Cambridge_", "_Cambridge, MA_" and "_Cambridge, UK_". Notice how including "_MA_" or "_UK_" in the description helps disambiguate.
+This queries for the DCIDs of "_London_", "_London, ON_" and "_London, UK_". Notice how including "_ON_" or "_UK_" in the description helps disambiguate.
 
 Request:
 {: .example-box-title}
@@ -147,7 +147,7 @@ Request:
 curl -X POST \
 --url 'https://api.datacommons.org/v1/bulk/find/entities' \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":[{"description": "Cambridge"},{"description": "Cambridge, MA"},{"description": "Cambridge, UK"}]}'
+--data '{"entities":[{"description": "London"},{"description": "London, ON"},{"description": "London, UK"}]}'
 ```
 {: .example-box-content .scroll}
 
@@ -158,16 +158,16 @@ Response:
 {
   "entities":[
     {
-      "description":"Cambridge",
-      "dcids":["wikidataId/Q350"]
+      "description":"London",
+      "dcids":["nuts/UKI"]
     },
     {
-      "description":"Cambridge, MA",
-      "dcids":["geoId/2511000"]
+      "description":"London, ON",
+      "dcids":["wikidataId/Q92561"]
     },
     {
-      "description":"Cambridge, UK",
-      "dcids":["wikidataId/Q350"]
+      "description":"London, UK",
+      "dcids":["nuts/UKI"]
     }
   ]
 }
