@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Properties
+title: <bulk-tag>BULK</bulk-tag> Properties
 parent: REST (v1)
 grand_parent: API
-nav_exclude: true
+nav_order: 103
 published: true
 permalink: /api/rest/v1/bulk/properties
 ---

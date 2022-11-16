@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Variable Info
-nav_exclude: true
+title: <bulk-tag>BULK</bulk-tag> Variable Info
+nav_order: 111
 parent: REST (v1)
 grand_parent: API
 published: true
