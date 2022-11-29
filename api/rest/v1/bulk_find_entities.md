@@ -12,7 +12,7 @@ permalink: /api/rest/v1/bulk/find/entities
 
 Find the [DCIDs](/glossary.html#dcid) of multiple entities.
 
-Given the description of an entity, this endpoint searches for an entry in the Data Commons knowledge graph and returns the DCIDs of matches. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state). If mulitple DCIDs are returned, the first is the most likely best match given the available info.
+Given the description of an entity, this endpoint searches for an entry in the Data Commons knowledge graph and returns the DCIDs of matches. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state). If multiple DCIDs are returned, the first is the most likely best match given the available info.
 
 <div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
