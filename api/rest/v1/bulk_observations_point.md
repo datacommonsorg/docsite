@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Single Observation
-nav_exclude: true
+title: <bulk-tag>BULK</bulk-tag> Single Observation
+nav_order: 106
 parent: REST (v1)
 grand_parent: API
 published: true
