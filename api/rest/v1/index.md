@@ -57,6 +57,7 @@ Methods for retrieving information of certain types of nodes.
 
 | API                                           | URI                                                                   | Description                                    |
 | --------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------- |
+| Find DCIDs         | [/v1/find/entities](/api/rest/v1/find/entities)             | Find the DCID of an entity                     |
 | Place Info                                    | [/v1/info/place](/api/rest/v1/info/place)                             | Get information about a place                  |
 | Variable Info                                 | [/v1/info/variable](/api/rest/v1/info/variable)                       | Get information about a variable               |
 | Variable Group Info                           | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
