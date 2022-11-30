@@ -1,11 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag> Single Observation (linked)
+title:  Single Observation (linked)
 nav_order: 107
 parent: REST (v1)
 grand_parent: API
 published: true
 permalink: /api/rest/v1/bulk/observations/point/linked
+is_bulk: true
 ---
 
 # /v1/bulk/observations/point/linked

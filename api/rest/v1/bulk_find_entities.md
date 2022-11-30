@@ -1,11 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>bulk</bulk-tag> Find DCIDs
+title: Find DCIDs
 parent: REST (v1)
 grand_parent: API
 nav_order: 101
 published: true
 permalink: /api/rest/v1/bulk/find/entities
+is_bulk: true
 ---
 
 # /v1/bulk/find/entities

@@ -1,11 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag> Variable Group Info
+title:  Variable Group Info
 nav_order: 112
 parent: REST (v1)
 grand_parent: API
 published: true
 permalink: /api/rest/v1/bulk/info/variable-group
+is_bulk: true
 ---
 
 # /v1/bulk/info/variable-group
