@@ -115,7 +115,7 @@
                         </a>
                       </li>
                     {% endif %}
-                    <li class="breadcrumb-item active"><span>{{ page.title }}</span></li>
+                    <li class="breadcrumb-item active"><span>{{ page.title }} {% if page.is_bulk %}(Bulk version){% endif %}</span></li>
                   </ol>
                 </nav>
               {% endif %}

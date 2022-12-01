@@ -1,11 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag> Triples
+title: Triples
 parent: REST (v1)
 grand_parent: API
 nav_order: 102
 published: true
 permalink: /api/rest/v1/bulk/triples
+is_bulk: true
 ---
 
 # /v1/bulk/triples

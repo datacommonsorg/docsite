@@ -1,11 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag> Place Info
+title: Place Info
 nav_order: 110
 parent: REST (v1)
 grand_parent: API
 published: true
 permalink: /api/rest/v1/bulk/info/place
+is_bulk: true
 ---
 
 
