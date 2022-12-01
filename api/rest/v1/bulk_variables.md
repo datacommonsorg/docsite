@@ -1,11 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag> Variables
+title: Variables
 parent: REST (v1)
 grand_parent: API
 nav_order: 113
 published: true
 permalink: /api/rest/v1/bulk/variables
+is_bulk: true
 ---
 
 # /v1/bulk/variables

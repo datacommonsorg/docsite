@@ -1,12 +1,12 @@
 ---
 layout: default
-title: <bulk-tag>BULK</bulk-tag> Series of Observations
+title: Series of Observations
 nav_order: 108
 parent: REST (v1)
 grand_parent: API
 published: true
 permalink: /api/rest/v1/bulk/observations/series
- 
+is_bulk: true 
 ---
  
 # /v1/bulk/observations/series
