@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Find DCIDs
+title: Find Entities
 parent: REST (v1)
 grand_parent: API
 nav_order: 1
@@ -82,7 +82,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/find/entities?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&description=Georgia'
+'https://api.datacommons.org/v1/find/entities?description=Georgia&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -97,14 +97,14 @@ Response:
 
 ### Example 2: Find the DCID of a place, including a type
 
-This queries for the DCIDs of "_Georgia_" while specifing we want the country.
+This queries for the DCIDs of "_Georgia_" while specifying we want the country.
 
 Request:
 {: .example-box-title}
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/find/entities?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&type=Country&description=Georgia'
+'https://api.datacommons.org/v1/find/entities?description=Georgia&type=Country&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 

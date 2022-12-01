@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Find DCIDs
+title: Find Entities
 parent: REST (v1)
 grand_parent: API
 nav_order: 101
