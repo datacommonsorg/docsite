@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Single Observation (linked)
+title: Single Observation (linked)
 nav_order: 107
 parent: REST (v1)
 grand_parent: API

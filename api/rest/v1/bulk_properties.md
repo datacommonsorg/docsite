@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Properties
+title: Properties
 parent: REST (v1)
 grand_parent: API
 nav_order: 103

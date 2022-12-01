@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Triples
+title: Triples
 parent: REST (v1)
 grand_parent: API
 nav_order: 102

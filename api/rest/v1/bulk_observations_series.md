@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Series of Observations
+title: Series of Observations
 nav_order: 108
 parent: REST (v1)
 grand_parent: API

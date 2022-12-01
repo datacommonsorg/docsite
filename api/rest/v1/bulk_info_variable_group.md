@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Variable Group Info
+title: Variable Group Info
 nav_order: 112
 parent: REST (v1)
 grand_parent: API

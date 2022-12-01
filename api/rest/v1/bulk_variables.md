@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Variables
+title: Variables
 parent: REST (v1)
 grand_parent: API
 nav_order: 113
