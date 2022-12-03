@@ -45,6 +45,13 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 A global inventory of glaciers, including surface areas.
 
 
+### [Google](https://www.google.com/)
+
+#### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+This dataset includes flooded regions computed from the Dynamic World dataset.  These are regions labelled as water and outside regions marked as permanent water in the Hansen Global Forest Change dataset.
+Data made publicly available under the standard [Google Terms of Service](https://policies.google.com/terms?hl=en).
+
+
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
@@ -123,6 +130,9 @@ Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-GDDP-CMIP6-Tech_Note.pdf).
 
+
+#### [VIIRS Active Fire Data](https://www.earthdata.nasa.gov/learn/find-data/near-real-time/firms/vnp14imgtdlnrt)
+The Visible Infrared Imaging Radiometer Suite (VIIRS) aboard S-NPP satellite provides 375m resolution data for active fires. This dataset includes area under fire per level 13 S2 cell every day starting in 2012.
 
 ### [U.S. National Oceanic and Atmospheric Administration (NOAA)](https://www.noaa.gov/)
 
