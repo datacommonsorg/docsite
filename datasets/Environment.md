@@ -17,6 +17,14 @@ parent: Data Sources
 Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
 The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
 
+### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+
+#### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+This dataset includes flooded regions computed from the Dynamic World dataset. These are regions labelled as water and outside regions marked as permanent water in the Hansen Global Forest Change dataset.
+
+This dataset is produced for the Dynamic World Project by Google in partnership with National Geographic Society and the World Resources Institute.
+
+
 ### [European Union (EU) Copernicus](https://www.copernicus.eu/en)
 
 #### [Copernicus ECMWF - ERA5 Climate Reanalysis Data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels)
@@ -43,13 +51,6 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 
 #### [Randolph Glacier Inventory](https://www.glims.org/RGI/rgi60_dl.html)
 A global inventory of glaciers, including surface areas.
-
-
-### [Google](https://www.google.com/)
-
-#### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
-This dataset includes flooded regions computed from the Dynamic World dataset.  These are regions labelled as water and outside regions marked as permanent water in the Hansen Global Forest Change dataset.
-Data made publicly available under the standard [Google Terms of Service](https://policies.google.com/terms?hl=en).
 
 
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
