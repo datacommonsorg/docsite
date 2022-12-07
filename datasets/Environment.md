@@ -17,6 +17,14 @@ parent: Data Sources
 Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
 The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
 
+### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+
+#### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+This dataset includes flooded regions computed from the Dynamic World dataset. These are regions labelled as water and outside regions marked as permanent water in the Hansen Global Forest Change dataset.
+
+This dataset is produced for the Dynamic World Project by Google in partnership with National Geographic Society and the World Resources Institute.
+
+
 ### [European Union (EU) Copernicus](https://www.copernicus.eu/en)
 
 #### [Copernicus ECMWF - ERA5 Climate Reanalysis Data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels)
@@ -123,6 +131,9 @@ Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-GDDP-CMIP6-Tech_Note.pdf).
 
+
+#### [VIIRS Active Fire Data](https://www.earthdata.nasa.gov/learn/find-data/near-real-time/firms/vnp14imgtdlnrt)
+The Visible Infrared Imaging Radiometer Suite (VIIRS) aboard S-NPP satellite provides 375m resolution data for active fires. This dataset includes area under fire per level 13 S2 cell every day starting in 2012.
 
 ### [U.S. National Oceanic and Atmospheric Administration (NOAA)](https://www.noaa.gov/)
 

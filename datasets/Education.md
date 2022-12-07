@@ -51,5 +51,9 @@ The National Center for Education Statistics collaborates with the US Census Bur
 #### [Public School and School District Data](https://nces.ed.gov/ccd/elsi/)
 General descriptive information such as name, address, and phone number; select demographic characteristics about students and staff; and fiscal data such as revenues and current expenditures. Data Commons includes school and school district level data about student populations by race, gender, lunch eligibility, and grade, as well as student-teacher ratio and teacher count statistics.
 
+
+#### [US Private School Data](https://nces.ed.gov/ccd/elsi/)
+General descriptive information such as name, address, and phone number; select demographic characteristics about students and staff. Data Commons includes school data about student populations by race, grade, as well as student-teacher ratio and teacher count statistics.
+
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
 
