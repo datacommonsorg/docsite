@@ -3,17 +3,16 @@ layout: default
 title: Find Entities
 parent: REST (v1)
 grand_parent: API
-nav_order: 101
+nav_order: 1
 published: true
-permalink: /api/rest/v1/bulk/find/entities
-is_bulk: true
+permalink: /api/rest/v1/find/entities
 ---
 
-# /v1/bulk/find/entities
+# /v1/find/entities
 
-Find the [DCIDs](/glossary.html#dcid) of multiple entities.
+Find the [DCID](/glossary.html#dcid) of a given entity.
 
-Given the description of an entity, this endpoint searches for an entry in the Data Commons knowledge graph and returns the DCIDs of matches. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state). If multiple DCIDs are returned, the first is the most likely best match given the available info.
+Given the description of an entity, this endpoint searches for an entry in the Data Commons knowledge graph and returns the DCIDs of matches. For example, you could query for "San Francisco, CA" or "San Francisco" to find that its DCID is `geoId/0667000`. You can also provide the type of entity (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia the US state).
 
 <div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -27,35 +26,17 @@ Given the description of an entity, this endpoint searches for an entry in the D
 
 <div markdown="span" class="alert alert-warning" role="alert">
     <span class="material-icons md-16">info </span><b>See Also:</b><br />
-    For querying a single entity and a simpler output, see the [simple version](/api/rest/v1/find/entities) of this endpoint.
+    For querying multiple entities, see the [bulk version](/api/rest/v1/bulk/find/entities) of this endpoint.
 </div>
 
 ## Request
 
-POST Request
+GET Request
 {: .api-header}
 
 <div class="api-signature">
 URL:
-https://api.datacommons.org/v1/bulk/find/entities
-
-Header:
-X-API-Key: {your_api_key}
-
-JSON Data:
-{
-  "entities": [
-    {
-        "description": "{entity_name_1}",
-        "type": "{entity_type_1}"
-    },
-    {
-        "description": "{entity_name_2}",
-        "type": "{entity_type_2}"
-    },
-    ...
-  ]
-}
+https://api.datacommons.org/v1/find/entities?key={your_api_key}&description={entity_description}
 </div>
 <script src="/assets/js/syntax_highlighting.js"></script>
 
@@ -78,19 +59,7 @@ The response looks like:
 
 ```json
 {
-  "entities": [
-    {
-      "description":"Description provided 1",
-      "type":"Type provided 1",
-      "dcids":["DCID 1"]
-    },
-    {
-      "description":"Description provided 2",
-      "type":"Type provided 2",
-      "dcids":["DCID 2"]
-    },
-    ...
-  ]
+  "dcids": ["dcid"]
 }
 ```
 {: .response-signature .scroll}
@@ -99,25 +68,21 @@ The response looks like:
 
 | Name        | Type   | Description                                                                                            |
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------ |
-| description | string | The description you provided.                                                                          |
-| type        | string | The type of entity, if provided.                                                           |
 | dcids       | list   | DCIDs matching the description you provided. If no matches are found, this field will not be returned. |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: Find the DCID of places, with and without the type field
+### Example 1: Find the DCID of a place
 
-This queries for the DCID of "_Georgia_" twice: once without specifying type, and once with. Notice that specifying "_Georgia_" without specifying `type` returned the DCID of the US state of Georgia. When including `"type":"Country"`, the DCID of the country of Georgia is returned.
+This queries for the DCID of "_Georgia_". Notice that specifying "_Georgia_" without specifying `type` returned the DCID of the US state.
 
 Request:
 {: .example-box-title}
 
 ```bash
-curl -X POST \
---url 'https://api.datacommons.org/v1/bulk/find/entities' \
---header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities": [{"description": "Georgia"}, {"description": "Georgia", "type":"Country"}]}'
+$ curl --request GET --url \
+'https://api.datacommons.org/v1/find/entities?description=Georgia&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -125,35 +90,21 @@ Response:
 {: .example-box-title}
 
 ```json
-{
-  "entities":[
-    {
-      "description":"Georgia",
-      "dcids":["geoId/13"]
-    },
-    {
-      "description":"Georgia",
-      "type":"Country",
-      "dcids":["country/GEO"]
-    }
-  ]
-}
+{"dcids":["geoId/13"]}
 
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Find the DCID of places, using different descriptions
+### Example 2: Find the DCID of a place, including a type
 
-This queries for the DCIDs of "_London_", "_London, ON_" and "_London, UK_". Notice how including "_ON_" or "_UK_" in the description helps disambiguate.
+This queries for the DCIDs of "_Georgia_" while specifying we want the country.
 
 Request:
 {: .example-box-title}
 
 ```bash
-curl -X POST \
---url 'https://api.datacommons.org/v1/bulk/find/entities' \
---header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":[{"description": "London"},{"description": "London, ON"},{"description": "London, UK"}]}'
+$ curl --request GET --url \
+'https://api.datacommons.org/v1/find/entities?description=Georgia&type=Country&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -161,21 +112,6 @@ Response:
 {: .example-box-title}
 
 ```json
-{
-  "entities":[
-    {
-      "description":"London",
-      "dcids":["nuts/UKI"]
-    },
-    {
-      "description":"London, ON",
-      "dcids":["wikidataId/Q92561"]
-    },
-    {
-      "description":"London, UK",
-      "dcids":["nuts/UKI"]
-    }
-  ]
-}
+{"dcids":["country/GEO"]}
 ```
 {: .example-box-content .scroll}

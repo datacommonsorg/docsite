@@ -57,11 +57,12 @@ Methods for retrieving information of certain types of nodes.
 
 | API                                           | URI                                                                   | Description                                    |
 | --------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------- |
+| Find Entities         | [/v1/find/entities](/api/rest/v1/find/entities)             | Find the DCID of an entity                     |
 | Place Info                                    | [/v1/info/place](/api/rest/v1/info/place)                             | Get information about a place                  |
 | Variable Info                                 | [/v1/info/variable](/api/rest/v1/info/variable)                       | Get information about a variable               |
 | Variable Group Info                           | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
 |                                               |                                                                       |                                                |
-| <bulk-tag>bulk</bulk-tag> Find DCIDs         | [/v1/bulk/find/entities](/api/rest/v1/bulk/find/entities)             | Find the DCID of an entity                     |
+| <bulk-tag>bulk</bulk-tag> Find Entities         | [/v1/bulk/find/entities](/api/rest/v1/bulk/find/entities)             | Find the DCID of an entity                     |
 | <bulk-tag>bulk</bulk-tag> Place Info           | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
 | <bulk-tag>bulk</bulk-tag> Variable Info        | [/v1/bulk/info/variable](/api/rest/v1/bulk/info/variable)             | Get information about multiple variables       |
 | <bulk-tag>bulk</bulk-tag> Variable Group Info | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
