@@ -109,7 +109,7 @@ This data is from an NIH human genome unrestricted-access data repository and ma
 ### [U.S. National Institutes of Health: National Library of Medicine](https://www.nlm.nih.gov/)
 
 #### [Medical Subject Headings (MeSH)](https://meshb.nlm.nih.gov/search)
-The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Descriptor, Concept, Qualifier, Supplementary Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
+The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Concept, Descriptor, Qualifier, Supplementary Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
 
 
 #### [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
