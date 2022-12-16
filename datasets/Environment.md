@@ -184,5 +184,9 @@ Codes, names, coordinates, and more information for all "named physical and cult
 #### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
 Point Locations for all reported wildland fires in the United States.
 
+
+#### [WFIGS Wildland Fire Perimeters](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-perimeters-full-history/about)
+The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides perimeters for all reported wildland fires in the United States. We simplify those parameters by using Ramer-Douglas-Peucker algorithm on geoJsonCoordinates with epsilon of 0.01.
+
 [Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 
