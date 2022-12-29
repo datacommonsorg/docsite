@@ -26,67 +26,6 @@ Anyone and everyone. Instructors, students, aspiring data scientists and anyone 
 
 There are several excellent courses which range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with Math and Statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please do share them with us at [courses@datacommons.org](mailto:courses@datacommons.org).
 
-## What topics are covered?
-{:#key-concepts}
-
-A non-exhaustive outline is:
-
-- **Data and Modeling Overview** [Data and Modeling Overview &lt;url>]
-  - What it means to ‘model’ a phenomenon
-  - What is a variable
-  - What is a measurement
-    - Observation (direct) vs estimation (indirect)
-    - Interpolation as an instance of estimation (indirect)
-    - Introduce concepts such as sampling vs complete population-level observations
-      - Types of sampling e.g. random, systematic, cluster, etc.
-- **Basic Data Analysis**
-  - Summary Statistics [Data and Modeling Overview, Deep Dive into Data “Set” &lt;url>]
-    - Measures of central tendency and their benefits/drawbacks
-      - E.g. Mean, median, mode
-    - Measures of variability and their benefits/drawbacks
-      - E.g. Variation, range, standard deviation
-    - Discuss the limitations of summary statistics with examples
-      - E.g. Anscombe Quartet
-  - Aggregations
-    - When and why do aggregations make sense or are necessary [Relating Data “Sets”, Mapping &lt;url>]
-    - How to aggregate two data sets into one [Relating Data “Sets” &lt;url>]
-    - How to aggregate data sets between levels of granularity [Mapping &lt;url>]
-  - Outliers [Plotting/Graphing &lt;url>]
-    - Why we care about outliers
-    - How to spot and handle outliers
-- **Techniques for Data Visualization** [Plotting/Graphing &lt;url>]
-  - Plotting vs graphing
-  - Why we visualize data
-  - Types of plots
-    - Scatter, line, map, bar, histogram, etc.
-  - How to visualize 1-D vs 2-D vs N-D Data
-- **Techniques for Statistical Modeling**
-  - Distributions [Plotting/Graphing: Advanced Topic &lt;url>]
-    - Theoretical vs empirical (i.e. probability distributions vs frequency distributions)
-    - Normal/Gaussian distribution
-      - Properties of the normal distribution
-      - When it is appropriate to model using the normal distribution
-    - Exponential distribution
-    - Other distributions
-      - Bernoulli
-      - Binomial
-  - Correlations [Correlations &lt;url>]
-    - Linear vs quadratic vs exponential
-    - Degree and direction of correlation
-    - How to identify correlations
-      - Visually (e.g. scatter plot)
-      - Numerically (e.g. correlation coefficient)
-    - Common pitfalls such as overgeneralization, Simpson’s paradox, etc.
-    - Correlation vs. causation
-- **Data Science in the Real World** [Data and Modeling Overview &lt;url>]
-  - Lies, damn lies and statistics
-    - Manipulative visuals
-    - Manipulative statistics
-  - Cognitive biases
-    - Survivorship bias
-    - False causality fallacy
-    - Other biases
-
 ## What do we mean by data literacy?
 
 What does it mean to be "data literate"? Unsurprisingly, the answer depends on who one asks: from those who believe it implies being a casual consumer of data visualizations (in the media, for example) to those who believe that such a person ought to be able to run linear regressions on large volumes of data in a spreadsheet. Given that most (or all) of us are proliferate _consumers_ of data, we take an opinionated approach to defining "data literacy": someone who is data literate ought to be comfortable with _consuming_ data across a wide range of modalities and be able to interpret it to make informed decisions. And we believe that data literacy ought not to be exclusionary and should be accessible to anyone and everyone.
@@ -118,3 +57,9 @@ For the purpose of the Data Literacy, the Data Commons platform becomes an impor
 We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please reach out at [courses@datacommons.org](mailto:courses@datacommons.org) and we would love to work with you.
 
 We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.md) curriculum/course material.
+
+## Feedback
+
+Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to hear from you at [courses@datacommons.org](mailto:courses@datacommons.org).
+
+Finally, if you end up using any of this material or find it useful, we would love to hear from you at [courses@datacommons.org](mailto:courses@datacommons.org).
