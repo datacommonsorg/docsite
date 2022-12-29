@@ -1,6 +1,6 @@
 ---
 layout: post
-author: Jehangir Amjad
+author: Crystal Wang, Jehangir Amjad, and Julia Wu
 title: New Courseware - Data Literacy with Data Commons
 ---
 
@@ -39,4 +39,4 @@ As a summary, our view on “Data Literacy” can be described as follows:
 
 With these goals in mind, we hope that this introductory curriculum can help the target audiences towards achieving data literacy and inspire many to dive deeper and farther to become data analysts and scientists.
 
-Jehangir, on behalf of the Data Commons team
+Crystal, Jehangir, and Julia, on behalf of the Data Commons team
