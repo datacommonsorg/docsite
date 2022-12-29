@@ -1,12 +1,13 @@
 ---
 layout: default
-title: Topics Covered
-nav_order: 3
-parent: Data Literacy with Data Commons
-grand_parent: Courseware
+title: Modules
+nav_order: 1
+parent: Course Materials
+grand_parent: Data Literacy with Data Commons
+great_grand_parent: Courseware
 ---
 
-# Topics Covered
+# Course Material
 
 This page provides an outline of the topics covered in the [modules](course_materials.html#modules) of our "Data Literacy with Data Commons" course materials. Use search (Ctrl + F) on this page to search for a term or topic you are interested in.
 

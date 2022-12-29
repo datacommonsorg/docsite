@@ -1,15 +1,15 @@
 ---
 layout: default
-title: About the Course
-nav_order: 1
+title: FAQs
+nav_order: 3
 parent: Data Literacy with Data Commons
 grand_parent: Courseware
 ---
 
-# About the Course
+# Frequently Asked Questions
 
 <div markdown="span" class="alert alert-info" role="alert" style="text-align: center">
-    >> [Access the course materials here](course_materials.html). <<
+    >> [Access the course materials here](course_materials.html#modules). <<
 </div>
 
 ## What is it?
@@ -55,13 +55,13 @@ For the purpose of the Data Literacy, the Data Commons platform becomes an impor
 ## What topics are covered?
 
 Take a look at the [topics covered page](topics.html).
-## Deficiencies
+## What is not covered?
 
 We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please reach out at [courses@datacommons.org](mailto:courses@datacommons.org) and we would love to work with you.
 
 We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.md) curriculum/course material.
 
-## Feedback
+## How can I give feedback?
 
 Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to hear from you at [courses@datacommons.org](mailto:courses@datacommons.org).
 

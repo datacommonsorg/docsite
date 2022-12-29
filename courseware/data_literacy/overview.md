@@ -1,19 +1,19 @@
 ---
 layout: default
-title: Course Material
-nav_order: 2
+title: Overview
+nav_order: 1
 parent: Data Literacy with Data Commons
 grand_parent: Courseware
 ---
 
 # Data Literacy with Data Commons
 
-## Introduction
+## Overview
 
 "Data Literacy with Data Commons" comprises curriculum/course materials for instructors, students and other practitioners working on or helping others become _data literate_. This includes detailed modules with pedagogical narratives, explanations of key concepts, examples, and suggestions for exercises/projects focused on advancing the _consumption_, _understanding_ and _interpretation_ of data in the contemporary world. In our quest to expand the reach and utility of this material, we assume no background in computer science or programming, thereby removing a key obstacle to many such endeavors.
 
 <div markdown="span" class="alert alert-info" role="alert">
-    For more background about the course, see our [about the course](about_the_course.html) page.
+    For more background about the course, see our [About the Course](about_the_course.html) page.
 </div>
 
 ### Objectives
