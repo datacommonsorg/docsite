@@ -13,7 +13,7 @@ All material is provided publicly and free of charge, under a Creative Commons l
 
 ## Courses
 
-**[Data Literacy](/courseware/data_literacy.html)**
+**[Data Literacy](/courseware/data_literacy/overview.html)**
 
 A general audience course focused on the basics of data comprehension, interpretation, and data-based decision making. No programming experience required!
 
