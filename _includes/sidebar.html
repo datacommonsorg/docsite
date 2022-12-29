@@ -18,7 +18,7 @@
             <a href="{{ node.url }}" class="{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
             {% if node.has_children %}{{ caret }}{% endif %}
           </summary>
-          {% if page.parent == node.title or page.grand_parent == node.title %}
+          {% if page.parent == node.title or page.grand_parent == node.title or page.great_grand_parent == node.title %}
             {% assign first_level_url = node.url %}
           {% endif %}
           {%- if node.has_children -%}
@@ -31,7 +31,7 @@
                     <a href="{{ child.url }}" class="{% if page.url == child.url or page.parent == child.title %} active{% endif %}">{{ child.title }}</a>
                     {% if child.has_children %}{{ caret }}{% endif %}
                   </summary>
-                  {% if page.url == child.url or page.parent == child.title %}
+                  {% if page.url == child.url or page.parent == child.title or page.grand_parent == child.title %}
                     {% assign second_level_url = child.url %}
                   {% endif %}
                   {%- if child.has_children -%}
@@ -47,7 +47,7 @@
                             </a>
                             {% if grand_child.has_children %}{{ caret }}{% endif %}
                           </summary>
-                          {% if page.url == grand_child.url or page.parent == grand_child.title %}
+                          {% if page.url == grand_child.url or page.parent == grand_child.title or page.grand_parent == grand_child.title %}
                             {% assign third_level_url = grand_child.url %}
                           {% endif %}
                           {%- if grand_child.has_children -%}
