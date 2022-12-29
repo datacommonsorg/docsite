@@ -26,7 +26,7 @@ This module is meant to serve as the introductory class(es) in a data literacy c
 
 **Module 2: [Deep Dive into Data "Set"](https://docs.google.com/document/d/e/2PACX-1vRSLiNxqIQJP3Tp-6eLdz_-Iv5nPp_Q_yS2cY1SbF2wrNbGRsQS26s32fd1gZYrVyarnH8R364G3I3N/pub)**
 
-Introduces students to the idea of a data “set” as well as some basic terms and statistical measures (e.g. mean, standard deviation, etc.) while highlighting important caveats and takeaways when drawing conclusions from these measures.
+Introduces students to the idea of a data “set” as well as some basic terms and statistical measures (e.g., mean, standard deviation, etc.) while highlighting important caveats and takeaways when drawing conclusions from these measures.
 
 **Module 3: [Relating Data "Sets"](https://docs.google.com/document/d/e/2PACX-1vQnJHyjrK85SLlSmlFwzoAi2bA8javVv__apXmeq_N_e4LFmqyB7x1I-ghM2Y0PGXy0K8RWd2I_lny7/pub)**
 

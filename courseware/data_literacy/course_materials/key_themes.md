@@ -17,15 +17,15 @@ great_grand_parent: Courseware
     - Observation (direct) vs estimation (indirect)
     - Interpolation as an instance of estimation (indirect)
     - Introduce concepts such as sampling vs complete population-level observations
-      - Types of sampling e.g. random, systematic, cluster, etc.
+      - Types of sampling e.g., random, systematic, cluster, etc.
 - **Basic Data Analysis**
   - Summary Statistics [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub), [Deep Dive into Data “Set”](https://docs.google.com/document/d/e/2PACX-1vRSLiNxqIQJP3Tp-6eLdz_-Iv5nPp_Q_yS2cY1SbF2wrNbGRsQS26s32fd1gZYrVyarnH8R364G3I3N/pub)]
     - Measures of central tendency and their benefits/drawbacks
-      - E.g. Mean, median, mode
+      - E.g., Mean, median, mode
     - Measures of variability and their benefits/drawbacks
-      - E.g. Variation, range, standard deviation
+      - E.g., Variation, range, standard deviation
     - Discuss the limitations of summary statistics with examples
-      - E.g. Anscombe Quartet
+      - E.g., Anscombe Quartet
   - Aggregations
     - When and why do aggregations make sense or are necessary [[Relating Data “Sets”](https://docs.google.com/document/d/e/2PACX-1vQnJHyjrK85SLlSmlFwzoAi2bA8javVv__apXmeq_N_e4LFmqyB7x1I-ghM2Y0PGXy0K8RWd2I_lny7/pub), [Mapping](https://docs.google.com/document/d/e/2PACX-1vQ947FunXunwK32SQeKQHSi7F8P97mQusHh4WjgMKtnp-y_MX_sAGosKUDgX7xaKK1QdpMQCsPXaJKV/pub)]
     - How to aggregate two data sets into one [[Relating Data “Sets”](https://docs.google.com/document/d/e/2PACX-1vQnJHyjrK85SLlSmlFwzoAi2bA8javVv__apXmeq_N_e4LFmqyB7x1I-ghM2Y0PGXy0K8RWd2I_lny7/pub)]
@@ -53,8 +53,8 @@ great_grand_parent: Courseware
     - Linear vs quadratic vs exponential
     - Degree and direction of correlation
     - How to identify correlations
-      - Visually (e.g. scatter plot)
-      - Numerically (e.g. correlation coefficient)
+      - Visually (e.g., scatter plot)
+      - Numerically (e.g., correlation coefficient)
     - Common pitfalls such as overgeneralization, Simpson’s paradox, etc.
     - Correlation vs. causation
 - **Data Science in the Real World** [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub)]
