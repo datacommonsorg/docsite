@@ -6,7 +6,7 @@ parent: Data Literacy with Data Commons
 grand_parent: Courseware
 ---
 
-# Curriculum: Data Literacy
+# Curriculum: Data Literacy with Data Commons
 
 ## Introduction
 
