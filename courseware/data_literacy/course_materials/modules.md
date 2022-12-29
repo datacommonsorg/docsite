@@ -7,80 +7,14 @@ grand_parent: Data Literacy with Data Commons
 great_grand_parent: Courseware
 ---
 
-# Course Material
-
-This page provides an outline of the topics covered in the [modules](course_materials.html#modules) of our "Data Literacy with Data Commons" course materials. Use search (Ctrl + F) on this page to search for a term or topic you are interested in.
-
-The page is split into two sections:
-
-- [Key Themes](#key-themes) lists several key themes along with some pointers to specific modules which have the complete details
-- [Topics by Module](#topics-by-module) shows the table of contents for each module
-
-If you do not find the topic/concept you are looking for, please email us at [courses@datacommons.org](mailto:courses@datacommons.org) with suggestions about topics/concepts to add. If you would like to contribute to this endeavor, please do reach out at [courses@datacommons.org](mailto:courses@datacommons.org) and help us add more content.
-
-## Key Themes
-{:#key-themes}
-
-- **Data and Modeling Overview** [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub)]
-  - What it means to ‘model’ a phenomenon
-  - What is a variable
-  - What is a measurement
-    - Observation (direct) vs estimation (indirect)
-    - Interpolation as an instance of estimation (indirect)
-    - Introduce concepts such as sampling vs complete population-level observations
-      - Types of sampling e.g. random, systematic, cluster, etc.
-- **Basic Data Analysis**
-  - Summary Statistics [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub), [Deep Dive into Data “Set”](https://docs.google.com/document/d/e/2PACX-1vRSLiNxqIQJP3Tp-6eLdz_-Iv5nPp_Q_yS2cY1SbF2wrNbGRsQS26s32fd1gZYrVyarnH8R364G3I3N/pub)]
-    - Measures of central tendency and their benefits/drawbacks
-      - E.g. Mean, median, mode
-    - Measures of variability and their benefits/drawbacks
-      - E.g. Variation, range, standard deviation
-    - Discuss the limitations of summary statistics with examples
-      - E.g. Anscombe Quartet
-  - Aggregations
-    - When and why do aggregations make sense or are necessary [[Relating Data “Sets”](https://docs.google.com/document/d/e/2PACX-1vQnJHyjrK85SLlSmlFwzoAi2bA8javVv__apXmeq_N_e4LFmqyB7x1I-ghM2Y0PGXy0K8RWd2I_lny7/pub), [Mapping](https://docs.google.com/document/d/e/2PACX-1vQ947FunXunwK32SQeKQHSi7F8P97mQusHh4WjgMKtnp-y_MX_sAGosKUDgX7xaKK1QdpMQCsPXaJKV/pub)]
-    - How to aggregate two data sets into one [[Relating Data “Sets”](https://docs.google.com/document/d/e/2PACX-1vQnJHyjrK85SLlSmlFwzoAi2bA8javVv__apXmeq_N_e4LFmqyB7x1I-ghM2Y0PGXy0K8RWd2I_lny7/pub)]
-    - How to aggregate data sets between levels of granularity [[Mapping](https://docs.google.com/document/d/e/2PACX-1vQ947FunXunwK32SQeKQHSi7F8P97mQusHh4WjgMKtnp-y_MX_sAGosKUDgX7xaKK1QdpMQCsPXaJKV/pub)]
-  - Outliers [[Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)]
-    - Why we care about outliers
-    - How to spot and handle outliers
-- **Techniques for Data Visualization** [[Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)]
-  - Plotting vs graphing
-  - Why we visualize data
-  - Types of plots
-    - Scatter, line, map, bar, histogram, etc.
-  - How to visualize 1-D vs 2-D vs N-D Data
-- **Techniques for Statistical Modeling**
-  - Distributions [[Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)(Advanced Topic)]
-    - Theoretical vs empirical (i.e. probability distributions vs frequency distributions)
-    - Normal/Gaussian distribution
-      - Properties of the normal distribution
-      - When it is appropriate to model using the normal distribution
-    - Exponential distribution
-    - Other distributions
-      - Bernoulli
-      - Binomial
-  - Correlations [[Correlations](https://docs.google.com/document/d/e/2PACX-1vTKng32E3mwC6whbEXoFw9UyTHMSH9HH-ySoZ-lRlzB0DTXc72i4VmXuYj0a9LjkakQ-w84IkClQM4q/pub)]
-    - Linear vs quadratic vs exponential
-    - Degree and direction of correlation
-    - How to identify correlations
-      - Visually (e.g. scatter plot)
-      - Numerically (e.g. correlation coefficient)
-    - Common pitfalls such as overgeneralization, Simpson’s paradox, etc.
-    - Correlation vs. causation
-- **Data Science in the Real World** [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub)]
-  - Lies, damn lies and statistics
-    - Manipulative visuals
-    - Manipulative statistics
-  - Cognitive biases
-    - Survivorship bias
-    - False causality fallacy
-    - Other biases
-  
-## Topics Organized By Module
-{:#topics-by-module}
+# Modules
+{:#modules}
 
 **Module 1: [Data Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub)**
+
+This module is meant to serve as the introductory class(es) in a data literacy course. It provides motivation for why data literacy matters, introduces key concepts such as measurements, variables, models, etc., and defines some basic descriptive statistics and data visualization techniques.
+
+_Table of Contents_
 
 - Lies, Damn Lies, and Statistics
 - Why is Data Literacy Important?
@@ -121,6 +55,10 @@ If you do not find the topic/concept you are looking for, please email us at [co
 
 **Module 2: [Deep Dive into Data "Set"](https://docs.google.com/document/d/e/2PACX-1vRSLiNxqIQJP3Tp-6eLdz_-Iv5nPp_Q_yS2cY1SbF2wrNbGRsQS26s32fd1gZYrVyarnH8R364G3I3N/pub)**
 
+Introduces students to the idea of a data “set” as well as some basic terms and statistical measures (e.g. mean, standard deviation, etc.) while highlighting important caveats and takeaways when drawing conclusions from these measures.
+
+_Table of Contents_
+
 - Where Do Data Sets Come From?
 - Examples of Datasets
 - Exploring Datasets
@@ -143,6 +81,10 @@ If you do not find the topic/concept you are looking for, please email us at [co
 - Explore, Analyze and Compare Two Datasets
 
 **Module 3: [Relating Data "Sets"](https://docs.google.com/document/d/e/2PACX-1vQnJHyjrK85SLlSmlFwzoAi2bA8javVv__apXmeq_N_e4LFmqyB7x1I-ghM2Y0PGXy0K8RWd2I_lny7/pub)**
+
+Introduces students to the idea of related data sets and describes how to merge data sets into one large data collection. Real data sets are analyzed in depth to demonstrate the benefits of building a nuanced, complete picture of the world.
+
+_Table of Contents_
 
 - What Are Related Data Sets?
   - Examples of Related Data Sets
@@ -167,6 +109,10 @@ If you do not find the topic/concept you are looking for, please email us at [co
 - Exercise: Where to Live?
 
 **Module 4: [Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)**
+
+Introduces students to some common plots and graphs and discusses when to use each depending on the data and the context. It also defines and explores various distributions with analysis of their properties and examples from the real world.
+
+_Table of Contents_
 
 - Plot vs. Graph
 - Why Do We Plot?
@@ -194,6 +140,10 @@ If you do not find the topic/concept you are looking for, please email us at [co
   - Binomial
 
 **Module 5: [Correlations](https://docs.google.com/document/d/e/2PACX-1vTKng32E3mwC6whbEXoFw9UyTHMSH9HH-ySoZ-lRlzB0DTXc72i4VmXuYj0a9LjkakQ-w84IkClQM4q/pub)**
+
+Introduces students to the idea of correlation between two variables and describes how to observe, quantify, and label correlations, with a focus on linear correlations. Strategies for distinguishing real correlations from noise are provided and common pitfalls, such as correlation vs causation, are discussed in depth.
+
+_Table of Contents_
 
 - What is Correlation?
   - Linear, Quadratic, and Exponential Correlations
@@ -223,6 +173,9 @@ If you do not find the topic/concept you are looking for, please email us at [co
   
 **Module 6: [Mapping](https://docs.google.com/document/d/e/2PACX-1vQ947FunXunwK32SQeKQHSi7F8P97mQusHh4WjgMKtnp-y_MX_sAGosKUDgX7xaKK1QdpMQCsPXaJKV/pub)**
 
+Introduces students to the idea of geographic data and discusses how to visualize and aggregate geographic data.
+
+_Table of Contents_
 - Examples of Geographic Data
 - Levels of Granularity
   - Latitude/Longitude Coordinates
@@ -242,3 +195,7 @@ If you do not find the topic/concept you are looking for, please email us at [co
   - Aggregation by Something Else?
   - Exercise: Aggregation by You
 - Converting between Types of Granularity
+
+**Module 7: Time Series**
+
+Coming soon!
