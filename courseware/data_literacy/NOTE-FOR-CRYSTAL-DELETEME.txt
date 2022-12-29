@@ -9,6 +9,11 @@ Navbar Structure we talked about in meeting:
         |__ How to Use
     FAQs
 
+Note that I renamed all the files for clarity.
+The links still point to the old filenames, so those need to be changed
+as well.
+
+
 Without updated sidebar logic, you probably won't be able to click into
 the course material pages on a local instance. Navigating by url directly
 should work though, e.g.
