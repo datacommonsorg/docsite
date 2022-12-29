@@ -9,12 +9,12 @@ grand_parent: Courseware
 # Frequently Asked Questions
 
 <div markdown="span" class="alert alert-info" role="alert" style="text-align: center">
-    >> [Access the course materials here](course_materials.html#modules). <<
+    >> [Access the course materials here](course_materials/). <<
 </div>
 
 ## What is it?
 
-A set of [modules](course_materials.html#modules) focusing on several [key concepts](topics.html#key-concepts) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
+A set of [modules](course_materials/modules.html) focusing on several [key concepts](course_materials/key_themes.html) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
 
 All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/)).
 
@@ -54,7 +54,7 @@ For the purpose of the Data Literacy, the Data Commons platform becomes an impor
 
 ## What topics are covered?
 
-Take a look at the [topics covered page](topics.html).
+Take a look at the [Key Themes page](course_materials/key_themes.html) or the [Modules page](course_materials/modules.html).
 ## What is not covered?
 
 We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please reach out at [courses@datacommons.org](mailto:courses@datacommons.org) and we would love to work with you.
