@@ -88,6 +88,10 @@ The statistics for prevalence of asthma among adults is for counties in 50 state
 Estimates of the number and percentage of US adults with diabetes.
 
 
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
+
+
 #### [National Notifiable Diseases Surveillance System (NNDSS)](https://www.cdc.gov/nndss/data-statistics/index.html)
 Weekly and Annual cases of selected national notifiable (infectious and non-infectious) diseases reported by the 50 states, New York City, the District of Columbia, and the U.S. territories.
 

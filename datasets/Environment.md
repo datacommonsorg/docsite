@@ -17,6 +17,14 @@ parent: Data Sources
 Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
 The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
 
+### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+
+#### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+This dataset includes flooded regions computed from the Dynamic World dataset. These are regions labelled as water and outside regions marked as permanent water in the Hansen Global Forest Change dataset.
+
+This dataset is produced for the Dynamic World Project by Google in partnership with National Geographic Society and the World Resources Institute.
+
+
 ### [European Union (EU) Copernicus](https://www.copernicus.eu/en)
 
 #### [Copernicus ECMWF - ERA5 Climate Reanalysis Data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels)
@@ -44,6 +52,12 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 #### [Randolph Glacier Inventory](https://www.glims.org/RGI/rgi60_dl.html)
 A global inventory of glaciers, including surface areas.
 
+
+### [India Central Pollution Control Board (CPCB)](https://app.cpcbccr.com)
+India's Central Pollution Control Board (CPCB) portal for Air Quality Management.
+
+#### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
+Air Quality Index and possible health impacts reported for states, cities and stations in India.
 
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
@@ -76,6 +90,10 @@ Information related to transportation characteristics for households which inclu
 
 #### [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22)
 Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
+
+
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
@@ -123,6 +141,9 @@ Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-GDDP-CMIP6-Tech_Note.pdf).
 
+
+#### [VIIRS Active Fire Data](https://www.earthdata.nasa.gov/learn/find-data/near-real-time/firms/vnp14imgtdlnrt)
+The Visible Infrared Imaging Radiometer Suite (VIIRS) aboard S-NPP satellite provides 375m resolution data for active fires. This dataset includes area under fire per level 13 S2 cell every day starting in 2012.
 
 ### [U.S. National Oceanic and Atmospheric Administration (NOAA)](https://www.noaa.gov/)
 
@@ -172,6 +193,10 @@ Codes, names, coordinates, and more information for all "named physical and cult
 
 #### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
 Point Locations for all reported wildland fires in the United States.
+
+
+#### [WFIGS Wildland Fire Perimeters](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-perimeters-full-history/about)
+The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides perimeters for all reported wildland fires in the United States. We simplify those parameters by using Ramer-Douglas-Peucker algorithm on geoJsonCoordinates with epsilon of 0.01.
 
 [Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 
