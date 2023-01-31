@@ -171,7 +171,7 @@ For example, the request:
 
 ```bash
  $ curl --request GET \
-   `https://api.datacommons.org/v1/triple/in/geoId/06`
+   `https://api.datacommons.org/v1/triples/in/geoId/06`
 ```
 
 will return something like:
@@ -195,7 +195,7 @@ To get the next set of entries, use the command:
 
 ```bash
  $ curl --request GET \
-   `https://api.datacommons.org/v1/triple/in/geoId/06?nextToken=SoME_veRy_L0ng_S+rIng`
+   `https://api.datacommons.org/v1/triples/in/geoId/06?nextToken=SoME_veRy_L0ng_S+rIng`
 ```
 
 Similarly for POST requests, this would look like:
