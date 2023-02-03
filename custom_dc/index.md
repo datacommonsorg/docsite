@@ -7,11 +7,11 @@ has_children: true
 
 ## Overview
 
-Data Commons platform is open source. Every entity/organization can create their
-own custom Data Commons instance with their own data, customized website and
+Data Commons is an open source platform. Every entity/organization can create
+their custom Data Commons instance with their own data, customized website and
 visualization tools.
 
-The custom instance natively joins the base Data Commons data (from
+A custom instance natively joins the base Data Commons data (from
 datacommons.org) and the custom data in a unified fashion. Visualization and
 data analysis across these data can be done seamlessly without further
 alignment.
