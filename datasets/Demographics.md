@@ -111,6 +111,12 @@ Includes "counts of live births occurring within the United States to U.S. resid
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
 
+### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
+
+#### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)
+Data Commons has imported 80th and 150th percentile median family income estimates for different household sizes for US counties and county subdivisions.
+
+
 ### [U.S. Federal Election Commission (FEC)](https://www.fec.gov/)
 
 #### [Candidates & Committees](https://www.fec.gov/data/browse-data/?tab=bulk-data)
@@ -133,6 +139,9 @@ General descriptive information such as name, address, and phone number; select 
 
 
 ### [United Nations (UN)](https://www.un.org/en/)
+
+#### [UN OCHA Subnational Administrative Boundaries](https://data.humdata.org/)
+Subnational administrative boundaries for a set of countries outside of the US and Europe. Includes state-equivalent and county-equivalent administrative levels. [Terms of Use](https://data.humdata.org/faqs/licenses) for this dataset.
 
 #### [UNData](http://data.un.org/)
 Population data for countries, capital cities, urban and rural areas not covered by other sources.
