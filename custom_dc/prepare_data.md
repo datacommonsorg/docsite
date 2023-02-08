@@ -31,12 +31,12 @@ Date.
 The TMCF for this CSV looks like:
 
 ```txt
-Node: E:CSV_FILE_NAME->E0
+Node: E:data->E0
 typeOf: dcs:StatVarObservation
-observationAbout: C:CSV_FILE_NAME->Country
-observationDate: C:CSV_FILE_NAME->Year
-variableMeasured: C:CSV_FILE_NAME->Variable
-value: C:CSV_FILE_NAME->Value
+observationAbout: C:data->Country
+observationDate: C:data->Year
+variableMeasured: C:data->Variable
+value: C:data->Value
 ```
 
 Note: If all observations in the CSV are about the same Date, then those do not
@@ -50,12 +50,12 @@ Variable, Place as well. For the example above, if the CSV has data only for
 | UK      | Population      | 65844142 | 2                       |
 
 ```txt
-Node: E:CSV_FILE_NAME->E0
+Node: E:data->E0
 typeOf: dcs:StatVarObservation
-observationAbout: C:CSV_FILE_NAME->Country
+observationAbout: C:data->Country
 observationDate: 2017
-variableMeasured: C:CSV_FILE_NAME->Variable
-value: C:CSV_FILE_NAME->Value
+variableMeasured: C:data->Variable
+value: C:data->Value
 ```
 
 ## Date as Column Header
@@ -68,20 +68,20 @@ It is possible to specify Date as column headers.
 | KR      | Population      | 51361911 | 51606633 |
 
 ```txt
-Node: E:CSV_FILE_NAME->E0
+Node: E:data->E0
 typeOf: dcs:StatVarObservation
-observationAbout: C:CSV_FILE_NAME->Country
+observationAbout: C:data->Country
 observationDate: 2017
-variableMeasured: C:CSV_FILE_NAME->Variable
-value: C:CSV_FILE_NAME->2017
+variableMeasured: C:data->Variable
+value: C:data->2017
 
 
-Node: E:CSV_FILE_NAME->E1
+Node: E:data->E1
 typeOf: dcs:StatVarObservation
-observationAbout: C:CSV_FILE_NAME->Country
+observationAbout: C:data->Country
 observationDate: 2018
-variableMeasured: C:CSV_FILE_NAME->Variable
-value: C:CSV_FILE_NAME->2018
+variableMeasured: C:data->Variable
+value: C:data->2018
 ```
 
 ## Variable as Column Header
@@ -94,20 +94,20 @@ It is possible to specify Variable as column headers.
 | 2018 | KR      | 82              | 51361911   |
 
 ```txt
-Node: E:CSV_FILE_NAME->E0
+Node: E:data->E0
 typeOf: dcs:StatVarObservation
-observationAbout: C:CSV_FILE_NAME->Country
-observationDate: C:CSV_FILE_NAME->Year
+observationAbout: C:data->Country
+observationDate: C:data->Year
 variableMeasured: Life_Expectancy
-value: C:CSV_FILE_NAME->Life_Expectancy
+value: C:data->Life_Expectancy
 
 
-Node: E:CSV_FILE_NAME->E0
+Node: E:data->E0
 typeOf: dcs:StatVarObservation
-observationAbout: C:CSV_FILE_NAME->Country
-observationDate: C:CSV_FILE_NAME->Year
+observationAbout: C:data->Country
+observationDate: C:data->Year
 variableMeasured: Population
-value: C:CSV_FILE_NAME->Population
+value: C:data->Population
 ```
 
 ## Date and Place Formats
