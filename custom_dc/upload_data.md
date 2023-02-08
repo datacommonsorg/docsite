@@ -20,22 +20,24 @@ typical layout.
 .
 └── gcs_folder/
     ├── data/
-    │   ├── import1/
-    │   │   ├── bar_dataset/
-    │   │   │   ├── ds_bar.tmcf
+    │   ├── source1/
+    │   │   ├── file_group1/
+    │   │   │   ├── bar.tmcf
     │   │   │   ├── bar1.csv
     │   │   │   └── bar2.csv
-    │   │   └── foo_dataset/
-    │   │       ├── ds_foo.tmcf
-    │   │       └── foo1.csv
-    │   ├── import2/
-    │   │   └── baz_dataset/
-    │   │       ├── ds_baz.tmcf
-    │   │       └── baz1.csv
-    │   ├── schema.mcf
-    │   └── provenance.json
-    ├── cache/
-    ├── control/
+    │   │   ├── file_group2/
+    │   │   │   ├── foo.tmcf
+    │   │   │   └── foo.csv
+    │   │   ├── schema.mcf
+    │   │   └── provenance.json
+    │   └── source2/
+    │       ├── file_group1/
+    │       │   ├── baz.tmcf
+    │       │   └── baz.csv
+    │       ├── schema.mcf
+    │       └── provenance.json
+    ├── cache
+    ├── control
     └── provenance.json
 ```
 
