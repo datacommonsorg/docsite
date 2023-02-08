@@ -17,35 +17,26 @@ All custoom Data Commons data are stored under one GCS folder. Below shows a
 typical layout.
 
 ```txt
-project
-│
-└───data
-│   │
-│   └───import1
-│   │   │   schema.mcf
-│   │   │   provenance.json
-│   │   │
-│   │   └───dataset1
-│   │   │   │   ds1.tmcf
-│   │   │   │   sample1.csv
-│   │   │   │   sample2.csv
-│   │   │
-│   │   └───dataset2
-│   │       │   ds1.tmcf
-│   │       │   sample1.csv
-│   │
-│   │
-│   └───import2
-│       │
-│       └───dataset1
-│           │   ds1.tmcf
-│           │   sample1.csv
-│
-└───cache
-│
-└───control
-│
-│   provenance.json
+.
+└── project/
+    ├── data/
+    │   ├── import1/
+    │   │   ├── dataset1/
+    │   │   │   ├── ds1.tmcf
+    │   │   │   ├── sample1.csv
+    │   │   │   └── sample2.csv
+    │   │   └── dataset2/
+    │   │       ├── ds2.tmcf
+    │   │       └── sample1.csv
+    │   ├── import2/
+    │   │   └── dataset1/
+    │   │       ├── ds1.tmcf
+    │   │       └── sample1.csv
+    │   ├── schema.mcf
+    │   └── provenance.json
+    ├── cache
+    ├── control
+    └── provenance.json
 ```
 
 Raw data should be uploaded under `/<project>/data/<import>/<dataset>`. Each
