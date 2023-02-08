@@ -18,7 +18,7 @@ typical layout.
 
 ```txt
 .
-└── project/
+└── gcs_folder/
     ├── data/
     │   ├── import1/
     │   │   ├── dataset1/
@@ -34,8 +34,8 @@ typical layout.
     │   │       └── sample1.csv
     │   ├── schema.mcf
     │   └── provenance.json
-    ├── cache
-    ├── control
+    ├── cache/
+    ├── control/
     └── provenance.json
 ```
 
