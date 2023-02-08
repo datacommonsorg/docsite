@@ -21,17 +21,17 @@ typical layout.
 └── gcs_folder/
     ├── data/
     │   ├── import1/
-    │   │   ├── dataset1/
-    │   │   │   ├── ds1.tmcf
-    │   │   │   ├── sample1.csv
-    │   │   │   └── sample2.csv
-    │   │   └── dataset2/
-    │   │       ├── ds2.tmcf
-    │   │       └── sample1.csv
+    │   │   ├── bar_dataset/
+    │   │   │   ├── ds_bar.tmcf
+    │   │   │   ├── bar1.csv
+    │   │   │   └── bar2.csv
+    │   │   └── foo_dataset/
+    │   │       ├── ds_foo.tmcf
+    │   │       └── foo1.csv
     │   ├── import2/
-    │   │   └── dataset1/
-    │   │       ├── ds1.tmcf
-    │   │       └── sample1.csv
+    │   │   └── baz_dataset/
+    │   │       ├── ds_baz.tmcf
+    │   │       └── baz1.csv
     │   ├── schema.mcf
     │   └── provenance.json
     ├── cache/
