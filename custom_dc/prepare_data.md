@@ -9,7 +9,7 @@ published: true
 ## Overview
 
 Preparing data involves cleaning / formatting the raw data into compatible CSV
-file. The CSV file is expected to have columns corresponding to the Values
+files. Each CSV file is expected to have columns corresponding to the Values
 (numeric) about a Variable, Place and Date. The format of a CSV file is
 specified by a [Template
 MCF](https://github.com/datacommonsorg/data/blob/master/docs/mcf_format.md#template-mcf).
@@ -23,10 +23,10 @@ Place (Country), Date (Year) and Value (Value) and each row of the CSV
 corresponds to one observation of the Variable about a Place at the specified
 Date.
 
-| Year | Country | Variable        | Value       | Extra Column |
-| ---- | ------- | --------------- | ----------- | ------------ |
-| 2017 | UK      | Life_Expectancy | 81.25609756 | 1            |
-| 2017 | UK      | Population      | 65844142    | 2            |
+| Year | Country | Variable        | Value       | Extra Column [Optional] |
+| ---- | ------- | --------------- | ----------- | ----------------------- |
+| 2017 | UK      | Life_Expectancy | 81.25609756 | 1                       |
+| 2017 | UK      | Population      | 65844142    | 2                       |
 
 The TMCF for this CSV looks like:
 
@@ -44,10 +44,10 @@ need to be specified as columns, but just as constants. This applies to
 Variable, Place as well. For the example above, if the CSV has data only for
 2017, then the CSV and TMCF looks like:
 
-| Country | Variable        | Value    | Extra Column |
-| ------- | --------------- | -------- | ------------ |
-| UK      | Life_Expectancy | 81.2     | 1            |
-| UK      | Population      | 65844142 | 2            |
+| Country | Variable        | Value    | Extra Column [Optional] |
+| ------- | --------------- | -------- | ----------------------- |
+| UK      | Life_Expectancy | 81.2     | 1                       |
+| UK      | Population      | 65844142 | 2                       |
 
 ```txt
 Node: E:CSV_FILE_NAME->E0

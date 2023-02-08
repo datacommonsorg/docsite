@@ -36,18 +36,17 @@ typical layout.
     │       │   └── baz.csv
     │       ├── schema.mcf
     │       └── provenance.json
-    ├── cache
-    ├── control
+    ├── internal/
     └── provenance.json
 ```
 
-Raw data should be uploaded under `/<project>/data/<import>/<dataset>`. Each
-`dataset` folder can only contains one TMCF file and all the CSV files should
-have same format. One `import` folder can hold multiple datasets, representing a
-cohort of data from one data source.
+Raw data should be uploaded under `/<gcs_folder>/data/<source>/<file_group>`. Each
+`file_group` folder can only contains one TMCF file and all the CSV files should
+have same format. One `source` folder can hold multiple file groups,
+representing a cohort of data from one data source.
 
-Note there are some other folders like `cache`, `control` are used to hold
-computed data and config files and should not be touched.
+Note `internal/` folder is used to hold computed data and config files and
+should not be touched.
 
 The data source and other meta info can be specified in `provenance.json` file.
 
