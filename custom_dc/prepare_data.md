@@ -13,10 +13,12 @@ files. Each CSV file is expected to have columns corresponding to the Values
 (numeric) about a Variable, Place and Date. The format of a CSV file is
 specified by a [Template
 MCF](https://github.com/datacommonsorg/data/blob/master/docs/mcf_format.md#template-mcf).
-The ready to use artifacts contains one TMCF file (_.tmcf) and a few compatible
-CSV files (_.csv).
+The ready to use artifacts contain one TMCF file (.tmcf) and a few compatible
+CSV files (.csv).
 
-## General CSV format
+## File Format
+
+### General Format
 
 In the table shown below, there are separate columns for Variable (Variable),
 Place (Country), Date (Year) and Value (Value) and each row of the CSV
@@ -58,7 +60,7 @@ variableMeasured: C:data->Variable
 value: C:data->Value
 ```
 
-## Date as Column Header
+### Date as Column Header
 
 It is possible to specify Date as column headers.
 
@@ -84,7 +86,7 @@ variableMeasured: C:data->Variable
 value: C:data->2018
 ```
 
-## Variable as Column Header
+### Variable as Column Header
 
 It is possible to specify Variable as column headers.
 
@@ -110,6 +112,13 @@ variableMeasured: Population
 value: C:data->Population
 ```
 
-## Date and Place Formats
+### Date and Place Formats
 
-Please check [Supported Date and Place Formats](https://datacommons.org/import/#supported-formats)
+Please check [Supported Date and Place
+Formats](https://datacommons.org/import/#supported-formats)
+
+## Check Data
+
+Before uploading Data into custom instance, make sure to run [Import
+Checker](https://github.com/datacommonsorg/import#using-import-tool) and make
+sure there is no format or other issues.
