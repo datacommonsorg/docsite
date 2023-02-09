@@ -117,8 +117,8 @@ value: C:data->Population
 Please check [Supported Date and Place
 Formats](https://datacommons.org/import/#supported-formats)
 
-## Check Data
+## Testing Data
 
-Before uploading Data into custom instance, make sure to run [Import
+Before uploading the data into custom instance, make sure to run [Import
 Checker](https://github.com/datacommonsorg/import#using-import-tool) and make
-sure there is no format or other issues.
+sure there are no formatting or other issues.
