@@ -77,7 +77,6 @@ observationDate: 2017
 variableMeasured: C:data->Variable
 value: C:data->2017
 
-
 Node: E:data->E1
 typeOf: dcs:StatVarObservation
 observationAbout: C:data->Country
@@ -103,8 +102,7 @@ observationDate: C:data->Year
 variableMeasured: Life_Expectancy
 value: C:data->Life_Expectancy
 
-
-Node: E:data->E0
+Node: E:data->E1
 typeOf: dcs:StatVarObservation
 observationAbout: C:data->Country
 observationDate: C:data->Year
