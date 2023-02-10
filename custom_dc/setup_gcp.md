@@ -15,7 +15,7 @@ project (with id `PROJECT_ID`).
 ### Domain
 
 The installation can use an existing domain, or create a default domain
-`<PROJECT_ID>-datacommons.com`.
+`<PROJECT_ID>-datacommons.com`. This guide focuses on using the default domain.
 
 ### Steps
 
@@ -41,7 +41,7 @@ The installation can use an existing domain, or create a default domain
    take up to 20 minutes to complete.
 
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/datacommonsorg/website/master/scripts/install_custom_dc.sh -o install_custom_dc.sh && \
+   curl -fsSL https://raw.githubusercontent.com/datacommonsorg/website/custom-dc-v0.1.0/scripts/install_custom_dc.sh -o install_custom_dc.sh && \
    chmod u+x install_custom_dc.sh && \
    ./install_custom_dc.sh
    ```
