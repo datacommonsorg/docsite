@@ -18,32 +18,35 @@ typical layout.
 
 ```txt
 .
-└── gcs_folder/
+├── import_group1/
+│   ├── data/
+│   │   ├── import1/
+│   │   │   ├── table1/
+│   │   │   │   ├── bar.tmcf
+│   │   │   │   ├── bar1.csv
+│   │   │   │   └── bar2.csv
+│   │   │   ├── table2/
+│   │   │   │   ├── foo.tmcf
+│   │   │   │   └── foo.csv
+│   │   │   ├── schema.mcf
+│   │   │   └── provenance.json
+│   │   └── import2/
+│   │       ├── table1/
+│   │       │   ├── baz.tmcf
+│   │       │   └── baz.csv
+│   │       ├── schema.mcf
+│   │       └── provenance.json
+│   ├── internal/
+│   └── provenance.json
+└── import_group2/
     ├── data/
-    │   ├── source1/
-    │   │   ├── file_group1/
-    │   │   │   ├── bar.tmcf
-    │   │   │   ├── bar1.csv
-    │   │   │   └── bar2.csv
-    │   │   ├── file_group2/
-    │   │   │   ├── foo.tmcf
-    │   │   │   └── foo.csv
-    │   │   ├── schema.mcf
-    │   │   └── provenance.json
-    │   └── source2/
-    │       ├── file_group1/
-    │       │   ├── baz.tmcf
-    │       │   └── baz.csv
-    │       ├── schema.mcf
-    │       └── provenance.json
-    ├── internal/
-    └── provenance.json
+    └── internal/
 ```
 
-Raw data should be uploaded under `/<gcs_folder>/data/<source>/<file_group>`. Each
-`file_group` folder can only contains one TMCF file and all the CSV files should
-have same format. One `source` folder can hold multiple file groups,
-representing a cohort of data from one data source.
+Raw data should be uploaded under `/<import_group>/data/<import>/<table>`. Each
+`table` folder can only contains one TMCF file and all the CSV files should
+have same format. Conceptually, one dataset corresponds to one or more imports.
+Depending on the CSV format, each import can have one or more tables.
 
 Note `internal/` folder is used to hold computed data and config files and
 should not be touched.
