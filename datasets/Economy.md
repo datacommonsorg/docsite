@@ -86,6 +86,10 @@ Per-industry number of establishments, employment, payroll and annual payroll, b
 #### [Economic Census](https://www.census.gov/programs-surveys/economic-census/about.html)
 Number of businesses and amount of revenue, by business payroll status, industry, operation type, and tax status.
 
+
+#### [US Census](https://www.census.gov)
+The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
+
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 

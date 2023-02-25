@@ -88,6 +88,10 @@ Basic geographic information about counties, county subdivisions, congressional 
 #### [Population Estimates Program (PEP)](https://www.census.gov/programs-surveys/popest/about.html)
 The Census Bureau's Population Estimates Program (PEP) produces yearly estimates of the population for the United States, its states, counties, cities, and towns, as well as for the Commonwealth of Puerto Rico and its municipios. Data Commons imports the total population estimate data for the US and its states, counties, and cities.
 
+
+#### [US Census](https://www.census.gov)
+The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
+
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
@@ -161,6 +165,9 @@ Data Commons includes some information about administrative divisions, municipal
 
 #### [World Bank Official Boundaries](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries)
 World Bank-approved administrative boundaries including international boundaries.
+
+#### [World Bank Subnational Population](https://databank.worldbank.org/source/subnational-population)
+World Bank population data for States and Countries.
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.

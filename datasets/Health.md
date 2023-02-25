@@ -82,6 +82,10 @@ Data made [available for non-commercial purposes only with proper citation](http
 #### [Small Area Health Insurance Estimates (SAHIE)](https://www.census.gov/data/datasets/time-series/demo/sahie/estimates-acs.html)
 The Small Area Health Insurance Estimates program provides yearly estimates of health insurance coverage status for all counties and states. Data Commons includes all estimates, available by age, race, sex, and income.
 
+
+#### [US Census](https://www.census.gov)
+The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
+
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
