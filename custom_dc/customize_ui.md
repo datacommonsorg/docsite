@@ -1,7 +1,7 @@
 ---
 layout: default
-title: System Setup
-nav_order: 1
+title: UI Customize
+nav_order: 4
 parent: Custom Data Commons
 published: false
 ---
