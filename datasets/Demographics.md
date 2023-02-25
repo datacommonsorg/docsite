@@ -88,6 +88,10 @@ Basic geographic information about counties, county subdivisions, congressional 
 #### [Population Estimates Program (PEP)](https://www.census.gov/programs-surveys/popest/about.html)
 The Census Bureau's Population Estimates Program (PEP) produces yearly estimates of the population for the United States, its states, counties, cities, and towns, as well as for the Commonwealth of Puerto Rico and its municipios. Data Commons imports the total population estimate data for the US and its states, counties, and cities.
 
+
+#### [US Census](https://www.census.gov)
+The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
+
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
@@ -109,6 +113,12 @@ Mortality counts for all US states and counties broken down by underlying cause 
 Includes "counts of live births occurring within the United States to U.S. residents. Counts can be obtained by a variety of demographic characteristics, such as state and county of residence, mother's race, and mother's age, and health and medical items, such as tobacco use, method of delivery, and congenital anomalies. The data are derived from birth certificates."
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
+
+
+### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
+
+#### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)
+Data Commons has imported 80th and 150th percentile median family income estimates for different household sizes for US counties and county subdivisions.
 
 
 ### [U.S. Federal Election Commission (FEC)](https://www.fec.gov/)
@@ -134,6 +144,9 @@ General descriptive information such as name, address, and phone number; select 
 
 ### [United Nations (UN)](https://www.un.org/en/)
 
+#### [UN OCHA Subnational Administrative Boundaries](https://data.humdata.org/)
+Subnational administrative boundaries for a set of countries outside of the US and Europe. Includes state-equivalent and county-equivalent administrative levels. [Terms of Use](https://data.humdata.org/faqs/licenses) for this dataset.
+
 #### [UNData](http://data.un.org/)
 Population data for countries, capital cities, urban and rural areas not covered by other sources.
 
@@ -152,6 +165,9 @@ Data Commons includes some information about administrative divisions, municipal
 
 #### [World Bank Official Boundaries](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries)
 World Bank-approved administrative boundaries including international boundaries.
+
+#### [World Bank Subnational Population](https://databank.worldbank.org/source/subnational-population)
+World Bank population data for States and Countries.
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.

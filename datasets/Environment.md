@@ -17,6 +17,14 @@ parent: Data Sources
 Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
 The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
 
+### [Data Commons](https://datacommons.org/)
+
+#### [Temperature Event](https://datacommons.org/)
+The events for places with unusual temperatures, either too hot or too cold, computed with reference to long term temperature averages, e.g. the average maximum daily temperature in January over the years 1980-2010.
+
+#### [WetBulb Temperature Event](https://datacommons.org/)
+Wet Bulb temperatures are computed using estimates of temperatures over a period of time (e.g. daily average temperature) and estimates of (relative) humidity (e.g. daily average humidity). In some cases, if humidity and/or temperature data is missing then we use month-specific averages using several years of humidity/temperature observations or climate model projections, e.g. from CMIP6 models. The formula used for wet-bulb temperature calculations is provided in the following paper: https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
+
 ### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
 
 #### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
@@ -53,6 +61,12 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 A global inventory of glaciers, including surface areas.
 
 
+### [India Central Pollution Control Board (CPCB)](https://app.cpcbccr.com)
+India's Central Pollution Control Board (CPCB) portal for Air Quality Management.
+
+#### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
+Air Quality Index and possible health impacts reported for states, cities and stations in India.
+
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
@@ -84,6 +98,10 @@ Information related to transportation characteristics for households which inclu
 
 #### [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22)
 Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
+
+
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
@@ -180,6 +198,9 @@ Codes, names, coordinates, and more information for all "named physical and cult
 
 
 ### [Wildland Fire Interagency Geospatial Services](https://data-nifc.opendata.arcgis.com/)
+
+#### [WFIGS Wildland Fire Areas](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
+The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides areas for all reported wildland fires in the United States at county, state and country level.
 
 #### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
 Point Locations for all reported wildland fires in the United States.
