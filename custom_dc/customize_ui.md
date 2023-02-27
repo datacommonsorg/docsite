@@ -10,14 +10,14 @@ published: true
 
 Custom Data Commons allows customization of the web pages on top of
 [datacommons.org](https://datacommons.org). The customization includes overall
-color scheme, home page contents, landing pages of timeline/scatter/map tools
+color scheme, home page content, landing pages of timeline/scatter/map tools
 and etc.
 
 ## Environment Setup
 
 Fork [datacommonsorg/website](https://github.com/datacommonsorg/website) Github
-repo following [this
-instruction](https://github.com/datacommonsorg/website#github-workflow) into a
+repo following [these
+instructions](https://github.com/datacommonsorg/website#github-workflow) into a
 new repo, which will be used as the custom Data Commons codebase. Custom Data
 Commons development and deployment will be based on this forked repo.
 
@@ -35,24 +35,13 @@ by updating the html element within `<header></header>` and `<footer></footer>`.
 Homepage can be customized in
 [homepage.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/homepage.html).
 
-Other pages like `about.html` and `faq.html` can be added under
-[/server/templates/custom_dc/custom](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom)
-as well. To customize the content in these pages, add the following blocks:
-
-```html
-{% raw %} {% block head %} {% endblock %} {% endraw %}
-```
-
-```html
-{% raw %} {% block content %} {% endblock %} {% endraw %}
-```
-
-in the html with custom content inside the block. More details can be
-found in [Jinja2 template inheritance document](https://jinja.palletsprojects.com/en/3.1.x/templates/#template-inheritance).
-
 ### Update CSS and Javascript
 
-Put custom CSS and Javascript files under folder
+The custom Data Commons provides an
+[overrides.css](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom/overrides.css)
+to override CSS styles. More style changes can be added to that file.
+
+To add more site customization, can put CSS and Javascript files under folder
 [/static/custom_dc/custom](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom).
 Then include these files in the `<head>` section of the corresponding html files
 as
