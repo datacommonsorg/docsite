@@ -9,7 +9,7 @@ This guide accompanies the Data Commons Schema-Less Import Template. Sections wi
 
 This guide may also be used as a stand-alone document for familiarizing oneself with the Data Commons schema-less import process.
 
-[Schemas](https://github.com/datacommonsorg/schema), [data](https://github.com/datacommonsorg/data), and [import tools](https://github.com/datacommonsorg/import) all live in the Data Commons [Github](https://github.com/datacommonsorg), with accompanying technical documentation included in each repository under the respective “docs” folders.
+[Schemas](https://github.com/datacommonsorg/schema), [data](https://github.com/datacommonsorg/data), and [import tools](https://github.com/datacommonsorg/import) all live on Data Commons [Github](https://github.com/datacommonsorg), with accompanying technical documentation included in each repository under the respective “docs” folders.
 
 
 ## Goal
@@ -27,16 +27,16 @@ To allow any third party contributor to be able to create a schema-less import i
 
 # <a name="dcdataimports"></a>DC Data Imports
 
-DataCommons.org is a platform that allows users to access and share structured data in a common format. A data import on DataCommons.org refers to the process of uploading data to the platform and making it available for use by other users. The data can be imported in various formats such as CSV, JSON, and RDF, etc. \
+Data Commons is a platform that allows users to access and share structured data in a common format. A data import on Data Commons refers to the process of uploading data to the platform and making it available for use by other users. The data can be imported in various formats such as CSV, JSON, and RDF, etc. \
  \
 From there, the data can be used to answer queries like how many people live in a city, what is the average income of a certain city, or how many schools are there in a certain area. However, in order for that to be done, the import needs to be accompanied by a schema design, or at the very least statistical variable categories that represent the semantic information represented by the data. \
  \
-After the import process, the data will be transformed and standardized to fit the DataCommons schema, which is based on the [schema.org](schema.org) vocabulary, making it easier for other users to query and integrate with other data.
+After the import process, the data will be transformed and standardized to fit the Data Commons schema, which is based on the [schema.org](schema.org) vocabulary, making it easier for other users to query and integrate with other data.
 
 
 ## <a name="importdesign"></a>Import Design: Statistical Variables
 
-On DataCommons.org, a statistical variable (SV) represents the subject of interest and is associated with factual statistical observations (SVO), which represent specific pieces of data. An SV can be a demographic characteristic, an economic indicator, or any other type of data that can be quantified and measured.
+In Data Commons, a statistical variable (SV) represents the subject of interest and is associated with factual statistical observations (SVO), which represent specific pieces of data. An SV can be a demographic characteristic, an economic indicator, or any other type of data that can be quantified and measured.
 
 [SVs on Data Commons](https://www.datacommons.org/tools/statvar) are organized and presented in a way that makes them easy to find and understand. They are grouped under different categories such as demographic, economic, and social variables, and are linked to relevant external sources such as the US Census Bureau, Bureau of Labor Statistics, etc.
 
@@ -114,7 +114,7 @@ Here is a quick 1-2 step guide to help you determine when to reuse existing vari
 
 
 
-1. **Check existing variables**: Before creating a new variable, take a look at our [Statistical Variable Explorer](https://www.datacommons.org/tools/statvar) to check if an existing variable can be used to represent the data you are importing. This will save time and effort, and it also helps to maintain consistency in the data commons.
+1. **Check existing variables**: Before creating a new variable, take a look at our [Statistical Variable Explorer](https://www.datacommons.org/tools/statvar) to check if an existing variable can be used to represent the data you are importing. This will save time and effort, and it also helps to maintain consistency in the Data Commons graph.
 2. **Check the variable's definitions**: It's important to ensure that the variable's definitions match with the variable's intended use; if not, you may need to create a new variable.
 
 
@@ -123,9 +123,9 @@ If, as in most cases, you’ll need to create new statistical variables, please 
 
 ### <a name="dcidnamingconventions"></a>DCID Naming Conventions
 
-Each new variable receives its own unique identifier, or DCID (Data Commons ID).  Names should be clear and written in CamelCase. 
+Each new variable receives its own unique identifier, or DCID (Data Commons ID).  DCIDs should be clear and written in CamelCase. 
 
-For schema-less SVs, the naming is not automatically generated, so you’ll need to use the constraint properties above to define the DCID. If your SV does not have an existing populationType to use, please still add a descriptor word or words to the DCID to differentiate your SV, and add in any constraint properties to the DCID as well.
+For schema-less SVs, the DCID is not automatically generated, so you’ll need to use the constraint properties above to define the DCID. If your SV does not have an existing populationType to use, please still add a descriptor word or words to the DCID to differentiate your SV, and add in any constraint properties to the DCID as well.
 
 As an FYI, naming conventions generally follow these rules (click [here](#appendix) for notable exceptions):
 
@@ -194,14 +194,14 @@ After the schema-less design has been decided upon above, it’s time for the da
 
 2. **Data transformation**: After cleaning, the data is transformed to fit the DataCommons schema, which is based on the schema.org vocabulary. This includes tasks such as mapping the data to the appropriate entities and properties (see Tips for Data Cleaning and Transformation below). Example scripts have been checked into the [data repository](https://github.com/datacommonsorg/data/tree/master/scripts).
 
-3. **Data loading**: After the data is transformed, it is loaded into the DataCommons.org GitHub, where it is made available for use by other users. If the data source is new (e.g. there are not yet other datasets from this source in the [scripts](https://github.com/datacommonsorg/data/tree/master/scripts) folder), create a new folder with the Source name.
+3. **Data loading**: After the data is transformed, it is loaded into the Data Commons GitHub, where it is made available for use by other users. If the data source is new (e.g. there are not yet other datasets from this source in the [scripts](https://github.com/datacommonsorg/data/tree/master/scripts) folder), create a new folder with the Source name.
 
 4. **Data validation**: After the data is loaded, the data quality assurance process is done which includes tasks such as checking for errors, inconsistencies, and missing data. Data commons has a “dc-import” tool to help with this validation.
 
 5. **Data review**: After you validate your new dataset structure, submit your PR for review by the DC team for final approval.
 
 
-Throughout the process, the data import and cleaning may be aided by scripts and tools that are available in the GitHub repository of DataCommons.org. These scripts are designed to automate many of the tasks involved in the process, making it more efficient and accurate.
+Throughout the process, the data import and cleaning may be aided by scripts and tools that are available in the GitHub repository of Data Commons. These scripts are designed to automate many of the tasks involved in the process, making it more efficient and accurate.
 
 A clear overview of the data cleaning and transformation process can be found [here](https://github.com/datacommonsorg/data/blob/master/docs/life_of_a_dataset.md). 
 
