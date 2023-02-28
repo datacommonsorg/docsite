@@ -55,9 +55,13 @@ The data source and other meta info can be specified in `provenance.json` file.
 
 ## Add a Custom Variable Hierarchy
 
-When using a custom DC instance with new statistical variables, it can be useful to define a custom hierarchy for the variables. The hierarchy is used in the Explorer tools to navigate the variables in a structured manner. For example, a sample custom hierarchy with two layers of groups and three variables is provided below. 
+When using a custom DC instance with new statistical variables, it can be useful
+to define a custom hierarchy for the variables. The hierarchy is used in the
+Explorer tools to navigate the variables in a structured manner. For example, a
+sample custom hierarchy with two layers of groups and three variables is
+provided below.
 
-```
+```txt
 .
 └── Example Root Node/
     ├── Group 1A/
@@ -68,7 +72,10 @@ When using a custom DC instance with new statistical variables, it can be useful
         └── Variable Z
 ```
 
-To define the hierarchy, each group needs a `StatVarGroup` definition. The `StatVarGroup` nodes are linked to each other and to a custom root node via `specializationOf` properties. The example below can be used as a template — please replace all <span class="param">{}</span> with custom identifiers:
+To define the hierarchy, each group needs a `StatVarGroup` definition. The
+`StatVarGroup` nodes are linked to each other and to a custom root node via
+`specializationOf` properties. The example below can be used as a template —
+please replace all <span class="param">{}</span> with custom identifiers:
 
 <div class="schema-example">
     Node: dcid:dc/g/Custom_Root
@@ -93,6 +100,7 @@ To define the hierarchy, each group needs a `StatVarGroup` definition. The `Stat
     name: "<span class="param">{Group 2A}</span>"
     specializationOf: dcid:dc/g/Custom_<span class="param">{1A}</span>
     displayRank: <span class="param">{1}</span>
+
 </div>
 
 Next, each new variable needs a `StatisticalVariable` node definition, which will specify which group in the hierarchy it belongs to. The example below can be used as a template — please replace all <span class="param">{}</span> with custom identifiers:
@@ -121,6 +129,7 @@ Next, each new variable needs a `StatisticalVariable` node definition, which wil
     measuredProperty: dcs:<span class="param">{Variable_Z}</span>
     statType: dcs:measuredValue
     memberOf: dcid:dc/g/Custom_<span class="param">{1B}</span>
+
 </div>
 
 The `StatVarGroup` and `StatisticalVariable` nodes that make up the hiearchy can
