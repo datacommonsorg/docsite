@@ -70,28 +70,27 @@ Schema-less SVs have the following requirements:
 
 
 1. The measuredProperty value must match the stat-var DCID.
-* This is important, because this is how we identify it is a schema-less SV. As an example:
+ * This is important, because this is how we identify it is a schema-less SV. As an example:
 
-    	Node: dcid:Count_MedicalConditionIncident_Tuberculosis
-
-    	typeOf: dcs:StatisticalVariable
-
-    	measuredProperty: dcs:Count_MedicalConditionIncident_Tuberculosis
-
-    	statType: dcs:measuredValue
+    ```
+    Node: dcid:Count_MedicalConditionIncident_Tuberculosis
+    typeOf: dcs:StatisticalVariable
+    measuredProperty: dcs:Count_MedicalConditionIncident_Tuberculosis
+    statType: dcs:measuredValue
+    ```
 
 2. They should have well-formed, stable DCIDs.
-* As we incrementally add schema, we should not change this DCID.
+ * As we incrementally add schema, we should not change this DCID.
 3. They should have a name.
-* We will not auto-generate names, so a user-provided name is essential for display on SV hierarchy, SV explorer, etc.
-* See more on naming in the [DCID Naming Conventions](#dcidnamingconventions) section.
+ * We will not auto-generate names, so a user-provided name is essential for display on SV hierarchy, SV explorer, etc.
+ * See more on naming in the [DCID Naming Conventions](#dcidnamingconventions) section.
 4. They can have additional constraints that refer to existing schema (as long as they satisfy #1).
 5. They should ideally be organized in a hierarchy made of SVGroups (especially if you add a pile of schema-less SVs).
-* The SVGroups should not have a “dc/g/” DCID prefix.
-* SVGroups are organized in a `specializationOf` hierarchy
-* The root of your hierarchy should be linked to a vertical SVGroup from [here](https://github.com/datacommonsorg/schema/blob/main/stat_vars/vertical_stat_var_groups.mcf)
-* Schema-less stat-vars should be linked to an SVGroup via `memberOf` property
-* Example: [/dc/g/Person_Gender](https://datacommons.org/browser/dc/g/Person_Gender)
+ * The SVGroups should not have a “dc/g/” DCID prefix.
+ * SVGroups are organized in a `specializationOf` hierarchy
+ * The root of your hierarchy should be linked to a vertical SVGroup from [here](https://github.com/datacommonsorg/schema/blob/main/stat_vars/vertical_stat_var_groups.mcf)
+ * Schema-less stat-vars should be linked to an SVGroup via `memberOf` property
+ * Example: [/dc/g/Person_Gender](https://datacommons.org/browser/dc/g/Person_Gender)
 
 
 ## <a name="datasettypes"></a>Dataset Types
