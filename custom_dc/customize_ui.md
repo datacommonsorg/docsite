@@ -1,6 +1,6 @@
 ---
 layout: default
-title: UI Customize
+title: Customize UI
 nav_order: 4
 parent: Custom Data Commons
 published: true
@@ -21,9 +21,13 @@ instructions](https://github.com/datacommonsorg/website#github-workflow) into a
 new repo, which will be used as the custom Data Commons codebase. Custom Data
 Commons development and deployment will be based on this forked repo.
 
-Setup local development environment following this
+To test codes in a local environment, follow this
 [guide](https://github.com/datacommonsorg/website/blob/master/docs/developer_guide.md#local-development-with-flask).
-This will be used for testing website changes in a local environment.
+Note to use `-e custom` flag when starting local Flask server:
+
+```bash
+./run_server.sh -e custom
+```
 
 ## Update UI Code
 
