@@ -212,7 +212,6 @@ Your data may be cleaned and transformed in the following ways; please identify 
 
 * Filtering: Invalid data points, outliers, duplicates
 * Data transformations such as mapping data attributes to schema, unit conversions, scaling, data types for different fields, such as string vs int vs float
-* consider ways to regenerate the same DCID even after more schema properties are added to the SV.
 * Computations: Any derived stats such as area of geoJsons, etc
 * Place resolution
 * Entity resolution
