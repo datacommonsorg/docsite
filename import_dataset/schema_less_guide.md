@@ -1,3 +1,10 @@
+---
+layout: default
+title: Data Commons Schema-less Guide
+parent: Import Dataset
+published: true
+---
+
 # Data Commons Schema-less Guide
 
 
