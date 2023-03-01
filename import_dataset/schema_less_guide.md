@@ -222,7 +222,7 @@ Your data may be cleaned and transformed in the following ways; please identify 
 * Computations: Any derived stats such as area of geoJsons, etc
 * Place resolution
 * Entity resolution
-* libraries/frameworks used : geo, html, etc
+* Libraries/frameworks used: geo, html, etc
 * Dependencies: data, scripts, libraries
 
 
