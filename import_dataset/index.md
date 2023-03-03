@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Data Commons Dataset Imports
-parent: Import Dataset
-published: true
+title: Data Commons Data Imports
+nav_order: 11
+has_children: true
 ---
 
-# Data Commons Dataset Imports
+# Data Commons Data Imports
 
 This page houses documents for step-by-step educational and instructional guides for anyone desiring to import a dataset to the Data Commons Graph. Currently there is schema-less import guide, linked below, that can also be used for Custom Data Commons.
 
