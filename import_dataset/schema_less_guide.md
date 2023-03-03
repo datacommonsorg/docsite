@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Data Commons Schema-less Guide
-parent: Import Dataset
+parent: Data Imports
 published: true
 ---
 
