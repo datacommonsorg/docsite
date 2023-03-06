@@ -12,7 +12,7 @@ published: true
 
 This document is a step-by-step educational and instructional guide for anyone to be able to create a [Data Commons](datacommons.org) schema-less import to contribute to the Data Commons Graph.
 
-This guide accompanies the Data Commons Schema-Less Import Template. Sections within the template link into this guide. In the template itself, new terminology will be linked out to a glossary of definitions the first time the terminology appears.
+This guide accompanies the [Data Commons Schema-Less Import Template](https://docs.google.com/document/d/1GC7DTpxXo_3zreDRt7wFuURBfA1T275p-qx1N-VIdGM/). Sections within the template link into this guide. In the template itself, new terminology will be linked out to a glossary of definitions the first time the terminology appears.
 
 This guide may also be used as a stand-alone document for familiarizing oneself with the Data Commons schema-less import process.
 
