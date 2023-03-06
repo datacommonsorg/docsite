@@ -19,4 +19,4 @@ This page houses documents for step-by-step educational and instructional guides
 
 ## Guides
 
-[Schema-less Import Guide](import_dataset/schema_less_guide.html)
+[Schema-less Import Guide](schema_less_guide.html)
