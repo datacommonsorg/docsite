@@ -79,7 +79,7 @@ information import is untouched.
 All custom Data Commons data are stored under one GCS folder. Below shows a
 typical layout.
 
-Note, create a "root_folder" under the desired GCS bucket, which will be used to
+Note, create a root folder under the desired GCS bucket, which will be used to
 hold all the data.
 
 ```txt
