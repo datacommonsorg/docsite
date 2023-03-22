@@ -8,8 +8,71 @@ published: true
 
 ## Overview
 
-Raw data (TMCF, CSV) and some other configuration files are uploaded to Google
-Cloud Storage (GCS).
+Schema files (MCF), data files (CSV) and data specification files (TMCF) are
+stored in Google Cloud Storage (GCS) of the custom Data Commons GCP project.
+These files should be stored based on a desired layout, so data can be processed
+and show up correctly. It's worth to understand a few terms to better understand
+the data layout.
+
+### Data Source
+
+Data source refers to a data agency such as "Census", "World Bank".
+
+### Dataset
+
+Dataset does not have a standard definition. The granulairty of a
+dataset varies depending on the sources. For example, one dataset can contain
+public parks information of all the states in USA if they are published
+together. Or if each state publishes this information individually, then there
+are multiple datasets for this topic.
+
+### Import
+
+Import is the smallest unit of data upload in Data Commons. It usually (but not
+necessarily) corresponds to a dataset.
+
+### Import Group
+
+A group of related imports that have similar topics. This is also the unit of
+raw data processing.
+
+### Table
+
+Table corresponds to one TMCF file and a set of CSV files that have the same
+shape. One import could have one or multiple tables.
+
+## Example Layout
+
+Consider the following two datasets:
+
+1. State level public park general information in 50 csv files (collected by
+   each state in different format, with size of 5G).
+2. State level public park expenditure with 1 csv file per year (collected by an
+   agency, with size of 5M).
+
+They can be arranged in multiple ways.
+
+### Single Import Group
+
+Since these data are all about public parks, they can be put under one import
+group, with two imports:
+
+- general info import
+
+  - With one schema file describing public parks properties
+  - With 50 tables for each state
+    - Each table has one TMCF and one CSV file
+
+- expenditure import
+  - With one schema file describing expenditure
+  - With one table containing one TMCF and mutliple CSV files.
+
+### Multiple Import Groups
+
+If the two datasets are managed by different departments and are updated at
+different frequencies, they can each be an import group. This way, when
+expenditure data is updated, only its data is processed and the larger general
+information import is untouched.
 
 ## Storage Layout
 
@@ -44,14 +107,24 @@ typical layout.
 ```
 
 Raw data should be uploaded under `/<import_group>/data/<import>/<table>`. Each
-`table` folder can only contains one TMCF file and all the CSV files should
-have same format. Conceptually, one dataset corresponds to one or more imports.
-Depending on the CSV format, each import can have one or more tables.
+`table` folder can only contain one TMCF file while all the CSV files should
+have conformating format.
 
 Note `internal/` folder is used to hold computed data and config files and
 should not be touched.
 
-The data source and other meta info can be specified in `provenance.json` file.
+The data source and other meta info can be specified in `provenance.json` file
+with the following fields
+
+```json
+{
+  "name": "Name of the source (dataset)",
+  "url": "Url of the source (dataset)"
+}
+```
+
+provenance.json can be at import group level or import level, usually indicating
+data source and dataset provenance respectively.
 
 ## Add a Custom Variable Hierarchy
 
