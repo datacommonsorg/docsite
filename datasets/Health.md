@@ -55,6 +55,13 @@ National Health Mission (NHM) is a flagship programme of the Government of India
 #### [Health Management Information System](https://hmis.nhp.gov.in/)
 The Health management Information System (HMIS) of the National Health Mission, India captures medical facility-wise information such as reproductive, meternal and child health, immunization, family planning and vector borne diseases on a monthly basis ats district, state and national levels.
 
+### [India National Sample Survey](https://mospi.gov.in/web/nss)
+The India National Sample Survey (NSS) Organizes and conducts large scale all-India sample surveys on different population groups in diverse socio economic areas, such as employment, consumer expenditure, housing conditions and environment, literacy levels, health, nutrition, family welfare, etc.
+
+#### [India National Sample Survey - Health](https://mospi.gov.in/documents/213904/301563//NSS%20Report%20no.%20586%20Health%20in%20India1606229312083.pdf/d3724e8b-5970-0559-9ed9-12378a6cc7b3)
+Household health survey on profile of ailments including their treatment, role of government and private facilities in providing healthcare, expenditure on medicines, expenditure on medical consultation and investigation, hospitalization and expenditure, maternity and childbirth, the condition of the aged, etc.
+[Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
+
 ### [Our World in Data](https://ourworldindata.org/)
 
 #### [COVID-19 Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations)
@@ -75,6 +82,10 @@ Data made [available for non-commercial purposes only with proper citation](http
 #### [Small Area Health Insurance Estimates (SAHIE)](https://www.census.gov/data/datasets/time-series/demo/sahie/estimates-acs.html)
 The Small Area Health Insurance Estimates program provides yearly estimates of health insurance coverage status for all counties and states. Data Commons includes all estimates, available by age, race, sex, and income.
 
+
+#### [US Census](https://www.census.gov)
+The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
+
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
@@ -86,6 +97,10 @@ The statistics for prevalence of asthma among adults is for counties in 50 state
 
 #### [Diabetes Surveillance System](https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html)
 Estimates of the number and percentage of US adults with diabetes.
+
+
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
 
 
 #### [National Notifiable Diseases Surveillance System (NNDSS)](https://www.cdc.gov/nndss/data-statistics/index.html)
