@@ -76,11 +76,14 @@ information import is untouched.
 
 ## Storage Layout
 
-All custoom Data Commons data are stored under one GCS folder. Below shows a
+All custom Data Commons data are stored under one GCS folder. Below shows a
 typical layout.
 
+Note, create a root folder under the desired GCS bucket, which will be used to
+hold all the data.
+
 ```txt
-.
+<root_folder>
 ├── import_group1/
 │   ├── data/
 │   │   ├── import1/
