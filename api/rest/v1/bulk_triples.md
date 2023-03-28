@@ -3,9 +3,10 @@ layout: default
 title: Triples
 parent: REST (v1)
 grand_parent: API
-nav_exclude: true
+nav_order: 102
 published: true
 permalink: /api/rest/v1/bulk/triples
+is_bulk: true
 ---
 
 # /v1/bulk/triples

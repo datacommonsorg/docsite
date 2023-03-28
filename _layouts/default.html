@@ -97,7 +97,23 @@
               {% if page.parent %}
                 <nav aria-label="Breadcrumb" id="main-breadcrumb">
                   <ol class="breadcrumb">
-                    {% if page.grand_parent %}
+                    {% if page.great_grand_parent %}
+                    <li class="breadcrumb-item">
+                      <a href="{%- if page.great_grand_parent_url -%}{{ page.great_grand_parent_url }}{% else %}{{ first_level_url }}{% endif -%}">
+                        {{ page.great_grand_parent }}
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="{%- if page.grand_parent_url -%}{{ page.grand_parent_url }}{% else %}{{ second_level_url }}{% endif -%}">
+                        {{ page.grand_parent }}
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="{%- if page.parent_url -%}{{ page.parent_url }}{% else %}{{ third_level_url }}{% endif -%}">
+                        {{ page.parent }}
+                      </a>
+                    </li>
+                    {% elsif page.grand_parent %}
                       <li class="breadcrumb-item">
                         <a href="{%- if page.grand_parent_url -%}{{ page.grand_parent_url }}{% else %}{{ first_level_url }}{% endif -%}">
                           {{ page.grand_parent }}
@@ -115,7 +131,7 @@
                         </a>
                       </li>
                     {% endif %}
-                    <li class="breadcrumb-item active"><span>{{ page.title }}</span></li>
+                    <li class="breadcrumb-item active"><span>{{ page.title }} {% if page.is_bulk %}(Bulk version){% endif %}</span></li>
                   </ol>
                 </nav>
               {% endif %}

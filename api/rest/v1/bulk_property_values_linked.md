@@ -1,11 +1,12 @@
 ---
 layout: default
 title: Property Values (linked)
-nav_exclude: true
+nav_order: 105
 parent: REST (v1)
 grand_parent: API
 published: true
 permalink: /api/rest/v1/bulk/property/values/in/linked
+is_bulk: true
 ---
 
 # /v1/bulk/property/values/in/linked

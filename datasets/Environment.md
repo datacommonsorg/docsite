@@ -17,6 +17,22 @@ parent: Data Sources
 Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
 The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
 
+### [Data Commons](https://datacommons.org/)
+
+#### [Temperature Event](https://datacommons.org/)
+The events for places with unusual temperatures, either too hot or too cold, computed with reference to long term temperature averages, e.g. the average maximum daily temperature in January over the years 1980-2010.
+
+#### [WetBulb Temperature Event](https://datacommons.org/)
+Wet Bulb temperatures are computed using estimates of temperatures over a period of time (e.g. daily average temperature) and estimates of (relative) humidity (e.g. daily average humidity). In some cases, if humidity and/or temperature data is missing then we use month-specific averages using several years of humidity/temperature observations or climate model projections, e.g. from CMIP6 models. The formula used for wet-bulb temperature calculations is provided in the following paper: https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
+
+### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+
+#### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
+This dataset includes flooded regions computed from the Dynamic World dataset. These are regions labelled as water and outside regions marked as permanent water in the Hansen Global Forest Change dataset.
+
+This dataset is produced for the Dynamic World Project by Google in partnership with National Geographic Society and the World Resources Institute.
+
+
 ### [European Union (EU) Copernicus](https://www.copernicus.eu/en)
 
 #### [Copernicus ECMWF - ERA5 Climate Reanalysis Data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels)
@@ -31,6 +47,10 @@ Land cover data from the Copernicus Land Cover viewer. Data Commons currently in
 
 ### [Federal Emergency Management Agency](https://www.fema.gov/)
 
+#### [National Flood Insurance Program (NFIP)](https://www.fema.gov/flood-insurance)
+The National Flood Insurance Program (NFIP), managed by the Federal Emergency Management Agency (FEMA), enables homeowners, business owners and renters in participating communities to purchase federally backed flood insurance. The data includes insurance claims and amounts paid for flood damage to buildings and its contents aggregated by census-tracts, counties and states.
+This product uses the Federal Emergency Management Agency’s OpenFEMA API, but is not endorsed by FEMA. The Federal Government or FEMA cannot vouch for the data or analyses derived from these data after the data have been retrieved from the Agency's website(s).
+
 #### [National Risk Index](https://hazards.fema.gov/nri/)
 Data Commons includes relative measures of risk from the 18 natural hazards included in the study for counties and census tracts, as well as annual expected loss figures in USD from individual hazards and in aggregate. This study and associated data are released with [this disclaimer](https://hazards.fema.gov/nri/disclaimer).
 
@@ -40,6 +60,12 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 #### [Randolph Glacier Inventory](https://www.glims.org/RGI/rgi60_dl.html)
 A global inventory of glaciers, including surface areas.
 
+
+### [India Central Pollution Control Board (CPCB)](https://app.cpcbccr.com)
+India's Central Pollution Control Board (CPCB) portal for Air Quality Management.
+
+#### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
+Air Quality Index and possible health impacts reported for states, cities and stations in India.
 
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
@@ -72,6 +98,10 @@ Information related to transportation characteristics for households which inclu
 
 #### [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22)
 Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
+
+
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
@@ -120,6 +150,9 @@ Atmospheric variables from multiple CMIP6 climate models for the entire world.
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-GDDP-CMIP6-Tech_Note.pdf).
 
 
+#### [VIIRS Active Fire Data](https://www.earthdata.nasa.gov/learn/find-data/near-real-time/firms/vnp14imgtdlnrt)
+The Visible Infrared Imaging Radiometer Suite (VIIRS) aboard S-NPP satellite provides 375m resolution data for active fires. This dataset includes area under fire per level 13 S2 cell every day starting in 2012.
+
 ### [U.S. National Oceanic and Atmospheric Administration (NOAA)](https://www.noaa.gov/)
 
 #### [GPCC Monthly SPI Data](https://www.ncei.noaa.gov/pub/data/nidis/gpcc/spi-pearson)
@@ -132,6 +165,10 @@ The IBTrACS project provides tropical cyclone best track data in a centralized l
 
 #### [NOAA-EPA Observed Weather Data](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily)
 Historical weather data from stations reported largely from NOAA Global Historical Climate Network (GHCN).
+
+
+#### [NOAA-GFS Weather Forecast](https://www.ncei.noaa.gov/products/weather-climate-models/global-forecast)
+Global daily weather forecast generated from National Centers for Environmental Prediction (NCEP) model.
 
 
 #### [National Climatic Data Center Storm Events Database](https://www.ncdc.noaa.gov/stormevents/ftp.jsp)
@@ -162,8 +199,15 @@ Codes, names, coordinates, and more information for all "named physical and cult
 
 ### [Wildland Fire Interagency Geospatial Services](https://data-nifc.opendata.arcgis.com/)
 
+#### [WFIGS Wildland Fire Areas](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
+The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides areas for all reported wildland fires in the United States at county, state and country level.
+
 #### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
 Point Locations for all reported wildland fires in the United States.
+
+
+#### [WFIGS Wildland Fire Perimeters](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-perimeters-full-history/about)
+The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides perimeters for all reported wildland fires in the United States. We simplify those parameters by using Ramer-Douglas-Peucker algorithm on geoJsonCoordinates with epsilon of 0.01.
 
 [Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 

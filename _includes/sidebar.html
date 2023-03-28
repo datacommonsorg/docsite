@@ -18,7 +18,7 @@
             <a href="{{ node.url }}" class="{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
             {% if node.has_children %}{{ caret }}{% endif %}
           </summary>
-          {% if page.parent == node.title or page.grand_parent == node.title %}
+          {% if page.parent == node.title or page.grand_parent == node.title or page.great_grand_parent == node.title %}
             {% assign first_level_url = node.url %}
           {% endif %}
           {%- if node.has_children -%}
@@ -26,12 +26,12 @@
             <ul id="node-{{ forloop.index }}">
             {%- for child in children_list -%}
               {%- unless child.nav_exclude -%}
-                <details class="child" {% if page.url == child.url or page.parent == child.title %}open{% endif %}>
+                <details class="child" {% if page.url == child.url or page.parent == child.title or page.grand_parent == child.title %}open{% endif %}>
                   <summary>
                     <a href="{{ child.url }}" class="{% if page.url == child.url or page.parent == child.title %} active{% endif %}">{{ child.title }}</a>
                     {% if child.has_children %}{{ caret }}{% endif %}
                   </summary>
-                  {% if page.url == child.url or page.parent == child.title %}
+                  {% if page.url == child.url or page.parent == child.title or page.grand_parent == child.title %}
                     {% assign second_level_url = child.url %}
                   {% endif %}
                   {%- if child.has_children -%}
@@ -39,9 +39,32 @@
                     <ul id="child-{{ forloop.index }}">
                     {%- for grand_child in grand_children_list -%}
                       {%- unless grand_child.nav_exclude -%}
-                        <li class="{% if page.url == grand_child.url %}active{% endif %}">
-                          <a href="{{ grand_child.url }}" class="{% if page.title == grand_child.title %} active{% endif %}">{{ grand_child.title }}</a>
-                        </li>
+                        <details class="child" {% if page.url == grand_child.url or page.parent == grand_child.title or page.grand_parent == grand_child.title %}open{% endif %}>
+                          <summary>
+                            <a href="{{ grand_child.url }}" class="{% if page.url == grand_child.url or page.parent == grand_child.title %} active{% endif %}">
+                              {% if grand_child.is_bulk %}<bulk-tag>BULK</bulk-tag> {% endif %}
+                              {{ grand_child.title }}
+                            </a>
+                            {% if grand_child.has_children %}{{ caret }}{% endif %}
+                          </summary>
+                          {% if page.url == grand_child.url or page.parent == grand_child.title or page.grand_parent == grand_child.title %}
+                            {% assign third_level_url = grand_child.url %}
+                          {% endif %}
+                          {%- if grand_child.has_children -%}
+                            {%- assign great_grand_children_list = pages_list | where: "parent", grand_child.title | where: "grand_parent", child.title | where: "great_grand_parent", node.title -%}
+                            <ul id="grandchild-{{ forloop.index }}">
+                            {%- for great_grand_child in great_grand_children_list -%}
+                              {%- unless great_grand_child.nav_exclude -%}
+                                <li class="{% if page.url == great_grand_child.url %}active{% endif %}">
+                                  <a href="{{ great_grand_child.url }}" class="{% if page.title == great_grand_child.title %} active{% endif %}">
+                                    {{ great_grand_child.title }}
+                                  </a>
+                                </li>
+                              {%- endunless -%}
+                            {%- endfor -%}
+                            </ul>
+                          {%- endif -%}
+                        </details>
                       {%- endunless -%}
                     {%- endfor -%}
                     </ul>

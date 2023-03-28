@@ -3,9 +3,10 @@ layout: default
 title: Variables
 parent: REST (v1)
 grand_parent: API
-nav_exclude: true
+nav_order: 113
 published: true
 permalink: /api/rest/v1/bulk/variables
+is_bulk: true
 ---
 
 # /v1/bulk/variables

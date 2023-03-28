@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SPARQL
-nav_order: 12
+nav_order: 99
 parent: REST (v1)
 grand_parent: API
 published: true

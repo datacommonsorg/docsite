@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Single Observation
-nav_exclude: true
+nav_order: 106
 parent: REST (v1)
 grand_parent: API
 published: true
 permalink: /api/rest/v1/bulk/observations/point
- 
+is_bulk: true 
 ---
  
  

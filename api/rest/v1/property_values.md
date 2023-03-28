@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Property Values
-nav_order: 3
+nav_order: 4
 parent: REST (v1)
 grand_parent: API
 published: true
@@ -17,7 +17,7 @@ where the successor node is a value of the property. Thus, this endpoint returns
 nodes connected to the queried node via the property queried.
 
 _Note: If you want to query values for the property `containedInPlace`, consider
-using [/v1/property/values/linked](/api/rest/v1/property/values/linked)
+using [/v1/property/values/linked](/api/rest/v1/property/values/in/linked)
 instead._
 
 <div markdown="span" class="alert alert-warning" role="alert">
