@@ -43,6 +43,13 @@ The GTEx eGene and significant variant-gene association data were generated from
 GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
 
 
+### [International Committee on Taxonomy of Viruses (ICTV)](https://ictv.global/)
+
+#### [Master Species List and Virus Metadata Resource](https://ictv.global/)
+The official, current virus taxonomy approved by the International Committee on Taxonomy of Viruses (ICTV). This includes data from the Master Species List and the Virus Metadata Resource.
+This data is made available under Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0).
+
+
 ### [New York Botanical Garden (NYBG)](http://sweetgum.nybg.org/science/)
 
 #### [C. V. Starr Virtual Herbarium (Collaboration)](http://sweetgum.nybg.org/science/vh/learn-more/)
