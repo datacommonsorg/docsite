@@ -166,14 +166,6 @@ UniProt’s Controlled Vocabulary of Species contains organism species UniProt i
 The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) Uniprot data used in a journal article. This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
 
 
-### [University of California San Francisco](https://www.ucsf.edu/)
-
-#### [SPOKE Disease Symptom Associations](https://spoke.ucsf.edu/)
-These are statistical associations using a Fisher’s exact test co-occurrence of disease and symptom terms in Pubmed entries by performing as described in [Himmelstein, et al (2017)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640425/).
-
-The data was previously hosted by [UCSF Scalable Precision Medicine Knowledge Engine SPOKE](https://spoke.ucsf.edu/). It was made available by the data’s owner, Sergio Baranzini, for use on Data Commons. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
-
-
 ### [University of Maryland School of Medicine, Institute of Genome Sciences](https://www.igs.umaryland.edu/)
 
 #### [Disease Ontology](https://disease-ontology.org/)
