@@ -64,6 +64,21 @@ or
 
 ## Deploy to GCP
 
+### One Time Setup
+
+- Install the following tools:
+
+  - [`gcloud`](https://cloud.google.com/sdk/docs/install)
+  - [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+  - [`kustomize`](https://kustomize.io/)
+  - [`yq` 4.x](https://github.com/mikefarah/yq#install)
+
+- Install gke-gcloud-auth-plugin
+
+  - `gcloud components install gke-gcloud-auth-plugin`
+
+### Deploy Local Change
+
 After testing locally, follow the instructions below to deploy to GCP.
 `project_id` refers to the GCP project where custom Data Commons is installed.
 
