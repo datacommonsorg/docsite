@@ -42,7 +42,7 @@ This API returns basic information on multiple places, given each of their DCIDs
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature"><div class="scroll">
-https://api.datacommons.org/v1/bulk/info/place?entities={place_dcid_1}&entities={place_dcid_2}&key={your_api_key}
+https://api.datacommons.org/v1/bulk/info/place?nodes={place_dcid_1}&nodes={place_dcid_2}&key={your_api_key}
 </div></div>
 
 
@@ -55,7 +55,7 @@ X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "entities": [
+  "nodes": [
     "{place_dcid_1}",
     "{place_dcid_2}",
     ...
@@ -76,7 +76,7 @@ This endpoint has no path parameters.
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag> | string | Your API Key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| entities <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.html#dcid) of the places to query information for. |
+| nodes <br /> <required-tag>Required</required-tag> | string | [DCIDs](/glossary.html#dcid) of the places to query information for. |
 {: .doc-table }
 
 ## Response
@@ -88,7 +88,7 @@ The response looks like:
   "data":
   [
     {
-      "entity": "place_dcid_1",
+      "node": "place_dcid_1",
       "info":
       {
         "self":
@@ -108,7 +108,7 @@ The response looks like:
       }
     },
     {
-      "entity": "place_dcid_2",
+      "node": "place_dcid_2",
       "info": {...}
     }, ...
   ]
@@ -120,7 +120,7 @@ The response looks like:
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| entity   | string | [DCID](/glossary.html#dcid) of the places queried. |
+| node   | string | [DCID](/glossary.html#dcid) of the places queried. |
 | info     | object | Information about the place queried. Includes the name and type (city, state, country, etc.) of the place, as well as those of all "parent" places that contain the place queried (e.g. North America is a parent place of the United States). |
 {: .doc-table}
 
@@ -140,7 +140,7 @@ Request:
 
 ```bash
 $ curl --request GET --url \
-'https://api.datacommons.org/v1/bulk/info/place?entities=geoId/06&entities=geoId/06&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+'https://api.datacommons.org/v1/bulk/info/place?nodes=geoId/06&nodes=geoId/06&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
 ```
 {: .example-box-content .scroll}
 
@@ -155,7 +155,7 @@ Request:
 $ curl --request POST \
 --url https://api.datacommons.org/v1/bulk/info/place \
 --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
---data '{"entities":["geoId/06", "geoId/02"]}'
+--data '{"nodes":["geoId/06", "geoId/02"]}'
 ```
 {: .example-box-content .scroll}
 
@@ -171,7 +171,7 @@ Response:
   "data":
   [
     {
-      "entity": "geoId/06",
+      "node": "geoId/06",
       "info":
       {
         "self":
@@ -210,7 +210,7 @@ Response:
       }
     },
     {
-      "entity": "geoId/02",
+      "node": "geoId/02",
       "info":
       {
         "self":

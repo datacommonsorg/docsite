@@ -17,6 +17,14 @@ parent: Data Sources
 Historical Data about Greehouse Gas (GHG) emissions from 10 sectors and various sub-sectors at country level.
 The Climate TRACE data is made available through the [Climate TRACE terms of use](https://climatetrace.org/tos).
 
+### [Data Commons](https://datacommons.org/)
+
+#### [Temperature Event](https://datacommons.org/)
+The events for places with unusual temperatures, either too hot or too cold, computed with reference to long term temperature averages, e.g. the average maximum daily temperature in January over the years 1980-2010.
+
+#### [WetBulb Temperature Event](https://datacommons.org/)
+Wet Bulb temperatures are computed using estimates of temperatures over a period of time (e.g. daily average temperature) and estimates of (relative) humidity (e.g. daily average humidity). In some cases, if humidity and/or temperature data is missing then we use month-specific averages using several years of humidity/temperature observations or climate model projections, e.g. from CMIP6 models. The formula used for wet-bulb temperature calculations is provided in the following paper: https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
+
 ### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
 
 #### [Inferred Floods from Dynamic World](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
@@ -53,6 +61,12 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 A global inventory of glaciers, including surface areas.
 
 
+### [India Central Pollution Control Board (CPCB)](https://app.cpcbccr.com)
+India's Central Pollution Control Board (CPCB) portal for Air Quality Management.
+
+#### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
+Air Quality Index and possible health impacts reported for states, cities and stations in India.
+
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
@@ -67,11 +81,81 @@ This dataset includes US forecast (till 2100) weather variability at 0.25 degree
 #### [US Forecast Weather Variability - County](https://www.rff.org/publications/data-tools/)
 This dataset includes US county-level forecast (till 2100) weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 0.25 degree resolution by Data Commons.
 
+#### [US Geo Grids for RFF](https://www.rff.org/publications/data-tools/)
+This dataset includes geo grid places in US at 0.25 degree resolution and 4km resolution.
+
 #### [US Historical Weather Variability - 4km resolution](https://www.rff.org/publications/data-tools/)
 This dataset includes US historical weather variability at 4 KM resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
 
 #### [US Historical Weather Variability - County](https://www.rff.org/publications/data-tools/)
 This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 4 KM resolution by RFF.
+
+#### [US Wildfire, Smoke and Drought statistics - County and State](https://www.rff.org/publications/data-tools/)
+This dataset incorporates statistics aggregated by RFF from the following
+sources:
+
+1. Temperature, precipitation, and vapor pressure deficit data were obtained
+   from PRISM Climate Group, Oregon State University. Available at:
+   https://prism.oregonstate.edu/recent/.  All data span the years 1981 to 2020.
+   Data on maximum temperature, vapor pressure deficit, and precipitation are
+   monthly. Data on minimum temperature are daily.
+
+   License: All data retrieved from https://prism.oregonstate.edu may be freely
+   reproduced and distributed for non-commercial purposes only.
+
+1. Palmer Drought Severity Index (PDSI) data come from [gridMET](http://thredds.northwestknowledge.net/thredds/reacch_climate_MET_aggregated_catalog.html?dataset=agg_met_pdsi_1979_CurrentYear_CONUS). Data are daily for the years 1981 to 2020.
+
+    License: These data are freely available for public use.
+
+1. Data on forest cover and fire severity in the western US is from Parks &
+   Abatzoglou (2020), available [here](https://datadryad.org/stash/dataset/doi:10.5061/dryad.tmpg4f4x1).
+
+   License: This work is licensed under a CC0 1.0 Universal (CC0 1.0) Public Domain
+   Dedication license.
+
+1. County-level population estimates from the US Census Bureau. Available
+   [here](https://www2.census.gov/programs-surveys/popest/datasets/2020-2021/counties/totals/)
+
+    License: These data are freely available for public use.
+
+1. Data on heatwaves come from Resources for the Future and Google Data Commons,
+   available [here](https://github.com/datacommonsorg/data/tree/master/scripts/rff/historical_weather_variability/county).
+
+    License: RFF derives heatwave indicators from daily minimum temperature data
+    generated by PRISM Climate Group, University of Oregon. When using these
+    data, please clearly and prominently state the PRISM Climate Group and their
+    URL ( https://prism.oregonstate.edu/ ).  According to PRISM’s terms of use,
+    these data may be freely reproduced and distributed for non-commercial
+    purposes only.
+
+1. MTBS Data Access: Fire Level Geospatial Data. MTBS Project (USDA Forest
+   Service/U.S. Geological Survey), available online
+   [here](http://mtbs.gov/direct-download).
+
+    License: These data are freely available for public use.
+
+1. Data on PM2.5 from wildfire smoke is from Childs et al. 2022, available
+   [here](https://www.stanfordecholab.com/wildfire_smoke).
+
+   License: Permission is hereby granted, free of charge, to any person
+   obtaining a copy, of this software and associated documentation files (the
+   "Software"), to deal in the Software without restriction, including without
+   limitation the rights to use, copy, modify, merge, publish, distribute,
+   sublicense, and/or sell copies of the Software, and to permit persons to
+   whom the Software is furnished to do so, subject to the following
+   conditions:
+
+   * The above copyright notice and this permission notice shall be included in all
+     copies or substantial portions of the Software.
+
+   * The software is provided "as is", without warranty of any kind, express or
+     implied, including but not limited to the warranties of merchantability,
+     fitness for a particular purpose and noninfringement. In no event shall
+     the authors or copyright holders be liable for any claim, damages or other
+     liability, whether in an action of contract, tort or otherwise, arising
+     from, out of or in connection with the software or the use or other
+     dealings in the software.
+
 This data is made available for non-commercial purposes only.
 
 ### [U.S. Bureau of Transportation Statistics](https://www.bts.dot.gov/)
@@ -84,6 +168,10 @@ Information related to transportation characteristics for households which inclu
 
 #### [Environmental Health Toxicology](https://data.cdc.gov/browse?category=Environmental+Health+%26+Toxicology%22)
 Data Commons has imported data on Palmer Drought Severity Index, Standardiazed Precipitation Evapotranspiration Index, Standardized Precipitation Index, Ozone, and PM2.5.
+
+
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
@@ -180,6 +268,9 @@ Codes, names, coordinates, and more information for all "named physical and cult
 
 
 ### [Wildland Fire Interagency Geospatial Services](https://data-nifc.opendata.arcgis.com/)
+
+#### [WFIGS Wildland Fire Areas](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
+The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides areas for all reported wildland fires in the United States at county, state and country level.
 
 #### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
 Point Locations for all reported wildland fires in the United States.
