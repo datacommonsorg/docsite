@@ -21,7 +21,7 @@ instructions](https://github.com/datacommonsorg/website#github-workflow) into a
 new repo, which will be used as the custom Data Commons codebase. Custom Data
 Commons development and deployment will be based on this forked repo.
 
-To run website in a local environment (Mac, Unix), follow this
+To run website in a local environment (Mac, Linux), follow this
 [guide](https://github.com/datacommonsorg/website/blob/master/docs/developer_guide.md#local-development-with-flask).
 Use `-e custom` flag when starting the local Flask server:
 
@@ -47,10 +47,10 @@ The custom Data Commons provides an
 to override CSS styles. It has a default color override. More style changes can
 be added in that file.
 
-If there are already existing CSS and Javascript files, put them under folder
-[/static/custom_dc/custom](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom).
-Then include these files in the `<head>` section of the corresponding html files
-as
+If there are already existing CSS and Javascript files, put them under the
+[/static/custom_dc/custom](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom)
+folder. Then include these files in the `<head>` section of the corresponding
+html files as
 
 ```html
 <link href="/custom_dc/custom/<additional>.css" rel="stylesheet" />
