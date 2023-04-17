@@ -21,9 +21,9 @@ instructions](https://github.com/datacommonsorg/website#github-workflow) into a
 new repo, which will be used as the custom Data Commons codebase. Custom Data
 Commons development and deployment will be based on this forked repo.
 
-To test codes in a local environment, follow this
+To run website in a local environment (Mac, Linux), follow this
 [guide](https://github.com/datacommonsorg/website/blob/master/docs/developer_guide.md#local-development-with-flask).
-Note to use `-e custom` flag when starting local Flask server:
+Use `-e custom` flag when starting the local Flask server:
 
 ```bash
 ./run_server.sh -e custom
@@ -36,6 +36,7 @@ Note to use `-e custom` flag when starting local Flask server:
 Page header and footer can be customized in
 [base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html)
 by updating the html element within `<header></header>` and `<footer></footer>`.
+
 Homepage can be customized in
 [homepage.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/homepage.html).
 
@@ -43,21 +44,22 @@ Homepage can be customized in
 
 The custom Data Commons provides an
 [overrides.css](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom/overrides.css)
-to override CSS styles. More style changes can be added to that file.
+to override CSS styles. It has a default color override. More style changes can
+be added in that file.
 
-To add more site customization, can put CSS and Javascript files under folder
-[/static/custom_dc/custom](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom).
-Then include these files in the `<head>` section of the corresponding html files
-as
+If there are already existing CSS and Javascript files, put them under the
+[/static/custom_dc/custom](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom)
+folder. Then include these files in the `<head>` section of the corresponding
+html files as
 
 ```html
-<link href="/custom_dc/custom/<custom_additional>.css" rel="stylesheet" />
+<link href="/custom_dc/custom/<additional>.css" rel="stylesheet" />
 ```
 
 or
 
 ```html
-<script src="/custom_dc/custom/<custom_additional>.js"></script>
+<script src="/custom_dc/custom/<additional>.js"></script>
 ```
 
 ## Deploy to GCP
