@@ -47,7 +47,7 @@ The custom Data Commons provides an
 to override CSS styles. It has a default color override. More style changes can
 be added in that file.
 
-If there are already existing CSS and Javascript, put them under folder
+If there are already existing CSS and Javascript files, put them under folder
 [/static/custom_dc/custom](https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom).
 Then include these files in the `<head>` section of the corresponding html files
 as
