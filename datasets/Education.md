@@ -11,6 +11,12 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [California Assessment of Student Performance and Progress](https://caaspp-elpac.ets.org/elpac/)
+
+#### [California School Performance](https://caaspp-elpac.ets.org/elpac/)
+California schools performance data across different grade levels and sub-groups (like race, disability etc).
+[CAASPP](https://caaspp-elpac.ets.org/elpac/)
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)

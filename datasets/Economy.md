@@ -23,6 +23,12 @@ parent: Data Sources
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
 
+### [Food and Agriculture Organization of the United Nations](https://www.fao.org/faostat/)
+
+#### [FAO Currency and Exchange Rate](https://www.fao.org/faostat/en/#data/PE/metadata)
+The exchange rate of currency broken down by country, currency standardization type, and currency (using ISO 4217 Currency Code).
+[FAQ](https://www.fao.org/faostat/en/#faq)
+
 ### [India Ministry of Statistics and Programme Implementation](https://mospi.gov.in/)
 
 #### [Periodic Labour Force Survey](https://mospi.gov.in/web/plfs)
@@ -74,13 +80,23 @@ The American Community Survey covers a broad range of topics about social, econo
 
 
 #### [County Business Patterns](https://www.census.gov/programs-surveys/cbp/data/datasets.html)
-Per-industry number of establishments, employment, payroll and annual payrol, by county, metropolital statistical area and zip code.
+Per-industry number of establishments, employment, payroll and annual payroll, by county, metropolitan statistical area and zip code.
 
 
 #### [Economic Census](https://www.census.gov/programs-surveys/economic-census/about.html)
 Number of businesses and amount of revenue, by business payroll status, industry, operation type, and tax status.
 
+
+#### [US Census](https://www.census.gov)
+The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
+
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
+
+
+### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
+
+#### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)
+Data Commons has imported 80th and 150th percentile median family income estimates for different household sizes for US counties and county subdivisions.
 
 
 ### [U.S. Department of Labor (DOL)](https://www.dol.gov/)
