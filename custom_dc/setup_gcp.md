@@ -8,14 +8,9 @@ published: true
 
 ## Overview
 
-Custom Data Commons is deployed in Google Cloud Platform (GCP). The follow
-manual presents how to install a custom Data Commons instance in an existing GCP
+Custom Data Commons is deployed in Google Cloud Platform (GCP). This manual
+presents how to install a custom Data Commons instance in an existing GCP
 project (with id `PROJECT_ID`).
-
-### Domain
-
-The installation can use an existing domain, or create a default domain
-`<PROJECT_ID>-datacommons.com`. This guide focuses on using the default domain.
 
 ### Steps
 
@@ -37,11 +32,22 @@ The installation can use an existing domain, or create a default domain
    Note: If this step fails, please contact support+custom@datacommons.org with
    the errors.
 
+1. [Optional] The default domain of the instance is
+   `<PROJECT_ID>-datacommons.com`. If you want to use an existing custom domain,
+   set the environment variable:
+
+   ```bash
+   export CUSTOM_DC_DOMAIN=<existing_domain>
+   ```
+
+   Later on, need to create a new DNS record by linking the domain with the IP
+   address (from GCP project) from your domain provider.
+
 1. Please run the following installation command inside the terminal. This may
    take up to 20 minutes to complete.
 
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/datacommonsorg/website/custom-dc-v0.1.0/scripts/install_custom_dc.sh -o install_custom_dc.sh && \
+   curl -fsSL https://raw.githubusercontent.com/datacommonsorg/website/custom-dc-v0.3.2/scripts/install_custom_dc.sh -o install_custom_dc.sh && \
    chmod u+x install_custom_dc.sh && \
    ./install_custom_dc.sh
    ```
