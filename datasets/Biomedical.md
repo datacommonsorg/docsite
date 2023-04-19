@@ -32,7 +32,7 @@ Data made available under: [ENCODE Data Use Policy for External Users](https://w
 #### [ChEMBL](https://www.ebi.ac.uk/chembl/)
 "ChEMBL is a manually curated database of bioactive molecules with drug-like properties. It brings together chemical, bioactivity and genomic data to aid the translation of genomic information into effective new drugs." It includes information on drugs at all stages of drug discovery.
 
-This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/about/terms-of-use/). This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/about/terms-of-use/).
 
 
 ### [Genotype-Tissue Expression (GTEx)](https://www.gtexportal.org/home/)
@@ -69,7 +69,7 @@ Data Made available under [Apache License 2.0](https://github.com/EBISPOT/OLS/bl
 #### [SIDER 4.1](http://sideeffects.embl.de/)
 SIDER is a database of adverse drug reactions curated by the EMBL collaboration. "SIDER contains information on marketed medicines and their recorded adverse drug reactions. The information is extracted from public documents and package inserts. The available information include side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations." Data Commons hosts version 4.1 of SIDER released on October 21, 2015.
 
-This data is made available under the [Creative Commons Attribution-Noncommercial-Share Alike 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/). This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+This data is made available under the [Creative Commons Attribution-Noncommercial-Share Alike 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/).
 
 
 ### [The Human Protein Atlas](https://www.proteinatlas.org/)
@@ -84,10 +84,6 @@ This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is a
 
 #### [FDA-Approved Drugs](https://www.accessdata.fda.gov/scripts/cder/daf/)
 "Drugs@FDA includes information about drugs, including biological products, approved for human use in the United States." Data Commons includes the information about the FDA application for the drug as well as the drug’s strength, active ingredients, dosage forms, administration routes, FDA therapeutic equivalence code, and marketing status.
-
-
-#### [Pharmacologic Class](https://www.fda.gov/industry/structured-product-labeling-resources/pharmacologic-class)
-The FDA established pharmacologic classes "associated with an approved indication of an active moiety that the FDA has determined to be scientifically valid and clinically meaningful". This includes the (1) description of pharmacologic class (2) active moiety code and description (3) compounds associated with each class.
 
 This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
 
@@ -163,7 +159,7 @@ Data Commons includes protein sequence and functional information including prot
 #### [UniProt Controlled Vocabulary of Species](https://www.uniprot.org/docs/speclist)
 UniProt’s Controlled Vocabulary of Species contains organism species UniProt identification codes, [NCBI Taxonomy database identifiers](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), scientific names, common names, synonyms, and organism kingdoms.
 
-The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) Uniprot data used in a journal article. This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) UniProt data used in a journal article.
 
 
 ### [University of Maryland School of Medicine, Institute of Genome Sciences](https://www.igs.umaryland.edu/)
@@ -171,5 +167,5 @@ The data is made available by the [Creative Commons Attribution (CC BY 4.0) Lice
 #### [Disease Ontology](https://disease-ontology.org/)
 The Disease Ontology was developed as a project by the Institute of Genome Sciences at the University of Maryland School of Medicine. It "is a community driven, open source ontology that is designed to link disparate datasets through disease concepts". It provides a "standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts".
 
-The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do). Data Commons includes the 3/7/19 update of the Disease Ontology. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do).
 
