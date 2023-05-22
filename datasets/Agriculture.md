@@ -11,6 +11,11 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
+Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
 ### [U.S. Department of Agriculture (USDA)](https://www.usda.gov/)
 
 #### [Agricultural Survey](https://quickstats.nass.usda.gov/)
