@@ -202,23 +202,26 @@ Site contamination data, hazard scores and more.
 
 ### [U.S. National Aeronautics and Space Administration (NASA)](https://www.nasa.gov/)
 
-#### [NEX-DCP30](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-dcp30)
+#### [NEX - Downscaled Climate Projections for US from IPCC CMIP5](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-dcp30)
 Atmospheric variables from multiple CMIP5 climate models for the United States.
 
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-DCP30_Tech_Note.pdf).
 
 
-#### [NEX-GDDP](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp)
+#### [NEX - Global Downscaled Climate Projections from IPCC CMIP5](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp)
 Atmospheric variables from multiple CMIP5 climate models for the entire world.
 
 [Tech Note](https://esgf.nccs.nasa.gov/esgdoc/NEX-GDDP_Tech_Note_v0.pdf).
 
 
-#### [NEX-GDDP-CMIP6](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6)
+#### [NEX - Global Downscaled Climate Projections from IPCC CMIP6](https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-gddp-cmip6)
 Atmospheric variables from multiple CMIP6 climate models for the entire world.
 
 [Tech Note](https://www.nccs.nasa.gov/sites/default/files/NEX-GDDP-CMIP6-Tech_Note.pdf).
 
+
+#### [PO.DAAC - Sea level Projections from IPCC CMIP6](https://podaac.jpl.nasa.gov/announcements/2021-08-09-Sea-level-projections-from-the-IPCC-6th-Assessment-Report)
+Sea Level projections from 2020 to 2150 for all future scenarios in CMIP6 on a regular global grid and local projections at individual tide gauge locations.
 
 #### [VIIRS Active Fire Data](https://www.earthdata.nasa.gov/learn/find-data/near-real-time/firms/vnp14imgtdlnrt)
 The Visible Infrared Imaging Radiometer Suite (VIIRS) aboard S-NPP satellite provides 375m resolution data for active fires. This dataset includes area under fire per level 13 S2 cell every day starting in 2012.
@@ -232,6 +235,9 @@ Historical monthly SPI calculated from data observed from German Meteorological 
 #### [International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncdc.noaa.gov/ibtracs/index.php?name=ib-v4-access)
 The IBTrACS project provides tropical cyclone best track data in a centralized location. Data Commons includes cyclone name, start date, end date, max wind speed, minimum pressure, max classification, oceanic basin, and affected places.
 
+
+#### [NOAA CoastWatch](https://coastwatch.noaa.gov/cwn/index.html)
+Sea surface salinity and temperature data mapped to S2 cells.
 
 #### [NOAA-EPA Observed Weather Data](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily)
 Historical weather data from stations reported largely from NOAA Global Historical Climate Network (GHCN).
@@ -263,6 +269,10 @@ Earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and ampl
 
 #### [Geographic Names Information System (GNIS) - National Federal Codes](https://www.usgs.gov/u.s.-board-on-geographic-names/download-gnis-data)
 Codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
+
+
+#### [National Water Use Data](https://waterdata.usgs.gov/nwis/wu)
+Water use data for states and counties in the US, broken down by water source (ground water, surface water), water type (fresh water, saline water), and category of use (domestic, industrial, etc.).
 
 [USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
 

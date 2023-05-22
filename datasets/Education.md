@@ -11,11 +11,21 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
+
+#### [Brazil Census](https://www.ibge.gov.br/en/statistics/social/population.html)
+Population Census and Statistics for Brazil.
+
 ### [California Assessment of Student Performance and Progress](https://caaspp-elpac.ets.org/elpac/)
 
 #### [California School Performance](https://caaspp-elpac.ets.org/elpac/)
 California schools performance data across different grade levels and sub-groups (like race, disability etc).
 [CAASPP](https://caaspp-elpac.ets.org/elpac/)
+
+### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
+
+#### [Colombia Census](https://www.dane.gov.co/index.php)
+Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -36,6 +46,11 @@ Data on schools, such as dropout rate and access to computers and toilets, in In
 #### [Unified District Information System for Education (UDISE)](https://udiseplus.gov.in/#/home)
 The Unified District Information System for Education (UDISE), by the Ministry of Education, India, collects and provides data related to schools and their resources.
 
+### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
+Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
 ### [U.S. Census Bureau](https://www.census.gov/)
 
 #### [American Community Survey Education Tabulation (ACS-ED)](https://nces.ed.gov/programs/edge/demographic/acs)
@@ -53,6 +68,9 @@ The National Center for Education Statistics collaborates with the US Census Bur
 
 
 ### [U.S. National Center for Education Statistics](https://nces.ed.gov/)
+
+#### [Nations Report Card](https://www.nationsreportcard.gov/ndecore)
+National educational performance - Assessment score data across different grades, subjects and student categories(Like race, disability etc).
 
 #### [Public School and School District Data](https://nces.ed.gov/ccd/elsi/)
 General descriptive information such as name, address, and phone number; select demographic characteristics about students and staff; and fiscal data such as revenues and current expenditures. Data Commons includes school and school district level data about student populations by race, gender, lunch eligibility, and grade, as well as student-teacher ratio and teacher count statistics.
