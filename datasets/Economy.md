@@ -11,6 +11,11 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Australian Bureau of Statistics](https://www.abs.gov.au/)
+
+#### [Australia Statistics](https://www.abs.gov.au/statistics)
+Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
@@ -35,6 +40,13 @@ The exchange rate of currency broken down by country, currency standardization t
 Wage and salary data for Indian states.
 
 
+### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
+
+#### [OECD Statistics](https://stats.oecd.org)
+Country-level stats for OECD countries and selected non-member economies from 419 OECD datasets.
+
+[License](https://www.oecd.org/termsandconditions/)
+
 ### [Reserve Bank of India](https://rbi.org.in/)
 
 #### [Database on Indian Economy](https://dbie.rbi.org.in/DBIE/dbie.rbi?site=statistics)
@@ -43,6 +55,9 @@ Data Commons includes variables related to poverty and unemployment in Indian st
 
 ### [U.S. Bureau of Economic Analysis (BEA)](https://www.bea.gov/)
 
+#### [GDP by County, Metro, and Other Areas](https://apps.bea.gov/regional)
+Includes Gross Domestic Product categorized by county, metro, and other areas.
+
 #### [Gross Domestic Product](https://www.bea.gov/data/gdp)
 Gross domestic product for counties, metropolitan statistical areas and states, broken down by industry.
 
@@ -50,6 +65,9 @@ Gross domestic product for counties, metropolitan statistical areas and states, 
 #### [Prices & Inflation](https://www.bea.gov/data/prices-inflation)
 [Regional price parity measures](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) for metropolitan statistical areas, broken down by goods and services.
 
+
+#### [Regional Price Parities by State and Metro Area](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area)
+Price parity data measuring the differences in price levels across states and metropolitan areas for a given year and are expressed as a percentage of the overall national price level.
 [Terms of Use](https://www.bea.gov/help/faq/147).
 
 
@@ -61,6 +79,10 @@ Consumer Price Index broken down by categories of consumers.
 
 #### [Job Openings and Labor Turnover Survey](https://www.bls.gov/jlt/)
 Survey giving job postings, hires, and separations broken down by industry.
+
+
+#### [Labor Force Statistics from the Current Population Survey (CPS)](https://www.bls.gov/cps)
+Monthly survey of households conducted by the Bureau of Census for the Bureau of Labor Statistics.
 
 
 #### [Local Area Unemployment Statistics (LAUS)](https://www.bls.gov/lau/)
@@ -85,10 +107,6 @@ Per-industry number of establishments, employment, payroll and annual payroll, b
 
 #### [Economic Census](https://www.census.gov/programs-surveys/economic-census/about.html)
 Number of businesses and amount of revenue, by business payroll status, industry, operation type, and tax status.
-
-
-#### [US Census](https://www.census.gov)
-The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
 
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
