@@ -148,6 +148,11 @@ provided below.
         └── Variable Z
 ```
 
+To auto-generate the nodes in a custom hierarchy from a spec like above, use
+[this
+notebook](https://colab.sandbox.google.com/github/pradh/api-python/blob/svg/notebooks/Custom_Hierarchy_Generator.ipynb).
+Alternatively, to hand write the MCF nodes involved, please read on...
+
 To define the hierarchy, each group needs a `StatVarGroup` definition. The
 `StatVarGroup` nodes are linked to each other and to a custom root node via
 `specializationOf` properties. The example below can be used as a template —
