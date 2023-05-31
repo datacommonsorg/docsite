@@ -150,7 +150,7 @@ provided below.
 
 To auto-generate the nodes in a custom hierarchy from a spec like above, use
 [this
-notebook](https://colab.sandbox.google.com/github/pradh/api-python/blob/svg/notebooks/Custom_Hierarchy_Generator.ipynb).
+notebook](https://colab.sandbox.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Custom_Hierarchy_Generator.ipynb).
 Alternatively, to hand write the MCF nodes involved, please read on...
 
 To define the hierarchy, each group needs a `StatVarGroup` definition. The
