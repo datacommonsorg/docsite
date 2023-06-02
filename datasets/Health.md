@@ -11,6 +11,16 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Australian Bureau of Statistics](https://www.abs.gov.au/)
+
+#### [Australia Statistics](https://www.abs.gov.au/statistics)
+Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
+
+### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
+
+#### [Colombia Census](https://www.dane.gov.co/index.php)
+Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
+
 ### [Dartmouth Atlas Project](https://www.dartmouthatlas.org/)
 
 #### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
@@ -62,6 +72,16 @@ The India National Sample Survey (NSS) Organizes and conducts large scale all-In
 Household health survey on profile of ailments including their treatment, role of government and private facilities in providing healthcare, expenditure on medicines, expenditure on medical consultation and investigation, hospitalization and expenditure, maternity and childbirth, the condition of the aged, etc.
 [Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
 
+### [National Institute of Statistics and Censuses (INDEC)](https://www.indec.gob.ar)
+
+#### [Argentina Census](https://www.indec.gob.ar)
+Population Census and Statistics for Argentina.
+
+### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
+Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
 ### [Our World in Data](https://ourworldindata.org/)
 
 #### [COVID-19 Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations)
@@ -81,10 +101,6 @@ Data made [available for non-commercial purposes only with proper citation](http
 
 #### [Small Area Health Insurance Estimates (SAHIE)](https://www.census.gov/data/datasets/time-series/demo/sahie/estimates-acs.html)
 The Small Area Health Insurance Estimates program provides yearly estimates of health insurance coverage status for all counties and states. Data Commons includes all estimates, available by age, race, sex, and income.
-
-
-#### [US Census](https://www.census.gov)
-The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
 
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 

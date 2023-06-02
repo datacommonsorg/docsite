@@ -11,11 +11,26 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Australian Bureau of Statistics](https://www.abs.gov.au/)
+
+#### [Australia Statistics](https://www.abs.gov.au/statistics)
+Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
+
+### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
+
+#### [Brazil Census](https://www.ibge.gov.br/en/statistics/social/population.html)
+Population Census and Statistics for Brazil.
+
 ### [Census of India](https://censusindia.gov.in/)
 
 #### [India Census Tables](https://censusindia.gov.in/census.website/data/census-tables)
 Data Commons has imported variables related to demographics, in particular concerning literacy, work, housing, and religion from the Indian Census on the state, district, and city level.
 
+
+### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
+
+#### [Colombia Census](https://www.dane.gov.co/index.php)
+Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
 
 ### [DataMeet](https://datameet.org/)
 
@@ -48,6 +63,16 @@ Data made publicly available under the standard [Google Terms of Service](https:
 India Local Government Directory provides unique codes for revenue entities such as districts, villages, local government bodies.
 [Copyright](https://lgdirectory.gov.in/copyRightPolicy.do), [Terms of Use](https://lgdirectory.gov.in/termsconditions.do).
 
+### [National Institute of Statistics and Censuses (INDEC)](https://www.indec.gob.ar)
+
+#### [Argentina Census](https://www.indec.gob.ar)
+Population Census and Statistics for Argentina.
+
+### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
+Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
 ### [Opportunity Insights](https://opportunityinsights.org/)
 
 #### [The Opportunity Atlas](https://opportunityinsights.org/data/)
@@ -56,6 +81,17 @@ India Local Government Directory provides unique codes for revenue entities such
 
 [Terms of Use](https://opportunityinsights.org/data/).
 
+
+### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
+
+#### [OECD Regional Demography Statistics](https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#)
+Includes regional statistics for OECD countries on population by age, population density, life expectancy and mortality by age group.
+
+
+#### [OECD Statistics](https://stats.oecd.org)
+Country-level stats for OECD countries and selected non-member economies from 419 OECD datasets.
+
+[License](https://www.oecd.org/termsandconditions/)
 
 ### [Statistics Canada](https://www.statcan.gc.ca/en/start)
 
@@ -89,9 +125,8 @@ Basic geographic information about counties, county subdivisions, congressional 
 The Census Bureau's Population Estimates Program (PEP) produces yearly estimates of the population for the United States, its states, counties, cities, and towns, as well as for the Commonwealth of Puerto Rico and its municipios. Data Commons imports the total population estimate data for the US and its states, counties, and cities.
 
 
-#### [US Census](https://www.census.gov)
-The Census Bureau's mission is to serve as the nation's leading provider of quality data about its people and economy.
-
+#### [US Decennial Census - Redistricting data](https://www.census.gov)
+Basic population, race demographics and housing statistics from the redistricting data release of US Decennial Census mapped down to block-group level.
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
