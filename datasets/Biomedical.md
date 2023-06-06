@@ -80,6 +80,14 @@ The Human Protein Tissue Atlas contains information about the distribution of pr
 This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Please also see their [Disclaimer](https://www.proteinatlas.org/about/disclaimer) and [Licence & Citation](https://www.proteinatlas.org/about/licence).
 
 
+### [U.S. Adopted Names (USAN) Council](https://www.ama-assn.org/about/united-states-adopted-names/usan-council)
+
+#### [USAN Stems](https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems)
+ USAN stems represent common stems for which chemical and/or pharmacologic parameters have been established. These council-approved stems and their definitions are recommended for use in coining new nonproprietary drug names belonging to an established series of related agents. USAN appropriately incorporates this established class stem system. By doing so, similar compounds maintain a common "family" name that provides immediate recognition.
+
+This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
+
+
 ### [U.S. Food and Drug Administration (FDA)](https://www.fda.gov/)
 
 #### [FDA-Approved Drugs](https://www.accessdata.fda.gov/scripts/cder/daf/)

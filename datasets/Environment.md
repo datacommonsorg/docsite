@@ -23,7 +23,7 @@ The Climate TRACE data is made available through the [Climate TRACE terms of use
 The events for places with unusual temperatures, either too hot or too cold, computed with reference to long term temperature averages, e.g. the average maximum daily temperature in January over the years 1980-2010.
 
 #### [WetBulb Temperature Event](https://datacommons.org/)
-Wet Bulb temperatures are computed using estimates of temperatures over a period of time (e.g. daily average temperature) and estimates of (relative) humidity (e.g. daily average humidity). In some cases, if humidity and/or temperature data is missing then we use month-specific averages using several years of humidity/temperature observations or climate model projections, e.g. from CMIP6 models. The formula used for wet-bulb temperature calculations is provided in the following paper: https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
+Places with WetBulb Temperature exceeding 30 degree Celsius as per NASA's Modern-Era Retrospective analysis for Research and Applications version 2 (MERRA-2) dataset on Google Earth Engine.
 
 ### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
 
