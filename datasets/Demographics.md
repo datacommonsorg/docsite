@@ -104,7 +104,7 @@ Yearly population estimates for Canada.
 ### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
 
 #### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
-Population Census and Statistics for Indonesia at Country, provinces and regency and city level.
+Population Census and Statistics for Indonesia at country, provinces and regency and city level.
 
 ### [U.S. Bureau of Transportation Statistics](https://www.bts.dot.gov/)
 

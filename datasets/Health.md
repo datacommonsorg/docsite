@@ -16,6 +16,11 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+### [City Controller, City of Los Angeles](https://controller.lacity.gov/)
+
+#### [Food Resources in California](https://controllerdata.lacity.org/dataset/Food-Resources-in-California/v2mg-qsxf/data)
+This dataset contains a list of resources such food pantries, food banks, and other food distribution sites throughout the state of California. The data is current as of May 1, 2020. Due to the coronavirus pandemic, many food pantries may change their hours or close temporarily. Please contact a food pantry prior to visiting them to confirm their operating hours and ensure you are in their service area.
+
 ### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
 
 #### [Colombia Census](https://www.dane.gov.co/index.php)
@@ -92,7 +97,7 @@ Data Commons imports country-level COVID-19 vaccine data from Our World in Data.
 ### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
 
 #### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
-Population Census and Statistics for Indonesia at Country, provinces and regency and city level.
+Population Census and Statistics for Indonesia at country, provinces and regency and city level.
 
 ### [The New York Times](https://www.nytimes.com/)
 
