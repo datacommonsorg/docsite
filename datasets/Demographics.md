@@ -101,6 +101,11 @@ Yearly population estimates for Canada.
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
+### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
+
+#### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
+Population Census and Statistics for Indonesia at Country, provinces and regency and city level.
+
 ### [U.S. Bureau of Transportation Statistics](https://www.bts.dot.gov/)
 
 #### [US Tract Transportation Characteristics for Households](https://www.bts.dot.gov/latch/latch-data)

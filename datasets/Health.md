@@ -89,6 +89,11 @@ Data Commons imports country-level COVID-19 vaccine data from Our World in Data.
 
 [Terms of Use](https://ourworldindata.org/faqs#how-should-i-cite-your-work).
 
+### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
+
+#### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
+Population Census and Statistics for Indonesia at Country, provinces and regency and city level.
+
 ### [The New York Times](https://www.nytimes.com/)
 
 #### [Coronavirus (Covid-19) Data in the United States](https://github.com/nytimes/covid-19-data/)
