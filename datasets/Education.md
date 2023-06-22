@@ -51,6 +51,11 @@ The Unified District Information System for Education (UDISE), by the Ministry o
 #### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
 Demographics, Health, Agriculture and Education Statistics for Nigeria.
 
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
 ### [U.S. Census Bureau](https://www.census.gov/)
 
 #### [American Community Survey Education Tabulation (ACS-ED)](https://nces.ed.gov/programs/edge/demographic/acs)

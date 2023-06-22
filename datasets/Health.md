@@ -94,6 +94,11 @@ Data Commons imports country-level COVID-19 vaccine data from Our World in Data.
 
 [Terms of Use](https://ourworldindata.org/faqs#how-should-i-cite-your-work).
 
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
 ### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
 
 #### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)

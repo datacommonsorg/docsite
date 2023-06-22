@@ -47,6 +47,11 @@ Country-level stats for OECD countries and selected non-member economies from 41
 
 [License](https://www.oecd.org/termsandconditions/)
 
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
 ### [Reserve Bank of India](https://rbi.org.in/)
 
 #### [Database on Indian Economy](https://dbie.rbi.org.in/DBIE/dbie.rbi?site=statistics)
