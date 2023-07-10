@@ -29,7 +29,7 @@ project (with id `PROJECT_ID`).
 
    ![fa](/assets/images/custom_dc/install_step_2.png){: width="600" }
 
-   Note: If this step fails, please contact support+custom@datacommons.org with
+   Note: If this step fails, please contact [support+custom@datacommons.org](support+custom@datacommons.org) with
    the errors.
 
 1. [Optional] The default domain of the instance is
@@ -52,18 +52,12 @@ project (with id `PROJECT_ID`).
    ./install_custom_dc.sh
    ```
 
-1. Please send an email to support+custom@datacommons.org with the following
-   subject and message. Please replace <project_id> with the GCP project id from
-   above steps.
+1. Please send an email to [support+custom@datacommons.org] to get an API key
+   for data access.
 
-   ```txt
-    Subject: [Custom Data Commons Setup] <project_id> requires data access.
-
-    Message:
-
-    We are setting up a new custom Data Commons and would like to access
-    the base layer of BT and BQ cache.
-   ```
+1. [Optional] Get a Google Maps API key
+   ([instruction](https://developers.google.com/maps/documentation/javascript/get-api-key)).
+   This is used for place search in visualization tools.
 
 1. You should get an email by Google domains that has the section pictured
    below. Please click on “Verify email now”.
@@ -78,4 +72,22 @@ project (with id `PROJECT_ID`).
 
    ![fa](/assets/images/custom_dc/install_step_4.png){: width="400" }
 
-### FAQ
+1. Deploy a default Data Commons Instance:
+
+   First clone the Github repo
+
+   ```bash
+   git clone https://github.com/datacommonsorg/website.git
+   ```
+
+   Then update fields `project`, `kgStoreConfig.customBigtableInfo.project` in
+   [custom_dc_template.yaml](https://github.com/datacommonsorg/website/blob/master/deploy/helm_charts/envs/custom_dc_template.yaml)
+   with the actual GCP project ID.
+
+   Deploy to GKE by running:
+
+   ```bash
+   ./scripts/deploy_gke_helm.sh -e custom_dc_template -l us-central1-a
+   ```
+
+   Go to [GCP console](https://console.cloud.google.com/kubernetes/workload/overview) to make sure pods are running successfully.
