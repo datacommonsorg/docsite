@@ -82,7 +82,7 @@ project (with id `PROJECT_ID`).
    git clone https://github.com/datacommonsorg/website.git
    ```
 
-   Then update fields `project`, `kgStoreConfig.customBigtableInfo.project` in
+   Then update fields `project` in
    [custom_dc_template.yaml](https://github.com/datacommonsorg/website/blob/master/deploy/helm_charts/envs/custom_dc_template.yaml)
    with the actual GCP project ID.
 
