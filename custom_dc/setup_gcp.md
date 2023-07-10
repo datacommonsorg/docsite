@@ -53,11 +53,13 @@ project (with id `PROJECT_ID`).
    ```
 
 1. Please send an email to [support+custom@datacommons.org] to get an API key
-   for data access.
+   for data access. Store the API key in [Cloud Secret Manager](https://console.cloud.google.com/security/secret-manager) with name `mixer-api-key`.
 
 1. [Optional] Get a Google Maps API key
    ([instruction](https://developers.google.com/maps/documentation/javascript/get-api-key)).
-   This is used for place search in visualization tools.
+   Store the API key in [Cloud Secret
+   Manager](https://console.cloud.google.com/security/secret-manager) with name
+   `maps-api-key`. This is used for place search in visualization tools.
 
 1. You should get an email by Google domains that has the section pictured
    below. Please click on “Verify email now”.
