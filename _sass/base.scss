@@ -29,7 +29,7 @@
 }
 
 /** Bootstrap overrides **/
-$link-color: #467bd5;
+$link-color: #660000;
 $link-hover-color: $link-color;
 $primary: $link-color;
 
@@ -128,7 +128,7 @@ background: none !important;
 /** Shared page elements **/
 #main-header {
 padding: .5rem 0;
-background: #467bd5;
+background: var(--dc-red-strong);
 box-shadow: 0px 2px 3px rgba(0,0,0,.1);
 }
 
