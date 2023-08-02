@@ -46,15 +46,34 @@ Data on schools, such as dropout rate and access to computers and toilets, in In
 #### [Unified District Information System for Education (UDISE)](https://udiseplus.gov.in/#/home)
 The Unified District Information System for Education (UDISE), by the Ministry of Education, India, collects and provides data related to schools and their resources.
 
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Kenya Census](https://kenya.opendataforafrica.org/)
+Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
+[Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
 
 #### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
 Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
+#### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
+South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
 
 ### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
 
 #### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
 Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
 
 ### [U.S. Census Bureau](https://www.census.gov/)
 
@@ -86,3 +105,8 @@ General descriptive information such as name, address, and phone number; select 
 
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
 
+
+### [U.S. National Science Foundation](https://www.nsf.gov/)
+
+#### [National Center for Science and Engineering Statistics](https://ncses.nsf.gov/)
+National Center for Science and Engineering Statistics provide data on the status of the science and engineering enterprise in the U.S. and other countries.
