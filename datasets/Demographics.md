@@ -27,6 +27,11 @@ Population Census and Statistics for Brazil.
 Data Commons has imported variables related to demographics, in particular concerning literacy, work, housing, and religion from the Indian Census on the state, district, and city level.
 
 
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
 ### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
 
 #### [Colombia Census](https://www.dane.gov.co/index.php)
@@ -63,6 +68,11 @@ Data made publicly available under the standard [Google Terms of Service](https:
 India Local Government Directory provides unique codes for revenue entities such as districts, villages, local government bodies.
 [Copyright](https://lgdirectory.gov.in/copyRightPolicy.do), [Terms of Use](https://lgdirectory.gov.in/termsconditions.do).
 
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
 ### [National Institute of Statistics and Censuses (INDEC)](https://www.indec.gob.ar)
 
 #### [Argentina Census](https://www.indec.gob.ar)
@@ -70,8 +80,15 @@ Population Census and Statistics for Argentina.
 
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
+#### [Kenya Census](https://kenya.opendataforafrica.org/)
+Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
+[Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
+
 #### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
 Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
+#### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
+South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
 
 ### [Opportunity Insights](https://opportunityinsights.org/)
 
@@ -99,6 +116,9 @@ Country-level stats for OECD countries and selected non-member economies from 41
 Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
 
 ### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
 
 #### [Population estimates](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710000501#tables)
 Yearly population estimates for Canada.
@@ -154,6 +174,9 @@ Weekly and Annual cases of selected national notifiable (infectious and non-infe
 Mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year.
 
 
+#### [Wonder: Mortality, Underlying Cause Of Death](https://wonder.cdc.gov/ucd-icd10.html)
+The Underlying Cause of Death database contains mortality data based on death certificates for U.S. residents.
+
 #### [Wonder: Natality](https://wonder.cdc.gov/natality.html)
 Includes "counts of live births occurring within the United States to U.S. residents. Counts can be obtained by a variety of demographic characteristics, such as state and county of residence, mother's race, and mother's age, and health and medical items, such as tobacco use, method of delivery, and congenital anomalies. The data are derived from birth certificates."
 
@@ -197,6 +220,11 @@ Population data for countries, capital cities, urban and rural areas not covered
 
 [Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
 
+
+### [United Nations Office for the Coordination of Humanitarian Affairs(UN OCHA)](https://www.unocha.org/)
+
+#### [Mexico Subnational Population Statistics](https://data.humdata.org/dataset/cod-ps-mex)
+Population Census and Statistics for Mexico at Municipal level.
 
 ### [Wikimedia Foundation](https://wikimediafoundation.org/)
 

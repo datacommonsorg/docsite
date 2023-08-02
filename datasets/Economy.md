@@ -16,6 +16,11 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
@@ -40,6 +45,11 @@ The exchange rate of currency broken down by country, currency standardization t
 Wage and salary data for Indian states.
 
 
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
 #### [OECD Statistics](https://stats.oecd.org)
@@ -56,6 +66,13 @@ Japan Demographics, Economy, Health, Education data from Portal Site of Official
 
 #### [Database on Indian Economy](https://dbie.rbi.org.in/DBIE/dbie.rbi?site=statistics)
 Data Commons includes variables related to poverty and unemployment in Indian states from the Reserve Bank of India.
+
+
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
 ### [U.S. Bureau of Economic Analysis (BEA)](https://www.bea.gov/)
