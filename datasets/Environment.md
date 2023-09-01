@@ -291,3 +291,10 @@ The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authori
 
 [Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 
+
+### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
+[Terms of Use](https://datacatalog.worldbank.org/public-licenses).
+

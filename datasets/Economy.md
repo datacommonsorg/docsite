@@ -16,10 +16,20 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
+
+#### [Brazil Bank of Statistical Tables](https://sidra.ibge.gov.br/home/pnadct)
+Brazil Census from Bank of Statistical Variables.
+
 ### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
 
 #### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
 Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -49,6 +59,11 @@ Wage and salary data for Indian states.
 
 #### [Mexico Census](https://en.www.inegi.org.mx/temas/)
 Population Census and Statistics for Mexico at Country and State levels.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
+India poverty statistics - percentage of people below poverty line.
 
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
@@ -157,8 +172,16 @@ The data is in the public domain.
 
 ### [World Bank](https://www.worldbank.org/en/home)
 
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
+
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.
 
 [Terms of Use](https://datacatalog.worldbank.org/public-licenses).
 
+
+### [World Trade Organization](https://www.wto.org/)
+
+#### [WTO Stats Dashboard](https://stats.wto.org/dashboard/tradeconnectivity_en.html)
+Trade statistics based on import data sourced from either UN Comtrade or the WTO Integrated Database (IDB).
