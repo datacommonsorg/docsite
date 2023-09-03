@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Python
-nav_order: 2
+nav_order: 3
 parent: API
 has_children: true
 ---
+
 # Data Commons Python API
 
 The **Data Commons Python API** is a Python library that enables developers to
@@ -19,8 +20,8 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 To get started using the Python API:
 
-*   Install the API using `pip`.
-*   Begin developing with the Python API
+- Install the API using `pip`.
+- Begin developing with the Python API
 
 ### Installing the Python API
 

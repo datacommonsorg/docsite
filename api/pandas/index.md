@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Pandas
-nav_order: 3
+nav_order: 4
 parent: API
 has_children: true
 ---
+
 # Data Commons Pandas API
 
 The **Data Commons Pandas API** is a superset of the Data Commons Python API:
@@ -21,8 +22,8 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 To get started using the Pandas API:
 
-*   Install the API using `pip`.
-*   Begin developing with the Pandas API
+- Install the API using `pip`.
+- Begin developing with the Pandas API
 
 ### Installing the Pandas API
 
