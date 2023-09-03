@@ -19,7 +19,7 @@ More specifically, this API can perform the following tasks:
   be chained for multiple degrees in the graph.
 - Get all connected nodes that are linked with invidiual or mutiple nodes.
 
-Data Commons represents node relation as directed edges between nodes, or
+Data Commons represents node relations as directed edges between nodes, or
 property. The name of the property is label, while the target node is a value of
 the property. This endpoint returns the property labels and values that are
 connected to the queried node.

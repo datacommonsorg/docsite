@@ -19,6 +19,7 @@ much more.
 
 ## Getting Started
 
+[//]: <> (TODO: update this section for v2)
 First time using the Data Commons API, or just need a refresher? Take a look at
 our [Getting Started Guide](/api/rest/v1/getting_started).
 
