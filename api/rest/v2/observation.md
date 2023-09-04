@@ -4,7 +4,7 @@ title: Observation
 nav_order: 1
 parent: REST (v2)
 grand_parent: API
-published: true
+published: false
 permalink: /api/rest/v2/observation
 ---
 
@@ -34,6 +34,7 @@ follows:
     "dcids": ["<entity_dcid_1>", "<entity_dcid_2"]
   }
   ```
+
 - Node expression:
 
   ```json
