@@ -9,3 +9,4 @@ vendor/
 .bundle/
 .vscode/
 .jekyll-cache
+.jekyll-metadata

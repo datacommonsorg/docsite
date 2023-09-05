@@ -109,7 +109,7 @@ The response looks like:
 }
 ```
 
-### Response Fields
+### Response fields
 
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |

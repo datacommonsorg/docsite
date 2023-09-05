@@ -67,14 +67,26 @@ The following table describes the new endpoints in Data Commons REST (v2) API:
   </tr>
 </table>
 
+The Data Commons REST API is a
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
+that enables developers to programmatically access data in the Data Commons
+knowledge graph. This package allows users to explore the structure of the
+graph, integrate statistics from the graph into data analysis applications and
+much more.
+
+## Getting Started
+
+[//]: <> (TODO: update this section for v2)
+First time using the Data Commons API, or just need a refresher? Take a look at
+our [Getting Started Guide](/api/rest/v1/getting_started).
+
 ## Service Endpoints
 
-The base URL for all V2 endpoints is:
+The base URL for all endpoints below is:
 
 ```bash
 https://api.datacommons.org/v2
 ```
-
 ## Understanding Relation Expressions
 
 The REST (v2) API introduces relation expressions that include arrow annotation and other symbols in the API syntax to represent neighboring nodes, and to support chaining and filtering. For example, nodes from “out” arcs are represented by “->”, while nodes from “in” arcs are represented by “&lt;-”. For example:
