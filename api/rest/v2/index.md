@@ -4,7 +4,7 @@ title: REST (v2)
 nav_order: 0
 parent: API
 has_children: true
-published: true
+published: false
 permalink: /api/rest/v2
 ---
 
@@ -24,48 +24,13 @@ This section introduces the new APIs and components in the Data Commons REST (v2
 
 The following table describes the new endpoints in Data Commons REST (v2) API:
 
-<table>
-  <tr>
-   <td style="background-color: #00ffff"><strong>Endpoint</strong>
-   </td>
-   <td style="background-color: #00ffff"><strong>Retrieves</strong>
-   </td>
-   <td style="background-color: #00ffff"><strong>Link</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>node
-   </td>
-   <td>Node information for edges and neighboring node information.
-   </td>
-   <td>/v2/node
-   </td>
-  </tr>
-  <tr>
-   <td>observation
-   </td>
-   <td>Statistical observations. An observation is associated with an entity and variable at a particular date.
-   </td>
-   <td>/v2/observation
-   </td>
-  </tr>
-  <tr>
-   <td>resolve
-   </td>
-   <td>[NEED]
-   </td>
-   <td>/v2/resolve
-   </td>
-  </tr>
-  <tr>
-   <td>event
-   </td>
-   <td>[NEED]
-   </td>
-   <td>/v2/event
-   </td>
-  </tr>
-</table>
+| Endpoint    | Retrieves                                                                                                | Link            | 
+|-------------|----------------------------------------------------------------------------------------------------------|-----------------| 
+| node        | Node information for edges and neighboring node information.                                             | /v2/node        | 
+| observation | Statistical observations. An observation is associated with an entity and variable at a particular date. | /v2/observation | 
+| resolve     | [NEED]                                                                                                   | /v2/resolve     | 
+| event       | [NEED]                                                                                                   | /v2/event       | 
+{: .doc-table}
 
 The Data Commons REST API is a
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
@@ -76,7 +41,6 @@ much more.
 
 ## Getting Started
 
-[//]: <> (TODO: update this section for v2)
 First time using the Data Commons API, or just need a refresher? Take a look at
 our [Getting Started Guide](/api/rest/v1/getting_started).
 
@@ -87,6 +51,7 @@ The base URL for all endpoints below is:
 ```bash
 https://api.datacommons.org/v2
 ```
+
 ## Understanding Relation Expressions
 
 The REST (v2) API introduces relation expressions that include arrow annotation and other symbols in the API syntax to represent neighboring nodes, and to support chaining and filtering. For example, nodes from “out” arcs are represented by “->”, while nodes from “in” arcs are represented by “&lt;-”. For example:
@@ -97,56 +62,16 @@ The REST (v2) API introduces relation expressions that include arrow annotation 
 
 The following table describes the new Data Commons REST (v2) relation expressions:
 
-<table>
-  <tr>
-   <td style="background-color: #00ffff"><strong>Symbol</strong>
-   </td>
-   <td style="background-color: #00ffff"><strong>Represents</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>->
-   </td>
-   <td>An “out” arc
-   </td>
-  </tr>
-  <tr>
-   <td><-
-   </td>
-   <td>An “in” arc
-   </td>
-  </tr>
-  <tr>
-   <td>+
-   </td>
-   <td>One or multiple properties chained together, like “containedInPlace+”
-   </td>
-  </tr>
-  <tr>
-   <td>*
-   </td>
-   <td>Wildcard matches
-   </td>
-  </tr>
-  <tr>
-   <td>#
-   </td>
-   <td>A count of nodes
-   </td>
-  </tr>
-  <tr>
-   <td>{p:v}
-   </td>
-   <td>Filtering
-   </td>
-  </tr>
-  <tr>
-   <td>[]
-   </td>
-   <td>A list of nodes
-   </td>
-  </tr>
-</table>
+| Symbol      | Represents                                  |
+|-------------|---------------------------------------------|
+| ->          | An “out” arc                                |                      
+| <-          | An “in” arc                                 |                      
+| +           | One or multiple properties chained together, like “containedInPlace+” |
+| *           | Wildcard matches                            |                    
+| #           | A count of nodes                            |                           
+| {p:v}       | Filtering                                   |                           
+| []          | A list of nodes                             |
+{: .doc-table}
 
 Data commons represents real world entities, concepts, and data as nodes. These nodes are connected by a relationship and form a connected knowledge graph. Nodes are connected by edges. One edge represents the relationship between the two nodes, which we also call a “property”. Users can use “property” to query for linked nodes in the knowledge graph. Since the relationships between nodes are directed, we want to represent that with direction, hence using arrow notation, like “->” or “&lt;-”. With this in mind, understand that a property (node relation) has two parts: the direction (represented by arrow notation) and the label. For example “->name”, “&lt;-containedInPlace”.
 

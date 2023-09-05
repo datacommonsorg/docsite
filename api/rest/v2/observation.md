@@ -4,12 +4,11 @@ title: Observation
 nav_order: 1
 parent: REST (v2)
 grand_parent: API
-published: true
+published: false
 permalink: /api/rest/v2/observation
 ---
 
 # /v2/node
-
 This API fetches statistical observations. An observation is associated with an
 entity and variable at a particular date. For example, “population of USA in
 2020”, “GDP of California in 2010”, “predicted temperature of New York in 2050”,

@@ -4,7 +4,7 @@ title: Node
 nav_order: 0
 parent: REST (v2)
 grand_parent: API
-published: true
+published: false
 permalink: /api/rest/v2/node
 ---
 
@@ -56,26 +56,27 @@ X-API-Key: {your_api_key}
 
 JSON Data:
 {
-  "nodes": [
-      "{value_1}",
-      "{value_2}",
-      ...
-    ],
-  "property": "{property_expression}"
+"nodes": [
+"{value_1}",
+"{value_2}",
+...
+],
+"property": "{property_expression}"
 }
 
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
+
 <script src="/assets/js/api-doc-tabs.js"></script>
 
 ### Query Parameters
 
 | Name                                                  | Type   | Description                                                                                                                                                     |
 | ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see Data Commons REST (v2) API Overview.                                |
+| key   <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| nodes   <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
+| property   Req<br /> <required-tag>Required</required-tag>uired | string | Property to query, represented with symbols including arrow notation. For more details, see Data Commons REST (v2) API Overview.                                |
 {: .doc-table }
 
 By using different “property” parameters, you can query node information in
@@ -158,6 +159,7 @@ Response:
   }
 }
 ```
+
 {: .example-box-content .scroll}
 
 ### Example 2: Get One Property for a Given Node
@@ -202,6 +204,7 @@ Response:
   }
 }
 ```
+
 {: .example-box-content .scroll}
 
 ### Example 3: Get Multiple Property Values for Multiple Nodes
@@ -286,6 +289,7 @@ Response:
   }
 }
 ```
+
 {: .example-box-content .scroll}
 
 ### Example 4: "In" Triples for a Node
@@ -335,4 +339,6 @@ Response:
   "nextToken": "{token_string}"
 }
 ```
+
 {: .example-box-content .scroll}
+
