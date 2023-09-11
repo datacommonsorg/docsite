@@ -68,4 +68,4 @@ This project follows Google's [code style guide](https://google.github.io/styleg
 ## Other ways to get involved
 
 - If you have a concern or a suggested feature, feel free to open an issue on [Github](https://github.com/datacommonsorg/docsite/issues).
-- Share feedback with the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform?resourcekey=0-icbp8ZymR520Rq-r4tEajQ).
+- Share feedback with the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform).
