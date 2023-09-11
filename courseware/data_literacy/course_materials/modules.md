@@ -15,7 +15,7 @@ All of the available course content can be found on this page, which is composed
 - [Overviews](#overviews) summarizes the available modules and lists the modules in progress
 - [Tables of Contents](#tables-of-contents) provides the table of contents for each available module
 
-If you are having trouble accessing this content, please email us at [courses@datacommons.org](mailto:courses@datacommons.org). If you would like to contribute to this endeavor, please do reach out at [courses@datacommons.org](mailto:courses@datacommons.org) and help us add more content.
+If you are having trouble accessing this content, [please fill out this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform?resourcekey=0-icbp8ZymR520Rq-r4tEajQ). If you would like to contribute to this endeavor, please reach out by [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and help us add more content.
 
 ## Overviews
 {:module-overviews}

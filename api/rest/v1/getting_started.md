@@ -157,7 +157,8 @@ We've provided a trial API key for general public use. This key will let you try
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
-<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please email us at [support@datacommons.org](mailto:support@datacommons.org?subject=API Key Request) with "API Key Request" in the subject to request an official key without any quota limits. We'll be happy to hear from you!
+<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
+[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. We'll be happy to hear from you!
 
 ### Pagination
 {: #pagination}

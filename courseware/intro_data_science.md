@@ -13,7 +13,8 @@ We make available an (increasing) sample of data science course assignments deve
 
 Each assignment notebook should ideally be adapted to suit the needs of your curriculum and serve the needs of a complete and coherent course. We intend for them to serve as examples (templates) for you to customize extensively. We encourage course instructors and teaching assistants to use different datasets (and variables) for each iteration of their course. Luckily, Data Commons makes this easy.
 
-All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/)). If you end up finding any of this material useful and would like to be notified of updates, do drop us a line at [courses@datacommons.org](mailto:courses@datacommons.org).
+All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/)). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+
 
 
 ## Why use this?
@@ -83,5 +84,4 @@ We’re looking forward to expanding topic coverage to include the basics of tim
 
 ## Feedback
 
-If you use any of this material, we would love to hear from you! Please send feedback to [courses@datacommons.org](mailto:courses@datacommons.org). If you end up finding any of this material useful and would like to be notified of updates, do drop us a line.
-
+If you use any of this material, we would love to hear from you! Please [share feedback with this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform?resourcekey=0-icbp8ZymR520Rq-r4tEajQ). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform)
