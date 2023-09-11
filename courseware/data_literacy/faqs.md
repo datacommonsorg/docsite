@@ -59,12 +59,12 @@ Take a look at the [Key Themes page](course_materials/key_themes.html) or the [M
 
 ## What is not covered?
 
-We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please [let us know on this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=header_link) and we would love to work with you.
+We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please [let us know on this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and we would love to work with you.
 
 We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.md) curriculum/course material.
 
 ## How can I give feedback?
 
-Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to [hear from you](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=header_link).
+Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to [hear from you](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
-Finally, if you end up using any of this material or find it useful, we would love to hear from you - please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=header_link).
+Finally, if you end up using any of this material or find it useful, we would love to hear from you - please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).

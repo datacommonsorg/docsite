@@ -25,11 +25,11 @@ We welcome contributions of public data to the Data Commons Graph. Data added wi
 
 ### Create new curriculum
 
-Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=header_link).
+Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
 ### Creating a new tool
 
-Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest) that can be used to power applications on top of our data. If you would like to build a new tool, contact the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=header_link) or create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools).
+Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest) that can be used to power applications on top of our data. If you would like to build a new tool, contact the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) or create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools).
 
 ### Sharing analysis
 
