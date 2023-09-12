@@ -4,7 +4,7 @@ title: Resolve Entities
 nav_order: 2
 parent: REST (v2)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v2/resolve
 ---
 
@@ -95,12 +95,10 @@ The response looks like:
   "entities": [
     {
       "node": "node provided 1",
-      "resolvedIds": [ "DCID 1" ],
       "candidates": [ { "dcid": "DCID 1" } ]
     },
     {
       "node": "node provided 2",
-      "resolvedIds": [ "DCID 2" ],
       "candidates": [ { "dcid": "DCID 2" } ]
     },
     ...
@@ -114,9 +112,13 @@ The response looks like:
 | Name        | Type   | Description                                                                                            |
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------ |
 | node | string | The property value or description provided. |
-| resolvedIds | list | DCIDs matching the description you provided. |
-| candidates | list | *fill me in: is it just a dup of resolvedIds* |
+| candidates | list | DCIDs matching the description you provided, along with an optional dominantType which can be used for filtering multiple results. |
 {: .doc-table}
+
+<div markdown="span" class="alert alert-info" role="alert">
+  <span class="material-icons md-16">info </span><b>Note:</b><br />
+  There is a deprecated field `resolvedIds` that will be removed soon.
+</div>
 
 ## Examples
 
@@ -149,7 +151,6 @@ Response:
   "entities": [
     {
       "node": "Q30",
-      "resolvedIds": [ "country/USA" ],
       "candidates": [
         { "dcid": "country/USA" }
       ]
@@ -190,20 +191,6 @@ Response:
   "entities": [
     {
       "node": "37.42#-122.08",
-      "resolvedIds": [
-        "zip/94043",
-        "ipcc_50/37.25_-122.25_USA",
-        "geoId/sch0626310",
-        "geoId/sch0626280",
-        "geoId/0649670",
-        "geoId/0618",
-        "geoId/0608592830",
-        "geoId/060855046011",
-        "geoId/06085504601",
-        "geoId/06085",
-        "geoId/06",
-        "country/USA"
-      ],
       "candidates": [
         {
           "dcid": "geoId/0649670",
@@ -287,11 +274,6 @@ Response:
   "entities": [
     {
       "node": "Georgia",
-      "resolvedIds": [
-        "geoId/13",
-        "country/GEO",
-        "geoId/5027700"
-      ],
       "candidates": [
         { "dcid": "geoId/13" },
         { "dcid": "country/GEO" },
@@ -333,9 +315,6 @@ Response:
   "entities": [
     {
       "node": "Georgia",
-      "resolvedIds": [
-        "geoId/13",
-      ],
       "candidates": [
         { "dcid": "geoId/13" },
       ]
@@ -357,12 +336,22 @@ nodes: "Mountain View, CA", "New York City"
 property: "<-description{typeOf:City}->dcid"
 ```
 
-Request:
+Request (GET):
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Mountain%20View,%20CA&nodes=New%20York%20City&property=<-description{typeOf:City}->dcid'
+curl --request GET --url \
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes%3DMountain%20View%2C%20CA&nodes=New%20York%20City&property=%3C-description%7BtypeOf%3ACity%7D-%3Edcid'
+```
+{: .example-box-content .scroll}
+
+Request (POST):
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve \
+  -d '{"nodes": ["Mountain View, CA", "New York City"], "property": "<-description{typeOf:City}->dcid"}'
 ```
 {: .example-box-content .scroll}
 
@@ -374,10 +363,6 @@ Response:
   "entities": [
     {
       "node": "Mountain View, CA",
-      "resolvedIds": [
-        "geoId/0649670",
-        "geoId/0649651"
-      ],
       "candidates": [
         { "dcid": "geoId/0649670" },
         { "dcid": "geoId/0649651" }
@@ -385,9 +370,6 @@ Response:
     },
     {
       "node": "New York City",
-      "resolvedIds": [
-        "geoId/3651000"
-      ],
       "candidates": [
         { "dcid": "geoId/3651000" }
       ]
