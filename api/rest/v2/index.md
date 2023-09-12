@@ -65,7 +65,7 @@ The following table describes symbols in the V2 API relation expressions:
 | `*` | All properties linked to this node |
 | `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
 
-### In and out arcs `<- & ->`
+### In and out arcs: `<-` & `->`
 
 Note that arcs in the Data Commons Graph have directions. In the case of the [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both `in` and `out` directions, illustrated in Figure 1:
 
@@ -80,21 +80,21 @@ For example, nodes from `out` arcs are represented by `->`, while nodes from
 - Regions that include Argentina (dcid: `country/ARG`): `country/ARG->containedInPlace`
 - All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
 
-### Filters `{property:value}`
+### Filters: `{property:value}`
 
 Filters can be used to reduce results to only match nodes with a specified property and value. Using the same example,  `country/ARG<-containedInPlace+{typeOf:City}` will only return nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
 
-### Specifying multiple properties `[property1, property2]`
+### Specifying multiple properties: `[property1, property2]`
 
 Multiple properties can be combined together within `[]`. For example, in order to request a few `out` arcs for a node, use
 `->[name, latitude, longitude]` (this example is [fully described in this Node API example](/api/rest/v2/node.html#multiple-properties)).
 
-### Wildcard `*`
+### Wildcard: `*`
 
 In order to retrieve all properties linked to a node, use the `*`, e.g. `<-*`.
 This example is [fully described in this Node API example](/api/rest/v2/node.html#wildcard).
 
-### Chaining properties `+`
+### Chaining properties: `+`
 
 A property chain expression represents requests for information about nodes
 which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.

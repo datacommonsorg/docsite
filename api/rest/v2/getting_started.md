@@ -45,7 +45,7 @@ And a URI looks like [`/v2/node`](/api/rest/v2/node). To access a particular end
 
 #### Parameters
 
-Endpoints take a set of **parameters** which allow you to specify which entities, variables, timescales, etc. you are interested in. The V2 APIs only use query paramters.
+Endpoints take a set of **parameters** which allow you to specify which entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
 
 ##### Query Parameters
 
@@ -59,7 +59,7 @@ Still confused? Each endpoint's documentation page has examples at the bottom ta
 
 #### POST requests
 
-Some bulk endpoints allow for `POST` requests. For `POST` requests, feed all parameters in JSON format. For example, in cURL, this would look like:
+All V2 endpoints allow for `POST` requests. For `POST` requests, feed all parameters in JSON format. For example, in cURL, this would look like:
 
 ```bash
 curl -X POST \
@@ -103,13 +103,13 @@ API keys are required in any REST API request. To include an API key, add your A
 For GET requests, this looks like:
 
 ```bash
-https://api.datacommons.org/v1/end/point?key=<YOUR_KEY_HERE>
+https://api.datacommons.org/v2/endpoint?key=<YOUR_KEY_HERE>
 ```
 
 If the key is not the first query parameter, use `&key=<YOUR_API_KEY_HERE>` instead. This looks like:
 
 ```bash
-https://api.datacommons.org/v1/end/point?query=value&key=<YOUR_KEY_HERE>
+https://api.datacommons.org/v2/endpoint?query=value&key=<YOUR_KEY_HERE>
 ```
 
 For POST requests, pass the key as a header. For example, in cURL, this looks like:
