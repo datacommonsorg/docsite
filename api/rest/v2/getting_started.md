@@ -4,8 +4,8 @@ title: Getting Started Guide
 nav_order: 0
 parent: REST (v2)
 grand_parent: API
-published: true
-permalink: /api/rest/v1/getting_started
+published: false
+permalink: /api/rest/v2/getting_started
 ---
 
 # Getting Started Guide
@@ -31,7 +31,7 @@ Following HTTP, a REST API call consists of a **request** that you provide, and 
 
 #### Endpoints
 
-Requests are made through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). We provide endpoints for many different queries (see the list of available endpoints [here](/api/rest/v1)).
+Requests are made through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). We provide endpoints for many different queries (see the list of available endpoints [here](/api/rest/v2)).
 
 Each endpoint can be acessed using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
@@ -41,46 +41,21 @@ The base URL for all REST endpoints is:
 https://api.datacommons.org
 ```
 
-And a URI looks like [`/v1/observation/point`](/api/rest/v1/observation/point). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v1/observation/point` ).
+And a URI looks like [`/v2/node`](/api/rest/v2/node). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
 
 #### Parameters
 
-Endpoints take a set of **parameters** which allow you to specify which entities, variables, timescales, etc. you are interested in. There are two kinds of parameters: path parameters and query parameters.
-
-##### Path Parameters
-
-Path parameters must be passed in a specific order as part of the URL. For example, `/v1/observations/point` requires the DCIDs of the entity and variable to query, in that order. This would look something like:
-
-```bash
-https://api.datacommons.org/v1/observations/point/entity_DCID/variable_DCID
-```
+Endpoints take a set of **parameters** which allow you to specify which entities, variables, timescales, etc. you are interested in. The V2 APIs only use query paramters.
 
 ##### Query Parameters
 
 Query parameters are chained at the end of a URL behind a `?` symbol. Separate multiple parameter entries with an `&` symbol. For example, this would look like:
 
 ```bash
-https://api.datacommons.org/v1/observations/point/variable_DCID/entity_DCID?date=YYYY&facet=XXXXXXXXXXX
+https://api.datacommons.org/v2/node?key=your_api_key&nodes=dcid1&nodes=dcid2&property=<-*
 ```
 
 Still confused? Each endpoint's documentation page has examples at the bottom tailored to the endpoint you're trying to use.
-
-#### Finding Available Entities, Variables, and their DCIDs
-
-Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
-
-- [Search](https://datacommons.org/search) Search Data Commons
-- [Graph Browser](https://datacommons.org/browser/) Click through the knowledge graph
-- [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
-- [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
-
-#### Finding Datetimes for Observations
-
-Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
-
-### Bulk Retrieval
-
-Many of our APIs come in both “simple” and “bulk” versions. The simple versions of endpoints have prefix `/v1/` and are designed for handling single requests with a simplified return structure. The bulk versions of endpoints have prefix `/v1/bulk/` and are meant for querying multiple variables or entities at once, and provide richer details in the response.
 
 #### POST requests
 
@@ -88,20 +63,29 @@ Some bulk endpoints allow for `POST` requests. For `POST` requests, feed all par
 
 ```bash
 curl -X POST \
---url https://api.datacommons.org/v1/bulk/observations/point \
+-H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+--url https://api.datacommons.org/v2/node \
 --data '{
-  "entities": [
-    "entity_dcid_1",
-    "entity_dcid_2",
-    ...
+  "nodes": [
+    "geoId/06085",
+    "geoId/06086"
   ],
-  "variables: [
-    "variable_dcid_1",
-    "variable_dcid_2",
-    ...
-  ]
+  "property": "->[name, latitude, longitude]"
 }'
 ```
+
+#### Finding Available Entities, Variables, and their DCIDs
+
+Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
+
+- [Search](https://datacommons.org/search) Search Data Commons
+- [Graph Browser](https://datacommons.org/browser/) Click through nodes in the knowledge graph
+- [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
+- [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
+
+#### Finding Datetimes for Observations
+
+Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
 ### Authentication
 
@@ -132,19 +116,15 @@ For POST requests, pass the key as a header. For example, in cURL, this looks li
 
 ```bash
 curl -X POST \
---url https://api.datacommons.org/v1/bulk/end/point \
+--url https://api.datacommons.org/v2/node \
 --header 'X-API-Key: <YOUR_KEY_HERE>' \
 --data '{
-  "entities": [
+  "nodes": [
     "entity_dcid_1",
     "entity_dcid_2",
     ...
   ],
-  "variables: [
-    "variable_dcid_1",
-    "variable_dcid_2",
-    ...
-  ]
+  "property: "relation_expression"
 }'
 ```
 
@@ -171,41 +151,39 @@ request with `nextToken` as an query parameter, with the token as its value.
 For example, the request:
 
 ```bash
- $ curl --request GET \
-   `https://api.datacommons.org/v1/triples/in/geoId/06`
+curl --request GET \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*'
 ```
 
 will return something like:
 
 ```json
 {
-  "triples": {
-    < ... output truncated for brevity ...>
-    {
-      "name":"Business Fire 2014 (472130)",
-      "types":["WildlandFireEvent"],
-      "dcid":"fire/imsrBusinessFire2014472130",
-      "provenanceId":"dc/y6lf8n"
-    }
+  "data": {
+    "geoId/06": {
+      "arcs": < ... output truncated for brevity ...>
+    },
   },
-  "nextToken":"SoME_veRy_L0ng_S+rIng"
+  "nextToken": "SoME_veRy_L0ng_S+rIng"
 }
 ```
 
-To get the next set of entries, use the command:
+To get the next set of entries, repeat the previous command and append the `nextToken`:
 
 ```bash
- $ curl --request GET \
-   `https://api.datacommons.org/v1/triples/in/geoId/06?nextToken=SoME_veRy_L0ng_S+rIng`
+curl --request GET \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
 ```
 
 Similarly for POST requests, this would look like:
 
 ```bash
-$ curl --request POST \
---url https://api.datacommons.org/v1/bulk/triples/in \
+curl -X POST \
+-H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+--url https://api.datacommons.org/v2/node \
 --data '{
-  "entities": "geoId/06",
+  "nodes": "geoId/06",
+  "property": "<-*",
   "nextToken": "SoME_veRy_L0ng_S+rIng"
 }'
 ```
@@ -231,6 +209,25 @@ $ curl --request POST \
 ```
 
 This is most commonly seen when the endpoint is misspelled or otherwise malformed. Check the spelling of your endpoint and that all required path parameters are provided in the right order.
+
+#### Missing API key
+
+```json
+{
+ "code": 16,
+ "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API.",
+ "details": [
+  {
+   "@type": "type.googleapis.com/google.rpc.DebugInfo",
+   "stackEntries": [],
+   "detail": "service_control"
+  }
+ ]
+}
+```
+
+This is seen when your request is missing an API key. Please use the trial key provided above, or request your own API key.
+
 
 #### "Invalid request URI"
 
@@ -258,20 +255,20 @@ This is most commonly seen when your request is missing a required path paramete
 
 Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
 
-#### "Could not find field \<field\> in the type"
+#### Marshaling errors
 
 ```json
 {
-  "code": 3,
-  "message": "Could not find field \"variables\" in the type \"datacommons.v1.BulkVariableInfoRequest\".",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "internal"
-    }
-  ]
+ "code": 13,
+ "message": "grpc: error while marshaling: proto: Marshal called with nil",
+ "details": [
+  {
+   "@type": "type.googleapis.com/google.rpc.DebugInfo",
+   "stackEntries": [],
+   "detail": "internal"
+  }
+ ]
 }
 ```
 
-This is most commonly seen when a query parameter is misspelled or incorrect. Check the spelling of query parameters.
+This is most commonly seen when a query parameter is missing, misspelled or incorrect. Check the spelling of query parameters and ensure all required parameters are sent in the request.
