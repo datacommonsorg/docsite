@@ -19,14 +19,12 @@ much more.
 
 ## What's new in V2
 
-[//]: <> (TODO: link to new section)
-The V2 API collapses functionality from V1 into a smaller number of endpoints. We do this by introducing a syntax for "Relation Expressions". Each API endpoint can also handle both single and bulk requests.
+The V2 API collapses functionality from V1 into a smaller number of endpoints. We do this by introducing a syntax for "Relation Expressions", [described below](#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
 ## Getting Started
 
-[//]: <> (TODO: update this section for v2)
 First time using the Data Commons API, or just need a refresher? Take a look at
-our [Getting Started Guide](/api/rest/v1/getting_started).
+our [Getting Started Guide](/api/rest/v2/getting_started).
 
 ## Service Endpoints
 
@@ -36,7 +34,7 @@ The base URL for all endpoints below is:
 https://api.datacommons.org/v2
 ```
 
-| API | URI | Description |
+| API | URI path | Description |
 | --- | --- | ----------- |
 | Node | [/v2/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Observation | [/v2/observation](/api/rest/v2/observation) | Fetches statistical observations |
