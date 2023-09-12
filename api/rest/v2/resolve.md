@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Resolve Entities
-nav_order: 2
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v2/resolve
 ---
 
