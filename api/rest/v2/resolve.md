@@ -94,12 +94,22 @@ The response looks like:
 {
   "entities": [
     {
-      "node": "node provided 1",
-      "candidates": [ { "dcid": "DCID 1" } ]
+      "node": "{NODE_1}",
+      "candidates": [
+        {
+          "dcid": "{DCID 1}",
+          "dominantType": "{type of DCID 1}"
+        },
+      ]
     },
     {
-      "node": "node provided 2",
-      "candidates": [ { "dcid": "DCID 2" } ]
+      "node": "{NODE_2}",
+      "candidates": [
+        {
+          "dcid": "{DCID 2}",
+          "dominantType": "{type of DCID 2}"
+        },
+      ]
     },
     ...
   ]
@@ -112,12 +122,12 @@ The response looks like:
 | Name        | Type   | Description                                                                                            |
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------ |
 | node | string | The property value or description provided. |
-| candidates | list | DCIDs matching the description you provided, along with an optional dominantType which can be used for filtering multiple results. |
+| candidates | list | DCIDs matching the description you provided, along with an optional `dominantType` field which can be used for filtering multiple results. |
 {: .doc-table}
 
 <div markdown="span" class="alert alert-info" role="alert">
   <span class="material-icons md-16">info </span><b>Note:</b><br />
-  There is a deprecated field `resolvedIds` that will be removed soon.
+  There is a deprecated field `resolvedIds` that is currently returned by the API. It will be removed soon.
 </div>
 
 ## Examples
