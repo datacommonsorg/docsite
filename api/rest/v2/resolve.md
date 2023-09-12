@@ -4,7 +4,7 @@ title: Resolve Entities
 nav_order: 2
 parent: REST (v2)
 grand_parent: API
-published: true
+published: false
 permalink: /api/rest/v2/resolve
 ---
 
