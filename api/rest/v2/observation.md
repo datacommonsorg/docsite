@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Observation
-nav_order: 1
+nav_order: 2
 parent: REST (v2)
 grand_parent: API
 published: false
