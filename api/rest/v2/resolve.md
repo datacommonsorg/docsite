@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Resolve Entities
-nav_order: 2
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
 published: false
@@ -22,6 +22,11 @@ For example, you could query for "San Francisco, CA" or "San Francisco" to find
 that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia
 the US state).
+
+The REST (v2) API introduces [relation
+expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
+node relations, support chaining and filtering. For more information
+see [Data Commons REST (v2) API Overview](/api/rest/v2/#relation-expressions).
 
 <div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -148,7 +153,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Q30&property=<-wikidataId->dcid'
 ```
 {: .example-box-content .scroll}
@@ -188,7 +193,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
 ```
 {: .example-box-content .scroll}
@@ -271,7 +276,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid
 ```
 {: .example-box-content .scroll}
@@ -312,7 +317,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description{typeOf:State}->dcid
 ```
 {: .example-box-content .scroll}
