@@ -13,7 +13,7 @@
   {%- for node in pages_list -%}
     {%- unless node.nav_exclude -%}
       {%- if node.parent == nil and node.title -%}
-        <details class="parent" open>
+        <details class="parent" {% if node.open %}open{% endif %}>
           <summary>
             <a href="{{ node.url }}" class="{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
             {% if node.has_children %}{{ caret }}{% endif %}

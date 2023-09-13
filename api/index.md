@@ -1,8 +1,9 @@
 ---
 layout: default
 title: API
-nav_order: 3
+nav_order: 20
 has_children: true
+open: true
 ---
 # Overview
 
@@ -36,7 +37,7 @@ The endpoints can be roughly grouped into four categories.
 
 Most of the provided endpoints take references to nodes and properties as arguments. Every
 node or property has a `Data Commons ID (DCID)`, which is used
-to pass nodes as arguments to API calls. 
+to pass nodes as arguments to API calls.
 
 **Note:** The DCID of schema.org terms used in Data Commons is their schema.org ID.
 

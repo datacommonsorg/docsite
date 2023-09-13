@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Papers
-nav_order: 2
+nav_order: 40
 has_children: false
 ---
 
