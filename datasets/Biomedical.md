@@ -64,7 +64,7 @@ DISEASES is a weekly updated web resource that integrates evidence on disease-ge
 
 
 #### [Side Effect Resource (SIDER) 4.1](http://sideeffects.embl.de/)
-SIDER is a database of adverse drug reactions. Available information includes side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations. However, this database uses MEDRA ontology, which is under the UMLS license that is limited to non-commercial use. Therefore, only the data under zero license - mappings of drug names, PubChem Compound IDs (CIDs), and ATC Codes - are hosted. Data Commons hosts version 4.1 of SIDER released on October 21, 2015. Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/).
+SIDER is a database of adverse drug reactions. Available information includes side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations. However, this database uses MEDRA ontology, which is under the UMLS license that is limited to non-commercial use. Therefore, only the data under zero license - mappings of PubChem Compound IDs (CIDs), and ATC Codes - are hosted. Data Commons hosts version 4.1 of SIDER released on October 21, 2015. Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/).
 
 This data is made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 

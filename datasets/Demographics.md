@@ -32,6 +32,11 @@ Data Commons has imported variables related to demographics, in particular conce
 #### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
 Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
 
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
 ### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
 
 #### [Colombia Census](https://www.dane.gov.co/index.php)
@@ -42,6 +47,11 @@ Population Census and Statistics for Colombia at Country, Department and Municip
 #### [DataMeet Maps](http://projects.datameet.org/maps)
 Maps of India sourced from different government websites. ([Terms of Use](http://projects.datameet.org/covid19/contributing/).)
 
+
+### [Department of Statistics Singapore](https://www.singstat.gov.sg/)
+
+#### [Singapore Census](https://tablebuilder.singstat.gov.sg/statistical-tables/downloadMultiple/zX5lZdqFrk-29wjZN4FFXw)
+Singapore Demographics and Health statistics for Singapore at country.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -54,6 +64,11 @@ Maps of India sourced from different government websites. ([Terms of Use](http:/
 
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
+
+### [Feeding America](https://www.feedingamerica.org/)
+
+#### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
+Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
 
 ### [Google](https://www.google.com/)
 
@@ -77,6 +92,14 @@ Population Census and Statistics for Mexico at Country and State levels.
 
 #### [Argentina Census](https://www.indec.gob.ar)
 Population Census and Statistics for Argentina.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [India Life Expectancy by State](https://ndap.niti.gov.in/)
+Life expectancy of a person in India based on gender at state level by National Data and Analytics Platform (NDAP).
+
+#### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
+India poverty statistics - percentage of people below poverty line.
 
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
@@ -125,6 +148,11 @@ Yearly population estimates for Canada.
 
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
+
+### [Statistics of New Zealand](https://www.stats.govt.nz/)
+
+#### [New Zealand Census](https://www.stats.govt.nz/topics/population)
+New Zealand Demographics, statistics for New Zealand at country, district and city level.
 
 ### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
 
@@ -235,6 +263,9 @@ Data Commons includes some information about administrative divisions, municipal
 
 
 ### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
 
 #### [World Bank Official Boundaries](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries)
 World Bank-approved administrative boundaries including international boundaries.
