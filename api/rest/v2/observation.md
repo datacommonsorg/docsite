@@ -180,7 +180,7 @@ Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&key=AIzaSyBCybF1COkc05kj5n5FHpXOnH3EdGBnUz0&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
 ```
 {: .example-box-content .scroll}
 
