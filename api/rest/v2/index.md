@@ -4,7 +4,7 @@ title: REST (v2)
 nav_order: 0
 parent: API
 has_children: true
-published: false
+published: true
 permalink: /api/rest/v2
 ---
 

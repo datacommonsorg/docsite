@@ -4,7 +4,7 @@ title: Node
 nav_order: 1
 parent: REST (v2)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v2/node
 ---
 
