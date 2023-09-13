@@ -29,8 +29,7 @@ project (with id `PROJECT_ID`).
 
    ![fa](/assets/images/custom_dc/install_step_2.png){: width="600" }
 
-   Note: If this step fails, please contact [support+custom@datacommons.org](support+custom@datacommons.org) with
-   the errors.
+   Note: If this step fails, please [contact us at with form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) with the errors.
 
 1. [Optional] The default domain of the instance is
    `<PROJECT_ID>-datacommons.com`. If you want to use an existing custom domain,
@@ -52,7 +51,7 @@ project (with id `PROJECT_ID`).
    ./install_custom_dc.sh
    ```
 
-1. Please send an email to [support+custom@datacommons.org] to get an API key
+1. Please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) to get an API key
    for data access. Store the API key in [Cloud Secret Manager](https://console.cloud.google.com/security/secret-manager) with name `mixer-api-key`.
 
 1. [Optional] Get a Google Maps API key
