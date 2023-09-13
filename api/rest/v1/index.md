@@ -6,6 +6,7 @@ parent: API
 has_children: true
 published: true
 permalink: /api/rest/v1
+nav_exclude: true
 ---
 
 # Data Commons REST API

@@ -4,6 +4,7 @@ title: REST (v0)
 nav_order: 2
 parent: API
 has_children: true
+nav_exclude: true
 ---
 
 # Data Commons REST API
