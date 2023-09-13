@@ -11,6 +11,31 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Australian Bureau of Statistics](https://www.abs.gov.au/)
+
+#### [Australia Statistics](https://www.abs.gov.au/statistics)
+Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
+
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
+### [City Controller, City of Los Angeles](https://controller.lacity.gov/)
+
+#### [Food Resources in California](https://controllerdata.lacity.org/dataset/Food-Resources-in-California/v2mg-qsxf/data)
+This dataset contains a list of resources such food pantries, food banks, and other food distribution sites throughout the state of California. The data is current as of May 1, 2020. Due to the coronavirus pandemic, many food pantries may change their hours or close temporarily. Please contact a food pantry prior to visiting them to confirm their operating hours and ensure you are in their service area.
+
+### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
+
+#### [Colombia Census](https://www.dane.gov.co/index.php)
+Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
+
 ### [Dartmouth Atlas Project](https://www.dartmouthatlas.org/)
 
 #### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
@@ -24,6 +49,11 @@ Data is made available under the [Dartmouth Atlas Project Terms of Use](https://
 #### [COVID-19](http://projects.datameet.org/covid19/)
 DataMeet provides cleaned datasets relating to COVID-19 in India, sourced from various government websites. ([Terms of Use](http://projects.datameet.org/covid19/contributing/).)
 
+
+### [Department of Statistics Singapore](https://www.singstat.gov.sg/)
+
+#### [Singapore Census](https://tablebuilder.singstat.gov.sg/statistical-tables/downloadMultiple/zX5lZdqFrk-29wjZN4FFXw)
+Singapore Demographics and Health statistics for Singapore at country.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -41,6 +71,11 @@ Health statistics measure both objective and subjective aspects of people's heal
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
 
+### [Feeding America](https://www.feedingamerica.org/)
+
+#### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
+Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
+
 ### [Google](https://www.google.com/)
 
 #### [COVID-19 Community Mobility Reports](https://www.google.com/covid19/mobility/)
@@ -55,12 +90,63 @@ National Health Mission (NHM) is a flagship programme of the Government of India
 #### [Health Management Information System](https://hmis.nhp.gov.in/)
 The Health management Information System (HMIS) of the National Health Mission, India captures medical facility-wise information such as reproductive, meternal and child health, immunization, family planning and vector borne diseases on a monthly basis ats district, state and national levels.
 
+### [India National Sample Survey](https://mospi.gov.in/web/nss)
+The India National Sample Survey (NSS) Organizes and conducts large scale all-India sample surveys on different population groups in diverse socio economic areas, such as employment, consumer expenditure, housing conditions and environment, literacy levels, health, nutrition, family welfare, etc.
+
+#### [India National Sample Survey - Health](https://mospi.gov.in/documents/213904/301563//NSS%20Report%20no.%20586%20Health%20in%20India1606229312083.pdf/d3724e8b-5970-0559-9ed9-12378a6cc7b3)
+Household health survey on profile of ailments including their treatment, role of government and private facilities in providing healthcare, expenditure on medicines, expenditure on medical consultation and investigation, hospitalization and expenditure, maternity and childbirth, the condition of the aged, etc.
+[Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
+
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
+### [National Institute of Statistics and Censuses (INDEC)](https://www.indec.gob.ar)
+
+#### [Argentina Census](https://www.indec.gob.ar)
+Population Census and Statistics for Argentina.
+
+### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Kenya Census](https://kenya.opendataforafrica.org/)
+Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
+[Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
+
+#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
+Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
+#### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
+South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
+
 ### [Our World in Data](https://ourworldindata.org/)
 
 #### [COVID-19 Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations)
 Data Commons imports country-level COVID-19 vaccine data from Our World in Data.
 
 [Terms of Use](https://ourworldindata.org/faqs#how-should-i-cite-your-work).
+
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
+
+### [Statistics of New Zealand](https://www.stats.govt.nz/)
+
+#### [New Zealand Census](https://www.stats.govt.nz/topics/population)
+New Zealand Demographics, statistics for New Zealand at country, district and city level.
+
+### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
+
+#### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
+Population Census and Statistics for Indonesia at country, provinces and regency and city level.
 
 ### [The New York Times](https://www.nytimes.com/)
 
@@ -88,6 +174,10 @@ The statistics for prevalence of asthma among adults is for counties in 50 state
 Estimates of the number and percentage of US adults with diabetes.
 
 
+#### [Heat & Heat-related Illness (HRI)](https://ephtracking.cdc.gov/qrlist/35)
+Includes data about various heat-stress-induced medical incidents.
+
+
 #### [National Notifiable Diseases Surveillance System (NNDSS)](https://www.cdc.gov/nndss/data-statistics/index.html)
 Weekly and Annual cases of selected national notifiable (infectious and non-infectious) diseases reported by the 50 states, New York City, the District of Columbia, and the U.S. territories.
 
@@ -107,6 +197,9 @@ Pregnancy Risk Assessment Monitoring System (PRAMS) is a population-based survei
 #### [Wonder: Compressed Mortality](https://wonder.cdc.gov/cmf-icd10.html)
 Mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year.
 
+
+#### [Wonder: Mortality, Underlying Cause Of Death](https://wonder.cdc.gov/ucd-icd10.html)
+The Underlying Cause of Death database contains mortality data based on death certificates for U.S. residents.
 
 #### [Wonder: Natality](https://wonder.cdc.gov/natality.html)
 Includes "counts of live births occurring within the United States to U.S. residents. Counts can be obtained by a variety of demographic characteristics, such as state and county of residence, mother's race, and mother's age, and health and medical items, such as tobacco use, method of delivery, and congenital anomalies. The data are derived from birth certificates."

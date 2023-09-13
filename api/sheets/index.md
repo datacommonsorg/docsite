@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Google Sheets
-nav_order: 6
+nav_order: 5
 parent: API
 has_children: true
 ---
+
 # Data Commons Sheets API
 
 The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets

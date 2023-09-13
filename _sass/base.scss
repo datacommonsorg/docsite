@@ -14,159 +14,289 @@
  * limitations under the License.
  */
 
- // KEEP THIS FILE IN SYNC WITH:
- // https://github.com/datacommonsorg/website/blob/master/static/css/base.scss
+// KEEP THIS FILE IN SYNC WITH:
+// https://github.com/datacommonsorg/website/blob/master/static/css/base.scss
 
- :root {
-  --font-family: "Roboto", "Helvetica Neue", Arial, sans-serif !important;
+$full-footer-bg: #fafcff;
+$sub-footer-breakpoint: 640px;
+
+:root {
+  --font-family: "Google Sans Text", "Roboto", "Helvetica Neue", Arial,
+    sans-serif !important;
   --breakpoint-xl: 1040px;
   --dc-red-strong: #660000;
-  --dc-red-lite: #9A0000;
+  --dc-red-lite: #9a0000;
   --dc-red-fade: #f0e6e7;
-  --dc-gray: #3B3B3B;
+  --dc-gray: #3b3b3b;
   --dc-gray-lite: #ccc;
-  --link-color: #660000;
+  --dc-header-background: white;
+  --gm-3-ref-neutral-neutral-20: #303030;
+  --gm-3-ref-neutral-neutral-40: #5e5e5e;
+  --gm-3-ref-neutral-neutral-80: #c7c7c7;
+  --gm-3-ref-neutral-neutral-90: #e3e3e3;
+  --link-color: #0b57d0;
 }
 
 /** Bootstrap overrides **/
-$link-color: #660000;
+$link-color: #0b57d0;
 $link-hover-color: $link-color;
 $primary: $link-color;
 
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$headings-font-family: 'Public Sans', $font-family-sans-serif;
-$font-size-base: 1.0rem;
+$font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+$font-family-sans-serif: "Google Sans Text", $font-family-base;
+$headings-font-family: "Google Sans", "Public Sans", $font-family-sans-serif;
+$font-size-base: 1rem;
 
 $grid-breakpoints: (
-xs: 0,
-sm: 576px,
-md: 768px,
-lg: 992px
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
 );
 
 $container-max-widths: (
-sm: 540px,
-md: 720px,
-lg: 960px
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
 );
 
 /** Icon sizes **/
-.material-icons.md-16 { 
-font-size: 16px;
-padding-right: 2px;
-vertical-align: text-top;
+.material-icons.md-16 {
+  font-size: 16px;
+  padding-right: 2px;
+  vertical-align: text-top;
 }
-.material-icons-outlined.md-16 { font-size: 16px; }
+.material-icons-outlined.md-16 {
+  font-size: 16px;
+}
 
 @import "third_party/bootstrap-4.0.0/bootstrap";
 
+#main-nav {
+  padding: 0.75rem 0.25rem;
+  > .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 #main-nav .navbar-brand {
-font-size: 1.1rem;
-line-height: 24px;
+  font-size: 1.1rem;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
 }
 
 #main-nav .navbar-brand a {
-color: #fff;
-font-weight: 500;
+  color: #000;
+  font-family: $font-family-sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+#main-nav .navbar-brand a {
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
 }
 
 #main-nav .navbar-brand span,
 #main-nav .navbar-brand span a {
-font-weight: 200;
-letter-spacing: 2px;
-margin-left: .2rem;
+  font-family: $font-family-base;
+  font-weight: 200;
+  margin-left: 0.35rem;
+}
+
+#main-header #main-header-logo {
+  display: flex;
+  align-items: center;
+  img {
+    height: 28px;
+    margin-right: 12px;
+  }
 }
 
 .main-content {
-margin: 3rem auto 6rem;
+  margin: 3rem auto 6rem;
 }
 
 /** CSE **/
 #main-header #___gcse_0 {
-width: 200px;
+  width: 200px;
 }
 
 #main-header .gsib_a {
-padding: 3px 9px 3px 9px;
+  padding: 3px 9px 3px 9px;
 }
 
 #main-header .gsib_b {
-display: none;
+  display: none;
 }
 
 #main-header .gsc-input-box {
-border: none;
+  border: none;
 }
 
 #main-header form.gsc-search-box,
 #main-header table.gsc-search-box {
-margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 #main-header table.gsc-search-box td.gsc-input {
-padding-right: 0;
+  padding-right: 0;
 }
 
 #main-header .gsc-search-button.gsc-search-button-v2 {
-background: rgba(255, 255, 255, .2) !important;
-border-radius: 0 10px 10px 0;
-border: none !important;
-margin: 0 0 1px 0;
-padding: 10px 10px 9px 8px;
+  background: var(--gm-3-ref-neutral-neutral-90) !important;
+  border-radius: 0 10px 10px 0;
+  border: none !important;
+  margin: 0 0 1px 0;
+  padding: 10px 10px 9px 8px;
+  svg {
+    fill: var(--gm-3-ref-neutral-neutral-20);
+  }
 }
 
 #main-header #gsc-iw-id1 {
-border-radius: 10px 0 0 10px;
-border: 1px solid $gray-300;
-padding: 0;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid $gray-300;
+  padding: 0;
 }
 
 #main-header #gs_tti50 input {
-background: none !important;
+  background: none !important;
 }
 
 /** Shared page elements **/
 #main-header {
-padding: .5rem 0;
-background: var(--dc-red-strong);
-box-shadow: 0px 2px 3px rgba(0,0,0,.1);
+  background: var(--dc-header-background);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+#main-nav .nav-item a {
+  color: var(--gm-3-ref-neutral-neutral-40);
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 #main-header .nav-item.dropdown {
-margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 #main-nav .dropdown-item,
 #main-nav .nav-link {
-/* Specify fonts in absolute px until we remove inclusion of MDL from tool pages */
-font-size: 14px;
-font-weight: 400;
-line-height: 24px;
+  /* Specify fonts in absolute px until we remove inclusion of MDL from tool pages */
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+#main-nav .dropdown-item.active,
+.dropdown-item:active {
+  background: var(--gm-3-ref-neutral-neutral-80);
 }
 
 #main-footer {
-background: #f0f0f0;
-margin-top: 3rem;
-padding-top: 3rem;
-/* Trick to get the footer to extend to the bottom of short pages */
-box-shadow: 0 50vh 0 50vh #f0f0f0;
+  background: $full-footer-bg;
+  padding-top: 75px;
+  /* Trick to get the footer to extend to the bottom of short pages */
+  box-shadow: 0 50vh 0 50vh var(--footer-bg);
+  .top-footer {
+    padding-bottom: 30px;
+  }
 }
 
-#main-footer, #main-footer h6 {
-font-size: .9rem;
+#main-footer {
+  border-top: 1px solid $gray-300;
+  color: var(--gm-3-ref-neutral-neutral-20);
+  font-size: 18px;
+  a {
+    align-items: center;
+    color: var(--gm-3-sys-light-primary);
+    flex-direction: row;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 10px 0px;
+    .material-icons-outlined {
+      font-size: 12px;
+      margin-right: 8px;
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      span:last-child {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 #main-footer #sub-footer {
-border-top: 1px solid $gray-300;
-padding-top: 1.5rem;
-padding-bottom: 3rem;
+  align-items: center;
+  background: var(--footer-bg);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 26px 31px;
+  line-height: 2.5rem;
+  height: fit-content;
+
+  @media (max-width: $sub-footer-breakpoint) {
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
-#main-footer section a {
-display: block;
+.brand-byline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--gm-3-ref-neutral-neutral-40);
+  .brand-text {
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .brand-logo {
+    margin-left: 0.3em;
+    margin-top: -0.2em;
+    height: 1.4em;
+  }
 }
 
-#main-footer .col-12,
-#main-footer .col-sm-6 {
-margin-bottom: 2rem;
+#sub-footer .sub-footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  a {
+    color: var(--gm-3-ref-neutral-neutral-40);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#sub-footer .btn,
+#sub-footer a {
+  margin-right: 0.75rem;
+}
+
+#sub-footer a:last-of-type {
+  margin-right: 0;
 }

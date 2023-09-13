@@ -30,10 +30,7 @@ $h5-font-size: $font-size-base * 1.1;
 @import "friendly_code";
 @import "blog";
 @import "api_documentation";
-
-#main-header #main-nav {
-  padding-left: 0;
-}
+@import "custom_dc";
 
 #main-doc-content {
   margin: 2rem 2rem 5rem;
@@ -91,21 +88,21 @@ $h5-font-size: $font-size-base * 1.1;
   border-bottom-color: transparent;
   font-size: 12px;
   text-transform: uppercase;
-  transition: color .1s ease-in-out;
+  transition: color 0.1s ease-in-out;
   line-height: 20px;
 }
 
 .tab > .active > a {
-  color:#222;
+  color: #222;
   border-color: #1e87f0;
 }
 
 .tab li a {
   text-decoration: none;
-      cursor: pointer;
+  cursor: pointer;
 }
 
-.tab-content{
+.tab-content {
   padding: 0;
 }
 

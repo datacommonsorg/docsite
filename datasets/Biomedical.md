@@ -11,6 +11,14 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Broad Institute](https://www.broadinstitute.org/resources-services-and-tools)
+
+#### [GTEx Analysis V8](https://www.gtexportal.org/home/datasets)
+The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used. Due to the size of the datasets only Skin - Not Sun Exposed and Skin - Sun Exposed are made available on the main graph. The data for all tissues can be accessed on the Biomedical Data Commons knowledge graph.
+
+GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
+
+
 ### [ELIXIR Core Data Resources](https://elixir-europe.org/platforms/data/core-data-resources)
 
 #### [The Molecular INTeraction (MINT) Database](https://mint.bio.uniroma2.it/)
@@ -32,15 +40,33 @@ Data made available under: [ENCODE Data Use Policy for External Users](https://w
 #### [ChEMBL](https://www.ebi.ac.uk/chembl/)
 "ChEMBL is a manually curated database of bioactive molecules with drug-like properties. It brings together chemical, bioactivity and genomic data to aid the translation of genomic information into effective new drugs." It includes information on drugs at all stages of drug discovery.
 
-This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/about/terms-of-use/). This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+
+#### [UniProt](https://www.uniprot.org/)
+Data Commons includes protein sequence and functional information including protein interaction with chemical compounds maintained by the UniProt Consortium. The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) UniProt data used in a journal article.
+
+This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/about/terms-of-use/).
 
 
-### [Genotype-Tissue Expression (GTEx)](https://www.gtexportal.org/home/)
+### [International Committee on Taxonomy of Viruses (ICTV)](https://ictv.global/)
 
-#### [GTEx Analysis V8](https://www.gtexportal.org/home/datasets)
-The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used. Due to the size of the datasets only Skin - Not Sun Exposed and Skin - Sun Exposed are made available on the main graph. The data for all tissues can be accessed on the Biomedical Data Commons knowledge graph.
+#### [Master Species List](https://ictv.global/msl)
+The official, current virus taxonomy approved by the ICTV. To accomplish the task of organizing and maintaining this virus taxonomy, the ICTV is composed of 7 subcommittees covering Animal DNA viruses and Retroviruses, Animal dsRNA and ssRNA (-) viruses, Animal ssRNA (+) viruses, Bacterial viruses, Archaeal Viruses, Fungal and Protist viruses, and Plant viruses. The ICTV has established over 100 international Study Groups (SGs) covering all major virus families and genera.
 
-GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
+#### [Virus Metadata Resource](https://ictv.global/vmr)
+The ICTV chooses an exemplar virus for each species and the VMR provides a list of these exemplars. An exemplar virus serves as an example of a well-characterized virus isolate of that species and includes the GenBank accession number for the genomic sequence of the isolate as well as the virus name, isolate designation, suggested abbreviation, genome composition, and host source.
+This data is made available under Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0).
+
+
+### [Jensen Lab (University of Copenhagen)](https://jensenlab.org/resources/)
+
+#### [DISEASES](https://diseases.jensenlab.org/Search)
+DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. We further unify the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. For further details please refer to the following Open Access article about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831).
+
+
+#### [Side Effect Resource (SIDER) 4.1](http://sideeffects.embl.de/)
+SIDER is a database of adverse drug reactions. Available information includes side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations. However, this database uses MEDRA ontology, which is under the UMLS license that is limited to non-commercial use. Therefore, only the data under zero license - mappings of PubChem Compound IDs (CIDs), and ATC Codes - are hosted. Data Commons hosts version 4.1 of SIDER released on October 21, 2015. Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/).
+
+This data is made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 
 ### [New York Botanical Garden (NYBG)](http://sweetgum.nybg.org/science/)
@@ -49,20 +75,32 @@ GTEx is an NIH human genomic data unrestricted-access data repository and the da
 C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
 
 
-### [Proteomics Standards Initiative](https://psidev.info/)
+### [PharmGKB](https://www.pharmgkb.org/)
 
-#### [HUPO-PSI Working Groups and Outputs](https://psidev.info/)
-The Molecular Interactions Controlled Vocabulary from the HUPO Proteomics Standards Initiative working groups is "a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions". The ontologies dictionary is represented in a tree structure in the [EMBL-EBI Ontology Lookup Service](https://www.ebi.ac.uk/ols/ontologies/mi). Data Commons includes three subsets of the ontologies: "interaction detection method", "interaction type" and "database citation", which are commonly used in protein-protein interactions.
-
-Data Made available under [Apache License 2.0](https://github.com/EBISPOT/OLS/blob/main/LICENSE). The license information of HUPO PSI can be found at the [Community Practice](http://www.psidev.info/sites/default/files/CommunityPractice-revised.doc). See also [EBI term of use](http://www.ebi.ac.uk/about/terms-of-use/).
+#### [PharmGKB Primary Data](https://www.pharmgkb.org/)
+The Pharmacogenomics Knowledge Base, PharmGKB, is an interactive tool for researchers investigating how genetic variation affects drug response. The PharmGKB Web site, http://www.pharmgkb.org, displays genotype, molecular, and clinical knowledge integrated into pathway representations and Very Important Pharmacogene (VIP) summaries with links to additional external resources. Users can search and browse the knowledgebase by genes, variants, drugs, diseases, and pathways. The Primary Data contains summary information on chemicals, drugs, genes, genetic variants, and phenotypes.
 
 
-### [Side Effect Resource (SIDER)](http://sideeffects.embl.de/)
+#### [PharmGKB Relationships Data](https://www.pharmgkb.org/)
+PharmGKB reports association between chemicals, diseases, genes, and genetic variants, both with themselves and with each other.
 
-#### [SIDER 4.1](http://sideeffects.embl.de/)
-SIDER is a database of adverse drug reactions curated by the EMBL collaboration. "SIDER contains information on marketed medicines and their recorded adverse drug reactions. The information is extracted from public documents and package inserts. The available information include side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations." Data Commons hosts version 4.1 of SIDER released on October 21, 2015.
+Data made available under Creative Commons Attribution-ShareAlike 4.0 Intergovernmental Organization (CC BY-SA 4.0 IGO) licence. Explicit licensing for PharmGKB can be viewed on the [download page](https://www.pharmgkb.org/downloads).
 
-This data is made available under the [Creative Commons Attribution-Noncommercial-Share Alike 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/). This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+
+### [Swiss Institute of Bioinformatics (SIB)](https://www.expasy.org/)
+
+#### [Antibodies Chemically Defined (ABCD)](https://web.expasy.org/abcd/))
+The ABCD database is part of a broader project, with the mission of promoting the widespread use of recombinant antibodies by academic researchers and, ultimately, the replacement of animal-produced antibodies. This concerted effort also includes the [Geneva Antibody Facility](https://www.unige.ch/medecine/antibodies/) (for discovery and production of antibodies) and the scientific journal [Antibody Reports](https://oap.unige.ch/journals/abrep) (publishing technical articles on antibody characterization). If you'd like to cite the ABCD database: Lima WC, Gasteiger E, Marcatili P, Duek P, Bairoch A, Cosson P. The ABCD database: a repository for chemically defined antibodies. [Nucleic Acids Res. 2020, 48:D261-D264.](https://academic.oup.com/nar/article/48/D1/D261/5549708)
+
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
+
+### [Temporary Data Commons Data](https://www.datacommons.org/)
+
+#### [Temporary Gene Mappings](https://www.datacommons.org/)
+This maps the new way of generating Gene dcids (bio/<gene_symbol>) with the old, preexisting Gene dcids(bio/<genome_assembly>_<gene_symbol>). These are temporary mappings until all data using the old method of Gene dcid generation has been updated.
+
+Data is publicly available via Data Commons.
 
 
 ### [The Human Protein Atlas](https://www.proteinatlas.org/)
@@ -73,14 +111,18 @@ The Human Protein Tissue Atlas contains information about the distribution of pr
 This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Please also see their [Disclaimer](https://www.proteinatlas.org/about/disclaimer) and [Licence & Citation](https://www.proteinatlas.org/about/licence).
 
 
+### [U.S. Adopted Names (USAN) Council](https://www.ama-assn.org/about/united-states-adopted-names/usan-council)
+
+#### [USAN Stems](https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems)
+ USAN stems represent common stems for which chemical and/or pharmacologic parameters have been established. These council-approved stems and their definitions are recommended for use in coining new nonproprietary drug names belonging to an established series of related agents. USAN appropriately incorporates this established class stem system. By doing so, similar compounds maintain a common "family" name that provides immediate recognition.
+
+This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
+
+
 ### [U.S. Food and Drug Administration (FDA)](https://www.fda.gov/)
 
 #### [FDA-Approved Drugs](https://www.accessdata.fda.gov/scripts/cder/daf/)
 "Drugs@FDA includes information about drugs, including biological products, approved for human use in the United States." Data Commons includes the information about the FDA application for the drug as well as the drug’s strength, active ingredients, dosage forms, administration routes, FDA therapeutic equivalence code, and marketing status.
-
-
-#### [Pharmacologic Class](https://www.fda.gov/industry/structured-product-labeling-resources/pharmacologic-class)
-The FDA established pharmacologic classes "associated with an approved indication of an active moiety that the FDA has determined to be scientifically valid and clinically meaningful". This includes the (1) description of pharmacologic class (2) active moiety code and description (3) compounds associated with each class.
 
 This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
 
@@ -109,7 +151,7 @@ This data is from an NIH human genome unrestricted-access data repository and ma
 ### [U.S. National Institutes of Health: National Library of Medicine](https://www.nlm.nih.gov/)
 
 #### [Medical Subject Headings (MeSH)](https://meshb.nlm.nih.gov/search)
-The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Concept, Descriptor, Qualifier, Supplementary Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html).
+The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Concept, Descriptor, Qualifier, Supplementary Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html). Data Commons includes production year 2022 MeSH.
 
 
 #### [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
@@ -149,28 +191,18 @@ The All SNPs files were downloaded from the UCSC Table Browser on August 13, 201
 The annotation data is made freely available under the UCSC Genome Browser [terms of use](https://genome.ucsc.edu/conditions.html). The UCSC Genome Browser states [how to cite](https://genome.ucsc.edu/cite.html) use of their data in a journal article publication.
 
 
-### [UniProt](https://www.uniprot.org/)
-Data Commons includes protein sequence and functional information including protein interaction with chemical compounds maintained by the UniProt Consortium.
-
-
-#### [UniProt Controlled Vocabulary of Species](https://www.uniprot.org/docs/speclist)
-UniProt’s Controlled Vocabulary of Species contains organism species UniProt identification codes, [NCBI Taxonomy database identifiers](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), scientific names, common names, synonyms, and organism kingdoms.
-
-The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) Uniprot data used in a journal article. This data was formatted for Data Commons in part through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
-
-
-### [University of California San Francisco](https://www.ucsf.edu/)
-
-#### [SPOKE Disease Symptom Associations](https://spoke.ucsf.edu/)
-These are statistical associations using a Fisher’s exact test co-occurrence of disease and symptom terms in Pubmed entries by performing as described in [Himmelstein, et al (2017)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640425/).
-
-The data was previously hosted by [UCSF Scalable Precision Medicine Knowledge Engine SPOKE](https://spoke.ucsf.edu/). It was made available by the data’s owner, Sergio Baranzini, for use on Data Commons. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
-
-
 ### [University of Maryland School of Medicine, Institute of Genome Sciences](https://www.igs.umaryland.edu/)
 
 #### [Disease Ontology](https://disease-ontology.org/)
 The Disease Ontology was developed as a project by the Institute of Genome Sciences at the University of Maryland School of Medicine. It "is a community driven, open source ontology that is designed to link disparate datasets through disease concepts". It provides a "standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts".
 
-The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do). Data Commons includes the 3/7/19 update of the Disease Ontology. This data was formatted for Data Commons through a collaboration with Dr. Sergio Baranzini’s group at UCSF.
+The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do).
+
+
+### [World Health Organization (WHO)](https://www.who.int/)
+
+#### [ATC Codes](https://www.whocc.no/atc_ddd_index/)
+Anatomical Therapeutic Chemical (ATC) is a heirarchical classification system for pharmacological substances. 'In the ATC classification system, the active substances are classified in a hierarchy with five different levels. The system has fourteen main anatomical/pharmacological groups or 1st levels. Each ATC main group is divided into 2nd levels which could be either pharmacological or therapeutic groups. The 3rd and 4th levels are chemical, pharmacological or therapeutic subgroups and the 5th level is the chemical substance. The 2nd, 3rd and 4th levels are often used to identify pharmacological subgroups when that is considered more appropriate than therapeutic or chemical subgroups.'
+
+Data made available under [CC BY-NC-SA 3.0 IGO](https://www.who.int/about/policies/publishing/copyright).
 

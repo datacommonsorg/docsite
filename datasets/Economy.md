@@ -11,6 +11,26 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Australian Bureau of Statistics](https://www.abs.gov.au/)
+
+#### [Australia Statistics](https://www.abs.gov.au/statistics)
+Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
+
+### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
+
+#### [Brazil Bank of Statistical Tables](https://sidra.ibge.gov.br/home/pnadct)
+Brazil Census from Bank of Statistical Variables.
+
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
@@ -23,11 +43,39 @@ parent: Data Sources
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
 
+### [Food and Agriculture Organization of the United Nations](https://www.fao.org/faostat/)
+
+#### [FAO Currency and Exchange Rate](https://www.fao.org/faostat/en/#data/PE/metadata)
+The exchange rate of currency broken down by country, currency standardization type, and currency (using ISO 4217 Currency Code).
+[FAQ](https://www.fao.org/faostat/en/#faq)
+
 ### [India Ministry of Statistics and Programme Implementation](https://mospi.gov.in/)
 
 #### [Periodic Labour Force Survey](https://mospi.gov.in/web/plfs)
 Wage and salary data for Indian states.
 
+
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
+India poverty statistics - percentage of people below poverty line.
+
+### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
+
+#### [OECD Statistics](https://stats.oecd.org)
+Country-level stats for OECD countries and selected non-member economies from 419 OECD datasets.
+
+[License](https://www.oecd.org/termsandconditions/)
+
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
 
 ### [Reserve Bank of India](https://rbi.org.in/)
 
@@ -35,7 +83,17 @@ Wage and salary data for Indian states.
 Data Commons includes variables related to poverty and unemployment in Indian states from the Reserve Bank of India.
 
 
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
+
 ### [U.S. Bureau of Economic Analysis (BEA)](https://www.bea.gov/)
+
+#### [GDP by County, Metro, and Other Areas](https://apps.bea.gov/regional)
+Includes Gross Domestic Product categorized by county, metro, and other areas.
 
 #### [Gross Domestic Product](https://www.bea.gov/data/gdp)
 Gross domestic product for counties, metropolitan statistical areas and states, broken down by industry.
@@ -44,6 +102,9 @@ Gross domestic product for counties, metropolitan statistical areas and states, 
 #### [Prices & Inflation](https://www.bea.gov/data/prices-inflation)
 [Regional price parity measures](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) for metropolitan statistical areas, broken down by goods and services.
 
+
+#### [Regional Price Parities by State and Metro Area](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area)
+Price parity data measuring the differences in price levels across states and metropolitan areas for a given year and are expressed as a percentage of the overall national price level.
 [Terms of Use](https://www.bea.gov/help/faq/147).
 
 
@@ -55,6 +116,10 @@ Consumer Price Index broken down by categories of consumers.
 
 #### [Job Openings and Labor Turnover Survey](https://www.bls.gov/jlt/)
 Survey giving job postings, hires, and separations broken down by industry.
+
+
+#### [Labor Force Statistics from the Current Population Survey (CPS)](https://www.bls.gov/cps)
+Monthly survey of households conducted by the Bureau of Census for the Bureau of Labor Statistics.
 
 
 #### [Local Area Unemployment Statistics (LAUS)](https://www.bls.gov/lau/)
@@ -74,13 +139,19 @@ The American Community Survey covers a broad range of topics about social, econo
 
 
 #### [County Business Patterns](https://www.census.gov/programs-surveys/cbp/data/datasets.html)
-Per-industry number of establishments, employment, payroll and annual payrol, by county, metropolital statistical area and zip code.
+Per-industry number of establishments, employment, payroll and annual payroll, by county, metropolitan statistical area and zip code.
 
 
 #### [Economic Census](https://www.census.gov/programs-surveys/economic-census/about.html)
 Number of businesses and amount of revenue, by business payroll status, industry, operation type, and tax status.
 
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
+
+
+### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
+
+#### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)
+Data Commons has imported 80th and 150th percentile median family income estimates for different household sizes for US counties and county subdivisions.
 
 
 ### [U.S. Department of Labor (DOL)](https://www.dol.gov/)
@@ -101,8 +172,16 @@ The data is in the public domain.
 
 ### [World Bank](https://www.worldbank.org/en/home)
 
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
+
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.
 
 [Terms of Use](https://datacatalog.worldbank.org/public-licenses).
 
+
+### [World Trade Organization](https://www.wto.org/)
+
+#### [WTO Stats Dashboard](https://stats.wto.org/dashboard/tradeconnectivity_en.html)
+Trade statistics based on import data sourced from either UN Comtrade or the WTO Integrated Database (IDB).

@@ -16,7 +16,7 @@
 
 #sidebar a {
   color: var(--dc-gray);
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 #sidebar a.active {
@@ -24,7 +24,7 @@
 }
 
 #sidebar .parent > summary > a {
-  color: var(--dc-red-strong);
+  color: var(--link-color);
 }
 
 #sidebar summary {
@@ -47,14 +47,15 @@
 #sidebar ul {
   list-style: none;
   padding-left: 0;
+  margin-bottom: 0;
 }
 
 #sidebar li {
-  margin: .25rem 0;
+  margin: 0.25rem 0;
 }
 
 #sidebar details {
-  padding: .2rem 0;
+  padding: 0.2rem 0;
 }
 
 #sidebar .parent > ul {
@@ -64,5 +65,5 @@
 #sidebar .child > ul {
   border-left: 1px solid lightgray;
   padding-left: 1rem;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
