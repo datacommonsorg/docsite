@@ -78,16 +78,12 @@ See the examples below for use cases that use the preceding rules.
 
 ### Example 1: Latest observation for given entities
 
-Specify `date=LATEST` in order to get the latest observations. In this example, we are selecting the entity by it's `wikidataId=Q30`
-
-Question for BO: Why do we need to resolve Q30, but also specify entity.dcids = country/USA?
+Specify `date=LATEST` in order to get the latest observations and values. In this example, we are selecting the entity by its DCID using `entity.dcids`.
 
 Parameters:
 {: .example-box-title}
 
 ```bash
-nodes: "Q30"
-property: "<-wikidataId->dcid"
 date: "LATEST"
 entity.dcids: "country/USA"
 select: "entity"
