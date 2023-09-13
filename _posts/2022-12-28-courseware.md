@@ -8,11 +8,11 @@ title: New Courseware - Data Literacy with Data Commons
 
 Today, we are announcing the open and public availability of "Data Literacy with Data Commons" which comprises curriculum/course materials for instructors, students and other practitioners working on or helping others become _data literate_. This includes detailed modules with pedagogical narratives, explanations of key concepts, examples, and suggestions for exercises/projects focused on advancing the _consumption_, _understanding_ and _interpretation_ of data in the contemporary world. In our quest to expand the reach and utility of this material, we assume no background in computer science or programming, thereby removing a key obstacle to many such endeavors.
 
-This material can be accessed on our [courseware page](/courseware/data_literacy/course_materials.html) and it is open for anyone to take advantage of. If you find this material useful, or if you have other feedback, please reach out to us at [courses@datacommons.org](mailto:courses@datacommons.org).
+This material can be accessed on our [courseware page](/courseware/data_literacy/course_materials.html) and it is open for anyone to take advantage of. If you use any of this material, we would love to hear from you! If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
 ### What is it?
 
-A set of [modules](/courseware/data_literacy/course_materials.html#modules) focusing on several [key concepts](/courseware/data_literacy/topics.html#key-themes) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
+A set of [modules](/courseware/data_literacy/course_materials.html#modules) focusing on several [key concepts](/courseware/data_literacy/topics.html#key-themes) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!
 
 ### Who is this for?
 
@@ -20,7 +20,8 @@ Anyone and everyone. Instructors, students, aspiring data scientists and anyone 
 
 ### What's Different?
 
-There are several excellent courses which range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with math and statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please do share them with us at [courses@datacommons.org](mailto:courses@datacommons.org).
+There are several excellent courses which range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with math and statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please [share them with us through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform).
+
 
 ### What is Data Literacy?
 
