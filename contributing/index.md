@@ -29,7 +29,7 @@ Data Commons allows for easy acess to _real data_ that can enrich the experience
 
 ### Creating a new tool
 
-Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest) that can be used to power applications on top of our data. If you would like to build a new tool, contact the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) or create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools).
+Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest/v2) that can be used to power applications on top of our data. If you would like to build a new tool, contact the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) or create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools).
 
 ### Sharing analysis
 

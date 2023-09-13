@@ -85,7 +85,7 @@ JSON Data:
 
 | Name                                                  | Type   | Description                                                                                                                                                     |
 | ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag>    | string | The queried property value (e.g. entity name or ID), or description of the node (this currently only supports the name of the place).
 | property <br /> <required-tag>Required</required-tag> | string | Property expression that represents the relation of the given nodes to the queried entities. Since we are resolving to DCID, note that this should always end with `->dcid` |
 

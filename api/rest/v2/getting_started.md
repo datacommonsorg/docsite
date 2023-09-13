@@ -87,9 +87,8 @@ Most requests require the [DCID](/glossary.html#dcid) of the entity or variable 
 
 Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
-### Authentication
-
 {: #authentication}
+### Authentication
 
 <div markdown="span" class="alert alert-danger" role="alert">
    <span class="material-icons exclamation-icon">priority_high</span><b>IMPORTANT:</b><br />
@@ -140,8 +139,8 @@ We've provided a trial API key for general public use. This key will let you try
 <b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
 [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. We'll be happy to hear from you!
 
-### Pagination
 {: #pagination}
+### Pagination
 
 When the response to a request is too long, the returned payload is
 **paginated**. Only a subset of the response is returned, along with a long string

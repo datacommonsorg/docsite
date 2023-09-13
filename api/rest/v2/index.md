@@ -19,7 +19,7 @@ much more.
 
 ## What's new in V2
 
-The V2 API collapses functionality from V1 into a smaller number of endpoints. We do this by introducing a syntax for "Relation Expressions", [described below](#relation-expressions). Each API endpoint can also handle both single and bulk requests.
+The V2 API collapses functionality from [V1 API](/api/rest/v1/) into a smaller number of endpoints. We do this by introducing a syntax for "Relation Expressions", [described below](#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
 ## Getting Started
 
