@@ -153,7 +153,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Q30&property=<-wikidataId->dcid'
 ```
 {: .example-box-content .scroll}
@@ -193,7 +193,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
 ```
 {: .example-box-content .scroll}
@@ -276,7 +276,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid
 ```
 {: .example-box-content .scroll}
@@ -317,7 +317,7 @@ Request:
 {: .example-box-title}
 
 ```bash
-$ curl --request GET --url \
+curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description{typeOf:State}->dcid
 ```
 {: .example-box-content .scroll}
