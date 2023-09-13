@@ -15,4 +15,4 @@ allows users to explore the structure of the graph, integrate statistics from
 the graph into data analysis applications and much more. Please see the
 [overview](/api) for more details on the design and structure of the API.
 
-Please see the [V2 REST API](/api/rest/v2/) for the latest version of the REST API.
+Please see the [V2 REST API](/api/rest/v2) for the latest version of the REST API.

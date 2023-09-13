@@ -18,7 +18,7 @@ knowledge graph. This package allows users to explore the structure of the
 graph, integrate statistics from the graph into data analysis applications and
 much more.
 
-Please see the [V2 REST API](/api/rest/v2/) for the latest version of the REST API.
+Please see the [V2 REST API](/api/rest/v2) for the latest version of the REST API.
 
 ## Getting Started
 
