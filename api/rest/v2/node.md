@@ -77,7 +77,7 @@ JSON Data:
 
 | Name                                                  | Type   | Description                                                                                                                                                     |
 | ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
 | property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see Data Commons REST (v2) API Overview.                                |
 {: .doc-table }
