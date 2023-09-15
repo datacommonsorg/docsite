@@ -3,7 +3,6 @@ layout: default
 title: API
 nav_order: 20
 has_children: true
-open: true
 ---
 # Overview
 
