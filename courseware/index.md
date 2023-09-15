@@ -3,7 +3,6 @@ layout: default
 title: Courseware
 nav_order: 60
 has_children: true
-open: true
 ---
 
 # Courseware
