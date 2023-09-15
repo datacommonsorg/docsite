@@ -31,6 +31,11 @@ Israel Demographics, Health, Economy statistics for Israel at country, district 
 #### [Ireland Census](https://www.cso.ie/en/statistics/)
 Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
 
+### [Data One Org](https://data.one.org/)
+
+#### [One.org Debt](https://data.one.org/data-dives/)
+OneOrg principal, currency composition, interest and disbursed and outstanding of debt for different countries.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
@@ -156,6 +161,9 @@ Data Commons has imported 80th and 150th percentile median family income estimat
 
 ### [U.S. Department of Labor (DOL)](https://www.dol.gov/)
 
+#### [USA Minimum Wages](https://www.dol.gov/agencies/whd/state/minimum-wage/history)
+USA minimum wages at state level.
+
 #### [Weekly Claims and Extended Benefits Trigger Data](https://oui.doleta.gov/unemploy/DataDownloads.asp)
 Weekly new and continuing unemployment insurance claims for US states.
 
@@ -170,6 +178,9 @@ Data Commons includes all published statistics for 1-Month, 3-Month, 6-Month, 1-
 The data is in the public domain.
 
 
+#### [US Federal Reserve H.15 Interest Rates](https://www.federalreserve.gov/DataDownload/Choose.aspx?rel=H15)
+USA Federal Reserve H.15 Interest Rates
+
 ### [World Bank](https://www.worldbank.org/en/home)
 
 #### [World Bank Datasets](https://data.worldbank.org)
@@ -180,8 +191,3 @@ Data Commons includes variables related to demographics, energy, health, labor, 
 
 [Terms of Use](https://datacatalog.worldbank.org/public-licenses).
 
-
-### [World Trade Organization](https://www.wto.org/)
-
-#### [WTO Stats Dashboard](https://stats.wto.org/dashboard/tradeconnectivity_en.html)
-Trade statistics based on import data sourced from either UN Comtrade or the WTO Integrated Database (IDB).
