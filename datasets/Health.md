@@ -119,6 +119,9 @@ Demographics, Health, Agriculture and Education Statistics for Nigeria.
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
 
+#### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
+Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
+
 ### [Our World in Data](https://ourworldindata.org/)
 
 #### [COVID-19 Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations)
