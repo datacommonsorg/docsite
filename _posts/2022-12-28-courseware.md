@@ -8,15 +8,15 @@ title: New Courseware - Data Literacy with Data Commons
 
 Today, we are announcing the open and public availability of "Data Literacy with Data Commons" which comprises curriculum/course materials for instructors, students and other practitioners working on or helping others become _data literate_. This includes detailed modules with pedagogical narratives, explanations of key concepts, examples, and suggestions for exercises/projects focused on advancing the _consumption_, _understanding_ and _interpretation_ of data in the contemporary world. In our quest to expand the reach and utility of this material, we assume no background in computer science or programming, thereby removing a key obstacle to many such endeavors.
 
-This material can be accessed on our [courseware page](/courseware/data_literacy/course_materials.html) and it is open for anyone to take advantage of. If you use any of this material, we would love to hear from you! If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+This material can be accessed on our [courseware page](/courseware/data_literacy/course_materials/) and it is open for anyone to take advantage of. If you use any of this material, we would love to hear from you! If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
 ### What is it?
 
-A set of [modules](/courseware/data_literacy/course_materials.html#modules) focusing on several [key concepts](/courseware/data_literacy/topics.html#key-themes) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!
+A set of [modules](/courseware/data_literacy/course_materials/modules.html) focusing on several [key concepts](/courseware/data_literacy/course_materials/key_themes.html) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!
 
 ### Who is this for?
 
-Anyone and everyone. Instructors, students, aspiring data scientists and anyone interested in advancing their data comprehension and analysis skills without needing to code. For instructors, the [curriculum page](/courseware/data_literacy/course_materials.html) details the curriculum organization and how to find key concepts/ideas to use.
+Anyone and everyone. Instructors, students, aspiring data scientists and anyone interested in advancing their data comprehension and analysis skills without needing to code. For instructors, the [curriculum page](/courseware/data_literacy/course_materials/) details the curriculum organization and how to find key concepts/ideas to use.
 
 ### What's Different?
 
