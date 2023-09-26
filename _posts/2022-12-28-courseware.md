@@ -12,7 +12,7 @@ This material can be accessed on our [courseware page](/courseware/data_literacy
 
 ### What is it?
 
-A set of [modules](/courseware/data_literacy/course_materials/modules.html) focusing on several [key concepts](/courseware/data_literacy/course_materials/key-themes.html) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!
+A set of [modules](/courseware/data_literacy/course_materials/modules.html) focusing on several [key concepts](/courseware/data_literacy/course_materials/key_themes.html) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g. the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!
 
 ### Who is this for?
 
