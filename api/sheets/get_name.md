@@ -26,7 +26,9 @@ The `=DCGETNAME(*dcids*)` formula returns the names associated with given node D
 
 ## Returns {#returns}
 
-The formula returns the name associated with a specified DCID. See the [Examples](#examples) section below for examples of positive returns. If a DCID does not exist, the `=DCGETNAME(*dcids*)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
+The formula returns the name associated with a specified DCID. See the [Examples](#examples) section below for examples of positive return values.
+
+If a DCID does not exist, the `=DCGETNAME(*dcids*)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
 
 ![alt_text](images/sheets_get_return_error_1.png "image_tooltip")
 
