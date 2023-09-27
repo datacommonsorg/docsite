@@ -22,7 +22,7 @@ The `=DCGETNAME(*dcids*)` formula returns the names associated with given node D
 
 ## Required Arguments {#required-arguments}
 
-`dcids` - A list of DCID nodes to query
+`DCIDs` - A single or list of node DCIDs to query
 
 ## Returns {#returns}
 
