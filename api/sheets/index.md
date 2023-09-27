@@ -31,7 +31,7 @@ Note that none of the custom Data Commons Sheets functions (described below) wil
 
 ## Finding a Place’s DCID
 
-Data Commons’ Sheets add-on ships with the ability to look up a location’s [DCID](https://docs.datacommons.org/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
+Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](https://docs.datacommons.org/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
 
 1. Select the destination cell where you want to add a place’s [DCID](https://docs.datacommons.org/glossary.html).
 2. Click in the search box for the **Fill place dcids for selected cells** section.
