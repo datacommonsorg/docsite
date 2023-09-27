@@ -38,7 +38,7 @@ If you provide an empty cell for a DCID, the `=DCGETNAME(*dcids*)` formula retur
 
 ## Examples {#examples}
 
-This section contains examples of returning the names associated with given DCIDs.
+This section contains examples of returning the names associated with given node DCIDs.
 
 ### Example 1: Retrieve the Name of a Country by its DCID
 
