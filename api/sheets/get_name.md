@@ -8,7 +8,7 @@ grand_parent: API
 
 # Returning the Names Associated with a Node
 
-The `=DCGETNAME(*dcids*)` formula returns the names associated with given DCIDs to a cell or a column range of cells.
+The `=DCGETNAME(*dcids*)` formula returns the names associated with given node DCIDs to a cell or a column range of cells.
 
 > **NOTE:**
 > 
