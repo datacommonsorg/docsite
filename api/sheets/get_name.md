@@ -17,7 +17,7 @@ The `=DCGETNAME(*dcids*)` formula returns the names associated with given node D
 ## Formula {#formula}
 
 ```
-=DCGETNAME(*dcids*)
+=DCGETNAME(*DCIDs*)
 ```
 
 ## Required Arguments {#required-arguments}
