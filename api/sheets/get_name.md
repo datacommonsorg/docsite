@@ -63,5 +63,5 @@ To retrieve the names of a collection of cells using DCIDs, perform the followin
 
 > **IMPORTANT**
 > 
-> It’s best to minimize the number of function calls to `=DCGETNAME(*dcids*)` by using a single call to get the names for a column of nodes. This is because tyhe spreadsheet will make one call to a Google server _[per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization)_. If your sheet contains many separate calls to `=DCGETNAME(*dcids*)`, you can expect it to be slow and return errors.
+> It’s best to minimize the number of function calls to `=DCGETNAME(*dcids*)` by using a single call to get the names for a column of nodes. This is because the spreadsheet will make one call to a Google server _[per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization)_. If your sheet contains many separate calls to `=DCGETNAME(*dcids*)`, you can expect it to be slow and return errors.
 
