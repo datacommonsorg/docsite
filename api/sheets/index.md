@@ -20,7 +20,7 @@ Also read our [step-by-step guides](tutorials/) for more examples.
 
 Install and enable the Sheets add-on from Google Workspace Marketplace, as follows:
 
-1. Install the Sheets add-on by clicking **[Google Workspace Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575)** (https://gsuite.google.com/marketplace/app/data_commons/454343067575).
+1. Install the Sheets add-on by clicking **[Google Workspace Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575)** .
 2. Enable the Sheets add-on by clicking the Google Sheets **Extensions** menu, pointing to **Data Commons**, and then by clicking **Fill place dcids**.
 3. Use the resulting sidebar that appears on the right side of the page to start [finding DCIDs](https://docs.datacommons.org/api/sheets/get_name.html) in the United States. You can close and reopen the sidebar at any time.
 
