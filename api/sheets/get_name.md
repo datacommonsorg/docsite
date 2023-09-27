@@ -28,11 +28,11 @@ The `=DCGETNAME(*dcids*)` formula returns the names associated with given DCIDs 
 
 The formula returns the name associated with a specified DCID. See the [Examples](#examples) section below for examples of positive returns. If a DCID does not exist, the `=DCGETNAME(*dcids*)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
 
-![alt_text](images/get_return_error_1.png "image_tooltip")
+![alt_text](images/sheets_get_return_error_1.png "image_tooltip")
 
 If you provide an empty cell for a DCID, the `=DCGETNAME(*dcids*)` formula returns a value of #ERROR!, as shown show in the following image:
 
-![alt_text](images/get_return_error_2.png "image_tooltip")
+![alt_text](images/sheets_get_return_error_2.png "image_tooltip")
 
 ## Examples {#examples}
 
@@ -47,7 +47,7 @@ To retrieve the name of a country by its DCID, perform the following steps:
 3. Move to the cell where you want to retrieve the country name.
 4. Enter the formula **`=DCGETNAME(A1)`** to retrieve the country name and press **Enter**. The French spelling of Ivory Coast (Côte d'Ivoire) populates the cell.
 
-![alt_text](images/get_name_example_1.png "image_tooltip")
+![alt_text](images/sheets_get_name_example_1.png "image_tooltip")
 
 ### Example 2: Retrieve the Names of a Collection of Cells
 
@@ -57,7 +57,7 @@ To retrieve the names of a collection of cells using DCIDs, perform the followin
 2. Place your cursor in cell B1 and type the following formula: **`=DCGETNAME`**.
 3. Press **Enter** and the names of the four African nations populates column B.
 
-![alt_text](images/get_name_example_2.png "image_tooltip")
+![alt_text](images/sheets_get_name_example_2.png "image_tooltip")
 
 > **IMPORTANT**
 > 
