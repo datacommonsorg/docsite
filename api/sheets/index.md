@@ -8,50 +8,75 @@ has_children: true
 
 # Data Commons Sheets API
 
-The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets
-users to import data from the Data Commons knowledge graph. The add-on provides an
-interface for finding a location's [DCID](/glossary.html), as well as some custom functions for
-importing data to a spreadsheet.
+The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets users to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html), and some custom functions for importing data into a spreadsheet.
+
+> **NOTE:**
+> 
+> For more information on DCIDs, refer to [Unique Identifiers (dcid)](https://docs.datacommons.org/bigquery/unique_identifiers.html).
 
 Also read our [step-by-step guides](tutorials/) for more examples.
 
-## Getting started
+## Installing and Enabling the Sheets Add-On
 
-Install the add-on from [G Suite Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575). To enable the add-on in a document, click "Add-ons > Data Commons > Fill place dcids". You may use the resulting sidebar to start [finding dcids](/api/sheets/get_dcid.html) in the United States, or close it and reopen it at any time. Note that none of the custom functions will work in a given document until you have enabled the add-on by choosing "Fill place dcids".
+Install and enable the Sheets add-on from Google Workspace Marketplace, as follows:
 
-![](/assets/images/sheets/sheets_menu_bar.png)
+1. Install the Sheets add-on by clicking **[Google Workspace Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575)** (https://gsuite.google.com/marketplace/app/data_commons/454343067575).
+2. Enable the Sheets add-on by clicking the Google Sheets **Extensions** menu, pointing to **Data Commons**, and then by clicking **Fill place dcids**.
+3. Use the resulting sidebar that appears on the right side of the page to start [finding DCIDs](https://docs.datacommons.org/api/sheets/get_name.html) in the United States. You can close and reopen the sidebar at any time.
 
-## Finding a place's DCID
+![](/assets/images/sheets/dc_sheets_menu.png)
+Note that none of the custom Data Commons Sheets functions (described below) will work in a given document until you have enabled the add-on by opening the **Fill place dcids** sidebar.
 
-Data Commons' Sheets add-on ships with the ability to look up a location's [DCID](/glossary.html), or unique Data Commons identifier, within the application. To use this feature, select the final destination cell of the place [DCID](/glossary.html). Go to the Sheets menu bar, and click:
 
-**"Add-ons > Data Commons > Fill place dcids"**
 
-![](/assets/images/sheets/sheets_menu_bar.png)
+## Finding a Place’s DCID
 
-A sidebar will appear on the right of the sheet, with a search bar where you can start typing the name of the place you want. From the drop down menu, select the place you want, and its [DCID](/glossary.html) will appear in the cell that you selected.
+Data Commons’ Sheets add-on ships with the ability to look up a location’s [DCID](https://docs.datacommons.org/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
 
-![](/assets/images/sheets/sheets_search_box.png)
+1. Select the destination cell where you want to add a place’s [DCID](https://docs.datacommons.org/glossary.html).
+2. Click in the search box for the **Fill place dcids for selected cells** section.
+3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its [DCID](https://docs.datacommons.org/glossary.html) appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
+   ![](/assets/images/sheets/finding_dcid.png)
 
 Note that this feature only supports places in the United States.
 
-## Sorting your results
+## Introduction to the Sheets API Custom Functions
 
-<p>To sort columns of data from the API, we suggest using the "filter views" Google Sheet feature.
+The Data Commons Sheets API includes the five formulas listed in the following table. Click the links in the table for detailed information on each formula.
 
-<p>Please check the following video for a complete example:</p>
+| **Formula**                                                                                  | **Description**                           |
+|----------------------------------------------------------------------------------------------|-------------------------------------------|
+| [=DCGETNAME(_dcids_)](https://docs.datacommons.org/api/sheets/get_name.html)                 | Returns the names associated with a DCID. |
+| [=DCPLACESIN(_dcids_)](https://docs.datacommons.org/api/sheets/places_in.html)               | Retrieves child nodes                     |
+| [=DCGET(_dcids_)](https://docs.datacommons.org/api/sheets/get_variable.html)                 | Returns statistical variables.            |
+| [=DCPROPERTY(_dcids_)](https://docs.datacommons.org/api/sheets/get_property.html)            | Retrieves node property values.           |
+| [=DCCOHORTMEMBERS(_dcids_)](https://docs.datacommons.org/api/sheets/get_cohort_members.html) | Gets the cohort members of a node.        |
 
-<div>
+See the links in the preceding table to subsequent pages in this section for detailed descriptions of each API.
+
+## Sorting your Results
+
+To sort columns of data from the API, consider using Google Sheets “filter views” feature, which allows you to alphabetically and numerically sort and filter data
+
+Take a look at the following video for a complete example:<div>
+
 <video width="960" height="520" controls>
   <source src="/assets/video/sort.webm" type="video/webm">
 Your browser does not support the video tag.
 </video>
 </div>
+The preceding video performs the following steps in a blank Sheets document:
 
-<p>To summarize, the steps are:</p>
+1. Returns a list of DCIDs in column A that represent counties in California, using the formula **<code>={"Place";DCPLACESIN(geoId/06", "County"}</code></strong>.
+2. Uses the DCIDs in column A to fill in the names of each county in column B using the <strong><code>=DCGETNAME(A2)</code></strong> formula.
+3. Retrieves the population of the county in column C using the DCIDs in column A using the <strong><code>=DCGET(A2, "Count_Person")</code></strong> formula.
+4. Highlights the entire sheet and click <strong>Data</strong> menu, <strong>Filter views</strong>, then <strong>Create new filter</strong>, or click the <strong>Create a filter</strong> icon on the toolbar.
+5. Next, the filter is sorted by the <strong>Population</strong> column from <strong>A-Z</strong> and then from <strong>Z-A</strong>. The same sorts are then performed on the <strong>Name</strong> column.
 
-<ul>
-<li>Populate data columns with DataCommons Sheets API</li>
-<li>Turn on filter views (Data > Filter views).</li>
-<li>Click the reverse triangle on each column to sort by that column (and exclude header row).</li>
-</ul>
+To summarize, the steps for sorting Data Commons results with Google Sheets filter view feature are:
+
+1. Populate the data columns with Data Commons Sheets API formulas.
+2. Turn on filter views by clicking the **Data** menu**,** **Filter views, then Create new filter view**, or by clicking the **Create a filter** icon on the toolbar
+3. Click the reverse triangle on each column to sort,  excluding the header row.
+   
+
