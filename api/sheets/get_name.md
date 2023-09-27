@@ -6,7 +6,7 @@ parent: Google Sheets
 grand_parent: API
 ---
 
-# Returning the Names Associated with a DCID
+# Returning the Names Associated with a Node
 
 The `=DCGETNAME(*dcids*)` formula returns the names associated with given DCIDs to a cell or a column range of cells.
 
