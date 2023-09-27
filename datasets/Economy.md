@@ -16,10 +16,25 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
+
+#### [Brazil Bank of Statistical Tables](https://sidra.ibge.gov.br/home/pnadct)
+Brazil Census from Bank of Statistical Variables.
+
 ### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
 
 #### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
 Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
+### [Data One Org](https://data.one.org/)
+
+#### [One.org Debt](https://data.one.org/data-dives/)
+OneOrg principal, currency composition, interest and disbursed and outstanding of debt for different countries.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -49,6 +64,11 @@ Wage and salary data for Indian states.
 
 #### [Mexico Census](https://en.www.inegi.org.mx/temas/)
 Population Census and Statistics for Mexico at Country and State levels.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
+India poverty statistics - percentage of people below poverty line.
 
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
@@ -141,6 +161,9 @@ Data Commons has imported 80th and 150th percentile median family income estimat
 
 ### [U.S. Department of Labor (DOL)](https://www.dol.gov/)
 
+#### [USA Minimum Wages](https://www.dol.gov/agencies/whd/state/minimum-wage/history)
+USA minimum wages at state level.
+
 #### [Weekly Claims and Extended Benefits Trigger Data](https://oui.doleta.gov/unemploy/DataDownloads.asp)
 Weekly new and continuing unemployment insurance claims for US states.
 
@@ -155,7 +178,13 @@ Data Commons includes all published statistics for 1-Month, 3-Month, 6-Month, 1-
 The data is in the public domain.
 
 
+#### [US Federal Reserve H.15 Interest Rates](https://www.federalreserve.gov/DataDownload/Choose.aspx?rel=H15)
+USA Federal Reserve H.15 Interest Rates
+
 ### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.

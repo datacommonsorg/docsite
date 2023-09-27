@@ -21,6 +21,11 @@ Australia Demographics, Health, Economy statistics at country,state,territories 
 #### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
 Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
 
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
 ### [City Controller, City of Los Angeles](https://controller.lacity.gov/)
 
 #### [Food Resources in California](https://controllerdata.lacity.org/dataset/Food-Resources-in-California/v2mg-qsxf/data)
@@ -45,6 +50,11 @@ Data is made available under the [Dartmouth Atlas Project Terms of Use](https://
 DataMeet provides cleaned datasets relating to COVID-19 in India, sourced from various government websites. ([Terms of Use](http://projects.datameet.org/covid19/contributing/).)
 
 
+### [Department of Statistics Singapore](https://www.singstat.gov.sg/)
+
+#### [Singapore Census](https://tablebuilder.singstat.gov.sg/statistical-tables/downloadMultiple/zX5lZdqFrk-29wjZN4FFXw)
+Singapore Demographics and Health statistics for Singapore at country.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [EuroStat Health](https://ec.europa.eu/eurostat/web/health/data/database)
@@ -60,6 +70,11 @@ Health statistics measure both objective and subjective aspects of people's heal
 
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
+
+### [Feeding America](https://www.feedingamerica.org/)
+
+#### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
+Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
 
 ### [Google](https://www.google.com/)
 
@@ -104,6 +119,9 @@ Demographics, Health, Agriculture and Education Statistics for Nigeria.
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
 
+#### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
+Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
+
 ### [Our World in Data](https://ourworldindata.org/)
 
 #### [COVID-19 Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations)
@@ -122,6 +140,11 @@ Japan Demographics, Economy, Health, Education data from Portal Site of Official
 Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
+
+### [Statistics of New Zealand](https://www.stats.govt.nz/)
+
+#### [New Zealand Census](https://www.stats.govt.nz/topics/population)
+New Zealand Demographics, statistics for New Zealand at country, district and city level.
 
 ### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
 

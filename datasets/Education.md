@@ -63,6 +63,9 @@ Demographics, Health, Agriculture and Education Statistics for Nigeria.
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
 
+#### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
+Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
+
 ### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
 
 #### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
@@ -93,6 +96,9 @@ The National Center for Education Statistics collaborates with the US Census Bur
 
 ### [U.S. National Center for Education Statistics](https://nces.ed.gov/)
 
+#### [National Center for Education Statistics](https://nces.ed.gov/)
+NCES Collects, collates, analyzes, and report full and complete statistics on the condition of education in the United States and other Nations
+
 #### [Nations Report Card](https://www.nationsreportcard.gov/ndecore)
 National educational performance - Assessment score data across different grades, subjects and student categories(Like race, disability etc).
 
@@ -110,3 +116,10 @@ General descriptive information such as name, address, and phone number; select 
 
 #### [National Center for Science and Engineering Statistics](https://ncses.nsf.gov/)
 National Center for Science and Engineering Statistics provide data on the status of the science and engineering enterprise in the U.S. and other countries.
+
+### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
+[Terms of Use](https://datacatalog.worldbank.org/public-licenses).
+

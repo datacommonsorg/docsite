@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Node
-nav_order: 0
+nav_order: 1
 parent: REST (v2)
 grand_parent: API
-published: false
+published: true
 permalink: /api/rest/v2/node
 ---
 
@@ -24,13 +24,17 @@ property. The name of the property is label, while the target node is a value of
 the property. This endpoint returns the property labels and values that are
 connected to the queried node.
 
-The REST (v2) API introduces relation expressions in the API syntax to represent
+The REST (v2) API introduces [relation
+expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
 neighboring nodes, and to support chaining and filtering. For more information
-see Data Commons REST (v2) API Overview.
+see [Data Commons REST (v2) API Overview](/api/rest/v2/#relation-expressions).
 
-_Note: For filtering, this API currently only supports the `containedInPlace`
-property to fetch multiple `Place` nodes. Support for more properties and node
-types will be added in the future._
+<div markdown="span" class="alert alert-info" role="alert">
+  <span class="material-icons md-16">info </span><b>Note:</b><br />
+  For filtering, this API currently only supports the `containedInPlace`
+  property to fetch multiple `Place` nodes. Support for more properties and node
+  types will be added in the future.
+</div>
 
 ## Request
 
@@ -73,7 +77,7 @@ JSON Data:
 
 | Name                                                  | Type   | Description                                                                                                                                                     |
 | ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
 | property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see Data Commons REST (v2) API Overview.                                |
 {: .doc-table }
@@ -204,6 +208,8 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+
+{: #multiple-properties}
 ### Example 3: Get Multiple Property Values for Multiple Nodes
 
 Get `name`, `latitude`, and `longitude` value for several nodes: `geoId/06085`
@@ -288,9 +294,11 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 4: "In" Triples for a Node
 
-Get the `in` triples for node `PowerPlant` with property `<-*`.
+{: #wildcard}
+### Example 4: All "In" Triples for a Node
+
+Get all the `in` triples for node `PowerPlant` with property `<-*`.
 
 Parameters:
 {: .example-box-title}

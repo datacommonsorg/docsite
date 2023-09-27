@@ -6,9 +6,10 @@ parent: API
 has_children: true
 published: true
 permalink: /api/rest/v1
+nav_exclude: true
 ---
 
-# Data Commons REST API
+# Data Commons V1 REST API
 
 The Data Commons REST API is a
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
@@ -16,6 +17,8 @@ that enables developers to programmatically access data in the Data Commons
 knowledge graph. This package allows users to explore the structure of the
 graph, integrate statistics from the graph into data analysis applications and
 much more.
+
+Please see the [V2 REST API](/api/rest/v2) for the latest version of the REST API.
 
 ## Getting Started
 
