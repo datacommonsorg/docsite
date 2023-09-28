@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Data Sources
-nav_order: 110
+nav_order: 9
 has_children: true
-has_toc: false
 ---
 
 # Data Sources

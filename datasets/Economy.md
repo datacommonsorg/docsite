@@ -181,6 +181,11 @@ The data is in the public domain.
 #### [US Federal Reserve H.15 Interest Rates](https://www.federalreserve.gov/DataDownload/Choose.aspx?rel=H15)
 USA Federal Reserve H.15 Interest Rates
 
+### [U.S. Securities and Exchange Commission](https://www.sec.gov/)
+
+#### [US SEC EDGAR](https://www.sec.gov/os/accessing-edgar-data)
+All companies, foreign and domestic, are required to file registration statements, periodic reports, and other forms electronically through the U.S. Securities and Exchange Commission's EDGAR (Electronic Data Gathering, Analysis, and Retrieval) system. Anyone can access and download this information for free or query it through a variety of EDGAR public searches.
+
 ### [World Bank](https://www.worldbank.org/en/home)
 
 #### [World Bank Datasets](https://data.worldbank.org)
