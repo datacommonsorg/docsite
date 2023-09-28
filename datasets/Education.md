@@ -46,6 +46,13 @@ Data on schools, such as dropout rate and access to computers and toilets, in In
 #### [Unified District Information System for Education (UDISE)](https://udiseplus.gov.in/#/home)
 The Unified District Information System for Education (UDISE), by the Ministry of Education, India, collects and provides data related to schools and their resources.
 
+### [India National Sample Survey](https://mospi.gov.in/web/nss)
+The India National Sample Survey (NSS) Organizes and conducts large scale all-India sample surveys on different population groups in diverse socio economic areas, such as employment, consumer expenditure, housing conditions and environment, literacy levels, health, nutrition, family welfare, etc.
+
+#### [India Literacy](https://www.mospi.gov.in/sites/default/files/publication_reports/Report_585_75th_round_Education_final_1507_0.pdf)
+Data covering the literacy status and rate for states in India.
+[Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
+
 ### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
 
 #### [Mexico Census](https://en.www.inegi.org.mx/temas/)
