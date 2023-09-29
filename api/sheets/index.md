@@ -46,7 +46,7 @@ The Data Commons Sheets API includes the five formulas listed in the following t
 
 | **Formula**                                                                                  | **Description**                           |
 |----------------------------------------------------------------------------------------------|-------------------------------------------|
-| [=DCGETNAME(_dcids_)](https://docs.datacommons.org/api/sheets/get_name.html)                 | Returns the names associated with a DCID. |
+| [=DCGETNAME(_DCIDs_)](https://docs.datacommons.org/api/sheets/get_name.html)                 | Returns the names associated with a DCID. |
 | [=DCPLACESIN(_dcids_)](https://docs.datacommons.org/api/sheets/places_in.html)               | Retrieves child nodes                     |
 | [=DCGET(_dcids_)](https://docs.datacommons.org/api/sheets/get_variable.html)                 | Returns statistical variables.            |
 | [=DCPROPERTY(_dcids_)](https://docs.datacommons.org/api/sheets/get_property.html)            | Retrieves node property values.           |
