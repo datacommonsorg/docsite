@@ -56,7 +56,7 @@ See the links in the preceding table to subsequent pages in this section for det
 
 ## Sorting your Results
 
-To sort columns of data from the API, consider using Google Sheets “filter views” feature, which allows you to alphabetically and numerically sort and filter data
+To sort columns of data from the API, use the Google Sheets “filter views” feature, which allows you to alphabetically and numerically sort and filter data
 
 Take a look at the following video for a complete example:<div>
 
