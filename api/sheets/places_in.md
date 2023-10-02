@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Places within a Place
+title: Retrieving Child Nodes
 nav_order: 2
 parent: Google Sheets
 grand_parent: API
@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieving Child Nodes
 
-The `=DCPLACESIN(*dcids*, *placeType*) formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. It only returns children with a place type that matches the <code>placeType</code> parameter.
+The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. It only returns children with a place type that matches the <code>placeType</code> parameter.
 
 > **Note**:
 > Be sure to follow the instructions for Installing and Enabling the Sheets Add-On before using this formula.
@@ -26,13 +26,13 @@ The `=DCPLACESIN(*dcids*, *placeType*) formula returns lists of child places fro
 
 ## Examples {#examples}
 
-This section contains examples of using the `=DCPLACESIN(*dcids*, *placeType*)` formula to return lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so.
+This section contains examples of using the `=DCPLACESIN(dcids, placeType)` formula to return lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so.
 
 ### Example 1: Retrieve a List of Counties in Delaware
 
-![alt_text](../../assets/images/sheets/sheets_counties_delaware.png "image_tooltip")
+![alt_text](/assets/images/sheets/sheets_counties_delaware.png)
 
 ### Example 2: Retrieve Congressional Districts in Alaska and Hawaii
 
-![alt_text](../../assets/images/sheets/sheets_districts_alaska_hawaii.png "image_tooltip")
+![alt_text](/assets/images/sheets/sheets_districts_alaska_hawaii.png)
 
