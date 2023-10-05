@@ -12,7 +12,7 @@ The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sh
 
 > **NOTE:**
 > 
-> For more information on DCIDs, refer to [Unique Identifiers (dcid)](https://docs.datacommons.org/bigquery/unique_identifiers.html).
+> For more information on DCIDs, refer to [Unique Identifiers (dcid)](/bigquery/unique_identifiers.html).
 
 Also read our [step-by-step guides](tutorials/) for more examples.
 
@@ -22,9 +22,9 @@ Install and enable the Sheets add-on from Google Workspace Marketplace, as follo
 
 1. Install the Sheets add-on by clicking **[Google Workspace Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575)** .
 2. Enable the Sheets add-on by clicking the Google Sheets **Extensions** menu, pointing to **Data Commons**, and then by clicking **Fill place dcids**.
-3. Use the resulting sidebar that appears on the right side of the page to start [finding DCIDs](https://docs.datacommons.org/api/sheets/get_name.html) in the United States. You can close and reopen the sidebar at any time.
+3. Use the resulting sidebar that appears on the right side of the page to start [finding DCIDs](/api/sheets/get_name.html) in the United States. You can close and reopen the sidebar at any time.
 
-![](../../assets/images/sheets/sheets_menu_bar.png)
+![](/assets/images/sheets/sheets_menu_bar.png)
 
 > **NOTE:**
 > 
@@ -32,11 +32,11 @@ Install and enable the Sheets add-on from Google Workspace Marketplace, as follo
 
 ## Finding a Place’s DCID
 
-Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](https://docs.datacommons.org/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
+Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
 
-1. Select the destination cell where you want to add a place’s [DCID](https://docs.datacommons.org/glossary.html).
+1. Select the destination cell where you want to add a place’s [DCID](/glossary.html).
 2. Click in the search box for the **Fill place dcids for selected cells** section.
-3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its [DCID](https://docs.datacommons.org/glossary.html) appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
+3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its [DCID](/glossary.html) appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
    ![](/assets/images/sheets/sheets_search_box.png)
 
 Note that this feature only supports places in the United States.
@@ -47,17 +47,17 @@ The Data Commons Sheets API includes the five formulas listed in the following t
 
 | **Formula**                                                                                  | **Description**                           |
 |----------------------------------------------------------------------------------------------|-------------------------------------------|
-| [=DCGETNAME(_dcids_)](https://docs.datacommons.org/api/sheets/get_name.html)                 | Returns the names associated with a DCID. |
-| [=DCPLACESIN(_dcids_)](https://docs.datacommons.org/api/sheets/places_in.html)               | Retrieves child nodes                     |
-| [=DCGET(_dcids_)](https://docs.datacommons.org/api/sheets/get_variable.html)                 | Returns statistical variables.            |
-| [=DCPROPERTY(_dcids_)](https://docs.datacommons.org/api/sheets/get_property.html)            | Retrieves node property values.           |
-| [=DCCOHORTMEMBERS(_dcids_)](https://docs.datacommons.org/api/sheets/get_cohort_members.html) | Gets the cohort members of a node.        |
+| [=DCGETNAME(dcids)](/api/sheets/get_name.html)                 | Returns the names associated with a DCID. |
+| [=DCPLACESIN(dcids)](/api/sheets/places_in.html)               | Retrieves child nodes                     |
+| [=DCGET(dcids)](/api/sheets/get_variable.html)                 | Returns statistical variables.            |
+| [=DCPROPERTY(dcids)](/api/sheets/get_property.html)            | Retrieves node property values.           |
+| [=DCCOHORTMEMBERS(dcids)](/api/sheets/get_cohort_members.html) | Gets the cohort members of a node.        |
 
 See the links in the preceding table to subsequent pages in this section for detailed descriptions of each API.
 
 ## Sorting your Results
 
-To sort columns of data from the API, consider using Google Sheets “filter views” feature, which allows you to alphabetically and numerically sort and filter data
+To sort columns of data from the API, use Google Sheets “filter views” feature, which allows you to alphabetically and numerically sort and filter data
 
 Take a look at the following video for a complete example:
 
@@ -79,6 +79,6 @@ The preceding video performs the following steps in a blank Sheets document:
 To summarize, the steps for sorting Data Commons results with Google Sheets filter view feature are:
 
 1. Populate the data columns with Data Commons Sheets API formulas.
-2. Turn on filter views by clicking the **Data** menu**,** **Filter views, then Create new filter view**, or by clicking the **Create a filter** icon on the toolbar
+2. Turn on filter views by clicking the **Data** menu**,** **Filter views**, then **Create new filter view**, or by clicking the **Create a filter** icon on the toolbar
 3. Click the reverse triangle on each column to sort,  excluding the header row.
 
