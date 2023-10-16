@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Returning Statistical Variables
+title: Returning Statistical Variable Values
 nav_order: 3
 parent: Google Sheets
 grand_parent: API
 ---
 
-# Returning Statistical Variables
+# Getting the Value of a Statistical Variable at a Given Place and Time
 
 The`=DCGET(dcids, variable, date)` formula returns the measurements of a specified [statistical variable](https://docs.datacommons.org/glossary.html#variable) at a given place and optional time based on a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html). A complete list of variables can be found in the [graph browser](https://datacommons.org/browser/StatisticalVariable).
 
 > **Note**:
-> Be sure to follow the instructions for Installing and Enabling the Sheets Add-On before using this formula.
+> Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
 ## Formula
 
@@ -19,9 +19,9 @@ The`=DCGET(dcids, variable, date)` formula returns the measurements of a specifi
 
 ## Required Arguments
 
-● [dcids](https://docs.datacommons.org/glossary.html): A list of `Place` nodes, identified by their DCIDs.
+* [dcids](https://docs.datacommons.org/glossary.html): A list of `Place` nodes, identified by their DCIDs.
 
-● `variable` - The [statistical variable](https://docs.datacommons.org/glossary.html#variable) whose measurements you want to query.
+* `variable` - The [statistical variable](/glossary.html#variable) whose measurements you want to query.
 
 ## Optional Arguments
 
@@ -36,7 +36,7 @@ The value of the variable at those places on the specified date or on the latest
 
 ## Examples
 
-This section contains examples of using the `=DCGET(dcids, variable, date)` formula to returns lists of [statistical variable](https://docs.datacommons.org/glossary.html#variable) such as "Count_Person" and "Median_Income_Person". A complete list of variables can be found in the [graph browser](https://datacommons.org/browser/StatisticalVariable).
+This section contains examples of using the `=DCGET(dcids, variable, date)` formula to returns lists of [statistical variable](/glossary.html#variable) such as "Count_Person" and "Median_Income_Person". A complete list of variables can be found in the [graph browser](/browser/StatisticalVariable).
 
 ### Get the Total Population of Hawaii in 2017
 
@@ -56,11 +56,11 @@ The following sheet returns the population of the five Hawaii counties in 2017. 
 =DCGET(B2:B6, "Count_Person", 2017)
 ```
 
-![](../../assets/images/sheets/sheets_get_variable_input.png)
+![Getting the population of multiple places with a single call](/assets/images/sheets/sheets_get_variable_input.png)
 
-Here is the output after running the `=DCGET(B2:B6, "Count_Person", 2017)`:
+Here is the output after running the `=DCGET(B2:B6, "Count_Person", 2017)` formula:
 
-![](../../assets/images/sheets/sheets_get_variable_output.png)
+![Output after running the `=DCGET(B2:B6, "Count_Person", 2017)` formula](/assets/images/sheets/sheets_get_variable_output.png)
 
 ### Get the Median Income of a Single Place in Multiple Years
 
@@ -70,11 +70,11 @@ The following sheet demonstrates how to retrieve the median income from a single
 =DCGET(B2, "Median_Income_Person", C1:E1)
 ```
 
-![](../../assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
+![Getting the median income of a single place in multiple years](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
 
 Here is the output after running the `=DCGET(B2, "Median_Income_Person", C1:E1)` formula:
 
-![](../../assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
+![Output after running the `=DCGET(B2, "Median_Income_Person", C1:E1)` formula](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
 
 ### Get the Median Age of Multiple Places in Multiple Years
 
@@ -84,11 +84,11 @@ The following sheet demonstrates how to retrieve the median age of multiple plac
 =DCGET(C2:C6, "Median_Age_Person", F1:H1)
 ```
 
-![](../../assets/images/sheets/sheets_get_variable_places_column_years_row_input.png)
+![Getting the median age of multiple places in multiple years](/assets/images/sheets/sheets_get_variable_places_column_years_row_input.png)
 
-Here is the output after running the `=DCGET(B2:B6, "Median_Income_Person", E1:G1)` formula:
+Here is the output after running the `=DCGET(C2:C6, "Median_Age_Person", F1:H1)` formula:
 
-![](../../assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
+![Output after running the `=DCGET(C2:C6, "Median_Age_Person", F1:H1)` formula](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
 
 Here's another example, but this time with places as a row and dates as a column using the formula:
 
@@ -96,11 +96,11 @@ Here's another example, but this time with places as a row and dates as a column
 =DCGET(B3:F3, "Median_Age_Person", A5:A9)
 ```
 
-![](../../assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
+![Retrieving places as a row and dates as a column using the formula =DCGET(B3:F3, "Median_Age_Person", A5:A9)](/assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
 
 Here is the output after running the `=DCGET(B3:F3, "Median_Age_Person", A5:A9)` formula:
 
-![](../../assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
+![Output after running the `=DCGET(B3:F3, "Median_Age_Person", A5:A9)` formula](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
 
 ## Error Returns
 
@@ -111,9 +111,9 @@ The`=DCGET(dcids)` formula returns a blank value under the following circumstanc
 * You provide an invalidly formatted date
 
 For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")`:
-![](../../assets/images/sheets/sheets_get_variable_nonexistent_dcid.png)
+![No value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")` because the DCID does not exist](/assets/images/sheets/sheets_get_variable_nonexistent_dcid.png)
 
 If you fail to provide all required arguments, you will receive an error:
 
-![](../../assets/images/sheets/sheets_get_variable_incorrect_args.png)
+![Error returned if you fail to provide all required arguments](/assets/images/sheets/sheets_get_variable_incorrect_args.png)
 
