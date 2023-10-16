@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieving Places Contained Within Another Place
 
-The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. It only returns children with a place type that matches the <code>placeType</code> parameter.
+The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. It only returns children with a place type that matches the `placeType` parameter.
 
 > **Note**
 > 
@@ -27,7 +27,7 @@ The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a
 
 ## Returns
 
-Lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. It only returns children with a place type that matches the <code>placeType</code> parameter.
+Lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. Returns a list of child places of the specified place dcids, of the specified place type.
 
 > **Note**:
 > It’s best to minimize the number of function calls to `=DCPLACESIN(dcids, placeType)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains many thousands of separate calls to `=DCPLACESIN(dcids, placeType)` you can expect it to be slow and return with errors.
@@ -46,7 +46,7 @@ To retrieve a list of counties in Delaware, perform the following steps:
 4. Move to the cell C3 and enter the formula `=DCPLACESIN(A1, "County")` to retrieve the county names and press **Enter**. The DCIDs for the three Delaware counties populate column C.
 5. Retrieve the Delaware county names by entering the formula `=DCGETNAME(C1:C3)` into cell D1.
 
-![alt_text](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
+![Retrieving a List of Counties in Delaware](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
 
 ### Example 2: Retrieve Congressional Districts in Alaska and Hawaii
 
@@ -57,7 +57,7 @@ To retrieve the congressional districts in Alaska and Hawaii, perform the follow
 3. Retrieve the DCIDs for the congressional districts by enter `=DCPLACESIN(A1:A2, "CongressionalDistrict")` into cell C1.
 4. Finally, retrieve the names of the congressional districts by entering `=DCGETNAMES(C1:C3)` into cell D1.
 
-![alt_text](/assets/images/sheets/sheets_places_in_congressional_districts_ak_hi.png)
+![Retrieving Congressional Districts in Alaska and Hawaii](/assets/images/sheets/sheets_places_in_congressional_districts_ak_hi.png)
 
 ## Error Returns
 
@@ -72,14 +72,4 @@ If you provide an empty cell for a DCID, the `=DCPLACESIN(dcids, placeType)` for
 Finally, if you provide an invalid property to the `=DCPLACESIN(dcids, placeType)` formula, an error of #REF! is also returned, as follows:
 
 ![alt_text](/assets/images/sheets/sheets_places_in_bad_property.png)
-
-
-
-
-
-
-
-
-
-
 
