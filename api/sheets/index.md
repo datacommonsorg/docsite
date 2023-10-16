@@ -35,7 +35,7 @@ Install and enable the Sheets add-on from Google Workspace Marketplace, as follo
 Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
 
 1. Select the destination cell where you want to add a place’s [DCID](/glossary.html).
-2. Click in the search box for the **Fill place dcids for selected cells** section.
+2. Click in the search box for the **Fill place dcids for selected cells** section on the right side of the page to start finding DCIDs in the United States.
 3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its [DCID](/glossary.html) appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
    ![](/assets/images/sheets/sheets_search_box.png)
 
