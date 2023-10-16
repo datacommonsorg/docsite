@@ -46,7 +46,7 @@ To retrieve the name of a country by its DCID, perform the following steps:
 
 ![](/assets/images/sheets/sheets_get_name_cote_d_ivoire_cropped.png)
 
-### Example 2: Retrieve the Names of a Collection of Cells
+### Example 2: Retrieve the Names of a Collection of Cells Lines
 
 To retrieve the names of countries by a collection of cells, perform the following steps:
 
