@@ -24,7 +24,7 @@ Install and enable the Sheets add-on from Google Workspace Marketplace, as follo
 2. Enable the Sheets add-on by clicking the Google Sheets **Extensions** menu, pointing to **Data Commons**, and then by clicking **Fill place dcids**.
 3. Use the resulting sidebar that appears on the right side of the page to start [finding DCIDs](/api/sheets/get_name.html) in the United States. You can close and reopen the sidebar at any time.
 
-![](/assets/images/sheets/sheets_menu_bar.png)
+![Google Sheets menu bar](/assets/images/sheets/sheets_menu_bar.png)
 
 > **NOTE:**
 > 
@@ -37,7 +37,7 @@ Data Commons’ Sheets add-on provides the ability to look up a location’s [DC
 1. Select the destination cell where you want to add a place’s [DCID](/glossary.html).
 2. Click in the search box for the **Fill place dcids for selected cells** section on the right side of the page to start finding DCIDs in the United States.
 3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its [DCID](/glossary.html) appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
-   ![](/assets/images/sheets/sheets_search_box.png)
+   ![Google Sheets search box](/assets/images/sheets/sheets_search_box.png)
 
 Note that this feature only supports places in the United States.
 
