@@ -4,6 +4,7 @@ title: Web Components
 parent: API
 nav_order: 20
 has_children: true
+published: false
 ---
 # Data Commons Web Components
 

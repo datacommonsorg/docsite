@@ -4,7 +4,7 @@ title: Gauge Chart
 nav_order: 2
 parent: Web Components
 grand_parent: API
-published: true
+published: false
 permalink: /api/web_components/gauge
 ---
 

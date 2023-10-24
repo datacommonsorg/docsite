@@ -4,7 +4,7 @@ title: Line Chart
 nav_order: 4
 parent: Web Components
 grand_parent: API
-published: true
+published: false
 permalink: /api/web_components/line
 ---
 
