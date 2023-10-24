@@ -12,14 +12,17 @@ Embed [Data Commons](https://datacommons.org)
 [statistical variable](https://datacommons.org/tools/statvar) observation
 visualizations in your web application.
 
-<img src="/assets/images/web_components/all.png" style="width: 100%; max-width: 1024px;">
+<img
+  src="/assets/images/web_components/all.png"
+  style="width: 100%; max-width: 1024px;"
+/>
 
 ## Usage
 
 Include `datacommons.js` in your html's
-`<head>...</head>` tag. Then use Data Commons [web component](...)  tags (e.g. `datacommons-line`)
-component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) tags
-to add embedded data visualizations.
+`<head>...</head>` tag. Then use Data Commons
+[web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
+tags (e.g. `datacommons-line`) to add embedded data visualizations.
 
 Example:
 
@@ -38,7 +41,9 @@ Example:
 </html>
 ```
 
-[Playground](https://lit.dev/playground/#gist=c0c88276739f4f6061807cc943937a14) ([source](/assets/examples/web-components/line-chart.html))
+See a live version of this example you can play around with in
+[Playground](https://lit.dev/playground/#gist=c0c88276739f4f6061807cc943937a14)
+([source](/assets/examples/web-components/line-chart.html)).
 
 ## Components
 
@@ -52,36 +57,60 @@ Example:
 - [datacommons-scatter](/api/web_components/scatter)
 - [datacommons-slider](/api/web_components/slider)
 
-## Examples
+## Code Playground Examples
 
-- [Static page with all chart types playground](https://lit.dev/playground/#gist=822ce6018bb41113c866d703760c1def) ([source](/assets/examples/web-components/all-charts.html))
-- [Dynamically updating charts playground](https://lit.dev/playground/#gist=9e3ac88e162248f849dd276ff5895ad0) ([source](/assets/examples/web-components/dynamic-map.html))
+- [Static page with all chart types playground](https://lit.dev/playground/#gist=822ce6018bb41113c866d703760c1def)
+  ([source](/assets/examples/web-components/all-charts.html))
+- [Dynamically updating charts playground](https://lit.dev/playground/#gist=9e3ac88e162248f849dd276ff5895ad0)
+  ([source](/assets/examples/web-components/dynamic-map.html))
 
 ## Variables and places
 
-Data Commons web components visualize statistical variables about one or more places.
-Variables and places are identified by [Data Commons Identifiers](/glossary.html#dcid), or [DCID](/glossary.html#dcid)s.
+Data Commons web components visualize statistical variables about one or more
+places. Variables and places are identified by
+[Data Commons Identifiers](/glossary.html#dcid), or
+[DCID](/glossary.html#dcid)s.
 
 To find the [DCID](/glossary.html#dcid) of a place or variable:
 
-1. Browse all 175K+ variables with the [Data Commons Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+1. Browse all variables with the
+   [Data Commons Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
-2. Search for places and variables with the [Data Commons Search](https://datacommons.org/search) page.
+2. Search for places and variables with the
+   [Data Commons Search](https://datacommons.org/search) page.
 
 3. Use the [Data Commons Graph Browser](https://datacommons.org/browser) to
    understand the relationship between entities.
 
-> Example #1: Inspecting [Health / Health Insurance (Household) / No Health Insurance / Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance) shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the `United States` ([DCID](/glossary.html#dcid): `country/USA`) at `State`, `County`, and `City` levels.
+### Finding DCIDs Examples
+
+#### Example #1: Finding places available for a variable
+
+Inspecting
+[Health / Health Insurance (Household) / No Health Insurance / Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance)
+shows us that the statistical variable `Count_Household_NoHealthInsurance` is
+available in the `United States` ([DCID](/glossary.html#dcid): `country/USA`) at
+`State`, `County`, and `City` levels.
 
 <img src="/assets/images/web_components/stat-var-explorer.png" width="600"/>
 
-> Example #2 , the graph browser [country/USA](https://datacommons.org/browser/country/USA) page shows the [DCID](/glossary.html#dcid)s for all US states and territories.
+#### Example #2: Finding place DCIDs
+
+The graph browser [country/USA](https://datacommons.org/browser/country/USA)
+page shows the [DCID](/glossary.html#dcid)s for all US states and territories.
 
 <img src="/assets/images/web_components/graph-explorer.png" width="600"/>
 
 ## Styling
 
-Custom styles are supported through [CSS shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+Custom styles are supported through
+[CSS shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+
+<div markdown="span" class="alert alert-danger" role="alert">
+  <span class="material-icons exclamation-icon">priority_high</span>
+  <b>IMPORTANT:</b><br />
+  Escape forward slashes in `::part()` names, like in DCIDs.
+</div>
 
 | CSS `::part`                          | Description                                                                                                 | Components                 |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
@@ -102,8 +131,6 @@ Custom styles are supported through [CSS shadow parts](https://developer.mozilla
 | `y-axis-text`                         | Y-Axis label text                                                                                           | `bar`, `line`              |
 | `y-axis-tick`                         | Y-Axis tick mark                                                                                            | `bar`, `line`              |
 
-_\* Escape forward slashes in `::part()` names_
-
 Additionally, the following css variables are supported:
 
 | CSS variable                | Description                                                | Default            |
@@ -111,7 +138,11 @@ Additionally, the following css variables are supported:
 | `--dc-headings-font-family` | Font family for web component headings (`h1` through `h6`) | `Google Sans`      |
 | `--dc-font-family`          | Font family for web component body text                    | `Google Sans Text` |
 
-Example:
+### Styling Example
+
+See a live version of this example you can play around with in
+[Playground](https://lit.dev/playground/#gist=719f5d71c2823ac3e58f504cb6ceccd3)
+([source](/assets/examples/web-components/map-styles.html)).
 
 ```html
 <html>
@@ -161,8 +192,6 @@ Example:
   </body>
 </head>
 ```
-
-[Playground](https://lit.dev/playground/#gist=719f5d71c2823ac3e58f504cb6ceccd3) ([source](/assets/examples/web-components/map-styles.html))
 
 ## License
 
