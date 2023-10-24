@@ -9,9 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap" rel="stylesheet">
-  <script src="https://datacommons.org/datacommons.js"></script>
   <link href="/assets/css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/custom.css">
+  {% if page.url == "/api/web_components/" or page.parent == "Web Components" %}
+  <script src="https://datacommons.org/datacommons.js"></script>
+  {% endif %}
 </head>
 <body>
   <div id="main">
