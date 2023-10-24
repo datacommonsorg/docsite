@@ -24,7 +24,7 @@ Include `datacommons.js` in your html's
 [web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 tags (e.g. `datacommons-line`) to add embedded data visualizations.
 
-Example:
+For example, to embed a line chart:
 
 ```html
 <html>
