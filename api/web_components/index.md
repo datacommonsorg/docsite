@@ -16,7 +16,7 @@ visualizations in your web application.
 ## Usage
 
 Include `datacommons.js` in your html's
-`<head>...</head>` tag. Then use `datacommons-*` [web
+`<head>...</head>` tag. Then use Data Commons [web component](...)  tags (e.g. `datacommons-line`)
 component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) tags
 to add embedded data visualizations.
 
