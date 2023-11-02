@@ -46,15 +46,15 @@ To retrieve the name of a country by its DCID, perform the following steps:
 
 ![Retrieving the name of a country by its DCIC](/assets/images/sheets/sheets_get_name_cote_d_ivoire_cropped.png)
 
-### Example 2: Retrieve the Names of a Collection of Cells Lines
+### Example 2: Retrieve the Names of a Column of Countries
 
-To retrieve the names of countries by a collection of cells, perform the following steps:
+To retrieve the names of countries by a column of cells, perform the following steps:
 
 1. Enter into column A the DCIDs that are shown in the following image.
 2. In cell B1, enter the formula `=DCGETNAME(A1:A4)`.
 3. Press **Enter** and the names of the countries for each DCID populate in column B.
 
-![Retrieving the names of a collection of cell lines](/assets/images/sheets/sheets_get_name_cell_lines_cropped.png)
+![Retrieving the names of a column of cells](/assets/images/sheets/sheets_get_name_cell_lines_cropped.png)
 
 > **Note**:
 > 
