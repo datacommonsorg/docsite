@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Retrieving Places Contained Within Another Place
+title: Places Contained Within Another Place
 nav_order: 2
 parent: Google Sheets
 grand_parent: API
@@ -8,43 +8,43 @@ grand_parent: API
 
 # Retrieving Places Contained Within Another Place
 
-The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. It only returns children with a place type that matches the `placeType` parameter.
+The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html#dcid). It only returns children with a place type that matches the `placeType` parameter, such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on.
 
 > **Note**
-> 
+>
 > Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
-## Formula {#formula}
+## Formula
 
 ```
 =DCPLACESIN(dcids, placeType)
 ```
 
-## Required Arguments {#required-arguments}
+## Required Arguments
 
-* `dcids`: A list of (parent) `Place` nodes, identified by their DCIDs.
-* `placeType`: The type of the contained (child) `Place` nodes to filter by. For example,`City` and `County`are contained within `State`. For a full list of available types, see [the Data Commons graph browser entry for Place](https://datacommons.org/browser/Place).
+* `dcids`: A list of parent `Place` nodes, identified by their DCIDs.
+* `placeType`: The type of the contained child `Place` nodes to filter by. For example,`City` and `County`are contained within `State`. For a full list of available types, see [the Data Commons graph browser entry for Place](https://datacommons.org/browser/Place).
 
 ## Returns
 
-Lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on. Returns a list of child places of the specified place dcids, of the specified place type.
+Lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html#dcid). Returns a list of child places of the specified place DCIDs, of the specified place type.
 
 > **Note**:
-> It’s best to minimize the number of function calls to `=DCPLACESIN(dcids, placeType)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains many thousands of separate calls to `=DCPLACESIN(dcids, placeType)` you can expect it to be slow and return with errors.
+> It’s best to minimize the number of function calls to `=DCPLACESIN(dcids, placeType)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains many separate calls to `=DCPLACESIN(dcids, placeType)` you can expect it to be slow and return with errors.
 
 ## Examples
 
-This section contains examples of using the `=DCPLACESIN(dcids, placeType)` formula to return lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](/glossary.html), such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so.
+This section contains examples of using the `=DCPLACESIN(dcids, placeType)` formula.
 
 ### Example 1: Retrieve a List of Counties in Delaware
 
 To retrieve a list of counties in Delaware, perform the following steps:
 
-1. Place your cursor in the cell where you want to add the DCID for Delaware. In this case, cell A1.
+1. Place your cursor in the cell where you want to add the DCID for Delaware. In this case, cell A2.
 2. Enter the Delaware DCID of “geoId/10”.
-3. In cell B1, enter `DCGETNAME(A1)` to retrieve Delaware's name from the DCID in cell A1.
-4. Move to the cell C3 and enter the formula `=DCPLACESIN(A1, "County")` to retrieve the county names and press **Enter**. The DCIDs for the three Delaware counties populate column C.
-5. Retrieve the Delaware county names by entering the formula `=DCGETNAME(C1:C3)` into cell D1.
+3. (Optional) In cell B2, enter `DCGETNAME(A2)` to retrieve Delaware's name from the DCID in cell A2.
+4. Move to the cell C3 and enter the formula `=DCPLACESIN(A2, "County")` to retrieve the county names. The DCIDs for the three Delaware counties populate column C.
+5. Retrieve the Delaware county names by entering the formula `=DCGETNAME(C2:C4)` into cell D2.
 
 ![Retrieving a List of Counties in Delaware](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
 
@@ -52,16 +52,16 @@ To retrieve a list of counties in Delaware, perform the following steps:
 
 To retrieve the congressional districts in Alaska and Hawaii, perform the following steps:
 
-1. In cell A1, enter **geoId/02** for the DCID of Alaska and in Cell A2, enter **geoId/15** for the DCID of Hawaii.
-2. Enter `=DCGETNAME(A1:A2)` in cell B1 to retrieve the names of Alaska and Hawaii into column B.
-3. Retrieve the DCIDs for the congressional districts by enter `=DCPLACESIN(A1:A2, "CongressionalDistrict")` into cell C1.
-4. Finally, retrieve the names of the congressional districts by entering `=DCGETNAMES(C1:C3)` into cell D1.
+1. In cell A2, enter **geoId/02** for the DCID of Alaska and in Cell A3, enter **geoId/15** for the DCID of Hawaii.
+2. (Optional) Enter `=DCGETNAME(A2:A3)` in cell B1 to retrieve the names of Alaska and Hawaii into column B.
+3. Retrieve the DCIDs for the congressional districts by enter `=DCPLACESIN(A2:A3, "CongressionalDistrict")` into cell C2.
+4. Finally, retrieve the names of the congressional districts by entering `=DCGETNAMES(C2:C4)` into cell D2.
 
 ![Retrieving Congressional Districts in Alaska and Hawaii](/assets/images/sheets/sheets_places_in_congressional_districts_ak_hi.png)
 
-## Error Returns
+## Error Responses
 
-The `=DCPLACESIN(dcids, placeType)` formula returns names associated with given DCIDs to a cell or a column range of cells. See the Examples section above for examples of positive returns. If a DCID does not exist, the `=DCPLACESIN(dcids, placeType)` formula returns a value of #REF!. For example, the `=DCPLACESIN(A1, "CongressionalDistrict")` formula should return the congressional districts for the DCID in cell A1. However, because the “geoId/123123123” DCID does not exist, an error of #REF! is returned to cell B1 in the following sheet:
+If a DCID does not exist, the `=DCPLACESIN(dcids, placeType)` formula returns a value of #REF!. For example, the `=DCPLACESIN(A1, "CongressionalDistrict")` formula should return the congressional districts for the DCID in cell A1. However, because the “geoId/123123123” DCID does not exist, an error of #REF! is returned to cell B1 in the following sheet:
 
 ![alt_text](/assets/images/sheets/sheets_places_in_wrong_dcid.png)
 
