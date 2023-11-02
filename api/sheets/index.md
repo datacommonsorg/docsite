@@ -20,26 +20,26 @@ Also read our [step-by-step guides](tutorials/) for more examples.
 
 Install and enable the Sheets add-on from Google Workspace Marketplace, as follows:
 
-1. Install the Sheets add-on by clicking **[Google Workspace Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575)** .
+1. Install the Sheets add-on from the **[Google Workspace Marketplace](https://gsuite.google.com/marketplace/app/data_commons/454343067575)** .
 2. Enable the Sheets add-on by clicking the Google Sheets **Extensions** menu, pointing to **Data Commons**, and then by clicking **Fill place dcids**.
-3. Use the resulting sidebar that appears on the right side of the page to start [finding DCIDs](/api/sheets/get_name.html) in the United States. You can close and reopen the sidebar at any time.
+3. Use the resulting sidebar that appears on the right side of the page to start finding DCIDs in the United States. You can close and reopen the sidebar at any time.
 
 ![Google Sheets menu bar](/assets/images/sheets/sheets_menu_bar.png)
 
 > **NOTE:**
-> 
+>
 > None of the custom Data Commons Sheets functions (described below) will work in a given document until you have enabled the add-on by opening the **Fill place dcids** sidebar.
 
 ## Finding a Place’s DCID
 
-Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](/glossary.html), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
+Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](/glossary.html#dcid), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
 
-1. Select the destination cell where you want to add a place’s [DCID](/glossary.html).
+1. Select the destination cell where you want to add a place’s DCID.
 2. Click in the search box for the **Fill place dcids for selected cells** section on the right side of the page to start finding DCIDs in the United States.
-3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its [DCID](/glossary.html) appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
+3. Start typing the name of the place you are searching for. From the drop-down menu, select the place you want, and its DCID appears in the cell that you selected. For example, the following image shows the place names that match “Hawaii”.
    ![Google Sheets search box](/assets/images/sheets/sheets_search_box.png)
 
-Note that this feature only supports places in the United States.
+Note that this feature currently only supports places in the United States.
 
 ## Introduction to the Sheets API Custom Functions
 
