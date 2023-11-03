@@ -10,9 +10,7 @@ has_children: true
 
 The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets users to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html#dcid)), and some custom functions for importing data into a spreadsheet.
 
-> **NOTE:**
-> 
-> For more information on DCIDs, refer to [Unique Identifiers (dcid)](/bigquery/unique_identifiers.html).
+> **Note:** For more information on DCIDs, refer to [Unique Identifiers (dcid)](/bigquery/unique_identifiers.html).
 
 Also read our [step-by-step guides](tutorials/) for more examples.
 
@@ -26,9 +24,7 @@ Install and enable the Sheets add-on from Google Workspace Marketplace, as follo
 
 ![Google Sheets menu bar](/assets/images/sheets/sheets_menu_bar.png)
 
-> **NOTE:**
->
-> None of the custom Data Commons Sheets functions (described below) will work in a given document until you have enabled the add-on by opening the **Fill place dcids** sidebar.
+> **Note:** None of the custom Data Commons Sheets functions (described below) will work in a given document until you have enabled the add-on by opening the **Fill place dcids** sidebar.
 
 ## Finding a Place’s DCID
 
