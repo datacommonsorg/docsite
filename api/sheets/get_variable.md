@@ -20,13 +20,12 @@ The`=DCGET(dcids, variable, date)` formula returns the measurements of a specifi
 
 ### Required Arguments
 
-* `dcids`: A list of [Place](https://datacommons.org/browser/Place) nodes, identified by their [DCIDs](/glossary.html#dcid).
-
-* `variable` - The [statistical variable](/glossary.html#variable) whose measurements you want to query.
+* `dcids`: A list of [Place](/glossary.html#place) nodes, identified by their [DCIDs](/glossary.html#dcid).
+* `variable`: The [statistical variable](/glossary.html#variable) whose measurements you want to query.
 
 ### Optional Arguments
 
-`date` - The date or dates of interest. If this argument is not specified, the API returns the latest variable observation. You can specify this argument as a single value, row, or column. All dates must be in ISO 8601 format (such as 2017, “2017”, “2017-12”) or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en).
+`date`: The date or dates of interest. If this argument is not specified, the API returns the latest variable observation. You can specify this argument as a single value, row, or column. All dates must be in ISO 8601 format (such as 2017, “2017”, “2017-12”) or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en).
 
 ## Returns
 
