@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Returning the Names Associated with a DCID
+title: Names Associated with a DCID
 nav_order: 1
 parent: Google Sheets
 grand_parent: API
@@ -22,14 +22,14 @@ The `=DCGETNAME(dcids)` formula returns the names associated with given [DCIDs](
 
 ## Required Arguments
 
-`dcids` - A list of DCID nodes to query
+`dcids` - A list of node DCIDs to query
 
 ## Returns
 
-The names associated with given DCIDs to a cell or a column range of cells.
+The names associated with given node DCIDs to a cell or a range of cells.
 
 > **Note**:
-> It’s best to minimize the number of function calls to `=DCGETNAME(dcids)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains many thousands of separate calls to `=DCGETNAME(dcids)` you can expect it to be slow and return with errors.
+> It’s best to minimize the number of function calls to `=DCGETNAME(dcids)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCGETNAME(dcids)` you can expect it to be slow and return with errors.
 
 ## Examples
 
@@ -42,27 +42,31 @@ To retrieve the name of a country by its DCID, perform the following steps:
 1. Place your cursor in the cell where you want to add a DCID. In this case, cell A1.
 2. Click in the search box for the **Fill place dcids for selected cells** section. For this example, enter “Ivory Coast”. The cell is populated with a DCID of “country/CIV”.
 3. Move to the cell where you want to retrieve the country name.
-4. Enter the formula **`=DCGETNAME(A1)`** to retrieve the country name and press **Enter**.  The French spelling of Ivory Coast (Côte d'Ivoire) populates the cell.
+4. Enter the formula **`=DCGETNAME(A1)`** to retrieve the country name.  The French spelling of Ivory Coast (Côte d'Ivoire) populates the cell.
 
 ![Retrieving the name of a country by its DCIC](/assets/images/sheets/sheets_get_name_cote_d_ivoire_cropped.png)
 
-### Example 2: Retrieve the Names of a Collection of Cells Lines
+### Example 2: Retrieve the Names of a Collection of Power Plants
 
-To retrieve the names of countries by a collection of cells, perform the following steps:
+To retrieve the names of a collection of power plants, perform the following steps:
 
 1. Enter into column A the DCIDs that are shown in the following image.
-2. In cell B1, enter the formula `=DCGETNAME(A1:A4)`.
-3. Press **Enter** and the names of the countries for each DCID populate in column B.
+2. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the countries for each DCID populate in column B.
 
-![Retrieving the names of a collection of cell lines](/assets/images/sheets/sheets_get_name_cell_lines_cropped.png)
+![Retrieving the names of a collection of power plants](/assets/images/sheets/sheets_get_name_power_plant.png)
 
-> **Note**:
-> 
-> It’s best to minimize the number of function calls to `=DCGETNAME(dcids)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server _[per custom function call]_(https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains many separate calls to `=DCGETNAME(dcids)`, you can expect it to be slow and return errors.
+### Example 3: Retrieve the names of a list of statistical variables
 
-## Error Returns
+Statistical Variables are also nodes in the Data Commons Graph with a DCID. To retrieve the names of a list of statistical variables, perform the following steps:
 
-The `=DCGETNAME(dcids)` formula returns the name associated with a specified DCID. See the Examples section above for examples of positive returns. If a DCID does not exist, the`=DCGETNAME(dcids)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
+1. Enter into column A the DCIDs that are shown in the following image.
+2. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the countries for each DCID populate in column B.
+
+![Retrieving the names of a collection of power plants](/assets/images/sheets/sheets_get_name_sv.png)
+
+## Error Responses
+
+If a DCID does not exist, the`=DCGETNAME(dcids)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
 
 ![No value returned for a DCID that does not exist](/assets/images/sheets/sheets_get_name_wrong_dcid_cropped.png)
 
