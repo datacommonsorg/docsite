@@ -1,70 +1,92 @@
 ---
 layout: default
-title: Node Property
+title: Node Property Values
 nav_order: 4
 parent: Google Sheets
 grand_parent: API
 ---
 
-# Retrieve property values for nodes
+# Retrieving Node Property Values
 
-Given a list of nodes and a property label, returns values associated with the given property for each node.
+The `=DCPROPERTY(dcids, property)` formula returns values associated with the given property [Place](/glossary.html#place) [DCIDs](/glossary.html#dcid).
 
-## General information about this formula
+> **Note**:
+> Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
-**Formula**: `=DCPROPERTY(dcids, property)`
+## Formula
 
-**Required arguments**:
+```
+=DCPROPERTY(dcids, property)
+```
 
-*   `dcids`: A list of nodes to query, identified by their Data Commons identifiers.
-*   `property`: The property to query for.
+### Required Arguments
 
-**Returns**
+* [`dcids`](https://docs.datacommons.org/glossary.html): A list of [Place](/glossary.html#place) nodes, identified by their DCIDs.
+* `property`: The property whose value you are interested in,  such as “name” for the name of a node, or “typeOf” for the type of a node. If you aren’t sure what properties are available for a particular DCID, you can use the [Data Commons graph browser](https://datacommons.org/browser/)
+  to look up the DCID of interest and see what properties it is associated with.
+
+## Returns
 
 The value of the property label for the specified DCIDs.
 
-## Assembling the information you will need to use this formula
+> **Note**:
+> 
+> It’s best to minimize the number of function calls to `=DCPROPERTY(dcids, property)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCPROPERTY(dcids, property)` you can expect it to be slow and return with errors.
 
-Going into more detail on how to assemble the values for the required arguments:
+## Examples
 
- - `dcids`: Data Commons uniquely identifies nodes by assigning them DCIDs, or Data Commons IDs. Your query will need to specify the DCIDs for the nodes of interest. More information about DCIDs is available in [the glossary](/glossary.html).
+This section contains examples of using the `=DCPROPERTY(dcids, property)` to return values associated with the given property Place DCIDs.
 
- - `property`: The property whose value you are interested in, such as "name" for the name of a node, or "typeOf" for the type of a node. If you aren't sure what properties are available for a particular DCID, you can use the [Data Commons graph browser](https://datacommons.org/browser/) to look up the DCID of interest and see what properties it is associated with.
+### Example 1: Retrieve the Common Name of a Country by its DCID
 
->  **NOTE:**
->
->  It's best to minimize the number of function calls to `DCPROPERTY` by using a single call to get a variable for a row/column of places and/or a column/row of times. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `DCPROPERTY`, expect it to be slow.
+To retrieve the name of a country by its DCID, perform the following steps:
 
-## Example requests and responses
+1. Place your cursor in the cell where you want to add a DCID. In this case, cell A1.
+2. Enter "country/CIV" for the country Ivory Coast.
+3. Next, place your cursor in cell B2 and enter `=DCPROPERTY(A1, "name")` to retrieve the Ivory Coast country name in column B.
+4. Press **Enter** and the French and English spellings for Ivory Coast appear in column B.
 
-Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
+![Retrieve the Common Name of a Country by its DCID](/assets/images/sheets/sheets_get_property_ivory_coast.png)
 
-### Example 1: Retrieve the common names of a country by its `DCID`.
+### Example 2: Retrieve the Order to which the Plant Austrobaileya Scandens Belongs
 
-![](/assets/images/sheets/sheets_get_property_ivory_coast.png)
+To retrieve the order to which the plant *Austrobaileya Scandens* belongs, perform the following steps:
 
-### Example 2: Retrieve the order to which the plant _Austrobaileya scandens_ belongs.
+1. Place your cursor in the cell where you want to add a DCID. In this case, cell A1.
+2. Enter "dc/bsmvthtq89217" for the plant *Austrobaileya Scandens*.
+3. Place your cursor in cell B2 and enter `=DCPROPERTY(A1, "order")`.
+4. Press **Enter** and the order *Austrobaileyales* appears in cell B2.
 
-![](/assets/images/sheets/sheets_get_property_austrobaileyales_order.png)
+![Retrieve the Order to which the Plant Austrobaileya Scandens Belongs](/assets/images/sheets/sheets_get_property_austrobaileyales_order.png)
 
-### Example 3: Retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California.
+### Example 3: Retrieve the Addresses of Stuyvesant High School in New York and Gunn High School in California
 
-![](/assets/images/sheets/sheets_get_property_school_addresses.png)
+To retrieve the addresses of Stuyvesant High School in New York and Gunn High School in California, perform the following steps:
 
-## Error Returns
+1. Place your cursor in cell A1 and enter "nces/360007702877" for *Stuyvesant Hight School in New York*.
+2. Place your cursor in cell A2 and enter "nces/062961004587" for *Gunn High School in California*.
+3. Enter the formula `=DCPROPERTY(A1:A2,"address")` into cell B2 and the addresses of both high schools are populated in column B.
 
-If you pass a nonexistent property, an empty value is returned:
+![Retrieve the Addresses of Stuyvesant High School in New York and Gunn High School in California](/assets/images/sheets/sheets_get_property_school_addresses.png)
 
-![](/assets/images/sheets/sheets_get_property_bad_property.png)
+
+## Error Responses
+
+The `=DCPROPERTY(dcids, property)` returns the value of the property label for the specified DCIDs. See the Examples section above for examples of positive responses.
+
+If you pass a nonexistent property, an empty value is returned. For example, because the “nonexistent property” does not exist, no value is returned to cell B1 in the following sheet:
+
+![Google Sheets nonexistent property return](/assets/images/sheets/sheets_get_property_bad_property.png)
 
 If you pass a bad DCID, an empty value is returned:
 
-![](/assets/images/sheets/sheets_get_property_bad_dcid.png)
+![Google Sheets empty value return](/assets/images/sheets/sheets_get_property_bad_dcid.png)
 
 If you pass an empty DCID, an error is returned:
 
-![](/assets/images/sheets/sheets_get_property_empty_dcid.png)
+![Google Sheets empty DCID error return](/assets/images/sheets/sheets_get_property_empty_dcid.png)
 
-If you do not pass a required positional argument, an error is returned:
+If you do not pass a required property argument, an error is returned:
 
-![](/assets/images/sheets/sheets_get_property_bad_args.png)
+![Google Sheets return for missing required property argument](/assets/images/sheets/sheets_get_property_bad_args.png)
+
