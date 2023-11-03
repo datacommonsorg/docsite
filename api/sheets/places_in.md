@@ -20,7 +20,7 @@ The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a
 
 ## Required Arguments
 
-* `dcids`: A list of parent `Place` nodes, identified by their DCIDs.
+* `dcids`: A list of parent [Place](/glossary.html#place) nodes, identified by their [DCIDs](/glossary.html#dcid).
 * `placeType`: The type of the contained child `Place` nodes to filter by. For example,`City` and `County`are contained within `State`. For a full list of available types, see [the Data Commons graph browser entry for Place](https://datacommons.org/browser/Place).
 
 ## Returns
