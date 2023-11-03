@@ -72,7 +72,9 @@ To retrieve the addresses of Stuyvesant High School in New York and Gunn High Sc
 
 ## Error Responses
 
-The `=DCPROPERTY(dcids, property)` returns the value of the property label for the specified DCIDs. See the Examples section above for examples of positive responses. If you pass a nonexistent property, an empty value is returned: for example, because the “nonexistent property” does not exist, no value is returned to cell B1 in the following sheet:
+The `=DCPROPERTY(dcids, property)` returns the value of the property label for the specified DCIDs. See the Examples section above for examples of positive responses.
+
+If you pass a nonexistent property, an empty value is returned. For example, because the “nonexistent property” does not exist, no value is returned to cell B1 in the following sheet:
 
 ![Google Sheets nonexistent property return](/assets/images/sheets/sheets_get_property_bad_property.png)
 
