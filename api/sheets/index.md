@@ -8,7 +8,7 @@ has_children: true
 
 # Data Commons Sheets API
 
-The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets users to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html)), and some custom functions for importing data into a spreadsheet.
+The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets users to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html#dcid)), and some custom functions for importing data into a spreadsheet.
 
 > **NOTE:**
 > 
@@ -32,7 +32,7 @@ Install and enable the Sheets add-on from Google Workspace Marketplace, as follo
 
 ## Finding a Place’s DCID
 
-Data Commons’ Sheets add-on provides the ability to look up a location’s [DCID](/glossary.html#dcid), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
+Data Commons’ Sheets add-on provides the ability to look up a place’s [DCID](/glossary.html#dcid), within the application by using the **Fill place dcids** feature. To use this feature to find a place’s DCID:
 
 1. Select the destination cell where you want to add a place’s DCID.
 2. Click in the search box for the **Fill place dcids for selected cells** section on the right side of the page to start finding DCIDs in the United States.
@@ -48,9 +48,9 @@ The Data Commons Sheets API includes the five formulas listed in the following t
 | **Formula**                                                                                  | **Description**                           |
 |----------------------------------------------------------------------------------------------|-------------------------------------------|
 | [=DCGETNAME(dcids)](/api/sheets/get_name.html)                 | Returns the names associated with a DCID. |
-| [=DCPLACESIN(dcids)](/api/sheets/places_in.html)               | Retrieves child nodes                     |
+| [=DCPLACESIN(dcids)](/api/sheets/places_in.html)               | Returns child nodes                       |
 | [=DCGET(dcids)](/api/sheets/get_variable.html)                 | Returns statistical variables.            |
-| [=DCPROPERTY(dcids)](/api/sheets/get_property.html)            | Retrieves node property values.           |
+| [=DCPROPERTY(dcids)](/api/sheets/get_property.html)            | Returns node property values.             |
 | [=DCCOHORTMEMBERS(dcids)](/api/sheets/get_cohort_members.html) | Gets the cohort members of a node.        |
 
 See the links in the preceding table to subsequent pages in this section for detailed descriptions of each API.
