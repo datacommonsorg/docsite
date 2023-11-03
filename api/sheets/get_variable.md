@@ -57,9 +57,9 @@ The following sheet returns the population of the five Hawaii counties in 2017. 
 
 ![Getting the population of multiple places with a single call](/assets/images/sheets/sheets_get_variable_input.png)
 
-Here is the output after running the `=DCGET(B2:B6, "Count_Person", 2017)` formula:
+Here is the output after running the <code><b>=DCGET(B2:B6, "Count_Person", 2017)</b></code> formula:
 
-![Output after running the `=DCGET(B2:B6, "Count_Person", 2017)` formula](/assets/images/sheets/sheets_get_variable_output.png)
+![Output after running the =DCGET(B2:B6, "Count_Person", 2017) formula](/assets/images/sheets/sheets_get_variable_output.png)
 
 ### Example 3: Get the Median Income of a Single Place in Multiple Years
 
@@ -71,9 +71,9 @@ The following sheet demonstrates how to retrieve the median income from a single
 
 ![Getting the median income of a single place in multiple years](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
 
-Here is the output after running the `=DCGET(B2, "Median_Income_Person", C1:E1)` formula:
+Here is the output after running the <code><b>=DCGET(B2, "Median_Income_Person", C1:E1)</b></code> formula:
 
-![Output after running the `=DCGET(B2, "Median_Income_Person", C1:E1)` formula](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
+![Output after running the =DCGET(B2, "Median_Income_Person", C1:E1) formula](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
 
 ### Example 4: Get the Median Age of Multiple Places in Multiple Years
 
@@ -85,9 +85,9 @@ The following sheet demonstrates how to retrieve the median age of multiple plac
 
 ![Getting the median age of multiple places in multiple years](/assets/images/sheets/sheets_get_variable_places_column_years_row_input.png)
 
-Here is the output after running the `=DCGET(C2:C6, "Median_Age_Person", F1:H1)` formula:
+Here is the output after running the <code><b>=DCGET(C2:C6, "Median_Age_Person", F1:H1)</b></code> formula:
 
-![Output after running the `=DCGET(C2:C6, "Median_Age_Person", F1:H1)` formula](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
+![Output after running the =DCGET(C2:C6, "Median_Age_Person", F1:H1) formula](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
 
 Here's another example, but this time with places as a row and dates as a column using the formula:
 
@@ -97,9 +97,9 @@ Here's another example, but this time with places as a row and dates as a column
 
 ![Retrieving places as a row and dates as a column using the formula =DCGET(B3:F3, "Median_Age_Person", A5:A9)](/assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
 
-Here is the output after running the `=DCGET(B3:F3, "Median_Age_Person", A5:A9)` formula:
+Here is the output after running the <code><b>=DCGET(B3:F3, "Median_Age_Person", A5:A9)</b></code> formula:
 
-![Output after running the `=DCGET(B3:F3, "Median_Age_Person", A5:A9)` formula](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
+![Output after running the =DCGET(B3:F3, "Median_Age_Person", A5:A9) formula](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
 
 ## Error Responses
 
