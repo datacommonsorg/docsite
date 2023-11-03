@@ -41,10 +41,10 @@ This section contains examples of using the `=DCPLACESIN(dcids, placeType)` form
 To retrieve a list of counties in Delaware, perform the following steps:
 
 1. Place your cursor in the cell where you want to add the DCID for Delaware. In this case, cell A2.
-2. Enter the Delaware DCID of “geoId/10”.
-3. (Optional) In cell B2, enter `DCGETNAME(A2)` to retrieve Delaware's name from the DCID in cell A2.
-4. Move to the cell C3 and enter the formula `=DCPLACESIN(A2, "County")` to retrieve the county names. The DCIDs for the three Delaware counties populate column C.
-5. Retrieve the Delaware county names by entering the formula `=DCGETNAME(C2:C4)` into cell D2.
+2. Enter the Delaware DCID of <code><b>geoId/10</b></code>.
+3. (Optional) In cell B2, enter <code><b>DCGETNAME(A2)</b></code> to retrieve Delaware's name from the DCID in cell A2.
+4. Move to the cell C3 and enter the formula <code><b>=DCPLACESIN(A2, "County")</b></code> to retrieve the county names. The DCIDs for the three Delaware counties populate column C.
+5. Retrieve the Delaware county names by entering the formula <code><b>=DCGETNAME(C2:C4)</b></code> into cell D2.
 
 ![Retrieving a List of Counties in Delaware](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
 
@@ -52,10 +52,10 @@ To retrieve a list of counties in Delaware, perform the following steps:
 
 To retrieve the congressional districts in Alaska and Hawaii, perform the following steps:
 
-1. In cell A2, enter **geoId/02** for the DCID of Alaska and in Cell A3, enter **geoId/15** for the DCID of Hawaii.
-2. (Optional) Enter `=DCGETNAME(A2:A3)` in cell B1 to retrieve the names of Alaska and Hawaii into column B.
-3. Retrieve the DCIDs for the congressional districts by enter `=DCPLACESIN(A2:A3, "CongressionalDistrict")` into cell C2.
-4. Finally, retrieve the names of the congressional districts by entering `=DCGETNAMES(C2:C4)` into cell D2.
+1. In cell A2, enter <code><b>geoId/02</b></code> for the DCID of Alaska and in Cell A3, enter <code><b>geoId/15</b></code> for the DCID of Hawaii.
+2. (Optional) Enter <code><b>=DCGETNAME(A2:A3)</b></code> in cell B1 to retrieve the names of Alaska and Hawaii into column B.
+3. Retrieve the DCIDs for the congressional districts by enter <code><b>=DCPLACESIN(A2:A3, "CongressionalDistrict")</b></code> into cell C2.
+4. Finally, retrieve the names of the congressional districts by entering <code><b>=DCGETNAMES(C2:C4)</b></code> into cell D2.
 
 ![Retrieving Congressional Districts in Alaska and Hawaii](/assets/images/sheets/sheets_places_in_congressional_districts_ak_hi.png)
 
