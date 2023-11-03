@@ -69,7 +69,7 @@ The time period over which an [observation](#observation) is made. Specified in 
 ### Place
 {: #place}
 
-Entities that describe specific geographic locations.
+Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place) to search for places in the graph, or view the [Graph Browser entry for Place](https://datacommons.org/browser/Place) for a full view of the node.
 
 ### Preferred Facet
 {: #preferred-facet}
@@ -115,12 +115,12 @@ USA -- containedInPlace --> northamerica
 
 The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour), [inches](https://datacommons.org/browser/Inch), and [Indian Rupees](https://datacommons.org/browser/IndianRupee). A complete list of properties can be found in the [graph browser](https://datacommons.org/browser/unit).
 
-### [(Statistical) Variable](https://datacommons.org/browser/StatisticalVariable)
+### [Statistical Variable](https://datacommons.org/browser/StatisticalVariable)
 {: #variable}
 
 Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears), [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female), [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person), or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes). A complete list of variables can be found in the [graph browser](https://datacommons.org/browser/StatisticalVariable).
 
-### [(Statistical) Variable Group](https://datacommons.org/browser/StatVarGroup)
+### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup)
 {: #variable-group}
 
 Represents a grouping of variables that are conceptually related. For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female) consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female), [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome) and etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female) is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female). It contains variables that have age constraints.
