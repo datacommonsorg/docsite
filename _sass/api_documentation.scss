@@ -40,7 +40,7 @@ $shadow: drop-shadow(0 0 0.2em rgba(0, 0, 0, 0.1));
 %code-box {
   background: $code-background-color;
   font: normal $code-font-size monospace;
-  line-height: 1.5;
+  line-height: 1.5em;
 
   // override red border around `...`
   .err {
@@ -95,16 +95,19 @@ bulk-tag {
   padding: 10px 20px;
 }
 
-.api-signature {
+.api-syntax-box {
   @extend %box-bottom;
+  @extend %code-box;
   filter: $shadow;
-  background-color: $code-background-color;
   color: #0e84b5;
-  font: normal $code-font-size monospace;
   overflow-wrap: break-word;
-  padding: 30px;
-  padding-top: 0;
   white-space: pre-wrap;
+}
+
+// Special padding for REST API ``` blocks
+.api-signature {
+  padding: 20px;
+  padding-top: 0;
 }
 
 /** tabs for Bulk pages */
@@ -135,7 +138,15 @@ bulk-tag {
 }
 
 .api-tabcontent {
+  @extend .api-syntax-box;
   display: none;
+
+  // override default ``` block styling
+  pre {
+    border-bottom-left-radius: $round-corner-radius;
+    border-bottom-right-radius: $round-corner-radius;
+    margin-bottom: 0;
+  }
 }
 
 /** "Response looks like" box */
@@ -233,4 +244,12 @@ bulk-tag {
   font-size: 0.8em;
   margin-right: 0.5em;
   padding-right: 0;
+}
+
+/** Web component documentation styles */
+
+.web-component-container {
+  width: 100%;
+  max-width: 800px;
+  margin-right: auto;
 }

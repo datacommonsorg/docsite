@@ -17,3 +17,5 @@ end
 group :jekyll_plugins do  
   gem "jekyll-tabs"
 end
+
+gem "webrick", "~> 1.8"
