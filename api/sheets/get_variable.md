@@ -8,10 +8,9 @@ grand_parent: API
 
 # Getting the Value of a Statistical Variable at a Given Place and Time
 
-The`=DCGET(dcids, variable, date)` formula returns the measurements of a specified [statistical variable](https://docs.datacommons.org/glossary.html#variable) at a given place and optional time based on a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html). A complete list of variables can be found in the [graph browser](https://datacommons.org/browser/StatisticalVariable).
+The`=DCGET(dcids, variable, date)` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
-> **Note**:
-> Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
+> **Note**: Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
 ## Formula
 
@@ -21,7 +20,7 @@ The`=DCGET(dcids, variable, date)` formula returns the measurements of a specifi
 
 ### Required Arguments
 
-* `dcids`: A list of [Place](https://datacommons.org/browser/Place) nodes, identified by their [DCIDs](/glossary.md#dcid).
+* `dcids`: A list of [Place](https://datacommons.org/browser/Place) nodes, identified by their [DCIDs](/glossary.html#dcid).
 
 * `variable` - The [statistical variable](/glossary.html#variable) whose measurements you want to query.
 
@@ -33,8 +32,7 @@ The`=DCGET(dcids, variable, date)` formula returns the measurements of a specifi
 
 The value of the variable at those places on the specified date or on the latest available date, if no date is specified.
 
-> **Note**:
-> It’s best to minimize the number of function calls to `=DCGET(dcids, variable, date)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCGET(dcids, variable, date)` you can expect it to be slow and return with errors.
+> **Note**: It’s best to minimize the number of function calls to `=DCGET(dcids, variable, date)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCGET(dcids, variable, date)` you can expect it to be slow and return with errors.
 
 ## Examples
 
