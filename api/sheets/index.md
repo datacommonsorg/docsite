@@ -10,7 +10,8 @@ has_children: true
 
 The **Data Commons Sheets API** is a Google Sheets add-on that enables Google Sheets users to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html#dcid)), and some custom functions for importing data into a spreadsheet.
 
-> **Note:** For more information on DCIDs, refer to [Unique Identifiers (dcid)](/bigquery/unique_identifiers.html).
+> **Note:**
+> For more information on DCIDs, refer to the entry for [DCID in the Glossary](/glossary.html#dcid).
 
 Also read our [step-by-step guides](tutorials/) for more examples.
 
@@ -66,15 +67,15 @@ Your browser does not support the video tag.
 
 The preceding video performs the following steps in a blank Sheets document:
 
-1. Returns a list of DCIDs in column A that represent counties in California, using the formula **<code>={"Place";DCPLACESIN(geoId/06", "County"}</code></strong>.
-2. Uses the DCIDs in column A to fill in the names of each county in column B using the <strong><code>=DCGETNAME(A2)</code></strong> formula.
-3. Retrieves the population of the county in column C using the DCIDs in column A using the <strong><code>=DCGET(A2, "Count_Person")</code></strong> formula.
+1. Returns a list of DCIDs in column A that represent counties in California, using the formula <code><b>={"Place";DCPLACESIN(geoId/06", "County"}</b></code>.
+2. Uses the DCIDs in column A to fill in the names of each county in column B using the <code><b>=DCGETNAME(A2)</b></code> formula.
+3. Retrieves the population of the county in column C using the DCIDs in column A using the <code><b>=DCGET(A2, "Count_Person")</b></code> formula.
 4. Highlights the entire sheet and click <strong>Data</strong> menu, <strong>Filter views</strong>, then <strong>Create new filter</strong>, or click the <strong>Create a filter</strong> icon on the toolbar.
 5. Next, the filter is sorted by the <strong>Population</strong> column from <strong>A-Z</strong> and then from <strong>Z-A</strong>. The same sorts are then performed on the <strong>Name</strong> column.
 
 To summarize, the steps for sorting Data Commons results with Google Sheets filter view feature are:
 
 1. Populate the data columns with Data Commons Sheets API formulas.
-2. Turn on filter views by clicking the **Data** menu**,** **Filter views**, then **Create new filter view**, or by clicking the **Create a filter** icon on the toolbar
-3. Click the reverse triangle on each column to sort,  excluding the header row.
+2. Turn on filter views by clicking the **Data** menu, **Filter views**, then **Create new filter view**, or by clicking the **Create a filter** icon on the toolbar
+3. Click the reverse triangle on each column to sort, excluding the header row.
 
