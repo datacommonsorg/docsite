@@ -10,7 +10,7 @@ grand_parent: API
 
 The `=DCGETNAME(dcids)` formula returns the names associated with given [DCIDs](/glossary.html#dcid) to a cell or a column range of cells.
 
-> **Note** Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
+> **Note**: Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
 ## Formula
 
@@ -38,7 +38,7 @@ To retrieve the name of a place by its DCID, perform the following steps:
 
 1. Place your cursor in the cell where you want to add a DCID. In this case, cell A1.
 1. Move to the cell where you want to retrieve the place name.
-1. Enter the formula `=DCGETNAME(A1)` to retrieve the name.  *California* populates the cell.
+1. Enter the formula <code><b>=DCGETNAME(A1)</b></code> to retrieve the name.  *California* populates the cell.
 
 ![Retrieving the name of a country by its DCIC](/assets/images/sheets/sheets_get_name_california.png)
 
@@ -47,7 +47,7 @@ To retrieve the name of a place by its DCID, perform the following steps:
 To retrieve the names of a collection of power plants, perform the following steps:
 
 1. Enter into column A the DCIDs that are shown in the following image.
-2. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the countries for each DCID populates in column B.
+1. In cell B2, enter the formula <code><b>=DCGETNAME(A2:A4)</b></code>. The names of the countries for each DCID populates in column B.
 
 ![Retrieving the names of a collection of power plants](/assets/images/sheets/sheets_get_name_power_plant.png)
 
@@ -56,13 +56,13 @@ To retrieve the names of a collection of power plants, perform the following ste
 Statistical Variables are also nodes in the Data Commons Graph with a DCID. To retrieve the names of a list of statistical variables, perform the following steps:
 
 1. Enter into column A the DCIDs that are shown in the following image.
-2. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the countries for each DCID populates in column B.
+1. In cell B2, enter the formula <code><b>=DCGETNAME(A2:A4)</b></code>. The names of the countries for each DCID populates in column B.
 
 ![Retrieving the names of a collection of power plants](/assets/images/sheets/sheets_get_name_sv.png)
 
 ## Error Responses
 
-If a DCID does not exist, the`=DCGETNAME(dcids)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
+If a DCID does not exist, the `=DCGETNAME(dcids)` formula does not return a value. For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet:
 
 ![No value returned for a DCID that does not exist](/assets/images/sheets/sheets_get_name_wrong_dcid_cropped.png)
 

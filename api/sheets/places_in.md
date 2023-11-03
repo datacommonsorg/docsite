@@ -10,9 +10,7 @@ grand_parent: API
 
 The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html#dcid). It only returns children with a place type that matches the `placeType` parameter, such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on.
 
-> **Note**
->
-> Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
+> **Note**: Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
 ## Formula
 
