@@ -4,7 +4,7 @@ title: Pie Chart
 nav_order: 6
 parent: Web Components
 grand_parent: API
-published: false
+published: true
 permalink: /api/web_components/pie
 ---
 

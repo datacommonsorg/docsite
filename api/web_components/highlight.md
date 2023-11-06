@@ -4,7 +4,7 @@ title: Highlight Tile
 nav_order: 3
 parent: Web Components
 grand_parent: API
-published: false
+published: true
 permalink: /api/web_components/highlight
 ---
 

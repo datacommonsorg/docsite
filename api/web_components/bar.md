@@ -4,7 +4,7 @@ title: Bar Chart
 nav_order: 1
 parent: Web Components
 grand_parent: API
-published: false
+published: true
 permalink: /api/web_components/bar
 ---
 
