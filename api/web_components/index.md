@@ -4,7 +4,7 @@ title: Web Components
 parent: API
 nav_order: 20
 has_children: true
-published: false
+published: true
 ---
 # Data Commons Web Components
 
@@ -16,6 +16,17 @@ visualizations in your web application.
   src="/assets/images/web_components/all.png"
   style="width: 100%; max-width: 1024px;"
 />
+
+<div markdown="span" class="alert alert-info" role="alert">
+    <span class="material-icons md-16">info </span>
+    <b>Are you using the Data Commons Web Components?</b><br />
+    Sign up for our announcement mailing list to stay up to date with our latest
+    developments. Join the list by
+    <a
+      href="https://groups.google.com/g/datacommons-announce"
+      target="_blank"
+    >clicking here</a>, then clicking the “Join group” button.
+</div>
 
 ## Usage
 

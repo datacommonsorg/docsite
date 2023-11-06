@@ -4,7 +4,7 @@ title: Map Chart
 nav_order: 5
 parent: Web Components
 grand_parent: API
-published: false
+published: true
 permalink: /api/web_components/map
 ---
 

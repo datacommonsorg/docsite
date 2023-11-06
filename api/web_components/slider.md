@@ -4,7 +4,7 @@ title: Slider Control
 nav_order: 9
 parent: Web Components
 grand_parent: API
-published: false
+published: true
 permalink: /api/web_components/slider
 ---
 
