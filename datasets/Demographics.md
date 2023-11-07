@@ -101,6 +101,9 @@ Life expectancy of a person in India based on gender at state level by National 
 #### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
 India poverty statistics - percentage of people below poverty line.
 
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)
@@ -240,6 +243,11 @@ General descriptive information such as name, address, and phone number; select 
 
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
 
+
+### [UK Office for National Statistics](https://www.ons.gov.uk/)
+
+#### [UK Open Geography Portal](https://geoportal.statistics.gov.uk/)
+The Open Geography portal from the Office for National Statistics (ONS) provides free and open access to the definitive source of geographic products, web applications, story maps, services and APIs.
 
 ### [United Nations (UN)](https://www.un.org/en/)
 

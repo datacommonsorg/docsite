@@ -107,6 +107,11 @@ Population Census and Statistics for Mexico at Country and State levels.
 #### [Argentina Census](https://www.indec.gob.ar)
 Population Census and Statistics for Argentina.
 
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)
