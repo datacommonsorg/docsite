@@ -58,6 +58,11 @@ Data covering the literacy status and rate for states in India.
 #### [Mexico Census](https://en.www.inegi.org.mx/temas/)
 Population Census and Statistics for Mexico at Country and State levels.
 
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)

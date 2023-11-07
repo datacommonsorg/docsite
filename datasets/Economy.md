@@ -60,6 +60,11 @@ The exchange rate of currency broken down by country, currency standardization t
 Wage and salary data for Indian states.
 
 
+### [MarineRegions.org](https://www.marineregions.org/)
+
+#### [Global Oceans and Seas](https://www.marineregions.org/sources.php#goas)
+This dataset represents the boundaries of the 10 main oceans and seas (Arctic Ocean, North and South Atlantic Ocean, North and South Pacific Ocean, Southern Ocean, Indian Ocean, Baltic Sea, Mediterranean Region, South China and Eastern Archipelagic Seas). The boundaries are largely based on the publication 'Limits of Oceans & Seas, Special Publication No. 23', published by the IHO in 1953. The dataset is available in World Geodetic System of 1984 (WGS84). This dataset was composed by the Flanders Marine Data Centre.
+
 ### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
 
 #### [Mexico Census](https://en.www.inegi.org.mx/temas/)
@@ -69,6 +74,14 @@ Population Census and Statistics for Mexico at Country and State levels.
 
 #### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
 India poverty statistics - percentage of people below poverty line.
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
+### [OpenFIGI](https://www.openfigi.com/)
+
+#### [FIGI](https://www.openfigi.com/)
+OpenFIGI is a system for identifying global financial instruments. It provides tools for Identifying, mapping, and requesting a free Financial Instrument Global Identifier (FIGI)
 
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
@@ -180,11 +193,6 @@ The data is in the public domain.
 
 #### [US Federal Reserve H.15 Interest Rates](https://www.federalreserve.gov/DataDownload/Choose.aspx?rel=H15)
 USA Federal Reserve H.15 Interest Rates
-
-### [U.S. Securities and Exchange Commission](https://www.sec.gov/)
-
-#### [US SEC EDGAR](https://www.sec.gov/os/accessing-edgar-data)
-All companies, foreign and domestic, are required to file registration statements, periodic reports, and other forms electronically through the U.S. Securities and Exchange Commission's EDGAR (Electronic Data Gathering, Analysis, and Retrieval) system. Anyone can access and download this information for free or query it through a variety of EDGAR public searches.
 
 ### [World Bank](https://www.worldbank.org/en/home)
 

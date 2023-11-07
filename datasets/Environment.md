@@ -11,6 +11,11 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Brazil INPE - National Institute for Space Research](https://www.gov.br/inpe/)
+
+#### [BRAZIL INPE Fire Event Count](https://www.gov.br/inpe/pt-br/acesso-a-informacao/dados-abertos/)
+This dataset represents count of occurrence of fire event in Brazil.Data available for Country and state level.
+
 ### [Climate TRACE](https://climatetrace.org/)
 
 #### [Climate TRACE GHG Emissions](https://climatetrace.org/inventory)
@@ -72,6 +77,11 @@ The Water Resources Information System (WRIS) is a repository of water resources
 
 #### [India Water Quality](https://indiawris.gov.in/wiki/doku.php?id=water_quality_data_and_parameters)
 Water quality data measured at ground and surface water qualiy stations across India providing concentrations of dissolved constituents in water in terms of physical, chemical and biological parameters.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
 
 ### [Resources for the Future (RFF)](https://www.rff.org/)
 
