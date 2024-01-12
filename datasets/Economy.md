@@ -166,6 +166,11 @@ Number of businesses and amount of revenue, by business payroll status, industry
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
+### [U.S. Commerce Data Hub](https://data.commerce.gov/)
+
+#### [Economic Development Administration (EDA)](https://www.commerce.gov/bureaus-and-offices/eda)
+EDA has led the federal economic development agenda by promoting innovation and competitiveness, preparing American regions for growth and success in the worldwide economy.
+
 ### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
 
 #### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)

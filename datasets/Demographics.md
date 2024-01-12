@@ -217,6 +217,14 @@ Includes "counts of live births occurring within the United States to U.S. resid
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
 
+### [U.S. Commerce Data Hub](https://data.commerce.gov/)
+
+#### [Economic Development Administration (EDA)](https://www.commerce.gov/bureaus-and-offices/eda)
+EDA has led the federal economic development agenda by promoting innovation and competitiveness, preparing American regions for growth and success in the worldwide economy.
+
+#### [NTIA Internet Use Survey](https://www.ntia.gov/other-publication/2022/digital-nation-data-explorer#sel=homeEverOnline&demo=race&pc=count&disp=both)
+NTIA programs and policymaking focus largely on expanding broadband Internet access and adoption in America, expanding the use of spectrum by all users.
+
 ### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
 
 #### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)
@@ -264,6 +272,9 @@ Population data for countries, capital cities, urban and rural areas not covered
 
 #### [Mexico Subnational Population Statistics](https://data.humdata.org/dataset/cod-ps-mex)
 Population Census and Statistics for Mexico at Municipal level.
+
+#### [Sri Lanka Census](https://data.humdata.org/group/lka)
+Sri Lanka Demographics, Education and Agriculture statistics for Sri Lanka at country,province and district Level.
 
 ### [Wikimedia Foundation](https://wikimediafoundation.org/)
 
