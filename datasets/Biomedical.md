@@ -13,8 +13,8 @@ parent: Data Sources
 
 ### [Broad Institute](https://www.broadinstitute.org/resources-services-and-tools)
 
-#### [GTEx Analysis V8](https://www.gtexportal.org/home/datasets)
-The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used. Due to the size of the datasets only Skin - Not Sun Exposed and Skin - Sun Exposed are made available on the main graph. The data for all tissues can be accessed on the Biomedical Data Commons knowledge graph.
+#### [GTEx Analysis V8 eQTL](https://www.gtexportal.org/home/datasets)
+The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used.
 
 GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
 
@@ -29,8 +29,8 @@ Licata, Luana, Leonardo Briganti, Daniele Peluso, Livia Perfetto, Marta Iannucce
 
 ### [Encyclopedia of DNA Elements (ENCODE)](https://www.encodeproject.org/)
 
-#### [BED (Browser Extensible Data) Files](https://www.encodeproject.org/help/project-overview/)
-The ENCODE dataset contains information for approximately 7000 experiments along with 14,000 BED files collected by The Encyclopedia of DNA Elements (ENCODE) Consortium. Examples of experiment metadata captured include the target biosample, assay type, gene assembly, etc. Bed files link to individual bed lines, which state the genomic position of individual peaks. Data Commons ingested all experimental data in BED format.
+#### [Experimental Data](https://www.encodeproject.org/help/project-overview/)
+The ENCODE experimental dataset contains information for approximately 7000 experiments along with 14,000 BED files collected by The Encyclopedia of DNA Elements (ENCODE) Consortium. Examples of experiment metadata captured include the target biosample, assay type, gene assembly, etc. Data Commons include the meta data for all experimental datasets in ENCODE as of 2019.
 
 Data made available under: [ENCODE Data Use Policy for External Users](https://www.encodeproject.org/help/citing-encode/). This data was formatted for Data Commons through a collaboration with Dr. Anthony Oro’s group at Stanford University.
 
@@ -60,7 +60,7 @@ This data is made available under Creative Commons Attribution ShareAlike 4.0 In
 ### [Jensen Lab (University of Copenhagen)](https://jensenlab.org/resources/)
 
 #### [DISEASES](https://diseases.jensenlab.org/Search)
-DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. We further unify the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. For further details please refer to the following Open Access article about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831).
+DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. We further unify the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
 
 #### [Side Effect Resource (SIDER) 4.1](http://sideeffects.embl.de/)
@@ -85,14 +85,6 @@ The Pharmacogenomics Knowledge Base, PharmGKB, is an interactive tool for resear
 PharmGKB reports association between chemicals, diseases, genes, and genetic variants, both with themselves and with each other.
 
 Data made available under Creative Commons Attribution-ShareAlike 4.0 Intergovernmental Organization (CC BY-SA 4.0 IGO) licence. Explicit licensing for PharmGKB can be viewed on the [download page](https://www.pharmgkb.org/downloads).
-
-
-### [Swiss Institute of Bioinformatics (SIB)](https://www.expasy.org/)
-
-#### [Antibodies Chemically Defined (ABCD)](https://web.expasy.org/abcd/))
-The ABCD database is part of a broader project, with the mission of promoting the widespread use of recombinant antibodies by academic researchers and, ultimately, the replacement of animal-produced antibodies. This concerted effort also includes the [Geneva Antibody Facility](https://www.unige.ch/medecine/antibodies/) (for discovery and production of antibodies) and the scientific journal [Antibody Reports](https://oap.unige.ch/journals/abrep) (publishing technical articles on antibody characterization). If you'd like to cite the ABCD database: Lima WC, Gasteiger E, Marcatili P, Duek P, Bairoch A, Cosson P. The ABCD database: a repository for chemically defined antibodies. [Nucleic Acids Res. 2020, 48:D261-D264.](https://academic.oup.com/nar/article/48/D1/D261/5549708)
-
-[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
 ### [Temporary Data Commons Data](https://www.datacommons.org/)
