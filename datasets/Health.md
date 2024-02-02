@@ -223,6 +223,11 @@ Data from the Automated Reports and Consolidated Ordering System (ARCOS) is a da
 [U.S. Department of Justice Legal Policies and Disclaimers Terms of Use](https://www.justice.gov/legalpolicies).
 
 
+### [UK Ministry of Housing Communities and Local Government](https://www.gov.uk/government/organisations/ministry-of-housing-communities-and-local-government)
+
+#### [IMD2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019/)
+Statistics on relative deprivation in small areas in England.
+
 ### [World Bank](https://www.worldbank.org/en/home)
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
