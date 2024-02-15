@@ -147,6 +147,9 @@ Employment, unemployment, and labor force data for Census regions and divisions,
 #### [Quarterly Census of Employment and Wages (QCEW)](https://www.bls.gov/cew)
 Quarterly and annual employment and wage statistics broken down by industry and ownership.
 
+
+#### [US Consumer Price Index](https://www.bls.gov/cpi/tables/supplemental-files/)
+Consumer Price Index of US by Consumer Goods Category from Bureau Of Labour Statistics by Country level
 [Terms of Service](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
 
 
