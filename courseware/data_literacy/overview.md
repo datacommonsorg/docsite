@@ -20,7 +20,7 @@ For more background about the course, see our [FAQs](faqs.html) page.
 
 ### FERPA Compliance 
 
-Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with FERPA. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
+Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with [FERPA](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html). For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
 
 
 ### Objectives
