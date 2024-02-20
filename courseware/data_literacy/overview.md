@@ -18,6 +18,11 @@ grand_parent: Courseware
 
 For more background about the course, see our [FAQs](faqs.html) page.
 
+### FERPA Compliance 
+
+Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with FERPA. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
+
+
 ### Objectives
 
 We embarked on a mission to imagine a Data Literacy curriculum aimed at anyone and everyone who consumes data and aspires to correctly understand and interpret it to help with better decision-making.
