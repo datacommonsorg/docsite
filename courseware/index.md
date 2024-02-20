@@ -13,7 +13,7 @@ All material is provided publicly and free of charge, under a Creative Commons l
 
 ## FERPA Compliance 
 
-Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with <a href="https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html">FERPA</a>. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
+Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with [FERPA](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html). For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
 
 ## Courses
 
