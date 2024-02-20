@@ -1,7 +1,7 @@
 ---
 layout: default
 title: API
-nav_order: 3
+nav_order: 20
 has_children: true
 ---
 # Overview
@@ -14,7 +14,7 @@ database. Data Commons is based on the data model used by
 The **Data Commons API** allows developers to programmatically access the data in Data Commons.
 Data Commons provides several different ways to access its API's resources:
 
-1. A [REST API](/api/rest) that can be used on the command line as well as in any language with an HTTP library.
+1. A [REST API](/api/rest/v2) that can be used on the command line as well as in any language with an HTTP library.
 1. A lightweight [Python](/api/python) wrapper.
 1. A heavier [Pandas](/api/pandas) wrapper.
 1. A convenient [Google Sheets](/api/sheets) add-on.
@@ -36,7 +36,7 @@ The endpoints can be roughly grouped into four categories.
 
 Most of the provided endpoints take references to nodes and properties as arguments. Every
 node or property has a `Data Commons ID (DCID)`, which is used
-to pass nodes as arguments to API calls. 
+to pass nodes as arguments to API calls.
 
 **Note:** The DCID of schema.org terms used in Data Commons is their schema.org ID.
 

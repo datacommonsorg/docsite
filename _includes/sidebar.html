@@ -11,7 +11,7 @@
   {%- assign sorted_unordered_pages_list = unordered_pages_list | sort: "title" -%}
   {%- assign pages_list = sorted_ordered_pages_list | concat: sorted_unordered_pages_list -%}
   {%- for node in pages_list -%}
-    {%- unless node.nav_exclude -%}
+    {%- if node.nav_exclude != true -%}
       {%- if node.parent == nil and node.title -%}
         <details class="parent" open>
           <summary>
@@ -25,7 +25,7 @@
             {%- assign children_list = pages_list | where: "parent", node.title -%}
             <ul id="node-{{ forloop.index }}">
             {%- for child in children_list -%}
-              {%- unless child.nav_exclude -%}
+              {%- if child.nav_exclude != true || (page.url == child.url or page.parent == child.title or page.grand_parent == child.title) -%}
                 <details class="child" {% if page.url == child.url or page.parent == child.title or page.grand_parent == child.title %}open{% endif %}>
                   <summary>
                     <a href="{{ child.url }}" class="{% if page.url == child.url or page.parent == child.title %} active{% endif %}">{{ child.title }}</a>
@@ -70,12 +70,12 @@
                     </ul>
                   {%- endif -%}
                 </details>
-              {%- endunless -%}
+              {%- endif -%}
             {%- endfor -%}
             </ul>
           {%- endif -%}
         </details>
       {%- endif -%}
-    {%- endunless -%}
+    {%- endif -%}
   {%- endfor -%}
 </div>

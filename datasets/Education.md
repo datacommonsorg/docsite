@@ -29,6 +29,9 @@ Population Census and Statistics for Colombia at Country, Department and Municip
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
+#### [EuroStat Early Education and Training](https://ec.europa.eu/eurostat/web/education-and-training/database)
+Participation in early childhood education by sex (children aged 4 and over). The indicator measures the share of the children between the age of four and the starting age of compulsory primary education who participated in early childhood education.
+
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
 * [Regions and Cities](https://ec.europa.eu/eurostat/web/regions-and-cities): NUTS (Nomenclature of territorial units for statistics) geocodes, covering NUTS levels 1 through 3.
 * [Demographics (population, age, gender)](https://ec.europa.eu/eurostat/web/population-demography)
@@ -46,10 +49,49 @@ Data on schools, such as dropout rate and access to computers and toilets, in In
 #### [Unified District Information System for Education (UDISE)](https://udiseplus.gov.in/#/home)
 The Unified District Information System for Education (UDISE), by the Ministry of Education, India, collects and provides data related to schools and their resources.
 
+### [India National Sample Survey](https://mospi.gov.in/web/nss)
+The India National Sample Survey (NSS) Organizes and conducts large scale all-India sample surveys on different population groups in diverse socio economic areas, such as employment, consumer expenditure, housing conditions and environment, literacy levels, health, nutrition, family welfare, etc.
+
+#### [India Literacy](https://www.mospi.gov.in/sites/default/files/publication_reports/Report_585_75th_round_Education_final_1507_0.pdf)
+Data covering the literacy status and rate for states in India.
+[Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
+
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Kenya Census](https://kenya.opendataforafrica.org/)
+Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
+[Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
 
 #### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
 Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
+#### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
+South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
+
+#### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
+Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
+
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
 
 ### [U.S. Census Bureau](https://www.census.gov/)
 
@@ -69,6 +111,9 @@ The National Center for Education Statistics collaborates with the US Census Bur
 
 ### [U.S. National Center for Education Statistics](https://nces.ed.gov/)
 
+#### [National Center for Education Statistics](https://nces.ed.gov/)
+NCES Collects, collates, analyzes, and report full and complete statistics on the condition of education in the United States and other Nations
+
 #### [Nations Report Card](https://www.nationsreportcard.gov/ndecore)
 National educational performance - Assessment score data across different grades, subjects and student categories(Like race, disability etc).
 
@@ -80,4 +125,21 @@ General descriptive information such as name, address, and phone number; select 
 General descriptive information such as name, address, and phone number; select demographic characteristics about students and staff. Data Commons includes school data about student populations by race, grade, as well as student-teacher ratio and teacher count statistics.
 
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
+
+
+### [U.S. National Science Foundation](https://www.nsf.gov/)
+
+#### [National Center for Science and Engineering Statistics](https://ncses.nsf.gov/)
+National Center for Science and Engineering Statistics provide data on the status of the science and engineering enterprise in the U.S. and other countries.
+
+### [United Nations Office for the Coordination of Humanitarian Affairs(UN OCHA)](https://www.unocha.org/)
+
+#### [Sri Lanka Census](https://data.humdata.org/group/lka)
+Sri Lanka Demographics, Education and Agriculture statistics for Sri Lanka at country,province and district Level.
+
+### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
+[Terms of Use](https://datacatalog.worldbank.org/public-licenses).
 

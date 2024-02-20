@@ -27,6 +27,16 @@ Population Census and Statistics for Brazil.
 Data Commons has imported variables related to demographics, in particular concerning literacy, work, housing, and religion from the Indian Census on the state, district, and city level.
 
 
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
 ### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
 
 #### [Colombia Census](https://www.dane.gov.co/index.php)
@@ -37,6 +47,11 @@ Population Census and Statistics for Colombia at Country, Department and Municip
 #### [DataMeet Maps](http://projects.datameet.org/maps)
 Maps of India sourced from different government websites. ([Terms of Use](http://projects.datameet.org/covid19/contributing/).)
 
+
+### [Department of Statistics Singapore](https://www.singstat.gov.sg/)
+
+#### [Singapore Census](https://tablebuilder.singstat.gov.sg/statistical-tables/downloadMultiple/zX5lZdqFrk-29wjZN4FFXw)
+Singapore Demographics and Health statistics for Singapore at country.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -49,6 +64,11 @@ Maps of India sourced from different government websites. ([Terms of Use](http:/
 
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
+
+### [Feeding America](https://www.feedingamerica.org/)
+
+#### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
+Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
 
 ### [Google](https://www.google.com/)
 
@@ -63,15 +83,41 @@ Data made publicly available under the standard [Google Terms of Service](https:
 India Local Government Directory provides unique codes for revenue entities such as districts, villages, local government bodies.
 [Copyright](https://lgdirectory.gov.in/copyRightPolicy.do), [Terms of Use](https://lgdirectory.gov.in/termsconditions.do).
 
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
 ### [National Institute of Statistics and Censuses (INDEC)](https://www.indec.gob.ar)
 
 #### [Argentina Census](https://www.indec.gob.ar)
 Population Census and Statistics for Argentina.
 
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [India Life Expectancy by State](https://ndap.niti.gov.in/)
+Life expectancy of a person in India based on gender at state level by National Data and Analytics Platform (NDAP).
+
+#### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
+India poverty statistics - percentage of people below poverty line.
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Kenya Census](https://kenya.opendataforafrica.org/)
+Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
+[Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
 
 #### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
 Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
+#### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
+South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
+
+#### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
+Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
 
 ### [Opportunity Insights](https://opportunityinsights.org/)
 
@@ -93,13 +139,31 @@ Country-level stats for OECD countries and selected non-member economies from 41
 
 [License](https://www.oecd.org/termsandconditions/)
 
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
 ### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
 
 #### [Population estimates](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710000501#tables)
 Yearly population estimates for Canada.
 
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
+
+### [Statistics of New Zealand](https://www.stats.govt.nz/)
+
+#### [New Zealand Census](https://www.stats.govt.nz/topics/population)
+New Zealand Demographics, statistics for New Zealand at country, district and city level.
+
+### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
+
+#### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
+Population Census and Statistics for Indonesia at country, provinces and regency and city level.
 
 ### [U.S. Bureau of Transportation Statistics](https://www.bts.dot.gov/)
 
@@ -144,11 +208,22 @@ Weekly and Annual cases of selected national notifiable (infectious and non-infe
 Mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year.
 
 
+#### [Wonder: Mortality, Underlying Cause Of Death](https://wonder.cdc.gov/ucd-icd10.html)
+The Underlying Cause of Death database contains mortality data based on death certificates for U.S. residents.
+
 #### [Wonder: Natality](https://wonder.cdc.gov/natality.html)
 Includes "counts of live births occurring within the United States to U.S. residents. Counts can be obtained by a variety of demographic characteristics, such as state and county of residence, mother's race, and mother's age, and health and medical items, such as tobacco use, method of delivery, and congenital anomalies. The data are derived from birth certificates."
 
 [CDC Data Terms of Service](https://www.cdc.gov/other/agencymaterials.html).
 
+
+### [U.S. Commerce Data Hub](https://data.commerce.gov/)
+
+#### [Economic Development Administration (EDA)](https://www.commerce.gov/bureaus-and-offices/eda)
+EDA has led the federal economic development agenda by promoting innovation and competitiveness, preparing American regions for growth and success in the worldwide economy.
+
+#### [NTIA Internet Use Survey](https://www.ntia.gov/other-publication/2022/digital-nation-data-explorer#sel=homeEverOnline&demo=race&pc=count&disp=both)
+NTIA programs and policymaking focus largely on expanding broadband Internet access and adoption in America, expanding the use of spectrum by all users.
 
 ### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
 
@@ -177,6 +252,16 @@ General descriptive information such as name, address, and phone number; select 
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
 
 
+### [UK Ministry of Housing Communities and Local Government](https://www.gov.uk/government/organisations/ministry-of-housing-communities-and-local-government)
+
+#### [IMD2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019/)
+Statistics on relative deprivation in small areas in England.
+
+### [UK Office for National Statistics](https://www.ons.gov.uk/)
+
+#### [UK Open Geography Portal](https://geoportal.statistics.gov.uk/)
+The Open Geography portal from the Office for National Statistics (ONS) provides free and open access to the definitive source of geographic products, web applications, story maps, services and APIs.
+
 ### [United Nations (UN)](https://www.un.org/en/)
 
 #### [UN OCHA Subnational Administrative Boundaries](https://data.humdata.org/)
@@ -188,6 +273,14 @@ Population data for countries, capital cities, urban and rural areas not covered
 [Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
 
 
+### [United Nations Office for the Coordination of Humanitarian Affairs(UN OCHA)](https://www.unocha.org/)
+
+#### [Mexico Subnational Population Statistics](https://data.humdata.org/dataset/cod-ps-mex)
+Population Census and Statistics for Mexico at Municipal level.
+
+#### [Sri Lanka Census](https://data.humdata.org/group/lka)
+Sri Lanka Demographics, Education and Agriculture statistics for Sri Lanka at country,province and district Level.
+
 ### [Wikimedia Foundation](https://wikimediafoundation.org/)
 
 #### [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)
@@ -197,6 +290,9 @@ Data Commons includes some information about administrative divisions, municipal
 
 
 ### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
 
 #### [World Bank Official Boundaries](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries)
 World Bank-approved administrative boundaries including international boundaries.

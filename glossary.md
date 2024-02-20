@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Glossary
-nav_order: 11
+nav_order: 130
 published: true
 ---
 
@@ -34,7 +34,9 @@ The date of measurement. Specified in ISO 8601 format. Examples include `2011` (
 ### DCID
 {: #dcid}
 
-Short for 'Data Commons Identifier', a DCID is a distinct identifier for a node in the knowledge graph. These can represent variables or entities. For example, Austin, Texas, has a DCID of `geoId/4805000`, while the plant species _Austrobaileya scandens_ has a DCID of `dc/bsmvthtq89217`.
+Every entity in the Data Commons graph has a unique identifier, called ‘DCID’ (short for Data Commons Identifier). So, for example, the DCID of California is [`geoId/06`](https://datacommons.org/browser/geoId/06) and of India is [`country/IND`](https://datacommons.org/browser/country/IND). DCIDs are not restricted to entities; every node in the graph has a DCID. Statistical variables have DCID, for example the DCID for the Gini Index of Economic Activity is [`GiniIndex_EconomicActivity`](https://datacommons.org/tools/statvar#GiniIndex_EconomicActivity).
+
+You can find the DCID for a place by searching for it in the [Place Explorer tool](https://datacommons.org/place), and the DCID for statistical variables in the [Statistical Variable Explorer tool](https://datacommons.org/tools/statvar). All nodes have an entry in the [Graph Browser](https://datacommons.org/browser/).
 
 ### Entity
 {: #entity}
@@ -69,7 +71,7 @@ The time period over which an [observation](#observation) is made. Specified in 
 ### Place
 {: #place}
 
-Entities that describe specific geographic locations.
+Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place) to search for places in the graph, or view the [Graph Browser entry for Place](https://datacommons.org/browser/Place) for a full view of the node.
 
 ### Preferred Facet
 {: #preferred-facet}
@@ -115,12 +117,12 @@ USA -- containedInPlace --> northamerica
 
 The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour), [inches](https://datacommons.org/browser/Inch), and [Indian Rupees](https://datacommons.org/browser/IndianRupee). A complete list of properties can be found in the [graph browser](https://datacommons.org/browser/unit).
 
-### [(Statistical) Variable](https://datacommons.org/browser/StatisticalVariable)
+### [Statistical Variable](https://datacommons.org/browser/StatisticalVariable)
 {: #variable}
 
 Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears), [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female), [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person), or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes). A complete list of variables can be found in the [graph browser](https://datacommons.org/browser/StatisticalVariable).
 
-### [(Statistical) Variable Group](https://datacommons.org/browser/StatVarGroup)
+### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup)
 {: #variable-group}
 
 Represents a grouping of variables that are conceptually related. For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female) consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female), [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome) and etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female) is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female). It contains variables that have age constraints.

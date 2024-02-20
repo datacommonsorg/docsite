@@ -25,7 +25,7 @@ The documentation site is built using Jekyll. To run this locally:
 
 1. Install [Ruby](https://jekyllrb.com/docs/installation/)
 1. Run `bundle update`
-1. Run `bundle exec jekyll serve`
+1. Run `bundle exec jekyll serve --incremental`
 
 If you make changes to yml files, re-run `bundle exec jekyll serve`
 
@@ -68,6 +68,6 @@ Wait for approval of the Pull Request and merge the change.
 
 For general questions or issues, please open an issue on our
 [issues](https://github.com/datacommonsorg/docsite/issues) page. For all other
-questions, please send an email to `support@datacommons.org`.
+questions, please [send us feedback](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform).
 
 **Note** - This is not an officially supported Google product.

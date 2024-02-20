@@ -11,6 +11,11 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [U.S. Bureau of Justice Statistics (BJS)](https://bjs.ojp.gov/)
 
 #### [National Prisoner Statistics (NPS) Program](https://bjs.ojp.gov/data-collection/national-prisoner-statistics-nps-program)

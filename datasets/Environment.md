@@ -11,6 +11,11 @@ parent: Data Sources
 * TOC
 {:toc}
 
+### [Brazil INPE - National Institute for Space Research](https://www.gov.br/inpe/)
+
+#### [BRAZIL INPE Fire Event Count](https://www.gov.br/inpe/pt-br/acesso-a-informacao/dados-abertos/)
+This dataset represents count of occurrence of fire event in Brazil.Data available for Country and state level.
+
 ### [Climate TRACE](https://climatetrace.org/)
 
 #### [Climate TRACE GHG Emissions](https://climatetrace.org/inventory)
@@ -23,7 +28,7 @@ The Climate TRACE data is made available through the [Climate TRACE terms of use
 The events for places with unusual temperatures, either too hot or too cold, computed with reference to long term temperature averages, e.g. the average maximum daily temperature in January over the years 1980-2010.
 
 #### [WetBulb Temperature Event](https://datacommons.org/)
-Wet Bulb temperatures are computed using estimates of temperatures over a period of time (e.g. daily average temperature) and estimates of (relative) humidity (e.g. daily average humidity). In some cases, if humidity and/or temperature data is missing then we use month-specific averages using several years of humidity/temperature observations or climate model projections, e.g. from CMIP6 models. The formula used for wet-bulb temperature calculations is provided in the following paper: https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
+Places with WetBulb Temperature exceeding 30 degree Celsius as per NASA's Modern-Era Retrospective analysis for Research and Applications version 2 (MERRA-2) dataset on Google Earth Engine.
 
 ### [Dynamic World Project](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1)
 
@@ -67,11 +72,22 @@ India's Central Pollution Control Board (CPCB) portal for Air Quality Management
 #### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
 Air Quality Index and possible health impacts reported for states, cities and stations in India.
 
+#### [India aqi pollutants](https://app.cpcbccr.com/AQI_India/)
+India Air Quality Data contains mean values of various pollutants measured once in 4 hours along with other details like station name, state, city and date for the period.
+
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
 #### [India Water Quality](https://indiawris.gov.in/wiki/doku.php?id=water_quality_data_and_parameters)
 Water quality data measured at ground and surface water qualiy stations across India providing concentrations of dissolved constituents in water in terms of physical, chemical and biological parameters.
+
+#### [WRIS India Rainfall](https://indiawris.gov.in/wris/#/DataDownload)
+WRIS India monthly rainfall data of district level.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
 
 ### [Resources for the Future (RFF)](https://www.rff.org/)
 
@@ -290,4 +306,11 @@ Point Locations for all reported wildland fires in the United States.
 The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides perimeters for all reported wildland fires in the United States. We simplify those parameters by using Ramer-Douglas-Peucker algorithm on geoJsonCoordinates with epsilon of 0.01.
 
 [Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
+
+
+### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
+[Terms of Use](https://datacatalog.worldbank.org/public-licenses).
 

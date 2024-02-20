@@ -1,14 +1,15 @@
 ---
 layout: default
 title: REST (v1)
-nav_order: 0
+nav_order: 1
 parent: API
 has_children: true
 published: true
 permalink: /api/rest/v1
+nav_exclude: true
 ---
 
-# Data Commons REST API
+# Data Commons V1 REST API
 
 The Data Commons REST API is a
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
@@ -16,6 +17,8 @@ that enables developers to programmatically access data in the Data Commons
 knowledge graph. This package allows users to explore the structure of the
 graph, integrate statistics from the graph into data analysis applications and
 much more.
+
+Please see the [V2 REST API](/api/rest/v2) for the latest version of the REST API.
 
 ## Getting Started
 
@@ -46,7 +49,7 @@ Methods for exploring the graph around a set of nodes.
 | Property Values                                    | [/v1/property/values/](/api/rest/v1/property/values)                              | Get the value for a property of a specific node                                |
 | Property Values (linked)                           | [/v1/property/values/in/linked](/api/rest/v1/property/values/in/linked)           | Get all places of a specific type contained in an ancestor place               |
 |                                                    |                                                                                   |                                                                                |
-| <bulk-tag>bulk</bulk-tag> Triples                   | [/v1/bulk/triples](/api/rest/v1/bulk/triples)                                     | Get neighboring nodes and edge labels for multiple nodes                       |
+| <bulk-tag>bulk</bulk-tag> Triples                  | [/v1/bulk/triples](/api/rest/v1/bulk/triples)                                     | Get neighboring nodes and edge labels for multiple nodes                       |
 | <bulk-tag>bulk</bulk-tag> Properties               | [/v1/bulk/properties](/api/rest/v1/bulk/properties)                               | Get all properties for multiple nodes.                                         |
 | <bulk-tag>bulk</bulk-tag> Property values          | [/v1/bulk/property/values](/api/rest/v1/bulk/property/values)                     | Get property values for multiple properties and multiple nodes                 |
 | <bulk-tag>bulk</bulk-tag> Property Values (linked) | [/v1/bulk/property/values/in/linked](/api/rest/v1/bulk/property/values/in/linked) | Get all places of a specific type for mulitple ancestor places                 |
@@ -57,14 +60,14 @@ Methods for retrieving information of certain types of nodes.
 
 | API                                           | URI                                                                   | Description                                    |
 | --------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------- |
-| Find Entities         | [/v1/find/entities](/api/rest/v1/find/entities)             | Find the DCID of an entity                     |
+| Find Entities                                 | [/v1/find/entities](/api/rest/v1/find/entities)                       | Find the DCID of an entity                     |
 | Place Info                                    | [/v1/info/place](/api/rest/v1/info/place)                             | Get information about a place                  |
 | Variable Info                                 | [/v1/info/variable](/api/rest/v1/info/variable)                       | Get information about a variable               |
 | Variable Group Info                           | [/v1/info/variable-group](/api/rest/v1/info/variable-group)           | Get information about a variable group         |
 |                                               |                                                                       |                                                |
-| <bulk-tag>bulk</bulk-tag> Find Entities         | [/v1/bulk/find/entities](/api/rest/v1/bulk/find/entities)             | Find the DCID of an entity                     |
-| <bulk-tag>bulk</bulk-tag> Place Info           | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
-| <bulk-tag>bulk</bulk-tag> Variable Info        | [/v1/bulk/info/variable](/api/rest/v1/bulk/info/variable)             | Get information about multiple variables       |
+| <bulk-tag>bulk</bulk-tag> Find Entities       | [/v1/bulk/find/entities](/api/rest/v1/bulk/find/entities)             | Find the DCID of an entity                     |
+| <bulk-tag>bulk</bulk-tag> Place Info          | [/v1/bulk/info/place](/api/rest/v1/bulk/info/place)                   | Get information about multiple places          |
+| <bulk-tag>bulk</bulk-tag> Variable Info       | [/v1/bulk/info/variable](/api/rest/v1/bulk/info/variable)             | Get information about multiple variables       |
 | <bulk-tag>bulk</bulk-tag> Variable Group Info | [/v1/bulk/info/variable-group](/api/rest/v1/bulk/info/variable-group) | Get information about multiple variable groups |
 
 ### Statistical Observations
@@ -79,7 +82,7 @@ entities.
 |                                                              |                                                                                     |                                                                       |
 | <bulk-tag>bulk</bulk-tag> Observation (single value)         | [/v1/bulk/observations/point](/api/rest/v1/bulk/observations/point)                 | Get a single value from variables for multiple entities               |
 | <bulk-tag>bulk</bulk-tag> Observation (single value, linked) | [/v1/bulk/observations/point/linked](/api/rest/v1/bulk/observations/point/linked)   | Get a single value from variables for all places in an ancestor place |
-| <bulk-tag>bulk</bulk-tag> Observation (series)              | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                   |
+| <bulk-tag>bulk</bulk-tag> Observation (series)               | [/v1/bulk/observations/series](/api/rest/v1/bulk/observations/series)               | Get all values from variables for multiple entities                   |
 | <bulk-tag>bulk</bulk-tag> Observation (series, linked)       | [/v1/bulk/observations/series/linked](/api/rest/v1/bulk/observations/series/linked) | Get all values from a variable for all places in an ancestor place    |
 
 ### Statistical Variable

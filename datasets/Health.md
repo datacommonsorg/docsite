@@ -16,6 +16,21 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
+### [City Controller, City of Los Angeles](https://controller.lacity.gov/)
+
+#### [Food Resources in California](https://controllerdata.lacity.org/dataset/Food-Resources-in-California/v2mg-qsxf/data)
+This dataset contains a list of resources such food pantries, food banks, and other food distribution sites throughout the state of California. The data is current as of May 1, 2020. Due to the coronavirus pandemic, many food pantries may change their hours or close temporarily. Please contact a food pantry prior to visiting them to confirm their operating hours and ensure you are in their service area.
+
 ### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
 
 #### [Colombia Census](https://www.dane.gov.co/index.php)
@@ -35,6 +50,11 @@ Data is made available under the [Dartmouth Atlas Project Terms of Use](https://
 DataMeet provides cleaned datasets relating to COVID-19 in India, sourced from various government websites. ([Terms of Use](http://projects.datameet.org/covid19/contributing/).)
 
 
+### [Department of Statistics Singapore](https://www.singstat.gov.sg/)
+
+#### [Singapore Census](https://tablebuilder.singstat.gov.sg/statistical-tables/downloadMultiple/zX5lZdqFrk-29wjZN4FFXw)
+Singapore Demographics and Health statistics for Singapore at country.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [EuroStat Health](https://ec.europa.eu/eurostat/web/health/data/database)
@@ -50,6 +70,11 @@ Health statistics measure both objective and subjective aspects of people's heal
 
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
+
+### [Feeding America](https://www.feedingamerica.org/)
+
+#### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
+Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
 
 ### [Google](https://www.google.com/)
 
@@ -72,15 +97,35 @@ The India National Sample Survey (NSS) Organizes and conducts large scale all-In
 Household health survey on profile of ailments including their treatment, role of government and private facilities in providing healthcare, expenditure on medicines, expenditure on medical consultation and investigation, hospitalization and expenditure, maternity and childbirth, the condition of the aged, etc.
 [Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
 
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
 ### [National Institute of Statistics and Censuses (INDEC)](https://www.indec.gob.ar)
 
 #### [Argentina Census](https://www.indec.gob.ar)
 Population Census and Statistics for Argentina.
 
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
+
+#### [Kenya Census](https://kenya.opendataforafrica.org/)
+Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
+[Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
 
 #### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
 Demographics, Health, Agriculture and Education Statistics for Nigeria.
+
+#### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
+South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
+
+#### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
+Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
 
 ### [Our World in Data](https://ourworldindata.org/)
 
@@ -88,6 +133,28 @@ Demographics, Health, Agriculture and Education Statistics for Nigeria.
 Data Commons imports country-level COVID-19 vaccine data from Our World in Data.
 
 [Terms of Use](https://ourworldindata.org/faqs#how-should-i-cite-your-work).
+
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
+
+
+### [Statistics of New Zealand](https://www.stats.govt.nz/)
+
+#### [New Zealand Census](https://www.stats.govt.nz/topics/population)
+New Zealand Demographics, statistics for New Zealand at country, district and city level.
+
+### [The Central Bureau of Statistics, Indonesia](https://www.bps.go.id/)
+
+#### [Indonesia Census](https://www.bps.go.id/indikator/indikator/list_/da_03/)
+Population Census and Statistics for Indonesia at country, provinces and regency and city level.
 
 ### [The New York Times](https://www.nytimes.com/)
 
@@ -139,6 +206,9 @@ Pregnancy Risk Assessment Monitoring System (PRAMS) is a population-based survei
 Mortality counts for all US states and counties broken down by underlying cause of death, age, race, sex, and year.
 
 
+#### [Wonder: Mortality, Underlying Cause Of Death](https://wonder.cdc.gov/ucd-icd10.html)
+The Underlying Cause of Death database contains mortality data based on death certificates for U.S. residents.
+
 #### [Wonder: Natality](https://wonder.cdc.gov/natality.html)
 Includes "counts of live births occurring within the United States to U.S. residents. Counts can be obtained by a variety of demographic characteristics, such as state and county of residence, mother's race, and mother's age, and health and medical items, such as tobacco use, method of delivery, and congenital anomalies. The data are derived from birth certificates."
 
@@ -152,6 +222,11 @@ Data from the Automated Reports and Consolidated Ordering System (ARCOS) is a da
 
 [U.S. Department of Justice Legal Policies and Disclaimers Terms of Use](https://www.justice.gov/legalpolicies).
 
+
+### [UK Ministry of Housing Communities and Local Government](https://www.gov.uk/government/organisations/ministry-of-housing-communities-and-local-government)
+
+#### [IMD2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019/)
+Statistics on relative deprivation in small areas in England.
 
 ### [World Bank](https://www.worldbank.org/en/home)
 

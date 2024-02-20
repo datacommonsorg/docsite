@@ -24,7 +24,8 @@ Anyone and everyone. Instructors, students, aspiring data scientists and anyone 
 
 ## What's Different?
 
-There are several excellent courses that range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with Math and Statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please do share them with us at [courses@datacommons.org](mailto:courses@datacommons.org).
+There are several excellent courses that range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with Math and Statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please [share them with us through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+
 
 ## What do we mean by data literacy?
 
@@ -55,14 +56,15 @@ For the purpose of the Data Literacy, the Data Commons platform becomes an impor
 ## What topics are covered?
 
 Take a look at the [Key Themes page](course_materials/key_themes.html) or the [Modules page](course_materials/modules.html).
+
 ## What is not covered?
 
-We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please reach out at [courses@datacommons.org](mailto:courses@datacommons.org) and we would love to work with you.
+We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please [let us know on this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and we would love to work with you.
 
 We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.md) curriculum/course material.
 
 ## How can I give feedback?
 
-Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to hear from you at [courses@datacommons.org](mailto:courses@datacommons.org).
+Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to [hear from you](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
-Finally, if you end up using any of this material or find it useful, we would love to hear from you at [courses@datacommons.org](mailto:courses@datacommons.org).
+Finally, if you end up using any of this material or find it useful, we would love to hear from you - please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).

@@ -5,17 +5,27 @@
   <title>{{ page.title }} - Docs - Data Commons</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap" rel="stylesheet">
   <link href="/assets/css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/custom.css">
+  {% if page.url == "/api/web_components/" or page.parent == "Web Components" %}
+  <script src="https://datacommons.org/datacommons.js"></script>
+  {% endif %}
 </head>
 <body>
   <div id="main">
     <header id="main-header">
-      <nav class="navbar navbar-dark navbar-expand-lg col" id="main-nav">
+      <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
         <div class="container-fluid">
           <div class="navbar-brand">
+            <div id="main-header-logo">
+                <a href="https://datacommons.org/">
+                  <img src="/assets/images/dc-logo.svg" />
+                </a>
+            </div>
             <a href="https://datacommons.org">Data Commons</a>
             <span><a href="/">Docs</a></span>
             </a>
@@ -38,11 +48,11 @@
                 <a class="dropdown-item" href="https://datacommons.org/browser">Graph
                   Browser</a>
                 <a class="dropdown-item"
-                  href="https://datacommons.org/tools/timeline">Timelines Explorer</a>
+                  href="https://datacommons.org/tools/visualization#visType=timeline">Timelines Explorer</a>
                 <a class="dropdown-item"
-                  href="https://datacommons.org/tools/scatter">Scatter Plot Explorer</a>
+                  href="https://datacommons.org/tools/visualization#visType=scatter">Scatter Plot Explorer</a>
                 <a class="dropdown-item"
-                  href="https://datacommons.org/tools/map">Map Explorer</a>
+                  href="https://datacommons.org/tools/visualization#visType=map">Map Explorer</a>
                 <a class="dropdown-item"
                   href="https://datacommons.org/tools/statvar">Statistical Variable Explorer</a>
                 <a class="dropdown-item"
@@ -143,16 +153,15 @@
     </main>
 
     <footer id="main-footer">
-      <div class="container">
-        <div class="row">
-          <div id="sub-footer" class="col-12">
-            <span><a href="https://datacommons.org">Data Commons</a> is a Google supported project</span>
-            <div class="float-md-right mt-2 mt-md-0">
-              <a href="https://policies.google.com/terms">Terms and Conditions</a> ·
-              <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a> ·
-              <a href="https://datacommons.org/disclaimers">Disclaimers</a>
-            </div>
-          </div>
+      <div id="sub-footer">
+        <span class="brand-byline">
+          <span class="brand-text">An initiative from</span>
+          <img class="brand-logo" src="/assets/images/google-logo.svg" />
+        </span>
+        <div class="sub-footer-links">
+          <a href="https://policies.google.com/terms">Terms and Conditions</a>
+          <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
+          <a href="https://datacommons.org/disclaimers">Disclaimers</a>
         </div>
       </div>
     </footer>
@@ -165,12 +174,15 @@
     crossorigin="anonymous"></script>
   <script async
     src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117119267-1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWSES5WXZE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'UA-117119267-1');
+    gtag('config', 'G-KWSES5WXZE', {
+      client_storage: 'none',
+      anonymize_ip: true,
+    });
   </script>
   <script src="/assets/js/tabs.js"></script>
 </body>

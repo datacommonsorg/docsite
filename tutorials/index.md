@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Case studies
-nav_order: 5
+title: Case Studies
+nav_order: 50
 has_children: false
 ---
 

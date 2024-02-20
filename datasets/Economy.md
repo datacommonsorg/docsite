@@ -16,6 +16,26 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
+
+#### [Brazil Bank of Statistical Tables](https://sidra.ibge.gov.br/home/pnadct)
+Brazil Census from Bank of Statistical Variables.
+
+### [Central Bureau of Statistics (CBS), Israel](https://www.cbs.gov.il/he/Pages/default.aspx)
+
+#### [Israel Census](https://www.cbs.gov.il/en/Statistics/Pages/Generators/Time-Series-DataBank.aspx?level_1=4)
+Israel Demographics, Health, Economy statistics for Israel at country, district and sub-district Level.
+
+### [Central Statistics Office(CSO), Ireland](https://www.cso.ie/en/index.html)
+
+#### [Ireland Census](https://www.cso.ie/en/statistics/)
+Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
+
+### [Data One Org](https://data.one.org/)
+
+#### [One.org Debt](https://data.one.org/data-dives/)
+OneOrg principal, currency composition, interest and disbursed and outstanding of debt for different countries.
+
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
 #### [Regional Statistics by NUTS Classification](https://ec.europa.eu/eurostat/)
@@ -40,6 +60,29 @@ The exchange rate of currency broken down by country, currency standardization t
 Wage and salary data for Indian states.
 
 
+### [MarineRegions.org](https://www.marineregions.org/)
+
+#### [Global Oceans and Seas](https://www.marineregions.org/sources.php#goas)
+This dataset represents the boundaries of the 10 main oceans and seas (Arctic Ocean, North and South Atlantic Ocean, North and South Pacific Ocean, Southern Ocean, Indian Ocean, Baltic Sea, Mediterranean Region, South China and Eastern Archipelagic Seas). The boundaries are largely based on the publication 'Limits of Oceans & Seas, Special Publication No. 23', published by the IHO in 1953. The dataset is available in World Geodetic System of 1984 (WGS84). This dataset was composed by the Flanders Marine Data Centre.
+
+### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
+
+#### [Mexico Census](https://en.www.inegi.org.mx/temas/)
+Population Census and Statistics for Mexico at Country and State levels.
+
+### [National Institution for Transforming India.](https://niti.gov.in/)
+
+#### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
+India poverty statistics - percentage of people below poverty line.
+
+#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
+Sustainable Development Goals India Index
+
+### [OpenFIGI](https://www.openfigi.com/)
+
+#### [FIGI](https://www.openfigi.com/)
+OpenFIGI is a system for identifying global financial instruments. It provides tools for Identifying, mapping, and requesting a free Financial Instrument Global Identifier (FIGI)
+
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
 #### [OECD Statistics](https://stats.oecd.org)
@@ -47,10 +90,22 @@ Country-level stats for OECD countries and selected non-member economies from 41
 
 [License](https://www.oecd.org/termsandconditions/)
 
+### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
+
+#### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
+Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
 ### [Reserve Bank of India](https://rbi.org.in/)
 
 #### [Database on Indian Economy](https://dbie.rbi.org.in/DBIE/dbie.rbi?site=statistics)
 Data Commons includes variables related to poverty and unemployment in Indian states from the Reserve Bank of India.
+
+
+### [Statistics Canada](https://www.statcan.gc.ca/en/start)
+
+#### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
+Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
+[Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
 ### [U.S. Bureau of Economic Analysis (BEA)](https://www.bea.gov/)
@@ -92,6 +147,9 @@ Employment, unemployment, and labor force data for Census regions and divisions,
 #### [Quarterly Census of Employment and Wages (QCEW)](https://www.bls.gov/cew)
 Quarterly and annual employment and wage statistics broken down by industry and ownership.
 
+
+#### [US Consumer Price Index](https://www.bls.gov/cpi/tables/supplemental-files/)
+Consumer Price Index of US by Consumer Goods Category from Bureau Of Labour Statistics by Country level
 [Terms of Service](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
 
 
@@ -111,6 +169,11 @@ Number of businesses and amount of revenue, by business payroll status, industry
 [U.S. Census Terms of Service](https://www.census.gov/data/developers/about/terms-of-service.html).
 
 
+### [U.S. Commerce Data Hub](https://data.commerce.gov/)
+
+#### [Economic Development Administration (EDA)](https://www.commerce.gov/bureaus-and-offices/eda)
+EDA has led the federal economic development agenda by promoting innovation and competitiveness, preparing American regions for growth and success in the worldwide economy.
+
 ### [U.S. Department of Housing and Urban Development (HUD)](https://www.hud.gov/)
 
 #### [Income Limits](https://www.huduser.gov/portal/datasets/il.html)
@@ -118,6 +181,9 @@ Data Commons has imported 80th and 150th percentile median family income estimat
 
 
 ### [U.S. Department of Labor (DOL)](https://www.dol.gov/)
+
+#### [USA Minimum Wages](https://www.dol.gov/agencies/whd/state/minimum-wage/history)
+USA minimum wages at state level.
 
 #### [Weekly Claims and Extended Benefits Trigger Data](https://oui.doleta.gov/unemploy/DataDownloads.asp)
 Weekly new and continuing unemployment insurance claims for US states.
@@ -133,7 +199,13 @@ Data Commons includes all published statistics for 1-Month, 3-Month, 6-Month, 1-
 The data is in the public domain.
 
 
+#### [US Federal Reserve H.15 Interest Rates](https://www.federalreserve.gov/DataDownload/Choose.aspx?rel=H15)
+USA Federal Reserve H.15 Interest Rates
+
 ### [World Bank](https://www.worldbank.org/en/home)
+
+#### [World Bank Datasets](https://data.worldbank.org)
+World Bank datasets related to demographics, economy, education, etc.
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
 Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.
