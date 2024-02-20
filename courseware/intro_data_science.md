@@ -15,6 +15,9 @@ Each assignment notebook should ideally be adapted to suit the needs of your cur
 
 All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/)). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
+## FERPA Compliance 
+
+Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with FERPA. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
 
 
 ## Why use this?

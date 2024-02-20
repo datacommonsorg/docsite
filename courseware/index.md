@@ -11,6 +11,10 @@ Data Commons can help develop exciting new course content for several pedagogica
 
 All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/)). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
+## FERPA Compliance 
+
+Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with FERPA. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
+
 ## Courses
 
 **[Data Literacy](/courseware/data_literacy/overview.html)**
@@ -20,3 +24,4 @@ A general audience course focused on the basics of data comprehension, interpret
 **[Intro to Data Science](/courseware/intro_data_science.html)**
 
 An introduction to key data science concepts, targeted at an undergraduate audience. Assumes basic python programming skills.
+
