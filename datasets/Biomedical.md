@@ -50,10 +50,10 @@ This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/abo
 ### [International Committee on Taxonomy of Viruses (ICTV)](https://ictv.global/)
 
 #### [Master Species List](https://ictv.global/msl)
-The official, current virus taxonomy approved by the ICTV. To accomplish the task of organizing and maintaining this virus taxonomy, the ICTV is composed of 7 subcommittees covering Animal DNA viruses and Retroviruses, Animal dsRNA and ssRNA (-) viruses, Animal ssRNA (+) viruses, Bacterial viruses, Archaeal Viruses, Fungal and Protist viruses, and Plant viruses. The ICTV has established over 100 international Study Groups (SGs) covering all major virus families and genera.
+The official, current virus taxonomy approved by the ICTV. To accomplish the task of organizing and maintaining this virus taxonomy, the ICTV is composed of 7 subcommittees covering Animal DNA viruses and Retroviruses, Animal dsRNA and ssRNA (-) viruses, Animal ssRNA (+) viruses, Bacterial viruses, Archaeal Viruses, Fungal and Protist viruses, and Plant viruses. The ICTV has established over 100 international Study Groups (SGs) covering all major virus families and genera. The MSL version currently in the graph is MSL38 v3 released on 2023-09-11.
 
 #### [Virus Metadata Resource](https://ictv.global/vmr)
-The ICTV chooses an exemplar virus for each species and the VMR provides a list of these exemplars. An exemplar virus serves as an example of a well-characterized virus isolate of that species and includes the GenBank accession number for the genomic sequence of the isolate as well as the virus name, isolate designation, suggested abbreviation, genome composition, and host source.
+The ICTV chooses an exemplar virus for each species and the VMR provides a list of these exemplars. An exemplar virus serves as an example of a well-characterized virus isolate of that species and includes the GenBank accession number for the genomic sequence of the isolate as well as the virus name, isolate designation, suggested abbreviation, genome composition, and host source. The VMR version currently in the graph is VMR MSL38 v2 released on 2023-09-13.
 This data is made available under Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0).
 
 
