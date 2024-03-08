@@ -93,6 +93,11 @@ Canada Demographics, Health, Education and Economy statistics at Canada country 
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
+### [Statistics Sweden](https://www.scb.se/en/)
+
+#### [Sweden Census](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/)
+Sweden Demographics, Health and Education data from Statistics Sweden at country, nuts1, nuts2, nuts3 and municipality level.
+
 ### [U.S. Census Bureau](https://www.census.gov/)
 
 #### [American Community Survey Education Tabulation (ACS-ED)](https://nces.ed.gov/programs/edge/demographic/acs)

@@ -146,6 +146,11 @@ Canada Demographics, Health, Education and Economy statistics at Canada country 
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
+### [Statistics Sweden](https://www.scb.se/en/)
+
+#### [Sweden Census](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/)
+Sweden Demographics, Health and Education data from Statistics Sweden at country, nuts1, nuts2, nuts3 and municipality level.
+
 ### [Statistics of New Zealand](https://www.stats.govt.nz/)
 
 #### [New Zealand Census](https://www.stats.govt.nz/topics/population)
@@ -244,6 +249,10 @@ The World Health Organization publishes national COVID-19 cases and death counts
 
 #### [Global Health Observatory](https://www.who.int/data/gho/data/indicators/indicators-index)
 Data Commons imports variables about a variety of health indicators at a country level.
+
+
+#### [WHO Data](https://www.who.int/data)
+The UN curated this import of data from the World Health Organization.
 
 Data made available under [CC BY-NC-SA 3.0 IGO](https://www.who.int/about/policies/publishing/copyright).
 
