@@ -283,10 +283,6 @@ Information related to the wildland fire management incidents and resources.
 Earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and amplitudes) and other products (e.g. moment tensor solutions, macroseismic information, tectonic summaries, maps) produced by contributing seismic networks. Data Commons includes date, time, location, magnitudes, magnitude errors, depth, depth error, and review status of earthquakes of magnitude 3 onwards starting from 1900.
 
 
-#### [Geographic Names Information System (GNIS) - National Federal Codes](https://www.usgs.gov/u.s.-board-on-geographic-names/download-gnis-data)
-Codes, names, coordinates, and more information for all "named physical and cultural geographic features (except roads and highways) of the United States", maintained by [GNIS](https://www.usgs.gov/us-board-on-geographic-names). Data Commons uses this dataset to build containment relationships between places from the [US Census Gazetteer](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html) dataset.
-
-
 #### [National Water Use Data](https://waterdata.usgs.gov/nwis/wu)
 Water use data for states and counties in the US, broken down by water source (ground water, surface water), water type (fresh water, saline water), and category of use (domestic, industrial, etc.).
 

@@ -70,6 +70,11 @@ Singapore Demographics and Health statistics for Singapore at country.
 #### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
 Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
 
+### [GeoSadak PMGSY National GIS, India](https://geosadak-pmgsy.nic.in/)
+
+#### [India GeoSadak](https://geosadak-pmgsy.nic.in/OpenData)
+Data about civic structure facilities for India from GeoSadak PMGSY National GIS at district level.
+
 ### [Google](https://www.google.com/)
 
 #### [Google Places](https://www.google.com/)
@@ -133,10 +138,6 @@ Uganda Demographics, education and Health data from Uganda Bureau of Statistics 
 #### [OECD Regional Demography Statistics](https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#)
 Includes regional statistics for OECD countries on population by age, population density, life expectancy and mortality by age group.
 
-
-#### [OECD Statistics](https://stats.oecd.org)
-Country-level stats for OECD countries and selected non-member economies from 419 OECD datasets.
-
 [License](https://www.oecd.org/termsandconditions/)
 
 ### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
@@ -154,6 +155,11 @@ Yearly population estimates for Canada.
 
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
+
+### [Statistics Sweden](https://www.scb.se/en/)
+
+#### [Sweden Census](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/)
+Sweden Demographics, Health and Education data from Statistics Sweden at country, nuts1, nuts2, nuts3 and municipality level.
 
 ### [Statistics of New Zealand](https://www.stats.govt.nz/)
 
@@ -261,6 +267,12 @@ Statistics on relative deprivation in small areas in England.
 
 #### [UK Open Geography Portal](https://geoportal.statistics.gov.uk/)
 The Open Geography portal from the Office for National Statistics (ONS) provides free and open access to the definitive source of geographic products, web applications, story maps, services and APIs.
+
+### [Unique Identification Authority of India](https://uidai.gov.in/)
+Unique Identification Authority of India issues Aadhaar to all residents of India.
+
+#### [India Aadhaar Dashboard](https://uidai.gov.in/aadhaar_dashboard)
+Aadhaar dashboard has the details of unique identifier (Aadhaar) enrollment, update, authentication and KYC statistics.
 
 ### [United Nations (UN)](https://www.un.org/en/)
 

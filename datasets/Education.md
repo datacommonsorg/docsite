@@ -81,6 +81,13 @@ South Africa Demographics, Health and Education data from South Africa Data Port
 #### [Uganda Bureau of Statistics (UBOS)](https://uganda.opendataforafrica.org/)
 Uganda Demographics, education and Health data from Uganda Bureau of Statistics (UBOS) by country, region and district. [Terms of Use](https://uganda.opendataforafrica.org/dqgjtcb) for this dataset.
 
+### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
+
+#### [OECD Regional Education Statistics](https://stats.oecd.org/Index.aspx?DataSetCode=REGION_EDUCAT)
+OECD 2024, OECD Regional Education Statistics, url:https://stats.oecd.org/Index.aspx?DataSetCode=REGION_EDUCATaccessed on 01/17/2024.
+
+[License](https://www.oecd.org/termsandconditions/)
+
 ### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
 
 #### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
@@ -92,6 +99,11 @@ Japan Demographics, Economy, Health, Education data from Portal Site of Official
 Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
+
+### [Statistics Sweden](https://www.scb.se/en/)
+
+#### [Sweden Census](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/)
+Sweden Demographics, Health and Education data from Statistics Sweden at country, nuts1, nuts2, nuts3 and municipality level.
 
 ### [U.S. Census Bureau](https://www.census.gov/)
 
