@@ -50,17 +50,17 @@ This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/abo
 ### [International Committee on Taxonomy of Viruses (ICTV)](https://ictv.global/)
 
 #### [Master Species List](https://ictv.global/msl)
-The official, current virus taxonomy approved by the ICTV. To accomplish the task of organizing and maintaining this virus taxonomy, the ICTV is composed of 7 subcommittees covering Animal DNA viruses and Retroviruses, Animal dsRNA and ssRNA (-) viruses, Animal ssRNA (+) viruses, Bacterial viruses, Archaeal Viruses, Fungal and Protist viruses, and Plant viruses. The ICTV has established over 100 international Study Groups (SGs) covering all major virus families and genera.
+The official, current virus taxonomy approved by the ICTV. To accomplish the task of organizing and maintaining this virus taxonomy, the ICTV is composed of 7 subcommittees covering Animal DNA viruses and Retroviruses, Animal dsRNA and ssRNA (-) viruses, Animal ssRNA (+) viruses, Bacterial viruses, Archaeal Viruses, Fungal and Protist viruses, and Plant viruses. The ICTV has established over 100 international Study Groups (SGs) covering all major virus families and genera. The MSL version currently in the graph is MSL38 v3 released on 2023-09-11.
 
 #### [Virus Metadata Resource](https://ictv.global/vmr)
-The ICTV chooses an exemplar virus for each species and the VMR provides a list of these exemplars. An exemplar virus serves as an example of a well-characterized virus isolate of that species and includes the GenBank accession number for the genomic sequence of the isolate as well as the virus name, isolate designation, suggested abbreviation, genome composition, and host source.
+The ICTV chooses an exemplar virus for each species and the VMR provides a list of these exemplars. An exemplar virus serves as an example of a well-characterized virus isolate of that species and includes the GenBank accession number for the genomic sequence of the isolate as well as the virus name, isolate designation, suggested abbreviation, genome composition, and host source. The VMR version currently in the graph is VMR MSL38 v2 released on 2023-09-13.
 This data is made available under Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0).
 
 
 ### [Jensen Lab (University of Copenhagen)](https://jensenlab.org/resources/)
 
 #### [DISEASES](https://diseases.jensenlab.org/Search)
-DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. We further unify the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
+DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
 
 #### [Side Effect Resource (SIDER) 4.1](http://sideeffects.embl.de/)
@@ -143,7 +143,7 @@ This data is from an NIH human genome unrestricted-access data repository and ma
 ### [U.S. National Institutes of Health: National Library of Medicine](https://www.nlm.nih.gov/)
 
 #### [Medical Subject Headings (MeSH)](https://meshb.nlm.nih.gov/search)
-The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information". Data Commons includes the Concept, Descriptor, Qualifier, Supplementary Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html). Data Commons includes production year 2022 MeSH.
+The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically-organized vocabulary produced by the National Library of Medicine. It is used for indexing, cataloging, and searching of biomedical and health-related information. Data Commons includes the Concept, Descriptor, Qualifier, Supplementary Concept Record, and Term elements of MeSH as described [here](https://www.nlm.nih.gov/mesh/xml_data_elements.html) defined by all four xml files provided by MeSH (desc, pa, qual, and supp). Data Commons includes production year 2024 MeSH.
 
 
 #### [PubChem](https://pubchem.ncbi.nlm.nih.gov/)

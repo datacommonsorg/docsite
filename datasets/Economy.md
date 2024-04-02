@@ -83,13 +83,6 @@ Sustainable Development Goals India Index
 #### [FIGI](https://www.openfigi.com/)
 OpenFIGI is a system for identifying global financial instruments. It provides tools for Identifying, mapping, and requesting a free Financial Instrument Global Identifier (FIGI)
 
-### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
-
-#### [OECD Statistics](https://stats.oecd.org)
-Country-level stats for OECD countries and selected non-member economies from 419 OECD datasets.
-
-[License](https://www.oecd.org/termsandconditions/)
-
 ### [Portal Site of Official Statistics of Japan (e-Stat)](https://www.e-stat.go.jp/)
 
 #### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
@@ -115,10 +108,6 @@ Includes Gross Domestic Product categorized by county, metro, and other areas.
 
 #### [Gross Domestic Product](https://www.bea.gov/data/gdp)
 Gross domestic product for counties, metropolitan statistical areas and states, broken down by industry.
-
-
-#### [Prices & Inflation](https://www.bea.gov/data/prices-inflation)
-[Regional price parity measures](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) for metropolitan statistical areas, broken down by goods and services.
 
 
 #### [Regional Price Parities by State and Metro Area](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area)
@@ -147,9 +136,6 @@ Employment, unemployment, and labor force data for Census regions and divisions,
 #### [Quarterly Census of Employment and Wages (QCEW)](https://www.bls.gov/cew)
 Quarterly and annual employment and wage statistics broken down by industry and ownership.
 
-
-#### [US Consumer Price Index](https://www.bls.gov/cpi/tables/supplemental-files/)
-Consumer Price Index of US by Consumer Goods Category from Bureau Of Labour Statistics by Country level
 [Terms of Service](https://www.bjs.gov/developer/ncvs/termsofservice.cfm).
 
 
