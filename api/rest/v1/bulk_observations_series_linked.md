@@ -82,7 +82,7 @@ There are no path parameters for this endpoint.
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 | linked_entity <br /> <required-tag>Required</required-tag> | list | [DCID](/glossary.html#dcid) of the ancestor place to query.|
-| entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Graph Browser page on Place](https://datacommons.org/browser/Place). |
+| entity_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Knowledge Graph Browser page on Place](https://datacommons.org/browser/Place). |
 | variables <br /> <required-tag>Required</required-tag> | list | [DCIDs](/glossary.html#dcid) of the [variables](/glossary.html#variables) to query. |
 | linked_property <br /> <required-tag>Required</required-tag> | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.|
 | all_facets <br /><optional-tag>Optional</optional-tag> | boolean | Whether to return data from all [facets](/glossary.html#facet) available. If true, data from all facets available will be returned. If false, only data from the [preferred facet](/glossary.html#preferred-facet) will be returned. Defaults to false.|
