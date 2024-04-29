@@ -56,7 +56,7 @@ http://api.datacommons.org/v1/property/values/in/linked/{CONTAINING_PLACE}/conta
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
 | key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| value_node_type <br /> <required-tag>Required</required-tag> | string | The type of place to get results for (e.g. state, country, city, county). For a list of available values, see the [Knowledge Graph Browser page on Place](https://datacommons.org/browser/Place).|
+| value_node_type <br /> <required-tag>Required</required-tag> | string | The type of place to get results for (e.g. state, country, city, county). For a list of available values, see the [Knowledge Graph page on Place](https://datacommons.org/browser/Place).|
 {: .doc-table }
 
 ## Response

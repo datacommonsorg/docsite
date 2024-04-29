@@ -78,7 +78,7 @@ There are no path parameters for this endpoint.
 | ------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>             | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key.            |
 | nodes <br /> <required-tag>Required</required-tag>           | list   | [DCIDs](/glossary.html#dcid) of the parent places to query.                                                                                                                |
-| value_node_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Knowledge Graph Browser page on Place](https://datacommons.org/browser/Place). |
+| value_node_type <br /> <required-tag>Required</required-tag> | string | Type of place to query for (e.g. city, county, state, etc.). For a list of available values, see the [Knowledge Graph page on Place](https://datacommons.org/browser/Place). |
 | property <br /> <required-tag>Required</required-tag>        | string | [DCID](/glossary.html#dcid) of the property to query. Must be `containedInPlace`.                                                                                          |
 {: .doc-table }
 
