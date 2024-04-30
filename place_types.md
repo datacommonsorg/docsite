@@ -46,8 +46,8 @@ countries, but not all countries.
 ### US-Specific Administrative Divisions
 
 These place types can only be used for places that are contained within the
-[United States](datacommons.org/place/country/USA) (DCID:
-[country/USA](datacommons.org/browser/country/USA)).
+[United States](https://datacommons.org/place/country/USA) (DCID:
+[country/USA](https://datacommons.org/browser/country/USA)).
 
 |Place Type DCID|Place Type Description|
 |--- |--- |
@@ -59,8 +59,8 @@ These place types can only be used for places that are contained within the
 ### India-Specific Administrative Divisions
 
 These place types can only be used for places that are contained within
-[India](datacommons.org/place/country/IND) (dcid:
-[country/IND](datacommons.org/browser/country/IND)).
+[India](https://datacommons.org/place/country/IND) (dcid:
+[country/IND](https://datacommons.org/browser/country/IND)).
 
 |Place Type DCID|Place Type Description|
 |--- |--- |
