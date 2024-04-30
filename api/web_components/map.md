@@ -39,7 +39,7 @@ permalink: /api/web_components/map
 
 | Name           | Type   | Description                                                                                                                                      |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| childPlaceType | string | Child place types to plot. Example: `State`. <br /> <optional-tag>Optional</optional-tag> if `places` is specified.                              |
+| childPlaceType | string | Child place types to plot. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).<br /> <optional-tag>Optional</optional-tag> if `places` is specified.                              |
 | header         | string | Chart title.                                                                                                                                     |
 | parentPlace    | string | Parent place [DCID](/glossary.html#dcid) to plot. Example: `country/USA`. <br /> <optional-tag>Optional</optional-tag> if `places` is specified. |
 | variable       | string | Variable [DCID](/glossary.html#dcid) to plot.                                                                                                    |

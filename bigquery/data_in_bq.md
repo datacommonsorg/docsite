@@ -13,7 +13,7 @@ While Data Commons (DC) has information about a wide variety of types of entitie
 
 The most common type of information about places is in the form of a time series. Each time series is a set of observations, across a set of time periods, about a combination of a place and a variable (also called statistical variable) from a particular source. As an example, [here is the median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/timeline#place=geoId%2F0606000&statsVar=Median_Income_Person), according to the US Census Bureau.
 
-See the sample queries about [Places](/bigquery/query_places.html) and [Properties of Places](/bigquery/query_property_places.html) to explore further.
+See the sample queries about [Places](/bigquery/query_places.html) and [Properties of Places](/bigquery/query_property_places.html) to explore further. For a list of available place types, take a look at our [place types page](/place_types.html).
 
 
 ## Statistical Variables
