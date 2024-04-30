@@ -4,7 +4,7 @@ title: Place Types
 nav_order: 100
 ---
 
-# Place Types
+# Place types
 
 In Data Commons, a "place type" is a specific geographic or administrative unit
 for which we provide data. This could range from broad categories such as
@@ -15,9 +15,9 @@ place types available in our APIs and tools.
 **Note:** Not all data is available for all place types. Sources often don’t
 provide data at all levels of granularity. You can check what place types have
 data available for a specific variable using our
-[statistical variable explorer](https://datacommons.org/tools/statvar).
+[Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
-## Globally Available Administrative Divisions
+## Globally available administrative divisions
 
 These place types are generally available for Earth and/or all countries.
 
@@ -29,9 +29,9 @@ These place types are generally available for Earth and/or all countries.
 |[City](https://datacommons.org/browser/City)|A city.|
 {: .doc-table}
 
-## Partially Available Administrative Divisions
+## Partially available administrative divisions
 
-These places represent administrative divisions that are available for some
+These place types represent administrative divisions that are available for some
 countries, but not all countries.
 
 |Place Type DCID|Place Type Description|
@@ -43,7 +43,7 @@ countries, but not all countries.
 |[Village](https://datacommons.org/browser/Village)|A small clustered human settlement smaller than a town. |
 {: .doc-table}
 
-### US-Specific Administrative Divisions
+### US-specific administrative divisions
 
 These place types can only be used for places that are contained within the
 [United States](https://datacommons.org/place/country/USA) (DCID:
@@ -56,7 +56,7 @@ These place types can only be used for places that are contained within the
 |[CensusZipCodeTabulationArea](https://datacommons.org/browser/CensusZipCodeTabulationArea)|US zip codes as defined by the US Census Bureau.<br><br>For example, [94043](https://datacommons.org/place/zip/94043).<br><br>While there is significant overlap, these codes don't always correspond to the zip codes used by the US Postal Service.|
 {: .doc-table}
 
-### India-Specific Administrative Divisions
+### India-specific administrative divisions
 
 These place types can only be used for places that are contained within
 [India](https://datacommons.org/place/country/IND) (dcid:
@@ -67,7 +67,7 @@ These place types can only be used for places that are contained within
 |[State](https://datacommons.org/browser/State)|Indian states.<br><br>For example, [Uttar Pradesh](https://datacommons.org/place/wikidataId/Q1498) or [Karnataka](https://datacommons.org/place/wikidataId/Q1185)|
 {: .doc-table}
 
-### Europe-Specific Administrative Divisions
+### Europe-specific administrative divisions
 
 These place types can only be used for places that are contained within Europe
 (dcid: [europe](http://datacommons.org/browser/europe)).
@@ -79,10 +79,10 @@ These place types can only be used for places that are contained within Europe
 |[EurostatNUTS3](https://datacommons.org/browser/EurostatNUTS3)|Third-level statistical subdivision within an EU member country.|
 {: .doc-table}
 
-## Earth Grids
+## Earth grids
 
-These places represent regions defined by various geographic grid systems. These
-places are typically used with climate-related data.
+These place types represent regions defined by various geographic grid systems. These
+place types are typically used with climate-related data.
 
 |Place Type DCID|Place Type Description|
 |--- |--- |
