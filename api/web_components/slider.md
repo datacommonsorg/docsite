@@ -46,7 +46,7 @@ permalink: /api/web_components/slider
 
 | Name           | Type   | Description                                                                                                                                                           |
 | -------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| childPlaceType | string | Child place types of date range. Example: `State`.<br /><br /><optional-tag>optional</optional-tag> if `dates` is specified.                                          |
+| childPlaceType | string | Child place types of date range. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).<br /><br /><optional-tag>optional</optional-tag> if `dates` is specified.                                          |
 | dates          | list   | Set date option range. Example: `"2001 2002 2003"`<br /><br /><optional-tag>optional</optional-tag> if `variable`, `parentPlace`, and `childPlaceType` are specified. |
 | parentPlace    | string | Parent place [DCID](/glossary.html#dcid) of date range. Example: `country/USA`.<br /><br /><optional-tag>optional</optional-tag> if `dates` is specified.             |
 | publish        | string | Event name to publish on slider change.                                                                                                                               |

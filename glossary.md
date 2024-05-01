@@ -71,7 +71,7 @@ The time period over which an [observation](#observation) is made. Specified in 
 ### Place
 {: #place}
 
-Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place) to search for places in the graph, or view the [Graph Browser entry for Place](https://datacommons.org/browser/Place) for a full view of the node.
+Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place) to search for places in the graph, or view the [Graph Browser entry for Place](https://datacommons.org/browser/Place) for a full view of the node. To learn more about place types, take a look at the [place types page](/place_types.html).
 
 ### Preferred Facet
 {: #preferred-facet}
