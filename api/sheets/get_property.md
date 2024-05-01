@@ -22,7 +22,7 @@ The `=DCPROPERTY(dcids, property)` formula returns values associated with the gi
 ### Required Arguments
 
 * `dcids`: A list of [Place](/glossary.html#place) nodes, identified by their [DCIDs](/glossary.html#dcid).
-* `property`: The property whose value you are interested in,  such as “name” for the name of a node, or “typeOf” for the type of a node. If you aren’t sure what properties are available for a particular DCID, you can use the [Data Commons knowledge graph](https://datacommons.org/browser/)
+* `property`: The property whose value you are interested in,  such as “name” for the name of a node, or “typeOf” for the type of a node. If you aren’t sure what properties are available for a particular DCID, you can use the [Data Commons Knowledge Graph](https://datacommons.org/browser/)
   to look up the DCID of interest and see what properties it is associated with.
 
 ## Returns

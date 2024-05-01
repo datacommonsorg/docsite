@@ -107,7 +107,7 @@ available in the `United States` ([DCID](/glossary.html#dcid): `country/USA`) at
 
 #### Example #2: Finding place DCIDs
 
-The knowledge graph [country/USA](https://datacommons.org/browser/country/USA)
+The Knowledge Graph [country/USA](https://datacommons.org/browser/country/USA)
 page shows the [DCID](/glossary.html#dcid)s for all US states and territories.
 
 <img src="/assets/images/web_components/graph-explorer.png" width="600"/>
