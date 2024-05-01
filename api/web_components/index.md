@@ -90,7 +90,7 @@ To find the [DCID](/glossary.html#dcid) of a place or variable:
 2. Search for places and variables with the
    [Data Commons Search](https://datacommons.org/search) page.
 
-3. Use the [Data Commons Graph Browser](https://datacommons.org/browser) to
+3. Use the [Data Commons Knowledge Graph](https://datacommons.org/browser) to
    understand the relationship between entities.
 
 ### Finding DCIDs Examples
@@ -107,7 +107,7 @@ available in the `United States` ([DCID](/glossary.html#dcid): `country/USA`) at
 
 #### Example #2: Finding place DCIDs
 
-The graph browser [country/USA](https://datacommons.org/browser/country/USA)
+The Knowledge Graph [country/USA](https://datacommons.org/browser/country/USA)
 page shows the [DCID](/glossary.html#dcid)s for all US states and territories.
 
 <img src="/assets/images/web_components/graph-explorer.png" width="600"/>

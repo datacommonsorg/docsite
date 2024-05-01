@@ -16,8 +16,7 @@ Opportunity Insights, and more. However, Data Commons is
 meant to be for community, by the community. We're excited to work with you
 to make public data accessible to everyone.
 
-To see the extent of data we have today, browse the graph using our
-[browser](https://datacommons.org/browser).
+To see the extent of data we have today, [browse the Knowledge Graph](https://datacommons.org/browser).
 
 ## Developing locally
 
