@@ -1,0 +1,182 @@
+---
+layout: default
+title: Getting Started
+nav_order: 2
+parent: Overview
+---
+
+To start developing a custom Data Commons instance, we recommend that you develop your site and host your data locally. This uses a SQLite database to store custom data. ![image](/assets/images/custom_dc/customdc_setup2.png)
+
+This page shows you how to run a local custom Data Commons instance inside a Docker container, load sample custom data, and enable natural querying. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
+
+## Prerequisites
+
+-  Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
+-  Install [Docker Engine](https://docs.docker.com/engine/install/).
+-  Install [Git](https://git-scm.com/). 
+-  Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
+-  Request API keys:
+    -  Get an API key for Data Commons by submitting the [Data Commons API Key Request Form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your custom site to the main Data Commons site. Typical turnaround times are 24-48 hours. 
+    -  Enable the Maps Javascript API and Places API on your GCP project, and obtain a Google Maps API. Follow the [Maps Javascript API guide](https://developers.google.com/maps/documentation/javascript/get-api-key) for detailed procedures. If you don't yet have a GCP project, you can temporarily use a sample key, `AIzaSyA9RsPS8tBCKwrET3qqAzydhOMWP0Ee8Y8` to get started on local development. However, the sample key will not work if other machines on your network try to access a shared running instance. 
+
+## One-time setup steps
+
+### Clone the Data Commons repository 
+
+1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
+1. Clone the website Data Commons repository: 
+
+    ```shell  
+    git clone https://github.com/datacommonsorg/website.git  
+    ```
+
+This creates a local `website` subdirectory.
+
+1. When the downloads are complete, navigate to the root directory of the repo, `website`. References to various files and commands in these procedures are relative to this root.
+
+    ```shell  
+    cd website  
+    ```
+
+### Set API keys as environment variables
+
+1. Using your favorite editor, open `custom_dc/sqlite_env.list`.
+1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`. 
+1. Leave `ADMIN_SECRET` blank for now. 
+
+Warning: Do not use any quotes (single or double) or spaces when specifying the values.
+
+## About the downloaded files
+
+<table>
+  <thead>
+    <tr>
+      <th>Directory/file</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample"><code>custom_dc/sample/</code></a></td>
+      <td>Sample supplemental data that is added to the base data on the main Data Commons site. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the config.json file. </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples"><code>custom_dc/examples/</code></a></td>
+      <td>More examples of custom data in CSV format and config.json. To configure your own custom data, see <a href="custom_data.md">Working with Custom Data</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom"><code>server/templates/custom_dc/custom</code></a>/</td>
+      <td>Contains customizable HTML files. To modify these, see <a href="????">Customizing HTML templates</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom"><code>static/custom_dc/custom</code></a>/</td>
+      <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="?tab=t.0#heading=h.bpsmr9eay0n9">Customizing Javascript and styles</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/sqlite_env.list"><code>custom_dc/sqlite_env.list</code></a></td>
+      <td>Contains environment variables for a development environment using SQLite as the database. For details of the variables, see the comments in the file.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/cloudsql_env.list"><code>custom_dc/cloudsql_env.list</code></a>t</td>
+      <td>Contains environment variables for a development or production environment using Cloud SQL as the database. For details of the variables, see the comments in the file.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Start the services
+
+From the root directory, `website`, run Docker as follows. 
+
+Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you will need to preface every `docker` invocation with `sudo`.
+
+```shell  
+docker run -it \  
+-p 8080:8080 \  
+-e DEBUG=true \  
+--env-file $PWD/custom_dc/sqlite_env.list \  
+-v $PWD/custom_dc/sample:/userdata \  
+gcr.io/datcom-ci/datacommons-website-compose:stable  
+```
+
+This command does the following:
+
+-  The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-website-compose:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
+-  Starts a Docker container in interactive mode. 
+-  Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container
+-  Maps the sample data to the Docker path `/userdata`, so the servers do not need to be restarted when you load the sample data
+
+### Stopping and restarting the services
+
+If you need to restart the services for any reason, do the following:
+
+1. In the terminal window where the services are running, press Ctrl-c to kill the Docker container. 
+1. Rerun the `docker run` command as usual.
+
+Tip: If you close the terminal window in which you started the Docker container, you can kill it as follows:
+
+1. Open another terminal window, and from the `website` directory, get the Docker container ID.
+
+	```shell  
+    docker ps  
+    ```  
+	  
+The `CONTAINER ID` is the first column in the output.
+
+1. Run:
+
+    <pre>
+    docker kill <var>CONTAINER_ID</var>  
+	</pre>
+
+## View the local website
+
+Once Docker is up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080).  You should see something like this:
+
+![screenshot_homepage](/assets/images/custom_dc/customdc_screenshot1.png)
+
+You can browse the various Data Commons tools (Variables, Map, Timelines, etc.) and work with the entire base dataset.
+
+## Load sample data
+
+In this step, we will add sample data that we have included as part of the download for you to load it into your custom instance. This data is from the Organisation for Economic Co-operation and Development (OECD): "per country data for annual average wages" and "gender wage gaps". 
+
+To load and view the sample data:
+
+1. Point your browser to the admin page at [http://localhost:8080/admin](http://localhost:8080/admin).
+1. Since you have not yet specified an `ADMIN_SECRET`, leave it blank. 
+1. Click **Load Data**. It may take a few seconds to load.
+
+This does the following:
+
+-  Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`. 
+-  Generates embeddings in the Docker image and loads them. 
+
+Tip: When you restart the Docker instance, all data in the SQLite database is lost. If you want to preserve the sample data and have it automatically always load after restarting your Docker instance, without having to run the load data function each time, include this additional flag in your Docker run command:
+
+```shell  
+-v $PWD/custom_dc/sample/datacommons:/sqlite  
+```
+
+Now visit the Timeline explorer at [http://localhost:8080/tools/timeline](http://localhost:8080/tools/timeline). You'll now see the new variables and can explore the new data. Try entering a country:
+
+<!-- TODO: replace the next two screenshots when [b/339077574](http://b/339077574) is fixed. -->
+
+![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png)
+
+To issue natural language queries, click the **Search** link or browse to [http://localhost:8080/explore](http://localhost:8080/explore). Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+
+![screenshot_search](/assets/images/custom_dc/customdc_screenshot3.png)
+
+## Sending an API request
+
+A custom instance can accept REST API requests at the endpoint `/core/api/v2/`. To try it out, here's an example request that returns the same data as in the interactive queries above, using the `observation` API. You can enter this query in your browser to get nice output:
+
+```  
+[http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage](http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage)  
+```
+
+Note: You do not need to specify an API key as a parameter.
+
+If you select **Prettyprint**, you should see output like this:
+
+![screenshot_api_call](/assets/images/custom_dc/customdc_screenshot4.png){: height="250" }
