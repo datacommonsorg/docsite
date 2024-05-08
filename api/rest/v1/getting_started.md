@@ -70,7 +70,7 @@ Still confused? Each endpoint's documentation page has examples at the bottom ta
 Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
 
 - [Search](https://datacommons.org/search) Search Data Commons
-- [Graph Browser](https://datacommons.org/browser/) Click through the knowledge graph
+- [Knowledge Graph](https://datacommons.org/browser/) Click through the knowledge graph
 - [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
 - [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
 

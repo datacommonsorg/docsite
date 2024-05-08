@@ -36,7 +36,7 @@ The date of measurement. Specified in ISO 8601 format. Examples include `2011` (
 
 Every entity in the Data Commons graph has a unique identifier, called ‘DCID’ (short for Data Commons Identifier). So, for example, the DCID of California is [`geoId/06`](https://datacommons.org/browser/geoId/06) and of India is [`country/IND`](https://datacommons.org/browser/country/IND). DCIDs are not restricted to entities; every node in the graph has a DCID. Statistical variables have DCID, for example the DCID for the Gini Index of Economic Activity is [`GiniIndex_EconomicActivity`](https://datacommons.org/tools/statvar#GiniIndex_EconomicActivity).
 
-You can find the DCID for a place by searching for it in the [Place Explorer tool](https://datacommons.org/place), and the DCID for statistical variables in the [Statistical Variable Explorer tool](https://datacommons.org/tools/statvar). All nodes have an entry in the [Graph Browser](https://datacommons.org/browser/).
+You can find the DCID for a place by searching for it in the [Place Explorer tool](https://datacommons.org/place), and the DCID for statistical variables in the [Statistical Variable Explorer tool](https://datacommons.org/tools/statvar). All nodes have an entry in the [Knowledge Graph](https://datacommons.org/browser/).
 
 ### Entity
 {: #entity}
@@ -61,7 +61,7 @@ The technique used for measuring a [variable](#variable). Describes how a measur
 ### [Observation (Statistical Variable Observation)](https://datacommons.org/browser/StatVarObservation)
 {: #observation}
 
-A measurement of a [variable](#variable) for a particular place and time. For example, a `StatVarObservation` of the `StatisticalVariable` `Median_Income_Person` for Brookmont, Maryland, in the year 2018 would be $126,199. A complete list of properties of statistical variable observations can be found in the [graph browser](https://datacommons.org/browser/StatVarObservation).
+A measurement of a [variable](#variable) for a particular place and time. For example, a `StatVarObservation` of the `StatisticalVariable` `Median_Income_Person` for Brookmont, Maryland, in the year 2018 would be $126,199. A complete list of properties of statistical variable observations can be found in the [Knowledge Graph](https://datacommons.org/browser/StatVarObservation).
 
 ### [Observation Period](https://datacommons.org/browser/observationPeriod)
 {: #observation-period}
@@ -71,7 +71,7 @@ The time period over which an [observation](#observation) is made. Specified in 
 ### Place
 {: #place}
 
-Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place) to search for places in the graph, or view the [Graph Browser entry for Place](https://datacommons.org/browser/Place) for a full view of the node.
+Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place) to search for places in the graph, or view the [Knowledge Graph entry for Place](https://datacommons.org/browser/Place) for a full view of the node. To learn more about place types, take a look at the [place types page](/place_types.html).
 
 ### Preferred Facet
 {: #preferred-facet}
@@ -90,7 +90,7 @@ Property of [variables](#variable) that measure proportions, used in conjunction
 
 As an example, in 1999, [approximately 36% of Canadians were Internet users](https://datacommons.org/browser/dc/o/0d9e3dd3y6yt3). Here the measured value of `Count_Person_IsInternetUser_PerCapita` is 36, and the scaling factor or denominator for this per capita measurement is 100. Without the scaling factor, we would interpret the value to be 36/1, or 3600%.
 
-A complete list of properties can be found in the [graph browser](https://datacommons.org/browser/scalingFactor).
+A complete list of properties can be found in the [Knowledge Graph](https://datacommons.org/browser/scalingFactor).
 
 ### Triple
 {: #triple}
@@ -115,12 +115,12 @@ USA -- containedInPlace --> northamerica
 ### [Unit](https://datacommons.org/browser/unit)
 {: #unit}
 
-The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour), [inches](https://datacommons.org/browser/Inch), and [Indian Rupees](https://datacommons.org/browser/IndianRupee). A complete list of properties can be found in the [graph browser](https://datacommons.org/browser/unit).
+The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour), [inches](https://datacommons.org/browser/Inch), and [Indian Rupees](https://datacommons.org/browser/IndianRupee). A complete list of properties can be found in the [Knowledge Graph](https://datacommons.org/browser/unit).
 
 ### [Statistical Variable](https://datacommons.org/browser/StatisticalVariable)
 {: #variable}
 
-Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears), [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female), [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person), or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes). A complete list of variables can be found in the [graph browser](https://datacommons.org/browser/StatisticalVariable).
+Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears), [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female), [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person), or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes). A complete list of variables can be found in the [Knowledge Graph](https://datacommons.org/browser/StatisticalVariable).
 
 ### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup)
 {: #variable-group}
