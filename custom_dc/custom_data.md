@@ -1,9 +1,11 @@
 ---
 layout: default
-title: Working with Custom Data
+title: Work with custom data
 nav_order: 3
-parent: Overview
+parent: Custom Data Commons
 ---
+
+## Work with custom data
 
 Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure. 
 
@@ -13,16 +15,16 @@ Custom Data Commons provides a simple mechanism to import your own data, but it 
 
 Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample) and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples) directories.
 
-## Preparing the CSV files
+## Prepare the CSV files {#prepare-csv}
 
 Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a   
-_variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](https://docs.datacommons.org/glossary.html#dcid)s. 
+_variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](../glossary.md#dcid)s. 
 
 With the variable-per-column scheme, data is provided in this format, in this exact sequence:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There is a single property, the _ENTITY_; all other properties must be expressed as [statistical variables](https://docs.datacommons.org/glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
+There is a single property, the _ENTITY_; all other properties must be expressed as [statistical variables](../glossary.md#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
 
 ```json  
 city, year, typeOfSchool, count  
@@ -44,13 +46,13 @@ San Francisco, 2023, 300, 300, 200, 50
 San Jose, 2023,400, 400, 300, 50  
 ```
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](https://docs.datacommons.org/place_types.html) for a full list. You can also use `dcid` or its prefixes, `geoId`, `latLng`. If you use `dcId`, the value must be a resolved [DCID](https://docs.datacommons.org/glossary.html#dcid). If you're not sure what to use, you can simply use the heading `name` or `place` and the importer will resolve it automatically.
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](../place_types.md) for a full list. You can also use `dcid` or its prefixes, `geoId`, `latLng`. If you use `dcId`, the value must be a resolved [DCID](../glossary.md#dcid). If you're not sure what to use, you can simply use the heading `name` or `place` and the importer will resolve it automatically.
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_, with the corresponding heading, i.e. `year`, `month` or `date`.
 
-The _VARIABLE _should contain a metric [observation](https://docs.datacommons.org/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the main Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you. 
+The _VARIABLE_ should contain a metric [observation](../glossary.md#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the main Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you. 
 
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored
+The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
 All headers must be in camelCase.
 
@@ -72,7 +74,7 @@ geoId/06,2021,555,666
 geoId/08,2021,10,10  
 ```
 
-## Writing the data config file
+## Write the data config file
 
 The config.json file specifies how the CSV contents should be mapped and resolved to the Data Commons schema. See the example in the [`sample/config.json`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/config.json) file provided, which describes the data in the [`sample/average_annual_wage.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/average_annual_wage.csv) and [`sample/gender_wage_gap.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/gender_wage_gap.csv) files.  
 
@@ -120,17 +122,18 @@ Here is the general spec for the JSON file:
 
 Each section contains some required and optional fields, which are described in detail below.
 
-### `inputFiles`
+### Input files
 
-The top-level `inputFiles` field should encode a map from the input file name to parameters specific to that file. Keys can be individual file names or wildcard patterns if the same config applies to multiple files.  
+The top-level `inputFiles` field should encode a map from the input file name to parameters specific to that file. Keys can be individual file names or wildcard patterns if the same config applies to multiple files.
+
 You can use the `*` wildcard; matches are applied in the order in which they are specified in the config. For example, in the following:  
 
-```json  
+```json
 {  
  "inputFiles": {  
-     "foo.csv": {...},  
-     "bar*.csv": {...},  
-     "*.csv": {...}  
+    "foo.csv": {...},  
+    "bar*.csv": {...},  
+    "*.csv": {...}  
   }  
 }  
 ```  
@@ -138,82 +141,89 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 #### Input file parameters
 
-<dl>
-<dt><code>entityType</code></dt>
-<dd>Required: All entities in a given file must be of a specific type. This type should be specified as the value of the ``entityType`` field. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](https://docs.datacommons.org/place_types.html) for a list.
-</dd>
+`entityType`
 
-<dt><code>ignoreColumns</code></dt>
-<dd>Optional: The list of column names to be ignored by the importer, if any.</dd>
+: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the <code>entityType</code> field. The importer tries to resolve entities to DCIDs of that type. In most cases, the <code>entityType</code> will be a supported place type; see [Place types](../place_types.md) for a list.
 
-<dt><code>provenance</code></dt>
-<dd>Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, `WorldDevelopmentIndicators` provenance (or dataset) is from the `WorldBank` source.  
-You must specify the provenance details under `sources`.`provenances`; this field associates one of the provenances defined there to this file.</dd>
-</dl>
+`ignoreColumns`
 
-### `variables`
+: Optional: The list of column names to be ignored by the importer, if any.
 
-This section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
+`provenance`
+
+: Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, `WorldDevelopmentIndicators` provenance (or dataset) is from the `WorldBank` source.  
+
+You must specify the provenance details under `sources`.`provenances`; this field associates one of the provenances defined there to this file.
+
+
+### Variables
+
+The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
 #### Variable parameters
 
-<dl>
-<dt><code>name</code></dt>
-<dd>The display name of the variable, which will show up in the site's exploration tools. If not specified, the column name is used as the display name.  
-The name should be concise and precise; that is, the shortest possible name that allow humans to uniquely identify a given variable. The name is used to generate NL embeddings.</dd>
+`name`
 
-<dt><code>description</code></dt>
-<dd>A long-form description of the variable.</dd>
+: The display name of the variable, which will show up in the site's exploration tools. If not specified, the column name is used as the display name.  
+The name should be concise and precise; that is, the shortest possible name that allow humans to uniquely identify a given variable. The name is used to generate NL embeddings.
 
-<dt><code>properties</code></dt>
-<dd>Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](https://github.com/datacommonsorg/data/blob/master/docs/representing_statistics.md#statisticalvariable) for more details.  
+`description`
+
+: A long-form description of the variable.
+
+`properties` 
+
+: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](../data/blob/master/docs/representing_statistics.md#statisticalvariable) for more details.  
+
 Each property is specified as a key:value pair. Here are some examples:  
 
-```json 
+```json
 {
-"populationType": "schema:Person",  
-"measuredProperty": "age",  
-"statType": "medianValue",  
-"gender": "Female" 
+  "populationType": "schema:Person",  
+  "measuredProperty": "age",  
+  "statType": "medianValue",  
+  "gender": "Female" 
 } 
 ```
-</dd>
 
-<dt><code>group</code></dt>  
-<dd>You can arrange variables in groups, so that they appear together in the Statistical Variables Explorer and other exploration tools. The group name is used as the heading of the group. For example, in the sample data, the group name `OECD` is used to group together the two variables from the two CSV files:
+`group`
 
-![group_screenshot](/assets/images/custom_dc/customdc_screenshot5.png) {}
+: You can arrange variables in groups, so that they appear together in the Statistical Variables Explorer and other exploration tools. The group name is used as the heading of the group. For example, in the sample data, the group name `OECD` is used to group together the two variables from the two CSV files:
 
-You can have a multi-level group hierarchy by using `/` as a separator between each group.</dd>
+![group_screenshot](/assets/images/custom_dc/customdc_screenshot5.png){: width="250"}
 
-<dt><code>searchDescriptions</code></dt>
+You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-<dd>Formerly `nlSentences`. An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.  
+`earchDescriptions`
 
-Note: `nlSentences` is deprecated and will be removed in the future.</dd>
-</dl>
+: Formerly `nlSentences`. An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.  
 
-### `sources`
+Note: `nlSentences` is deprecated and will be removed in the future.
 
-The `sources` section encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs. 
+### Sources
+
+The `sources` section is optional. It encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs. 
 
 #### Source parameters
 
-<dl>
-<dt><code>url</code></dt>
-<dd>Required: The URL of the source.</dd>
+`url`
+: Required: The URL of the named source. For example, for named source `U.S. Social Security Administration`, it would be `https://www.ssa.gov`.
 
-<dt><code>provenances</code></dt>  
-<dd>Required: A set of name:URL pairs. Here are some examples:
-TODO: add examples
-</dd>
-</dl>
+`provenances`
+: Required: A set of name:URL pairs. Here are some examples:
 
-## Loading local custom data
+```json
+{
+  "USA Top Baby Names 2022": "https://www.ssa.gov/oact/babynames/"
+  "USA Top Baby Names 1923-2022": "https://www.ssa.gov/oact/babynames/decades/century.html"
+}
+```
+
+## Load local custom data
 
 To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](testing_cloud.md) for procedures.
 
-### Starting the Docker container with local custom data
+### Start the Docker container with local custom data {#docker-data}
 
 Once you have your CSV files and config.json set up, use the following command to restart the Docker container, mapping your custom data directory to the Docker userdata directory.
 
@@ -224,14 +234,14 @@ docker run -it \
 --env-file $PWD/custom_dc/sqlite_env.list \  
 -v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \  
 [-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons:/sqlite]  
-[gcr.io/datcom-ci/datacommons-website-compose:stable](gcr.io/datcom-ci/datacommons-website-compose:stable)  
+gcr.io/datcom-ci/datacommons-website-compose:stable  
 </pre>
 
 The optional `-v` flag preserves the SQLite data so it loads automatically when you restart the Docker container.
 
 Every time you make changes to the CSV or JSON files, you should reload the data, as described below.
 
-## Loading custom data in SQLite
+## Load custom data in SQLite
 
 As you are iterating on changes to the source CSV and JSON files, you will need to reload the data. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data with a shared Docker instance.
 
@@ -243,22 +253,21 @@ You can load the new/updated data from using the /admin page on the site, or usi
     -  In the browser, navigate to the `/admin page`. If a secret is required, enter it in the text field, and click **Load**. 
     -  From a terminal window command line, run the following:
 
->   <pre> 
-    curl -X POST localhost|HOST_NAME:8080/admin/load-data \  
-  	 -H "Content-Type: application/x-www-form-urlencoded" \  
-  	 [-d "secret=<var>ADMIN_SECRET</var>"]  
-	</pre>
+  ```shell
+   POST localhost|HOST_NAME:8080/admin/load-data \
+   -H "Content-Type: application/x-www-form-urlencoded" \
+   [-d "secret=<ADMIN_SECRET"]
+   ```
 
 In both cases, this runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/nl/</code>. 
 
-## Inspecting the SQLite database
+## Inspect the SQLite database
 
 If you need to troubleshoot custom data, it is helpful to inspect the contents of the generated SQLite database.
 
 To do so, from a terminal window, open the database:
-
 <pre>  
-sqlite3 website/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/[datacommons.db](datacommons.db)  
+sqlite3 website/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db
 </pre>
 
 This starts the interactive SQLite shell. To view a list of tables, at the prompt type `.tables`. The relevant table is `observations`. 

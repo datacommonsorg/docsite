@@ -1,9 +1,11 @@
 ---
 layout: default
-title: Overview
+title: Custom Data Commons
 nav_order: 90
 has_children: true
 ---
+
+## Overview
 
 Data Commons is an open source platform. Any organization can create a custom Data Commons instance with its own data, customized user interface and visualization tools,
 
@@ -31,23 +33,24 @@ If you have the resources to develop and maintain a custom Data Commons instance
 
 -  You want to add your own data to Data Commons but want to maintain ownership of the Cloud data.
 -  You want to add your own data to Data Commons but want to customize the UI of the site.
--  You want to host your data on your own website, using the Data Commons tools.
--  You want to add your own data to Data Commons, but restrict access to the site.
+-  You want to host your data on your own website, using the Data Commons tools. (You may also host all or part of your data on the main public Data Commons site as well.)
+-  You want to add your own private data to Data Commons, and restrict access to it.
+-  You want to host all or part of your data on your own the main public Data Commons site in additio
 
-You may also wish to host all or part of your data on the main public Data Commons website as well. 
+Also, if you want to add all of your data to the main Data Commons and test how it will work with the exploration tools and natural language queries, you will need to at least host a local development site for testing purposes.
 
 For the following use cases, a custom Data Commons instance is not necessary: 
 
--  You only want to make your own data available to the main public Data Commons site (at [datacommons.org](datacommons.org)). See instead the procedures on contributing your data to Data Commons. 
--  You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons Web Components](https://docs.datacommons.org/api/web_components/) for more details.
+-  You only want to make your own data available to the main public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](../import_data/index.md). 
+-  You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](../api/web_components.md) for more details.
 
 ## Supported features
 
 A custom Data Commons instance supports the following features:
 
 -  All of the same interactive tools as the main site, including the natural language query interface
--  REST APIs &emdash; with no additional setup
--  Python and Pandas API wrappers, and/or Spreadsheets &emdash; requires additional setup and maintenance. If you would like to support these facilities, please contact us.
+-  REST APIs -- no additional setup neeeded
+-  Python and Pandas API wrappers, and/or Spreadsheets -- requires additional setup and maintenance. If you would like to support these facilities, please contact us.
 -  Access controls to the site, using any supported Google Cloud Run mechanisms, such as Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress) for more information on these options.
 
 The following are not supported:
@@ -82,14 +85,14 @@ If you already have an account with another cloud provider, we can provide a con
 
 In terms of development time and effort, to launch a site with custom data in compatible format and no UI customization, you can expect it to take less than three weeks. If you need substantial UI customization it may take up to four months. 
 
-The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a small dataset, we have found the cost comes out to roughly $100 per year. You can get more precise information and cost estimation tools at [Google Cloud Pricing](https://cloud.google.com/pricing). 
+The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a small dataset, we have found the cost comes out to roughly $100 per year. You can get more precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing). 
 
 ## Recommended workflow
 
-1. Work through the [Getting Started](quickstart.md) page to learn how to run a local Data Commons instance and load some sample custom data. 
-1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Working with Custom Data](custom_data.md)
-1. If you want to customize the look of the feel of your site, see [Customizing the UI](custom_ui.md).
-1. Upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Testing Data in Google Cloud](data_cloud.md).
-1. When you are satisfied that everything is working correctly, and are getting closer to launch, upload your custom site to Google Cloud Run and continue to test in the Cloud. See [Deploying the Custom Instance to Google Cloud](deploy_cloud.md)
-1. To launch your site to real traffic, configure your Cloud service to serve external traffic. Consult [Mapping Custom Domains](https://cloud.google.com/run/docs/mapping-custom-domains) and related Google Cloud Run documentation for complete details on configuring domains and traffic.
+1. Work through the [Quickstart](quickstart.md) page to learn how to run a local Data Commons instance and load some sample custom data. 
+1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](custom_data.md). If you are just testing custom data to add to the main Data Commons site, this is all you need to do.
+1. If you are launching your own Data Commons site, and want to customize the look of the feel of the site, see [Customize the site](custom_ui.md).
+1. If you are launching your own Data Commons site, upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Test data in Google Cloud](data_cloud.md).
+1. When you are satisfied that everything is working correctly, and are getting closer to launch, upload your custom site to Google Cloud Run and continue to test in the Cloud. See [Deploy the custom instance to Google Cloud](deploy_cloud.md)
+1. To launch your site to real traffic, configure your Cloud service to serve external traffic. Consult [Mapping custom domains](https://cloud.google.com/run/docs/mapping-custom-domains) and related Google Cloud Run documentation for complete details on configuring domains and traffic.
 1. For future updates and launches, continue to make UI and data changes locally and upload the data to Cloud Storage, before deploying the changes to Cloud Run.

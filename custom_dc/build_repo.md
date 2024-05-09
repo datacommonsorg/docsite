@@ -1,9 +1,11 @@
 ---
 layout: default
-title: Building and Running a Local Repo
+title: Build and run a local repo
 nav_order: 5
-parent: Overview
+parent: Custom Data Commons
 ---
+
+## Build and run a local repo
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
 
@@ -20,7 +22,7 @@ Then, restart Docker, specifying that repo as the argument to the `docker run` c
 
 If you have local changes that need to be built, or you are ready to deploy your site to Google Cloud, follow the procedures below.
 
-## One-time setup: download build dependencies
+## One-time setup: download build dependencies {#download_deps}
 
 If you need to rebuild the repo locally, the `mixer` and `import` repos must be available as dependencies. Run this command one time to set the repos as subdirectories of the website repo:
 
@@ -29,7 +31,7 @@ git submodule foreach git pull origin master
 git submodule update --init --recursive  
 ```
 
-## Building the local repo
+## Build the local repo
 
 From the `website` directory, sync to the latest version of the files in the repo:
 
@@ -39,9 +41,9 @@ git pull
 
 Run the following command to build the repo:
 
-<pre>  
-docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var> \  
--f build/web_compose/Dockerfile \  
+<pre>
+docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var>   
+-f build/web_compose/Dockerfile
 -t website-compose .  
 </pre>
 
@@ -51,11 +53,11 @@ It will take several minutes to build.
 
 To run the container with the local SQLite database, start the Docker container as described below. 
 
-To run the container with a remote Cloud SQL database, see [Starting the Docker container with Cloud data](?tab=t.0#heading=h.sloi9t843a5k) for procedures.
+To run the container with a remote Cloud SQL database, see [Start the Docker container with Cloud data](build_repo.md#docker-data) for procedures.
 
-To upload and deploy the container to the Cloud, see [Deploying a Custom Instance to Google Cloud](?tab=t.0#heading=h.25vir3cca7) for procedures.
+To upload and deploy the container to the Cloud, see [Deploy a custom instance to Google Cloud](deploy_cloud.md) for procedures.
 
-## Running the container with the local SQLite database
+## Run the container with the local SQLite database
 
 To start the services using the locally built repo. If you have made changes to any of the UI components, be sure to map the `custom` directories to the Docker `workspace` directory.
 
@@ -67,6 +69,5 @@ docker run -it \
 [-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \]  
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]  
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-
 datacommons-website-compose:<var>DOCKER_TAG</var>  
 </pre>

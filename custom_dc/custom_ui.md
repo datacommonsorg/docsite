@@ -1,9 +1,11 @@
 ---
 layout: default
-title: Customizing the Site
+title: Customize the site
 nav_order: 4
-parent: Overview
+parent:  Custom Data Commons
 ---
+
+## Customize the site
 
 The default custom Data Commons image provides a bare-bones UI that you will undoubtedly want to customize to your liking. Data Commons uses the Python [Flask](https://flask.palletsprojects.com/en/3.0.x/#) web framework and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/) HTML templates. If you're not familiar with these, the following documents are good starting points:
 
@@ -21,7 +23,7 @@ HTML and CSS customization files are provided as samples to get you started. The
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html"><code>server/templates/custom_dc/custom/base.html</code></a></td>
+      <td width="450"><a href="https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html"><code>server/templates/custom_dc/custom/base.html</code></a></td>
       <td>Template file for the site's header and footer. More details below.</td>
     </tr>
     <tr>
@@ -43,7 +45,7 @@ HTML and CSS customization files are provided as samples to get you started. The
   </tbody>
 </table>
 
-Note that the `custom` parent directory is customizable as the FLASK_ENV environment variable. You can rename the directory as desired and update the environment variable.  
+Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable.  
 
 To enable the changes to be picked up by the Docker image, and allow you to refresh the browser for further changes, restart the Docker image with this additional flag to map the directories to the Docker workspace:  
 
@@ -55,15 +57,17 @@ To enable the changes to be picked up by the Docker image, and allow you to refr
 
 If you have renamed the parent `custom` directory, be sure to use that name in the flag.
 
-## Customizing HTML templates
+
+## Customize HTML templates {#html-templates}
 
 You can customize the page header and footer (by default, empty) in [base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html) by adding or changing the HTML elements within the `<header></header>` and `<footer></footer>` tags, respectively.
 
-TODO: Add an example of customization e.g. different colors or text
+<!--TODO: Add an example of customization e.g. different colors or text-->
 
-## Customizing Javascript and styles
+## Customize Javascript and styles {#styles}
 
 Use the [overrides.css](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/overrides.css) file to customize the default Data Commons styles. The file provides a default color override. You can add all style overrides to that file.   
+
 Alternatively, if you have existing existing CSS and Javascript files, put them under the [/static/custom_dc/custom](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom) folder. Then include these files in the `<head>` section of the corresponding HTML files as:
 
 <pre>
@@ -72,4 +76,4 @@ Alternatively, if you have existing existing CSS and Javascript files, put them 
 
 See [`server/templates/custom_dc/custom/new.html`](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/new.html) as an example.  
 
-<!--[Note: currently this requires them to rebuild and restart the Docker image. This should not be the case]-->
+Note: Currently, making changes to any of the files in the `static/` directory requires that you rebuild a local version of the repo to pick up the changes, as described in [Build and run a local repo](build_repo.md). We plan to fix this in the near future. 
