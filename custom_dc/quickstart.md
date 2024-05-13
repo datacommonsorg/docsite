@@ -105,6 +105,7 @@ Note: If you are running on Linux, depending on whether you have created a ["sud
 
 ```shell  
 docker run -it \  
+--pull=always \
 -p 8080:8080 \  
 -e DEBUG=true \  
 --env-file $PWD/custom_dc/sqlite_env.list \  
