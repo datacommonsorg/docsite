@@ -9,7 +9,7 @@ parent: Custom Data Commons
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
 
--  `gcr.io/datcom-ci/datacommons-website-compose:stable`. The version is guaranteed to work correctly but may be several weeks old.
+-  `gcr.io/datcom-ci/datacommons-website-compose:stable`. This is a tested, stable version but may be several weeks old.
 -  `gcr.io/datcom-ci/datacommons-website-compose:latest`. This is the latest built version that is running in production.
 
 If you want to pick up the latest prebuilt version, run the following command:
@@ -22,32 +22,26 @@ Then, restart Docker, specifying that repo as the argument to the `docker run` c
 
 If you have local changes that need to be built, or you are ready to deploy your site to Google Cloud, follow the procedures below.
 
-## One-time setup: download build dependencies {#download_deps}
-
-If you need to rebuild the repo locally, the `mixer` and `import` repos must be available as dependencies. Run this command one time to set the repos as subdirectories of the website repo:
-
-```shell  
-git submodule foreach git pull origin master  
-git submodule update --init --recursive  
-```
-
 ## Build the local repo
 
-From the `website` directory, sync to the latest version of the files in the repo:
+If you need to rebuild the repo locally, the `mixer` and `import` repos must be available as dependencies.
 
-```shell  
-git pull   
-```
+1. From the `website` directory, sync to the latest version of the files in the repo:
 
-Run the following command to build the repo:
+    ```shell  
+    git submodule foreach git pull origin master  
+    git submodule update --init --recursive  
+    git pull 
+    ```
+1. Run the following command to build the repo:
 
-<pre>
-docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var>   
--f build/web_compose/Dockerfile
--t website-compose .  
-</pre>
+    <pre>
+    docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var> \
+    -f build/web_compose/Dockerfile \
+    -t website-compose .  
+    </pre>
 
-The _DOCKER_TAG_ is a meaningful description of the version you are building.
+    The _DOCKER_TAG_ is a meaningful description of the version you are building.
 
 It will take several minutes to build. 
 
