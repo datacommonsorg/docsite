@@ -27,23 +27,23 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 There is a single property, the _ENTITY_; all other properties must be expressed as [statistical variables](../glossary.md#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
 
 ```csv  
-city, year, typeOfSchool, count  
-San Francisco, 2023, elementary, 300  
-San Francisco, 2023, middle, 300  
-San Francisco, 2023, secondary, 200  
-San Francisco, 2023, postsecondary, 50  
-San Jose, 2023, elementary, 400  
-San Jose, 2023, middle, 400  
-San Jose, 2023, secondary, 300  
-San Jose, 2023, postsecondary, 50  
+city,year,typeOfSchool,count  
+San Francisco,2023,elementary,300  
+San Francisco,2023,middle,300  
+San Francisco,2023,secondary,200  
+San Francisco,2023,postsecondary,50  
+San Jose,2023,elementary,400  
+San Jose,2023,middle,400  
+San Jose,2023,secondary,300  
+San Jose,2023,postsecondary,50  
 ```
 
 For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
 
 ```csv  
-city, year, countElementary, countMiddle, countSecondary, countPostSecondary  
-San Francisco, 2023, 300, 300, 200, 50  
-San Jose, 2023,400, 400, 300, 50  
+city,year,countElementary,countMiddle,countSecondary,countPostSecondary  
+San Francisco,2023,300,300,200,50  
+San Jose,2023,400,400,300,0  
 ```
 
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](../place_types.md) for a full list. You can also use `dcid` or its prefixes, `geoId`, `latLng`. If you use `dcId`, the value must be a resolved [DCID](../glossary.md#dcid). If you're not sure what to use, you can simply use the heading `name` or `place` and the importer will resolve it automatically.
