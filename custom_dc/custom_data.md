@@ -253,11 +253,11 @@ You can load the new/updated data from using the /admin page on the site, or usi
     -  In the browser, navigate to the `/admin page`. If a secret is required, enter it in the text field, and click **Load**. 
     -  From a terminal window command line, run the following:
 
-  ```shell
+ <pre>
    POST localhost|HOST_NAME:8080/admin/load-data \
    -H "Content-Type: application/x-www-form-urlencoded" \
-   [-d "secret=<ADMIN_SECRET"]
-   ```
+   [-d "secret="<var>ADMIN_SECRET</var>"]
+ </pre>
 
 In both cases, this runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/nl/</code>. 
 
