@@ -56,7 +56,9 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
     docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
     </pre>
 
-    This will take several minutes to upload. When it completes, verify that the container has been uploaded in the Cloud Console:
+This will take several minutes to upload. 
+    
+When it completes, verify that the container has been uploaded in the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts) for your project.
 1. In the list of repositories, click on the one you created earlier. Under **Repository Details**, you should see the Docker image listed.

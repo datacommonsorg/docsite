@@ -73,5 +73,5 @@ In general, whenever you encounter problems with any Google Cloud Run service, c
 
 If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
 
-1. Keep trying to access the app. Sometimes there are transient errors.
+1. Wait a few minutes and try to access the app again. Sometimes it appears to be deployed, but some of the services haven't yet started up.
 1. In the Cloud Run **Service details** page, click the **Revisions** tab. Under the **Containers** tab, under **General**, check that **CPU Allocation** is set to **CPU is always allocated**. If it is not, click **Edit & Deploy New Revision**, and the **Containers** tab. Under **CPU allocation and pricing** enable **CPU is always allocated** and click **Deploy**. 
