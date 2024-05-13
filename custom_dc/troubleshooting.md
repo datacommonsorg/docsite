@@ -70,3 +70,9 @@ This is because you are missing a valid API key or the necessary APIs are not en
 In general, whenever you encounter problems with any Google Cloud Run service, check the **Logs** page for your Cloud Run service, to get detailed output from the services. 
 
 #### "502 Bad Gateway" 
+
+If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
+
+1. In the Cloud Run **Service details** page, click the **Revisions** tab. Under the **Containers** tab, under **General**, check that **CPU Allocation** is set to **CPU is always allocated**. 
+1. If it is not, click **Edit & Deploy New Revision**, and the **Containers** tab. Under **CPU allocation and pricing** enable **CPU is always allocated**. 
+1. Click **Deploy**. 
