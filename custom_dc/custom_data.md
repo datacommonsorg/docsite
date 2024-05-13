@@ -5,8 +5,6 @@ nav_order: 3
 parent: Custom Data Commons
 ---
 
-[TOC]
-
 ## Work with custom data
 
 Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure. 
