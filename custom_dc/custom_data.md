@@ -256,17 +256,7 @@ You can load the new/updated data from using the /admin page on the site, or usi
 
 1. Optionally, in the `sqlite_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above). 
-1. With the services running, do either of the following:
-    -  In the browser, navigate to the `/admin page`. If a secret is required, enter it in the text field, and click **Load**. 
-    -  From a terminal window command line, run the following:
-
- <pre>
-   POST localhost|HOST_NAME:8080/admin/load-data \
-   -H "Content-Type: application/x-www-form-urlencoded" \
-   [-d "secret="<var>ADMIN_SECRET</var>"]
- </pre>
-
-In both cases, this runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/nl/</code>. 
+1. With the services running, navigate to the `/admin page`. If a secret is required, enter it in the text field, and click **Load**. This runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/nl/</code>. 
 
 ## Inspect the SQLite database
 
