@@ -179,6 +179,8 @@ To issue natural language queries, click the **Search** link or browse to [http:
 
 ![screenshot_search](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
 
+Note that NL support increases the startup time of your server and consumes more resources. If you don't want NL functionality, you can disable it by updating the `ENABLE_MODEL` flag in `sqlite_env.list` from `true` to `false`.
+
 ## Send an API request
 
 A custom instance can accept REST API requests at the endpoint `/core/api/v2/`. To try it out, here's an example request that returns the same data as in the interactive queries above, using the `observation` API. You can enter this query in your browser to get nice output:
