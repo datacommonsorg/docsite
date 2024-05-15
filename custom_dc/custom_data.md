@@ -59,7 +59,7 @@ All headers must be in camelCase.
 
 In addition to the place names listed in [Place types](../place_types.md), you can also use the following special names:
 
-* (`dcid`)[../glossary.md#dcid] - An already resolved DC ID. Examples:`country/USA`, `geoId/06`
+* [`dcid`](../glossary.md#dcid) - An already resolved DC ID. Examples:`country/USA`, `geoId/06`
 * `country3AlphaCode` - Three-character country codes. Examples: `USA`, `CHN`
 * `geoId` - Place geo IDs. Examples: `06`, `023`
 * `lat#lng` - Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
