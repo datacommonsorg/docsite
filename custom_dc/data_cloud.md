@@ -141,7 +141,7 @@ Each time you upload new versions of the source CSV and JSON files, you need to 
 You can load the new/updated data from using the `/admin` page on the site, or using curl, from the command line:
 
 1. Optionally, in the `cloudsql_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
-1. Start the Docker container as described above.git
+1. Start the Docker container as described above.
 1. With the services running, navigate to the `/admin` page. If a secret is required, enter it in the text field, and click **Load**. 
 This runs a script inside the Docker container, that converts the CSV data in Cloud Storage into SQL tables, and stores them in the Cloud SQL database you created earlier. It also generates embeddings in the Google Cloud Storage folder into which you uploaded the CSV/JSON files, in a `datacommons/nl/` subfolder. 
 

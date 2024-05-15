@@ -17,13 +17,13 @@ Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/
 
 ## Prepare the CSV files {#prepare-csv}
 
-Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](../glossary.md#dcid)s. 
+Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](../glossary.md#dcid)s. 
 
 With the variable-per-column scheme, data is provided in this format, in this exact sequence:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There is a two properties, the _ENTITY_ and the _OBSERVATION_DATE_; all other properties must be expressed as [statistical variables](../glossary.md#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
+There are two properties, the _ENTITY_ and the _OBSERVATION\_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](../glossary.md#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
 
 ```csv  
 city,year,typeOfSchool,count  
@@ -36,7 +36,6 @@ San Jose,2023,middle,400
 San Jose,2023,secondary,300  
 San Jose,2023,postsecondary,50  
 ```
-
 For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
 
 ```csv  
@@ -57,11 +56,13 @@ All headers must be in camelCase.
 
 ### Special place names {#special-names}
 
-In addition to the place names listed in [Place types](../place_types.md), you can also use (`dcid`)[../glossary.md#dcid] or the following special prefixes:
+In addition to the place names listed in [Place types](../place_types.md), you can also use the following special names:
 
-* `geoId`
-* `latLng`
-* `wikidataId`
+* [`dcid`](../glossary.md#dcid) --- An already resolved DC ID. Examples:`country/USA`, `geoId/06`
+* `country3AlphaCode` --- Three-character country codes. Examples: `USA`, `CHN`
+* `geoId` --- Place geo IDs. Examples: `06`, `023`
+* `lat#lng` --- Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
+* `wikidataId` --- Wikidata place identifiers. Example: `Q12345`
 
 You can also simply use the heading `name` or `place` and the importer will resolve it automatically.
 
@@ -252,7 +253,7 @@ Every time you make changes to the CSV or JSON files, you should reload the data
 
 As you are iterating on changes to the source CSV and JSON files, you will need to reload the data. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data with a shared Docker instance.
 
-You can load the new/updated data from using the /admin page on the site, or using curl, from the command line:
+You can load the new/updated data from using the /admin page on the site.
 
 1. Optionally, in the `sqlite_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above). 

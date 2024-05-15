@@ -24,7 +24,7 @@ If you have local changes that need to be built, or you are ready to deploy your
 
 ## Build the local repo
 
-If you need to rebuild the repo locally, the `mixer` and `import` repos must be available as dependencies.
+If you need to rebuild the repo locally, you must also update the `mixer` and `import` submodules.
 
 1. From the `website` directory, sync to the latest version of the files in the repo:
 
