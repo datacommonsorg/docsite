@@ -49,8 +49,8 @@ For the following use cases, a custom Data Commons instance is not necessary:
 A custom Data Commons instance supports the following features:
 
 -  All of the same interactive tools as the main site, including the natural language query interface
--  REST APIs -- no additional setup neeeded
--  Python and Pandas API wrappers, and/or Spreadsheets -- requires additional setup and maintenance. If you would like to support these facilities, please contact us.
+-  REST APIs --- no additional setup neeeded
+-  Python and Pandas API wrappers, and/or Spreadsheets --- requires additional setup and maintenance. If you would like to support these facilities, please contact us.
 -  Access controls to the site, using any supported Google Cloud Run mechanisms, such as Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress) for more information on these options.
 
 The following are not supported:

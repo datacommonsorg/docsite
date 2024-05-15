@@ -142,15 +142,8 @@ You can load the new/updated data from using the `/admin` page on the site, or u
 
 1. Optionally, in the `cloudsql_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as described above.
-1. With the services running, do either of the following:
-    -  In the browser, navigate to the /admin page. If a secret is required, enter it in the text field, and click **Load**. 
-    -  From a terminal window command line, run the following:
-	<pre>  
-    POST localhost|HOST_NAME:8080/admin/load-data \  
-    -H "Content-Type: application/x-www-form-urlencoded" \  
-    [-d "secret=<var>ADMIN_SECRET</var>"]  
-    </pre>
-In both cases, this runs a script inside the Docker container, that converts the CSV data in Cloud Storage into SQL tables, and stores them in the Cloud SQL database you created earlier. It also generates embeddings in the Google Cloud Storage folder into which you uploaded the CSV/JSON files, in a `datacommons/nl/`subfolder. 
+1. With the services running, navigate to the `/admin page`. If a secret is required, enter it in the text field, and click **Load**. 
+This runs a script inside the Docker container, that converts the CSV data in Cloud Storage into SQL tables, and stores them in the Cloud SQL database you created earlier. It also generates embeddings in the Google Cloud Storage folder into which you uploaded the CSV/JSON files, in a `datacommons/nl/`subfolder. 
 
 ## Inspect the Cloud SQL database
 

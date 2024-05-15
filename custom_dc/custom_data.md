@@ -59,11 +59,11 @@ All headers must be in camelCase.
 
 In addition to the place names listed in [Place types](../place_types.md), you can also use the following special names:
 
-* [`dcid`](../glossary.md#dcid) - An already resolved DC ID. Examples:`country/USA`, `geoId/06`
-* `country3AlphaCode` - Three-character country codes. Examples: `USA`, `CHN`
-* `geoId` - Place geo IDs. Examples: `06`, `023`
-* `lat#lng` - Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
-* `wikidataId` - Wikidata place identifiers. Example: `Q12345`
+* [`dcid`](../glossary.md#dcid) --- An already resolved DC ID. Examples:`country/USA`, `geoId/06`
+* `country3AlphaCode` --- Three-character country codes. Examples: `USA`, `CHN`
+* `geoId` --- Place geo IDs. Examples: `06`, `023`
+* `lat#lng` --- Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
+* `wikidataId` --- Wikidata place identifiers. Example: `Q12345`
 
 You can also simply use the heading `name` or `place` and the importer will resolve it automatically.
 
@@ -254,7 +254,7 @@ Every time you make changes to the CSV or JSON files, you should reload the data
 
 As you are iterating on changes to the source CSV and JSON files, you will need to reload the data. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data with a shared Docker instance.
 
-You can load the new/updated data from using the /admin page on the site, or using curl, from the command line:
+You can load the new/updated data from using the `/admin` page on the site, or using curl, from the command line:
 
 1. Optionally, in the `sqlite_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above). 
