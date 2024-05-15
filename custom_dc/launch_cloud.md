@@ -16,13 +16,13 @@ When you are ready to launch your site to external traffic, there are many tasks
 
 ## Improve database performance {#redis}
 
-We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore), a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a virtual private cloud (VPC) network, to which your Cloud SQL instance connects using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access).
+We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore), a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a virtual private cloud (VPC) network, to which your Cloud Run service connects using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access).
 
-In the following procedures, we show you how to create a Redis instance in a subnet in the GCP "default" VPC network, which is provided by default to your project. You may wish to set up your own new VPC network; if so,  follow the documentation in [Create and manage VPC networks](https://cloud.google.com/vpc/docs/create-modify-vpc-networks) substitute that network name for `default` throughout these procedures.
+In the following procedures, we show you how to create a Redis instance in your project's "default" VPC network. You may wish to set up your own new VPC network; if so,  follow the documentation in [Create and manage VPC networks](https://cloud.google.com/vpc/docs/create-modify-vpc-networks) substitute that network name for `default` throughout these procedures.
 
 ### Step 1: Create the Redis instance
 
-1. Go to [https://console.cloud.google.com/memorystore/redis/instances](https://console.cloud.google.com/memorystore/redis/instances) for your project.
+1. Go to https://console.cloud.google.com/memorystore/redis/instances for your project.
 1. Select the **Redis** tab and click **Create Instance**.
 1. If prompted to enable the Redis API server, accept.
 1. Name your instance.
@@ -41,7 +41,7 @@ For additional information, see [Create and manage Redis instances](https://clou
 
 ### Step 3: Create the VPC connector
 
-1. Go to [https://console.cloud.google.com/networking/connectors/list](https://console.cloud.google.com/networking/connectors/list) for your instance.
+1. Go to https://console.cloud.google.com/networking/connectors/list for your instance.
 1. If you are prompted to enable the VPC Access API, accept.
 1. In the **Serverless VPC Access** screen, click **Create Connector**.
 1. Name the connector.
@@ -62,7 +62,16 @@ For additional information, see [Serverless VPC Access](https://cloud.google.com
 1. From the **Network** field, select the connector you created in step 3.
 1. Click **Deploy**.
 
-Verify that your Cloud Run service is now using the connector:
+### Step 5: Verify that everything is working
+
+To verify that your Cloud Run service is using the connector:
 
 1. Go to the **Service details** page for your service
 1. Click the **Networking** tab. Under **VPC**, you should see your connector listed.
+
+To verify that traffic is hitting the cache:
+
+1. Run some queries against your running Cloud Run service. 
+1. In the Cloud Console, go to the Memorystore page and select Redis instance.
+1. Under **Instance Functions**, click **Monitoring**.
+1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.
