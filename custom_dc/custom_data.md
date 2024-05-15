@@ -254,7 +254,7 @@ Every time you make changes to the CSV or JSON files, you should reload the data
 
 As you are iterating on changes to the source CSV and JSON files, you will need to reload the data. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data with a shared Docker instance.
 
-You can load the new/updated data from using the `/admin` page on the site, or using curl, from the command line:
+You can load the new/updated data from SQLite using the `/admin` page on the site:
 
 1. Optionally, in the `sqlite_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above). 
