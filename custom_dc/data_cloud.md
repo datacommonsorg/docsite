@@ -22,7 +22,11 @@ You will upload your CSV and JSON files to [Google Cloud Storage](https://cloud.
 
 ### Choose a location
 
+<<<<<<< HEAD
 While you are testing, you can start with a single Google Cloud region; to be close to the main Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](/custom_dc/deploy_cloud.html) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
+=======
+While you are testing, you can start with a single Google Cloud region; to be close to the main Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
+>>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 
 ### Create a Google Cloud SQL instance
 
@@ -120,7 +124,11 @@ gcr.io/datcom-ci/datacommons-website-compose:stable
 
 #### Run with a locally built repo
 
+<<<<<<< HEAD
 If you have made local changes and have a [locally built repo](/custom_dc/build_repo.html), from the `website` root of the repository, run the following:
+=======
+If you have made local changes and have a [locally built repo](build_repo.md), from the `website` root of the repository, run the following:
+>>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 
 <pre>
 docker run -it \  
@@ -138,7 +146,11 @@ _`DOCKER_TAG`_ is the tag you specified when you built the repo.
 
 Each time you upload new versions of the source CSV and JSON files, you need to load the new/updated data into Google Cloud SQL. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data.
 
+<<<<<<< HEAD
 You can load the new/updated data from Cloud Storage using the `/admin` page on the site:
+=======
+You can load the new/updated data from using the `/admin` page on the site, or using curl, from the command line:
+>>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 
 1. Optionally, in the `cloudsql_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as described above.

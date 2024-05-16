@@ -41,8 +41,13 @@ Also, if you want to add all of your data to the main Data Commons and test how 
 
 For the following use cases, a custom Data Commons instance is not necessary: 
 
+<<<<<<< HEAD
 -  You only want to make your own data available to the main public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html). 
 -  You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](/api/web_components/index.html) for more details.
+=======
+-  You only want to make your own data available to the main public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](../import_data/index.md). 
+-  You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](../api/web_components.md) for more details.
+>>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 
 ## Supported features
 
@@ -89,10 +94,18 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 
 ## Recommended workflow
 
+<<<<<<< HEAD
 1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data. 
 1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html). If you are just testing custom data to add to the main Data Commons site, this is all you need to do.
 1. If you are launching your own Data Commons site, and want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. If you are launching your own Data Commons site, upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Test data in Google Cloud](/custom_dc/data_cloud.html).
 1. When you are satisfied that everything is working correctly, and are getting closer to launch, upload your custom site to Google Cloud Run and continue to test in the Cloud. See [Deploy the custom instance to Google Cloud](/custom_dc/deploy_cloud.html)
+=======
+1. Work through the [Quickstart](quickstart.md) page to learn how to run a local Data Commons instance and load some sample custom data. 
+1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](custom_data.md). If you are just testing custom data to add to the main Data Commons site, this is all you need to do.
+1. If you are launching your own Data Commons site, and want to customize the look of the feel of the site, see [Customize the site](custom_ui.md).
+1. If you are launching your own Data Commons site, upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Test data in Google Cloud](data_cloud.md).
+1. When you are satisfied that everything is working correctly, and are getting closer to launch, upload your custom site to Google Cloud Run and continue to test in the Cloud. See [Deploy the custom instance to Google Cloud](deploy_cloud.md)
+>>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 1. To launch your site to real traffic, configure your Cloud service to serve external traffic. Consult [Mapping custom domains](https://cloud.google.com/run/docs/mapping-custom-domains) and related Google Cloud Run documentation for complete details on configuring domains and traffic.
 1. For future updates and launches, continue to make UI and data changes locally and upload the data to Cloud Storage, before deploying the changes to Cloud Run.
