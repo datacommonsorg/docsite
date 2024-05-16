@@ -38,11 +38,7 @@ Step 7/62 : COPY mixer/go.mod mixer/go.sum ./
 COPY failed: file not found in build context or excluded by .dockerignore: stat mixer/go.mod: file does not exist
 ```
 
-<<<<<<< HEAD
 You need to download additional git modules. See [One-time setup: download build dependencies](/custom_dc/build_repo.html#download_deps).
-=======
-You need to download additional git modules. See [One-time setup: download build dependencies](build_repo.md#download_deps).
->>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 
 ### Data loading problems
 
@@ -50,11 +46,8 @@ If you try to load data using the `/admin page`, and see the following errors:
 
 `Error running import` or  `invalid input`
 
-<<<<<<< HEAD
 There is a problem with how you have set up your CSV files and/or config.json file. Check that your CSV files conform to the structure described in [Prepare the CSV files](/custom_dc/custom_data.html#prepare-csv).
-=======
-There is a problem with how you have set up your CSV files and/or config.json file. Check that your CSV files conform to the structure described in [Prepare the CSV files](custom_data.md#prepare-csv).
->>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
+
 
 If the load page does not show any errors but data still does not load, try checking the following:
 
@@ -71,11 +64,8 @@ If you try to enter input into any of the explorer tools fields, and you get thi
 
 ![screenshot_troubleshoot](/assets/images/custom_dc/customdc_screenshot7.png){: width="800"}
 
-<<<<<<< HEAD
 This is because you are missing a valid API key or the necessary APIs are not enabled. Follow procedures in [Enable Google Cloud APIs and get a Maps API key](/custom_dc/quickstart.html#maps-key), and be sure to obtain a permanent Maps/Places API key.
-=======
-This is because you are missing a valid API key or the necessary APIs are not enabled. Follow procedures in [Enable Google Cloud APIs and get a Maps API key](quickstart.md#maps-key), and be sure to obtain a permanent Maps/Places API key.
->>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
+
 
 ### Cloud Run Service problems
 

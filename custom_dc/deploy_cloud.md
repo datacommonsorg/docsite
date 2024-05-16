@@ -27,11 +27,7 @@ You push a locally built Docker image to the [Google Cloud Artifact Registry](ht
 
 This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry, and then deploy to Google Cloud Run. 
 
-<<<<<<< HEAD
 1. Build a local version of the Docker image, following the procedure in [Build the local repo](/custom_dc/build_repo.html).
-=======
-1. Build a local version of the Docker image, following the procedure in [Build the local repo](build_repo.md).
->>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 1. Authenticate to gcloud:
 
     ```shell  
@@ -110,9 +106,5 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
 
 Once you have deployed a custom instance to Google Cloud, you can continue to update your custom data in two ways:
 
-<<<<<<< HEAD
 -  Load the data from a local running instance, as described in [Load custom data in Cloud SQL](/custom_dc/data_cloud.html#load-data-cloudsql)
-=======
--  Load the data from a local running instance, as described in [Load custom data in Cloud SQL](data_cloud.md#load-data-cloudsql)
->>>>>>> c937e3f4e7e1836000636168dbfd0e811d6d6cea
 -  Use the `/admin` page from the running Cloud app. 
