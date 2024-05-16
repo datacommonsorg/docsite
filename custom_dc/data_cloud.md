@@ -138,7 +138,7 @@ _`DOCKER_TAG`_ is the tag you specified when you built the repo.
 
 Each time you upload new versions of the source CSV and JSON files, you need to load the new/updated data into Google Cloud SQL. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data.
 
-You can load the new/updated data from using the `/admin` page on the site, or using curl, from the command line:
+You can load the new/updated data from Cloud Storage using the `/admin` page on the site:
 
 1. Optionally, in the `cloudsql_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as described above.
