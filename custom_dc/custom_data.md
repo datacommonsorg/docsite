@@ -231,7 +231,7 @@ The `sources` section is optional. It encodes the sources and provenances associ
 ## Load local custom data
 
 To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](/custom_dc/testing_cloud.html) for procedures.
-
+To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](/custom_dc/data_cloud.html) for procedures.
 ### Start the Docker container with local custom data {#docker-data}
 
 Once you have your CSV files and config.json set up, use the following command to restart the Docker container, mapping your custom data directory to the Docker userdata directory.
