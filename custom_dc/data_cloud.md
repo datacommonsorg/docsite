@@ -22,7 +22,7 @@ You will upload your CSV and JSON files to [Google Cloud Storage](https://cloud.
 
 ### Choose a location
 
-While you are testing, you can start with a single Google Cloud region; to be close to the main Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
+While you are testing, you can start with a single Google Cloud region; to be close to the main Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](/custom_dc/deploy_cloud.html) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
 
 ### Create a Google Cloud SQL instance
 
@@ -120,7 +120,7 @@ gcr.io/datcom-ci/datacommons-website-compose:stable
 
 #### Run with a locally built repo
 
-If you have made local changes and have a [locally built repo](build_repo.md), from the `website` root of the repository, run the following:
+If you have made local changes and have a [locally built repo](/custom_dc/build_repo.html), from the `website` root of the repository, run the following:
 
 <pre>
 docker run -it \  

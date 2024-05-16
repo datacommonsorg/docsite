@@ -17,13 +17,13 @@ Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/
 
 ## Prepare the CSV files {#prepare-csv}
 
-Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](../glossary.md#dcid)s. 
+Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](../glossary.html#dcid)s. 
 
 With the variable-per-column scheme, data is provided in this format, in this exact sequence:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There are two properties, the _ENTITY_ and the _OBSERVATION\_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](../glossary.md#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
+There are two properties, the _ENTITY_ and the _OBSERVATION\_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](../glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
 
 ```csv  
 city,year,typeOfSchool,count  
@@ -45,11 +45,11 @@ San Francisco,2023,300,300,200,50
 San Jose,2023,400,400,300,0  
 ```
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](../place_types.md) for a full list. It may also be any of the special DCID prefixes listed in (Special place names)[#special-names].
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](../place_types.html) for a full list. It may also be any of the special DCID prefixes listed in (Special place names)[#special-names].
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](../glossary.md#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the main Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you. 
+The _VARIABLE_ should contain a metric [observation](../glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the main Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you. 
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
@@ -57,9 +57,9 @@ All headers must be in camelCase.
 
 ### Special place names {#special-names}
 
-In addition to the place names listed in [Place types](../place_types.md), you can also use the following special names:
+In addition to the place names listed in [Place types](../place_types.html), you can also use the following special names:
 
-* [`dcid`](../glossary.md#dcid) --- An already resolved DC ID. Examples:`country/USA`, `geoId/06`
+* [`dcid`](../glossary.html#dcid) --- An already resolved DC ID. Examples:`country/USA`, `geoId/06`
 * `country3AlphaCode` --- Three-character country codes. Examples: `USA`, `CHN`
 * `geoId` --- Place geo IDs. Examples: `06`, `023`
 * `lat#lng` --- Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
@@ -154,7 +154,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 `entityType`
 
-: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the <code>entityType</code> field. The importer tries to resolve entities to DCIDs of that type. In most cases, the <code>entityType</code> will be a supported place type; see [Place types](../place_types.md) for a list.
+: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the <code>entityType</code> field. The importer tries to resolve entities to DCIDs of that type. In most cases, the <code>entityType</code> will be a supported place type; see [Place types](../place_types.html) for a list.
 
 `ignoreColumns`
 
@@ -184,7 +184,7 @@ The name should be concise and precise; that is, the shortest possible name that
 
 `properties` 
 
-: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](../data/blob/master/docs/representing_statistics.md#statisticalvariable) for more details.  
+: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](https://github.com/datacommonsorg/data/blob/master/docs/representing_statistics.md) for more details.  
 
 Each property is specified as a key:value pair. Here are some examples:  
 
@@ -230,7 +230,7 @@ The `sources` section is optional. It encodes the sources and provenances associ
 
 ## Load local custom data
 
-To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](testing_cloud.md) for procedures.
+To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](/custom_dc/testing_cloud.html) for procedures.
 
 ### Start the Docker container with local custom data {#docker-data}
 
