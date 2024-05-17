@@ -103,7 +103,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
 
-### Start the Docker container with Cloud data
+### Start the Docker container with Cloud data {docker-data}
 
 #### Run with a prebuilt image 
 
