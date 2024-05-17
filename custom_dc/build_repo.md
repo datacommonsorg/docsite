@@ -22,7 +22,7 @@ Then, restart Docker, specifying that repo as the argument to the `docker run` c
 
 If you have local changes that need to be built, or you are ready to deploy your site to Google Cloud, follow the procedures below.
 
-## Build the local repo
+## Build the local repo {build-repo}
 
 If you need to rebuild the repo locally, you must also update the `mixer` and `import` submodules.
 
@@ -47,7 +47,7 @@ It will take several minutes to build.
 
 To run the container with the local SQLite database, start the Docker container as described below. 
 
-To run the container with a remote Cloud SQL database, see [Start the Docker container with Cloud data](/custom_dc/build_repo.html#docker-data) for procedures.
+To run the container with a remote Cloud SQL database, see [Start the Docker container with Cloud data](/custom_dc/data_cloud.html#docker-data) for procedures.
 
 To upload and deploy the container to the Cloud, see [Deploy a custom instance to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
