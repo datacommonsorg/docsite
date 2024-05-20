@@ -6,10 +6,17 @@ We use the Google [Developer Documentation Style Guide](https://developers.googl
 
 ## Links
 
-The site supports both absolute and [relative links](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links); you can use either. Absolute links are against the repo root. For example:
+The site supports both absolute and [relative links](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links); you can use either. Relative links work as in standard Github Markdown, using `.md` extensions. For example, for a
+target page at a higher level of the tree than a source page, you can use this:
 
 ```
-[Place types](/place_types.md)
+[Place types](../place_types.md)
+```
+
+Absolute links are against the repo root and must be specified _with .html extensions_. For example:
+
+```
+[Place types](/place_types.html)
 ```
 
 ## TOCs
