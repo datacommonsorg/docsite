@@ -5,7 +5,11 @@ nav_order: 6
 parent: Custom Data Commons
 ---
 
-## Test data in Google Cloud
+{:.no_toc}
+# Test data in Google Cloud
+
+* TOC
+{:toc}
 
 Once you have tested locally, you need to get your data into Google Cloud so you can test it remotely. You can continue to run the custom Data Commons instance locally, but retrieve data from the Cloud. In this scenario, the system is set up like this:
 

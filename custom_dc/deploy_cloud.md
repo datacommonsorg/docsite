@@ -5,7 +5,11 @@ nav_order: 7
 parent: Custom Data Commons
 ---
 
-## Deploy a custom instance to Google Cloud
+{:.no_toc}
+# Deploy a custom instance to Google Cloud
+
+* TOC
+{:toc}
 
 When you are ready to launch your custom Data Commons site, we recommend hosting your site in [Google Cloud Run](https://cloud.google.com/run/), which is a serverless solution that is by far the simplest and least expensive option, providing auto-scaling. This is the production setup:
 

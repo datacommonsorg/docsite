@@ -5,7 +5,11 @@ nav_order: 5
 parent: Custom Data Commons
 ---
 
-## Build and run a local repo
+{:.no_toc}
+# Build and run a local repo
+
+* TOC
+{:toc}
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
 
@@ -22,7 +26,7 @@ Then, restart Docker, specifying that repo as the argument to the `docker run` c
 
 If you have local changes that need to be built, or you are ready to deploy your site to Google Cloud, follow the procedures below.
 
-## Build the local repo {build-repo}
+## Build the local repo {#build-repo}
 
 If you need to rebuild the repo locally, you must also update the `mixer` and `import` submodules.
 

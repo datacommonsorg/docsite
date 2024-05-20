@@ -5,7 +5,11 @@ nav_order: 2
 parent: Custom Data Commons
 ---
 
-## Quickstart
+{:.no_toc}
+# Quickstart
+
+* TOC
+{:toc}
 
 To start developing a custom Data Commons instance, we recommend that you develop your site and host your data locally. This uses a SQLite database to store custom data.
 

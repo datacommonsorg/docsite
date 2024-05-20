@@ -5,7 +5,11 @@ nav_order: 3
 parent: Custom Data Commons
 ---
 
-## Work with custom data
+{:.no_toc}
+# Work with custom data
+
+* TOC
+{:toc}
 
 Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure.
 

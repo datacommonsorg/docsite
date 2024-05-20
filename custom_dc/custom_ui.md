@@ -5,7 +5,11 @@ nav_order: 4
 parent: Custom Data Commons
 ---
 
-## Customize the site
+{:.no_toc}
+# Customize the site
+
+* TOC
+{:toc}
 
 The default custom Data Commons image provides a bare-bones UI that you will undoubtedly want to customize to your liking. Data Commons uses the Python [Flask](https://flask.palletsprojects.com/en/3.0.x/#) web framework and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/) HTML templates. If you're not familiar with these, the following documents are good starting points:
 

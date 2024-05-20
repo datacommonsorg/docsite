@@ -5,6 +5,12 @@ nav_order: 90
 has_children: true
 ---
 
+{:.no_toc}
+# Custom Data Commons
+
+* TOC
+{:toc}
+
 ## Overview
 
 Data Commons is an open source platform. Any organization can create a custom Data Commons instance with its own data, customized user interface and visualization tools,
