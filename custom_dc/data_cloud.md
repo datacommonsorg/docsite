@@ -103,7 +103,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
 
-### Start the Docker container with Cloud data
+### Start the Docker container with Cloud data {docker-data}
 
 #### Run with a prebuilt image 
 
@@ -121,7 +121,7 @@ gcr.io/datcom-ci/datacommons-website-compose:stable
 
 #### Run with a locally built repo
 
-If you have made local changes and have a [locally built repo](custom_dc/build_repo.html), from the `website` root of the repository, run the following:
+If you have made local changes and have a [locally built repo](/custom_dc/build_repo.html), from the `website` root of the repository, run the following:
 
 <pre>
 docker run -it \  

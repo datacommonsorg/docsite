@@ -17,13 +17,13 @@ Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/
 
 ## Prepare the CSV files {#prepare-csv}
 
-Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](../glossary.html#dcid)s. 
+Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](/glossary.html#dcid)s. 
 
 With the variable-per-column scheme, data is provided in this format, in this exact sequence:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There are two properties, the _ENTITY_ and the _OBSERVATION\_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](../glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
+There are two properties, the _ENTITY_ and the _OBSERVATION\_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](/glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
 
 ```csv  
 city,year,typeOfSchool,count  
@@ -43,9 +43,7 @@ city,year,countElementary,countMiddle,countSecondary,countPostSecondary
 San Francisco,2023,300,300,200,50  
 San Jose,2023,400,400,300,0  
 ```
-
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](../place_types.html) for a full list. It may also be any of the special DCID prefixes listed in (Special place names)[#special-names].
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](../place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names).
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names).
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
 The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the main Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you. 
