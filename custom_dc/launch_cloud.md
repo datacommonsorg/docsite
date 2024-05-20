@@ -5,7 +5,11 @@ nav_order: 8
 parent:  Custom Data Commons
 ---
 
-## Launch a custom site
+{:.no_toc}
+# Launch a custom site
+
+* TOC
+{:toc}
 
 When you are ready to launch your site to external traffic, there are many tasks you will need to perform, including:
 
@@ -16,11 +20,13 @@ When you are ready to launch your site to external traffic, there are many tasks
 
 ## Improve database performance {#redis}
 
-We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore), a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a virtual private cloud (VPC) network, to which your Cloud Run service connects using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access).
+We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore), a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering). Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access).
 
-In the following procedures, we show you how to create a Redis instance in your project's "default" VPC network. You may wish to set up your own new VPC network; if so,  follow the documentation in [Create and manage VPC networks](https://cloud.google.com/vpc/docs/create-modify-vpc-networks) substitute that network name for `default` throughout these procedures.
+In the following procedures, we show you how to create a Redis instance that connects to your project's "default" VPC network.
 
-### Step 1: Create the Redis instance
+**Step 1: Create the Redis instance**
+
+The following is a sample configuration that you can tune as needed. For additional information, see [Create and manage Redis instances](https://cloud.google.com/memorystore/docs/redis/create-manage-instances).
 
 1. Go to https://console.cloud.google.com/memorystore/redis/instances for your project.
 1. Select the **Redis** tab and click **Create Instance**.
@@ -32,14 +38,12 @@ In the following procedures, we show you how to create a Redis instance in your 
 1. Under **Set up connection > Network**, select **default** as the network. 
 1. Click **Create**.
 
-For additional information, see [Create and manage Redis instances](https://cloud.google.com/memorystore/docs/redis/create-manage-instances).
-
-### Step 2: Set the environment variable
+**Step 2: Set the environment variable**
 
 1. When the Redis instance is created above, go to the **Instances > Redis** tab, look up your instance and note the **Primary Endpoint** IP address.
 1. In `custom_dc/cloudsql_env.list`, set the value of the `REDIS_HOST` option to the IP address. 
 
-### Step 3: Create the VPC connector
+**Step 3: Create the VPC connector**
 
 1. Go to https://console.cloud.google.com/networking/connectors/list for your instance.
 1. If you are prompted to enable the VPC Access API, accept.
@@ -53,7 +57,7 @@ For additional information, see [Create and manage Redis instances](https://clou
 
 For additional information, see [Serverless VPC Access](https://cloud.google.com/vpc/docs/serverless-vpc-access).
 
-### Step 4: Configure your Cloud Run service to connect to the VPC
+**Step 4: Configure your Cloud Run service to connect to the VPC**
 
 1. In the Cloud Console, go to the Cloud Run service from which you are serving your app.
 1. Click **Edit & Deploy New Revision**.
@@ -62,7 +66,7 @@ For additional information, see [Serverless VPC Access](https://cloud.google.com
 1. From the **Network** field, select the connector you created in step 3.
 1. Click **Deploy**.
 
-### Step 5: Verify that everything is working
+**Step 5: Verify that everything is working**
 
 To verify that your Cloud Run service is using the connector:
 

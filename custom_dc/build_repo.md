@@ -19,7 +19,7 @@ Data Commons provides two prebuilt images in the Google Artifact Registry that y
 If you want to pick up the latest prebuilt version, run the following command:
 
 ```shell  
-docker pull gcr.io/gcr.io/datcom-ci/datacommons-website-compose:latest  
+docker pull gcr.io/datcom-ci/datacommons-website-compose:latest  
 ```
 
 Then, restart Docker, specifying that repo as the argument to the `docker run` command.
