@@ -24,8 +24,8 @@ You push a locally built Docker image to the [Google Cloud Artifact Registry](ht
 1. Specify a name for the repository.
 1. In the **Format** option, select **Docker**.
 1. In **Location type**, select **Region**, and specify a region.
-1. Enable or disable **Immutable image tags** according to the workflow you prefer; that is, if you want to be able to reuse the same Docker tag for new images, keep this option disabled
-1. Click **Create.**
+1. Enable or disable **Immutable image tags** according to the workflow you prefer; that is, if you want to be able to reuse the same Docker tag for new images, keep this option disabled.
+1. Click **Create**.
 
 ## Upload the Docker container to Google Cloud
 
