@@ -71,7 +71,7 @@ git commit -m "<var>COMMIT_MESSAGE<var>"
 git push -u origin <var>BRANCH_NAME</var>
 </pre>
 
-Then, in guthub.com, in your forked repo, you can send a pull request. You will need to assign at least one reviewer to approve.
+Then, in github.com, in your forked repo, you can send a pull request. You will need to assign at least one reviewer to approve.
 
 If this is your first
 time contributing to a Google Open Source project, you may need to follow the
