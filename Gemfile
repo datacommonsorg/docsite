@@ -18,4 +18,8 @@ group :jekyll_plugins do
   gem "jekyll-tabs"
 end
 
+group :jekyll_plugins do  
+  gem "jekyll-relative-links"
+end
+
 gem "webrick", "~> 1.8"

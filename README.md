@@ -1,6 +1,6 @@
 [![Build and deploy to GitHub Pages](https://github.com/datacommonsorg/docsite/actions/workflows/github-pages.yml/badge.svg)](https://github.com/datacommonsorg/docsite/actions/workflows/github-pages.yml)
 
-# Data Commons Documentation Site
+# Data Commons documentation site
 
 This repo hosts Data Commons API documentation
 available at https://docs.datacommons.org/.
@@ -18,7 +18,7 @@ to make public data accessible to everyone.
 
 To see the extent of data we have today, [browse the Knowledge Graph](https://datacommons.org/browser).
 
-## Developing locally
+## Build locally
 
 The documentation site is built using Jekyll. To run this locally:
 
@@ -26,42 +26,59 @@ The documentation site is built using Jekyll. To run this locally:
 1. Run `bundle update`
 1. Run `bundle exec jekyll serve --incremental`
 
-If you make changes to yml files, re-run `bundle exec jekyll serve`
+You can continue to make local changes and just refresh the browser. If you make changes to YAML files, re-run `bundle exec jekyll serve`
+
+Tip: If you want to make the staged site accessible to others (and not just on the loopback), add `--host 0.0.0.0` to the command. Then, users can access the site using the hostname of the machine where the site is running.
 
 ## License
 
 Apache 2.0
 
-## Contributing
+## Contribute changes
 
-In https://github.com/datacommonsorg/docsite, click on "Fork" button to fork the repo.
+### One-time setup steps
 
-Clone your forked repo to your desktop.
+1. In https://github.com/datacommonsorg/docsite, click the **Fork** button to fork the repo.
+1. Clone your forked repo to your desktop:
 
-Add datacommonsorg/docsite repo as a remote:
+    <pre>
+    git clone https://github.com/<var>USER_NAME</var>/docsite
+    </pre>
 
-```shell
-git remote add dc https://github.com/datacommonsorg/docsite.git
-```
+    This adds your fork as the remote called `origin`.
 
-Every time when you want to send a Pull Request, do the following steps:
+1. Add `datacommonsorg/docsite` repo as a remote:
 
-```shell
+    <pre>
+    git remote add <var>REMOTE_NAME</var> https://github.com/datacommonsorg/docsite.git
+    </pre>
+
+### Create a pull request
+
+Every time you want to create a pull request, create a new branch and sync to the master branch:
+
+<pre>
 git checkout master
-git pull dc master
-git checkout -b new_branch_name
-# Make some code change
-git add .
-git commit -m "commit message"
-git push -u origin new_branch_name
-```
+git pull master
+git checkout -b <var>BRANCH_NAME</var>
+</pre>
 
-Then in your forked repo, you can send a Pull Request. If this is your first
+Make your changes, and then create the PR as follows:
+
+<pre>
+git add .
+git commit -m "<var>COMMIT_MESSAGE<var>"
+git push -u origin <var>BRANCH_NAME</var>
+</pre>
+
+Then, in guthub.com, in your forked repo, you can send a pull request. You will need to assign at least one reviewer to approve.
+
+If this is your first
 time contributing to a Google Open Source project, you may need to follow the
-steps in [contributing.md](contributing.md). Be sure to follow [the style guide](STYLE_GUIDE.md)
+steps in [CONTRIBUTING.md](CONTRIBUTING.md). Be sure to follow [the style guide](STYLE_GUIDE.md)
 when submitting documentation PRs.
 
-Wait for approval of the Pull Request and merge the change.
+Wait for approval of the pull request and merge the change.
 
 ## Support
 

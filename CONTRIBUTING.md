@@ -1,9 +1,9 @@
-# How to Contribute
+# How to contribute
 
 We'd love to accept your patches and contributions to this project. There are
 just a few small guidelines you need to follow.
 
-## Contributor License Agreement
+## Contributor license agreement
 
 Contributions to this project must be accompanied by a Contributor License
 Agreement. You (or your employer) retain the copyright to your contribution;
@@ -22,7 +22,7 @@ use GitHub pull requests for this purpose. Consult
 [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
 information on using pull requests.
 
-## Community Guidelines
+## Community guidelines
 
 This project follows [Google's Open Source Community
 Guidelines](https://opensource.google/conduct/).
