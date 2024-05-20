@@ -5,7 +5,11 @@ nav_order: 7
 parent:  Custom Data Commons
 ---
 
-## Deploy a custom instance to Google Cloud
+{:.no_toc}
+# Deploy a custom instance to Google Cloud
+
+* TOC
+{:toc}
 
 When you are ready to launch your custom Data Commons site, we recommend hosting your site in [Google Cloud Run](https://cloud.google.com/run/), which is a serverless solution that is by far the simplest and least expensive option, providing auto-scaling. This is the production setup:
 
@@ -27,7 +31,7 @@ You push a locally built Docker image to the [Google Cloud Artifact Registry](ht
 
 This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry, and then deploy to Google Cloud Run. 
 
-1. Build a local version of the Docker image, following the procedure in [Build the local repo](build_repo.md).
+1. Build a local version of the Docker image, following the procedure in [Build the local repo](/custom_dc/build_repo.html).
 1. Authenticate to gcloud:
 
     ```shell  
@@ -106,5 +110,5 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
 
 Once you have deployed a custom instance to Google Cloud, you can continue to update your custom data in two ways:
 
--  Load the data from a local running instance, as described in [Load custom data in Cloud SQL](data_cloud.md#load-data-cloudsql)
+-  Load the data from a local running instance, as described in [Load custom data in Cloud SQL](/custom_dc/data_cloud.html#load-data-cloudsql)
 -  Use the `/admin` page from the running Cloud app. 
