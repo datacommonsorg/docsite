@@ -24,7 +24,7 @@ The Data Commons documentation uses [Kramdown](https://kramdown.gettalong.org/sy
 
 ## Navigation
 
-The navigation bar is generated automatically from the Jekyll "front matter" at the top of each Markdown file. See https://jekyllrb.com/docs/front-matter/ for details.
+The navigation bar is generated automatically from the YAML "front matter" at the top of each Markdown file. See [Using YAML front matter](https://docs.github.com/en/contributing/writing-for-github-docs/using-yaml-frontmatter) for details.
 
 ## Build locally
 
