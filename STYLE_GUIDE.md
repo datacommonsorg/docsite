@@ -28,7 +28,7 @@ To add a TOC to a page, use the following Markdown:
 {:toc}
 ```
 
-## Page title
+## Page titles
 
 Add an H1 heading at the start of a page to get a page title. Be sure to exclude it from showing up in a TOC. For example:
 
@@ -36,6 +36,18 @@ Add an H1 heading at the start of a page to get a page title. Be sure to exclude
 {:.no_toc}
 # Here is a page title
 ```
+## Multiline commands
+
+When you provide multiline commands, separated by the `\` character, be sure to omit any extra spaces after the backslash, or it will cause failures when users try to copy and paste. For example, if you have a command like this:
+
+```
+docker run -it \  
+-p 8080:8080 \  
+-e DEBUG=true \  
+--env-file $PWD/custom_dc/sqlite_env.list \  
+gcr.io/datcom-ci/datacommons-website-compose:stable  
+```
+Make sure there are no trailing spaces after the backslashes on each line.
 
 ## Plurals
 
