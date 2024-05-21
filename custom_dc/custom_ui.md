@@ -2,7 +2,7 @@
 layout: default
 title: Customize the site
 nav_order: 4
-parent:  Custom Data Commons
+parent: Custom Data Commons
 ---
 
 {:.no_toc}
@@ -13,8 +13,8 @@ parent:  Custom Data Commons
 
 The default custom Data Commons image provides a bare-bones UI that you will undoubtedly want to customize to your liking. Data Commons uses the Python [Flask](https://flask.palletsprojects.com/en/3.0.x/#) web framework and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/) HTML templates. If you're not familiar with these, the following documents are good starting points:
 
--  [Flask Templates](https://flask.palletsprojects.com/en/3.0.x/tutorial/templates/) 
--  [Flask Static Files](https://flask.palletsprojects.com/en/3.0.x/tutorial/static/)
+- [Flask Templates](https://flask.palletsprojects.com/en/3.0.x/tutorial/templates/)
+- [Flask Static Files](https://flask.palletsprojects.com/en/3.0.x/tutorial/static/)
 
 HTML and CSS customization files are provided as samples to get you started. They are as follows:
 
@@ -49,18 +49,18 @@ HTML and CSS customization files are provided as samples to get you started. The
   </tbody>
 </table>
 
-Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable.  
+Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable.
 
-To enable the changes to be picked up by the Docker image, and allow you to refresh the browser for further changes, restart the Docker image with this additional flag to map the directories to the Docker workspace:  
+To enable the changes to be picked up by the Docker image, and allow you to refresh the browser for further changes, restart the Docker image with this additional flag to map the directories to the Docker workspace:
 
-```shell  
--v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom  
--v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom  
+```shell
+-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom
+-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom
 ```
+
 <!--[Note: the second line doesn't currently do anything, but this is the way it should work IMO]-->
 
 If you have renamed the parent `custom` directory, be sure to use that name in the flag.
-
 
 ## Customize HTML templates {#html-templates}
 
@@ -70,7 +70,7 @@ You can customize the page header and footer (by default, empty) in [base.html](
 
 ## Customize Javascript and styles {#styles}
 
-Use the [overrides.css](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/overrides.css) file to customize the default Data Commons styles. The file provides a default color override. You can add all style overrides to that file.   
+Use the [overrides.css](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/overrides.css) file to customize the default Data Commons styles. The file provides a default color override. You can add all style overrides to that file.
 
 Alternatively, if you have existing existing CSS and Javascript files, put them under the [/static/custom_dc/custom](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom) folder. Then include these files in the `<head>` section of the corresponding HTML files as:
 
@@ -78,6 +78,6 @@ Alternatively, if you have existing existing CSS and Javascript files, put them 
 &lt;link href="/custom_dc/custom/<var>FILENAME</var>.css|js" rel="stylesheet" /&gt;
 </pre>
 
-See [`server/templates/custom_dc/custom/new.html`](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/new.html) as an example.  
+See [`server/templates/custom_dc/custom/new.html`](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/new.html) as an example.
 
-Note: Currently, making changes to any of the files in the `static/` directory requires that you rebuild a local version of the repo to pick up the changes, as described in [Build and run a local repo](/custom_dc/build_repo.html). We plan to fix this in the near future. 
+Note: Currently, making changes to any of the files in the `static/` directory requires that you rebuild a local version of the repo to pick up the changes, as described in [Build and run a local repo](/custom_dc/build_repo.html). We plan to fix this in the near future.
