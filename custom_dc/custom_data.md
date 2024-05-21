@@ -40,7 +40,6 @@ San Jose,2023,middle,400
 San Jose,2023,secondary,300
 San Jose,2023,postsecondary,50
 ```
-
 For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
 
 ```csv
