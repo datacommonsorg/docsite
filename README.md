@@ -30,11 +30,11 @@ The navigation bar is generated automatically from the YAML "front matter" at th
 
 The documentation site is built using Jekyll. To run this locally:
 
-1. Install [Ruby](https://jekyllrb.com/docs/installation/)
+1. One-time setup step: Install [Ruby](https://jekyllrb.com/docs/installation/).
 1. Run `bundle update`
 1. Run `bundle exec jekyll serve --incremental`
 
-You can continue to make local changes and just refresh the browser. If you make changes to YAML files, re-run `bundle exec jekyll serve`
+You can continue to make local changes and just refresh the browser. You will need to rerun `bundle exec jekyll serve` if you make changes that affect the overall site, such as changes to YAML files, cross-page links, etc.
 
 Tip: If you want to make the staged site accessible to others (and not just on the loopback), add `--host 0.0.0.0` to the command. Then, users can access the site using the hostname of the machine where the site is running.
 
@@ -75,7 +75,7 @@ Make your changes, and then create the PR as follows:
 
 <pre>
 git add .
-git commit -m "<var>COMMIT_MESSAGE<var>"
+git commit -m "<var>COMMIT_MESSAGE</var>"
 git push -u origin <var>BRANCH_NAME</var>
 </pre>
 
