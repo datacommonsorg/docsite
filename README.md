@@ -67,7 +67,7 @@ Every time you want to create a pull request, create a new branch and sync to th
 
 <pre>
 git checkout master
-git pull master
+git pull <var>REMOTE_NAME</var> master
 git checkout -b <var>BRANCH_NAME</var>
 </pre>
 
