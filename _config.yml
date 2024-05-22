@@ -25,6 +25,7 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jekyll-tabs
+  - jekyll-relative-links
 
 sass:
   style: compressed

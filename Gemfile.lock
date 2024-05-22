@@ -277,6 +277,7 @@ DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
   jekyll-redirect-from
+  jekyll-relative-links
   jekyll-tabs
   webrick (~> 1.8)
 
