@@ -54,6 +54,11 @@ OneOrg principal, currency composition, interest and disbursed and outstanding o
 The exchange rate of currency broken down by country, currency standardization type, and currency (using ISO 4217 Currency Code).
 [FAQ](https://www.fao.org/faostat/en/#faq)
 
+### [General Statistics Office (GSO), Vietnam](https://www.gso.gov.vn/en/homepage/)
+
+#### [Vietnam Census](https://www.gso.gov.vn/en/px-web/?pxid=E0201&theme=Population%20and%20Employment)
+Vietnam Demographics, Economy, Health, Education data from Portal Site of General Statistics Office by national, province and city level.
+
 ### [India Ministry of Statistics and Programme Implementation](https://mospi.gov.in/)
 
 #### [Periodic Labour Force Survey](https://mospi.gov.in/web/plfs)
