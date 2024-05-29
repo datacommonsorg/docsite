@@ -64,7 +64,7 @@ If you want to create a new source directory and start from scratch, clone the r
    git checkout -b <var>BRANCH_NAME</var> customdc_stable
    </pre>
 
-1. To verify that your local repo is at the same version of the vode, run the following command:
+1. To verify that your local repo is at the same version of the code, run the following command:
 
    ```
    git log --oneline --graph
