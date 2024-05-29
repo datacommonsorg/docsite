@@ -21,7 +21,7 @@ Data Commons provides two prebuilt images in the Google Artifact Registry that y
 - `gcr.io/datcom-ci/datacommons-website-compose:stable`. This is a tested, stable version but may be several weeks old.
 - `gcr.io/datcom-ci/datacommons-website-compose:latest`. This is the latest built version that is running in production.
 
-If you want to pick up the latest prebuilt version, run the following command:
+If you want to pick up the latest prebuilt version, run the following command from the `website` directory:
 
 ```shell  
 docker pull gcr.io/datcom-ci/datacommons-website-compose:latest
@@ -38,8 +38,8 @@ Rather than building from "head", that is, the very latest changes in Github, wh
 
 Note: If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
 - You have a Github account and project.
-- You have created a fork off the main Data Commons `website` repo (https://github.com/datacommonsorg/website) and a remote that points to it.
-- You have already cloned the main Data Commons `website`, as described in the [Quickstart](quickstart.md), and the `origin` remote is pointing to it.
+- You have created a fork off the main Data Commons `website` repo (https://github.com/datacommonsorg/website) and a remote that points to it, and that you will push to that fork. 
+
 
 ### Sync a local workspace to the stable release
 
@@ -47,7 +47,18 @@ If you are using a version control system other than Github, you can download a 
 
 In Github, use the following procedure.
 
-1. From the `website` directory you previously created and cloned, create a new branch :
+1. If you want to reuse the `website` directory you previously created and cloned, skip to step 3. 
+If you want to create a new source directory and start from scratch, clone the repo up to the stable release tag:
+
+      ```
+      git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch 
+      ```
+1. Change to the `website` directory (or whatever you have named it):
+
+   ```
+   cd website
+   ```
+1. Create a new branch synced to the stable release:
 
    <pre>
    git checkout -b <var>BRANCH_NAME</var> customdc_stable
@@ -62,9 +73,12 @@ In Github, use the following procedure.
 
    ```
    * 52635c8 (grafted, HEAD -> branch1, tag: customdc_stable) ...
+   ...
    ```
 
    Verify that the last commit in the output matches that listed in [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable).
+
+1. Press `q` to exit the output log.
 
 1. Create and update the necessary submodules:
 
