@@ -1,17 +1,5 @@
 ---
-layout: default
+layout: redirect
 title: Blog
+redirect: https://blog.datacommons.org/
 ---
-<h1>Blog</h1>
-
-<ul class="blog-posts">
-  {% for post in site.posts %}
-  <li>
-    <h3 class="blog-byline">
-      {{ post.date | date_to_string }}&nbsp;&#8211;&nbsp;{{ post.author }}
-    </h3>
-    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    {{ post.content }}
-  </li>
-  {% endfor %}
-</ul>
