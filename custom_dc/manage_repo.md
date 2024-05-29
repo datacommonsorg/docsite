@@ -77,8 +77,6 @@ In Github, use the following procedure.
    ```
    Submodule 'import' (https://github.com/datacommonsorg/import.git) registered for path 'import'
    Submodule 'mixer' (https://github.com/datacommonsorg/mixer.git) registered for path 'mixer'
-   Cloning into '/usr/local/google/home/kmoscoe/stable_release/website/import'...
-   Cloning into '/usr/local/google/home/kmoscoe/stable_release/website/mixer'...
    Submodule path 'import': checked out '7d197583b6ad0dfe0568532f919482527c004a8e'
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
    ```
