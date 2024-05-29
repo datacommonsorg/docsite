@@ -49,11 +49,11 @@ In Github, use the following procedure.
 
 1. From the `website` directory you previously created and cloned, create a new branch :
 
-  <pre>
+   <pre>
    git checkout -b <code>BRANCH_NAME</code> customdc_stable
    </pre>
 
-1. To verify the tag, run the following command:
+1. To verify that your local repo is at the same version of the vode, run the following command:
 
    ```
    git log --oneline --graph
@@ -66,7 +66,7 @@ In Github, use the following procedure.
 
    Verify that the last commit in the output matches that listed in https://github.com/datacommonsorg/website/releases/tag/customdc_stable.
 
-1. Update all the code:
+1. Create and update the necessary submodules:
    ```
    git submodule foreach git pull origin customdc_stable
    git submodule update --init --recursive
@@ -82,18 +82,30 @@ In Github, use the following procedure.
    Submodule path 'import': checked out '7d197583b6ad0dfe0568532f919482527c004a8e'
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
    ```
+1. Update all other files:
+
+   ```
+   git pull origin customdc_stable
+   ```
+   You will likely see the following output:
+
+   ```
+   From https://github.com/datacommonsorg/website 
+   * tag               customdc_stable -> FETCH_HEAD
+   Already up to date.
+   ```
 
 ### Build the repo locally
 
-1. Run the following command to build the repo:
+Run the following command to build the repo:
 
-   <pre>
-   docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var> \
-   -f build/web_compose/Dockerfile \
-   -t website-compose .
-   </pre>
+<pre>
+docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var> \
+-f build/web_compose/Dockerfile \
+-t website-compose .
+</pre>
 
-   The _DOCKER_TAG_ is a meaningful description of the version you are building.
+The _DOCKER_TAG_ is a meaningful description of the version you are building.
 
 It will take several minutes to build.
 
