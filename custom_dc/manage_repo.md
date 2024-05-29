@@ -34,7 +34,7 @@ You will need to build a local image in any of the following cases:
 - You are making substantive changes to the website UI
 - You are ready to deploy your custom site to GCP
 
-Rather than building from "head", that is, the very latest changes in Github, which may not have been tested, we recommend that you use a tested "release", with the tag `customdc_stable`, available at https://github.com/datacommonsorg/website/releases/tag/customdc_stable.
+Rather than building from "head", that is, the very latest changes in Github, which may not have been tested, we recommend that you use a tested "release", with the tag `customdc_stable`, available at [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable).
 
 Note: If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
 - You have a Github account and project.
@@ -43,14 +43,14 @@ Note: If you are working on a large-scale customization, we recommend that you u
 
 ### Sync a local workspace to the stable release
 
-If you are using a version control system other than Github, you can download the stable version of the code from https://github.com/datacommonsorg/website/releases/tag/customdc_stable. 
+If you are using a version control system other than Github, you can download a .ZIP or .TAR file from [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable). 
 
 In Github, use the following procedure.
 
 1. From the `website` directory you previously created and cloned, create a new branch :
 
    <pre>
-   git checkout -b <code>BRANCH_NAME</code> customdc_stable
+   git checkout -b <var>BRANCH_NAME</var> customdc_stable
    </pre>
 
 1. To verify that your local repo is at the same version of the vode, run the following command:
@@ -64,14 +64,14 @@ In Github, use the following procedure.
    * 52635c8 (grafted, HEAD -> branch1, tag: customdc_stable) ...
    ```
 
-   Verify that the last commit in the output matches that listed in https://github.com/datacommonsorg/website/releases/tag/customdc_stable.
+   Verify that the last commit in the output matches that listed in [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable).
 
 1. Create and update the necessary submodules:
+
    ```
    git submodule foreach git pull origin customdc_stable
    git submodule update --init --recursive
    ```
-
    You should see output like the following:
 
    ```
