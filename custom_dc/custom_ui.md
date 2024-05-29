@@ -80,4 +80,4 @@ Alternatively, if you have existing existing CSS and Javascript files, put them 
 
 See [`server/templates/custom_dc/custom/new.html`](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/new.html) as an example.
 
-Note: Currently, making changes to any of the files in the `static/` directory requires that you rebuild a local version of the repo to pick up the changes, as described in [Build and run a local repo](/custom_dc/build_repo.html). We plan to fix this in the near future.
+Note: Currently, making changes to any of the files in the `static/` directory requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](manage_repo.md#build-repo). We plan to fix this in the near future.
