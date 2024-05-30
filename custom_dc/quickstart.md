@@ -65,6 +65,8 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only.
+
 ## About the downloaded files
 
 <table>
@@ -102,7 +104,7 @@ Warning: Do not use any quotes (single or double) or spaces when specifying the 
   </tbody>
 </table>
 
-## Start the services
+## Start the services {#start-services}
 
 From the root directory, `website`, run Docker as follows.
 
@@ -110,7 +112,6 @@ Note: If you are running on Linux, depending on whether you have created a ["sud
 
 ```shell
 docker run -it \
---pull=always \
 -p 8080:8080 \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/sqlite_env.list \
