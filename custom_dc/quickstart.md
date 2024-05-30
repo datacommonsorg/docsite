@@ -178,13 +178,17 @@ Tip: When you restart the Docker instance, all data in the SQLite database is lo
 -v $PWD/custom_dc/sample/datacommons:/sqlite
 ```
 
-Now visit the Timeline explorer at [http://localhost:8080/tools/timeline](http://localhost:8080/tools/timeline). You'll now see the new variables and can explore the new data. Try entering a country:
+Now click the **Timeline** link to visit the Timeline explorer. Try entering a country and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 
-To issue natural language queries, click the **Search** link or browse to [http://localhost:8080/explore](http://localhost:8080/explore). Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+Select one (or both) and click **Display** to show the timeline graph:
 
-![screenshot_search](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
+![screenshot_display](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
+
+To issue natural language queries, click the **Search** link. Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+
+![screenshot_search](/assets/images/custom_dc/customdc_screenshot3a.png){: width="900"}
 
 Note that NL support increases the startup time of your server and consumes more resources. If you don't want NL functionality, you can disable it by updating the `ENABLE_MODEL` flag in `sqlite_env.list` from `true` to `false`.
 
