@@ -31,8 +31,12 @@ The NL interface uses an open-source Python ML library, Sentence Transformers mo
 
 ### Does the model use any Google technologies, such as Vertex AI?
 
-At this time, there is no plan to use any Google-specific ML technologies for NL processing in custom Data Commons. All models are open-source.
+No. At this time, there is no plan to use any Google-specific ML technologies for NL processing in custom Data Commons. All models are open-source.
 
 ### Where does the ML model run and where are embeddings stored?
 
 The ML model runs entirely on your custom Data Commons instance, inside the Docker image. It does not use any Google-hosted systems, and data is never leaked to the main Data Commons. If a natural-language query requires data to be joined from the main Data Commons site, the custom site will use the embeddings that are locally generated before making the call to the main Data Commons to fetch the data.
+
+### Does the model use feedback from user behavior to adjust scoring?
+
+No. At this time, there is no plan to enable user feedback mechnanisms for custom Data Commons.
