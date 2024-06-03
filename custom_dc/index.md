@@ -37,7 +37,7 @@ A custom Data Commons site is deployed in Google Cloud Platform (GCP). The owner
 
 If you have the resources to develop and maintain a custom Data Commons instance, this is a good option for the following use cases:
 
-- You want to host your data on your own website, and take advantage of Data Commons natural-language query interface, and exploration and visualization tools.got
+- You want to host your data on your own website, and take advantage of Data Commons natural-language query interface, and exploration and visualization tools.
 - You want to add your own data to Data Commons but want to maintain ownership of the Cloud data.
 - You want to add your own data to Data Commons but want to customize the UI of the site.
 - You want to add your own private data to Data Commons, and restrict access to it.
