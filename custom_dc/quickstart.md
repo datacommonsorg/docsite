@@ -170,7 +170,7 @@ To load and view the sample data:
 This does the following:
 
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in the Docker image and loads them.
+- Generates embeddings in the Docker image and loads them. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
 
 Tip: When you restart the Docker instance, all data in the SQLite database is lost. If you want to preserve the sample data and have it automatically always load after restarting your Docker instance, without having to run the load data function each time, include this additional flag in your Docker run command:
 
