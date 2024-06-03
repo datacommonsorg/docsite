@@ -39,4 +39,4 @@ The ML model runs entirely on your custom Data Commons instance, inside the Dock
 
 ### Does the model use feedback from user behavior to adjust scoring?
 
-No. At this time, there is no plan to enable user feedback mechnanisms for custom Data Commons.
+No. At this time, there is no plan to enable user feedback mechanisms for custom Data Commons.
