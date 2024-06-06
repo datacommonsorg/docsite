@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Frequently Asked Questions
+title: Frequently asked questions
 nav_order: 9
 parent: Custom Data Commons
 ---
 
 {:.no_toc}
-# Custom Data Commons Frequently Asked Questions
+# Custom Data Commons frequently asked questions
 
 * TOC
 {:toc}
@@ -43,5 +43,5 @@ The ML model runs entirely on your custom Data Commons instance, inside the Dock
 
 ### Does the model use feedback from user behavior to adjust scoring?
 
-No. However, you have the ability to improve query quality by improving your [search descriptions](custom_data.md#search-descriptions).
+No. However, you have the ability to improve query quality by improving your [search descriptions](custom_data.md#varparams).
 
