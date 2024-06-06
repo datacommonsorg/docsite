@@ -41,8 +41,8 @@ https://api.datacommons.org/v2
 | Resolve Entities | [/v2/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
 
 
-{: #relation-expressions}
-## Introducing Relation Expressions
+
+## Introducing Relation Expressions {#relation-expressions}
 
 Data Commons represents real world entities and data as nodes. These
 nodes are connected by directed edges, or arcs, to form a knowledge graph. The
