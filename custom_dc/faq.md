@@ -25,13 +25,17 @@ No. Even if a query needs data from the main Data Commons, gleaned from the (inc
 
 ## Natural language processing
 
-### How does the natural language interface work?
+### How does the natural language (NL) interface work?
 
-The NL interface uses an open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers). When you load data into a custom instance, the Data Commons NL server generates embeddings for both the main Data Commons data, and for your custom data, based on the statistical variables and search descriptions you have defined in your configuration. When a query comes in, the server generates equivalent embeddings, and the variables are assigned a relevance score based on cosine similarity. 
+The Data Commons NL interface has the ability to use a combination of different embedding models, heuristics and large-language models (LLMs) (as fallback). Given an NL query, it first detects schema (variables, properties, etc) and entities (e.g., places like "California") in the query, and then responds with a set of charts chosen based on the query shape (ranking, etc.) and data existence constraints.
+
+The custom instance uses a local open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers), and does not use LLM fallback.
+
+When you load data into a custom instance, the Data Commons NL server generates embeddings for both the main Data Commons data, and for your custom data, based on the statistical variables and search descriptions you have defined in your configuration. When a query comes in, the server generates equivalent embeddings, and the variables are assigned a relevance score based on cosine similarity.
 
 ### Does the model use any Google technologies, such as Vertex AI?
 
-No. At this time, there is no plan to use any Google-specific ML technologies for NL processing in custom Data Commons. All models are open-source.
+No. While the main Data Commons uses Vertex AI, the custom instance uses open-source ML technologies only.
 
 ### Where does the ML model run and where are embeddings stored?
 
@@ -39,4 +43,5 @@ The ML model runs entirely on your custom Data Commons instance, inside the Dock
 
 ### Does the model use feedback from user behavior to adjust scoring?
 
-No. At this time, there is no plan to enable user feedback mechanisms for custom Data Commons.
+No. However, you have the ability to improve query quality by improving your [search descriptions](custom_data.md#search-descriptions).
+

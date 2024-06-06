@@ -209,7 +209,7 @@ Each property is specified as a key:value pair. Here are some examples:
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-`searchDescriptions`
+`searchDescriptions` {#search-descriptions}
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
