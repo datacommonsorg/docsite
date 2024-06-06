@@ -27,7 +27,7 @@ No. Even if a query needs data from the main Data Commons, gleaned from the (inc
 
 ### How does the natural language (NL) interface work?
 
-The Data Commons NL interface has the ability to use a combination of different embedding models, heuristics and large-language models (LLMs) (as fallback). Given an NL query, it first detects schema (variables, properties, etc) and entities (e.g., places like "California") in the query, and then responds with a set of charts chosen based on the query shape (ranking, etc.) and data existence constraints.
+The Data Commons NL interface has the ability to use a combination of different embedding models, heuristics and large-language models (LLMs) (as fallback). Given an NL query, it first detects schema information (variables, properties, etc.) and entities (e.g., places like "California") in the query, and then responds with a set of charts chosen based on the query shape (ranking, etc.) and data existence constraints.
 
 The custom instance uses a local open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers), and does not use LLM fallback.
 
