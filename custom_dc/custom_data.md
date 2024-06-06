@@ -175,7 +175,7 @@ You must specify the provenance details under `sources`.`provenances`; this fiel
 
 The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
-#### Variable parameters
+#### Variable parameters {#varparams}
 
 `name`
 
@@ -209,7 +209,7 @@ Each property is specified as a key:value pair. Here are some examples:
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-`searchDescriptions`
+`searchDescriptions` 
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
