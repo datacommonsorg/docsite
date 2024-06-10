@@ -146,7 +146,7 @@ Tip: If you close the terminal window in which you started the Docker container,
 1. Run:
 
   <pre>
-  docker kill <var>CONTAINER_ID</var>  
+  docker kill <var>CONTAINER_ID</var>
 	</pre>
 
 ## View the local website
@@ -197,7 +197,7 @@ Note that NL support increases the startup time of your server and consumes more
 A custom instance can accept REST API requests at the endpoint `/core/api/v2/`. To try it out, here's an example request that returns the same data as in the interactive queries above, using the `observation` API. You can enter this query in your browser to get nice output:
 
 ```
-[http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage](http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage)
+http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage
 ```
 
 Note: You do not need to specify an API key as a parameter.
