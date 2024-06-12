@@ -14,6 +14,9 @@
   {% if page.url == "/api/web_components/" or page.parent == "Web Components" %}
   <script src="https://datacommons.org/datacommons.js"></script>
   {% endif %}
+  {% if page.url == "/datasets/" or page.parent == "Data Sources" %}
+  <script src="https://public.flourish.studio/resources/embed.js"></script>
+  {% endif %}
 </head>
 <body>
   <div id="main">
