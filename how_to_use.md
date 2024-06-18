@@ -43,8 +43,12 @@ Data Commons provides ideal training data for developing machine learning models
 
 ## Contribute data to Data Commons
 
-We are always looking to expand the data sources available from the main Data Commons site. If you are interested in contributing data, please see the [Data import documentation](/import_dataset/index.html).
+We are always looking to the expand the data available from the base Data Commons site. If you are interested in contributing data, please see the [Data import documentation](/import_dataset/index.html).
 
 ## Develop and host your own Data Commons site
 
 If you would like to leverage Data Commons' analytical and visualization tools, and natural-language query interface for your own data and website, we provide a reference website implementation you can customize to meet your needs. See the [Custom Data Commons documentation](/custom_dc/index.html) for details.
+
+## Contribute to the open-source initiative
+
+We also welcome code, documentation, and educational contributions to the Data Commons open-source project. See [Contributing to Data Commons](/contributing/index.html) for the myriad ways you can help improve Data Commons!

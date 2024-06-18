@@ -53,3 +53,7 @@ Here are just some of the unique features of Data Commons:
 -  Support for interactive and programmatic querying, ad hoc and bulk data downloads.
 -  Easily customizable website implementation that can be adapted for specific data needs
 -  Integration with the Google Search stack 
+
+## Learn more
+
+For more background on "why" and "how" Data Commons was built, see the [Data Commons Overview](https://arxiv.org/abs/2309.13054) paper.
