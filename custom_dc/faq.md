@@ -19,9 +19,9 @@ Yes; there are many options for doing so. If you want an entirely private site w
 
 Note that you cannot apply fine-grained access restrictions, such as access to specific data or pages. Access is either all or nothing. If you want to be able to partition off data, you would need to create additional custom instances.
 
-### Will my custom data end up in the main Data Commons database?
+### Will my custom data end up in the base Data Commons?
 
-No. Even if a query needs data from the main Data Commons, gleaned from the (incomplete) results from your custom data, it will never transfer any custom data to the main site.
+No. Even if a query needs data from the base Data Commons, gleaned from the (incomplete) results from your custom data, it will never transfer any custom data to the base data store.
 
 ## Natural language processing
 
@@ -31,15 +31,15 @@ The Data Commons NL interface has the ability to use a combination of different 
 
 The custom instance uses a local open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers), and does not use LLM fallback.
 
-When you load data into a custom instance, the Data Commons NL server generates embeddings for both the main Data Commons data, and for your custom data, based on the statistical variables and search descriptions you have defined in your configuration. When a query comes in, the server generates equivalent embeddings, and the variables are assigned a relevance score based on cosine similarity.
+When you load data into a custom instance, the Data Commons NL server generates embeddings for both the base Data Commons data, and for your custom data, based on the statistical variables and search descriptions you have defined in your configuration. When a query comes in, the server generates equivalent embeddings, and the variables are assigned a relevance score based on cosine similarity.
 
 ### Does the model use any Google technologies, such as Vertex AI?
 
-No. While the main Data Commons uses Vertex AI, the custom instance uses open-source ML technologies only.
+No. While the base Data Commons uses Vertex AI, the custom instance uses open-source ML technologies only.
 
 ### Where does the ML model run and where are embeddings stored?
 
-The ML model runs entirely on your custom Data Commons instance, inside the Docker image. It does not use any Google-hosted systems, and data is never leaked to the main Data Commons. If a natural-language query requires data to be joined from the main Data Commons site, the custom site will use the embeddings that are locally generated before making the call to the main Data Commons to fetch the data.
+The ML model runs entirely on your custom Data Commons instance, inside the Docker image. It does not use any Google-hosted systems, and data is never leaked to the base Data Commons. If a natural-language query requires data to be joined from the base data store, the custom site will use the embeddings that are locally generated before making the call to the base Data Commons to fetch the data.
 
 ### Does the model use feedback from user behavior to adjust scoring?
 
