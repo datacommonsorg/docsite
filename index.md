@@ -22,7 +22,7 @@ For example, if you wanted to get [population stats, poverty and unemployment ra
 
 ## A standards-based knowledge graph, schema, and APIs
 
-Data Commons needs to be able to stitch together data from disparate data sets in different formats and encodings, in a wide range of domains, from time series about demographics and employment, to hurricanes, to protein structures. To do so, it models the world as a [knowledge graph](https://blog.google/products/search/introducing-knowledge-graph-things-not/) consisting of nodes, or entities, with properties (attributes) and relationships between them forming directed edges between the nodes. The data model is based on the [Schema.org](https://www.schema.org) framework, an open framework used by over 40M websites; Data Commons makes heavy use of [Schema.org](https://www.schema.org/docs/schemas.html) constructs and extends the model as required, introducing both general constructs (such as intervals) and values for common properties. 
+Data Commons needs to be able to stitch together data from disparate data sets in different formats and encodings, in a wide range of domains, from time series about demographics and employment, to hurricanes, to protein structures. To do so, it models the world as a [knowledge graph](https://blog.google/products/search/introducing-knowledge-graph-things-not/) consisting of nodes, or entities, with properties (attributes) and relationships between them forming directed edges between the nodes. The data model is based on the [Schema.org](https://www.schema.org) framework, an open framework used by over 40M websites; its schema is an extension of [Schema.org](https://www.schema.org/docs/schemas.html) constructs, introducing both general constructs (such as intervals) and values for common properties. 
 
 The Data Commons [Knowledge Graph browser](https://datacommons.org/browser/) allows you to peek into the structure of the graph, and the APIs allow you to directly query the parts of the graph (e.g. nodes, triples, etc.).
 
@@ -34,13 +34,13 @@ The knowledge graph is also mapped to relational tables that allow for [SQL quer
 
 ## An open-source project and website platform
 
-Data Commons is intended to be a community-based resource, where individuals and organizations can contribute data, code, documentation and educational materials. Source code, schemas, and documentation are publicly available at [https://github.com/datacommonsorg](https://github.com/datacommonsorg). 
+Data Commons is a community-based resource, where individuals and organizations can contribute data, code, documentation and educational materials. Source code, schemas, and documentation are publicly available at [https://github.com/datacommonsorg](https://github.com/datacommonsorg). 
 
-Google has partnerships with the [United Nations](https://unstats.un.org/UNSDWebsite/undatacommons/sdgs), the [World Health Organization](https://unstats.un.org/UNSDWebsite/undatacommons/areas/1471028664), [One.org](https://datacommons.one.org/), [TechSoup](https://publicdata.techsoup.org/), and many other non-profit, academic, and governmental organizations across the world. We are always looking to expand the available data sources and welcome contributions from data owners around the world.
+Google has partnerships with the [United Nations](https://unstats.un.org/UNSDWebsite/undatacommons/sdgs), the [World Health Organization](https://unstats.un.org/UNSDWebsite/undatacommons/areas/1471028664), [One.org](https://datacommons.one.org/), [TechSoup](https://publicdata.techsoup.org/), and many other non-profit, academic, and governmental organizations across the world. We are always looking to expand data coverage and welcome contributions from data owners around the world.
 
-In addition, Data Commons makes its data and visualizations accessible to any website through [REST](/api/rest/v2/index.html) and [Javascript](/api/web_components/index.html) APIs. 
+In addition, Data Commons makes its data and visualizations accessible to any website through [REST](/api/rest/v2/index.html) and [Web components](/api/web_components/index.html) APIs. 
 
-Finally, Data Commons provides an open-source, [customizable website](/custom_dc/index.html) implementation, for organizations that want to host their own version of a Data Commons website, using their own data and user interfaces. 
+Finally, Data Commons provides an open-source, [customizable implementation](/custom_dc/index.html), for organizations that want to host their own version of a Data Commons website, using their own data and user interfaces. 
 
 ## Key features
 

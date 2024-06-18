@@ -16,7 +16,7 @@ To find out what data is available in Data Commons, check out the [Statistical V
 
 ## Issue interactive data queries
 
-For quick analysis, use the search query bar on the home page or any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/visualization#visType=timeline), [Scatter](https://datacommons.org/tools/visualization#visType%3Dscatter), and [Map](https://datacommons.org/tools/visualization#visType%3Dmap) explorers.
+For quick analysis, use the search query bar on the [home page](https://datacommons.org/) or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/visualization#visType=timeline), [Scatter](https://datacommons.org/tools/visualization#visType%3Dscatter), and [Map](https://datacommons.org/tools/visualization#visType%3Dmap) explorers.
 
 If you want to issue SQL queries, and you have a Google Cloud Platform account, use BigQuery Studio on Data Commons data in [Analytics Hub](https://cloud.google.com/analytics-hub). See the [Data Commons in BigQuery](/bigquery/index.html) page for more details.
 
@@ -28,7 +28,7 @@ The Python and pandas APIs provide convenient wrappers for calling the APIs; we 
 
 ## Embed data analyses and visualizations in your site
 
-If you would like to include Data Commons result visualizations in your own website, we provide  a [Javascript API](/api/web_components/index.html) that makes it a snap to embed various chart elements, such as scatter plots, maps, pie charts, and many more.
+If you would like to include Data Commons result visualizations in your own website, we provide  a [Web components API](/api/web_components/index.html) that makes it a snap to embed various chart elements, such as scatter plots, maps, pie charts, and many more.
 
 ## Download data for offline analysis
 
@@ -39,7 +39,7 @@ Data Commons provides several tools for downloading its data:
 
 ## Build machine learning models
 
-Data Commons data sets provide ideal training data for developing machine learning models and other data science applications. The [data science tutorials](/courseware/intro_data_science.html) show you how to use our APIs and data to get started. 
+Data Commons provides ideal training data for developing machine learning models and other data science applications. The [data science tutorials](/courseware/intro_data_science.html) show you how to use our APIs and data to get started. 
 
 ## Contribute data to Data Commons
 
