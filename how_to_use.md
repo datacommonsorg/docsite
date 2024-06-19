@@ -43,7 +43,7 @@ Data Commons provides ideal training data for developing machine learning models
 
 ## Contribute data to Data Commons
 
-We are always looking to the expand the data available from the base Data Commons site. If you are interested in contributing data, please see the [Data import documentation](/import_dataset/index.html).
+We are always looking to expand the data available from the base Data Commons site. If you are interested in contributing data, please see the [Data import documentation](/import_dataset/index.html).
 
 ## Develop and host your own Data Commons site
 
