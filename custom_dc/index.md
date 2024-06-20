@@ -13,7 +13,7 @@ has_children: true
 
 ## Overview
 
-Data Commons is an open source platform. Any organization can create a custom Data Commons instance with its own data, customized user interface and visualization tools,
+Data Commons is an open source platform. Any organization can create a custom Data Commons instance with its own data, customized user interface and visualization tools.
 
 A custom instance natively combines the base Data Commons data (from datacommons.org) and the custom data in a unified fashion. Users can generate visualizations and perform data analyses across base and custom datasets seamlessly.
 
@@ -37,11 +37,10 @@ A custom Data Commons site is deployed in Google Cloud Platform (GCP). The owner
 
 If you have the resources to develop and maintain a custom Data Commons instance, this is a good option for the following use cases:
 
+- You want to host your data on your own website, and take advantage of Data Commons natural-language query interface, and exploration and visualization tools.
 - You want to add your own data to Data Commons but want to maintain ownership of the Cloud data.
 - You want to add your own data to Data Commons but want to customize the UI of the site.
-- You want to host your data on your own website, using the Data Commons tools. (You may also host all or part of your data on the main public Data Commons site as well.)
 - You want to add your own private data to Data Commons, and restrict access to it.
-- You want to host all or part of your data on your own the main public Data Commons site in additio
 
 Also, if you want to add all of your data to the main Data Commons and test how it will work with the exploration tools and natural language queries, you will need to at least host a local development site for testing purposes.
 
