@@ -12,6 +12,8 @@ Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
 able to support a limited subsection of SPARQL functionality at this time: specifically only the keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
 
+Note: The Python SPARQL library currently only supports the [v1](/api/vi/query.html) version of the API.
+
 ## General information about this method
 
 **Signature**:
@@ -37,15 +39,15 @@ This method accepts the additional optional argument `select`. This function sel
 
 A correct response will always look like this:
 
-```json
+<pre>
 [
   {
-    "<field name>": "<field value>",
+    "<var>FIELD_NAME</var>": "<var>FIELD_VALUE</var>",
     ...
   },
  ...
 ]
-```
+</pre>
 
 The response contains an array of dictionaries, each corresponding to one node matching the conditions of the query. Each dictionary's keys match the variables in the query SELECT clause, and the values in the dictionaries are those associated to the given node's query-specified properties.
 
