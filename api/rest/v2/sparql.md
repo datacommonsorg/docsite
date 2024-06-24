@@ -14,7 +14,7 @@ This endpoint makes it possible to query the Data Commons knowledge graph using
 content on the web. It leverages the graph structure innate in the data it 
 queries to return specific information.
 
-Note: Data Commons only supports limited subsection of SPARQL functionality at this time: specifically only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT`.
+**Note:** Data Commons only supports a limited subset of SPARQL functionality at this time: specifically, only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT` are supported.
 
 ## Request
 
@@ -29,21 +29,17 @@ Header:
 X-API-Key: <var>API_KEY</var>
 
 JSON Data:
-{ "sparql": "<var>SPARQL_QUERY</var" }
+{ "sparql": "<var>SPARQL_QUERY</var>" }
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
-
-### Path parameters
-
-There are no path parameters for this endpoint.
 
 ### Query parameters
 
 | Name                                                | Type   | Description                                                                                                                                                     |
 | --------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the the section on [authentication](getting_started.md#authentication) for instructions on how to get a key. |
-| sparql <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, each variable should have a `typeOf` condition (e.g. `?var typeOf City`).                                              |
+| sparql <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, each variable should have a `typeOf` condition, for example, <code>?<var>VARIABLE_NAME</var> typeOf City</code>.                                              |
 {: .doc-table }
 
 ## Response
