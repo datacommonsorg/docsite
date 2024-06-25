@@ -1,0 +1,29 @@
+<html>
+    <body>
+<h2> Find IDs for input parameters</h2>
+
+<p>All Data Commons APIs take parameters that require the <a href="glossary.html#dcid">DCID</a> of the entity, place,
+     or variable you wish to query. 
+
+<p>To find the [DCID](/glossary.html#dcid) of an entity or variable:
+<ul>
+<li> Browse all variables with the
+   <a href="https://datacommons.org/tools/statvar">Statistical Variable Explorer</a>.</li>
+   <li>Search for places and variables with the
+   <a href="https://datacommons.org/search">Search</a> page.</li>
+<li>Click through the <a href="https://datacommons.org/browser">Knowledge Graph</a> to understand the relationship between entities. 
+    For example, the <a href="https://datacommons.org/browser/country/USA">country/USA</a>
+page shows the DCIDs for all US states and territories:
+
+<img src="/assets/images/web_components/stat-var-explorer.png" width="600"/></li>
+
+<li>Use the <a href="resolve.html">v2/resolve API endpoint</a> to get DCIDs programmatically.</li>
+</ul>
+
+<h2>Find dates for observations</h2>
+
+<p>Many endpoints allow you to filter their results to specific dates. When querying for data at a specific date, the string you pass for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. To find out the date format a variable uses, look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). 
+</body>
+</html>
+
+
