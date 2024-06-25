@@ -90,23 +90,10 @@ curl -X POST \
 
 ### Find available entities, variables, and their DCIDs
 
-Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
-
-- [Search](https://datacommons.org/search) Data Commons
-- [Knowledge Graph](https://datacommons.org/browser/): click through nodes in the knowledge graph
-- [Statistical Variable Explorer](https://datacommons.org/tools/statvar): see metadata for variables
-- [v2/resolve API endpoint](/api/v2/resolve.html): get DCIDs programmatically
-
-### Find dates for observations
-
-Many endpoints allow you to filter their results to specific dates. When querying for data at a specific date, the string you pass for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see the date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+See the [API overview page]([)/api/index.html#find-ids)
 
 {: #authentication}
 ## Authentication
-
-<b>IMPORTANT:</b> API keys are now required. To use the REST API, you must include a valid API key in all requests.
-
-### Use API keys
 
 API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 
@@ -138,7 +125,7 @@ curl -X POST \
 }'
 </pre>
 
-#### Get API keys
+### Get API keys {: #get-key}
 
 We provide a trial API key for general public use. This key will let you try the API and make single requests.
 
@@ -151,11 +138,11 @@ We provide a trial API key for general public use. This key will let you try the
 [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. 
 
 {: #pagination}
-### Pagination
+## Pagination
 
 When the response to a request is too long, the returned payload is
-**paginated**. Only a subset of the response is returned, along with a long string
-of characters called a **token**. To get the next set of entries, repeat the
+_paginated_. Only a subset of the response is returned, along with a long string
+of characters called a _token_. To get the next set of entries, repeat the
 request with `nextToken` as an query parameter, with the token as its value.
 
 For example, the request:
