@@ -38,7 +38,7 @@ Rather than building from "head", that is, the very latest changes in Github, wh
 
 Note: If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
 - You have a Github account and project.
-- You have created a fork off the main Data Commons `website` repo (https://github.com/datacommonsorg/website) and a remote that points to it, and that you will push to that fork. 
+- You have created a fork off the base Data Commons `website` repo (https://github.com/datacommonsorg/website) and a remote that points to it, and that you will push to that fork. 
 
 
 ### Sync a local workspace to the stable release

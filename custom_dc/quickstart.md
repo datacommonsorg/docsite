@@ -22,7 +22,7 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 - Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
 - Install [Docker Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
-- Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your custom site to the main Data Commons site. Typical turnaround times are 24-48 hours.
+- Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your site to the base Data Commons site. Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps
@@ -79,7 +79,7 @@ Note: If you are storing your source code in a public/open-source version contro
   <tbody>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data on the main Data Commons site. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the config.json file. </td>
+      <td>Sample supplemental data that is added to the base data in Data Commons. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the config.json file. </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples"><code>custom_dc/examples/</code></a></td>
