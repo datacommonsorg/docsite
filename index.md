@@ -56,4 +56,4 @@ Here are just some of the unique features of Data Commons:
 
 ## Learn more
 
-For more background on why and how Data Commons was built, see the [Data Commons Overview](https://arxiv.org/abs/2309.13054) paper.
+For more background on "why" and "how" Data Commons was built, see the [Data Commons Overview](https://arxiv.org/abs/2309.13054) paper.
