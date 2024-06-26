@@ -19,12 +19,12 @@ Data Commons provides several different ways to access its API's resources:
 * A heavier [Pandas](/api/pandas) wrapper.
 * A convenient [Google Sheets](/api/sheets) add-on.
 
-The endpoints can be roughly grouped into four categories.
+The endpoints can be roughly grouped into four categories:
 
 -   **Graph exploration**: Given a set of nodes, explore the
     graph around those nodes.
 
--   **Statistical data**: Given a set of statistical variables, dates and gitentities, get observations.
+-   **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
 
 -   **Graph query/SPARQL**: Given a subgraph where some of the nodes are
     variables, retrieve possible matches. This corresponds to a subset of the
@@ -32,4 +32,3 @@ The endpoints can be roughly grouped into four categories.
 
 -   **Utilities**: These are Python notebook-specific APIs for helping with
     Pandas DataFrames, etc.
-

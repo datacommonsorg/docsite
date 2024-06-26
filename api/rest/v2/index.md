@@ -8,10 +8,12 @@ published: true
 ---
 
 {:.no_toc}
-# Data Commons REST API
+# Data Commons REST API 
 
 * TOC
 {:toc}
+
+## Overview
 
 The Data Commons REST API is a
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
@@ -20,17 +22,16 @@ knowledge graph, using [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_P
 graph, integrate statistics from the graph into data analysis applications and
 much more.
 
-## How to use the REST API
-
 You can use the REST API with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/)), by scripting HTTP requests in another language like Javascript, or even by entering an endpoint into your web browser!
 
-Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org) format. The following sections detail how to assemble a request.
 
 ## What's new in V2
 
 The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, [described below](#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
 ## Assemble a request
+
+Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org) format. The following sections detail how to assemble a request.
 
 ### Endpoints
 
@@ -92,21 +93,17 @@ curl -X POST \
 
 Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
 
-- [Search](https://datacommons.org/search) Data Commons
-- [Knowledge Graph](https://datacommons.org/browser/): click through nodes in the knowledge graph
-- [Statistical Variable Explorer](https://datacommons.org/tools/statvar): see metadata for variables
-- [v2/resolve API endpoint](/api/v2/resolve.html): get DCIDs programmatically
+- [Search](https://datacommons.org/search) Search Data Commons
+- [Knowledge Graph](https://datacommons.org/browser/) Click through nodes in the knowledge graph
+- [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
+- [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
 
-### Find dates for observations
+### Find date-times for observations
 
-Many endpoints allow you to filter their results to specific dates. When querying for data at a specific date, the string you pass for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see the date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
 {: #authentication}
 ## Authentication
-
-<b>IMPORTANT:</b> API keys are now required. To use the REST API, you must include a valid API key in all requests.
-
-### Use API keys
 
 API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 
@@ -138,7 +135,8 @@ curl -X POST \
 }'
 </pre>
 
-#### Get API keys
+{: #get-key}
+### Get API keys 
 
 We provide a trial API key for general public use. This key will let you try the API and make single requests.
 
@@ -147,15 +145,15 @@ We provide a trial API key for general public use. This key will let you try the
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
-<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
+_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
 [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. 
 
 {: #pagination}
-### Pagination
+## Pagination
 
 When the response to a request is too long, the returned payload is
-**paginated**. Only a subset of the response is returned, along with a long string
-of characters called a **token**. To get the next set of entries, repeat the
+_paginated_. Only a subset of the response is returned, along with a long string
+of characters called a _token_. To get the next set of entries, repeat the
 request with `nextToken` as an query parameter, with the token as its value.
 
 For example, the request:

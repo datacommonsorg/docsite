@@ -1,8 +1,20 @@
-## Troubleshooting
+---
+layout: default
+title: Troubleshooting
+nav_order: 6
+parent: REST (v2)
+grand_parent: API
+published: true
+---
 
-### Common error responses
+{:.no_toc}
+# Troubleshooting common error responses
 
-#### "Method does not exist"
+* TOC
+{:toc}
+
+
+## "Method does not exist"
 
 ```json
 {
@@ -20,7 +32,7 @@
 
 This is most commonly seen when the endpoint is misspelled or otherwise malformed. Check the spelling of your endpoint and that all required path parameters are provided in the right order.
 
-#### Missing API key
+## Missing API key
 
 ```json
 {
@@ -36,10 +48,10 @@ This is most commonly seen when the endpoint is misspelled or otherwise malforme
 }
 ```
 
-This is seen when your request is missing an API key. Please request your own API key.
+This is seen when your request is missing an API key. Please [request your own API key](/api/index.html#get-key).
 
 
-#### "Invalid request URI"
+## "Invalid request URI"
 
 ```json
 {
@@ -57,7 +69,7 @@ This is seen when your request is missing an API key. Please request your own AP
 
 This is most commonly seen when your request is missing a required path parameter. Make sure endpoints and parameters are both spelled correctly and provided in the right order.
 
-#### Empty response
+## Empty response
 
 ```json
 {}
@@ -65,7 +77,7 @@ This is most commonly seen when your request is missing a required path paramete
 
 Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
 
-#### Marshaling errors
+## Marshaling errors
 
 ```json
 {
