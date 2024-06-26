@@ -98,6 +98,7 @@ Most requests require the [DCID](/glossary.html#dcid) of the entity or variable 
 - [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
 - [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
 
+
 ### Find date-times for observations
 
 Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
