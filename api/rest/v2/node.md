@@ -61,7 +61,7 @@ JSON Data:
 {
   "nodes": [
       "<var>VALUE1</var>",
-      "<var>VLUE2</var>",
+      "<var>VALUE2</var>",
       ...
     ],
   "property": "<var>PROPERTY_EXPRESSION</var>"

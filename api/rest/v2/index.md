@@ -33,11 +33,9 @@ The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller nu
 
 Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org) format. The following sections detail how to assemble a request.
 
-### Endpoints
+### Service endpoints
 
-You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). See the list of available endpoints [here](/api/rest/v2)).
-
-You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
+You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
 The base URL for all REST endpoints is:
 
@@ -46,7 +44,6 @@ https://api.datacommons.org/<var>VERSION_NUMBER</var>
 </pre>
 
 The current _VERSION_NUMBER_ is `v2`.
-
 
 To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
 The URIs for the v2 API are below:
@@ -217,14 +214,14 @@ The following table describes symbols in the V2 API relation expressions:
 | ------ | ---------- |
 | `->` | An `out` arc |
 | `<-` | An `in` arc |
-| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
+| <code><var>PROPERTY</var>:<var>VALUE</var></code> | Filtering; identifies the property and associated value |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
 | `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
 
 ### In and out arcs
 
-Arcs in the Data Commons Graph have directions. In the case of the [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both `in` and `out` directions, illustrated in the following fiture:
+Arcs in the Data Commons Graph have directions. In the case of the [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both `in` and `out` directions, illustrated in the following figure:
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
