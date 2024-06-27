@@ -13,11 +13,11 @@ has_children: true
 
 ## Overview
 
-Data Commons is an open source platform. Any organization can create a custom Data Commons instance with its own data, customized user interface and visualization tools,
+Data Commons is an open source platform. Any organization can create a custom Data Commons instance with its own data, customized user interface and visualization tools.
 
 A custom instance natively combines the base Data Commons data (from datacommons.org) and the custom data in a unified fashion. Users can generate visualizations and perform data analyses across base and custom datasets seamlessly.
 
-A custom Data Commons site is deployed in Google Cloud Platform (GCP). The owner has full control over data, computing resources and access. The site can be accessible by the general public or can be controlled to limited principals. When base data is joined with the custom instance data, it is pulled in from the main Data Commons site; custom data is never pushed to the main site.
+A custom Data Commons site is deployed in Google Cloud Platform (GCP). The owner has full control over data, computing resources and access. The site can be accessible by the general public or can be controlled to limited principals. When base data is joined with the custom instance data, it is pulled in from the base Data Commons site; custom data is never pushed to the base data store.
 
 ## Case studies
 
@@ -37,24 +37,23 @@ A custom Data Commons site is deployed in Google Cloud Platform (GCP). The owner
 
 If you have the resources to develop and maintain a custom Data Commons instance, this is a good option for the following use cases:
 
+- You want to host your data on your own website, and take advantage of Data Commons natural-language query interface, and exploration and visualization tools.
 - You want to add your own data to Data Commons but want to maintain ownership of the Cloud data.
 - You want to add your own data to Data Commons but want to customize the UI of the site.
-- You want to host your data on your own website, using the Data Commons tools. (You may also host all or part of your data on the main public Data Commons site as well.)
 - You want to add your own private data to Data Commons, and restrict access to it.
-- You want to host all or part of your data on your own the main public Data Commons site in additio
 
-Also, if you want to add all of your data to the main Data Commons and test how it will work with the exploration tools and natural language queries, you will need to at least host a local development site for testing purposes.
+Also, if you want to add all of your data to the base Data Commons and test how it will work with the exploration tools and natural language queries, you will need to at least host a local development site for testing purposes.
 
 For the following use cases, a custom Data Commons instance is not necessary:
 
-- You only want to make your own data available to the main public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html).
+- You only want to make your own data available to the base public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html).
 - You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](/api/web_components/index.html) for more details.
 
 ## Supported features
 
 A custom Data Commons instance supports the following features:
 
-- All of the same interactive tools as the main site, including the natural language query interface
+- All of the same interactive tools as the base site, including the natural language query interface
 - REST APIs --- no additional setup neeeded
 - Python and Pandas API wrappers, and/or Spreadsheets --- requires additional setup and maintenance. If you would like to support these facilities, please contact us.
 - Access controls to the site, using any supported Google Cloud Run mechanisms, such as Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress) for more information on these options.
@@ -96,7 +95,7 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 ## Recommended workflow
 
 1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
-1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html). If you are just testing custom data to add to the main Data Commons site, this is all you need to do.
+1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html). If you are just testing custom data to add to the base Data Commons site, you don't need to go any further.
 1. If you are launching your own Data Commons site, and want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. If you are launching your own Data Commons site, upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Test data in Google Cloud](/custom_dc/data_cloud.html).
 1. When you are satisfied that everything is working correctly, and are getting closer to launch, upload your custom site to Google Cloud Run and continue to test in the Cloud. See [Deploy the custom instance to Google Cloud](/custom_dc/deploy_cloud.html)

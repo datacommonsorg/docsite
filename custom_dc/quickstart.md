@@ -22,7 +22,7 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 - Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
 - Install [Docker Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
-- Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your custom site to the main Data Commons site. Typical turnaround times are 24-48 hours.
+- Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your site to the base Data Commons site. Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps
@@ -65,6 +65,8 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only.
+
 ## About the downloaded files
 
 <table>
@@ -77,7 +79,7 @@ Warning: Do not use any quotes (single or double) or spaces when specifying the 
   <tbody>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data on the main Data Commons site. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the config.json file. </td>
+      <td>Sample supplemental data that is added to the base data in Data Commons. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the config.json file. </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples"><code>custom_dc/examples/</code></a></td>
@@ -102,7 +104,7 @@ Warning: Do not use any quotes (single or double) or spaces when specifying the 
   </tbody>
 </table>
 
-## Start the services
+## Start the services {#start-services}
 
 From the root directory, `website`, run Docker as follows.
 
@@ -110,7 +112,6 @@ Note: If you are running on Linux, depending on whether you have created a ["sud
 
 ```shell
 docker run -it \
---pull=always \
 -p 8080:8080 \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/sqlite_env.list \
@@ -145,7 +146,7 @@ Tip: If you close the terminal window in which you started the Docker container,
 1. Run:
 
   <pre>
-  docker kill <var>CONTAINER_ID</var>  
+  docker kill <var>CONTAINER_ID</var>
 	</pre>
 
 ## View the local website
@@ -169,7 +170,7 @@ To load and view the sample data:
 This does the following:
 
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in the Docker image and loads them.
+- Generates embeddings in the Docker image and loads them. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
 
 Tip: When you restart the Docker instance, all data in the SQLite database is lost. If you want to preserve the sample data and have it automatically always load after restarting your Docker instance, without having to run the load data function each time, include this additional flag in your Docker run command:
 
@@ -177,13 +178,17 @@ Tip: When you restart the Docker instance, all data in the SQLite database is lo
 -v $PWD/custom_dc/sample/datacommons:/sqlite
 ```
 
-Now visit the Timeline explorer at [http://localhost:8080/tools/timeline](http://localhost:8080/tools/timeline). You'll now see the new variables and can explore the new data. Try entering a country:
+Now click the **Timeline** link to visit the Timeline explorer. Try entering a country and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 
-To issue natural language queries, click the **Search** link or browse to [http://localhost:8080/explore](http://localhost:8080/explore). Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+Select one (or both) and click **Display** to show the timeline graph:
 
-![screenshot_search](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
+![screenshot_display](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
+
+To issue natural language queries, click the **Search** link. Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+
+![screenshot_search](/assets/images/custom_dc/customdc_screenshot3a.png){: width="900"}
 
 Note that NL support increases the startup time of your server and consumes more resources. If you don't want NL functionality, you can disable it by updating the `ENABLE_MODEL` flag in `sqlite_env.list` from `true` to `false`.
 
@@ -192,7 +197,7 @@ Note that NL support increases the startup time of your server and consumes more
 A custom instance can accept REST API requests at the endpoint `/core/api/v2/`. To try it out, here's an example request that returns the same data as in the interactive queries above, using the `observation` API. You can enter this query in your browser to get nice output:
 
 ```
-[http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage](http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage)
+http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage
 ```
 
 Note: You do not need to specify an API key as a parameter.

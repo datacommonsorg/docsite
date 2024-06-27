@@ -51,7 +51,7 @@ San Jose,2023,400,400,300,0
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names).
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the main Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
@@ -175,7 +175,7 @@ You must specify the provenance details under `sources`.`provenances`; this fiel
 
 The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
-#### Variable parameters
+#### Variable parameters {#varparams}
 
 `name`
 
@@ -209,7 +209,7 @@ Each property is specified as a key:value pair. Here are some examples:
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-`searchDescriptions`
+`searchDescriptions` 
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 

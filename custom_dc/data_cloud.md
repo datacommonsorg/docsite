@@ -26,7 +26,7 @@ You will upload your CSV and JSON files to [Google Cloud Storage](https://cloud.
 
 ### Choose a location
 
-While you are testing, you can start with a single Google Cloud region; to be close to the main Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
+While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
 
 ### Create a Google Cloud SQL instance
 
@@ -107,7 +107,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
 
-### Start the Docker container with Cloud data {docker-data}
+### Start the Docker container with Cloud data {#docker-data}
 
 #### Run with a prebuilt image
 
