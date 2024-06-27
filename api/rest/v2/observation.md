@@ -1,39 +1,43 @@
 ---
 layout: default
 title: Observation
-nav_order: 2
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
 published: true
 permalink: /api/rest/v2/observation
 ---
 
+{:.no_toc}
 # /v2/observation
 
-This API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date. For example, “population of USA in
+* TOC
+{:toc}
+
+The Observation API fetches statistical observations. An observation is associated with an
+entity and variable at a particular date: for example, “population of USA in
 2020”, “GDP of California in 2010”, “predicted temperature of New York in 2050”,
 and so on.
 
-When querying observations, you need to provide variables, entities, and date.
+When querying observations, you need to provide variable, entities, and dates.
 Variables are specified as a list in the form of
 
-```json
+<pre>
 {
-  "dcids": ["<variable_dcid_1>", "<variable_dcid_2>"]
+  "dcids": ["<var>VARIABLE_DCID1</var>", "<var>VARIABLE_DCID2</var>>"]
 }
-```
+</pre>
 
-Entities should be specified as an enumerated list or node expression, as
+Specify entities as an enumerated list or node expression, as
 follows:
 
 - Enumerated list:
 
-  ```json
+  <pre>
   {
-    "dcids": ["<entity_dcid_1>", "<entity_dcid_2"]
+    "dcids": ["<var>ENTITY_DCID1</var>", "<var>ENTITY_DCID2</var>"]
   }
-  ```
+  </pre>
 
 - Node expression:
 
@@ -43,11 +47,11 @@ follows:
   }
   ```
 
-Date is specified in the following values:
+You must specify dates using any of the following values:
 
-- **LATEST**: to fetch the latest observations.
-- **{date_string}**: like "2020", "2010-12".
-- **""**: date is not specified and observations are returned for all dates.
+- `LATEST`: to fetch the latest observations.
+- `<var>DATE_STRING</var>: in the format YYYY, YYYY-MM, or YYYY-MM-DD, like `2020`, `2010-12`.
+- `""`: a date is not specified and observations are returned for all dates.
 
 The response for an observation is a multi-level object generic response that
 can handle all the cases mentioned above. The observation request is first
@@ -60,23 +64,23 @@ are collected and ordered based on preferences.
 Keep in mind the following rules when querying observations:
 
 - Each facet contains a list of observations.
-- Each observation has a “date” and “value”.
+- Each observation has a "date" and "value".
 - The response may not have all levels and all fields, depending on the query
   parameters listed in the next bullet.
-- There is a request parameter named "select" that is used to indicate the
-  values the response should contain. Below are the scenarios:
-  - `select = [“variable”, “entity”, “date”, “value”];` the response contains
-    actual observation with date and value for each variable and entity.
-  - `select = [“variable”, “entity”];` the response does not return an actual
-    observation because the date and value are not queried. This can be used to
-    check data existence for "variable", "entity" pairs and to fetch all the
+- There is a request parameter named "select" that you can use to indicate the
+  values the response should contain. Below are the possible expressions:
+  - `select = ["variable", "entity", "date", "value"];` the response contains
+    actual observations with the date and value for each variable and entity.
+  - `select = ["variable", "entity"];` the response does not return an actual
+    observation because the date and value are not queried. You can use this to 
+    check the existence of _VARIABLE-ENTITY_ pairs in the data and fetch all the
     variables that have data for given entities.
 
 See the examples below for use cases that use the preceding rules.
 
 ## Examples
 
-### Example 1: Latest observation for given entities
+### Example 1: Get the latest observation for given entities
 
 Specify `date=LATEST` in order to get the latest observations and values. In this example, we are selecting the entity by its DCID using `entity.dcids`.
 
@@ -96,10 +100,10 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-```bash
+<pre>
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date&variable.dcids=Count_Person'
-```
+'https://api.datacommons.org/v2/observation?key=<var>API_KEY</var>&date=LATEST&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date&variable.dcids=Count_Person'
+</pre>
 {: .example-box-content .scroll}
 
 Response:
@@ -153,9 +157,9 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Observation at a particular date for given entities
+### Example 2: Get the observations at a particular date for given entities
 
-This queries for observations in "2015" of the variable
+This queries for observations in "2015" for the variable
 [Count_Person](https://datacommons.org/tools/statvar#sv=Count_Person)
 for two specified entities:
 ["country/USA"](https://datacommons.org/browser/country/USA) and
@@ -178,10 +182,10 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-```bash
+`<pre>
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
-```
+'https://api.datacommons.org/v2/observation?key=<var>API_KEY</var>&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
+</pre>
 {: .example-box-content .scroll}
 
 Response:
@@ -235,7 +239,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 3: Latest observation for all California counties
+### Example 3: Get the latest observations for all California counties
 
 In this example, we use the [chained property
 (`+`)](/api/rest/v2/#relation-expressions) to specify "all contained places in
@@ -261,10 +265,10 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-```bash
+<pre>
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
-```
+'https://api.datacommons.org/v2/observation?key=<var>API_KEY</var>&date=2015&date=LATEST&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
+</pre>
 {: .example-box-content .scroll}
 
 Response:
