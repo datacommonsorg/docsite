@@ -8,11 +8,7 @@ published: true
 permalink: /api/rest/v2/observation
 ---
 
-{:.no_toc}
 # /v2/observation
-
-* TOC
-{:toc}
 
 The Observation API fetches statistical observations. An observation is associated with an
 entity and variable at a particular date: for example, “population of USA in
@@ -20,16 +16,15 @@ entity and variable at a particular date: for example, “population of USA in
 and so on.
 
 When querying observations, you need to provide variable, entities, and dates.
-Variables are specified as a list in the form of
+Specify variables as a list, in this form:
 
 <pre>
 {
-  "dcids": ["<var>VARIABLE_DCID1</var>", "<var>VARIABLE_DCID2</var>>"]
+  "dcids": ["<var>VARIABLE_DCID1</var>", "<var>VARIABLE_DCID2</var>"]
 }
 </pre>
 
-Specify entities as an enumerated list or node expression, as
-follows:
+Specify entities as an enumerated list or node expression, as follows:
 
 - Enumerated list:
 
@@ -49,9 +44,9 @@ follows:
 
 You must specify dates using any of the following values:
 
-- `LATEST`: to fetch the latest observations.
-- `<var>DATE_STRING</var>: in the format YYYY, YYYY-MM, or YYYY-MM-DD, like `2020`, `2010-12`.
-- `""`: a date is not specified and observations are returned for all dates.
+- `LATEST`: Fetch the latest observations only.
+- <var>DATE_STRING</var>: Fetch observations matching the specified date(s). The date string must be in the format _YYYY_, _YYYY-MM_, or _YYYY-MM-DD_, like `2020`, `2010-12`
+- `""`: Return observations for all dates.
 
 The response for an observation is a multi-level object generic response that
 can handle all the cases mentioned above. The observation request is first
@@ -82,7 +77,7 @@ See the examples below for use cases that use the preceding rules.
 
 ### Example 1: Get the latest observation for given entities
 
-Specify `date=LATEST` in order to get the latest observations and values. In this example, we are selecting the entity by its DCID using `entity.dcids`.
+Specify `date=LATEST` in order to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
 
 Parameters:
 {: .example-box-title}
@@ -159,11 +154,11 @@ Response:
 
 ### Example 2: Get the observations at a particular date for given entities
 
-This queries for observations in "2015" for the variable
-[Count_Person](https://datacommons.org/tools/statvar#sv=Count_Person)
+This queries for observations in 2015 for the variable
+[`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)
 for two specified entities:
-["country/USA"](https://datacommons.org/browser/country/USA) and
-["geoId/06"](https://datacommons.org/browser/geoId/06).
+[`country/USA`](https://datacommons.org/browser/country/USA) and
+[`geoId/06`](https://datacommons.org/browser/geoId/06).
 
 Parameters:
 {: .example-box-title}
@@ -182,7 +177,7 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-`<pre>
+<pre>
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=<var>API_KEY</var>&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
 </pre>
@@ -246,7 +241,7 @@ In this example, we use the [chained property
 [California](https://datacommons.org/browser/geoId/06) (dcid: `geoId/06`) of
 type `County`". Then we specify the select fields to request actual observations
 with date and value for each variable
-([Count_Person](https://datacommons.org/tools/statvar#sv=Count_Person)) and
+([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)) and
 entity (all counties in California).
 
 Parameters:

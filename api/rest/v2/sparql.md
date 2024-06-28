@@ -18,21 +18,20 @@ queries to return specific information.
 
 ## Request
 
-POST Request
-{: .api-header}
+<div class="api-tab">
+  <button id="post-button" class="api-tablink">POST request</button>
+</div>
 
-<div class="api-signature">
-URL:
-https://api.datacommons.org/v2/sparql
+<div id="POST-request" class="api-tabcontent api-signature">
+URL: https://api.datacommons.org/v2/sparql
 
-Header:
-X-API-Key: <var>API_KEY</var>
+Header: X-API-Key: <var>API_KEY</var>
 
-JSON Data:
-{ "sparql": "<var>SPARQL_QUERY</var>" }
+JSON data: { "sparql": "<var>SPARQL_QUERY</var>" }
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
 
 ### Query parameters
 

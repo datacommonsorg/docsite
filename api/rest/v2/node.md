@@ -7,11 +7,7 @@ grand_parent: API
 published: true
 ---
 
-{:.no_toc}
 # /v2/node
-
-* TOC
-{:toc}
 
 The Node API fetches node information for edges and neighboring nodes. This is useful for
 finding local connections between nodes of the Data Commons knowledge graph.
@@ -35,13 +31,15 @@ see [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expre
   property to fetch multiple `Place` nodes. Support for more properties and node
   types will be added in the future.
 </div>
+
 ## Request
+
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
-    GET Request
+    GET request
   </button>
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
-    POST Request
+    POST request
   </button>
 </div>
 
@@ -56,7 +54,7 @@ https://api.datacommons.org/v2/node
 Header:
 X-API-Key: <var>API_KEY</var>
 
-JSON Data:
+JSON data:
 {
   "nodes": [
       "<var>VALUE1</var>",

@@ -7,11 +7,7 @@ grand_parent: API
 published: true
 ---
 
-{:.no_toc}
 # /v2/resolve
-
-* TOC
-{:toc}
 
 The Resolve API returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph.
 Each entity in Data Commons has an associated `DCID` which is used to refer to it
@@ -32,7 +28,11 @@ see the [REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
 
 <div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
-	@@ -36,90 +35,90 @@
+   Currently, this endpoint only supports [place](/glossary.html#place) entities.
+   Support for other entity types will be added as the knowledge graph grows.
+</div>
+
+
 <div markdown="span" class="alert alert-danger" role="alert">
    <span class="material-icons exclamation-icon">priority_high</span><b>IMPORTANT:</b><br />
    This endpoint relies on name-based geocoding and is prone to inaccuracies.
@@ -42,13 +42,15 @@ see the [REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
    please provide as much context in the description as possible. For example,
    to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can.
 </div>
+
 ## Request
+
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
-    GET Request
+    GET request
   </button>
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
-    POST Request
+    POST request
   </button>
 </div>
 
@@ -63,7 +65,7 @@ https://api.datacommons.org/v2/resolve
 Header:
 X-API-Key: <var>API_KEY</var>
 
-JSON Data:
+JSON data:
 {
   "nodes": [
     "<var>NODE1</var>",
@@ -109,7 +111,7 @@ The response looks like:
       "candidates": [
         {
           "dcid": "<var>DCID2</var>",
-          "dominantType": "var>TYPE_OF_DCID2</var>"
+          "dominantType": "<var>TYPE_OF_DCID2</var>"
         },
       ]
     },
@@ -120,20 +122,27 @@ The response looks like:
 {: .response-signature .scroll}
 
 ### Response fields
-| Name        | Type   | Description                                                                                            |
-| ----------- | ------ | ------------------------------------------------------------------------------------------------------ |
+
+| Name        | Type   |   Description                       |
+|-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
 | candidates | list | DCIDs matching the description you provided, along with an optional `dominantType` field which can be used for filtering multiple results. |
 {: .doc-table}
+
 <div markdown="span" class="alert alert-info" role="alert">
   <span class="material-icons md-16">info </span><b>Note:</b><br />
   There is a deprecated field `resolvedIds` that is currently returned by the API. It will be removed soon.
 </div>
+
 ## Examples
+
 ### Example 1: Find the DCID of a place by another known ID
+
 This queries for the DCID of a place by its Wikidata ID. This property is represented in the graph by [`wikidataId`](https://datacommons.org/browser/wikidataId).
+
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "Q30"
 property: "<-wikidataId->dcid"
@@ -144,11 +153,12 @@ Request:
 <pre>
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=Q30&property=<-wikidataId->dcid'
-```
+</pre>
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "entities": [
@@ -165,12 +175,13 @@ Response:
 
 ### Example 2: Find the DCID of a place by coordinates
 
-This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude) and [`longitude`](https://datacommons.org/browser/longitude) properties on a node. Since the API only supports querying a single property, we use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
+This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude) and [`longitude`](https://datacommons.org/browser/longitude) properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
 
 Note: If using GET, escape `#` to `%23`.
 
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "37.42#-122.08"
 property: "<-geoCoordinate->dcid"
@@ -178,14 +189,16 @@ property: "<-geoCoordinate->dcid"
 Request:
 {: .example-box-title}
 
-```bash
+<pre>
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
-```
+</pre>
+
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "entities": [
@@ -203,7 +216,25 @@ Response:
         {
           "dcid": "geoId/06",
           "dominantType": "State"
-	@@ -240,27 +239,27 @@
+        },
+        {
+          "dcid": "country/USA",
+          "dominantType": "Country"
+        },
+        {
+          "dcid": "geoId/06085504601",
+          "dominantType": "CensusTract"
+        },
+        {
+          "dcid": "geoId/060855046011",
+          "dominantType": "CensusBlockGroup"
+        },
+        {
+          "dcid": "geoId/0608592830",
+          "dominantType": "CensusCountyDivision"
+        },
+        {
+          "dcid": "geoId/0618",
           "dominantType": "CongressionalDistrict"
         },
         {
@@ -233,21 +264,24 @@ Note that we use the `description` property in the request. This currently only 
 
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "Georgia"
 property: "<-description->dcid"
 ```
+
 Request:
 {: .example-box-title}
 
 <pre>
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=Georgia&property=<-description->dcid
-```
+</pre>
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "entities": [
@@ -261,16 +295,17 @@ Response:
     }
   ]
 }
-</pre>
+```
 {: .example-box-content .scroll}
 
-### Example 4: Find the DCID of a place by name, specifying type
+### Example 4: Find the DCID of a place by name, with a type filter
 
 This queries for the DCID of "Georgia". Unlike in the previous example, here
 we also specify its type using a filter and only get one place in the response.
 
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "Georgia"
 property: "<-description{typeOf:State}->dcid"
@@ -286,6 +321,7 @@ curl --request GET --url \
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "entities": [
@@ -302,10 +338,11 @@ Response:
 
 ### Example 5: Find the DCID of multiple places by name, with a type filter
 
-This queries for the DCID of "Mountain View" and "New York City".
+This queries for the DCIDs of "Mountain View" and "New York City".
 
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "Mountain View, CA", "New York City"
 property: "<-description{typeOf:City}->dcid"
@@ -331,6 +368,7 @@ curl -X POST -H "X-API-Key: <var>API_KEY</var>" \
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "entities": [
@@ -349,3 +387,4 @@ Response:
     }
   ]
 }
+```
