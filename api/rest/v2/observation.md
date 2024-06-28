@@ -18,9 +18,43 @@ and so on.
 When querying observations, you need to provide variable, entities, and dates.
 Specify variables as a list, in this form:
 
+yaml
+```yaml
+{
+  "dcids": [VARIABLE_DCID_1, VARIABLE_DCID_2]
+  "dcids": ["<VARIABLE_DCID_1>", "<VARIABLE_DCID_2>"]
+}
+```
+
+json-doc
 ```json-doc
 {
-  "dcids": [_VARIABLE_DCID1_, _VARIABLE_DCID2_]
+  "dcids": [VARIABLE_DCID_1, VARIABLE_DCID_2],
+  "dcids": ["<VARIABLE_DCID_1>", "<VARIABLE_DCID_2>"]
+}
+```
+
+elixir
+```elixir
+{
+  "dcids": [VARIABLE_DCID_1, VARIABLE_DCID_2],
+  "dcids": ["<VARIABLE_DCID_1>", "<VARIABLE_DCID_2>"]
+}
+```
+
+js
+```js
+{
+  "dcids": [VARIABLE_DCID_1, VARIABLE_DCID_2],
+  "dcids": ["<VARIABLE_DCID_1>", "<VARIABLE_DCID_2>"]
+}
+```
+
+go
+```go
+{
+  "dcids": [VARIABLE_DCID_1, VARIABLE_DCID_2],
+  "dcids": ["<VARIABLE_DCID_1>", "<VARIABLE_DCID_2>"]
 }
 ```
 
