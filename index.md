@@ -20,6 +20,7 @@ For example, if you wanted to get [population stats, poverty and unemployment ra
 
 ![Google Search query result](/assets/images/dc/dcoverview1.png){:width="640"}
 
+
 ## A standards-based knowledge graph, schema, and APIs
 
 Data Commons needs to be able to stitch together data from disparate data sets in different formats and encodings, in a wide range of domains, from time series about demographics and employment, to hurricanes, to protein structures. To do so, it models the world as a [knowledge graph](https://blog.google/products/search/introducing-knowledge-graph-things-not/) consisting of nodes, or entities, with properties (attributes) and relationships between them forming directed edges between the nodes. The data model is based on the [Schema.org](https://www.schema.org) framework, an open framework used by over 40M websites; its schema is an extension of [Schema.org](https://www.schema.org/docs/schemas.html) constructs, introducing both general constructs (such as intervals) and values for common properties. 
