@@ -25,9 +25,9 @@ queries to return specific information.
 <div id="POST-request" class="api-tabcontent api-signature">
 URL: https://api.datacommons.org/v2/sparql
 
-Header: X-API-Key: <var>API_KEY</var>
+Header: X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
-JSON data: { "sparql": "<var>SPARQL_QUERY</var>" }
+JSON data: { "query": "<var>SPARQL_QUERY</var>" }
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -83,12 +83,12 @@ reverse alphabetical order.
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request POST \
   --url https://api.datacommons.org/v2/sparql \
-  --header 'X-API-Key: <var>API_KEY</var>' \
+  --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
   --data '{
-            "sparql": "SELECT ?name \
+            "query": "SELECT ?name \
                 WHERE { \
                   ?biologicalSpecimen typeOf BiologicalSpecimen . \
                   ?biologicalSpecimen name ?name
@@ -96,7 +96,7 @@ curl --request POST \
                 ORDER BY DESC(?name)
                 LIMIT 10"
 }'
-</pre>
+```
 {: .example-box-content .scroll}
 
 Response:

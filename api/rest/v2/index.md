@@ -40,13 +40,13 @@ You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#
 The base URL for all REST endpoints is:
 
 <pre>
-https://api.datacommons.org/<var>VERSION_NUMBER</var>
+https://api.datacommons.org/<var>VERSION</var>
 </pre>
 
-The current _VERSION_NUMBER_ is `v2`.
+The current version is `v2`.
 
 To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
-The URIs for the v2 API are below:
+The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
@@ -156,10 +156,10 @@ request with `nextToken` as an query parameter, with the token as its value.
 
 For example, the request:
 
-<pre>
+```
 curl --request GET \
-  'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=geoId/06&property=<-*'
-</pre>
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*'
+```
 
 will return something like:
 
@@ -176,22 +176,22 @@ will return something like:
 
 To get the next set of entries, repeat the previous command and append the `nextToken`:
 
-<pre>
+```
 curl --request GET \
-  'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
-</pre>
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
+```
 
 Similarly for POST requests, this would look like:
 
-<pre>
+```json
 curl -X POST \
--H "X-API-Key: <var>API_KEY</var>" \
+-H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 --url https://api.datacommons.org/v2/node \
 --data '{
   "nodes": "geoId/06",
   "property": "<-*",
   "nextToken": "SoME_veRy_L0ng_S+rIng"
-</pre>
+```
 
 {: #relation-expressions}
 ## Relation expressions
@@ -211,7 +211,7 @@ The following table describes symbols in the V2 API relation expressions:
 | ------ | ---------- |
 | `->` | An `out` arc |
 | `<-` | An `in` arc |
-| <code><var>PROPERTY</var>:<var>VALUE</var></code> | Filtering; identifies the property and associated value |
+| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
 | `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
@@ -232,7 +232,7 @@ Nodes from `out` arcs are represented by `->`, while nodes from
 
 ### Filters
 
-You can use filters to reduce results to only match nodes with a specified property and value. Using the same example,  `country/ARG<-containedInPlace+{typeOf:City}` only returns nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
+You can use filters to reduce results to only match nodes with a specified property and value. Use {} to specify property:value pairs to define the filter. Using the same example, `country/ARG<-containedInPlace+{typeOf:City}` only returns nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
 
 ### Specify multiple properties
 

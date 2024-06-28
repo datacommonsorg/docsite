@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Node
-nav_order: 2
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
 published: true
@@ -44,7 +44,7 @@ see [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expre
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=<var>DCID</var>&property=<var>PROPERTY</var>
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID</var>&property=<var>PROPERTY</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -52,7 +52,7 @@ URL:
 https://api.datacommons.org/v2/node
 
 Header:
-X-API-Key: <var>API_KEY</var>
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
 JSON data:
 {
@@ -130,10 +130,10 @@ property: "<-"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=geoId/06&property=<-'
-</pre>
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI</var>&nodes=geoId/06&property=<-'
+```
 
 Response:
 {: .example-box-title}
@@ -170,10 +170,10 @@ property: "->name"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=dc/03lw9rhpendw5&property=->name'
-</pre>
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc/03lw9rhpendw5&property=->name'
+```
 
 Response:
 {: .example-box-title}
@@ -217,11 +217,11 @@ property: "->[name, latitude, longitude]"
 Request:
 {: .example-box-title}
 
-<pre>
-curl -X POST -H "X-API-Key: <var>API_KEY</var>" \
+```
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
   -d '{"nodes": ["geoId/06085", "geoId/06086"], "property": "->[name, latitude, longitude]"}'
-</pre>
+```
 
 Response:
 {: .example-box-title}
@@ -301,10 +301,10 @@ property: "<-*"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=PowerPlant&property=<-*'
-</pre>
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PowerPlant&property=<-*'
+```
 
 Response:
 {: .example-box-title}

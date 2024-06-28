@@ -13,18 +13,17 @@ database. Data Commons is based on the data model used by
 [schema.org](https://schema.org); for more information, see [the guide to the data model](/data_model.html).
 
 The Data Commons APIs allow developers to programmatically access the data in Data Commons.
-Data Commons provides several different ways to access its API's resources:
+Data Commons provides several different ways to access its resources:
 
 * A [REST API](/api/rest/v2) that can be used on the command line as well as in any language with an HTTP library.
-* A lightweight [Python](/api/python) wrapper.
-* A heavier [Pandas](/api/pandas) wrapper.
+* [Python](/api/python) and [Pandas](/api/pandas) wrappers.
 
 The endpoints can be roughly grouped into four categories:
 
+- **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
+
 -   **Graph exploration**: Given a set of nodes, explore the
     graph around those nodes.
-
--   **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
 
 -   **Graph query/SPARQL**: Given a subgraph where some of the nodes are
     variables, retrieve possible matches. This corresponds to a subset of the
