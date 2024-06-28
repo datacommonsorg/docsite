@@ -16,6 +16,15 @@ parent: Data Sources
 #### [Australia Statistics](https://www.abs.gov.au/statistics)
 Australia Demographics, Health, Economy statistics at country,state,territories and 4 levels of statistial areas.
 
+#### [Australia Subnational Administrative Boundaries](https://maps.abs.gov.au/)
+Administrative boundaries for regions within Australia
+
+### [Brazil VISDATA](https://aplicacoes.cidadania.gov.br/)
+Brazil VISDATA
+
+#### [Brazil VIS DATA 3](https://aplicacoes.cidadania.gov.br/vis/data3/data-explorer.php)
+Census with respect to pact against hunger, development programs and facilities provided to the people of Brazil.
+
 ### [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br/en/home-eng.html)
 
 #### [Brazil Census](https://www.ibge.gov.br/en/statistics/social/population.html)
@@ -69,6 +78,16 @@ Singapore Demographics and Health statistics for Singapore at country.
 
 #### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
 Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
+
+### [General Statistics Office (GSO), Vietnam](https://www.gso.gov.vn/en/homepage/)
+
+#### [Vietnam Census](https://www.gso.gov.vn/en/px-web/?pxid=E0201&theme=Population%20and%20Employment)
+Vietnam Demographics, Economy, Health, Education data from Portal Site of General Statistics Office by national, province and city level.
+
+### [GeoBoundaries](https://www.geoboundaries.org/)
+
+#### [Global Database of Political Administrative Boundaries Database](https://github.com/wmgeolab/geoBoundaries/tree/main/releaseData/gbOpen)
+geoBoundaries is an open database of political administrative boundaries
 
 ### [GeoSadak PMGSY National GIS, India](https://geosadak-pmgsy.nic.in/)
 
@@ -144,6 +163,11 @@ Includes regional statistics for OECD countries on population by age, population
 
 #### [Japan Census](https://dashboard.e-stat.go.jp/graphSearch/graphSearchResult?selectedLFieldCd=02)
 Japan Demographics, Economy, Health, Education data from Portal Site of Official Statistics of Japan (e-Stat) by country, prefecture and municipality.
+
+### [Stadt Zurich open data](https://data.stadt-zuerich.ch//)
+
+#### [Zurich population](https://data.stadt-zuerich.ch/)
+Population of Zurich city contains structure and organization of the city administration
 
 ### [Statistics Canada](https://www.statcan.gc.ca/en/start)
 
@@ -257,6 +281,17 @@ General descriptive information such as name, address, and phone number; select 
 
 [NCES Data Usage Agreement](https://nces.ed.gov/surveys/international/ide/datausageagreement.aspx?link=true) and [US Department of Education Copyright Status Notice](https://www2.ed.gov/notices/copyright/index.html).
 
+
+### [U.S. National Highway Traffic Safety Administration (NHTSA)](https://www.nhtsa.gov/)
+The National Highway Traffic Safety Administration is responsible for keeping people safe on America's roadways.
+
+#### [Fatality Analysis Reporting System (FARS) Crash Data](https://www.nhtsa.gov/crash-data-systems/fatality-analysis-reporting-system)
+Data on fatal motor vehicle crashes in the US.
+
+### [UAE Bayanat Open Data Portal](https://bayanat.ae/)
+
+#### [UAE Population](https://admin.bayanat.ae/Dataset/DownloadDatasetResource?fileId=26585eaf-9a9c-486d-b773-fc51ef0204c9&resourceID=11243)
+UAE Population By Emirates Nationality and gender.
 
 ### [UK Ministry of Housing Communities and Local Government](https://www.gov.uk/government/organisations/ministry-of-housing-communities-and-local-government)
 

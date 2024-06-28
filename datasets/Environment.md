@@ -89,6 +89,12 @@ WRIS India monthly rainfall data of district level.
 #### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
 Sustainable Development Goals India Index
 
+### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
+
+#### [Air and GHG emissions](https://data.oecd.org/air/air-and-ghg-emissions.htm)
+Country wise air and greenhouse gas emission from Organization for Economic Cooperation and Development (OECD).
+[License](https://www.oecd.org/termsandconditions/)
+
 ### [Resources for the Future (RFF)](https://www.rff.org/)
 
 #### [US Forecast Weather Variability - 0.25 degree resolution](https://www.rff.org/publications/data-tools/)
