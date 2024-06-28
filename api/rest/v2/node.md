@@ -71,16 +71,14 @@ JSON Data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-### Query parameters
+## Query parameters
 
-| Name                                                  | Type   | Description                                                                                                                                                     |
-| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                                                  | Type   |  Description           |
+| ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).    
-By using different "property" parameters, you can query node information in
-different ways, such as getting the edges and neighboring node values.
-Examples below show how to request this information for one or multiple nodes.                            |
+| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query. |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions). By using different "property" parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+
 {: .doc-table }
 
 ## Response
@@ -106,13 +104,14 @@ The response looks like:
   }
   "nextToken": "<var>TOKEN_STRING</var>"
 }
-```
+</pre>
 
 ### Response fields
+
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | [Pagination] A token used to query next page of data                         |
+| nextToken | string | A token used to query [next page of data](index.md#pagination)                   |
 {: .doc-table}
 
 ## Examples
@@ -121,12 +120,15 @@ The response looks like:
 
 Get the properties of the node with DCID `geoId/06` by querying all in
 properties with the `<-` symbol.
+
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "geoId/06"
 property: "<-"
 ```
+
 Request:
 {: .example-box-title}
 
@@ -137,6 +139,7 @@ curl --request GET --url \
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "data": {
@@ -156,23 +159,27 @@ Response:
 
 ### Example 2: Get one property for a given node
 
-Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the
-`->name` symbol.
+Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
+
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "dc/03lw9rhpendw5"
 property: "->name"
 ```
+
 Request:
 {: .example-box-title}
 
 <pre>
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=<pre>API_KEY</pre>&nodes=dc/03lw9rhpendw5&property=->name'
-```
+  'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=dc/03lw9rhpendw5&property=->name'
+</pre>
+
 Response:
 {: .example-box-title}
+
 ```json
 {
   "data": {
@@ -200,12 +207,15 @@ Response:
 Get `name`, `latitude`, and `longitude` value for several nodes: `geoId/06085`
 and `geoId/06086`. Note that multiple properties for a given node must be
 enclosed in square brackets `[]`.
+
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "geoId/06085", "geoId/06086"
 property: "->[name, latitude, longitude]"
 ```
+
 Request:
 {: .example-box-title}
 
@@ -217,6 +227,7 @@ curl -X POST -H "X-API-Key: <var>API_KEY</var>" \
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "data": {
@@ -283,10 +294,12 @@ Get all the `in` triples for node `PowerPlant` with property `<-*`.
 
 Parameters:
 {: .example-box-title}
+
 ```bash
 nodes: "PowerPlant"
 property: "<-*"
 ```
+
 Request:
 {: .example-box-title}
 
@@ -297,6 +310,7 @@ curl --request GET --url \
 
 Response:
 {: .example-box-title}
+
 ```json
 {
   "data": {

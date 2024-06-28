@@ -27,7 +27,7 @@ the US state).
 
 The REST (v2) API introduces [relation
 expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
-node relations, supporting chaining and filtering. For more information
+node relations and support chaining and filtering. For more information
 see the [REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
 
 <div markdown="span" class="alert alert-info" role="alert">

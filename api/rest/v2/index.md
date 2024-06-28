@@ -108,13 +108,13 @@ API keys are required in any REST API request. To include an API key, add your A
 For GET requests, this looks like:
 
 <pre>
-https://api.datacommons.org/v2/endpoint?key=<var>API_KEY</var>
+https://api.datacommons.org/v2/<var>ENDPOINT</var>?key=<var>API_KEY</var>
 </pre>
 
 If the key is not the first query parameter, use <code>&key=<var>API_KEY</var></code> instead. This looks like:
 
 <pre>
-https://api.datacommons.org/v2/endpoint?<var>QUERY</var>=<var>VALUE</var>&key=<var>API_KEY</var>
+https://api.datacommons.org/v2/<var>ENDPOINT</var>?<var>QUERY</var>=<var>VALUE</var>&key=<var>API_KEY</var>
 </pre>
 
 For POST requests, pass the key as a header. For example, in cURL, this looks like:
@@ -159,7 +159,7 @@ For example, the request:
 <pre>
 curl --request GET \
   'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=geoId/06&property=<-*'
-</pre>>
+</pre>
 
 will return something like:
 
@@ -176,10 +176,10 @@ will return something like:
 
 To get the next set of entries, repeat the previous command and append the `nextToken`:
 
-```bash
+<pre>
 curl --request GET \
   'https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
-```
+</pre>
 
 Similarly for POST requests, this would look like:
 
@@ -193,14 +193,21 @@ curl -X POST \
   "nextToken": "SoME_veRy_L0ng_S+rIng"
 </pre>
 
-
-
 {: #relation-expressions}
 ## Relation expressions
 
 Data Commons represents real world entities and data as nodes. These
 nodes are connected by directed edges, or arcs, to form a knowledge graph. The
-	@@ -60,41 +214,40 @@ The following table describes symbols in the V2 API relation expressions:
+label of the arc is the name of the [property](/glossary.html#property).
+
+Relation expressions include arrow annotation and other symbols in the syntax to
+represent neighboring nodes, and to support chaining and filtering.
+These new expressions allow all of the functionality of the V1 API to be
+expressed with fewer API endpoints in V2. All V2 API calls require relation
+expressions in the `property` or `expression` parameter.
+
+The following table describes symbols in the V2 API relation expressions:
+
 | ------ | ---------- |
 | `->` | An `out` arc |
 | `<-` | An `in` arc |
@@ -220,8 +227,8 @@ Note the directionality of the property `containedInPlace`: for the node "Argent
 Nodes from `out` arcs are represented by `->`, while nodes from
 `in` arcs are represented by `<-`. To illustrate using the above example:
 
-- Regions that include Argentina (dcid: `country/ARG`): `country/ARG->containedInPlace`
-- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
+- Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
+- All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
 
 ### Filters
 
@@ -230,12 +237,12 @@ You can use filters to reduce results to only match nodes with a specified prope
 ### Specify multiple properties
 
 You can combine multiple properties together within `[]`. For example, in order to request a few `out` arcs for a node, use
-`->[name, latitude, longitude]` (this example is [fully described in this Node API example](/api/rest/v2/node.html#multiple-properties)).
+`->[name, latitude, longitude]` (this example is fully described in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
 
 ### Wildcard
 
 To retrieve all properties linked to a node, use the `*`, e.g. `<-*`.
-This example is [fully described in this Node API example](/api/rest/v2/node.html#wildcard).
+This example is fully described in this [Node API example](/api/rest/v2/node.html#wildcard).
 
 ### Chain properties
 

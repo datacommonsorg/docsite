@@ -73,7 +73,7 @@ Keep in mind the following rules when querying observations:
     actual observations with the date and value for each variable and entity.
   - `select = ["variable", "entity"];` the response does not return an actual
     observation because the date and value are not queried. You can use this to 
-    check the existence of _VARIABLE-ENTITY_ pairs in the data and fetch all the
+    check the existence of variable-entity pairs in the data and fetch all the
     variables that have data for given entities.
 
 See the examples below for use cases that use the preceding rules.
