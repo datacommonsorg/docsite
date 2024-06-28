@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Deploy a custom instance to Google Cloud - Docs - Data Commons</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  
+  
+</head>
+<body>
+  <div id="main">
+    <header id="main-header">
+      <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <div id="main-header-logo">
+                <a href="https://datacommons.org/">
+                  <img src="/assets/images/dc-logo.svg" />
+                </a>
+            </div>
+            <a href="https://datacommons.org">Data Commons</a>
+            <span><a href="/">Docs</a></span>
+            </a>
+          </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#dc-main-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
+          <ul class="navbar-nav float-md-right">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="nav-explore-dropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Explore
+              </a>
+              <div class="dropdown-menu" aria-labelledby="nav-explore-dropdown">
+                <a class="dropdown-item" href="https://datacommons.org/place">Place
+                  Explorer</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/browser">Knowledge Graph</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/tools/visualization#visType=timeline">Timelines Explorer</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/tools/visualization#visType=scatter">Scatter Plot Explorer</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/tools/visualization#visType=map">Map Explorer</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/tools/statvar">Statistical Variable Explorer</a>
+                <a class="dropdown-item"
+                  href="https://datacommons.org/tools/download">Data Download Tool</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="nav-doc-dropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Documentation
+              </a>
+              <div class="dropdown-menu" aria-labelledby="nav-doc-dropdown">
+                <a class="dropdown-item" href="/">Documentation</a>
+                <a class="dropdown-item" href="/api">APIs</a>
+                <a class="dropdown-item" href="/tutorials">Tutorials</a>
+                <a class="dropdown-item" href="/contributing/">Contribute</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="nav-about-dropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                About
+              </a>
+              <div class="dropdown-menu" aria-labelledby="nav-about-dropdown">
+                <a class="dropdown-item" href="https://datacommons.org/about">About Data
+                  Commons</a>
+                <a class="dropdown-item" href="https://blog.datacommons.org/">Blog</a>
+                <a class="dropdown-item" href="https://datacommons.org/datasets">Data
+                  Sources</a>
+                <a class="dropdown-item" href="https://datacommons.org/faq">FAQ</a>
+                <a class="dropdown-item" href="https://datacommons.org/feedback">Feedback</a>
+              </div>
+            </li>
+            </ul>
+            <div class="gcse-searchbox-only"
+              data-resultsUrl="https://datacommons.org/search"></div>
+            </div>
+            </div>
+      </nav>
+    </header>
+
+    <main id="" class="container-fluid">
+      <div class="row">
+        <div id="main-side-nav" class="col-3">
+          <div id="sidebar"><details class="parent" open>
+          <summary>
+            <a href="/" class="">What is Data Commons?</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/how_to_use.html" class="">How to use Data Commons</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/data_model.html" class="">Data Models</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/api/" class="">API</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-98"><details class="child" >
+                  <summary>
+                    <a href="/api/rest/v2" class="">REST (v2)</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-1"><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/getting_started" class="">
+                              
+                              Getting Started Guide
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/node" class="">
+                              
+                              Node
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/observation" class="">
+                              
+                              Observation
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/resolve" class="">
+                              
+                              Resolve Entities
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/python/" class="">Python</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-4"><details class="child" >
+                          <summary>
+                            <a href="/api/python/query.html" class="">
+                              
+                              SPARQL
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/triple.html" class="">
+                              
+                              Triple
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_label.html" class="">
+                              
+                              Property Label
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_value.html" class="">
+                              
+                              Property Value
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/place_in.html" class="">
+                              
+                              Places within a Place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_value.html" class="">
+                              
+                              Place Statistics - Single Value
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_series.html" class="">
+                              
+                              Place Statistics - Time Series
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_all.html" class="">
+                              
+                              Place Statistics - All
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/pandas/" class="">Pandas</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-5"><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series.html" class="">
+                              
+                              Time Series as pd.Series
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series_dataframe.html" class="">
+                              
+                              Time Series Table as pd.DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/multivariate_dataframe.html" class="">
+                              
+                              Multivariate Table as pd.DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/" class="">Google Sheets</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-6"><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_name.html" class="">
+                              
+                              Names Associated with a DCID
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/places_in.html" class="">
+                              
+                              Places Contained Within Another Place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_variable.html" class="">
+                              
+                              Statistical Variable Values
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_property.html" class="">
+                              
+                              Node Property Values
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_cohort_members.html" class="">
+                              
+                              Cohort Members
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/tutorials/" class="">
+                              
+                              Tutorials
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                          </summary>
+                          <ul id="grandchild-6"></ul></details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/" class="">Web Components</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-7"><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/bar" class="">
+                              
+                              Bar Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/gauge" class="">
+                              
+                              Gauge Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/highlight" class="">
+                              
+                              Highlight Tile
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/line" class="">
+                              
+                              Line Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/map" class="">
+                              
+                              Map Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/pie" class="">
+                              
+                              Pie Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/ranking" class="">
+                              
+                              Ranking Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/scatter" class="">
+                              
+                              Scatter Plot
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/slider" class="">
+                              
+                              Slider Control
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/bigquery/" class="">BigQuery</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-99"><details class="child" >
+                  <summary>
+                    <a href="/bigquery/data_in_bq.html" class="">What Data is in DC</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/unique_identifiers.html" class="">Unique Identifiers</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/dc_to_bq_queries.html" class="">DC to BQ Sample Queries</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-3"><details class="child" >
+                          <summary>
+                            <a href="/bigquery/query_places.html" class="">
+                              
+                              Places
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/bigquery/query_property_places.html" class="">
+                              
+                              Properties of Places
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/bigquery/query_more_complex.html" class="">
+                              
+                              More Complex Queries
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/bigquery/query_join_your_data.html" class="">
+                              
+                              Joining with External Data
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/papers/" class="">Papers</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/tutorials/" class="">Case Studies</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/courseware/" class="">Courseware</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-102"><details class="child" >
+                  <summary>
+                    <a href="/courseware/data_literacy/" class="">Data Literacy with Data Commons</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-1"><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/overview.html" class="">
+                              
+                              Overview
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/course_materials/" class="">
+                              
+                              Course Materials
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                          </summary>
+                          <ul id="grandchild-2"><li class="">
+                                  <a href="/courseware/data_literacy/course_materials/modules.html" class="">
+                                    Modules
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/course_materials/key_themes.html" class="">
+                                    Key Themes
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/course_materials/how_to_use.html" class="">
+                                    How to Use
+                                  </a>
+                                </li></ul></details><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/faqs.html" class="">
+                              
+                              FAQs
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/courseware/intro_data_science.html" class="">Intro to Data Science</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/csv_download.html" class="">CSV Bulk Download</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/contributing/" class="">Contributing to Data Commons</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/custom_dc/" class="">Custom Data Commons</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-105"><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/quickstart.html" class="">Quickstart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_data.html" class="">Work with custom data</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_ui.html" class="">Customize the site</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/manage_repo.html" class="">Manage a repo</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/data_cloud.html" class="">Test data in Google Cloud</a>
+                    
+                  </summary>
+                  </details><details class="child" open>
+                  <summary>
+                    <a href="/custom_dc/deploy_cloud.html" class=" active">Deploy a custom instance to Google Cloud</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/troubleshooting.html" class="">Troubleshooting</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/launch_cloud.html" class="">Launch a custom site</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/faq.html" class="">Frequently asked questions</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/place_types.html" class="">Place Types</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/statistical_variables.html" class="">Statistical Variables</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/datasets/" class="">Data Sources</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-119"><details class="child" >
+                  <summary>
+                    <a href="/datasets/Agriculture.html" class="">Agriculture</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Biomedical.html" class="">Biomedical</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Crime.html" class="">Crime</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Demographics.html" class="">Demographics</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Economy.html" class="">Economy</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Education.html" class="">Education</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Energy.html" class="">Energy</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Environment.html" class="">Environment</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Health.html" class="">Health</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Housing.html" class="">Housing</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/import_dataset/" class="">Data Imports</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-124"><details class="child" >
+                  <summary>
+                    <a href="/import_dataset/schema_less_guide.html" class="">Data Commons Schema-less Guide</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/glossary.html" class="">Glossary</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/blog.html" class="">Blog</a>
+            
+          </summary>
+          </details></div>
+        </div>
+        <div class="col-9">
+          <div id="main-doc-content">
+            
+              
+                <nav aria-label="Breadcrumb" id="main-breadcrumb">
+                  <ol class="breadcrumb">
+                    
+                      <li class="breadcrumb-item">
+                        <a href="/custom_dc/">
+                          Custom Data Commons
+                        </a>
+                      </li>
+                    
+                    <li class="breadcrumb-item active"><span>Deploy a custom instance to Google Cloud </span></li>
+                  </ol>
+                </nav>
+              
+            
+            <h1 class="no_toc" id="deploy-a-custom-instance-to-google-cloud">Deploy a custom instance to Google Cloud</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#one-time-setup-create-a-google-artifact-registry-repository" id="markdown-toc-one-time-setup-create-a-google-artifact-registry-repository">One-time setup: Create a Google Artifact Registry repository</a></li>
+  <li><a href="#upload-the-docker-container-to-google-cloud" id="markdown-toc-upload-the-docker-container-to-google-cloud">Upload the Docker container to Google Cloud</a></li>
+  <li><a href="#deploy-the-image" id="markdown-toc-deploy-the-image">Deploy the image</a></li>
+  <li><a href="#load-custom-data-to-a-deployed-instance" id="markdown-toc-load-custom-data-to-a-deployed-instance">Load custom data to a deployed instance</a></li>
+</ul>
+
+<p>When you are ready to launch your custom Data Commons site, we recommend hosting your site in <a href="https://cloud.google.com/run/">Google Cloud Run</a>, which is a serverless solution that is by far the simplest and least expensive option, providing auto-scaling. This is the production setup:</p>
+
+<p><img src="/assets/images/custom_dc/customdc_setup4.png" alt="setup4" /></p>
+
+<p>You push a locally built Docker image to the <a href="https://cloud.google.com/artifact-registry">Google Cloud Artifact Registry</a>, and then deploy the image in Cloud Run.</p>
+
+<h2 id="one-time-setup-create-a-google-artifact-registry-repository">One-time setup: Create a Google Artifact Registry repository</h2>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/artifacts">https://console.cloud.google.com/artifacts</a> for your project.</li>
+  <li>Click <strong>Create Repository</strong>.</li>
+  <li>Specify a name for the repository.</li>
+  <li>In the <strong>Format</strong> option, select <strong>Docker</strong>.</li>
+  <li>In <strong>Location type</strong>, select <strong>Region</strong>, and specify a region.</li>
+  <li>Enable or disable <strong>Immutable image tags</strong> according to the workflow you prefer; that is, if you want to be able to reuse the same Docker tag for new images, keep this option disabled.</li>
+  <li>Click <strong>Create</strong>.</li>
+</ol>
+
+<h2 id="upload-the-docker-container-to-google-cloud">Upload the Docker container to Google Cloud</h2>
+
+<p>This procedure creates a “dev” Docker package that you upload to the Google Cloud Artifact Registry, and then deploy to Google Cloud Run.</p>
+
+<ol>
+  <li>Build a local version of the Docker image, following the procedure in <a href="/pages/datacommonsorg/docsite/custom_dc/manage_repo.html#build-repo">Build a local image</a>.</li>
+  <li>
+    <p>Authenticate to gcloud:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud auth login
+</code></pre></div>    </div>
+
+    <p>This opens a browser window that prompts you to enter credentials, sign in to Google Cloud SDK and allow Google Cloud SDK to access your account. Accept the prompts.</p>
+  </li>
+  <li>
+    <p>Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>LOCATION</var>-docker-pkg.dev</code>, where the <em>LOCATION</em> is the region you have selected in the repository creation step previously; for example, <code class="language-plaintext highlighter-rouge">us-central1</code>.</p>
+
+    <pre>  
+ gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev  
+</pre>
+
+    <p>When prompted to confirm creating the credentials file, click <code class="language-plaintext highlighter-rouge">Y</code> to accept.</p>
+  </li>
+  <li>Build a target package from the source image in the previous step. The <code class="language-plaintext highlighter-rouge">_ARTIFACT_REPO</code>_ must be an Artifact Registry repository you have created previously. The <code class="language-plaintext highlighter-rouge">_IMAGE_NAME</code>_ may be the same as the source (<code class="language-plaintext highlighter-rouge">datacommons-website-compose</code>) or any other string. The <em><code class="language-plaintext highlighter-rouge">TARGET_IMAGE_TAG</code></em> can be the same as the source or any other string.</li>
+</ol>
+
+<pre> 
+docker tag datacommons-website-compose:<var>DOCKER_TAG</var> \  
+<var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+</pre>
+
+<ol>
+  <li>Push the image to the registry:</li>
+</ol>
+
+<pre>
+docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+</pre>
+
+<p>This will take several minutes to upload.</p>
+
+<p>When it completes, verify that the container has been uploaded in the Cloud Console:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/artifacts">https://console.cloud.google.com/artifacts</a> for your project.</li>
+  <li>In the list of repositories, click on the one you created earlier. Under <strong>Repository Details</strong>, you should see the Docker image listed.</li>
+</ol>
+
+<h2 id="deploy-the-image">Deploy the image</h2>
+
+<p>To deploy the image in Google Cloud Run, you need to create a Run service. Because we need to set the environment variables for the running image as options in the service, it is actually more convenient to create the service and deploy the image at the same time using <code class="language-plaintext highlighter-rouge">gcloud</code> rather than the Cloud Console. Once the service is created in this way, you can edit it and redeploy using the Console.</p>
+
+<ol>
+  <li>
+    <p>Copy the settings from the cloudsql_env.list file to a local environment variable:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">env_vars</span><span class="o">=</span><span class="si">$(</span><span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'='</span> <span class="s1">'NF==2 {print $1"="$2}'</span> custom_dc/cloudsql_env.list | <span class="nb">tr</span> <span class="s1">'\n'</span> <span class="s1">','</span> | <span class="nb">sed</span> <span class="s1">'s/,$//'</span><span class="si">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a new Cloud Run service and deploy the image in the Artifact Registry. `</p>
+
+    <pre>
+gcloud run deploy <var>SERVICE_NAME</var> \  
+--allow-unauthenticated \  
+--memory 8Gi \  
+--cpu 2 \  
+--region <var>LOCATION</var> \  
+--image <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  \
+--add-cloudsql-instances=<var>PROJECT_ID</var>:<var>LOCATION</var>:<var>INSTANCE_ID</var> \  
+--set-env-vars="$env_vars" \  
+--port 8080  
+--no-cpu-throttling
+</pre>
+
+    <p>The <em>SERVICE_NAME</em> can be any string of your choice.</p>
+  </li>
+  <li>
+    <p>Follow the screen output to see the status details of the operation. Once it completes, a link to the deployed image is output. Visit the link in your browser to see the running instance.</p>
+  </li>
+</ol>
+
+<p>To inspect the service in the Cloud Console:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/run">https://console.cloud.google.com/run</a> for your project.</li>
+  <li>Select the service you just created to show the <strong>Service Details</strong> page.</li>
+  <li>Select <strong>Revisions</strong>. Scroll down and you can see the environment variables and other settings.</li>
+</ol>
+
+<p>For future deployments, select <strong>Edit &amp; Deploy Revision</strong> from this page to select a new repository\ container and locate the link to the running instance.</p>
+
+<p>See also <a href="https://cloud.google.com/run/docs/deploying">Deploying to Cloud Run</a> for more information on all the options you may set on your service.</p>
+
+<h2 id="load-custom-data-to-a-deployed-instance">Load custom data to a deployed instance</h2>
+
+<p>Once you have deployed a custom instance to Google Cloud, you can continue to update your custom data in two ways:</p>
+
+<ul>
+  <li>Load the data from a local running instance, as described in <a href="/custom_dc/data_cloud.html#load-data-cloudsql">Load custom data in Cloud SQL</a></li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">/admin</code> page from the running Cloud app.</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="main-footer">
+      <div id="sub-footer">
+        <span class="brand-byline">
+          <span class="brand-text">An initiative from</span>
+          <img class="brand-logo" src="/assets/images/google-logo.svg" />
+        </span>
+        <div class="sub-footer-links">
+          <a href="https://policies.google.com/terms">Terms and Conditions</a>
+          <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
+          <a href="https://datacommons.org/disclaimers">Disclaimers</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script async
+    src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWSES5WXZE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KWSES5WXZE', {
+      client_storage: 'none',
+      anonymize_ip: true,
+    });
+  </script>
+  <script src="/assets/js/tabs.js"></script>
+</body>
+</html>
