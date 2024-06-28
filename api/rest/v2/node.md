@@ -1,33 +1,29 @@
 ---
 layout: default
 title: Node
-nav_order: 1
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
 published: true
-permalink: /api/rest/v2/node
 ---
 
 # /v2/node
 
-Fetches node information for edges and neighboring nodes. This is useful for
+The Node API fetches node information for edges and neighboring nodes. This is useful for
 finding local connections between nodes of the Data Commons knowledge graph.
 More specifically, this API can perform the following tasks:
-
 - Get all property labels associated with individual or multiple nodes.
 - Get the values of a property for individual or multiple nodes. These can also
   be chained for multiple degrees in the graph.
 - Get all connected nodes that are linked with invidiual or mutiple nodes.
-
 Data Commons represents node relations as directed edges between nodes, or
 property. The name of the property is label, while the target node is a value of
 the property. This endpoint returns the property labels and values that are
 connected to the queried node.
-
 The REST (v2) API introduces [relation
 expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
 neighboring nodes, and to support chaining and filtering. For more information
-see [Data Commons REST (v2) API Overview](/api/rest/v2/#relation-expressions).
+see [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
 
 <div markdown="span" class="alert alert-info" role="alert">
   <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -40,15 +36,15 @@ see [Data Commons REST (v2) API Overview](/api/rest/v2/#relation-expressions).
 
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
-    GET Request
+    GET request
   </button>
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
-    POST Request
+    POST request
   </button>
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/node?key={your_api_key}&nodes={DCID}&property={PROPERTY}
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID</var>&property=<var>PROPERTY</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -56,16 +52,16 @@ URL:
 https://api.datacommons.org/v2/node
 
 Header:
-X-API-Key: {your_api_key}
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
-JSON Data:
+JSON data:
 {
   "nodes": [
-      "{value_1}",
-      "{value_2}",
+      "<var>VALUE1</var>",
+      "<var>VALUE2</var>",
       ...
     ],
-  "property": "{property_expression}"
+  "property": "<var>PROPERTY_EXPRESSION</var>"
 }
 
 </div>
@@ -73,31 +69,26 @@ JSON Data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-### Query Parameters
+## Query parameters
 
-| Name                                                  | Type   | Description                                                                                                                                                     |
-| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see Data Commons REST (v2) API Overview.                                |
+| Name                                                  | Type   |  Description           |
+| ----------------------------------------------------- | ------ | -----------------------|
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query. |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions). By using different "property" parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+
 {: .doc-table }
-
-By using different “property” parameters, you can query node information in
-different ways such as getting the edges and neighboring node values. Notice
-that the “property parameter” should follow the syntax section (reference).
-You can also request this information for one or multiple nodes, as demonstrated
-in the following examples.
 
 ## Response
 
 The response looks like:
 
-```json
+<pre>
 {
   "data": {
-    "{node_DCID}": {
+    "<var>NODE_DCID</var>": {
       "arcs": {
-        "{label}": {
+        "<var>LABEL</var>": {
           "nodes": [
             ...
           ]
@@ -105,25 +96,25 @@ The response looks like:
         ...
       },
       "properties": [
-        "{value}",
+        "<var>VALUE</var>",
       ],
     }
   }
-  "nextToken": "{token_string}"
+  "nextToken": "<var>TOKEN_STRING</var>"
 }
-```
+</pre>
 
 ### Response fields
 
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | [Pagination] A token used to query next page of data                         |
+| nextToken | string | A token used to query [next page of data](index.md#pagination)                   |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: All "in" Properties for a Given Node
+### Example 1: Get all "in" properties for a given node
 
 Get the properties of the node with DCID `geoId/06` by querying all in
 properties with the `<-` symbol.
@@ -139,7 +130,7 @@ property: "<-"
 Request:
 {: .example-box-title}
 
-```bash
+```
 curl --request GET --url \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-'
 ```
@@ -164,10 +155,9 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get One Property for a Given Node
+### Example 2: Get one property for a given node
 
-Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the
-`->name` symbol.
+Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 
 Parameters:
 {: .example-box-title}
@@ -180,7 +170,7 @@ property: "->name"
 Request:
 {: .example-box-title}
 
-```bash
+```
 curl --request GET --url \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc/03lw9rhpendw5&property=->name'
 ```
@@ -210,7 +200,7 @@ Response:
 
 
 {: #multiple-properties}
-### Example 3: Get Multiple Property Values for Multiple Nodes
+### Example 3: Get multiple property values for multiple nodes
 
 Get `name`, `latitude`, and `longitude` value for several nodes: `geoId/06085`
 and `geoId/06086`. Note that multiple properties for a given node must be
@@ -227,7 +217,7 @@ property: "->[name, latitude, longitude]"
 Request:
 {: .example-box-title}
 
-```bash
+```
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
   -d '{"nodes": ["geoId/06085", "geoId/06086"], "property": "->[name, latitude, longitude]"}'
@@ -296,7 +286,7 @@ Response:
 
 
 {: #wildcard}
-### Example 4: All "In" Triples for a Node
+### Example 4: Get all "in" triples for a node
 
 Get all the `in` triples for node `PowerPlant` with property `<-*`.
 
@@ -311,7 +301,7 @@ property: "<-*"
 Request:
 {: .example-box-title}
 
-```bash
+```
 curl --request GET --url \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PowerPlant&property=<-*'
 ```
@@ -340,7 +330,7 @@ Response:
       },
     },
   },
-  "nextToken": "{token_string}"
+  "nextToken": "..."
 }
 ```
 {: .example-box-content .scroll}
