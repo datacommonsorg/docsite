@@ -42,6 +42,11 @@ Participation in early childhood education by sex (children aged 4 and over). Th
 [Terms of Use](https://ec.europa.eu/eurostat/about/policies/copyright).
 
 
+### [General Statistics Office (GSO), Vietnam](https://www.gso.gov.vn/en/homepage/)
+
+#### [Vietnam Census](https://www.gso.gov.vn/en/px-web/?pxid=E0201&theme=Population%20and%20Employment)
+Vietnam Demographics, Economy, Health, Education data from Portal Site of General Statistics Office by national, province and city level.
+
 ### [India Ministry of Education](https://dashboard.udiseplus.gov.in/#/home)
 Data on schools, such as dropout rate and access to computers and toilets, in Indian states and school districts.
 
