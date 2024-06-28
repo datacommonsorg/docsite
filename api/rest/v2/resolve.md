@@ -55,7 +55,7 @@ see the [REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=<var>NODE_NAME</var>&property=<var>PROPERTY_EXPRESSION</var>>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>NODE_NAME</var>&property=<var>PROPERTY_EXPRESSION</var>>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -63,7 +63,7 @@ URL:
 https://api.datacommons.org/v2/resolve
 
 Header:
-X-API-Key: <var>API_KEY</var>
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
 JSON data:
 {
@@ -150,10 +150,10 @@ property: "<-wikidataId->dcid"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=Q30&property=<-wikidataId->dcid'
-</pre>
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Q30&property=<-wikidataId->dcid'
+```
 {: .example-box-content .scroll}
 
 Response:
@@ -189,10 +189,10 @@ property: "<-geoCoordinate->dcid"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
-</pre>
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
+```
 
 {: .example-box-content .scroll}
 
@@ -273,10 +273,10 @@ property: "<-description->dcid"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=Georgia&property=<-description->dcid
-</pre>
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid
+```
 {: .example-box-content .scroll}
 
 Response:
@@ -313,10 +313,10 @@ property: "<-description{typeOf:State}->dcid"
 Request:
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes=Georgia&property=<-description{typeOf:State}->dcid
-</pre>
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description{typeOf:State}->dcid
+```
 {: .example-box-content .scroll}
 
 Response:
@@ -350,20 +350,20 @@ property: "<-description{typeOf:City}->dcid"
 Request (GET):
 {: .example-box-title}
 
-<pre>
+```
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=<var>API_KEY</var>&nodes%3DMountain%20View%2C%20CA&nodes=New%20York%20City&property=%3C-description%7BtypeOf%3ACity%7D-%3Edcid'
-</pre>
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes%3DMountain%20View%2C%20CA&nodes=New%20York%20City&property=%3C-description%7BtypeOf%3ACity%7D-%3Edcid'
+```
 {: .example-box-content .scroll}
 
 Request (POST):
 {: .example-box-title}
 
-<pre>
-curl -X POST -H "X-API-Key: <var>API_KEY</var>" \
+```
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/resolve \
   -d '{"nodes": ["Mountain View, CA", "New York City"], "property": "<-description{typeOf:City}->dcid"}'
-</pre>>
+```
 {: .example-box-content .scroll}
 
 Response:

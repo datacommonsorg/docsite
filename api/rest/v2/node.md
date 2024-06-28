@@ -132,7 +132,7 @@ Request:
 
 ```
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI</var>&nodes=geoId/06&property=<-'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-'
 ```
 
 Response:
