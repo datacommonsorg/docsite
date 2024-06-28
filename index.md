@@ -18,7 +18,8 @@ Data Commons is not a repository of public datasets (such as Kaggle or Google Cl
 
 For example, if you wanted to get [population stats, poverty and unemployment rates of a specific county](https://datacommons.org/place/geoId/06081), you don't need to go to three different datasets; instead, you can get the data from a single data source, using one schema, and one API. Data Commons is also used by Google Search whenever it can provide the most relevant statistical results to a query. For example, the top Google Search result for the query "what is the life expectancy of Vietnam" returns a Data Commons timeline graph and a link to the [Place page](https://datacommons.org/place/country/VNM?utm_medium=explore&mprop=lifeExpectancy&popt=Person&hl=en) for Vietnam:
 
-![Google Search query result](./assets/images/dc/dcoverview1.png){:width="640"}
+![Google Search query result]({{site.baseurl}}/assets/images/dc/dcoverview1.png){:width="640"}
+
 
 
 
