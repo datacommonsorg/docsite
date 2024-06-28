@@ -18,11 +18,11 @@ and so on.
 When querying observations, you need to provide variable, entities, and dates.
 Specify variables as a list, in this form:
 
-<pre>
+```json-doc
 {
-  "dcids": ["<var>VARIABLE_DCID1</var>", "<var>VARIABLE_DCID2</var>"]
+  "dcids": [_VARIABLE_DCID1_, _VARIABLE_DCID2_]
 }
-</pre>
+```
 
 Specify entities as an enumerated list or node expression, as follows:
 
