@@ -21,11 +21,6 @@ that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia
 the US state).
 
-The REST (v2) API introduces [relation
-expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
-node relations and support chaining and filtering. For more information
-see the [REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
-
 <div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
    Currently, this endpoint only supports [place](/glossary.html#place) entities.
@@ -55,7 +50,7 @@ see the [REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>NODE_NAME</var>&property=<var>PROPERTY_EXPRESSION</var>>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>NODE_NAME</var>&property=<var>RELATION_EXPRESSION</var>>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -72,7 +67,7 @@ JSON data:
     "<var>NODE2</var>",
     ...
   ],
-  "property": "<var>PROPERTY_EXPRESSION</var>"
+  "property": "<var>RELATION_EXPRESSION</var>"
 }
 
 </div>
@@ -85,8 +80,8 @@ JSON data:
 | Name                                                  | Type   | Description                                                                                                                                                     |
 | ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | The queried property value (e.g. entity name or DCID), or description of the node (this currently only supports the name of a place).
-| property <br /> <required-tag>Required</required-tag> | string | Property expression that represents the relation of the given nodes to the queried entities. Note that this should always end with `->dcid` |
+| nodes <br /> <required-tag>Required</required-tag>    | string | The queried property value (e.g. entity name or DCID), or description of the node. This currently only supports the name of a place.
+| property <br /> <required-tag>Required</required-tag> | string | [Relation expression](api/rest/v2/index.html#relation-expression) that represents the relation of the given nodes to the queried entities. Note that this should always end with `->dcid` |
 
 {: .doc-table }
 

@@ -15,6 +15,40 @@ entity and variable at a particular date: for example, “population of USA in
 2020”, “GDP of California in 2010”, “predicted temperature of New York in 2050”,
 and so on.
 
+## Request
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
+    GET request
+  </button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
+    POST request
+  </button>
+</div>
+
+<div id="GET-request" class="api-tabcontent api-signature">
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&
+</div>
+
+<div id="POST-request" class="api-tabcontent api-signature">
+URL:
+https://api.datacommons.org/v2/observation
+
+Header:
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
+
+JSON data:
+{
+  
+}
+
+</div>
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+### Query parameters
+
 When querying observations, you need to provide variable, entities, and dates.
 Specify variables as a list, in this form:
 
@@ -47,6 +81,10 @@ You must specify dates using any of the following values:
 - `LATEST`: Fetch the latest observations only.
 - <var>DATE_STRING</var>: Fetch observations matching the specified date(s). The date string must be in the format _YYYY_, _YYYY-MM_, or _YYYY-MM-DD_, like `2020`, `2010-12`
 - `""`: Return observations for all dates.
+
+Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+
+## Response
 
 The response for an observation is a multi-level object generic response that
 can handle all the cases mentioned above. The observation request is first
@@ -236,7 +274,7 @@ Response:
 
 ### Example 3: Get the latest observations for all California counties
 
-In this example, we use the [chained property
+In this example, we use the [chained expression
 (`+`)](/api/rest/v2/#relation-expressions) to specify "all contained places in
 [California](https://datacommons.org/browser/geoId/06) (dcid: `geoId/06`) of
 type `County`". Then we specify the select fields to request actual observations

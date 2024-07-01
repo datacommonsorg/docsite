@@ -17,13 +17,9 @@ More specifically, this API can perform the following tasks:
   be chained for multiple degrees in the graph.
 - Get all connected nodes that are linked with invidiual or mutiple nodes.
 Data Commons represents node relations as directed edges between nodes, or
-property. The name of the property is label, while the target node is a value of
+property. The name of the property is a label, while the target node is the value of
 the property. This endpoint returns the property labels and values that are
 connected to the queried node.
-The REST (v2) API introduces [relation
-expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
-neighboring nodes, and to support chaining and filtering. For more information
-see [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions).
 
 <div markdown="span" class="alert alert-info" role="alert">
   <span class="material-icons md-16">info </span><b>Note:</b><br />
@@ -61,7 +57,7 @@ JSON data:
       "<var>VALUE2</var>",
       ...
     ],
-  "property": "<var>PROPERTY_EXPRESSION</var>"
+  "property": "<var>RELATION_EXPRESSION</var>"
 }
 
 </div>
@@ -75,7 +71,7 @@ JSON data:
 | ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query. |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions). By using different "property" parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
 
 {: .doc-table }
 
@@ -286,9 +282,9 @@ Response:
 
 
 {: #wildcard}
-### Example 4: Get all "in" triples for a node
+### Example 4: Get all incoming linked nodes for a node
 
-Get all the `in` triples for node `PowerPlant` with property `<-*`.
+Get all the incoming linked nodes for node `PowerPlant`, using `<-*`.
 
 Parameters:
 {: .example-box-title}

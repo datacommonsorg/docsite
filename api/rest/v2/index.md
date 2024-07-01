@@ -71,11 +71,11 @@ Still confused? Each endpoint's documentation page has examples at the bottom ta
 
 ### POST requests
 
-All V2 endpoints allow for `POST` requests. For `POST` requests, feed all parameters in JSON format. For example, in cURL, this would look like:
+All V2 endpoints allow for POST requests. For POST requests, feed all parameters in JSON format. For example, in cURL, this would look like:
 
-<pre>
+{% highlight %}
 curl -X POST \
--H "X-API-Key: <var>API_KEY</var>" \
+-H "X-API-Key: <c>API_KEY</c>" \
 --url https://api.datacommons.org/v2/node \
 --data '{
   "nodes": [
@@ -84,7 +84,7 @@ curl -X POST \
   ],
   "property": "->[name, latitude, longitude]"
 }'
-</pre>
+{% endhighlight %}
 
 ### Find available entities, variables, and their DCIDs
 
@@ -94,11 +94,6 @@ Most requests require the [DCID](/glossary.html#dcid) of the entity or variable 
 - [Knowledge Graph](https://datacommons.org/browser/) Click through nodes in the knowledge graph
 - [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
 - [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
-
-
-### Find date-times for observations
-
-Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
 {: #authentication}
 ## Authentication
@@ -209,23 +204,23 @@ expressions in the `property` or `expression` parameter.
 The following table describes symbols in the V2 API relation expressions:
 
 | ------ | ---------- |
-| `->` | An `out` arc |
-| `<-` | An `in` arc |
+| `->` | An outgoing arc |
+| `<-` | An incoming arc |
 | <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
 | `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
 
-### In and out arcs
+### Incoming and outgoing arcs
 
-Arcs in the Data Commons Graph have directions. In the case of the [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both `in` and `out` directions, illustrated in the following figure:
+Arcs in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-Note the directionality of the property `containedInPlace`: for the node "Argentina", the `in` arc represents "Argentina contains Buenos Aires", while the `out` arc represents "Argentina in South America".*
+Note the directionality of the property `containedInPlace`: incoming arc represents "Argentina contains Buenos Aires", while the outgoing arc represents "Argentina is in South America".*
 
-Nodes from `out` arcs are represented by `->`, while nodes from
-`in` arcs are represented by `<-`. To illustrate using the above example:
+Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
+arcs are represented by `<-`. To illustrate using the above example:
 
 - Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
 - All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
@@ -236,15 +231,15 @@ You can use filters to reduce results to only match nodes with a specified prope
 
 ### Specify multiple properties
 
-You can combine multiple properties together within `[]`. For example, in order to request a few `out` arcs for a node, use
-`->[name, latitude, longitude]` (this example is fully described in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
+You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
+`->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
 
 ### Wildcard
 
-To retrieve all properties linked to a node, use the `*`, e.g. `<-*`.
-This example is fully described in this [Node API example](/api/rest/v2/node.html#wildcard).
+To retrieve all properties linked to a node, use the `*` wildcard, e.g. `<-*`.
+See more in this [Node API example](/api/rest/v2/node.html#wildcard).
 
 ### Chain properties
 
-A property chain expression represents requests for information about nodes
+A chain expression represents requests for information about nodes
 which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.
