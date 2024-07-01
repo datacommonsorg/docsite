@@ -7,7 +7,7 @@ has_children: true
 
 # Overview
 
-The [Data Commons Graph](https://datacommons.org) aggregates data from many
+The [Data Commons graph](https://datacommons.org) aggregates data from many
 different [data sources](https://datacommons.org/datasets) into a single
 database. Data Commons is based on the data model used by
 [schema.org](https://schema.org); for more information, see [the guide to the data model](/data_model.html).
