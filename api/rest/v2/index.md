@@ -73,9 +73,9 @@ Still confused? Each endpoint's documentation page has examples at the bottom ta
 
 All V2 endpoints allow for POST requests. For POST requests, feed all parameters in JSON format. For example, in cURL, this would look like:
 
-{% highlight %}
+<pre>
 curl -X POST \
--H "X-API-Key: <c>API_KEY</c>" \
+-H "X-API-Key: <var>API_KEY</var>" \
 --url https://api.datacommons.org/v2/node \
 --data '{
   "nodes": [
@@ -84,7 +84,7 @@ curl -X POST \
   ],
   "property": "->[name, latitude, longitude]"
 }'
-{% endhighlight %}
+</pre>
 
 ### Find available entities, variables, and their DCIDs
 
@@ -241,5 +241,9 @@ See more in this [Node API example](/api/rest/v2/node.html#wildcard).
 
 ### Chain properties
 
-A chain expression represents requests for information about nodes
+Use `+` to express a chain expression. A chain expression represents requests for information about nodes
 which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.
+
+To illustrate again using the Argentina example:
+- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
+- All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
