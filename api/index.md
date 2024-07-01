@@ -20,7 +20,7 @@ Data Commons provides several different ways to access its resources:
 
 The endpoints can be roughly grouped into four categories:
 
-- **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
+-   **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
 
 -   **Graph exploration**: Given a set of nodes, explore the
     graph around those nodes.
