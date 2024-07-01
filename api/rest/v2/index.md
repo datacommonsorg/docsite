@@ -156,7 +156,7 @@ request with `nextToken` as an query parameter, with the token as its value.
 
 For example, the request:
 
-```
+```bash
 curl --request GET \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*'
 ```
@@ -176,7 +176,7 @@ will return something like:
 
 To get the next set of entries, repeat the previous command and append the `nextToken`:
 
-```
+```bash
 curl --request GET \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
 ```

@@ -95,7 +95,7 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date&variable.dcids=Count_Person'
 ```
@@ -177,7 +177,7 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
 ```
@@ -260,7 +260,7 @@ variable.dcids: "Count_Person"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
 ```

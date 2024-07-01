@@ -150,7 +150,7 @@ property: "<-wikidataId->dcid"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Q30&property=<-wikidataId->dcid'
 ```
@@ -189,7 +189,7 @@ property: "<-geoCoordinate->dcid"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
 ```
@@ -258,7 +258,7 @@ Response:
 
 ### Example 3: Find the DCID of a place by name
 
-This queries for the DCID of "Georgia". Notice that specifying "_Georgia_" without specifying `type` returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13)), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO)) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700)).
+This queries for the DCID of "Georgia". Notice that specifying `Georgia` without specifying `type` returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13)), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO)) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700)).
 
 Note that we use the `description` property in the request. This currently only supports resolving place entities by name.
 
@@ -273,7 +273,7 @@ property: "<-description->dcid"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid
 ```
@@ -313,7 +313,7 @@ property: "<-description{typeOf:State}->dcid"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description{typeOf:State}->dcid
 ```
@@ -350,7 +350,7 @@ property: "<-description{typeOf:City}->dcid"
 Request (GET):
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes%3DMountain%20View%2C%20CA&nodes=New%20York%20City&property=%3C-description%7BtypeOf%3ACity%7D-%3Edcid'
 ```
@@ -359,7 +359,7 @@ curl --request GET --url \
 Request (POST):
 {: .example-box-title}
 
-```
+```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/resolve \
   -d '{"nodes": ["Mountain View, CA", "New York City"], "property": "<-description{typeOf:City}->dcid"}'

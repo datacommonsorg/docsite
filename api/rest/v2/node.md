@@ -130,7 +130,7 @@ property: "<-"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-'
 ```
@@ -170,7 +170,7 @@ property: "->name"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc/03lw9rhpendw5&property=->name'
 ```
@@ -217,7 +217,7 @@ property: "->[name, latitude, longitude]"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
   -d '{"nodes": ["geoId/06085", "geoId/06086"], "property": "->[name, latitude, longitude]"}'
@@ -301,7 +301,7 @@ property: "<-*"
 Request:
 {: .example-box-title}
 
-```
+```bash
 curl --request GET --url \
   'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PowerPlant&property=<-*'
 ```
