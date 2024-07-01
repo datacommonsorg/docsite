@@ -10,30 +10,63 @@ permalink: /api/rest/v2/observation
 
 # /v2/observation
 
-This API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date. For example, “population of USA in
+The Observation API fetches statistical observations. An observation is associated with an
+entity and variable at a particular date: for example, “population of USA in
 2020”, “GDP of California in 2010”, “predicted temperature of New York in 2050”,
 and so on.
 
-When querying observations, you need to provide variables, entities, and date.
-Variables are specified as a list in the form of
+## Request
 
-```json
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
+    GET request
+  </button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
+    POST request
+  </button>
+</div>
+
+<div id="GET-request" class="api-tabcontent api-signature">
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&
+</div>
+
+<div id="POST-request" class="api-tabcontent api-signature">
+URL:
+https://api.datacommons.org/v2/observation
+
+Header:
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
+
+JSON data:
 {
-  "dcids": ["<variable_dcid_1>", "<variable_dcid_2>"]
+  
 }
-```
 
-Entities should be specified as an enumerated list or node expression, as
-follows:
+</div>
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+### Query parameters
+
+When querying observations, you need to provide variable, entities, and dates.
+Specify variables as a list, in this form:
+
+<pre>
+{
+  "dcids": ["<var>VARIABLE_DCID1</var>", "<var>VARIABLE_DCID2</var>"]
+}
+</pre>
+
+Specify entities as an enumerated list or node expression, as follows:
 
 - Enumerated list:
 
-  ```json
+  <pre>
   {
-    "dcids": ["<entity_dcid_1>", "<entity_dcid_2"]
+    "dcids": ["<var>ENTITY_DCID1</var>", "<var>ENTITY_DCID2</var>"]
   }
-  ```
+  </pre>
 
 - Node expression:
 
@@ -43,11 +76,15 @@ follows:
   }
   ```
 
-Date is specified in the following values:
+You must specify dates using any of the following values:
 
-- **LATEST**: to fetch the latest observations.
-- **{date_string}**: like "2020", "2010-12".
-- **""**: date is not specified and observations are returned for all dates.
+- `LATEST`: Fetch the latest observations only.
+- <var>DATE_STRING</var>: Fetch observations matching the specified date(s). The date string must be in the format _YYYY_, _YYYY-MM_, or _YYYY-MM-DD_, like `2020`, `2010-12`
+- `""`: Return observations for all dates.
+
+Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+
+## Response
 
 The response for an observation is a multi-level object generic response that
 can handle all the cases mentioned above. The observation request is first
@@ -60,25 +97,25 @@ are collected and ordered based on preferences.
 Keep in mind the following rules when querying observations:
 
 - Each facet contains a list of observations.
-- Each observation has a “date” and “value”.
+- Each observation has a "date" and "value".
 - The response may not have all levels and all fields, depending on the query
   parameters listed in the next bullet.
-- There is a request parameter named "select" that is used to indicate the
-  values the response should contain. Below are the scenarios:
-  - `select = [“variable”, “entity”, “date”, “value”];` the response contains
-    actual observation with date and value for each variable and entity.
-  - `select = [“variable”, “entity”];` the response does not return an actual
-    observation because the date and value are not queried. This can be used to
-    check data existence for "variable", "entity" pairs and to fetch all the
+- There is a request parameter named "select" that you can use to indicate the
+  values the response should contain. Below are the possible expressions:
+  - `select = ["variable", "entity", "date", "value"];` the response contains
+    actual observations with the date and value for each variable and entity.
+  - `select = ["variable", "entity"];` the response does not return an actual
+    observation because the date and value are not queried. You can use this to 
+    check the existence of variable-entity pairs in the data and fetch all the
     variables that have data for given entities.
 
 See the examples below for use cases that use the preceding rules.
 
 ## Examples
 
-### Example 1: Latest observation for given entities
+### Example 1: Get the latest observation for given entities
 
-Specify `date=LATEST` in order to get the latest observations and values. In this example, we are selecting the entity by its DCID using `entity.dcids`.
+Specify `date=LATEST` in order to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
 
 Parameters:
 {: .example-box-title}
@@ -153,13 +190,13 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Observation at a particular date for given entities
+### Example 2: Get the observations at a particular date for given entities
 
-This queries for observations in "2015" of the variable
-[Count_Person](https://datacommons.org/tools/statvar#sv=Count_Person)
+This queries for observations in 2015 for the variable
+[`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)
 for two specified entities:
-["country/USA"](https://datacommons.org/browser/country/USA) and
-["geoId/06"](https://datacommons.org/browser/geoId/06).
+[`country/USA`](https://datacommons.org/browser/country/USA) and
+[`geoId/06`](https://datacommons.org/browser/geoId/06).
 
 Parameters:
 {: .example-box-title}
@@ -235,14 +272,14 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 3: Latest observation for all California counties
+### Example 3: Get the latest observations for all California counties
 
-In this example, we use the [chained property
+In this example, we use the [chained expression
 (`+`)](/api/rest/v2/#relation-expressions) to specify "all contained places in
 [California](https://datacommons.org/browser/geoId/06) (dcid: `geoId/06`) of
 type `County`". Then we specify the select fields to request actual observations
 with date and value for each variable
-([Count_Person](https://datacommons.org/tools/statvar#sv=Count_Person)) and
+([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)) and
 entity (all counties in California).
 
 Parameters:

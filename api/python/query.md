@@ -12,7 +12,9 @@ Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
 able to support a limited subsection of SPARQL functionality at this time: specifically only the keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
 
-## General information about this method
+Note: The Python SPARQL library currently only supports the [v1](/api/v1/query.html) version of the API.
+
+## General information about the query() method
 
 **Signature**:
 
@@ -24,7 +26,7 @@ datacommons.query(query_string, select=None)
 
 *   `query_string`: A SPARQL query string.
 
-## How to construct a call to the query method
+## How to construct a call to the query() method
 
 This method makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites. It leverages the graph structure innate in the data it queries to return specific information to an end user. For more information on assembling SPARQL queries, check out [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
 
@@ -49,11 +51,11 @@ A correct response will always look like this:
 
 The response contains an array of dictionaries, each corresponding to one node matching the conditions of the query. Each dictionary's keys match the variables in the query SELECT clause, and the values in the dictionaries are those associated to the given node's query-specified properties.
 
-## Examples and error returns
+## Examples and error responses
 
-### Examples
+The following examples and error responses, along with explanations and fixes for the errors, are available in this [Python notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing).
 
-#### Example 1. Retrieve the name of the state associated with DCID geoId/06.
+### Example 1: Retrieve the name of the state associated with DCID geoId/06.
 
 ```python
 >>> geoId06_name_query = 'SELECT ?name ?dcid WHERE { ?a typeOf Place . ?a name ?name . ?a dcid ("geoId/06" "geoId/21" "geoId/24") . ?a dcid ?dcid }'
@@ -61,7 +63,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 [{'?name': 'Kentucky', '?dcid': 'geoId/21'}, {'?name': 'California', '?dcid': 'geoId/06'}, {'?name': 'Maryland', '?dcid': 'geoId/24'}]
 ```
 
-#### Example 2. Retrieve a list of ten biological specimens in reverse alphabetical order.
+### Example 2: Retrieve a list of ten biological specimens in reverse alphabetical order.
 
 ```python
 >>> bio_specimens_reverse_alphabetical_order_query = 'SELECT ?name WHERE { ?biologicalSpecimen typeOf BiologicalSpecimen . ?biologicalSpecimen name ?name } ORDER BY DESC(?name) LIMIT 10'
@@ -69,7 +71,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 [{'?name': 'x Triticosecale'}, {'?name': 'x Silene'}, {'?name': 'x Silene'}, {'?name': 'x Silene'}, {'?name': 'x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey'}, {'?name': 'x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey'}, {'?name': 'x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey'}, {'?name': 'x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey'}, {'?name': 'x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey'}, {'?name': 'x Pseudelymus saxicola (Scribn. & J.G.Sm.) Barkworth & D.R.Dewey'}]
 ```
 
-#### Example 3. Retrieve a list of GNI observations by country.
+### Example 3: Retrieve a list of GNI observations by country.
 
 ```python
 >>> gni_by_country_query = 'SELECT ?observation ?place WHERE { ?observation typeOf StatVarObservation . ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
@@ -77,7 +79,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 [{'?observation': 'dc/o/syrpc3m8q34z7', '?place': 'country/ABW'}, {'?observation': 'dc/o/bqtfmc351v0f2', '?place': 'country/ABW'}, {'?observation': 'dc/o/md36fx6ty4d64', '?place': 'country/ABW'}, {'?observation': 'dc/o/bm28zvchsyf4b', '?place': 'country/ABW'}, {'?observation': 'dc/o/3nleez1feevw6', '?place': 'country/ABW'}, {'?observation': 'dc/o/x2yg38d0xecnf', '?place': 'country/ABW'}, {'?observation': 'dc/o/7swdqf6yjdyw8', '?place': 'country/ABW'}, {'?observation': 'dc/o/yqmsmbx1qskfg', '?place': 'country/ABW'}, {'?observation': 'dc/o/6hlhrz3k8p5wf', '?place': 'country/ABW'}, {'?observation': 'dc/o/txfw505ydg629', '?place': 'country/ABW'}]
 ```
 
-#### Example 4. Retrieve a sample list of observations with the unit InternationalDollar.
+### Example 4: Retrieve a sample list of observations with the unit InternationalDollar.
 
 ```python
 >>> internationalDollar_obs_query = 'SELECT ?observation WHERE {   ?observation typeOf StatVarObservation .   ?observation unit InternationalDollar  } LIMIT 10'
@@ -85,7 +87,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 [{'?observation': 'dc/o/s3gzszzvj34f1'}, {'?observation': 'dc/o/gd41m7qym86d4'}, {'?observation': 'dc/o/wq62twxx902p4'}, {'?observation': 'dc/o/d93kzvns8sq4c'}, {'?observation': 'dc/o/6s741lstdqrg4'}, {'?observation': 'dc/o/2kcq1xjkmrzmd'}, {'?observation': 'dc/o/ced6jejwv224f'}, {'?observation': 'dc/o/q31my0dmcryzd'}, {'?observation': 'dc/o/96frt9w0yjwxf'}, {'?observation': 'dc/o/rvjz5xn9mlg73'}]
 ```
 
-#### Example 5. Retrieve a list of ten distinct annual estimates of life expectancy, along with the year of estimation, for forty-seven-year-old Hungarians.
+### Example 5: Retrieve a list of ten distinct annual estimates of life expectancy, along with the year of estimation, for forty-seven-year-old Hungarians.
 
 ```python
 >>> life_expectancy_query = 'SELECT DISTINCT ?LifeExpectancy ?year WHERE { ?o typeOf StatVarObservation . ?o variableMeasured LifeExpectancy_Person_47Years . ?o observationAbout country/HUN . ?o value ?LifeExpectancy . ?o observationDate ?year } ORDER BY ASC(?LifeExpectancy) LIMIT 10'
@@ -93,7 +95,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 [{'?LifeExpectancy': '26.4', '?year': '1993'}, {'?LifeExpectancy': '26.5', '?year': '1992'}, {'?LifeExpectancy': '26.7', '?year': '1990'}, {'?LifeExpectancy': '26.7', '?year': '1994'}, {'?LifeExpectancy': '26.8', '?year': '1991'}, {'?LifeExpectancy': '26.9', '?year': '1995'}, {'?LifeExpectancy': '27.2', '?year': '1996'}, {'?LifeExpectancy': '27.4', '?year': '1999'}, {'?LifeExpectancy': '27.5', '?year': '1997'}, {'?LifeExpectancy': '27.5', '?year': '1998'}]
 ```
 
-#### Example 6: Use the `select` function to filter returns based on name.
+### Example 6: Use the `select` function to filter returns based on name.
 
 ```python
 >>> names_for_places_query = 'SELECT ?name ?dcid WHERE {  ?a typeOf Place .  ?a name ?name .  ?a dcid ("geoId/06" "geoId/21" "geoId/24") .  ?a dcid ?dcid }'
@@ -105,9 +107,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 {'?name': 'Maryland', '?dcid': 'geoId/24'}
 ```
 
-### Error returns
-
-#### Error return 1: Malformed SPARQL query.
+### Error response 1: Malformed SPARQL query
 
 ```python
 >>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf StatVarObservation . ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
@@ -139,7 +139,7 @@ ValueError: Response error 500:
 b'{\n "code": 2,\n "message": "googleapi: Error 400: Unrecognized name: place; Did you mean name? at [1:802], invalidQuery",\n "details": [\n  {\n   "@type": "type.googleapis.com/google.rpc.DebugInfo",\n   "stackEntries": [],\n   "detail": "internal"\n  }\n ]\n}\n'
 ```
 
-#### Error return 2: Malformed SPARQL query string.
+### Error response 2: Malformed SPARQL query string
 
 ```python
 >>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf StatVarObservation . ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
@@ -172,7 +172,7 @@ b'{\n "code": 2,\n "message": "googleapi: Error 400: Unrecognized name: place; D
 >>> gni_by_country_query = 'SELECT ?observation WHERE { ?observation typeOf StatVarObservation . \\\\\ ?observation variableMeasured Amount_EconomicActivity_GrossNationalIncome_PurchasingPowerParity_PerCapita . ?observation observationAbout ?place . ?place typeOf Country . } ORDER BY ASC (?place) LIMIT 10'
 ```
 
-#### Error return 3: Bad selector.
+### Error response 3: Bad selector
 
 ```python
 >>> names_for_places_query = 'SELECT ?name ?dcid WHERE {  ?a typeOf Place .  ?a name ?name .  ?a dcid ("geoId/06" "geoId/21" "geoId/24") .  ?a dcid ?dcid }'
@@ -186,4 +186,4 @@ Traceback (most recent call last):
 KeyError: '?earthquake'
 ```
 
-These examples and errors, along with explanations and fixes for the errors, are available in this [Python notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing).
+
