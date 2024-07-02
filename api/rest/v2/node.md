@@ -99,6 +99,7 @@ The response looks like:
   "nextToken": "<var>TOKEN_STRING</var>"
 }
 </pre>
+{: .response-signature .scroll}
 
 ### Response fields
 
@@ -198,84 +199,107 @@ Response:
 ### Example 3: Get multiple property values for multiple nodes
 
 Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
-and `geoId/06086`. Note that multiple properties for a given node must be
+and `geoId/06087`. Note that multiple properties for a given node must be
 enclosed in square brackets `[]`.
 
 Parameters:
 {: .example-box-title}
 
 ```bash
-nodes: "geoId/06085", "geoId/06086"
+nodes: "geoId/06085", "geoId/06087"
 property: "->[name, latitude, longitude]"
 ```
 
 Request:
 {: .example-box-title}
 
-```bash
+```json
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
-  -d '{"nodes": ["geoId/06085", "geoId/06086"], "property": "->[name, latitude, longitude]"}'
+  -d '{"nodes": ["geoId/06085", "geoId/06087"], "property": "->[name, latitude, longitude]"}'
 ```
 
 Response:
 {: .example-box-title}
 
 ```json
-{
-  "data": {
-    "geoId/06085": {
-      "arcs": {
-        "name": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "Santa Clara County"
+
+   "data" : {
+      "geoId/06085" : {
+         "arcs" : {
+            "latitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.221614"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.36"
+                  }
+               ]
+            },
+            "longitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-121.68954"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-121.97"
+                  }
+               ]
+            },
+            "name" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "Santa Clara County"
+                  }
+               ]
             }
-          ]
-        },
-        "latitude": {
-          "nodes": [
-            { "provenanceId": "dc/base/WikidataOtherIdGeos", "value": "37.36" }
-          ]
-        },
-        "longitude": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "-121.68954"
+         }
+      },
+      "geoId/06087" : {
+         "arcs" : {
+            "latitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.012347"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.03"
+                  }
+               ]
+            },
+            "longitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-122.007789"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-122.01"
+                  }
+               ]
+            },
+            "name" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "Santa Cruz County"
+                  }
+               ]
             }
-          ]
-        }
+         }
       }
-    },
-    "geoId/06087": {
-      "arcs": {
-        "name": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "Santa Cruz County"
-            }
-          ]
-        },
-        "latitude": {
-          "nodes": [
-            { "provenanceId": "dc/base/WikidataOtherIdGeos", "value": "37.03" }
-          ]
-        },
-        "longitude": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "-122.01"
-            }
-          ]
-        }
-      }
-    }
-  }
+   }
 }
+
 ```
 {: .example-box-content .scroll}
 
@@ -319,13 +343,36 @@ Response:
               "provenanceId": "dc/base/BaseSchema"
             },
             ...
-          ],
+        }
+        "subClassOf" : {
+          "nodes" : [
+            {
+              "dcid" : "PowerPlantUnit",
+              "name" : "PowerPlantUnit",
+              "provenanceId" : "dc/base/BaseSchema",
+              "types" : [
+                "Class"
+              ]
+            }
+          ]
+        },
+        "typeOf" : {
+          "nodes" : [
+            {
+              "dcid" : "dc/000qxlm93vn93",
+              "name" : "Suzlon Project VIII LLC",
+              "provenanceId" : "dc/base/EIA_860",
+              "types" : [
+                "PowerPlant"
+              ]
+           },
+          ...
         },
         ...
-      },
-    },
+      }
+    }
   },
-  "nextToken": "..."
+  "nextToken": "H4sIAAAAAAAA/0zIMQ6CMBjFcfus9fnpYP4Xs4MXYCgTAUKaEG7PyvqLf0Rd9rbVaZh7lH6s7TdejRtyQhbyHTkjP5AL8hPZyC/kQH6T/fmmEwAA//8BAAD///dHSrJWAAAA"
 }
 ```
 {: .example-box-content .scroll}

@@ -18,17 +18,19 @@ queries to return specific information.
 
 ## Request
 
-<div class="api-tab">
-  <button id="post-button" class="api-tablink">POST request</button>
-</div>
+Note: GET requests are not provided because they are inconvenient to use with SPARQL.
 
-<div id="POST-request" class="api-tabcontent api-signature">
+<p class="api-header">
+POST request
+</p>
+
+<p class="api-syntax-box api-signature">
 URL: https://api.datacommons.org/v2/sparql
 
 Header: X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
 JSON data: { "query": "<var>SPARQL_QUERY</var>" }
-</div>
+</p>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
@@ -68,8 +70,8 @@ The response looks like:
 
 | Name   | Type   | Description                                                                      |
 | ------ | ------ | -------------------------------------------------------------------------------- |
-| header | list   | List of strings corresponding to the query variables.                            |
-| rows   | list   | List of `row` objects, with each containing a list of cells and its cell values. |
+| header | list | List of strings corresponding to the query variables.                            |
+| rows   | list | List of `row` objects, with each containing a list of cells and its cell values. |
 | cells  | object | Contains string field `value` corresponding to the queried variable.             |
 {: .doc-table}
 

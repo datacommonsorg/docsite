@@ -156,14 +156,19 @@ Response:
 
 ```json
 {
-  "entities": [
-    {
-      "node": "Q30",
-      "candidates": [
-        { "dcid": "country/USA" }
-      ]
-    }
-  ]
+   "entities" : [
+      {
+         "candidates" : [
+            {
+               "dcid" : "country/USA"
+            }
+         ],
+         "node" : "Q30",
+         "resolvedIds" : [
+            "country/USA"
+         ]
+      }
+   ]
 }
 ```
 {: .example-box-content .scroll}
@@ -196,64 +201,78 @@ Response:
 
 ```json
 {
-  "entities": [
-    {
-      "node": "37.42#-122.08",
-      "candidates": [
-        {
-          "dcid": "geoId/0649670",
-          "dominantType": "City"
-        },
-        {
-          "dcid": "geoId/06085",
-          "dominantType": "County"
-        },
-        {
-          "dcid": "geoId/06",
-          "dominantType": "State"
-        },
-        {
-          "dcid": "country/USA",
-          "dominantType": "Country"
-        },
-        {
-          "dcid": "geoId/06085504601",
-          "dominantType": "CensusTract"
-        },
-        {
-          "dcid": "geoId/060855046011",
-          "dominantType": "CensusBlockGroup"
-        },
-        {
-          "dcid": "geoId/0608592830",
-          "dominantType": "CensusCountyDivision"
-        },
-        {
-          "dcid": "geoId/0618",
-          "dominantType": "CongressionalDistrict"
-        },
-        {
-          "dcid": "geoId/sch0626280",
-          "dominantType": "SchoolDistrict"
-        },
-        {
-          "dcid": "ipcc_50/37.25_-122.25_USA",
-          "dominantType": "IPCCPlace_50"
-        },
-        {
-          "dcid": "zip/94043",
-          "dominantType": "CensusZipCodeTabulationArea"
-        }
-      ]
-    }
-  ]
+   "entities" : [
+      {
+         "candidates" : [
+            {
+               "dcid" : "geoId/0649670",
+               "dominantType" : "City"
+            },
+            {
+               "dcid" : "geoId/06085",
+               "dominantType" : "County"
+            },
+            {
+               "dcid" : "geoId/06",
+               "dominantType" : "State"
+            },
+            {
+               "dcid" : "country/USA",
+               "dominantType" : "Country"
+            },
+            {
+               "dcid" : "geoId/06085504601",
+               "dominantType" : "CensusTract"
+            },
+            {
+               "dcid" : "geoId/060855046011",
+               "dominantType" : "CensusBlockGroup"
+            },
+            {
+               "dcid" : "geoId/0608592830",
+               "dominantType" : "CensusCountyDivision"
+            },
+            {
+               "dcid" : "geoId/0618",
+               "dominantType" : "CongressionalDistrict"
+            },
+            {
+               "dcid" : "geoId/sch0626280",
+               "dominantType" : "SchoolDistrict"
+            },
+            {
+               "dcid" : "ipcc_50/37.25_-122.25_USA",
+               "dominantType" : "IPCCPlace_50"
+            },
+            {
+               "dcid" : "zip/94043",
+               "dominantType" : "CensusZipCodeTabulationArea"
+            }
+         ],
+         "node" : "37.42#-122.08",
+         "resolvedIds" : [
+            "zip/94043",
+            "ipcc_50/37.25_-122.25_USA",
+            "geoId/sch0626310",
+            "geoId/sch0626280",
+            "geoId/0649670",
+            "geoId/0618",
+            "geoId/0608592830",
+            "geoId/060855046011",
+            "geoId/06085504601",
+            "geoId/06085",
+            "geoId/06",
+            "country/USA"
+         ]
+      }
+   ]
 }
 ```
 {: .example-box-content .scroll}
 
 ### Example 3: Find the DCID of a place by name
 
-This queries for the DCID of "Georgia". Notice that specifying `Georgia` without specifying `type` returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13)), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO)) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700)).
+This queries for the DCID of "Georgia". Notice that specifying `Georgia` without a type filter returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13)), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO)) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700)).
 
 Note that we use the `description` property in the request. This currently only supports resolving place entities by name.
 
@@ -270,7 +289,7 @@ Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid'
 ```
 {: .example-box-content .scroll}
 
@@ -279,16 +298,27 @@ Response:
 
 ```json
 {
-  "entities": [
-    {
-      "node": "Georgia",
-      "candidates": [
-        { "dcid": "geoId/13" },
-        { "dcid": "country/GEO" },
-        { "dcid": "geoId/5027700" }
-      ]
-    }
-  ]
+   "entities" : [
+      {
+         "candidates" : [
+            {
+               "dcid" : "geoId/13"
+            },
+            {
+               "dcid" : "country/GEO"
+            },
+            {
+               "dcid" : "geoId/5027700"
+            }
+         ],
+         "node" : "Georgia",
+         "resolvedIds" : [
+            "geoId/13",
+            "country/GEO",
+            "geoId/5027700"
+         ]
+      }
+   ]
 }
 ```
 {: .example-box-content .scroll}
@@ -310,7 +340,7 @@ Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description{typeOf:State}->dcid
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description%7BtypeOf:State%7D->dcid'
 ```
 {: .example-box-content .scroll}
 
@@ -319,14 +349,19 @@ Response:
 
 ```json
 {
-  "entities": [
-    {
-      "node": "Georgia",
-      "candidates": [
-        { "dcid": "geoId/13" },
-      ]
-    }
-  ]
+   "entities" : [
+      {
+         "candidates" : [
+            {
+               "dcid" : "geoId/13"
+            }
+         ],
+         "node" : "Georgia",
+         "resolvedIds" : [
+            "geoId/13"
+         ]
+      }
+   ]
 }
 ```
 {: .example-box-content .scroll}
@@ -347,7 +382,7 @@ Request (GET):
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes%3DMountain%20View%2C%20CA&nodes=New%20York%20City&property=%3C-description%7BtypeOf%3ACity%7D-%3Edcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Mountain%20View%2C%20CA&nodes=New%20York%20City&property=<-description%7BtypeOf:City%7D->dcid'
 ```
 {: .example-box-content .scroll}
 
