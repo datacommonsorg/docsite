@@ -50,7 +50,7 @@ the US state).
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>NODE_NAME</var>&property=<var>RELATION_EXPRESSION</var>>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -63,8 +63,8 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 JSON data:
 {
   "nodes": [
-    "<var>NODE1</var>",
-    "<var>NODE2</var>",
+    "<var>NODE_DCID_1</var>",
+    "<var>NODE_DCID_2</var>",
     ...
   ],
   "property": "<var>RELATION_EXPRESSION</var>"
@@ -77,10 +77,10 @@ JSON data:
 
 ### Query parameters
 
-| Name                                                  | Type   | Description                                                                                                                                                     |
-| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | The queried property value (e.g. entity name or DCID), or description of the node. This currently only supports the name of a place.
+| nodes <br /> <required-tag>Required</required-tag>    | list of strings | Comma-separated list of property values (e.g. entity name or DCID), or description of the node. This currently only supports the name of a place.
 | property <br /> <required-tag>Required</required-tag> | string | [Relation expression](api/rest/v2/index.html#relation-expression) that represents the relation of the given nodes to the queried entities. Note that this should always end with `->dcid` |
 
 {: .doc-table }
@@ -93,20 +93,20 @@ The response looks like:
 {
   "entities": [
     {
-      "node": "<var>NODE</var>}",
+      "node": "<var>NODE_1</var>}",
       "candidates": [
         {
-          "dcid": "<var>DCID1</var>}",
-          "dominantType": "<var>TYPE_OF_DCID1</var>"
+          "dcid": "<var>DCID_1</var>}",
+          "dominantType": "<var>TYPE_OF_DCID_1</var>"
         },
       ]
     },
     {
-      "node": "<var>NODE2</var>",
+      "node": "<var>NODE_2</var>",
       "candidates": [
         {
-          "dcid": "<var>DCID2</var>",
-          "dominantType": "<var>TYPE_OF_DCID2</var>"
+          "dcid": "<var>DCID_2</var>",
+          "dominantType": "<var>TYPE_OF_DCID_2</var>"
         },
       ]
     },

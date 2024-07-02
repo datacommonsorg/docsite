@@ -40,7 +40,7 @@ connected to the queried node.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID</var>&property=<var>PROPERTY</var>
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -53,8 +53,8 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 JSON data:
 {
   "nodes": [
-      "<var>VALUE1</var>",
-      "<var>VALUE2</var>",
+      "<var>NODE_DCID_1</var>",
+      "<var>NODE_DCID_2</var>",
       ...
     ],
   "property": "<var>RELATION_EXPRESSION</var>"
@@ -70,7 +70,7 @@ JSON data:
 | Name                                                  | Type   |  Description           |
 | ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query. |
+| nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
 | property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
 
 {: .doc-table }
@@ -110,10 +110,9 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get all "in" properties for a given node
+### Example 1: Get all incoming arcs for a given node
 
-Get the properties of the node with DCID `geoId/06` by querying all in
-properties with the `<-` symbol.
+Get all incoming arcs of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels.
 
 Parameters:
 {: .example-box-title}
@@ -198,7 +197,7 @@ Response:
 {: #multiple-properties}
 ### Example 3: Get multiple property values for multiple nodes
 
-Get `name`, `latitude`, and `longitude` value for several nodes: `geoId/06085`
+Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
 and `geoId/06086`. Note that multiple properties for a given node must be
 enclosed in square brackets `[]`.
 
@@ -284,7 +283,7 @@ Response:
 {: #wildcard}
 ### Example 4: Get all incoming linked nodes for a node
 
-Get all the incoming linked nodes for node `PowerPlant`, using `<-*`.
+Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels.
 
 Parameters:
 {: .example-box-title}

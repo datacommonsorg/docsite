@@ -120,8 +120,8 @@ curl -X POST \
 --header 'X-API-Key: <var>API_KEY</var>' \
 --data '{
   "nodes": [
-    "<var>ENTITY_DCID1</var>",
-    "<var>ENTITY_DCID2</var>",
+    "<var>ENTITY_DCID_1</var>",
+    "<var>ENTITY_DCID_2</var>",
     ...
   ],
   "property: "<var>RELATION_EXPRESSION</var>"

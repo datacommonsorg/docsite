@@ -27,7 +27,7 @@ and so on.
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&select=variable&select=entity[&select=value][&select=date]
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -39,9 +39,22 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
 JSON data:
 {
-  
+  "date": "<var>DATE_EXPRESSION</var>",
+  "entity.dcids": [
+      "<var>ENTITY_DCID_1</var>",
+      "<var>ENTITY_DCID_2</var>",
+      ...
+    ],
+  "entity.expression": <var>ENTITY_EXPRESSION</var>,
+  "variable.dcids": [
+      "<var>VARIABLE_DCID_1</var>",
+      "<var>VARIABLE_DCID_2</var>",
+      ...
+    ],
+  "select": "variable",
+  "select": "entity",
+  ...
 }
-
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -49,40 +62,54 @@ JSON data:
 
 ### Query parameters
 
-When querying observations, you need to provide variable, entities, and dates.
-Specify variables as a list, in this form:
+| Name                                                  | Type   |  Description                                                    |
+|-------------------------------------------------------|--------|-----------------------------------------------------------------|
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| date <br /> <required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
+| variable.dcids <br /> <required-tag>Required</required-tag>| list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. |
+| entity.dcids                                          | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. At least one of `entity.dcids` or `entity.expression` is required. |
+| entity.expression                                     | string | [Relation expression](api/rest/v2/index.html#relation-expression) that represents the  entities to query.  At least one of `entity.dcids` or `entity.expression` is required.|
+| select <br /> <required-tag>Required</required-tag>  | string literal |   Specifies a _facet_ expression. See [below](#facet) for details about facets. |
 
-<pre>
-{
-  "dcids": ["<var>VARIABLE_DCID1</var>", "<var>VARIABLE_DCID2</var>"]
-}
-</pre>
+{: .doc-table }
 
-Specify entities as an enumerated list or node expression, as follows:
+### Date-time string formats {: #date-string}
 
-- Enumerated list:
-
-  <pre>
-  {
-    "dcids": ["<var>ENTITY_DCID1</var>", "<var>ENTITY_DCID2</var>"]
-  }
-  </pre>
-
-- Node expression:
-
-  ```json
-  {
-    "expression": "country/USA<-containedInPlace+{typeOf:State}"
-  }
-  ```
-
-You must specify dates using any of the following values:
-
+Here are the possible values for specifying dates/times:
 - `LATEST`: Fetch the latest observations only.
-- <var>DATE_STRING</var>: Fetch observations matching the specified date(s). The date string must be in the format _YYYY_, _YYYY-MM_, or _YYYY-MM-DD_, like `2020`, `2010-12`
-- `""`: Return observations for all dates.
+- <var>DATE_STRING</var>: Fetch observations matching the specified date(s) and time(s). The value must be in the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see below.
+- `""`: Return observations for all dates. 
 
-Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+### Find the date format for a statistical variable
+
+Statistical variable dates are defined as yearly, monthly, weekly, or daily. For most variables, you can find out the correct date format by searching for the variable in the
+[Statistical Variable Explorer](https://datacommons.org/tools/statvar) and looking for the **Date range**. For example, for the variable [Gini Index of Economic Activity](https://datacommons.org/tools/statvar#sv=GiniIndex_EconomicActivity), the date-time format is yearly, i.e. in YYYY format:
+
+![date time example 1](/assets/images/rest/date_time_example1.png)
+
+For other cases, you may need to drill down further to a timeline graph to view specific observations. For example, [Mean Wind Direction](https://datacommons.org/tools/statvar#sv=Mean_WindDirection), is measured at the sub-daily level, but the frequency is not clear (hourly or every two hours, etc.)
+
+![date time example 2](/assets/images/rest/date_time_example2.png)
+
+In these cases, do the following:
+
+1. In the Statistical Variable Explorer, in click on an example place to link to the variable's page in the Knowledge Graph Browser. 
+1. Scroll to the **Observations** section and click **Show Table** to get a list of observations.
+
+For example, and click on the line graph to see the frequency, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection), the observations table shows that the variable is measured every four hours, starting at midnight.
+
+![date time example 3](/assets/images/rest/date_time_example3.png)
+
+### Facet expressions
+
+- There is a request parameter named "select" that you can use to indicate the
+  values the response should contain. Below are the possible expressions:
+  - `select = ["variable", "entity", "date", "value"];` the response contains
+    actual observations with the date and value for each variable and entity.
+  - `select = ["variable", "entity"];` the response does not return an actual
+    observation because the date and value are not queried. You can use this to 
+    check the existence of variable-entity pairs in the data and fetch all the
+    variables that have data for given entities.
 
 ## Response
 
@@ -100,16 +127,18 @@ Keep in mind the following rules when querying observations:
 - Each observation has a "date" and "value".
 - The response may not have all levels and all fields, depending on the query
   parameters listed in the next bullet.
-- There is a request parameter named "select" that you can use to indicate the
-  values the response should contain. Below are the possible expressions:
-  - `select = ["variable", "entity", "date", "value"];` the response contains
-    actual observations with the date and value for each variable and entity.
-  - `select = ["variable", "entity"];` the response does not return an actual
-    observation because the date and value are not queried. You can use this to 
-    check the existence of variable-entity pairs in the data and fetch all the
-    variables that have data for given entities.
+
 
 See the examples below for use cases that use the preceding rules.
+
+## Response
+
+The response looks like:
+
+<pre>
+
+</pre>
+
 
 ## Examples
 
@@ -123,11 +152,11 @@ Parameters:
 ```bash
 date: "LATEST"
 entity.dcids: "country/USA"
+variable.dcids: "Count_Person"
 select: "entity"
 select: "variable"
 select: "value"
 select: "date"
-variable.dcids: "Count_Person"
 ```
 
 Request:
@@ -135,7 +164,7 @@ Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date&variable.dcids=Count_Person'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country%2FUSA&variable.dcids=Count_Person&select=entity&select=variable&select=value&select=date'
 ```
 {: .example-box-content .scroll}
 
@@ -217,7 +246,7 @@ Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&variable.dcids=Count_Person&select=date&select=entity&select=value&select=variable'
 ```
 {: .example-box-content .scroll}
 
@@ -300,7 +329,7 @@ Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=Count_Person'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&variable.dcids=Count_Person&select=date&select=entity&select=value&select=variable'
 ```
 {: .example-box-content .scroll}
 
