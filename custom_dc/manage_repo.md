@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Manage a repo
+title: Build and run a custom image
 nav_order: 5
 parent: Custom Data Commons
 ---
 
 {:.no_toc}
-# Manage a repo
+# Build and run a custom image
 
 * TOC
 {:toc}
