@@ -28,7 +28,7 @@ docker pull gcr.io/datcom-ci/datacommons-website-compose:latest
 ```
 Then, [restart Docker](quickstart.md#start-services), specifying that repo as the argument to the `docker run` command.
 
-## Build a local image {#build-repo}
+## Build a local image {: #build-repo}
 
 You will need to build a local image in any of the following cases:
 - You are making substantive changes to the website UI
