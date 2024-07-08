@@ -39,6 +39,7 @@ https://api.datacommons.org/v2
 | Node | [/v2/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Observation | [/v2/observation](/api/rest/v2/observation) | Fetches statistical observations |
 | Resolve Entities | [/v2/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| SPARQL | [/v2/sparql](/api/rest/v2/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
 
 
 {: #relation-expressions}
