@@ -133,10 +133,9 @@ With `select=date` and `select=value` specified, the response looks like:
           "orderedFacets": [
             {
               "facetId": "<var>FACET_ID</var>",
-              "earliestDate" : "   ",
-              "facetId" : "    ",
-              "latestDate" : "   ",
-              "obsCount" : 1,
+              "earliestDate" : "<var>DATE_STRING</var>", 
+              "latestDate" : "<var>DATE_STRING</var>", 
+              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>",
               "observations": [
                 {
                   "date": "<var>OBSERVATION_DATE</var>",
@@ -169,7 +168,7 @@ With `select=date` and `select=value` specified, the response looks like:
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | orderedFacets | list of objects |                          |
-| observations | list of objects
+| observations | list of objects | Date and value pairs for the observations made in the time period
 | facets | object |                                          |
 | observations | list of objects | 
 

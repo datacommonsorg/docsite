@@ -382,7 +382,7 @@ Request (GET):
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Mountain%20View%2C%20CA&nodes=New%20York%20City&property=<-description%7BtypeOf:City%7D->dcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Mountain%20View,%20CA&nodes=New%20York%20City&property=<-description%7BtypeOf:City%7D->dcid'
 ```
 {: .example-box-content .scroll}
 
@@ -401,20 +401,34 @@ Response:
 
 ```json
 {
-  "entities": [
-    {
-      "node": "Mountain View, CA",
-      "candidates": [
-        { "dcid": "geoId/0649670" },
-        { "dcid": "geoId/0649651" }
-      ]
-    },
-    {
-      "node": "New York City",
-      "candidates": [
-        { "dcid": "geoId/3651000" }
-      ]
-    }
-  ]
+   "entities" : [
+      {
+         "candidates" : [
+            {
+               "dcid" : "geoId/0649670"
+            },
+            {
+               "dcid" : "geoId/0649651"
+            }
+         ],
+         "node" : "Mountain View, CA",
+         "resolvedIds" : [
+            "geoId/0649670",
+            "geoId/0649651"
+         ]
+      },
+      {
+         "candidates" : [
+            {
+               "dcid" : "geoId/3651000"
+            }
+         ],
+         "node" : "New York City",
+         "resolvedIds" : [
+            "geoId/3651000"
+         ]
+      }
+   ]
 }
+
 ```
