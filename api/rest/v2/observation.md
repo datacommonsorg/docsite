@@ -11,9 +11,8 @@ permalink: /api/rest/v2/observation
 # /v2/observation
 
 The Observation API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date: for example, “population of USA in
-2020”, “GDP of California in 2010”, “predicted temperature of New York in 2050”,
-and so on.
+entity and variable at a particular date: for example, "population of USA in
+2020", "GDP of California in 2010", and so on.
 
 ## Request
 
