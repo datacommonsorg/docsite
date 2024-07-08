@@ -133,6 +133,10 @@ With `select=date` and `select=value` specified, the response looks like:
           "orderedFacets": [
             {
               "facetId": "<var>FACET_ID</var>",
+              "earliestDate" : "   ",
+              "facetId" : "    ",
+              "latestDate" : "   ",
+              "obsCount" : 1,
               "observations": [
                 {
                   "date": "<var>OBSERVATION_DATE</var>",
@@ -149,10 +153,10 @@ With `select=date` and `select=value` specified, the response looks like:
     }
   "facets" {
     "<var>FACET_ID</var>": {
-      "importName": "USCensusPEP_Annual_Population",
-      "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables",
-      "measurementMethod": "CensusPEPSurvey",
-      "observationPeriod": "P1Y"
+      "importName": "  ",
+      "provenanceUrl": "  ",
+      "measurementMethod": "  ",
+      "observationPeriod": "  "
     },
     ...
   }
@@ -164,8 +168,23 @@ With `select=date` and `select=value` specified, the response looks like:
 
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
-| orderedFacets | list of objects |  |
-| facets | object | DCIDs matching the description you provided, along with an optional `dominantType` field which can be used for filtering multiple results. |
+| orderedFacets | list of objects |                          |
+| observations | list of objects
+| facets | object |                                          |
+| observations | list of objects | 
+
+The response for an observation is a multi-level object generic response that can handle all the cases mentioned above. The observation request is first keyed by the variable, then keyed by the entity. Next comes a list of ordered facets. Each facet is a way to measure the observations. For example, populations measured by different Census Survey data are treated as different facets of the population observation. All the different measured observations are collected and ordered based on preferences.
+
+Keep in mind the following rules when querying observations:
+
+Each facet contains a list of observations.
+Each observation has a “date” and “value”.
+The response may not have all levels and all fields, depending on the query parameters listed in the next bullet.
+There is a request parameter named “select” that is used to indicate the values the response should contain. Below are the scenarios:
+select = [“variable”, “entity”, “date”, “value”]; the response contains actual observation with date and value for each variable and entity.
+select = [“variable”, “entity”]; the response does not return an actual observation because the date and value are not queried. This can be used to check data existence for “variable”, “entity” pairs and to fetch all the variables that have data for given entities.
+
+
 {: .doc-table}
 
 ## Examples
