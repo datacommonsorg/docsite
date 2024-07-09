@@ -14,7 +14,7 @@ One line summary of what it does.
 Longer details if necessary can go in a short paragraph here. This is where to document any particular nuances in behavior or to provide special notes for end users. If there’s any special Data Commons terminology to define (e.g. triples), that should be done here as well.
 
 See also:
-    To do some other related, but different thing, see [/_VERSION_/_OTHER_END_POINT_](https://docs.datacommons.org/...)
+    To do some other related, but different thing, see [/_VERSION_/_OTHER_END_POINT_](link)
 
 
 ## Request
@@ -63,7 +63,7 @@ JSON data:
 
 | Name                                               | Type | Description               |
 | -------------------------------------------------- | ---- | ------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/VERSION/index.md#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](link) for a demo key, as well as instructions on how to get your own key. |
 | _QUERY_ <br /> <optional-tag>Optional</optional-tag> | type | description of query here |
 {: .doc-table }
 
@@ -75,7 +75,7 @@ The response looks like:
 {
   "value": 1234,
   "date": "YYYY-MM-DD",
-  "Metadata": {}
+  "Mmetadata": {}
 }
 ```
 {: .response-signature .scroll}
@@ -91,14 +91,14 @@ The response looks like:
 
 ### Example 1: Description of what we're trying to show
 
-One sentence explanation of details of the example.
+One sentence explanation of details of the example. Use GET or POST request as appropriate.
 
 Request:
 {: .example-box-title}
 <pre>
   $ curl --request GET --url \
-  'https://api.datacommons.org/<var>VERSION</var>/<var>ENDPOINT</var>?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&<var>&<var>QUERY</var>=<var>VALUE</var>&'
-<pre>
+  'https://api.datacommons.org/<var>VERSION</var>/<var>ENDPOINT</var>?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&<var>QUERY</var>=<var>VALUE</var>...'
+</pre>
 {: .example-box-content .scroll}
 
 Response:
