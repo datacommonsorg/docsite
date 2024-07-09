@@ -165,7 +165,7 @@ With `select=date` and `select=value` specified, the response looks like:
 |-------------|--------|-------------------------------------|
 | orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity, such as the date range, the number of observations included in the facet etc. |
 | observations | list of objects | Date and value pairs for the observations made in the time period |
-| facets | object | Various properties of reported facets, including the provenance of the data, etc. |
+| facets | object | Various properties of reported facets, where available, including the provenance of the data, etc. |
 {: .doc-table}
 
 ## Examples
