@@ -1,6 +1,6 @@
 ---
 layout: default
-title: REST API Page Template
+title: REST API page template
 nav_order: 999
 parent: REST
 grand_parent: API
@@ -29,7 +29,7 @@ div class="api-tab">
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/<var>VERSION</var>/<var>ENDPOINT</var>?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>PARAM1</var>&<var>PRAM2</var>
+https://api.datacommons.org/<var>VERSION</var>/<var>ENDPOINT</var>?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&<var>PARAM1</var>&<var>PARAM2</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -41,14 +41,11 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
 JSON data:
 {
-  "<var>q": [
-      "<var>NODE_DCID_1</var>",
-      "<var>NODE_DCID_2</var>",
-      ...
+  "<var>PARAM1</var>": [
+    ...
     ],
-  "property": "<var>RELATION_EXPRESSION</var>"
+  "<var>PARAM2</var>": "..."
 }
-
 </div>
 
 <script src="/assets/js/syntax_highlighting.js"></script>
@@ -100,7 +97,7 @@ Request:
 {: .example-box-title}
 <pre>
   $ curl --request GET --url \
-  'https://api.datacommons.org/<var>VERSION</var>/<var>ENDPOINT</var>/<var>PARAM1</var>/<var>PARAM2</var>?<var>QUERY</var><var>VALUE</var>&key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+  'https://api.datacommons.org/<var>VERSION</var>/<var>ENDPOINT</var>?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&<var>&<var>QUERY</var>=<var>VALUE</var>&'
 <pre>
 {: .example-box-content .scroll}
 

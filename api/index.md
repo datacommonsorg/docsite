@@ -31,7 +31,3 @@ The endpoints can be roughly grouped into four categories:
 
 -   **Utilities**: These are Python notebook-specific APIs for helping with
     Pandas DataFrames, etc.
-
-## Authorization
-
-All APIs require an API key for to authorize use. For information on how to get a key and provide it in API calls, see []
