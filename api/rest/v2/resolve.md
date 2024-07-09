@@ -11,7 +11,7 @@ published: true
 
 The Resolve API returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph.
 Each entity in Data Commons has an associated `DCID` which is used to refer to it
-in other API calls or programs. An important step for a Data Commons user is to
+in other API calls or programs. An important step for a Data Commons developer is to
 identify the DCIDs of entities they care about. This API searches for an entry in the
 Data Commons knowledge graph and returns the DCIDs of matches. You can use
 common properties or even descriptive words to find entities.
@@ -24,7 +24,6 @@ the US state).
 <div markdown="span" class="alert alert-info" role="alert">
    <span class="material-icons md-16">info </span><b>Note:</b><br />
    Currently, this endpoint only supports [place](/glossary.html#place) entities.
-   Support for other entity types will be added as the knowledge graph grows.
 </div>
 
 
@@ -79,9 +78,9 @@ JSON data:
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started.html#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | Comma-separated list of property values (e.g. entity name or DCID), or description of the node. This currently only supports the name of a place.
-| property <br /> <required-tag>Required</required-tag> | string | [Relation expression](api/rest/v2/index.html#relation-expression) that represents the relation of the given nodes to the queried entities. Note that this should always end with `->dcid` |
+| property <br /> <required-tag>Required</required-tag> | string | [Relation expression](api/rest/v2/getting_started.html#relation-expressions) that represents the relation of the given nodes to the queried entities. Note that this should always end with `->dcid` |
 
 {: .doc-table }
 

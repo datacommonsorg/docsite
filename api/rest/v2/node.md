@@ -24,8 +24,7 @@ connected to the queried node.
 <div markdown="span" class="alert alert-info" role="alert">
   <span class="material-icons md-16">info </span><b>Note:</b><br />
   For filtering, this API currently only supports the `containedInPlace`
-  property to fetch multiple `Place` nodes. Support for more properties and node
-  types will be added in the future.
+  property to fetch multiple `Place` nodes.
 </div>
 
 ## Request
@@ -69,9 +68,9 @@ JSON data:
 
 | Name                                                  | Type   |  Description           |
 | ----------------------------------------------------- | ------ | -----------------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started.html#authentication) for a demo key, as well as instructions on how to get your own key. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/index.html#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [Data Commons REST (v2) API overview](/api/rest/v2/getting_started.html#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
 
 {: .doc-table }
 
@@ -79,10 +78,10 @@ JSON data:
 
 The response looks like:
 
-```js
+<pre>
 {
   "data": {
-    "NODE_DCID": {
+    "<var>NODE_DCID</var>": {
       "arcs": {
         "<var>LABEL</var>": {
           "nodes": [
@@ -98,7 +97,7 @@ The response looks like:
   }
   "nextToken": "<var>TOKEN_STRING</var>"
 }
-```
+</pre>
 {: .response-signature .scroll}
 
 ### Response fields

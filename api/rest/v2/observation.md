@@ -76,7 +76,8 @@ JSON data:
 
 {: .doc-table }
 
-### Date-time string formats {: #date-string}
+{: #date-string}
+### Date-time string formats 
 
 Here are the possible values for specifying dates/times:
 - `LATEST`: Fetch the latest observations only.
