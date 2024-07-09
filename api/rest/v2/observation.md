@@ -93,10 +93,10 @@ For other cases, you may need to drill down further to a timeline graph to view 
 
 In these cases, do the following:
 
-1. In the Statistical Variable Explorer, in click on an example place to link to the variable's page in the Knowledge Graph Browser. 
+1. In the Statistical Variable Explorer, click on an example place to link to the variable's page in the Knowledge Graph Browser. 
 1. Scroll to the **Observations** section and click **Show Table** to get a list of observations.
 
-For example, and click on the line graph to see the frequency, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection), the observations table shows that the variable is measured every four hours, starting at midnight.
+For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection), the observations table shows that the variable is measured every four hours, starting at midnight.
 
 ![date time example 3](/assets/images/rest/date_time_example3.png){: width="600"}
 
