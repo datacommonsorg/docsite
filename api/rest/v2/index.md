@@ -247,3 +247,7 @@ which are connected by the same property, but are a few hops away. This is suppo
 To illustrate again using the Argentina example:
 - All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
 - All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
+
+## Escape codes for reserved characters in GET requests
+
+HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you must use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding) for reserved characters. 
