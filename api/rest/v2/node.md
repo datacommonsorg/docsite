@@ -79,10 +79,10 @@ JSON data:
 
 The response looks like:
 
-<pre>
+```js
 {
   "data": {
-    "<var>NODE_DCID</var>": {
+    "NODE_DCID": {
       "arcs": {
         "<var>LABEL</var>": {
           "nodes": [
@@ -98,7 +98,7 @@ The response looks like:
   }
   "nextToken": "<var>TOKEN_STRING</var>"
 }
-</pre>
+```
 {: .response-signature .scroll}
 
 ### Response fields
