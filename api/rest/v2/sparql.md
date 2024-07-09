@@ -13,7 +13,7 @@ This endpoint makes it possible to query the Data Commons knowledge graph using
 [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). SPARQL is a query language developed to retrieve data from [RDF graph](https://en.wikipedia.org/wiki/Resource_Description_Framework) content on the web. It leverages the graph structure innate in the data it 
 queries to return specific information.
 
-**Note:** Data Commons only supports a limited subset of SPARQL functionality at this time: specifically, only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT` are supported. 
+**Note:** Data Commons only supports a limited subset of SPARQL functionality at this time: specifically, only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT` are supported.
 
 ## Request
 
@@ -39,7 +39,7 @@ JSON data: { "query": "<var>SPARQL_QUERY</var>" }
 | Name                                                | Type   | Description                                                                                                                                                     |
 | --------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the the section on [authentication](getting_started.md#authentication) for instructions on how to get a key. |
-| query <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, all desired entities must be specified; wildcards are not supported. Each node or entity must have a `typeOf` condition, for example, <code>?<var>ENTITYgit _NAME</var> typeOf City</code>.                                              |
+| query <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, each node or entity should have a `typeOf` condition, for example, <code>?<var>NODE_NAME</var> typeOf City</code>.                                              |
 {: .doc-table }
 
 ## Response
