@@ -98,7 +98,9 @@ Most requests require the [DCID](/glossary.html#dcid) of the entity or variable 
 {: #authentication}
 ## Authentication
 
-API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
+API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api/index.html#get-key).
+
+To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 
 For GET requests, this looks like:
 
@@ -127,19 +129,6 @@ curl -X POST \
   "property: "<var>RELATION_EXPRESSION</var>"
 }'
 </pre>
-
-{: #get-key}
-### Get API keys 
-
-We provide a trial API key for general public use. This key will let you try the API and make single requests.
-
-<div markdown="span" class="alert alert-secondary" role="alert">
-   <b>Trial Key: </b>
-   `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
-</div>
-
-_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
-[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. 
 
 {: #pagination}
 ## Pagination
