@@ -11,9 +11,8 @@ permalink: /api/rest/v2/observation
 # /v2/observation
 
 The Observation API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date: for example, “population of USA in
-2020”, “GDP of California in 2010”, “predicted temperature of New York in 2050”,
-and so on.
+entity and variable at a particular date: for example, "population of USA in
+2020", "GDP of California in 2010", and so on.
 
 ## Request
 
@@ -64,16 +63,13 @@ JSON data:
 
 | Name                                                  | Type   |  Description                                                    |
 |-------------------------------------------------------|--------|-----------------------------------------------------------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/index.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started.html#authentication) for a demo key, as well as instructions on how to get your own key. |
 | date <br /> <required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
 | variable.dcids <br /> <required-tag>Required</required-tag>| list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. |
-| entity.dcids                                          | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. At least one of `entity.dcids` or `entity.expression` is required. |
-| entity.expression                                     | string | [Relation expression](api/rest/v2/index.html#relation-expression) that represents the  entities to query.  At least one of `entity.dcids` or `entity.expression` is required.|
-| select <br /> <required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to 
-    first check the existence of variable-entity pairs in the data and fetch all the
-    variables that have data for given entities. |
-| select <br /> <optional-tag>Optional</required-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
-
+| entity.dcids                                          | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
+| entity.expression                                     | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
+| select <br /> <required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check the existence of variable-entity pairs in the data and fetch all the variables that have data for given entities. |
+| select <br /> <optional-tag>Optional</optional-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
 {: .doc-table }
 
 {: #date-string}
@@ -97,10 +93,10 @@ For other cases, you may need to drill down further to a timeline graph to view 
 
 In these cases, do the following:
 
-1. In the Statistical Variable Explorer, in click on an example place to link to the variable's page in the Knowledge Graph Browser. 
+1. In the Statistical Variable Explorer, click on an example place to link to the variable's page in the Knowledge Graph Browser. 
 1. Scroll to the **Observations** section and click **Show Table** to get a list of observations.
 
-For example, and click on the line graph to see the frequency, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection), the observations table shows that the variable is measured every four hours, starting at midnight.
+For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection), the observations table shows that the variable is measured every four hours, starting at midnight.
 
 ![date time example 3](/assets/images/rest/date_time_example3.png){: width="600"}
 
@@ -126,6 +122,7 @@ Without `select=date` and `select=value` specified, the response looks like:
 
 With `select=date` and `select=value` specified, the response looks like:
 
+<pre>
 {
   "byVariable": {
     "<var>VARIABLE_DCID_1</var>": {
@@ -153,14 +150,13 @@ With `select=date` and `select=value` specified, the response looks like:
     }
   "facets" {
     "<var>FACET_ID</var>": {
-      "importName": "  ",
-      "provenanceUrl": "  ",
-      "measurementMethod": "  ",
-      "observationPeriod": "  "
+      "importName": "...",
+      "provenanceUrl": "...",
+      "measurementMethod": "...",
+      "observationPeriod": "..."
     },
     ...
   }
-
 </pre>
 {: .response-signature .scroll}
 
@@ -168,23 +164,9 @@ With `select=date` and `select=value` specified, the response looks like:
 
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
-| orderedFacets | list of objects |                          |
-| observations | list of objects | Date and value pairs for the observations made in the time period
-| facets | object |                                          |
-| observations | list of objects | 
-
-The response for an observation is a multi-level object generic response that can handle all the cases mentioned above. The observation request is first keyed by the variable, then keyed by the entity. Next comes a list of ordered facets. Each facet is a way to measure the observations. For example, populations measured by different Census Survey data are treated as different facets of the population observation. All the different measured observations are collected and ordered based on preferences.
-
-Keep in mind the following rules when querying observations:
-
-Each facet contains a list of observations.
-Each observation has a “date” and “value”.
-The response may not have all levels and all fields, depending on the query parameters listed in the next bullet.
-There is a request parameter named “select” that is used to indicate the values the response should contain. Below are the scenarios:
-select = [“variable”, “entity”, “date”, “value”]; the response contains actual observation with date and value for each variable and entity.
-select = [“variable”, “entity”]; the response does not return an actual observation because the date and value are not queried. This can be used to check data existence for “variable”, “entity” pairs and to fetch all the variables that have data for given entities.
-
-
+| orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity, such as the date range, the number of observations included in the facet etc. |
+| observations | list of objects | Date and value pairs for the observations made in the time period |
+| facets | object | Various properties of reported facets, where available, including the provenance of the data, etc. |
 {: .doc-table}
 
 ## Examples
@@ -192,6 +174,9 @@ select = [“variable”, “entity”]; the response does not return an actual 
 ### Example 1: Get the latest observation for given entities
 
 Specify `date=LATEST` to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
+
+Note: When sending a GET request, you need to use the following percent codes for reserved characters: 
+- `%2F` for `/`
 
 Parameters:
 {: .example-box-title}
@@ -370,6 +355,13 @@ type `County`". Then we specify the select fields to request actual observations
 with date and value for each variable
 ([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)) and
 entity (all counties in California).
+
+Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+- `%3C` for `<`
+- `%2B` for `+`
+- `%7B` for `{`
+- `%3A` for `:`
+- `%7D` for `}`
 
 Parameters:
 {: .example-box-title}
