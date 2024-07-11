@@ -9,17 +9,19 @@ published: true
 
 # /v2/node
 
-The Node API fetches node information for edges and neighboring nodes. This is useful for
+Data Commons represents node relations as directed edges between nodes, or
+property. The name of the property is a label, while the target node is the value of
+the property. The Node endpoint returns the property labels and values that are
+connected to the queried node.This is useful for
 finding local connections between nodes of the Data Commons knowledge graph.
+
 More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
 - Get the values of a property for individual or multiple nodes. These can also
   be chained for multiple degrees in the graph.
 - Get all connected nodes that are linked with invidiual or mutiple nodes.
-Data Commons represents node relations as directed edges between nodes, or
-property. The name of the property is a label, while the target node is the value of
-the property. This endpoint returns the property labels and values that are
-connected to the queried node.
+
+
 
 ## Request
 
