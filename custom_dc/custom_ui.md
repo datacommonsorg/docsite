@@ -2,14 +2,18 @@
 layout: default
 title: Customize the site
 nav_order: 4
-parent: Custom Data Commons
+parent: Build and run your own Data Commons
 ---
 
 {:.no_toc}
 # Customize the site
 
+This page shows you how to customize the UI of your local instance. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
+
 * TOC
 {:toc}
+
+## Overview
 
 The default custom Data Commons image provides a bare-bones UI that you will undoubtedly want to customize to your liking. Data Commons uses the Python [Flask](https://flask.palletsprojects.com/en/3.0.x/#) web framework and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/) HTML templates. If you're not familiar with these, the following documents are good starting points:
 

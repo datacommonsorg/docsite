@@ -2,7 +2,7 @@
 layout: default
 title: Build and run a custom image
 nav_order: 5
-parent: Custom Data Commons
+parent: Build and run your own Data Commons
 ---
 
 {:.no_toc}

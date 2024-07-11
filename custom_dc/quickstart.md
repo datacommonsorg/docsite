@@ -2,7 +2,7 @@
 layout: default
 title: Quickstart
 nav_order: 2
-parent: Custom Data Commons
+parent: Build and run your own Data Commons
 ---
 
 {:.no_toc}
@@ -11,11 +11,12 @@ parent: Custom Data Commons
 * TOC
 {:toc}
 
-To start developing a custom Data Commons instance, we recommend that you develop your site and host your data locally. This uses a SQLite database to store custom data.
+This page shows you how to run a local custom Data Commons instance inside a Docker container and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
+
+This is step 1 of the [recommended workflow](/custom_dc/index.html#workflow).
+
 
 ![setup2](/assets/images/custom_dc/customdc_setup2.png)
-
-This page shows you how to run a local custom Data Commons instance inside a Docker container, load sample custom data, and enable natural querying. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
 
 ## Prerequisites
 

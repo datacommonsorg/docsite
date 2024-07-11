@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Custom Data Commons
+title: Build and run your own Data Commons
 nav_order: 90
 has_children: true
 ---
 
 {:.no_toc}
-# Custom Data Commons
+# Build and run your own Data Commons
 
 * TOC
 {:toc}
@@ -18,20 +18,6 @@ Data Commons is an open source platform. Any organization can create a custom Da
 A custom instance natively combines the base Data Commons data (from datacommons.org) and the custom data in a unified fashion. Users can generate visualizations and perform data analyses across base and custom datasets seamlessly.
 
 A custom Data Commons site is deployed in Google Cloud Platform (GCP). The owner has full control over data, computing resources and access. The site can be accessible by the general public or can be controlled to limited principals. When base data is joined with the custom instance data, it is pulled in from the base Data Commons site; custom data is never pushed to the base data store.
-
-## Case studies
-
-### Feeding America Data Commons
-
-[Feeding America Data Commons](https://datacommons.feedingamerica.org/) provides access to data from [Map the Meal Gap](https://map.feedingamerica.org/), overlaid with data from a wide range of additional sources into a single portal under a common scheme. Combining datasets from the CDC and Map the Meal gap, the relationship between heart health and food insecurity can be retrieved with a few clicks.
-
-![fa](/assets/images/custom_dc/home-heart-food.png){: height="450" }
-
-### India Data Commons
-
-[India Data Commons](https://datacommons.iitm.ac.in/) is an effort by Robert Bosch Center for Data Science and Artificial Intelligence, IIT Madras, to highlight India-specific data. India Data Commons features datasets published by Indian Ministries and governmental organizations and provides it through the Data Commons knowledge graph.
-
-![iitm](/assets/images/custom_dc/iitm.png){: height="450" }
 
 ## Why use a custom Data Commons instance?
 
@@ -49,19 +35,23 @@ For the following use cases, a custom Data Commons instance is not necessary:
 - You only want to make your own data available to the base public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html).
 - You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](/api/web_components/index.html) for more details.
 
-## Supported features
+## Comparison between base and custom Data Commons
 
-A custom Data Commons instance supports the following features:
+| Feature                                                      |  Base Data Commons | Custom Data Commons |
+|--------------------------------------------------------------|--------------------|---------------------|
+| Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
+| Natural language query interface                            |  yes, using open-source models only |  yes, using Google AI technologies and models  |
+| REST APIs                                                   |  yes | yes, no additional setup needed |
+| Python and Pandas API wappers                               |  yes  | yes, but requires additional setup[^1](#bullets) |
+| Bigquery interface  | yes | no
+| Google Spreadsheets                                         |  yes |  yes, but requires additional setup[^1](#bullets) |
+| Site ccess controls | yes, using any supported Cloud Run mechanisms[^2](#bullets) | n/a |
+| Fine-grained data access controls[^3](#bullets) |  no | n/a |
 
-- All of the same interactive tools as the base site, including the natural language query interface
-- REST APIs --- no additional setup neeeded
-- Python and Pandas API wrappers, and/or Spreadsheets --- requires additional setup and maintenance. If you would like to support these facilities, please contact us.
-- Access controls to the site, using any supported Google Cloud Run mechanisms, such as Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress) for more information on these options.
-
-The following are not supported:
-
-- Fine-grained data access controls; you cannot set access controls on specific data, only the entire custom site.
-- Bigquery APIs
+ {: #bullets}
+1. If you would like to support these facilities, please contact us.
+2. For example, Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress) for more information on these options. 
+3. You cannot set access controls on specific data, only the entire custom site.
 
 ## System overview
 
@@ -92,6 +82,7 @@ In terms of development time and effort, to launch a site with custom data in co
 
 The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a small dataset, we have found the cost comes out to roughly $100 per year. You can get more precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing).
 
+{: #workflow}
 ## Recommended workflow
 
 1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.

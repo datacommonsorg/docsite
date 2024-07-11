@@ -2,7 +2,7 @@
 layout: default
 title: Test data in Google Cloud
 nav_order: 6
-parent: Custom Data Commons
+parent: Build and run your own Data Commons
 ---
 
 {:.no_toc}
@@ -10,6 +10,10 @@ parent: Custom Data Commons
 
 * TOC
 {:toc}
+
+This page shows you how to store your custom data in Google Cloud database and load it into a local instance. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
+
+## Overview
 
 Once you have tested locally, you need to get your data into Google Cloud so you can test it remotely. You can continue to run the custom Data Commons instance locally, but retrieve data from the Cloud. In this scenario, the system is set up like this:
 

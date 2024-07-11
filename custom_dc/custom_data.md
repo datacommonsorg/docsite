@@ -2,7 +2,7 @@
 layout: default
 title: Work with custom data
 nav_order: 3
-parent: Custom Data Commons
+parent: Build and run your own Data Commons
 ---
 
 {:.no_toc}
@@ -10,6 +10,10 @@ parent: Custom Data Commons
 
 * TOC
 {:toc}
+
+This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
+
+## Overview
 
 Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure.
 
