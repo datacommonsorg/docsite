@@ -92,10 +92,10 @@ The response looks like:
 {
   "entities": [
     {
-      "node": "<var>NODE_1</var>}",
+      "node": "<var>NODE_1</var>",
       "candidates": [
         {
-          "dcid": "<var>DCID_1</var>}",
+          "dcid": "<var>DCID_1</var>",
           "dominantType": "<var>TYPE_OF_DCID_1</var>"
         },
       ]
