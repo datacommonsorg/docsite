@@ -120,12 +120,13 @@ The response looks like:
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
-| candidates | list | DCIDs matching the description you provided, along with an optional `dominantType` field which can be used for filtering multiple results. |
+| candidates | list | DCIDs matching the description you provided.
+| dominantType | Optional `dominantType` field which, where applicable, is used to disambiguate between multiple results. |
 {: .doc-table}
 
 <div markdown="span" class="alert alert-info" role="alert">
   <span class="material-icons md-16">info </span><b>Note:</b><br />
-  There is a deprecated field `resolvedIds` that is currently returned by the API. It will be removed soon.
+  There is a deprecated field `resolvedIds` that is currently returned by the API. It will be removed soon. Examples below omit this redundant field.
 </div>
 
 ## Examples
@@ -157,15 +158,12 @@ Response:
 {
    "entities" : [
       {
+         "node" : "Q30",
          "candidates" : [
             {
                "dcid" : "country/USA"
             }
          ],
-         "node" : "Q30",
-         "resolvedIds" : [
-            "country/USA"
-         ]
       }
    ]
 }
@@ -176,7 +174,7 @@ Response:
 
 This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude) and [`longitude`](https://datacommons.org/browser/longitude) properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
 
-Note: If using GET, escape `#` to `%23`.
+Note: If using a GET request, use the percent code `%23` for `#`.
 
 Parameters:
 {: .example-box-title}
@@ -200,6 +198,7 @@ Response:
 
 ```json
 {
+   "node" : "37.42#-122.08",
    "entities" : [
       {
          "candidates" : [
@@ -248,21 +247,6 @@ Response:
                "dominantType" : "CensusZipCodeTabulationArea"
             }
          ],
-         "node" : "37.42#-122.08",
-         "resolvedIds" : [
-            "zip/94043",
-            "ipcc_50/37.25_-122.25_USA",
-            "geoId/sch0626310",
-            "geoId/sch0626280",
-            "geoId/0649670",
-            "geoId/0618",
-            "geoId/0608592830",
-            "geoId/060855046011",
-            "geoId/06085504601",
-            "geoId/06085",
-            "geoId/06",
-            "country/USA"
-         ]
       }
    ]
 }
@@ -273,7 +257,7 @@ Response:
 
 This queries for the DCID of "Georgia". Notice that specifying `Georgia` without a type filter returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13)), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO)) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700)).
 
-Note that we use the `description` property in the request. This currently only supports resolving place entities by name.
+Note the `description` property in the request. This currently only supports resolving place entities by name.
 
 Parameters:
 {: .example-box-title}
@@ -296,7 +280,8 @@ Response:
 {: .example-box-title}
 
 ```json
-{
+{ 
+   "node" : "Georgia",
    "entities" : [
       {
          "candidates" : [
@@ -310,12 +295,6 @@ Response:
                "dcid" : "geoId/5027700"
             }
          ],
-         "node" : "Georgia",
-         "resolvedIds" : [
-            "geoId/13",
-            "country/GEO",
-            "geoId/5027700"
-         ]
       }
    ]
 }
@@ -326,6 +305,11 @@ Response:
 
 This queries for the DCID of "Georgia". Unlike in the previous example, here
 we also specify its type using a filter and only get one place in the response.
+
+Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+- `%7B` for `{`
+- `%7D` for `}`
+
 
 Parameters:
 {: .example-box-title}
@@ -350,15 +334,12 @@ Response:
 {
    "entities" : [
       {
+         "node" : "Georgia",
          "candidates" : [
             {
                "dcid" : "geoId/13"
             }
          ],
-         "node" : "Georgia",
-         "resolvedIds" : [
-            "geoId/13"
-         ]
       }
    ]
 }
@@ -368,6 +349,11 @@ Response:
 ### Example 5: Find the DCID of multiple places by name, with a type filter
 
 This queries for the DCIDs of "Mountain View" and "New York City".
+
+Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+- `%20` for space
+- `%7B` for `{`
+- `%7D` for `}`
 
 Parameters:
 {: .example-box-title}
@@ -402,6 +388,7 @@ Response:
 {
    "entities" : [
       {
+         "node" : "Mountain View, CA",
          "candidates" : [
             {
                "dcid" : "geoId/0649670"
@@ -410,22 +397,14 @@ Response:
                "dcid" : "geoId/0649651"
             }
          ],
-         "node" : "Mountain View, CA",
-         "resolvedIds" : [
-            "geoId/0649670",
-            "geoId/0649651"
-         ]
       },
       {
+         "node" : "New York City",
          "candidates" : [
             {
                "dcid" : "geoId/3651000"
             }
          ],
-         "node" : "New York City",
-         "resolvedIds" : [
-            "geoId/3651000"
-         ]
       }
    ]
 }
