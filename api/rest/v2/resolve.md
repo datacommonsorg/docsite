@@ -282,10 +282,10 @@ Response:
 
 ```json
 { 
-   "node" : "Georgia",
    "entities" : [
       {
-         "candidates" : [
+        "node" : "Georgia",
+        "candidates" : [
             {
                "dcid" : "geoId/13"
             },
