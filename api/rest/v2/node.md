@@ -21,12 +21,6 @@ property. The name of the property is a label, while the target node is the valu
 the property. This endpoint returns the property labels and values that are
 connected to the queried node.
 
-<div markdown="span" class="alert alert-info" role="alert">
-  <span class="material-icons md-16">info </span><b>Note:</b><br />
-  For filtering, this API currently only supports the `containedInPlace`
-  property to fetch multiple `Place` nodes.
-</div>
-
 ## Request
 
 <div class="api-tab">

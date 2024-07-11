@@ -121,7 +121,7 @@ The response looks like:
 |-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
 | candidates | list | DCIDs matching the description you provided.
-| dominantType | Optional `dominantType` field which, where applicable, is used to disambiguate between multiple results. |
+| dominantType | string | Optional field which, where present, disambiguates between multiple results. |
 {: .doc-table}
 
 <div markdown="span" class="alert alert-info" role="alert">
@@ -306,7 +306,7 @@ Response:
 This queries for the DCID of "Georgia". Unlike in the previous example, here
 we also specify its type using a filter and only get one place in the response.
 
-Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+Note: When sending a GET request, you need to use the following percent codes for reserved characters:
 - `%7B` for `{`
 - `%7D` for `}`
 
@@ -350,7 +350,7 @@ Response:
 
 This queries for the DCIDs of "Mountain View" and "New York City".
 
-Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+Note: When sending a GET request, you need to use the following percent codes for reserved characters:
 - `%20` for space
 - `%7B` for `{`
 - `%7D` for `}`
