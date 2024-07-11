@@ -99,7 +99,7 @@ The response looks like:
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | A token used to query [next page of data](index.md#pagination)                   |
+| nextToken | string | A token used to query [next page of data](/api/rest/v2/getting_started.html#pagination)                   |
 {: .doc-table}
 
 ## Examples
