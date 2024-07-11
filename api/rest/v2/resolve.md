@@ -198,9 +198,10 @@ Response:
 
 ```json
 {
-   "node" : "37.42#-122.08",
+   
    "entities" : [
       {
+         "node" : "37.42#-122.08",
          "candidates" : [
             {
                "dcid" : "geoId/0649670",
