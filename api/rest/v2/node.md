@@ -10,18 +10,16 @@ published: true
 # /v2/node
 
 Data Commons represents node relations as directed edges between nodes, or
-property. The name of the property is a label, while the target node is the value of
-the property. The Node endpoint returns the property labels and values that are
-connected to the queried node.This is useful for
+_properties_. The name of the property is a _label_, while the target node is the _value_ of
+the property. The Node API returns the property labels and values that are
+connected to the queried node. This is useful for
 finding local connections between nodes of the Data Commons knowledge graph.
 
 More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
 - Get the values of a property for individual or multiple nodes. These can also
-  be chained for multiple degrees in the graph.
-- Get all connected nodes that are linked with invidiual or mutiple nodes.
-
-
+  be chained for multiple hops in the graph.
+- Get all connected nodes that are linked with individual or multiple nodes.
 
 ## Request
 
@@ -208,7 +206,7 @@ property: "->[name, latitude, longitude]"
 Request:
 {: .example-box-title}
 
-```json
+```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
   -d '{"nodes": ["geoId/06085", "geoId/06087"], "property": "->[name, latitude, longitude]"}'
@@ -218,7 +216,7 @@ Response:
 {: .example-box-title}
 
 ```json
-
+{
    "data" : {
       "geoId/06085" : {
          "arcs" : {
