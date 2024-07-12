@@ -1,54 +1,39 @@
 ---
 layout: default
 title: Node
-nav_order: 1
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
 published: true
-permalink: /api/rest/v2/node
 ---
 
 # /v2/node
 
-Fetches node information for edges and neighboring nodes. This is useful for
+Data Commons represents node relations as directed edges between nodes, or
+_properties_. The name of the property is a _label_, while the target node is the _value_ of
+the property. The Node API returns the property labels and values that are
+connected to the queried node. This is useful for
 finding local connections between nodes of the Data Commons knowledge graph.
-More specifically, this API can perform the following tasks:
 
+More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
 - Get the values of a property for individual or multiple nodes. These can also
-  be chained for multiple degrees in the graph.
-- Get all connected nodes that are linked with invidiual or mutiple nodes.
-
-Data Commons represents node relations as directed edges between nodes, or
-property. The name of the property is label, while the target node is a value of
-the property. This endpoint returns the property labels and values that are
-connected to the queried node.
-
-The REST (v2) API introduces [relation
-expressions](/api/rest/v2/#relation-expressions) in the API syntax to represent
-neighboring nodes, and to support chaining and filtering. For more information
-see [Data Commons REST (v2) API Overview](/api/rest/v2/#relation-expressions).
-
-<div markdown="span" class="alert alert-info" role="alert">
-  <span class="material-icons md-16">info </span><b>Note:</b><br />
-  For filtering, this API currently only supports the `containedInPlace`
-  property to fetch multiple `Place` nodes. Support for more properties and node
-  types will be added in the future.
-</div>
+  be chained for multiple hops in the graph.
+- Get all connected nodes that are linked with individual or multiple nodes.
 
 ## Request
 
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
-    GET Request
+    GET request
   </button>
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
-    POST Request
+    POST request
   </button>
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/node?key={your_api_key}&nodes={DCID}&property={PROPERTY}
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -56,16 +41,16 @@ URL:
 https://api.datacommons.org/v2/node
 
 Header:
-X-API-Key: {your_api_key}
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
-JSON Data:
+JSON data:
 {
   "nodes": [
-      "{value_1}",
-      "{value_2}",
+      "<var>NODE_DCID_1</var>",
+      "<var>NODE_DCID_2</var>",
       ...
     ],
-  "property": "{property_expression}"
+  "property": "<var>RELATION_EXPRESSION</var>"
 }
 
 </div>
@@ -73,31 +58,26 @@ JSON Data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-### Query Parameters
+## Query parameters
 
-| Name                                                  | Type   | Description                                                                                                                                                     |
-| ----------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
-| nodes <br /> <required-tag>Required</required-tag>    | string | [DCIDs](/glossary.html#dcid) of the nodes to query.                                                                                                             |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see Data Commons REST (v2) API Overview.                                |
+| Name                                                  | Type   |  Description           |
+| ----------------------------------------------------- | ------ | -----------------------|
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see the [REST (v2) API overview](/api/rest/v2/#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+
 {: .doc-table }
-
-By using different “property” parameters, you can query node information in
-different ways such as getting the edges and neighboring node values. Notice
-that the “property parameter” should follow the syntax section (reference).
-You can also request this information for one or multiple nodes, as demonstrated
-in the following examples.
 
 ## Response
 
 The response looks like:
 
-```json
+<pre>
 {
   "data": {
-    "{node_DCID}": {
+    "<var>NODE_DCID</var>": {
       "arcs": {
-        "{label}": {
+        "<var>LABEL</var>": {
           "nodes": [
             ...
           ]
@@ -105,28 +85,28 @@ The response looks like:
         ...
       },
       "properties": [
-        "{value}",
+        "<var>VALUE</var>",
       ],
     }
   }
-  "nextToken": "{token_string}"
+  "nextToken": "<var>TOKEN_STRING</var>"
 }
-```
+</pre>
+{: .response-signature .scroll}
 
 ### Response fields
 
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | [Pagination] A token used to query next page of data                         |
+| nextToken | string | A token used to query [next page of data](/api/rest/v2/getting_started.html#pagination)                   |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: All "in" Properties for a Given Node
+### Example 1: Get all incoming arcs for a given node
 
-Get the properties of the node with DCID `geoId/06` by querying all in
-properties with the `<-` symbol.
+Get all incoming arcs of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels.
 
 Parameters:
 {: .example-box-title}
@@ -164,10 +144,9 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get One Property for a Given Node
+### Example 2: Get one property for a given node
 
-Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the
-`->name` symbol.
+Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 
 Parameters:
 {: .example-box-title}
@@ -210,17 +189,17 @@ Response:
 
 
 {: #multiple-properties}
-### Example 3: Get Multiple Property Values for Multiple Nodes
+### Example 3: Get multiple property values for multiple nodes
 
-Get `name`, `latitude`, and `longitude` value for several nodes: `geoId/06085`
-and `geoId/06086`. Note that multiple properties for a given node must be
+Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
+and `geoId/06087`. Note that multiple properties for a given node must be
 enclosed in square brackets `[]`.
 
 Parameters:
 {: .example-box-title}
 
 ```bash
-nodes: "geoId/06085", "geoId/06086"
+nodes: "geoId/06085", "geoId/06087"
 property: "->[name, latitude, longitude]"
 ```
 
@@ -230,7 +209,7 @@ Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
-  -d '{"nodes": ["geoId/06085", "geoId/06086"], "property": "->[name, latitude, longitude]"}'
+  -d '{"nodes": ["geoId/06085", "geoId/06087"], "property": "->[name, latitude, longitude]"}'
 ```
 
 Response:
@@ -238,67 +217,90 @@ Response:
 
 ```json
 {
-  "data": {
-    "geoId/06085": {
-      "arcs": {
-        "name": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "Santa Clara County"
+   "data" : {
+      "geoId/06085" : {
+         "arcs" : {
+            "latitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.221614"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.36"
+                  }
+               ]
+            },
+            "longitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-121.68954"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-121.97"
+                  }
+               ]
+            },
+            "name" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "Santa Clara County"
+                  }
+               ]
             }
-          ]
-        },
-        "latitude": {
-          "nodes": [
-            { "provenanceId": "dc/base/WikidataOtherIdGeos", "value": "37.36" }
-          ]
-        },
-        "longitude": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "-121.68954"
+         }
+      },
+      "geoId/06087" : {
+         "arcs" : {
+            "latitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.012347"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "37.03"
+                  }
+               ]
+            },
+            "longitude" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-122.007789"
+                  },
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "-122.01"
+                  }
+               ]
+            },
+            "name" : {
+               "nodes" : [
+                  {
+                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
+                     "value" : "Santa Cruz County"
+                  }
+               ]
             }
-          ]
-        }
+         }
       }
-    },
-    "geoId/06087": {
-      "arcs": {
-        "name": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "Santa Cruz County"
-            }
-          ]
-        },
-        "latitude": {
-          "nodes": [
-            { "provenanceId": "dc/base/WikidataOtherIdGeos", "value": "37.03" }
-          ]
-        },
-        "longitude": {
-          "nodes": [
-            {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "-122.01"
-            }
-          ]
-        }
-      }
-    }
-  }
+   }
 }
+
 ```
 {: .example-box-content .scroll}
 
 
 {: #wildcard}
-### Example 4: All "In" Triples for a Node
+### Example 4: Get all incoming linked nodes for a node
 
-Get all the `in` triples for node `PowerPlant` with property `<-*`.
+Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels.
 
 Parameters:
 {: .example-box-title}
@@ -334,13 +336,36 @@ Response:
               "provenanceId": "dc/base/BaseSchema"
             },
             ...
-          ],
+        }
+        "subClassOf" : {
+          "nodes" : [
+            {
+              "dcid" : "PowerPlantUnit",
+              "name" : "PowerPlantUnit",
+              "provenanceId" : "dc/base/BaseSchema",
+              "types" : [
+                "Class"
+              ]
+            }
+          ]
+        },
+        "typeOf" : {
+          "nodes" : [
+            {
+              "dcid" : "dc/000qxlm93vn93",
+              "name" : "Suzlon Project VIII LLC",
+              "provenanceId" : "dc/base/EIA_860",
+              "types" : [
+                "PowerPlant"
+              ]
+           },
+          ...
         },
         ...
-      },
-    },
+      }
+    }
   },
-  "nextToken": "{token_string}"
+  "nextToken": "H4sIAAAAAAAA/0zIMQ6CMBjFcfus9fnpYP4Xs4MXYCgTAUKaEG7PyvqLf0Rd9rbVaZh7lH6s7TdejRtyQhbyHTkjP5AL8hPZyC/kQH6T/fmmEwAA//8BAAD///dHSrJWAAAA"
 }
 ```
 {: .example-box-content .scroll}
