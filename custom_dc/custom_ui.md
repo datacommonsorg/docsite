@@ -2,7 +2,7 @@
 layout: default
 title: Customize the site
 nav_order: 4
-parent: Build and run your own Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}

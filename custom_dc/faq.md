@@ -2,7 +2,7 @@
 layout: default
 title: Frequently asked questions
 nav_order: 9
-parent: Build and run your own Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}

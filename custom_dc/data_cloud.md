@@ -2,16 +2,16 @@
 layout: default
 title: Test data in Google Cloud
 nav_order: 6
-parent: Build and run your own Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}
 # Test data in Google Cloud
 
+This page shows you how to store your custom data in Google Cloud database and load it into a local instance. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
+
 * TOC
 {:toc}
-
-This page shows you how to store your custom data in Google Cloud database and load it into a local instance. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 ## Overview
 

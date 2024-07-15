@@ -2,16 +2,18 @@
 layout: default
 title: Deploy a custom instance to Google Cloud
 nav_order: 7
-parent: Build and run your own Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}
 # Deploy a custom instance to Google Cloud
 
+This page shows you how to create an artifact and run it in Google Cloud Run. This is step 5 of the [recommended workflow](/custom_dc/index.html#workflow).
+
 * TOC
 {:toc}
 
-This page shows you how to create an artifact and run it in Google Cloud Run. This is step 5 of the [recommended workflow](/custom_dc/index.html#workflow).
+## System overview
 
 When you are ready to launch your custom Data Commons site, we recommend hosting your site in [Google Cloud Run](https://cloud.google.com/run/), which is a serverless solution that is by far the simplest and least expensive option, providing auto-scaling. This is the production setup:
 

@@ -2,7 +2,7 @@
 layout: default
 title: Troubleshooting
 nav_order: 8
-parent: Build and run your own Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}

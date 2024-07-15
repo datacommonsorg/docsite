@@ -2,16 +2,18 @@
 layout: default
 title: Work with custom data
 nav_order: 3
-parent: Build and run your own Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}
 # Work with custom data
 
+This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
+
+
 * TOC
 {:toc}
 
-This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 ## Overview
 

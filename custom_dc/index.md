@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Build and run your own Data Commons
+title: Build your own Data Commons
 nav_order: 90
 has_children: true
 ---
 
 {:.no_toc}
-# Build and run your own Data Commons
+# Build your own Data Commons
 
 * TOC
 {:toc}
@@ -15,7 +15,7 @@ has_children: true
 
 A custom instance natively joins your data and the base Data Commons data (from datacommons.org) in a unified fashion. Your users can visualize and analyze the data seamlessly without the need for further data preparation.
 
-You have full control over your own data, computing resources, and access, with the ability to limit access to specific individuals or open it to the general public.
+You have full control over your own data and computing resources, with the ability to limit access to specific individuals or open it to the general public.
 
 Note that each new Data Commons is deployed using the Google Cloud Platform (GCP). 
 
@@ -85,7 +85,7 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 {: #workflow}
 ## Recommended workflow
 
-1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
+1. Work through the [Get started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
 1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html). If you are just testing custom data to add to the base Data Commons site, you don't need to go any further.
 1. If you are launching your own Data Commons site, and want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. If you are launching your own Data Commons site, upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Test data in Google Cloud](/custom_dc/data_cloud.html).
