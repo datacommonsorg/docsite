@@ -40,12 +40,12 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Feature                                                      |  Base Data Commons | Custom Data Commons |
 |--------------------------------------------------------------|--------------------|---------------------|
 | Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
-| Natural language query interface                            |  yes, using open-source models only<sup>2</sup> |  yes, using Google AI technologies and models  |
+| Natural language query interface                            |  yes, using open-source models only<sup>1</sup> |  yes, using Google AI technologies and models  |
 | REST APIs                                                   |  yes | yes, no additional setup needed |
 | Python and Pandas API wappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
 | Bigquery interface  | yes | no
 | Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
-| Site ccess controls | yes, using any supported Cloud Run mechanisms<sup>2</sup> | n/a |
+| Site ccess controls | yes, using any supported Cloud Run mechanisms<sup>3</sup> | n/a |
 | Fine-grained data access controls<sup>4</sup> |  no | n/a |
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers).
