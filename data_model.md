@@ -4,13 +4,16 @@ title: Key concepts
 nav_order: 10
 ---
 
+{: .no_toc}
 # Key concepts
+
+* TOC
+{:toc}
 
 Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
 
-If you are using Data Commons interactive tools, Google Sheets, CVS download, or BigQuery, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable).
-
-If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
+- If you are only using Data Commons interactive tools, Google Sheets, CSV download, or BigQuery, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
+- If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
 
 ## Schema 
 
