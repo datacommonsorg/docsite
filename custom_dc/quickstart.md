@@ -69,7 +69,7 @@ The instructions in this page use the following setup:
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
-Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only.
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using git/Github, you can add the file to the `.gitignore` file.
 
 ## About the downloaded files
 
