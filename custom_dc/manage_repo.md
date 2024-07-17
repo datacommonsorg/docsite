@@ -21,23 +21,23 @@ Data Commons provides two prebuilt images in the Google Artifact Registry that y
 - `gcr.io/datcom-ci/datacommons-website-compose:stable`. This is a tested, stable version but may be several weeks old.
 - `gcr.io/datcom-ci/datacommons-website-compose:latest`. This is the latest version built from head.
 
-If you want to pick up the latest prebuilt version do the following:
+If you want to pick up the latest prebuilt version, do the following:
 
 1. From the root directory (e.g. `website`), run the following command:
 
-```shell  
-docker pull gcr.io/datcom-ci/datacommons-website-compose:latest
-```
+   ```shell  
+   docker pull gcr.io/datcom-ci/datacommons-website-compose:latest
+   ```
 1. Rerun the container, specifying that repo as the argument to the `docker run` command:
 
-```shell
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
---env-file $PWD/custom_dc/sqlite_env.list \
--v $PWD/custom_dc/sample:/userdata \
-gcr.io/datcom-ci/datacommons-website-compose:latest
-```
+   ```shell
+   docker run -it \
+   -p 8080:8080 \
+   -e DEBUG=true \
+-  -env-file $PWD/custom_dc/sqlite_env.list \
+-  v $PWD/custom_dc/sample:/userdata \
+   gcr.io/datcom-ci/datacommons-website-compose:latest
+   ```
 
 ## Build a local image {#build-repo}
 
