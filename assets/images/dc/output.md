@@ -1,23 +1,12 @@
----
-layout: default
-title: Key concepts
-nav_order: 10
----
-
-{: .no_toc}
-# Key concepts
-
-* TOC
-{:toc}
-
 Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
 
-- If you are only using Data Commons interactive tools, Google Sheets, CSV download, or BigQuery, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
-- If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
+If you are using Data Commons interactive tools, Google Sheets, CVS download, or BigQuery, you should at least be familiar with [entities](?tab=t.0#heading=h.4cyjf58uzeqk) and [statistical variables](?tab=t.0#heading=h.1sdi6c1vl8e9).
 
-## Schema 
+If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
 
-To allow data from hundreds of organizations around the world, in a myriad of models and formats to be interoperable and queryable in a unified way, Data Commons needs to have a common way of understanding and representing this data. To do so, it applies a schema, or vocabulary to all its data, that is largely derived from earlier schemes developed for semantic understanding of web pages – most notably, the data models and schemas of [Schema.org](http://Schema.org) (which were in turn based on earlier schemes such as Microformats and Resource Description Framework (RDF)). 
+## Schema [note: maybe don't include this here, but instead in the data import overview docs to follow]
+
+To allow data from hundreds of organizations around the world, in a myriad of models and formats to be interoperable and queryable in a unified way, Data Commons needs to have a common way of understanding and representing this data. To do so, it applies a schema, or vocabulary to all its data, that is largely derived from earlier schemes developed for semantic understanding of web pages – most notably, the data models and schemas of [Schema.org](Schema.org) (which were in turn based on earlier schemes such as Microformats, Resource Description Framework (RDF)). 
 
 The Data Commons schema is in fact a superset of [Schema.org schemas](https://schema.org/docs/schemas.html), with a particular emphasis on time series and statistical data. Every data set must have an associated schema, written in [Meta Content Format](https://en.wikipedia.org/wiki/Meta_Content_Framework) (MCF) language, that maps the provider's data to existing concepts in the Data Commons.
 
@@ -31,22 +20,22 @@ As a simple example, here are a set of nodes and edges that represent the follow
 -  Santa Clara county and Berkeley are contained in the state of California
 -  The latitude of Berkeley, CA is 37.8703
 
-![knowledge graph](/assets/images/dc/concept1.png){: width="600"}
+![image](insert_image_url_here)
 
 Each node consists of some kind of entity or value, and each edge describes some kind of property. More specifically, each node consists of the following objects:
 
--  One or more [types](#type): an [entity](#entity), [event](#event), [statistical variable](#statistical-variable), or [statistical observation](#observation)
--  A [unique identifier](#unique-identifier-dcid), known as a DCID
--  Various [properties](#property)
--  A [provenance](#provenance-source-dataset)
+-  One or more [types](?tab=t.0#heading=h.rf1djjltuxou): an [entity](?tab=t.0#heading=h.4cyjf58uzeqk), [event](?tab=t.0#heading=h.jn9w6r3y21e3), [statistical variable](?tab=t.0#heading=h.1sdi6c1vl8e9), or [statistical observation](?tab=t.0#heading=h.4nrfm1uksd8p)
+-  A [unique identifier](?tab=t.0#heading=h.ma0svqs05h44), known as a DCID
+-  Various [properties](?tab=t.0#heading=h.ib4s7cnnk4yo)
+-  A [provenance](?tab=t.0#heading=h.ikz8urboq1mk)
 
 As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a _subject _node, _predicate_ (or "edge") and _object_ node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know (although can be queried from some APIs).
 
-You can get all the information about a node and its edges by looking at the Knowledge Graph browser. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing `https://datacommons.org/browser/_DCID_`. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City):
+You can get all the information about a node and its edges by looking at the Knowledge Graph browser. If you know the [DCID](?tab=t.0#heading=h.ma0svqs05h44) for a node, you can access it directly by typing `https://datacommons.org/browser/_DCID_`. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City):
 
-![KG browser](/assets/images/dc/concept2.png){: width="900"}
+![image](dckeyconcepts--im4pbzvq5gd.png)
 
-Every node entry shows a list of outgoing edges, or _properties,_ and incoming edges. [Properties](#property) are discussed in more detail below.
+Every node entry shows a list of outgoing edges, or _properties,_ and incoming edges. [Properties](?tab=t.0#heading=h.ib4s7cnnk4yo) are discussed in more detail below.
 
 ## Type
 
@@ -54,7 +43,7 @@ Every node has at least one type, where each type may be a sub-class of multiple
 
 ## Entity
 
-An _entity_ represents a persistent, physical thing in the real world. While Data Commons has information about a wide variety of types of entities (cities, states, countries, schools, companies, facilities, etc.), most of the information today is about _places_. Data Commons contains a catalog of about 2.9 million places. In addition to basic metadata like the location, type and containment information, many places also contain information about their shape, area, etc. For a list of available place types, take a look at the [place types page](/place_types.html).
+An _entity_ represents a persistent, physical thing in the real world. While Data Commons has information about a wide variety of types of entities (cities, states, countries, schools, companies, facilities, etc.), most of the information today is about _places_. Data Commons contains a catalog of about 2.9 million places. In addition to basic metadata like the location, type and containment information, many places also contain information about their shape, area, etc. For a list of available place types, take a look at the [place types page](https://docs.datacommons.org/place_types.html).
 
 ## Event
 
@@ -66,40 +55,40 @@ In Data Commons, even statistical measurements and time series data are modeled 
 
 Data Commons comprises hundreds of thousands of statistical variables, which you can view using the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). 
 
-The type of a statistical variable is always the special sub-class `[StatisticalVariable](https://datacommons.org/browser/StatisticalVariable)`. For example, the metric `[Median Age of Female Population](https://datacommons.org/browser/Median_Age_Person_Female)` is a node whose type is a statistical variable. 
+The type of a statistical variable is always the special sub-class ``[StatisticalVariable](https://datacommons.org/browser/StatisticalVariable)``. For example, the metric `[Median Age of Female Population](https://datacommons.org/browser/Median_Age_Person_Female)` is a node whose type is a statistical variable. 
 
 A statistical variable can be simple, such as `[Total Population](https://datacommons.org/browser/Count_Person)`, or more complex, such as `[Hispanic Female Population](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino)`. Complex variables may be broken down into constituent parts, or not.  
 
-### Find places available for a statistical variable
+### Find places available for a statistical variable {note: may make this an include}
 
 Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you can do the following:
 
 1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar), and search for a variable of interest.
 1. Optionally, filter by data source and data set.
 
-![Stat Var Explorer](/assets/images/dc/concept3.png){: width="900"}
+![image](dckeyconcepts--wdtrddvryhn.png)
 
 1. Scroll to the **Places** section.
 
 For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance) shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
 
-![Stat Var Explorer](/assets/images/dc/concept4.png){: width="900"}
+![image](dckeyconcepts--3ouyar9egyk.png)
 
 On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity) is only available at the state level states in the US but not at the city or county level. 
 
-![Stat Var Explorer](/assets/images/dc/concept5.png){: width="900"}
+![image](dckeyconcepts--gusc2evptrg.png)
 
 ## Unique identifier: DCID
 
 Every node has a unique identifier, called a Data Commons ID, or DCID. In the [Knowledge Graph browser](https://datacommons.org/browser/), you can view the DCID for any node or edge. For example, the DCID for the city of Berkeley is `geoid/0606000`:
 
-![KG browser](/assets/images/dc/concept6.png){: width="600"}
+![image](dckeyconcepts--8du8vj79gjb.png)
 
 DCIDs are not restricted to entities; statistical variables also have DCIDs. For example, the DCID for the Gini Index of Economic Activity is `GiniIndex_EconomicActivity`:
 
-![Stat Var Explorer](/assets/images/dc/concept7.png){: width="900"}
+![image](dckeyconcepts--onnuwde44j.png)
 
-### Find a DCID for an entity or variable
+## Find a DCID for an entity or variable
 
 Many Data Commons tools and APIs require that you provide a DCID as input for a query. There are a few ways to do this.
 
@@ -110,7 +99,7 @@ To find the DCID for a place:
 1. Scroll to the **In Arcs** section to look up the places of interest. 
 1. If necessary, continue to drill down on links until you find the place of interest. 
 
-![KG browser](/assets/images/dc/concept8.png){: width="900"}
+![image](dckeyconcepts--i7o5mnxayl.png)
 
 To find the DCID for a statistical variable:
 
@@ -118,9 +107,9 @@ To find the DCID for a statistical variable:
 1. Search for the variable of interest, and optionally filter by data source and dataset.
 1. Look under the heading for the DCID.
 
-![Stat Var Explorer](/assets/images/dc/concept9.png){: width="900"}
+![image](dckeyconcepts--iw6dkdfk12.png)
 
-To find a DCID programmatically for both entities and variables, you can use the REST v2 [Resolve API](/api/rest/v2/resolve.html).
+To find a DCID programmatically for both entities and variables, you can use the REST v2 Resolve API.
 
 ## Property
 
@@ -130,8 +119,7 @@ Other properties are links to other entities/events/ etc. In the Knowledge Graph
 
 For example, in this node for the city of Addis Ababa, Ethiopia, the `typeOf` and `containedInPlace` edges link to other entities, namely `City` and `Ethiopia`, whereas all the other values are terminal.
 
-![KG browser](/assets/images/dc/concept10.png){: width="600"}
-
+![image](dckeyconcepts--z8p2vylu659.png)
 
 Note that the DCID for a property is the same as its name.
 
@@ -143,8 +131,7 @@ For example, the value of the statistical variable [Median Age of Female Populat
 
 Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/visualization#visType=timeline) and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/visualization#visType%3Dtimeline%26place%3DgeoId%2F0606000%26placeType%3DCensusZipCodeTabulationArea%26sv%3D%7B%22dcid%22%3A%22Median_Income_Person%22%7D), according to the US Census Bureau:
 
-![Timeline Explorer](/assets/images/dc/concept11.png){: width="900"}
-
+![image](dckeyconcepts--s0tus43te1.png)
 
 ## Provenance, Source, Dataset
 
@@ -154,16 +141,15 @@ Every node and triple also have some important properties that indicate the orig
 -  `[Source](https://datacommons.org/browser/Source)`: This is a property of a provenance, and a dataset, usually the name of an organization that provides the data or the schema. For example, for provenance [www.abs.gov.au](www.abs.gov.au), the source is the [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics).
 -  `[Dataset](https://datacommons.org/browser/Dataset)`: This is the name of a specific dataset provided by a provider. Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, `[Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics)` (not to be confused with the provenance above), and `[Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries)`.
 
-![Knowledge graph](/assets/images/dc/concept12.png){: width="600"}
-
+![image](insert_image_url_here)
 
 Note that a given statistical variable may have multiple provenances, since many data sets define the same variables. You can see the list of all the data sources for a given statistical variable in the Statistical Variable Explorer. For example, the explorer shows multiple sources (Censuses from India, Mexico, Vietnam, OECD, World Bank, etc.) for the variable [Life Expectancy](https://datacommons.org/tools/statvar#LifeExpectancy_Person=&sv=LifeExpectancy_Person):
 
-![Stat Var Explorer](/assets/images/dc/concept13.png){: width="900"}
+![image](dckeyconcepts--8ljev2jb8wx.png)
 
 You can see a list of all sources and data sets in several places:
 
--  The [Data sources](/datasets/) pages in this site.
+-  The [Data sources](https://docs.datacommons.org/datasets/) pages in this site.
 -  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer.
 
-![Stat Var Explorer](/assets/images/dc/concept14.png){: width="600"}
+![image](dckeyconcepts--6esmxfzo8i.png)
