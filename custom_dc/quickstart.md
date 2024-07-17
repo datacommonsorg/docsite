@@ -20,7 +20,7 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 ## Prerequisites
 
 - Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
-- If you are running on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
+- If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
 - Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your site to the base Data Commons site. Typical turnaround times are 24-48 hours.
