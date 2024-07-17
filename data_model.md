@@ -7,13 +7,12 @@ nav_order: 10
 {: .no_toc}
 # Key concepts
 
-* TOC
-{:toc}
-
 Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
-
 - If you are only using Data Commons interactive tools, Google Sheets, CSV download, or BigQuery, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
 - If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
+
+{:toc}
+* TOC
 
 ## Schema 
 
@@ -23,7 +22,7 @@ The Data Commons schema is in fact a superset of [Schema.org schemas](https://sc
 
 ## Knowledge Graph
 
-Data Commons models the world as a directed labeled graph, consisting of a set of . _nodes_, and edges with labels, known as _properties_. This general framework allows Data Commons to represent information about a wide range of domains: from time series about demographics and employment, to hurricanes, to protein structures. 
+Data Commons models the world as a directed labeled graph, consisting of a set of _nodes_ and edges with labels, known as _properties_. This general framework allows Data Commons to represent information about a wide range of domains: from time series about demographics and employment, to hurricanes, to protein structures. 
 
 As a simple example, here are a set of nodes and edges that represent the following statements:
 
@@ -40,9 +39,9 @@ Each node consists of some kind of entity or value, and each edge describes some
 -  Various [properties](#property)
 -  A [provenance](#provenance-source-dataset)
 
-As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a _subject _node, _predicate_ (or "edge") and _object_ node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know (although can be queried from some APIs).
+As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a subject node, predicate (or "edge") and object node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know (although it can be queried from some APIs).
 
-You can get all the information about a node and its edges by looking at the Knowledge Graph browser. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing `https://datacommons.org/browser/_DCID_`. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City):
+You can get all the information about a node and its edges by looking at the Knowledge Graph browser. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing <code>https://datacommons.org/browser/<var>DCID</var></code>. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City):
 
 ![KG browser](/assets/images/dc/concept2.png){: width="900"}
 
@@ -66,9 +65,9 @@ In Data Commons, even statistical measurements and time series data are modeled 
 
 Data Commons comprises hundreds of thousands of statistical variables, which you can view using the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). 
 
-The type of a statistical variable is always the special sub-class `[StatisticalVariable](https://datacommons.org/browser/StatisticalVariable)`. For example, the metric `[Median Age of Female Population](https://datacommons.org/browser/Median_Age_Person_Female)` is a node whose type is a statistical variable. 
+The type of a statistical variable is always the special sub-class [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable). For example, the metric [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female) is a node whose type is a statistical variable. 
 
-A statistical variable can be simple, such as `[Total Population](https://datacommons.org/browser/Count_Person)`, or more complex, such as `[Hispanic Female Population](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino)`. Complex variables may be broken down into constituent parts, or not.  
+A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person), or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino)`. Complex variables may be broken down into constituent parts, or not.  
 
 ### Find places available for a statistical variable
 
@@ -76,16 +75,13 @@ Note that not all statistical variables have observations for all places or othe
 
 1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar), and search for a variable of interest.
 1. Optionally, filter by data source and data set.
-
-![Stat Var Explorer](/assets/images/dc/concept3.png){: width="900"}
-
 1. Scroll to the **Places** section.
 
 For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance) shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
 
 ![Stat Var Explorer](/assets/images/dc/concept4.png){: width="900"}
 
-On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity) is only available at the state level states in the US but not at the city or county level. 
+On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity), or `Quarterly_Average_RetailPrice_Electricity`, is only available at the state level states in the US but not at the city or county level. 
 
 ![Stat Var Explorer](/assets/images/dc/concept5.png){: width="900"}
 
@@ -139,7 +135,7 @@ Note that the DCID for a property is the same as its name.
 
 An _observation_ is a single measured value for a statistical variable, at or during a specified period of time, for a specific entity.
 
-For example, the value of the statistical variable [Median Age of Female Population](https://datacommons.org/browser/Median_Age_Person_Female) for the city of San Antonio, Texas in 2014 could have an observation `Observation_Median_Age_Person_Female_SanAntonio_TX_2014`. The type of an observation is always the special sub-class ` `[StatVarObservation](https://datacommons.org/browser/StatVarObservation)``.
+For example, the value of the statistical variable [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female) for the city of San Antonio, Texas in 2014 could have an observation `Observation_Median_Age_Person_Female_SanAntonio_TX_2014`. The type of an observation is always the special sub-class [`StatVarObservation`](https://datacommons.org/browser/StatVarObservation).
 
 Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/visualization#visType=timeline) and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/visualization#visType%3Dtimeline%26place%3DgeoId%2F0606000%26placeType%3DCensusZipCodeTabulationArea%26sv%3D%7B%22dcid%22%3A%22Median_Income_Person%22%7D), according to the US Census Bureau:
 
@@ -150,9 +146,9 @@ Time series made up of many observations underlie the data available in the [Tim
 
 Every node and triple also have some important properties that indicate the origin of the data. 
 
--  `[Provenance](https://datacommons.org/browser/Provenance)`: All triples have a provenance, typically the URL of the data provider's website; for example, [www.abs.gov.au](https://datacommons.org/browser/dc/base/AustraliaStatistics).  In addition, all entity types also have a provenance, defined with a DCID, such as `[AustraliaStatistics](https://datacommons.org/browser/dc/base/AustraliaStatistics)`. It also (For many property types, which are defined by the Data Commons schema, their provenance is always [datacommons.org](datacommons.org).)
--  `[Source](https://datacommons.org/browser/Source)`: This is a property of a provenance, and a dataset, usually the name of an organization that provides the data or the schema. For example, for provenance [www.abs.gov.au](www.abs.gov.au), the source is the [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics).
--  `[Dataset](https://datacommons.org/browser/Dataset)`: This is the name of a specific dataset provided by a provider. Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, `[Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics)` (not to be confused with the provenance above), and `[Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries)`.
+-  [`Provenance`](https://datacommons.org/browser/Provenance): All triples have a provenance, typically the URL of the data provider's website; for example, [www.abs.gov.au](https://datacommons.org/browser/dc/base/AustraliaStatistics).  In addition, all entity types also have a provenance, defined with a DCID, such as [`AustraliaStatistics`](https://datacommons.org/browser/dc/base/AustraliaStatistics). It also (For many property types, which are defined by the Data Commons schema, their provenance is always [datacommons.org](datacommons.org).)
+-  [`Source`](https://datacommons.org/browser/Source): This is a property of a provenance, and a dataset, usually the name of an organization that provides the data or the schema. For example, for provenance [www.abs.gov.au](www.abs.gov.au), the source is the [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics).
+-  [`Dataset`](https://datacommons.org/browser/Dataset): This is the name of a specific dataset provided by a provider. Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, [Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics) (not to be confused with the provenance above), and [Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries).
 
 ![Knowledge graph](/assets/images/dc/concept12.png){: width="600"}
 
