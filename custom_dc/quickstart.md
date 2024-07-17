@@ -26,7 +26,7 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 - Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your site to the base Data Commons site. Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
 
-## One-time setup steps {: #setup}
+## One-time setup steps {#setup}
 
 ### Enable Google Cloud APIs and get a Maps API key {#maps-key}
 
@@ -43,23 +43,21 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 
 ### Clone the Data Commons repository
 
+  **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
+
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
-
-Note: If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
-
 1. Clone the website Data Commons repository:
 
   <pre>
    git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
   </pre>
-
   If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
-1. When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
+When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
-   <pre>
-   cd website | cd <var>DIRECTORY</var>
-  </pre>
+<pre>
+cd website | <var>DIRECTORY</var>
+</pre>
 
 ### Set API keys as environment variables 
 
@@ -69,7 +67,7 @@ Note: If you are using WSL on Windows, open the Linux distribution app as your c
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
-Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using Git/Github to manage your code, you can add the file to the `.gitignore` file.
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using Git/Github to manage your code, you can add the file name to the `.gitignore` file.
 
 ## About the downloaded files
 
