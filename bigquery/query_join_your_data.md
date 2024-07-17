@@ -2,8 +2,7 @@
 layout: default
 title: Joining with external data
 nav_order: 5
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+parent: BigQuery
 ---
 
 # Query Category: Joining with data outside Data Commons

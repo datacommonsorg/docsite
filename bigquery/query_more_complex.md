@@ -2,8 +2,7 @@
 layout: default
 title: More complex queries
 nav_order: 4
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+parent: BigQuery
 ---
 
 # Query category: More complex queries
