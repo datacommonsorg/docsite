@@ -31,6 +31,18 @@ docker: Error response from daemon: pull access denied for datacommons-website-c
 1. Use `sudo` with your `docker` invocations or set up a "sudoless" docker group, as described in [Linux post-installation steps for Docker Engine](https://docs.docker.com/engine/install/linux-postinstall/).
 1. If you've just installed Docker, try rebooting the machine.
 
+## Startup errors
+
+### "Failed to create metadata: failed to create secret manager client: google: could not find default credentials."
+
+If you try to run the services and fail with this error:
+
+```
+Failed to create metadata: failed to create secret manager client: google: could not find default credentials. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information
+```
+
+This indicates that you have not specified API keys in the environment file. Follow procedures in [One-time setup steps](/custom_dc/quickstart.html#setup) to obtain and configure API keys.
+
 ## Local build errors
 
 ### "file not found in build context"

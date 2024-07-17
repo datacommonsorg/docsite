@@ -21,12 +21,23 @@ Data Commons provides two prebuilt images in the Google Artifact Registry that y
 - `gcr.io/datcom-ci/datacommons-website-compose:stable`. This is a tested, stable version but may be several weeks old.
 - `gcr.io/datcom-ci/datacommons-website-compose:latest`. This is the latest version built from head.
 
-If you want to pick up the latest prebuilt version, run the following command from the `website` directory:
+If you want to pick up the latest prebuilt version do the following:
+
+1. From the root directory (e.g. `website`), run the following command:
 
 ```shell  
 docker pull gcr.io/datcom-ci/datacommons-website-compose:latest
 ```
-Then, [restart Docker](quickstart.md#start-services), specifying that repo as the argument to the `docker run` command.
+1. Rerun the container, specifying that repo as the argument to the `docker run` command:
+
+```shell
+docker run -it \
+-p 8080:8080 \
+-e DEBUG=true \
+--env-file $PWD/custom_dc/sqlite_env.list \
+-v $PWD/custom_dc/sample:/userdata \
+gcr.io/datcom-ci/datacommons-website-compose:latest
+```
 
 ## Build a local image {#build-repo}
 
@@ -47,17 +58,18 @@ If you are using a version control system other than Github, you can download a 
 
 In Github, use the following procedure.
 
-1. If you want to reuse the `website` directory you previously created and cloned, skip to step 3. 
+1. If you want to reuse the root directory you previously created and cloned, skip to step 3. 
 If you want to create a new source directory and start from scratch, clone the repo up to the stable release tag:
 
-      ```
-      git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch 
-      ```
-1. Change to the `website` directory (or whatever you have named it):
+      <pre>
+      git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
+      </pre>
+1. Change to the root directory:
 
-   ```
-   cd website
-   ```
+   <pre>
+   cd website | cd <var>DIRECTORY</var>
+   </pre>
+
 1. Create a new branch synced to the stable release:
 
    <pre>
@@ -136,7 +148,7 @@ docker run -it \
 --env-file $PWD/custom_dc/sqlite_env.list \
 -p 8080:8080 \
 -e DEBUG=true \
-[-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \]
+[-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \] 
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 datacommons-website-compose:<var>DOCKER_TAG</var>
