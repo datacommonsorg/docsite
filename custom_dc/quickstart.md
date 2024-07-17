@@ -20,12 +20,13 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 ## Prerequisites
 
 - Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
-- Install [Docker Engine](https://docs.docker.com/engine/install/).
+- If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
+- Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
 - Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your site to the base Data Commons site. Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
 
-## One-time setup steps
+## One-time setup steps {#setup}
 
 ### Enable Google Cloud APIs and get a Maps API key {#maps-key}
 
@@ -42,22 +43,23 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 
 ### Clone the Data Commons repository
 
+  **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
+
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
 
-   ```shell
-   git clone https://github.com/datacommonsorg/website.git
-   ```
+  <pre>
+   git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
+  </pre>
+  If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
-   This creates a local `website` subdirectory.
+When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
-1. When the downloads are complete, navigate to the root directory of the repo, `website`. References to various files and commands in these procedures are relative to this root.
+<pre>
+cd website | <var>DIRECTORY</var>
+</pre>
 
-   ```shell
-   cd website
-   ```
-
-### Set API keys as environment variables
+### Set API keys as environment variables 
 
 1. Using your favorite editor, open `custom_dc/sqlite_env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
@@ -65,7 +67,7 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
-Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only.
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using Git/Github to manage your code, you can add the file name to the `.gitignore` file.
 
 ## About the downloaded files
 
@@ -106,9 +108,8 @@ Note: If you are storing your source code in a public/open-source version contro
 
 ## Start the services {#start-services}
 
-From the root directory, `website`, run Docker as follows.
-
-Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you will need to preface every `docker` invocation with `sudo`.
+1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
+1. Open a terminal window, and from the root directory, run the following command:
 
 ```shell
 docker run -it \
@@ -118,6 +119,8 @@ docker run -it \
 -v $PWD/custom_dc/sample:/userdata \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 ```
+
+Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you will need to preface every `docker` invocation with `sudo`.
 
 This command does the following:
 
@@ -135,7 +138,7 @@ If you need to restart the services for any reason, do the following:
 
 Tip: If you close the terminal window in which you started the Docker container, you can kill it as follows:
 
-1. Open another terminal window, and from the `website` directory, get the Docker container ID.
+1. Open another terminal window, and from the root directory, get the Docker container ID.
 
    ```shell
      docker ps

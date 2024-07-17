@@ -111,7 +111,7 @@ If you are prompted to install the Cloud Resource Manager API, press `y` to acce
 
 #### Run with a prebuilt image
 
-If you have not made changes that require a local build, and just want to run the pre-downloaded image, from `website` root of the repository, run:
+If you have not made changes that require a local build, and just want to run the pre-downloaded image, from your repository root, run:
 
 ```shell
 docker run -it \
@@ -125,7 +125,7 @@ gcr.io/datcom-ci/datacommons-website-compose:stable
 
 #### Run with a locally built repo
 
-If you have made local changes and have a [locally built repo](/custom_dc/build_repo.html), from the `website` root of the repository, run the following:
+If you have made local changes and have a [locally built repo](/custom_dc/manage_repo.html#build-repo), from the root of the repository, run the following:
 
 <pre>
 docker run -it \  

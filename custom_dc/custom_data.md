@@ -246,7 +246,7 @@ docker run -it \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/sqlite_env.list \
 -v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \
-[-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons:/sqlite]
+[-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons:/sqlite] \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 </pre>
 
