@@ -11,6 +11,6 @@ The Data Commons repository is available as BigQuery tables in the **[Analytics 
 
 In these pages you can learn how to use the Data Commons tables and find sample SQL queries. All Data Commons visualization tools include a **Get BigQuery SQL** button, so that you can form queries by using the interactive tools on the website. For example:
 
-![Get BigQuery SQL button]({{site_url}}/assets/images/dc/bq1.png) {: width="900"}
+![Get BigQuery SQL button]({{site.url}}/assets/images/dc/bq1.png) {: width="900"}
 
 Before you start, you may find it helpful to review Data Commons [key concepts](/data_model.html).
