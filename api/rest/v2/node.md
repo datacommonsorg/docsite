@@ -2,6 +2,7 @@
 layout: default
 title: Node
 nav_order: 3
+nav_order: 3
 parent: REST (v2)
 grand_parent: API
 published: true
@@ -11,6 +12,7 @@ published: true
 
 The Node API fetches node information for edges and neighboring nodes. This is useful for
 finding local connections between nodes of the Data Commons knowledge graph.
+
 More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
 - Get the values of a property for individual or multiple nodes. These can also
@@ -26,13 +28,16 @@ connected to the queried node.
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
     GET request
+    GET request
   </button>
   <button id="post-button" class="api-tablink" onclick="openTab(event, 'POST-request')">
+    POST request
     POST request
   </button>
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
 https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
 </div>
 
@@ -42,14 +47,19 @@ https://api.datacommons.org/v2/node
 
 Header:
 X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
+X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 
+JSON data:
 JSON data:
 {
   "nodes": [
       "<var>NODE_DCID_1</var>",
       "<var>NODE_DCID_2</var>",
+      "<var>NODE_DCID_1</var>",
+      "<var>NODE_DCID_2</var>",
       ...
     ],
+  "property": "<var>RELATION_EXPRESSION</var>"
   "property": "<var>RELATION_EXPRESSION</var>"
 }
 
@@ -58,6 +68,7 @@ JSON data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
+## Query parameters
 ## Query parameters
 
 | Name                                                  | Type   |  Description           |
@@ -73,10 +84,13 @@ JSON data:
 The response looks like:
 
 <pre>
+<pre>
 {
   "data": {
     "<var>NODE_DCID</var>": {
+    "<var>NODE_DCID</var>": {
       "arcs": {
+        "<var>LABEL</var>": {
         "<var>LABEL</var>": {
           "nodes": [
             ...
@@ -86,11 +100,15 @@ The response looks like:
       },
       "properties": [
         "<var>VALUE</var>",
+        "<var>VALUE</var>",
       ],
     }
   }
   "nextToken": "<var>TOKEN_STRING</var>"
+  "nextToken": "<var>TOKEN_STRING</var>"
 }
+</pre>
+{: .response-signature .scroll}
 </pre>
 {: .response-signature .scroll}
 
@@ -105,7 +123,9 @@ The response looks like:
 ## Examples
 
 ### Example 1: Get all incoming arcs for a given node
+### Example 1: Get all incoming arcs for a given node
 
+Get all incoming arcs of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels.
 Get all incoming arcs of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels.
 
 Parameters:
@@ -145,7 +165,9 @@ Response:
 {: .example-box-content .scroll}
 
 ### Example 2: Get one property for a given node
+### Example 2: Get one property for a given node
 
+Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 
 Parameters:
@@ -190,7 +212,10 @@ Response:
 
 {: #multiple-properties}
 ### Example 3: Get multiple property values for multiple nodes
+### Example 3: Get multiple property values for multiple nodes
 
+Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
+and `geoId/06087`. Note that multiple properties for a given node must be
 Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
 and `geoId/06087`. Note that multiple properties for a given node must be
 enclosed in square brackets `[]`.
@@ -199,6 +224,7 @@ Parameters:
 {: .example-box-title}
 
 ```bash
+nodes: "geoId/06085", "geoId/06087"
 nodes: "geoId/06085", "geoId/06087"
 property: "->[name, latitude, longitude]"
 ```
@@ -209,6 +235,7 @@ Request:
 ```json
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["geoId/06085", "geoId/06087"], "property": "->[name, latitude, longitude]"}'
   -d '{"nodes": ["geoId/06085", "geoId/06087"], "property": "->[name, latitude, longitude]"}'
 ```
 
@@ -293,13 +320,16 @@ Response:
    }
 }
 
+
 ```
 {: .example-box-content .scroll}
 
 
 {: #wildcard}
 ### Example 4: Get all incoming linked nodes for a node
+### Example 4: Get all incoming linked nodes for a node
 
+Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels.
 Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels.
 
 Parameters:
@@ -360,11 +390,38 @@ Response:
               ]
            },
           ...
+        }
+        "subClassOf" : {
+          "nodes" : [
+            {
+              "dcid" : "PowerPlantUnit",
+              "name" : "PowerPlantUnit",
+              "provenanceId" : "dc/base/BaseSchema",
+              "types" : [
+                "Class"
+              ]
+            }
+          ]
+        },
+        "typeOf" : {
+          "nodes" : [
+            {
+              "dcid" : "dc/000qxlm93vn93",
+              "name" : "Suzlon Project VIII LLC",
+              "provenanceId" : "dc/base/EIA_860",
+              "types" : [
+                "PowerPlant"
+              ]
+           },
+          ...
         },
         ...
       }
     }
+      }
+    }
   },
+  "nextToken": "H4sIAAAAAAAA/0zIMQ6CMBjFcfus9fnpYP4Xs4MXYCgTAUKaEG7PyvqLf0Rd9rbVaZh7lH6s7TdejRtyQhbyHTkjP5AL8hPZyC/kQH6T/fmmEwAA//8BAAD///dHSrJWAAAA"
   "nextToken": "H4sIAAAAAAAA/0zIMQ6CMBjFcfus9fnpYP4Xs4MXYCgTAUKaEG7PyvqLf0Rd9rbVaZh7lH6s7TdejRtyQhbyHTkjP5AL8hPZyC/kQH6T/fmmEwAA//8BAAD///dHSrJWAAAA"
 }
 ```
