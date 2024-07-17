@@ -30,7 +30,7 @@ As a simple example, here are a set of nodes and edges that represent the follow
 -  Santa Clara county and Berkeley are contained in the state of California
 -  The latitude of Berkeley, CA is 37.8703
 
-![knowledge graph](/assets/images/dc/concept1.png){: width="600"}
+![knowledge graph]({{site.url}}/assets/images/dc/concept1.png){: width="600"}
 
 Each node consists of some kind of entity or value, and each edge describes some kind of property. More specifically, each node consists of the following objects:
 
@@ -43,7 +43,7 @@ As in other knowledge graphs, each pair of connected nodes is a _triple_ consist
 
 You can get all the information about a node and its edges by looking at the Knowledge Graph browser. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing <code>https://datacommons.org/browser/<var>DCID</var></code>. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City):
 
-![KG browser](/assets/images/dc/concept2.png){: width="900"}
+![KG browser]({{site.url}}/assets/images/dc/concept2.png){: width="900"}
 
 Every node entry shows a list of outgoing edges, or _properties,_ and incoming edges. [Properties](#property) are discussed in more detail below.
 
@@ -79,21 +79,21 @@ Note that not all statistical variables have observations for all places or othe
 
 For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance) shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
 
-![Stat Var Explorer](/assets/images/dc/concept4.png){: width="900"}
+![Stat Var Explorer]({{site.url}}/assets/images/dc/concept4.png){: width="900"}
 
 On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity), or `Quarterly_Average_RetailPrice_Electricity`, is only available at the state level states in the US but not at the city or county level. 
 
-![Stat Var Explorer](/assets/images/dc/concept5.png){: width="900"}
+![Stat Var Explorer]({{site.url}}/assets/images/dc/concept5.png){: width="900"}
 
 ## Unique identifier: DCID
 
 Every node has a unique identifier, called a Data Commons ID, or DCID. In the [Knowledge Graph browser](https://datacommons.org/browser/), you can view the DCID for any node or edge. For example, the DCID for the city of Berkeley is `geoid/0606000`:
 
-![KG browser](/assets/images/dc/concept6.png){: width="600"}
+![KG browser]({{site.url}}/assets/images/dc/concept6.png){: width="600"}
 
 DCIDs are not restricted to entities; statistical variables also have DCIDs. For example, the DCID for the Gini Index of Economic Activity is `GiniIndex_EconomicActivity`:
 
-![Stat Var Explorer](/assets/images/dc/concept7.png){: width="900"}
+![Stat Var Explorer]({{site.url}}/assets/images/dc/concept7.png){: width="900"}
 
 ### Find a DCID for an entity or variable
 
@@ -106,7 +106,7 @@ To find the DCID for a place:
 1. Scroll to the **In Arcs** section to look up the places of interest. 
 1. If necessary, continue to drill down on links until you find the place of interest. 
 
-![KG browser](/assets/images/dc/concept8.png){: width="900"}
+![KG browser]({{site.url}}/assets/images/dc/concept8.png){: width="900"}
 
 To find the DCID for a statistical variable:
 
@@ -114,7 +114,7 @@ To find the DCID for a statistical variable:
 1. Search for the variable of interest, and optionally filter by data source and dataset.
 1. Look under the heading for the DCID.
 
-![Stat Var Explorer](/assets/images/dc/concept9.png){: width="900"}
+![Stat Var Explorer]({{site.url}}/assets/images/dc/concept9.png){: width="900"}
 
 To find a DCID programmatically for both entities and variables, you can use the REST v2 [Resolve API](/api/rest/v2/resolve.html).
 
@@ -126,7 +126,7 @@ Other properties are links to other entities/events/ etc. In the Knowledge Graph
 
 For example, in this node for the city of Addis Ababa, Ethiopia, the `typeOf` and `containedInPlace` edges link to other entities, namely `City` and `Ethiopia`, whereas all the other values are terminal.
 
-![KG browser](/assets/images/dc/concept10.png){: width="600"}
+![KG browser]({{site.url}}/assets/images/dc/concept10.png){: width="600"}
 
 
 Note that the DCID for a property is the same as its name.
@@ -139,7 +139,7 @@ For example, the value of the statistical variable [`Median Age of Female Popula
 
 Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/visualization#visType=timeline) and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/visualization#visType%3Dtimeline%26place%3DgeoId%2F0606000%26placeType%3DCensusZipCodeTabulationArea%26sv%3D%7B%22dcid%22%3A%22Median_Income_Person%22%7D), according to the US Census Bureau:
 
-![Timeline Explorer](/assets/images/dc/concept11.png){: width="900"}
+![Timeline Explorer]({{site.url}}/assets/images/dc/concept11.png){: width="900"}
 
 
 ## Provenance, Source, Dataset
@@ -150,16 +150,16 @@ Every node and triple also have some important properties that indicate the orig
 -  [`Source`](https://datacommons.org/browser/Source): This is a property of a provenance, and a dataset, usually the name of an organization that provides the data or the schema. For example, for provenance [www.abs.gov.au](www.abs.gov.au), the source is the [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics).
 -  [`Dataset`](https://datacommons.org/browser/Dataset): This is the name of a specific dataset provided by a provider. Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, [Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics) (not to be confused with the provenance above), and [Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries).
 
-![Knowledge graph](/assets/images/dc/concept12.png){: width="600"}
+![Knowledge graph]({{site.url}}/assets/images/dc/concept12.png){: width="600"}
 
 
 Note that a given statistical variable may have multiple provenances, since many data sets define the same variables. You can see the list of all the data sources for a given statistical variable in the Statistical Variable Explorer. For example, the explorer shows multiple sources (Censuses from India, Mexico, Vietnam, OECD, World Bank, etc.) for the variable [Life Expectancy](https://datacommons.org/tools/statvar#LifeExpectancy_Person=&sv=LifeExpectancy_Person):
 
-![Stat Var Explorer](/assets/images/dc/concept13.png){: width="900"}
+![Stat Var Explorer]({{site.url}}/assets/images/dc/concept13.png){: width="900"}
 
 You can see a list of all sources and data sets in several places:
 
 -  The [Data sources](/datasets/) pages in this site.
 -  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer.
 
-![Stat Var Explorer](/assets/images/dc/concept14.png){: width="600"}
+![Stat Var Explorer]({{site.url}}/assets/images/dc/concept14.png){: width="600"}
