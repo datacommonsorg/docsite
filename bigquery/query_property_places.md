@@ -1,11 +1,11 @@
 ---
 layout: default
 title: Properties of places
-nav_order: 3
+nav_order: 2
 parent: BigQuery
 ---
 
-# Query category: Statistical variables associated with places (and other entities)
+# Statistical variables associated with places (and other entities)
 
 ### Latest value from preferred source for a single variable
 

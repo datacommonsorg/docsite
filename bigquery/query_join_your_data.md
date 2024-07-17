@@ -1,11 +1,11 @@
 ---
 layout: default
 title: Joining with external data
-nav_order: 5
+nav_order: 4
 parent: BigQuery
 ---
 
-# Query Category: Joining with data outside Data Commons
+# Query category: Joining with data outside Data Commons
 
 This page illustrates how you can join external datasets with Data Commons by relying on unique IDs and geo locations.  For the examples below, we use other public datasets in BigQuery Analytics Hub, but they can be any other private/public dataset.
 
