@@ -20,6 +20,7 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 ## Prerequisites
 
 - Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
+- If you are running on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
 - Get an API key for Data Commons by submitting the [Data Commons API key request form](https://docs.google.com/forms/d/e/1FAIpQLSePrkVfss9lUIHFClQsVPwPcAVWvX7WaZZyZjJWS99wRQNW4Q/viewform?resourcekey=0-euQU6Kly7YIWVRNS2p4zjw). The key is needed to authorize requests from your site to the base Data Commons site. Typical turnaround times are 24-48 hours.
@@ -43,11 +44,14 @@ This page shows you how to run a local custom Data Commons instance inside a Doc
 ### Clone the Data Commons repository
 
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
+
+Note: If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
+
 1. Clone the website Data Commons repository:
 
   <pre>
    git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
-   ```
+  </pre>
 
   If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
@@ -107,7 +111,7 @@ Note: If you are storing your source code in a public/open-source version contro
 ## Start the services {#start-services}
 
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
-1. Open a terminal window, and from the root directory (e.g. `website`), run the following command:
+1. Open a terminal window, and from the root directory, run the following command:
 
 ```shell
 docker run -it \
@@ -136,7 +140,7 @@ If you need to restart the services for any reason, do the following:
 
 Tip: If you close the terminal window in which you started the Docker container, you can kill it as follows:
 
-1. Open another terminal window, and from the root directory (e.g. `website`), get the Docker container ID.
+1. Open another terminal window, and from the root directory, get the Docker container ID.
 
    ```shell
      docker ps

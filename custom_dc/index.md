@@ -86,6 +86,8 @@ A custom Data Commons site runs in a Docker container on Google Cloud Platform (
 - A [Docker](http://docker.com) account
 - If you will be customizing the site's UI, familiarity with the Python [Flask](https://flask.palletsprojects.com/en/3.0.x/#) web framework and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/) HTML templating
 
+Note: Data Commons does not support local Windows development natively. If you wish to develop Data Commons on Windows, you will need to use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about).
+
 If you already have an account with another cloud provider, we can provide a connector; please contact us if you are interested in this option.
 
 In terms of development time and effort, to launch a site with custom data in compatible format and no UI customization, you can expect it to take less than three weeks. If you need substantial UI customization it may take up to four months.
