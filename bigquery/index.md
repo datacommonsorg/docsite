@@ -7,10 +7,13 @@ has_children: true
 
 # Data Commons in BigQuery
 
-The Data Commons repository is available as BigQuery tables in the **[Analytics Hub](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/841968438789/locations/us/dataExchanges/data_commons_17d0b72b0b2/listings/data_commons_1803e67fbc9))**. Analytics Hub allows you to issue SQL queries against the Data Commons tables. For an introduction to Analytics Hub, see documentation [here](https://cloud.google.com/bigquery/docs/analytics-hub-introduction). 
+The Data Commons repository is available as BigQuery tables in the [Analytics Hub](https://console.cloud.google.com/bigquery/analytics-hub/exchanges(analyticshub:projects/841968438789/locations/us/dataExchanges/data_commons_17d0b72b0b2/listings/data_commons_1803e67fbc9)). If you have a Google Cloud Platform account, you can use Analytics Hub to issue SQL queries against the Data Commons tables. For more information, see the [Analytics Hub introduction](https://cloud.google.com/bigquery/docs/analytics-hub-introduction). 
 
-In these pages you can learn how to use the Data Commons tables and find sample SQL queries. All Data Commons visualization tools include a **Get BigQuery SQL** button, so that you can form queries by using the interactive tools on the website. For example:
+**Tip:** Before you start, you may find it helpful to review Data Commons [key concepts](/data_model.html).
 
-![Get BigQuery SQL button]({{site.url}}/assets/images/dc/bq1.png) {: width="900"}
+In these pages are sample SQL queries grouped together by category. You can copy and paste the queries into the BigQuery Studio in the Cloud Console. In addition, all Data Commons visualization tools include a **Get BigQuery SQL** button, so you can also form queries by using the interactive tools on the website. For example:
 
-Before you start, you may find it helpful to review Data Commons [key concepts](/data_model.html).
+![Get BigQuery SQL button]({{site.url}}/assets/images/dc/bq1.png){: width="900"}
+
+![query]({{site.url}}/assets/images/dc/bq2.png){: width="600"}
+
