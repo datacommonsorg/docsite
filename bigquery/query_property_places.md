@@ -1,12 +1,11 @@
 ---
 layout: default
-title: Properties of Places
-nav_order: 2
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+title: Properties of places
+nav_order: 3
+parent: BigQuery
 ---
 
-# Query Category: Statistical Variables Associated with Places (and other entities)
+# Query category: Statistical variables associated with places (and other entities)
 
 ### Latest value from preferred source for a single variable
 

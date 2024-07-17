@@ -1,14 +1,13 @@
 ---
 layout: default
 title: Places
-nav_order: 1
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+nav_order: 2
+parent: BigQuery
 ---
 
-# Query Category: Places
+# Query category: Places
 
-The queries below include specific place dcid (e.g., 'geoId/06') and place type (e.g., 'County') string constants. Replace those to customize the queries to your needs.
+The queries below include specific place DCID (e.g., 'geoId/06') and place type (e.g., 'County') string constants. Replace those to customize the queries to your needs.
 
 ## Place containment
 

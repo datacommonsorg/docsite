@@ -1,12 +1,12 @@
 ---
 layout: default
-title: More Complex Queries
-nav_order: 3
+title: More complex queries
+nav_order: 4
 parent: DC to BQ Sample Queries
 grand_parent: BigQuery
 ---
 
-# Query Category: More Complex Queries
+# Query category: More complex queries
 
 ### Places matching some criterion
 
