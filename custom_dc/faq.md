@@ -43,5 +43,5 @@ The ML model runs entirely on your custom Data Commons instance, inside the Dock
 
 ### Does the model use feedback from user behavior to adjust scoring?
 
-No. However, you have the ability to improve query quality by improving your [search descriptions](custom_data.md#varparams).
+No. However, you have the ability to improve query quality by improving your [search descriptions](/custom_dc/custom_data.html#varparams).
 
