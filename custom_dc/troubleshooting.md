@@ -2,7 +2,7 @@
 layout: default
 title: Troubleshooting
 nav_order: 8
-parent: Custom Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}
@@ -53,7 +53,7 @@ If you are building a local instance and get this error:
 Step 7/62 : COPY mixer/go.mod mixer/go.sum ./
 COPY failed: file not found in build context or excluded by .dockerignore: stat mixer/go.mod: file does not exist
 ```
-You need to download/update additional submodules (derived from other repos). See [Build a local image](/custom_dc/manage_repo.html#build-repo).
+You need to download/update additional submodules (derived from other repos). See [Build a local image](/custom_dc/build_image.html#build-repo).
 
 ## Data loading problems
 
