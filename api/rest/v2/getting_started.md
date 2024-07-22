@@ -74,7 +74,7 @@ curl -X POST \
 {: #authentication}
 ## Authentication
 
-API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api/index.html#get-key).
+API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api//rest/v2/index.html#get-key).
 
 To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 

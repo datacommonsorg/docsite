@@ -1,7 +1,7 @@
 ---
 layout: default
 title: REST (v2)
-nav_order: 1
+nav_order: 0
 parent: API
 has_children: true
 published: true
@@ -26,21 +26,29 @@ You can use the REST API with any tool or language that supports HTTP. You can m
 
 ## What's new in V2
 
-The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, [described below](#relation-expressions). Each API endpoint can also handle both single and bulk requests.
+The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, described [here](/api/rest/v2/getting_started.html#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
 
 ## Find available entities, variables, and their DCIDs
 
-Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
 
-- [Search](https://datacommons.org/search) Search Data Commons
-- [Knowledge Graph](https://datacommons.org/browser/) Click through nodes in the knowledge graph
-- [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
-- [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
+- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
+- [Find places available for a statistical variable](/data_model.html#find-places)
 
-{: #authentication}
-## Authentication
+    {: #get-key}
+## Get API keys 
 
-API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api/index.html#get-key).
+All access to Data Commons using the REST APIs must be authenticated and authorized with an API key.
 
+We provide a trial API key for general public use. This key will let you try the API and make single requests.
 
+<div markdown="span" class="alert alert-secondary" role="alert">
+   <b>Trial key: </b>
+   `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
+</div>
+
+_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
+[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. 
+
+To use the key in requests, see the [Authentication](/api/rest/v2/getting_started.html#authentication) page.
