@@ -1,21 +1,25 @@
 ---
 layout: default
-title: Quickstart
+title: Get started
 nav_order: 2
-parent: Custom Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Quickstart
+# Get started
+
+This page shows you how to run a local custom Data Commons instance inside a Docker container and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
+
+This is step 1 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 * TOC
 {:toc}
 
-To start developing a custom Data Commons instance, we recommend that you develop your site and host your data locally. This uses a SQLite database to store custom data.
+## System overview
+
+The instructions in this page use the following setup:
 
 ![setup2](/assets/images/custom_dc/customdc_setup2.png)
-
-This page shows you how to run a local custom Data Commons instance inside a Docker container, load sample custom data, and enable natural querying. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
 
 ## Prerequisites
 
@@ -67,7 +71,7 @@ cd website | <var>DIRECTORY</var>
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
-Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using Git/Github to manage your code, you can add the file name to the `.gitignore` file.
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using git/Github, you can add the file to the `.gitignore` file.
 
 ## About the downloaded files
 
