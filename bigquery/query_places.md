@@ -2,13 +2,12 @@
 layout: default
 title: Places
 nav_order: 1
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+parent: Query with SQL/BigQuery
 ---
 
-# Query Category: Places
+# Places
 
-The queries below include specific place dcid (e.g., 'geoId/06') and place type (e.g., 'County') string constants. Replace those to customize the queries to your needs.
+The queries below include specific place [DCID](/glossary.html#dcid) (e.g., 'geoId/06') and [place type](/place_types.html) (e.g., 'County') string constants. Replace those to customize the queries to your needs.
 
 ## Place containment
 
@@ -42,7 +41,7 @@ WHERE Place1.id = 'geoId/0667000' AND Place1.id = Triple.subject_id AND
 
 ```
 
-### List all the places of type X within Z range of Y using the [BQ Geography functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions)
+### List all the places of type X within Z range of Y using [BigQuery geography functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions)
 
 As an example, counties in 50km vicinity of Palo Alto:
 
@@ -64,13 +63,13 @@ WHERE
 
 ```
 
-## Entities of a certain type in a Place
+## Entities of a certain type in a place
 
-This is the same sequence as above, except replace place with entities of type X, where X could be School, Facility, etc.
+This is the same sequence as above, except replacing place with entities of type X, where X could be school, facility, etc.
 
-### List all entities of non-place types (School, Facility, etc.) contained in Y
+### List all entities of non-place type contained in Y
 
-As an example, getting all [EPA Reporting Facilities (within the Greenhouse Gas Reporting Program)](https://enviro.epa.gov/enviro/ad_hoc_table_column_select_v2.retrieval_list?database_type=GHG&selected_subjects=Facility+Information&subject_selection=+&table_1=+) in Texas:
+As an example, this gets all [EPA Reporting Facilities (within the Greenhouse Gas Reporting Program)](https://enviro.epa.gov/enviro/ad_hoc_table_column_select_v2.retrieval_list?database_type=GHG&selected_subjects=Facility+Information&subject_selection=+&table_1=+) in Texas:
 
 ```sql
 SELECT I.id AS Id, I.name AS name

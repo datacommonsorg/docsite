@@ -2,7 +2,7 @@
 layout: default
 title: Launch a custom site
 nav_order: 8
-parent:  Custom Data Commons
+parent: Build your own Data Commons
 ---
 
 {:.no_toc}
@@ -10,6 +10,8 @@ parent:  Custom Data Commons
 
 * TOC
 {:toc}
+
+## Overview
 
 When you are ready to launch your site to external traffic, there are many tasks you will need to perform, including:
 
