@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Properties of Places
+title: Properties of places
 nav_order: 2
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+parent: Query with SQL/BigQuery
 ---
 
-# Query Category: Statistical Variables Associated with Places (and other entities)
+# Statistical variables associated with places (and other entities)
 
-### Latest value from preferred source for a single variable
+### Get the latest value from preferred source for a single variable
 
 As an example, the latest population of CA:
 
@@ -20,7 +19,7 @@ WHERE Obs.observation_about = 'geoId/06' AND
       Obs.is_preferred_obs_across_facets
 ```
 
-### Latest value from specific source for a single variable
+### Get the latest value from specific source for a single variable
 
 As an example, the latest CA population from [ACS 5 Year Survey](https://www.census.gov/programs-surveys/acs):
 
@@ -34,7 +33,7 @@ ORDER BY Obs.observation_date DESC
 LIMIT 1
 ```
 
-### Variables available for a given place
+### List variables available for a given place
 
 As an example, the variables available for California state:
 
@@ -45,7 +44,7 @@ WHERE Obs.observation_about = 'geoId/06'
 ORDER BY Var;
 ```
 
-### Sources available for a given place/variable combination
+### List sources available for a given place/variable combination
 
 As an example, the sources for count of housing units in California:
 
@@ -62,7 +61,7 @@ WHERE Obs.observation_about = 'geoId/06' AND
 ORDER BY Name
 ```
 
-### Time series from preferred source for a single variable
+### Get observations from preferred source for a single variable
 
 As an example, CA population over time from preferred source:
 
@@ -76,7 +75,7 @@ WHERE Obs.observation_about = 'geoId/06' AND
 ORDER BY Date
 ```
 
-### Latest value from preferred source for all the places of a given type contain in
+### Get the latest value from preferred source for all the places of a given type X contained in place Y
 
 As an example, the unemployment rate in counties of USA:
 
