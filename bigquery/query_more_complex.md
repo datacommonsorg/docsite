@@ -1,16 +1,15 @@
 ---
 layout: default
-title: More Complex Queries
+title: More complex queries
 nav_order: 3
-parent: DC to BQ Sample Queries
-grand_parent: BigQuery
+parent: Query with SQL/BigQuery
 ---
 
-# Query Category: More Complex Queries
+# More complex queries
 
-### Places matching some criterion
+### List places matching some criterion
 
-As an example, listing the European equivalent (aka [NUTS 3](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics)) geos with < 2.1 fertility rate:
+As an example, list the European equivalent (aka [NUTS 3](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics)) places with < 2.1 fertility rate:
 
 ```sql
 WITH ChildPlace AS (
@@ -32,9 +31,9 @@ WHERE O.is_preferred_obs_across_facets AND
 ORDER BY Value
 ```
 
-### Computing a new Statistic.
+### Compute a new statistic
 
-As an example, listing countries of the world with highest electricity consumption per unit GDP:
+As an example, list countries of the world with the highest electricity consumption per unit GDP:
 
 ```sql
 WITH ChildPlace AS (
