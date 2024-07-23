@@ -63,15 +63,16 @@ When the downloads are complete, navigate to the root directory of the repo (e.g
 cd website | <var>DIRECTORY</var>
 </pre>
 
-### Set API keys as environment variables 
+### Set environment variables 
 
-1. Using your favorite editor, open `custom_dc/sqlite_env.list`.
+1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
+1. For the `OUTPUT_DIR`, set it to `$PWD/custom_dc/sample/`.
 1. Leave `ADMIN_SECRET` blank for now.
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
-Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables files containing secrets. Instead, store them locally only. If you are using git/Github, you can add the file to the `.gitignore` file.
+Note: If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables file containing secrets. Instead, store it locally only. If you are using git/Github, you can add the file name to the `.gitignore` file.
 
 ## About the downloaded files
 
@@ -85,7 +86,7 @@ Note: If you are storing your source code in a public/open-source version contro
   <tbody>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data in Data Commons. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the config.json file. </td>
+      <td>Sample supplemental data that is added to the base data in Data Commons. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the `config.json` file. </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples"><code>custom_dc/examples/</code></a></td>
@@ -100,12 +101,8 @@ Note: If you are storing your source code in a public/open-source version contro
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/sqlite_env.list"><code>custom_dc/sqlite_env.list</code></a></td>
-      <td>Contains environment variables for a development environment using SQLite as the database. For details of the variables, see the comments in the file.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/cloudsql_env.list"><code>custom_dc/cloudsql_env.list</code></a></td>
-      <td>Contains environment variables for a development or production environment using Cloud SQL as the database. For details of the variables, see the comments in the file.</td>
+      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list"><code>custom_dc/env.list</code></a></td>
+      <td>Contains environment variables for the Data Commons services. For details of the variables, see the comments in the file.</td>
     </tr>
   </tbody>
 </table>
@@ -119,19 +116,19 @@ Note: If you are storing your source code in a public/open-source version contro
 docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
---env-file $PWD/custom_dc/sqlite_env.list \
--v $PWD/custom_dc/sample:/userdata \
+--env-file $PWD/custom_dc/env.list \
+-v $PWD/custom_dc/sample:/$PWD/custom_dc/sample  \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 ```
 
-Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you will need to preface every `docker` invocation with `sudo`.
+Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you may need to preface every `docker` invocation with `sudo`.
 
 This command does the following:
 
 - The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-website-compose:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
 - Starts a Docker container in interactive mode.
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container
-- Maps the sample data to the Docker path `/userdata`, so the servers do not need to be restarted when you load the sample data
+- Maps the sample data to a Docker path, so the servers do not need to be restarted when you load the sample data
 
 ### Stop and restart the services
 

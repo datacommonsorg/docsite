@@ -53,7 +53,7 @@ HTML and CSS customization files are provided as samples to get you started. The
   </tbody>
 </table>
 
-Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable.
+Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable in `custom_dc/env.list`.
 
 To enable the changes to be picked up by the Docker image, and allow you to refresh the browser for further changes, restart the Docker image with this additional flag to map the directories to the Docker workspace:
 

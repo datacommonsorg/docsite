@@ -21,6 +21,7 @@ Once you have tested locally, you need to get your data into Google Cloud so you
 
 You will upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and the custom Data Commons importer will transform, store, and query the data in a [Google Cloud SQL](https://cloud.google.com/sql) database.
 
+
 ## Prerequisites
 
 - A [GCP](https://console.cloud.google.com/welcome) billing account and project.
@@ -57,22 +58,22 @@ While you are testing, you can start with a single Google Cloud region; to be cl
 1. For the **Location type**, choose the same regional options as for Cloud SQL above.
 1. When you have finished setting all the configuration options, click **Create**.
 1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your data.
-1. Name the folder as desired. Record the folder path as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting environment variables below. You can start with the sample data provided under `custom_dc/sample` and update to your own data later.
+1. Name the folder as desired. Record the folder path as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `OUTPUT_DIR` environment variable below. 
 
-### Set up environment variables
+### Set environment variables
 
-1. Using your favorite editor, open `custom_dc/cloudsql_env.list`.
-1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
+1. Using your favorite editor, open `custom_dc/env.list`.
+1. Set `USE_SQLITE=false` and `USE_CLOUDSQL=true`
 1. Set values for all of the following:
 
-   - `GCS_DATA_PATH`
    - `CLOUDSQL_INSTANCE`
    - `GOOGLE_CLOUD_PROJECT`
    - `DB_NAME`
    - `DB_USER`
    - `DB_PASS`
+   - `OUTPUT_DIR`
 
-   See comments in the [`cloudsql_env.list`](https://github.com/datacommonsorg/website/blob/master/custom_dc/cloudsql_env.list) file for the correct format for each option.
+   See comments in the [`env.list`](https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list) file for the correct format for each option.
 
 1. Optionally, set an `ADMIN_SECRET` to use when loading the data through the `/admin` page later.
 
@@ -117,23 +118,25 @@ If you are prompted to install the Cloud Resource Manager API, press `y` to acce
 
 If you have not made changes that require a local build, and just want to run the pre-downloaded image, from your repository root, run:
 
-```shell
+<pre>
 docker run -it \
---env-file $PWD/custom_dc/cloudsql_env.list \
+--env-file $PWD/custom_dc/env.list \
+-v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
 -p 8080:8080 \
 -e DEBUG=true \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
 gcr.io/datcom-ci/datacommons-website-compose:stable
-```
+</pre>
 
 #### Run with a locally built repo
 
-If you have made local changes and have a [locally built repo](/custom_dc/manage_repo.html#build-repo), from the root of the repository, run the following:
+If you have made local changes and have a [locally built repo](/custom_dc/build_image.html#build-repo), from the root of the repository, run the following:
 
 <pre>
 docker run -it \  
---env-file $PWD/custom_dc/cloudsql_env.list \  
+--env-file $PWD/custom_dc/env.list \  
+-v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
 -p 8080:8080 \  
 -e DEBUG=true \  
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \  
@@ -149,7 +152,7 @@ Each time you upload new versions of the source CSV and JSON files, you need to 
 
 You can load the new/updated data from Cloud Storage using the `/admin` page on the site:
 
-1. Optionally, in the `cloudsql_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
+1. Optionally, in the `env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as described above.
 1. With the services running, navigate to the `/admin` page. If a secret is required, enter it in the text field, and click **Load**.
    This runs a script inside the Docker container, that converts the CSV data in Cloud Storage into SQL tables, and stores them in the Cloud SQL database you created earlier. It also generates embeddings in the Google Cloud Storage folder into which you uploaded the CSV/JSON files, in a `datacommons/nl/` subfolder.

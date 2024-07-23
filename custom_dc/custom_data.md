@@ -21,7 +21,7 @@ Custom Data Commons provides a simple mechanism to import your own data, but it 
 
 - All data must be in CSV format, using the schema described below.
 - You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
-- All CSV files and the JSON file must be in the same directory
+- All CSV files and the JSON file _must_ be in the same directory
 
 Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample) and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples) directories.
 
@@ -242,21 +242,23 @@ The `sources` section is optional. It encodes the sources and provenances associ
 
 To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](/custom_dc/data_cloud.html) for procedures.
 
+### Configure custom directories
+
+If you are using a directory other than `custom_dc/sample` to store your CSV files, edit the `env.list` file as follows:
+- Set the `OUTPUT_DIR` variable to the directory where your input files are stored. The load step will create a `datacommons` subdirectory under this directory.
+
 ### Start the Docker container with local custom data {#docker-data}
 
-Once you have your CSV files and config.json set up, use the following command to restart the Docker container, mapping your custom data directory to the Docker userdata directory.
+Once you have configured everything, use the following command to restart the Docker container, mapping your output directory to the same path in Docker:
 
 <pre>
 docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
---env-file $PWD/custom_dc/sqlite_env.list \
--v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \
-[-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons:/sqlite] \
+--env-file $PWD/custom_dc/env.list \ \
+-v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 </pre>
-
-The optional `-v` flag preserves the SQLite data so it loads automatically when you restart the Docker container.
 
 Every time you make changes to the CSV or JSON files, you should reload the data, as described below.
 
@@ -266,9 +268,9 @@ As you are iterating on changes to the source CSV and JSON files, you will need 
 
 You can load the new/updated data from SQLite using the `/admin` page on the site:
 
-1. Optionally, in the `sqlite_env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
+1. Optionally, in the `env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
 1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above).
-1. With the services running, navigate to the `/admin page`. If a secret is required, enter it in the text field, and click **Load**. This runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code>custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/nl/</code>.
+1. With the services running, navigate to the `/admin` page. If a secret is required, enter it in the text field, and click **Load**. This runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code><var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code><var>OUTPUT_DIRECTORY</var>/datacommons/nl/</code>.
 
 ## Inspect the SQLite database
 
@@ -277,7 +279,7 @@ If you need to troubleshoot custom data, it is helpful to inspect the contents o
 To do so, from a terminal window, open the database:
 
 <pre>  
-sqlite3 website/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>/datacommons/datacommons.db
+sqlite3 <var>WEBSITE_ROOT</var>/<var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
 </pre>
 
 This starts the interactive SQLite shell. To view a list of tables, at the prompt type `.tables`. The relevant table is `observations`.

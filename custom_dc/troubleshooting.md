@@ -65,7 +65,7 @@ There is a problem with how you have set up your CSV files and/or config.json fi
 
 If the load page does not show any errors but data still does not load, try checking the following:
 
-1. In the `_env.list` file you are using, check that you are not using single or double quotes around any of the values.
+1. In the `env.list` file, check that you are not using single or double quotes around any of the values.
 1. Check your Docker command line for invalid arguments. Often Docker won't give any error messages but failures will show up at runtime.
 
 ## Website display problems
