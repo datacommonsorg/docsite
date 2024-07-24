@@ -41,7 +41,7 @@ We provide a trial API key for general public use. This key will let you try the
 </div>
 
 _The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits by
-[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform). Typical turnaround is less than 48 hours.
+[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
 To use the key in requests, see the [Authentication](/api/rest/v2/getting_started.html#authentication) page.
 
