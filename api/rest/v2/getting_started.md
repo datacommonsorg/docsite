@@ -1,6 +1,6 @@
 ---
 layout: default
-title: REST (v2)
+title: Get started
 nav_order: 1
 parent: API
 has_children: true
@@ -8,16 +8,14 @@ published: true
 ---
 
 {:.no_toc}
-# Get started
+# Assemble requests
 
 * TOC
 {:toc}
 
-## Assemble a request
-
 Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org) format. The following sections detail how to assemble a request.
 
-### Service endpoints
+## Service endpoints
 
 You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
@@ -39,11 +37,9 @@ The URIs for the V2 API are below:
 | Resolve entities | [/v2/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
 | SPARQL | [/v2/sparql](/api/rest/v2/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
 
-### Parameters
+## Query parameters
 
 Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
-
-### Query parameters
 
 Query parameters are chained at the end of a URL behind a `?` symbol. Separate multiple parameter entries with an `&` symbol. For example, this would look like:
 
@@ -53,7 +49,7 @@ https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=<var>DCID1</var
 
 Still confused? Each endpoint's documentation page has examples at the bottom tailored to the endpoint you're trying to use.
 
-### POST requests
+## POST requests
 
 All V2 endpoints allow for POST requests. For POST requests, feed all parameters in JSON format. For example, in cURL, this would look like:
 
@@ -215,4 +211,4 @@ To illustrate again using the Argentina example:
 
 ## Escape codes for reserved characters in GET requests
 
-HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you must use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding) for reserved characters. 
+HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding) for reserved characters. 

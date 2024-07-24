@@ -28,14 +28,6 @@ You can use the REST API with any tool or language that supports HTTP. You can m
 
 The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, described [here](/api/rest/v2/getting_started.html#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
-
-## Find available entities, variables, and their DCIDs
-
-Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
-
-- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
-- [Find places available for a statistical variable](/data_model.html#find-places)
-
     {: #get-key}
 ## Get API keys 
 
@@ -48,7 +40,14 @@ We provide a trial API key for general public use. This key will let you try the
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
-_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
-[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. 
+_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits by
+[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
 
 To use the key in requests, see the [Authentication](/api/rest/v2/getting_started.html#authentication) page.
+
+## Find available entities, variables, and their DCIDs
+
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
+
+- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
+- [Find places available for a statistical variable](/data_model.html#find-places)

@@ -7,7 +7,11 @@ grand_parent: API
 published: true
 ---
 
+{:.no_toc}
 # Troubleshoot common error responses
+
+* TOC
+{:toc}
 
 ## "Method does not exist"
 
