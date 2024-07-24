@@ -30,14 +30,14 @@ If you want to pick up the latest prebuilt version, do the following:
    ```
 1. Rerun the container, specifying that repo as the argument to the `docker run` command:
 
-   ```shell
-   docker run -it \
-   -p 8080:8080 \
-   -e DEBUG=true \
-   -env-file $PWD/custom_dc/env.list \
-   -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
-   gcr.io/datcom-ci/datacommons-website-compose:latest
-   ```
+```shell
+docker run -it \
+-p 8080:8080 \
+-e DEBUG=true \
+-env-file $PWD/custom_dc/env.list \
+-v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+gcr.io/datcom-ci/datacommons-website-compose:latest
+```
 
 ## Build a local image {#build-repo}
 

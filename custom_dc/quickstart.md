@@ -67,7 +67,7 @@ cd website | <var>DIRECTORY</var>
 
 1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
-1. For the `OUTPUT_DIR`, set it to `$PWD/custom_dc/sample/`.
+1. For the `OUTPUT_DIR`, set it to the full path to the `sample` directory. For example if you have cloned the repo directly to your home directory, this would be <code>/home/<var>USERNAME</var>/website/custom_dc/sample</code>.
 1. Leave `ADMIN_SECRET` blank for now.
 
 Warning: Do not use any quotes (single or double) or spaces when specifying the values.
