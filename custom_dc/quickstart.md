@@ -27,7 +27,7 @@ The instructions in this page use the following setup:
 - If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
-- Get an API key to authorize requests from your site to the base Data Commons, by [filling out this form](https://docs.google.com/forms/d/17XRFdbXHomz5cwAwSAg1jUj3r3TxGT_HABgXhSM1204). Typical turnaround times are 24-48 hours.
+- Get an API key to authorize requests from your site to the base Data Commons, by [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog). Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps {#setup}
