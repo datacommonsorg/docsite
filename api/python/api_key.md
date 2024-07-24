@@ -7,7 +7,7 @@ grand_parent: API
 published: false
 ---
 
-# Set the API key
+# Sets the API key (Optional)
 
 ## `datacommons.set_api_key(api_key)`
 
