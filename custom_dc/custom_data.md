@@ -244,7 +244,7 @@ To load custom data uploaded to Google Cloud, see instead [Pointing the local Da
 
 ### Configure custom directories
 
-If you are using a directory other than `custom_dc/sample` to store your CSV files, edit the `env.list` file as follows:
+Edit the `env.list` file as follows:
 - Set the `OUTPUT_DIR` variable to the directory where your input files are stored. The load step will create a `datacommons` subdirectory under this directory.
 
 ### Start the Docker container with local custom data {#docker-data}
@@ -256,7 +256,7 @@ docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/env.list \ \
--v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 </pre>
 
@@ -279,7 +279,7 @@ If you need to troubleshoot custom data, it is helpful to inspect the contents o
 To do so, from a terminal window, open the database:
 
 <pre>  
-sqlite3 <var>WEBSITE_ROOT</var>/<var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
+sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
 </pre>
 
 This starts the interactive SQLite shell. To view a list of tables, at the prompt type `.tables`. The relevant table is `observations`.

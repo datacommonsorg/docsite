@@ -35,7 +35,7 @@ If you want to pick up the latest prebuilt version, do the following:
    -p 8080:8080 \
    -e DEBUG=true \
    -env-file $PWD/custom_dc/env.list \
-   -v $PWD/custom_dc/sample:/$PWD/custom_dc/sample \
+   -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
    gcr.io/datcom-ci/datacommons-website-compose:latest
    ```
 
@@ -148,7 +148,7 @@ docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \
--v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 datacommons-website-compose:<var>DOCKER_TAG</var>

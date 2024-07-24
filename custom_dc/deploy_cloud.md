@@ -76,7 +76,7 @@ When it completes, verify that the container has been uploaded in the Cloud Cons
 
 To deploy the image in Google Cloud Run, you need to create a Run service. Because we need to set the environment variables for the running image as options in the service, it is actually more convenient to create the service and deploy the image at the same time using `gcloud` rather than the Cloud Console. Once the service is created in this way, you can edit it and redeploy using the Console.
 
-1. Copy the settings from the `env.list` file to a local environment variable:
+1. Copy the settings from the `env.list`g file to a local environment variable:
 
    ```shell
    env_vars=$(awk -F '=' 'NF==2 {print $1"="$2}' custom_dc/env.list | tr '\n' ',' | sed 's/,$//')

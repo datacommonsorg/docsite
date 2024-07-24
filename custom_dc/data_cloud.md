@@ -121,7 +121,6 @@ If you have not made changes that require a local build, and just want to run th
 <pre>
 docker run -it \
 --env-file $PWD/custom_dc/env.list \
--v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
 -p 8080:8080 \
 -e DEBUG=true \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
@@ -136,7 +135,6 @@ If you have made local changes and have a [locally built repo](/custom_dc/build_
 <pre>
 docker run -it \  
 --env-file $PWD/custom_dc/env.list \  
--v <var>OUTPUT_DIRECTORY</var>:/<var>OUTPUT_DIRECTORY</var> \
 -p 8080:8080 \  
 -e DEBUG=true \  
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \  
