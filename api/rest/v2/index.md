@@ -28,7 +28,7 @@ You can use the REST API with any tool or language that supports HTTP. You can m
 
 The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, described [here](/api/rest/v2/getting_started.html#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
-    {: #get-key}
+{: #get-key}
 ## Get API keys 
 
 All access to Data Commons using the REST APIs must be authenticated and authorized with an API key.

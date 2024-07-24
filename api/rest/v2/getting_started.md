@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Get started
-nav_order: 1
-parent: API
-has_children: true
+nav_order: 0
+parent: REST (v2)
+grand_parent: API
 published: true
 ---
 
@@ -147,6 +147,7 @@ curl -X POST \
   "nodes": "geoId/06",
   "property": "<-*",
   "nextToken": "SoME_veRy_L0ng_S+rIng"
+}
 ```
 
 {: #relation-expressions}

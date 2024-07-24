@@ -1,11 +1,10 @@
 ---
 layout: default
 title: Observation
-nav_order: 2
+nav_order: 1
 parent: REST (v2)
 grand_parent: API
 published: true
-permalink: /api/rest/v2/observation
 ---
 
 # /v2/observation
