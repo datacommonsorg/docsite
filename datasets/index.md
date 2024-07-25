@@ -21,7 +21,7 @@ Data in the Data Commons Graph comes from a variety of sources, each of which of
 10. [Housing](/datasets/Housing.html)
 
  <p> &nbsp; </p>
- 
+
 # Data coverage
 
 The following charts illustrate the data coverage in terms of global statistical variables at the country, state, and district levels. The first chart illustrates the total number of statistical variables available per country, excluding the USA where data coverage is currently most extensive

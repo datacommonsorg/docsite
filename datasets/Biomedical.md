@@ -47,6 +47,12 @@ Data Commons includes protein sequence and functional information including prot
 This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/about/terms-of-use/).
 
 
+### [Gene Ontology Consortium](https://geneontology.org/)
+
+#### [The Sequence Ontology](http://www.sequenceontology.org/)
+"The Sequence Ontology is a set of terms and relationships used to describe the features and attributes of biological sequence. SO includes different kinds of features which can be located on the sequence. Biological features are those which are defined by their disposition to be involved in a biological process. Examples are 'binding site' and 'exon'. Biomaterial features are those which are intended for use in an experiment such as aptamer and PCR_product. There are also experimental features which are the result of an experiment. SO also provides a rich set of attributes to describe these features such as 'polycistronic' and 'maternally imprinted'."
+Gene Ontology Consortium data and data products are licensed under the [Creative Commons Attribution 4.0 Unported License](https://creativecommons.org/licenses/by/4.0/legalcode). When using or citing GO data please mention the particular release. For example, include where applicable the date (e.g. '2024-01-17'), Zenodo DOI (e.g. '10.5281/zenodo.10536401'), and links. More information on licensing and attribution in regards to the Gene Ontology Consortium can be found [here](https://geneontology.org/docs/go-citation-policy/).
+
 ### [International Committee on Taxonomy of Viruses (ICTV)](https://ictv.global/)
 
 #### [Master Species List](https://ictv.global/msl)
@@ -119,7 +125,7 @@ This data is made available through [openFDA terms of service](https://open.fda.
 This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
 
 
-### [U.S. National Institutes of Health: National Center for Biotechnology Information](https://www.ncbi.nlm.nih.gov/)
+### [U.S. National Institutes of Health: National Center for Biotechnology Information (NIH: NCBI)](https://www.ncbi.nlm.nih.gov/)
 
 #### [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
 "ClinVar is a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence." It contains reports of genetic "variants found in patient samples, assertions made regarding their clinical significance, information about the submitter, and other supporting data." Data Commons includes the January 6, 2020 release of the ClinVar archive supporting both hg19 and hg38 genome assemblies.
@@ -136,6 +142,10 @@ The NIH NCBI gene info datasets from NCBI Gene for a subset of species contains 
 * _Mus musculus_
 * _Saccharomyces cerevisiae_
 * _Xenepus laevis_
+
+
+#### [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy/)
+"NCBI Taxonomy "consists of a curated set of names and classifications for all of the source organisms represented in the International Nucleotide Sequence Database Collaboration (INSDC). The NCBI Taxonomy database contains a list of names that are determined to be nomenclaturally correct or valid (as defined according to the different codes of nomenclature), classified in an approximately phylogenetic hierarchy (depending on the level of knowledge regarding phylogenetic relationships of a given group) as well as a number of names that exist outside the jurisdiction of the codes. That is, it focuses on nomenclature and systematics, rather than documenting the description of taxa."
 
 This data is from an NIH human genome unrestricted-access data repository and made accessible under the [NIH Genomic Data Sharing (GDS) Policy](https://osp.od.nih.gov/scientific-sharing/genomic-data-sharing/).
 
