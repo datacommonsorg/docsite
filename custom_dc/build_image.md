@@ -30,14 +30,14 @@ If you want to pick up the latest prebuilt version, do the following:
    ```
 1. Rerun the container, specifying that repo as the argument to the `docker run` command:
 
-   ```shell
-   docker run -it \
-   -p 8080:8080 \
-   -e DEBUG=true \
--  -env-file $PWD/custom_dc/sqlite_env.list \
--  v $PWD/custom_dc/sample:/userdata \
-   gcr.io/datcom-ci/datacommons-website-compose:latest
-   ```
+```shell
+docker run -it \
+-p 8080:8080 \
+-e DEBUG=true \
+-env-file $PWD/custom_dc/env.list \
+-v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+gcr.io/datcom-ci/datacommons-website-compose:latest
+```
 
 ## Build a local image {#build-repo}
 
@@ -141,14 +141,14 @@ To upload and deploy the container to the Cloud, see [Deploy a custom instance t
 
 ## Run the container with the local SQLite database
 
-To start the services using the locally built repo. If you have made changes to any of the UI components, be sure to map the `custom` directories to the Docker `workspace` directory.
+Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
 
 <pre>  
 docker run -it \
---env-file $PWD/custom_dc/sqlite_env.list \
+--env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \
-[-v $PWD/custom_dc/<var>CUSTOM_DATA_DIRECTORY</var>:/userdata \] 
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 datacommons-website-compose:<var>DOCKER_TAG</var>
