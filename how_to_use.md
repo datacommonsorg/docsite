@@ -24,15 +24,17 @@ For quick analysis, use the search query bar on the [home page](https://datacomm
 
 ## Learn about the data in Data Commons {#learn}
 
-To find out what data is available in Data Commons, check out the [Statistical Variable Explorer](https://datacommons.org/tools/statvar) and see the [Data sources](/datasets) pages.
+To find out what data is available in Data Commons, see the [Data sources](/datasets) pages, and check out the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
 ## Query the Data Commons data directly {#query}
 
 There are several options for directly querying the data, without accessing the datacommons.org website, both interactive and programmatic:
 
-- **APIs**: Data Commons publishes REST, Python, Pandas, and SPARQL [APIs](/api/index.html). These APIs support both low-level exploration of the knowledge graph as well as higher-level statistical analysis of data. You can call them from any application that supports REST protocols. The [Python](/api/python)/ and [Pandas](/api/pandas/) APIs provide convenient wrappers calling them programatically or interactively, for example, from a Python virtual environment shell or from [Google Colab](https://colab.sandbox.google.com/). We have developed a set of [Google Colab tutorials](/tutorials/index.html) to help you get started with analysis.  
+- **APIs**: Data Commons publishes REST, Python, Pandas, and SPARQL [APIs](/api/index.html). These APIs support both low-level exploration of the knowledge graph as well as higher-level statistical analysis of data. You can call them from any application that supports REST protocols. 
 
-    Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring our API and data, currently in use at MIT.
+    The [Python](/api/python)/ and [Pandas](/api/pandas/) APIs provide convenient wrappers, that you can call programatically or interactively, for example, from a Python virtual environment shell or from [Google Colab](https://colab.sandbox.google.com/). We have developed a set of [Google Colab tutorials](/tutorials/index.html) to help you get started with analysis.  
+
+    Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring the Python APIs and data, currently in use at MIT.
 
 - **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
 
