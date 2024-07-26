@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Get started
+title: Getting started
 nav_order: 2
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Get started
+# Getting started
 
 This page shows you how to run a local custom Data Commons instance inside a Docker container and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
 
