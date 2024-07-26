@@ -43,7 +43,7 @@ The following is a sample configuration that you can tune as needed. For additio
 **Step 2: Set the environment variable**
 
 1. When the Redis instance is created above, go to the **Instances > Redis** tab, look up your instance and note the **Primary Endpoint** IP address.
-1. In `custom_dc/cloudsql_env.list`, set the value of the `REDIS_HOST` option to the IP address. 
+1. In `custom_dc/env.list`, set the value of the `REDIS_HOST` option to the IP address. 
 
 **Step 3: Create the VPC connector**
 

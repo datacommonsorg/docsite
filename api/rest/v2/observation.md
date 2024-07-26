@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Observation
+title: Get statistical observations
 nav_order: 1
 parent: REST (v2)
 grand_parent: API

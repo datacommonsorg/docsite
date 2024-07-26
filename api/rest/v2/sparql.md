@@ -1,6 +1,6 @@
 ---
 layout: default
-title: SPARQL
+title: Query with SPARQL
 nav_order: 5
 parent: REST (v2)
 grand_parent: API

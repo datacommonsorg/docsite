@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Node
+title: Get node properties
 nav_order: 3
 parent: REST (v2)
 grand_parent: API
