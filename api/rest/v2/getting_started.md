@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Get started
+title: Getting started
 nav_order: 0
 parent: REST (v2)
 grand_parent: API
