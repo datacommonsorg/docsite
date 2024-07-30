@@ -84,7 +84,7 @@ C. V. Starr Virtual Herbarium is a public specimen database with photos and deta
 ### [PharmGKB](https://www.pharmgkb.org/)
 
 #### [PharmGKB Primary Data](https://www.pharmgkb.org/)
-The Pharmacogenomics Knowledge Base, PharmGKB, is an interactive tool for researchers investigating how genetic variation affects drug response. [PharmGKB](http://www.pharmgkb.org) displays genotype, molecular, and clinical knowledge integrated into pathway representations and Very Important Pharmacogene (VIP) summaries with links to additional external resources. Users can search and browse the knowledgebase by genes, variants, drugs, diseases, and pathways. The Primary Data contains summary information on chemicals, drugs, genes, genetic variants, and phenotypes.
+The Pharmacogenomics Knowledge Base, PharmGKB, is an interactive tool for researchers investigating how genetic variation affects drug response. [PharmGKB](http://www.pharmgkb.org) displays genotype, molecular, and clinical knowledge integrated into pathway representations and Very Important Pharmacogene (VIP) summaries with links to additional external resources. Users can search and browse the knowledge base by genes, variants, drugs, diseases, and pathways. The Primary Data contains summary information on chemicals, drugs, genes, genetic variants, and phenotypes.
 
 
 #### [PharmGKB Relationships Data](https://www.pharmgkb.org/)
