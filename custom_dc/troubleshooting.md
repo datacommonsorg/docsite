@@ -86,7 +86,7 @@ In general, whenever you encounter problems with any Google Cloud Run service, c
 
 ### "403 Forbidden: Your client does not have permission to get URL / from this server"
 
-This error indicats that your application requires authenticated requests but you have not provided an authentication token. If your site is intended to be public, first check to see that the Cloud Run service is not set up to require authentication:
+This error indicates that your application requires authenticated requests but you have not provided an authentication token. If your site is intended to be public, first check to see that the Cloud Run service is not set up to require authentication:
 1. Go to the [Google Cloud Console Cloud Run](https://console.cloud.google.com?run) page for your project.
 1. From the list of services, select the relevant service and select the **Security** tab.
 1. Ensure that you have enabled **Allow unauthenticated invocations** and restart the Cloud Run service.
