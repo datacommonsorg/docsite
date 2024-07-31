@@ -84,6 +84,15 @@ This is because you are missing a valid API key or the necessary APIs are not en
 
 In general, whenever you encounter problems with any Google Cloud Run service, check the **Logs** page for your Cloud Run service, to get detailed output from the services.
 
+### "403 Forbidden: Your client does not have permission to get URL / from this server"
+
+This error indicats that your application requires authenticated requests but you have not provided an authentication token. If your site is intended to be public, first check to see that the Cloud Run service is not set up to require authentication:
+1. Go to the [Google Cloud Console Cloud Run](https://console.cloud.google.com?run) page for your project.
+1. From the list of services, select the relevant service and select the **Security** tab.
+1. Ensure that you have enabled **Allow unauthenticated invocations** and restart the Cloud Run service.
+
+If you are unable to select this option, this indicates that there is an IAM permissions setup issue with your project or account. See the [Cloud Run Troubleshooting](https://cloud.google.com/run/docs/troubleshooting#unauthorized-client) for details on how to fix this.
+
 ### "502 Bad Gateway"
 
 If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
