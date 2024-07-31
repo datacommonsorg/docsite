@@ -47,7 +47,7 @@ This is most commonly seen when the endpoint is misspelled or otherwise malforme
 }
 ```
 
-This is seen when your request is missing an API key. Please [request your own API key](/api/index.html#get-key).
+This is seen when your request is missing an API key. Please [request your own API key](/api/rest/v2/index.html#get-key).
 
 
 ## "Invalid request URI"
@@ -74,7 +74,7 @@ This is most commonly seen when your request is missing a required path paramete
 {}
 ```
 
-Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
+Sometimes your query might return an empty result. This is most commonly seen when the value provided for a query parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
 
 ## Marshaling errors
 

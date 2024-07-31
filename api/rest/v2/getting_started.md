@@ -8,7 +8,7 @@ published: true
 ---
 
 {:.no_toc}
-# Assemble requests
+# Getting started
 
 * TOC
 {:toc}
@@ -32,10 +32,10 @@ The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Node | [/v2/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
-| Observation | [/v2/observation](/api/rest/v2/observation) | Fetches statistical observations |
-| Resolve entities | [/v2/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
-| SPARQL | [/v2/sparql](/api/rest/v2/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
+| Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
+| Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
 
 ## Query parameters
 
@@ -139,7 +139,7 @@ curl --request GET \
 
 Similarly for POST requests, this would look like:
 
-```json
+```bash
 curl -X POST \
 -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 --url https://api.datacommons.org/v2/node \
@@ -147,7 +147,7 @@ curl -X POST \
   "nodes": "geoId/06",
   "property": "<-*",
   "nextToken": "SoME_veRy_L0ng_S+rIng"
-}
+}'
 ```
 
 {: #relation-expressions}
