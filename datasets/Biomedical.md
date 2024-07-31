@@ -75,16 +75,16 @@ SIDER is a database of adverse drug reactions. Available information includes si
 This data is made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 
-### [New York Botanical Garden (NYBG)](http://sweetgum.nybg.org/science/)
+### [New York Botanical Garden (NYBG)](https://sweetgum.nybg.org/science/)
 
-#### [C. V. Starr Virtual Herbarium (Collaboration)](http://sweetgum.nybg.org/science/vh/learn-more/)
+#### [C. V. Starr Virtual Herbarium (Collaboration)](https://sweetgum.nybg.org/science/vh/learn-more/)
 C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
 
 
 ### [PharmGKB](https://www.pharmgkb.org/)
 
 #### [PharmGKB Primary Data](https://www.pharmgkb.org/)
-The Pharmacogenomics Knowledge Base, PharmGKB, is an interactive tool for researchers investigating how genetic variation affects drug response. The PharmGKB Web site, http://www.pharmgkb.org, displays genotype, molecular, and clinical knowledge integrated into pathway representations and Very Important Pharmacogene (VIP) summaries with links to additional external resources. Users can search and browse the knowledgebase by genes, variants, drugs, diseases, and pathways. The Primary Data contains summary information on chemicals, drugs, genes, genetic variants, and phenotypes.
+The Pharmacogenomics Knowledge Base, PharmGKB, is an interactive tool for researchers investigating how genetic variation affects drug response. [PharmGKB](http://www.pharmgkb.org) displays genotype, molecular, and clinical knowledge integrated into pathway representations and Very Important Pharmacogene (VIP) summaries with links to additional external resources. Users can search and browse the knowledge base by genes, variants, drugs, diseases, and pathways. The Primary Data contains summary information on chemicals, drugs, genes, genetic variants, and phenotypes.
 
 
 #### [PharmGKB Relationships Data](https://www.pharmgkb.org/)
