@@ -20,7 +20,7 @@ Data in the Data Commons Graph comes from a variety of sources, each of which of
 9. [Health](/datasets/Health.html)
 10. [Housing](/datasets/Housing.html)
 
- <p> &nbsp; </p>
+<p> &nbsp; </p>
 
 # Data coverage
 
@@ -37,6 +37,6 @@ This chart goes a level deeper and illustrates the total number of statistical v
 
 Finally, this third chart illustrates the total number of statistical variables available at the district/county level worldwide.
 
-<p> &nbsp; </p> 
+<p> &nbsp; </p>
 <div class="flourish-embed flourish-map" data-src="visualisation/17719383"></div>
 <p> &nbsp; </p>
