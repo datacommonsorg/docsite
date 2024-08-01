@@ -5,101 +5,49 @@ nav_order: 0
 parent: API
 has_children: true
 published: true
-permalink: /api/rest/v2
 ---
 
-# Data Commons REST API
+{:.no_toc}
+# Data Commons REST API 
+
+* TOC
+{:toc}
+
+## Overview
 
 The Data Commons REST API is a
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
 that enables developers to programmatically access data in the Data Commons
-knowledge graph. This package allows users to explore the structure of the
+knowledge graph, using [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods). This allows you to explore the structure of the
 graph, integrate statistics from the graph into data analysis applications and
 much more.
 
+You can use the REST API with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/)), by scripting HTTP requests in another language like Javascript, or even by entering an endpoint into your web browser!
+
 ## What's new in V2
 
-The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints. We do this by introducing a syntax for "Relation Expressions", [described below](#relation-expressions). Each API endpoint can also handle both single and bulk requests.
+The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, described [here](/api/rest/v2/getting_started.html#relation-expressions). Each API endpoint can also handle both single and bulk requests.
 
-## Getting Started
+{: #get-key}
+## Get API keys 
 
-First time using the Data Commons API, or just need a refresher? Take a look at
-our [Getting Started Guide](/api/rest/v2/getting_started).
+All access to Data Commons using the REST APIs must be authenticated and authorized with an API key.
 
-## Service Endpoints
+We provide a trial API key for general public use. This key will let you try the API and make single requests.
 
-The base URL for all endpoints below is:
+<div markdown="span" class="alert alert-secondary" role="alert">
+   <b>Trial key: </b>
+   `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
+</div>
 
-```bash
-https://api.datacommons.org/v2
-```
+_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits by
+[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog). Typical turnaround times are 24-48 hours.
 
-| API | URI path | Description |
-| --- | --- | ----------- |
-| Node | [/v2/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
-| Observation | [/v2/observation](/api/rest/v2/observation) | Fetches statistical observations |
-| Resolve Entities | [/v2/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
-| SPARQL | [/v2/sparql](/api/rest/v2/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
+To use the key in requests, see the [Authentication](/api/rest/v2/getting_started.html#authentication) section.
 
+## Find available entities, variables, and their DCIDs
 
-{: #relation-expressions}
-## Introducing Relation Expressions
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
 
-Data Commons represents real world entities and data as nodes. These
-nodes are connected by directed edges, or arcs, to form a knowledge graph. The
-label of the arc is the name of the [property](/glossary.html#property).
-
-Relation expressions include arrow annotation and other symbols in the syntax to
-represent neighboring nodes, and to support chaining and filtering.
-These new expressions allow all of the functionality of the V1 API to be
-expressed with fewer API endpoints in V2. All V2 API calls require relation
-expressions in the `property` or `expression` parameter.
-
-The following table describes symbols in the V2 API relation expressions:
-
-| Symbol | Represents |
-| ------ | ---------- |
-| `->` | An `out` arc |
-| `<-` | An `in` arc |
-| `{property:value}` | Filtering; identifies the property and associated value |
-| `[]` | Multiple properties, separated by commas |
-| `*` | All properties linked to this node |
-| `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
-
-### In and out arcs: `<-` & `->`
-
-Note that arcs in the Data Commons Graph have directions. In the case of the [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both `in` and `out` directions, illustrated in Figure 1:
-
-![](/assets/images/rest/property_value_direction_example.png)
-
-*Figure 1. Relationship diagram for the property `containedInPlace` of the country Argentina. Note the directionality of the property `containedInPlace`: for the node "Argentina", the `in` arc represents "Argentina contains Buenos Aires", while the `out` arc represents "Argentina in South America".*
-
-
-For example, nodes from `out` arcs are represented by `->`, while nodes from
-`in` arcs are represented by `<-`. To illustrate using the above example:
-
-- Regions that include Argentina (dcid: `country/ARG`): `country/ARG->containedInPlace`
-- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
-
-### Filters: `{property:value}`
-
-Filters can be used to reduce results to only match nodes with a specified property and value. Using the same example,  `country/ARG<-containedInPlace+{typeOf:City}` will only return nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
-
-### Specifying multiple properties: `[property1, property2]`
-
-Multiple properties can be combined together within `[]`. For example, in order to request a few `out` arcs for a node, use
-`->[name, latitude, longitude]` (this example is [fully described in this Node API example](/api/rest/v2/node.html#multiple-properties)).
-
-### Wildcard: `*`
-
-In order to retrieve all properties linked to a node, use the `*`, e.g. `<-*`.
-This example is [fully described in this Node API example](/api/rest/v2/node.html#wildcard).
-
-### Chaining properties: `+`
-
-A property chain expression represents requests for information about nodes
-which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.
-
-To illustrate again using the Argentina example:
-- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
-- All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
+- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
+- [Find places available for a statistical variable](/data_model.html#find-places)
