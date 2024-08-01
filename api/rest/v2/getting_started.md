@@ -1,69 +1,61 @@
 ---
 layout: default
-title: Getting Started Guide
+title: Getting started
 nav_order: 0
 parent: REST (v2)
 grand_parent: API
 published: true
-permalink: /api/rest/v2/getting_started
 ---
 
-# Getting Started Guide
-
-Welcome! Whether you're new to Data Commons or are just looking for a refresher, this guide gives an overview of what you need to know to get started using our REST API.
-
-Use the links below to jump to any section:
+{:.no_toc}
+# Getting started
 
 * TOC
 {:toc}
 
-## What is a REST API?
+Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org) format. The following sections detail how to assemble a request.
 
-Our REST API follows the [RESTful architectural style](https://en.wikipedia.org/wiki/Representational_state_transfer) to allow you to query the Data Commons Knowledge Graph via [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods). This allows you to explore the local graph and query data from specific variables and entities programatically.
+## Service endpoints
 
-## How to Use the REST API
-
-Our REST API can be used with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/)), by scripting HTTP requests in another language like javascript, or even by entering an endpoint into your web browser!
-
-Following HTTP, a REST API call consists of a **request** that you provide, and a **response** from our servers with the data you requested in [JSON](https://json.org) format. The next section details how to assemble a request.
-
-### Assembling a Request
-
-#### Endpoints
-
-Requests are made through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). We provide endpoints for many different queries (see the list of available endpoints [here](/api/rest/v2)).
-
-Each endpoint can be acessed using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
+You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
 The base URL for all REST endpoints is:
 
-```bash
-https://api.datacommons.org
-```
+<pre>
+https://api.datacommons.org/<var>VERSION</var>
+</pre>
 
-And a URI looks like [`/v2/node`](/api/rest/v2/node). To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
+The current version is `v2`.
 
-#### Parameters
+To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
+The URIs for the V2 API are below:
 
-Endpoints take a set of **parameters** which allow you to specify which entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
+| API | URI path | Description |
+| --- | --- | ----------- |
+| Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
+| Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
 
-##### Query Parameters
+## Query parameters
+
+Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
 
 Query parameters are chained at the end of a URL behind a `?` symbol. Separate multiple parameter entries with an `&` symbol. For example, this would look like:
 
-```bash
-https://api.datacommons.org/v2/node?key=your_api_key&nodes=dcid1&nodes=dcid2&property=<-*
-```
+<pre>
+https://api.datacommons.org/v2/node?key=<var>API_KEY</var>&nodes=<var>DCID1</var>&nodes=<var>DCID2</var>&property=<-*
+</pre>
 
 Still confused? Each endpoint's documentation page has examples at the bottom tailored to the endpoint you're trying to use.
 
-#### POST requests
+## POST requests
 
-All V2 endpoints allow for `POST` requests. For `POST` requests, feed all parameters in JSON format. For example, in cURL, this would look like:
+All V2 endpoints allow for POST requests. For POST requests, feed all parameters in JSON format. For example, in cURL, this would look like:
 
-```bash
+<pre>
 curl -X POST \
--H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+-H "X-API-Key: <var>API_KEY</var>" \
 --url https://api.datacommons.org/v2/node \
 --data '{
   "nodes": [
@@ -72,79 +64,50 @@ curl -X POST \
   ],
   "property": "->[name, latitude, longitude]"
 }'
-```
+</pre>
 
-#### Finding Available Entities, Variables, and their DCIDs
-
-Most requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. Curious what entities and variables are available? Want to find a DCID? Take a look at our explorer tools:
-
-- [Search](https://datacommons.org/search) Search Data Commons
-- [Knowledge Graph](https://datacommons.org/browser/) Click through nodes in the knowledge graph
-- [Place Browser](https://datacommons.org/place) Summaries of data available for entities that are geographic locations
-- [Statistical Variable Explorer](https://datacommons.org/tools/statvar) See metadata for variables
-
-#### Finding Datetimes for Observations
-
-Many endpoints allow the user to filter their results to specific dates. When querying for data at a specific date, the string passed for the date queried must match the date format (in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)) used by the target variable. An easy way to see what date format a variable uses is to look up your variable of interest in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
 {: #authentication}
-### Authentication
+## Authentication
 
-<div markdown="span" class="alert alert-danger" role="alert">
-   <span class="material-icons exclamation-icon">priority_high</span><b>IMPORTANT:</b><br />
-   API keys are now required. To use the REST API, a valid API key must be included in all requests.
-</div>
+API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api//rest/v2/index.html#get-key).
 
-#### Using API Keys
-
-API keys are required in any REST API request. To include an API key, add your API key to the URL as a query parameter by appending `?key=<YOUR_API_KEY_HERE>`.
+To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 
 For GET requests, this looks like:
 
-```bash
-https://api.datacommons.org/v2/endpoint?key=<YOUR_KEY_HERE>
-```
+<pre>
+https://api.datacommons.org/v2/<var>ENDPOINT</var>?key=<var>API_KEY</var>
+</pre>
 
-If the key is not the first query parameter, use `&key=<YOUR_API_KEY_HERE>` instead. This looks like:
+If the key is not the first query parameter, use <code>&key=<var>API_KEY</var></code> instead. This looks like:
 
-```bash
-https://api.datacommons.org/v2/endpoint?query=value&key=<YOUR_KEY_HERE>
-```
+<pre>
+https://api.datacommons.org/v2/<var>ENDPOINT</var>?<var>QUERY</var>=<var>VALUE</var>&key=<var>API_KEY</var>
+</pre>
 
 For POST requests, pass the key as a header. For example, in cURL, this looks like:
 
-```bash
+<pre>
 curl -X POST \
 --url https://api.datacommons.org/v2/node \
---header 'X-API-Key: <YOUR_KEY_HERE>' \
+--header 'X-API-Key: <var>API_KEY</var>' \
 --data '{
   "nodes": [
-    "entity_dcid_1",
-    "entity_dcid_2",
+    "<var>ENTITY_DCID_1</var>",
+    "<var>ENTITY_DCID_2</var>",
     ...
   ],
-  "property: "relation_expression"
+  "property: "<var>RELATION_EXPRESSION</var>"
 }'
-```
-
-#### Getting API Keys
-
-We've provided a trial API key for general public use. This key will let you try the API and make single requests.
-
-<div markdown="span" class="alert alert-secondary" role="alert">
-   <b>Trial Key: </b>
-   `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
-</div>
-
-<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request one by
-[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and selecting "API access" to request an official key without any quota limits. We'll be happy to hear from you!
+</pre>
 
 {: #pagination}
-### Pagination
+## Pagination
 
 When the response to a request is too long, the returned payload is
-**paginated**. Only a subset of the response is returned, along with a long string
-of characters called a **token**. To get the next set of entries, repeat the
+_paginated_. Only a subset of the response is returned, along with a long string
+of characters called a _token_. To get the next set of entries, repeat the
 request with `nextToken` as an query parameter, with the token as its value.
 
 For example, the request:
@@ -187,87 +150,66 @@ curl -X POST \
 }'
 ```
 
-## Troubleshooting
+{: #relation-expressions}
+## Relation expressions
 
-### Common Error Responses
+Data Commons represents real world entities and data as nodes. These
+nodes are connected by directed edges, or arcs, to form a knowledge graph. The
+label of the arc is the name of the [property](/glossary.html#property).
 
-#### "Method does not exist"
+Relation expressions include arrow annotation and other symbols in the syntax to
+represent neighboring nodes, and to support chaining and filtering.
+These new expressions allow all of the functionality of the V1 API to be
+expressed with fewer API endpoints in V2. All V2 API calls require relation
+expressions in the `property` or `expression` parameter.
 
-```json
-{
-  "code": 5,
-  "message": "Method does not exist.",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "service_control"
-    }
-  ]
-}
-```
+The following table describes symbols in the V2 API relation expressions:
 
-This is most commonly seen when the endpoint is misspelled or otherwise malformed. Check the spelling of your endpoint and that all required path parameters are provided in the right order.
+| ------ | ---------- |
+| `->` | An outgoing arc |
+| `<-` | An incoming arc |
+| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
+| `[]` | Multiple properties, separated by commas |
+| `*` | All properties linked to this node |
+| `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
 
-#### Missing API key
+### Incoming and outgoing arcs
 
-```json
-{
- "code": 16,
- "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API.",
- "details": [
-  {
-   "@type": "type.googleapis.com/google.rpc.DebugInfo",
-   "stackEntries": [],
-   "detail": "service_control"
-  }
- ]
-}
-```
+Arcs in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
 
-This is seen when your request is missing an API key. Please use the trial key provided above, or request your own API key.
+![](/assets/images/rest/property_value_direction_example.png)
 
+Note the directionality of the property `containedInPlace`: incoming arc represents "Argentina contains Buenos Aires", while the outgoing arc represents "Argentina is in South America".*
 
-#### "Invalid request URI"
+Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
+arcs are represented by `<-`. To illustrate using the above example:
 
-```json
-{
-  "code": 3,
-  "message": "Invalid request URI",
-  "details": [
-    {
-      "@type": "type.googleapis.com/google.rpc.DebugInfo",
-      "stackEntries": [],
-      "detail": "internal"
-    }
-  ]
-}
-```
+- Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
+- All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
 
-This is most commonly seen when your request is missing a required path parameter. Make sure endpoints and parameters are both spelled correctly and provided in the right order.
+### Filters
 
-#### Empty Response
+You can use filters to reduce results to only match nodes with a specified property and value. Use {} to specify property:value pairs to define the filter. Using the same example, `country/ARG<-containedInPlace+{typeOf:City}` only returns nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
 
-```json
-{}
-```
+### Specify multiple properties
 
-Sometimes your query might return an empty result. This is most commonly seen when the value provided for a parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
+You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
+`->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
 
-#### Marshaling errors
+### Wildcard
 
-```json
-{
- "code": 13,
- "message": "grpc: error while marshaling: proto: Marshal called with nil",
- "details": [
-  {
-   "@type": "type.googleapis.com/google.rpc.DebugInfo",
-   "stackEntries": [],
-   "detail": "internal"
-  }
- ]
-}
-```
+To retrieve all properties linked to a node, use the `*` wildcard, e.g. `<-*`.
+See more in this [Node API example](/api/rest/v2/node.html#wildcard).
 
-This is most commonly seen when a query parameter is missing, misspelled or incorrect. Check the spelling of query parameters and ensure all required parameters are sent in the request.
+### Chain properties
+
+Use `+` to express a chain expression. A chain expression represents requests for information about nodes
+which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.
+
+To illustrate again using the Argentina example:
+- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
+- All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
+
+## Escape codes for reserved characters in GET requests
+
+HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding) for reserved characters. 
