@@ -9,7 +9,6 @@ has_children: true
 # Overview
 
 [Data Commons](https://datacommons.org) aggregates data from many
-[Data Commons](https://datacommons.org) aggregates data from many
 different [data sources](https://datacommons.org/datasets) into a single
 database. Data Commons is based on the data model used by
 [schema.org](https://schema.org); for more information, see [Key concepts](/data_model.html).
@@ -20,7 +19,7 @@ Data Commons provides several different ways to access its resources:
 * A [REST API](/api/rest/v2) that can be used on the command line as well as in any language with an HTTP library.
 * [Python](/api/python) and [Pandas](/api/pandas) wrappers.
 
-**Note:** The Python and Pandas APIs wrap the [v1](api/rest/v1) version of the REST APIs and have not yet been updated to v2.
+**Note:** The Python and Pandas APIs wrap the [v1](/api/rest/v1) version of the REST APIs and have not yet been updated to v2.
 
 The endpoints can be roughly grouped into four categories:
 

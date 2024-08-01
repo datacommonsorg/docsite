@@ -29,7 +29,7 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 $ pip install datacommons
 ```
 
-You are ready to go! You can view our [tutorials](/tutorials) on how to use the
+You are ready to go! You can view our [tutorials](tutorials.md) on how to use the
 API to perform certain tasks using [Google Colab](https://colab.sandbox.google.com/), or refer to pages in the navigation bar for detailed information about all the methods available.
 
 ## Run Python interactively
