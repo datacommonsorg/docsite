@@ -15,6 +15,8 @@ the Pandas API, and supplemental functions help with directly creating
 objects using data from the Data Commons knowledge graph for common
 use cases. 
 
+**Note:** The Pandas API only supports the [v1](/api/rest/v1/index.html) of the REST APIs. 
+
 Before proceeding, make sure you have followed the setup instructions below.
 
 ## Install the Python Data Commons API
@@ -25,8 +27,17 @@ Before proceeding, make sure you have followed the setup instructions below.
 ```bash
 $ pip install datacommons_pandas
 ```
+You are ready to go! You can view our [tutorials](/tutorials) on how to use the
+API to perform certain tasks using [Google Colab](https://colab.sandbox.google.com/), or refer to pages in the navigation bar for detailed information about all the methods available.
 
-You are ready to go! You can start an interactive virtual environment using venv, you can view our [tutorials](/tutorials) on how to use the
-API to perform certain tasks, or see a full list of functions, classes and
-methods available for use in the sidebar.
+## Run Python interactively
 
+The pages in this site demonstrate running the Pandas methods interactively from the Bash shell. To use this facility, be sure to import the `datacommons_pandas` package:
+
+From your virtual environment, run:
+
+```bash
+python3
+>>> import datacommons_pandas
+>>>
+```

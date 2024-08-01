@@ -1,6 +1,6 @@
 ---
 layout: default
-title: SPARQL
+title: Query with SPARQL
 nav_order: 5
 parent: REST (v2)
 grand_parent: API
@@ -38,7 +38,7 @@ JSON data: { "query": "<var>SPARQL_QUERY</var>" }
 
 | Name                                                | Type   | Description                                                                                                                                                     |
 | --------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the the section on [authentication](getting_started.md#authentication) for instructions on how to get a key. |
+| key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the the section on [authentication](/api/rest/v2/getting_started.html#authentication) for instructions on how to get a key. |
 | query <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, all desired entities must be specified; wildcards are not supported. Each node or entity should have a `typeOf` condition, for example, <code>?<var>ENTITY_NAME</var> typeOf City</code>.    |
 {: .doc-table }
 
