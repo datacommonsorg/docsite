@@ -23,7 +23,7 @@ Before proceeding, make sure you have followed the setup instructions below.
 1. Use pip to install the `datacommons_pandas` package:
 
 ```bash
-$ pip install datacommons
+$ pip install datacommons_pandas
 ```
 
 You are ready to go! You can start an interactive virtual environment using venv, you can view our [tutorials](/tutorials) on how to use the
