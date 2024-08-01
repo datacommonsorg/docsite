@@ -69,7 +69,7 @@ The type of a statistical variable is always the special sub-class [`Statistical
 
 A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person), or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino)`. Complex variables may be broken down into constituent parts, or not.  
 
-### Find places available for a statistical variable
+### Find places available for a statistical variable {#find-places}
 
 Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you can do the following:
 
@@ -95,7 +95,7 @@ DCIDs are not restricted to entities; statistical variables also have DCIDs. For
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept7.png){: width="900"}
 
-### Find a DCID for an entity or variable
+### Find a DCID for an entity or variable {#find-dcid}
 
 Many Data Commons tools and APIs require that you provide a DCID as input for a query. There are a few ways to do this.
 

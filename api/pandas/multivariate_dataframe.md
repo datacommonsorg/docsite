@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Multivariate Table as pd.DataFrame
+title: Retrieve multivariate DataFrame
 nav_order: 3
 parent: Pandas
 grand_parent: API
@@ -15,7 +15,7 @@ its `Place` and `StatisticalVariable`.
 
 See the [full list of `StatisticalVariable` classes](/statistical_variables.html).
 
-## General information about this method
+## General information about the method
 
 **Signature**:
 
