@@ -18,6 +18,8 @@ Data Commons provides several different ways to access its resources:
 * A [REST API](/api/rest/v2) that can be used on the command line as well as in any language with an HTTP library.
 * [Python](/api/python) and [Pandas](/api/pandas) wrappers.
 
+**Note:** The Python and Pandas APIs wrap the [v1](api/rest/v1) version of the REST APIs and have not yet been updated to v2.
+
 The endpoints can be roughly grouped into four categories:
 
 -   **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
