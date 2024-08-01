@@ -76,7 +76,7 @@ Singapore Demographics and Health statistics for Singapore at country.
 
 ### [Feeding America](https://www.feedingamerica.org/)
 
-#### [Feeding America: Map Meal Gap](hhttps://map.feedingamerica.org/)
+#### [Feeding America: Map Meal Gap](https://map.feedingamerica.org)
 Feeding america's mission is to advance change in America by ensuring equitable access to nutritious food for all in partnership with food banks, policymakers, supporters, and the communities we serve.
 
 ### [General Statistics Office (GSO), Vietnam](https://www.gso.gov.vn/en/homepage/)
