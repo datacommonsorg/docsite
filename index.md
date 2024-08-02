@@ -1,7 +1,7 @@
 ---
 layout: default
 title: What is Data Commons?
-nav_order: 0
+nav_order: 1
 ---
 
 {: .no_toc}
