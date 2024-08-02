@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Python
-nav_order: 3
+nav_order: 20
 parent: API
 has_children: true
 ---
@@ -11,33 +11,38 @@ has_children: true
 The **Data Commons Python API** is a Python library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package
 allows users to explore the structure of the graph, integrate statistics from
-the graph into data analysis workflows and much more. Please see the [Data Commons API Overview](/api)
-for more details on the design and structure of the API.
+the graph into data analysis workflows and much more. 
+
+**Note:** The Python API only supports [v1](/api/rest/v1/index.html) of the REST APIs. 
 
 Before proceeding, make sure you have followed the setup instructions below.
 
-## Getting Started
+## Install the Python Data Commons API
 
-To get started using the Python API:
+This procedure uses a Python virtual environment as recommended by Google Cloud [Setting up a Python development environment](https://cloud.google.com/python/docs/setup)
 
-- Install the API using `pip`.
-- Begin developing with the Python API
-
-### Installing the Python API
-
-First, install the `datacommons` package through `pip`.
+1. If not done already, install python3 and pip3. See [Installing Python](https://cloud.google.com/python/docs/setup#installing_python) for procedures.
+1. Go to your project directory and create a virtual environment using venv, as described in [Using venv to isolate dependencies](https://cloud.google.com/python/docs/setup#installing_and_using_virtualenv). 
+1. Install the the `datacommons` package:
 
 ```bash
 $ pip install datacommons
 ```
 
-For more information about installing `pip` and setting up other parts of
-your Python development environment, please refer to the
-[Python Development Environment Setup Guide](https://cloud.google.com/python/setup.html)
-for Google Cloud Platform.
+You are ready to go! You can view our [tutorials](tutorials.md) on how to use the
+API to perform certain tasks using [Google Colab](https://colab.sandbox.google.com/), or refer to pages in the navigation bar for detailed information about all the methods available.
 
-### Using the Python API
+## Run Python interactively
 
-You are ready to go! From here you can view our [tutorials](/tutorials) on how to use the
-API to perform certain tasks, or see a full list of functions, classes and
-methods available for use in the sidebar.
+The pages in this site demonstrate running Python methods interactively from the Bash shell. To use this facility, be sure to import the `datacommons` package:
+
+From your virtual environment, run:
+
+```bash
+python3
+>>> import datacommons
+>>>
+```
+
+
+
