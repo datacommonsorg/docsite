@@ -39,6 +39,24 @@ You will upload your CSV and JSON files to [Google Cloud Storage](https://cloud.
 1. Enable or disable **Immutable image tags** according to the workflow you prefer; that is, if you want to be able to reuse the same Docker tag for new images, keep this option disabled.
 1. Click **Create**.
 
+### Set environment variables
+
+1. Using your favorite editor, open `custom_dc/env.list`.
+1. Set `USE_SQLITE=false` and `USE_CLOUDSQL=true`
+1. Set values for all of the following:
+
+   - `CLOUDSQL_INSTANCE`
+   - `GOOGLE_CLOUD_PROJECT`
+   - `DB_NAME`
+   - `DB_USER`
+   - `DB_PASS`
+   - `INPUT_DIR`
+   - `OUTPUT_DIR`
+
+   See comments in the [`env.list`](https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list) file for the correct format for each option.
+
+Warning: Do not use any quotes (single or double) or spaces when specifying the values.
+
 ## Upload the Docker container to Google Cloud
 
 This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry, and then deploy to Google Cloud Run.

@@ -68,6 +68,12 @@ If the load page does not show any errors but data still does not load, try chec
 1. In the `env.list` file, check that you are not using single or double quotes around any of the values.
 1. Check your Docker command line for invalid arguments. Often Docker won't give any error messages but failures will show up at runtime.
 
+## NL queries not returning custom data
+
+If you have previously been able to get custom data in your natural-language query results, but this has suddenly stopped working, this is due to embeddings incompatibility issues between releases. To fix this, do the following:
+1. Delete the `datacommons` subdirectory from your output directory.
+1. Restart the services, and reload the data from the /admin page.
+
 ## Website display problems
 
 If styles aren't rendering properly because CSS, logo files or JS files are not loading, check your Docker command line for invalid arguments. Often Docker won't give any error messages but failures will show up at runtime.
@@ -93,7 +99,19 @@ This error indicates that your application requires authenticated requests but y
 
 If you are unable to select this option, this indicates that there is an IAM permissions setup issue with your project or account. See the [Cloud Run Troubleshooting](https://cloud.google.com/run/docs/troubleshooting#unauthorized-client) for details on how to fix this.
 
+### "403: Not authorized to access resources"
+
 ### "502 Bad Gateway"
+
+This is a general indication that the Data Commons servers are not running. Check the **Logs ** page for the Cloud Run service in the Google Cloud Console. Here are common errors:
+
+`403 Forbidden: Not authorized to access resources`
+
+This may be . To fix this:
+1. In the Cloud Run service page in the Cloud Console, select the **Revisions** tab, and scroll to view the **Environment variables**.
+1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you set when creating the [SQL database](/custom_dc/data_cloud.html#create-sql)
+
+
 
 If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
 

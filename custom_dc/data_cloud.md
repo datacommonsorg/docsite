@@ -43,7 +43,7 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 
 ### Create a Google Cloud SQL instance
 
-This stores the data that will be served at run time. The Data Commons data management
+This stores the data that will be served at run time. The Data Commons data management job will create this data when it is started.
 
 1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances) for your project.
 1. Next to **Instances**, click **Create Instance**.
@@ -54,31 +54,20 @@ This stores the data that will be served at run time. The Data Commons data mana
 1. For the **Location type**, choose the relevant regional option.
 1. When you have finished setting all the configuration options, click **Create Instance**. It may take several minutes for the instance to be created.
 1. When the instance is created and the left navigation bar appears, select **Users**.
-1. Add at least one user and password.
+1. Add at least one user and password. Be sure to at least assign a password to the "root" user.
 1. Select **Databases**.
 1. Click **Create Database**.
 1. Choose a name for the database or use the default, `datacommons`.
 1. Click **Create**.
 
-###
+### Create a Google Cloud Run 
 
-### Set environment variables
+Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at https://console.cloud.google.com.google.com/gcr/images/datcom-ci/global/datacommons-data.
 
-1. Using your favorite editor, open `custom_dc/env.list`.
-1. Set `USE_SQLITE=false` and `USE_CLOUDSQL=true`
-1. Set values for all of the following:
+1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/run) for your project.
+1. Click **Create job**.
 
-   - `CLOUDSQL_INSTANCE`
-   - `GOOGLE_CLOUD_PROJECT`
-   - `DB_NAME`
-   - `DB_USER`
-   - `DB_PASS`
-   - `INPUT_DIR`
-   - `OUTPUT_DIR`
 
-   See comments in the [`env.list`](https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list) file for the correct format for each option.
-
-Warning: Do not use any quotes (single or double) or spaces when specifying the values.
 
 ## Upload data files to Google Cloud Storage
 
