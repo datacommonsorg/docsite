@@ -44,7 +44,7 @@ permalink: /api/web_components/slider
 ```html
 <!-- Bar chart listening for date change events on the "dc-bar" channel -->
 <datacommons-bar
-  header="Count_Person_InLaborForce and sdg/SI_POV_DAY1 (${date})"
+  header="Population below the poverty line in the US, Russia, and Mexico (${date})"
   variables="sdg/SI_POV_DAY1"
   places="country/USA country/RUS country/MEX"
   subscribe="dc-bar"
@@ -143,7 +143,7 @@ Code:
 ```html
 <!-- Bar chart listening for date change events on the "dc-bar" channel -->
 <datacommons-bar
-  header="Count_Person_InLaborForce and sdg/SI_POV_DAY1 (${date})"
+  header="Population below the poverty line in the US, Russia, and Mexico (${date})"
   variables="sdg/SI_POV_DAY1"
   places="country/USA country/RUS country/MEX"
   subscribe="dc-bar"
@@ -164,7 +164,7 @@ Code:
 
 <!-- Bar chart listening for date change events on the "dc-bar" channel -->
 <datacommons-bar
-  header="Count_Person_InLaborForce and sdg/SI_POV_DAY1 (${date})"
+  header="Population below the poverty line in the US, Russia, and Mexico (${date})"
   variables="sdg/SI_POV_DAY1"
   places="country/USA country/RUS country/MEX"
   subscribe="dc-bar"
