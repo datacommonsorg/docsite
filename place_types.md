@@ -54,7 +54,7 @@ These place types can only be used for places that are contained within the
 |[State](https://datacommons.org/browser/State)|U.S. states.<br><br>For example, [California](https://datacommons.org/place/geoId/06) or [Maryland](https://datacommons.org/place/geoId/)|
 |[County](https://datacommons.org/browser/County)|U.S. counties.<br><br>For example, [Santa Clara County](https://datacommons.org/place/geoId/0669084)|
 |[CensusBlockGroup](https://datacommons.org/browser/geoId/01003990000)|U.S. block groups as defined by the U.S. Census Bureau.<br><br>For example, [Block Group 0](https://datacommons.org/browser/geoId/010039900000)|
-|[CensusTract](https://datacommons.org/browser/CensusTract)| Census tracts as defined by the U.S. Census Bureau.<br><br>For example, [Census Tract 10](https://datacommons.org/browser/geoId/01015001000)|
+|[CensusTract](https://datacommons.org/browser/CensusTract)|U.S. census tracts as defined by the U.S. Census Bureau.<br><br>For example, [Census Tract 10](https://datacommons.org/browser/geoId/01015001000)|
 |[CensusZipCodeTabulationArea](https://datacommons.org/browser/CensusZipCodeTabulationArea)|U.S. zip codes as defined by the U.S. Census Bureau.<br><br>For example, [94043](https://datacommons.org/place/zip/94043).<br><br>While there is significant overlap, these codes don't always correspond to the zip codes used by the US Postal Service.|
 {: .doc-table}
 
