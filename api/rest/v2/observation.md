@@ -1,11 +1,10 @@
 ---
 layout: default
-title: Observation
-nav_order: 2
+title: Get statistical observations
+nav_order: 1
 parent: REST (v2)
 grand_parent: API
 published: true
-permalink: /api/rest/v2/observation
 ---
 
 # /v2/observation
@@ -63,7 +62,7 @@ JSON data:
 
 | Name                                                  | Type   |  Description                                                    |
 |-------------------------------------------------------|--------|-----------------------------------------------------------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the [page on authentication](/api/rest/v2/getting_started.html#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/getting_started.html#authentication) for details. |
 | date <br /> <required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
 | variable.dcids <br /> <required-tag>Required</required-tag>| list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. |
 | entity.dcids                                          | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |

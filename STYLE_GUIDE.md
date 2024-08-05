@@ -19,6 +19,8 @@ Absolute links are against the repo root and must be specified _with .html exten
 [Place types](/place_types.html)
 ```
 
+IMPORTANT: Section links only work with absolute links. For example, if you have a section in file `api/index.md` defined as `{#authentication}`, any links to it must specify the absolute path, i.e. `/api/index.html#authentication`. 
+
 ## TOCs
 
 To add a TOC to a page, use the following Markdown:
