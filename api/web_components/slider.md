@@ -10,13 +10,17 @@ permalink: /api/web_components/slider
 
 # Data Commons Slider Web Component
 
-[Data Commons Web Component](/api/web_components/) for controlling the date in [datacommons-map](./map.md).
+[Data Commons Web Component](/api/web_components/) for controlling the date in [datacommons-map](./map.md) or 
+[datacommons-bar](./bar.md).
 
 ## Usage
 
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'map-tab')">
     Control a map
+  </button>
+  <button class="api-tablink" onclick="openTab(event, 'bar-tab')">
+    Control a bar chart
   </button>
 </div>
 
@@ -36,6 +40,27 @@ permalink: /api/web_components/slider
 ></datacommons-slider>
 ```
 {: #map-tab .api-tabcontent}
+
+```html
+<!-- Bar chart listening for date change events on the "dc-bar" channel -->
+<datacommons-bar
+  header="Count_Person_InLaborForce and sdg/SI_POV_DAY1 (${date})"
+  variables="sdg/SI_POV_DAY1"
+  places="country/USA country/RUS country/MEX"
+  subscribe="dc-bar"
+  date="HIGHEST_COVERAGE"
+>
+  <!-- Place slider in the component's footer and publish events on the "dc-bar" channel -->
+  <datacommons-slider
+    variables="sdg/SI_POV_DAY1"
+    places="country/USA country/RUS country/MEX"
+    publish="dc-bar"
+    slot="footer"
+    >
+  </datacommons-slider>
+</datacommons-bar>
+```
+{: #bar-tab .api-tabcontent}
 
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
@@ -70,12 +95,12 @@ permalink: /api/web_components/slider
 
 ## Examples
 
-### Example 1: Use slider to change dates on a datacommons map web component
+### Example 1: Use slider to change dates on a `datacommons-map` web component
 
 Code:
 {: .example-box-title}
 ```html
-<!-- Listen for date changes on the "dc-year" channel -->
+<!-- Listen for date changes on the "dc-map" channel -->
 <datacommons-map
   header="Population"
   parentPlace="country/USA"
@@ -84,7 +109,7 @@ Code:
   variable="Count_Person"
 ></datacommons-map>
 
-<!-- Publish date changes on the "dc-year" channel  -->
+<!-- Publish date changes on the "dc-map" channel  -->
 <datacommons-slider
   publish="dc-map"
   variable="Count_Person"
@@ -94,7 +119,7 @@ Code:
 ```
 {: .example-box-content}
 
-<!-- Listen for date changes on the "dc-year" channel -->
+<!-- Listen for date changes on the "dc-map" channel -->
 <datacommons-map
   header="Population"
   parentPlace="country/USA"
@@ -103,10 +128,54 @@ Code:
   variable="Count_Person"
 ></datacommons-map>
 
-<!-- Publish date changes on the "dc-year" channel  -->
+<!-- Publish date changes on the "dc-map" channel  -->
 <datacommons-slider
   publish="dc-map"
   variable="Count_Person"
   parentPlace="country/USA"
   childPlaceType="State"
 ></datacommons-slider>
+
+### Example 2: Use slider to change dates on a `datacommons-bar` web component
+
+Code:
+{: .example-box-title}
+```html
+<!-- Bar chart listening for date change events on the "dc-bar" channel -->
+<datacommons-bar
+  header="Count_Person_InLaborForce and sdg/SI_POV_DAY1 (${date})"
+  variables="sdg/SI_POV_DAY1"
+  places="country/USA country/RUS country/MEX"
+  subscribe="dc-bar"
+  date="HIGHEST_COVERAGE"
+>
+  <!-- Place slider in the component's footer and publish events on the "dc-bar" channel -->
+  <datacommons-slider
+    variables="sdg/SI_POV_DAY1"
+    places="country/USA country/RUS country/MEX"
+    publish="dc-bar"
+    slot="footer"
+    >
+  </datacommons-slider>
+</datacommons-bar>
+```
+{: .example-box-content}
+
+
+<!-- Bar chart listening for date change events on the "dc-bar" channel -->
+<datacommons-bar
+  header="Count_Person_InLaborForce and sdg/SI_POV_DAY1 (${date})"
+  variables="sdg/SI_POV_DAY1"
+  places="country/USA country/RUS country/MEX"
+  subscribe="dc-bar"
+  date="HIGHEST_COVERAGE"
+>
+  <!-- Place slider in the component's footer and publish events on the "dc-bar" channel -->
+  <datacommons-slider
+    variables="sdg/SI_POV_DAY1"
+    places="country/USA country/RUS country/MEX"
+    publish="dc-bar"
+    slot="footer"
+    >
+  </datacommons-slider>
+</datacommons-bar>
