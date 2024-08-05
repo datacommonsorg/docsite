@@ -6,10 +6,8 @@ has_children: true
 ---
 
 {:.no_toc}
-# Build your own Data Commons
 
-* TOC
-{:toc}
+# Build your own Data Commons
 
 ## Overview
 
@@ -55,18 +53,15 @@ For the following use cases, a custom Data Commons instance is not necessary:
 
 ## System overview
 
-Essentially, a custom Data Commons instance is a mirror of the public Data Commons, that runs in a [Docker](http://docker.com) container hosted in the cloud. In the browsing tools, the custom data appears alongside the base data in the list of variables. When a query is sent to the custom website, the Mixer server fetches both the custom and base data to provide multiple visualizations. At a high level, here is a conceptual view of a custom Data Commons instance:
+Essentially, a custom Data Commons instance is a mirror of the public Data Commons, that runs in [Docker](http://docker.com) containers hosted in the cloud. In the browsing tools, the custom data appears alongside the base data in the list of variables. When a query is sent to the custom website, a Data Commons server fetches both the custom and base data to provide multiple visualizations. At a high level, here is a conceptual view of a custom Data Commons instance:
 
 ![setup1](/assets/images/custom_dc/customdc_setup1.png){: height="450" }
 
-The custom Data Commons Docker container consists of the following components:
+A custom Data Commons instance uses custom data that you provide as raw CSV files. An importer script converts the CSV data into the Data Commons format and stores this in a SQL database. For local development, we provide a lightweight, open-source [SQLite](http://sqlite.org) database; for production, we recommend that you use [Google Cloud SQL](https://cloud.google.com/sql/).
 
-- A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/), which routes incoming requests to the web or API server
-- A Python-Flask web server, which handles interactive requests from users
-- An Python-Flask NL server, for generating embeddings and serving natural language queries
-- A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make an REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
+In addition to the data, a custom Data Commons instance consists of two Docker containers: one with the core services that serve the data and website; and one with additional utilities for managing and loading custom data and embeddings used for natural-language processing. 
 
-In addition to the Docker container, a custom Data Commons instance uses custom data that you provide as raw CSV files. The web server calls an importer script that converts the CSV data into the Data Commons format and stores this in a SQL database. For local development, we provide a lightweight, open-source [SQLite](http://sqlite.org) database; for production, we recommend that you use [Google Cloud SQL](https://cloud.google.com/sql/).
+Details about the components that make up the containers are provided in the [Getting started](quickstart.md) guide.
 
 ## Requirements and cost
 
@@ -88,9 +83,8 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 ## Recommended workflow
 
 1. Work through the [Get started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
-1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html). If you are just testing custom data to add to the base Data Commons site, you don't need to go any further.
-1. If you are launching your own Data Commons site, and want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
-1. If you are launching your own Data Commons site, upload your data to Google Cloud Platform and continue to use the local instance to test and validate the site. We recommend using Google Cloud Storage to store your data, and Google Cloud SQL to receive SQL queries from the local servers. See [Test data in Google Cloud](/custom_dc/data_cloud.html).
-1. When you are satisfied that everything is working correctly, and are getting closer to launch, upload your custom site to Google Cloud Run and continue to test in the Cloud. See [Deploy the custom instance to Google Cloud](/custom_dc/deploy_cloud.html)
+1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html).
+1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
+1. When you have finished testing locally, host your data and code in Google Cloud Platform: upload your data to  store your data in Google Cloud Storage, use Google Cloud SQL to receive SQL queries, and upload the Docker containers as artifacts to Google Cloud Run. See [Run in Google Cloud](/custom_dc/data_cloud.html).
 1. Launch and productionize your site for external traffic. See [Launch a custom site](/custom_dc/launch_cloud.html).
-1. For future updates and launches, continue to make UI and data changes locally and upload the data to Cloud Storage, before deploying the changes to Cloud Run.
+1. For future updates and launches, continue to make UI and data changes locally, before deploying the changes to GCP.

@@ -139,7 +139,7 @@ To run the container with a remote Cloud SQL database, see [Start the Docker con
 
 To upload and deploy the container to the Cloud, see [Deploy a custom instance to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
-## Run the container with the local SQLite database
+## Run the custom services container locally
 
 Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
 

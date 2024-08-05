@@ -8,18 +8,26 @@ parent: Build your own Data Commons
 {:.no_toc}
 # Deploy a custom instance to Google Cloud
 
-This page shows you how to create an artifact and run it in Google Cloud Run. This is step 5 of the [recommended workflow](/custom_dc/index.html#workflow).
+This page shows you how to store your custom data in Google Cloud database and create the data management and services containers as Google Cloud Platform artifacts and run them Google Cloud Run. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 * TOC
 {:toc}
 
 ## System overview
 
-When you are ready to launch your custom Data Commons site, we recommend hosting your site in [Google Cloud Run](https://cloud.google.com/run/), which is a serverless solution that is by far the simplest and least expensive option, providing auto-scaling. This is the production setup:
+Once you have tested locally, you need to get your data and code into Google Cloud so you can test it there. In this scenario, the system is set up like this:When you are ready to launch your custom Data Commons site, we recommend hosting it [Google Cloud Run](https://cloud.google.com/run/), which is a serverless solution that is by far the simplest and least expensive option, providing auto-scaling. This is the production setup:
 
 ![setup4](/assets/images/custom_dc/customdc_setup4.png)
 
 You push a locally built Docker image to the [Google Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and then deploy the image in Cloud Run.
+
+## Overview
+
+![setup3](/assets/images/custom_dc/customdc_setup3.png)
+
+You will upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and the custom Data Commons importer will transform, store, and query the data in a [Google Cloud SQL](https://cloud.google.com/sql) database.
+
+
 
 ## One-time setup: Create a Google Artifact Registry repository
 
