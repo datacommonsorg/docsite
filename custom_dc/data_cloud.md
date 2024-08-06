@@ -31,15 +31,16 @@ While you are testing, you can start with a single Google Cloud region; to be cl
 
 ### Create a Google Cloud Storage bucket
 
-This stores the CSV and JSON files that you will upload whenever your data changes. It also stores generated embeddings files in the 
+This stores the CSV and JSON files that you will upload whenever your data changes. It also stores generated embeddings files in a `datacommons/nl` subdirectory.
 
 1. Go to [https://console.cloud.google.com/storage/browser](https://console.cloud.google.com/storage/browser) for your project.
 1. Next to **Buckets**, click **Create**.
 1. Enter a name for this bucket.
 1. For the **Location type**, choose the same regional options as for Cloud SQL above.
 1. When you have finished setting all the configuration options, click **Create**.
-1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your data.
-1. Name the folder as desired. Record the folder path as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
+1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your input CSV and JSON files and name it as desired.
+1. Optionally, create a separate folder to hold the output embeddings files, or just use the same one as for the input. The Docker data management container, when you run it, will create subdirectory in the output directory called `datacommons`.
+1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
 
 ### Create a Google Cloud SQL instance
 
@@ -60,12 +61,47 @@ This stores the data that will be served at run time. The Data Commons data mana
 1. Choose a name for the database or use the default, `datacommons`.
 1. Click **Create**.
 
-### Create a Google Cloud Run 
+### Optional: Edit environment variables file
+
+If for some reason you would like to access the Cloud data from a locally running custom instance, or you would like to maintain your settings in a local file for reference purposes, edit the `custom_dc/env.list` file and set the following variables. (Otherwise, you can simply provide them using the Cloud Console, and skip this step.)
+
+- `INPUT_DIR`: Set to the 
+
+- 
+
+
+
+
+
+
+
+
+### Create a Google Cloud Run job
 
 Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at https://console.cloud.google.com.google.com/gcr/images/datcom-ci/global/datacommons-data.
 
 1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/run) for your project.
 1. Click **Create job**.
+1. In the **Container image URL** field, click **Select** to open the **Select container image** window.
+1. Click the **Container Registry** tab.
+1. Next to the **Project**, click **Change**, search for **datcom-ci** and select it.
+1. In the list of images that appears, navigate to and expand **gcr.io/datcom-ci/datacommons-data**, highlight the image you want, **stable** or **latest**, and click **Select**.
+1. Optionally, in the **Job name** field, enter an alternative name as desired.
+1. In the **Region** field, select the region you chose as your location.
+1. Leave the default **Number of tasks** as 1.
+1. Expand **Container, Volumes, Connections, Security** and expand **Settings**, and set the following options:
+  -  **Resources** > **Memory**: **8 GiB**
+  -  **Resources** > **CPU**: **2**
+  -  **Task timeout** > **Number of retries per failed task**: **3**
+1. Click **Create** to save the job (but not run it yet).
+
+#### Set environment variables
+
+1. Click the **Variables and Secrets** tab.
+1. Click **Add variable**.
+
+
+
 
 
 
