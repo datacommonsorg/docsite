@@ -13,11 +13,11 @@ cities, and postal codes. This page provides the DCIDs and a description of
 place types available in our APIs and tools.
 
 **Note:** Not all data is available for all place types. Sources often don’t
-provide data at all levels of granularity. You can check what place types have
-data available for a specific variable using our
+provide data at all levels of granularity. You can check which place types have
+data available for a specific variable using the
 [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
 
-## Globally available administrative divisions
+## Globally available geographic divisions
 
 These place types are generally available for Earth and/or all countries.
 
@@ -29,7 +29,7 @@ These place types are generally available for Earth and/or all countries.
 |[City](https://datacommons.org/browser/City)|A city.|
 {: .doc-table}
 
-## Partially available administrative divisions
+## Partially available geographic divisions
 
 These place types represent administrative divisions that are available for some
 countries, but not all countries.
@@ -43,17 +43,19 @@ countries, but not all countries.
 |[Village](https://datacommons.org/browser/Village)|A small clustered human settlement smaller than a town. |
 {: .doc-table}
 
-### US-specific administrative divisions
+### U.S.-specific geographic divisions
 
 These place types can only be used for places that are contained within the
 [United States](https://datacommons.org/place/country/USA) (DCID:
-[country/USA](https://datacommons.org/browser/country/USA)).
+[country/USA](https://datacommons.org/browser/country/USA)). See https://datacommons.org/browser/dc/base/BaseGeos for additional places defined for the U.S.
 
 |Place Type DCID|Place Type Description|
 |--- |--- |
-|[State](https://datacommons.org/browser/State)|US states.<br><br>For example, [California](https://datacommons.org/place/geoId/06) or [Maryland](https://datacommons.org/place/geoId/)|
-|[County](https://datacommons.org/browser/County)|US counties.<br><br>For example, [Santa Clara County](https://datacommons.org/place/geoId/0669084)|
-|[CensusZipCodeTabulationArea](https://datacommons.org/browser/CensusZipCodeTabulationArea)|US zip codes as defined by the US Census Bureau.<br><br>For example, [94043](https://datacommons.org/place/zip/94043).<br><br>While there is significant overlap, these codes don't always correspond to the zip codes used by the US Postal Service.|
+|[State](https://datacommons.org/browser/State)|U.S. states.<br><br>For example, [California](https://datacommons.org/place/geoId/06) or [Maryland](https://datacommons.org/place/geoId/)|
+|[County](https://datacommons.org/browser/County)|U.S. counties.<br><br>For example, [Santa Clara County](https://datacommons.org/place/geoId/0669084)|
+|[CensusZipCodeTabulationArea](https://datacommons.org/browser/CensusZipCodeTabulationArea)|U.S. zip codes as defined by the U.S. Census Bureau.<br><br>For example, [94043](https://datacommons.org/place/zip/94043).<br><br>While there is significant overlap, these codes don't always correspond to the zip codes used by the US Postal Service.|
+|[CensusTract](https://datacommons.org/browser/CensusTract)|U.S. census tracts as defined by the U.S. Census Bureau.<br><br>For example, [Census Tract 10](https://datacommons.org/browser/geoId/01015001000)|
+|[CensusBlockGroup](https://datacommons.org/browser/geoId/01003990000)|U.S. block groups as defined by the U.S. Census Bureau.<br><br>For example, [Block Group 0](https://datacommons.org/browser/geoId/010039900000)|
 {: .doc-table}
 
 ### India-specific administrative divisions
