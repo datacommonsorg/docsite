@@ -1,7 +1,7 @@
 ---
 layout: default
 title: How to use Data Commons
-nav_order: 1
+nav_order: 2
 ---
 
 # How to use Data Commons
