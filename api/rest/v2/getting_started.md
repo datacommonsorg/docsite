@@ -37,7 +37,15 @@ The URIs for the V2 API are below:
 | Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
 | SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
 
-## Query parameters
+### Endpoints for custom instances
+
+If you are running your own Data Commons, the URL/URI endpoints are slightly different:
+
+<pre>
+<var>CUSTOM_URL</var>/core/api/v2
+</pre>
+
+## Query parameters {#query-param}
 
 Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
 
@@ -71,6 +79,8 @@ curl -X POST \
 ## Authentication
 
 API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api//rest/v2/index.html#get-key).
+
+**Note:** If you are sending API requests to a custom Data Commons instance, do _not_ include any API key in the requests.
 
 To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 

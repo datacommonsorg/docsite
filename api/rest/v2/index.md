@@ -31,7 +31,7 @@ The V2 API collapses functionality from [V1 API](/api/rest/v1) into a smaller nu
 {: #get-key}
 ## Get API keys 
 
-All access to Data Commons using the REST APIs must be authenticated and authorized with an API key.
+All access to base Data Commons using the REST APIs must be authenticated and authorized with an API key. (To send API requests to custom Data Commons instances, no API key is required.)
 
 We provide a trial API key for general public use. This key will let you try the API and make single requests.
 

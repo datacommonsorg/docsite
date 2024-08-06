@@ -205,13 +205,13 @@ To issue natural language queries, click the **Search** link. Try NL queries aga
 
 ## Send an API request
 
-A custom instance can accept REST API requests at the endpoint `/core/api/v2/`. To try it out, here's an example request that returns the same data as in the interactive queries above, using the `observation` API. You can enter this query in your browser to get nice output:
+A custom instance can accept [REST API](/api/rest/v2/index.html) requests at the endpoint `/core/api/v2/`, which can access both the custom and base data. To try it out, here's an example request you can make to your local instance that returns the same data as the interactive queries above, using the `observation` API. Try entering this query in your browser address bar:
 
 ```
 http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage
 ```
 
-Note: You do not need to specify an API key as a parameter.
+Note: You do not need to specify an API key as a [query parameter](/api/rest/v2/getting_started.html#query-param).
 
 If you select **Prettyprint**, you should see output like this:
 
