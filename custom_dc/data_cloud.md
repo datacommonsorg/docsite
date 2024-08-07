@@ -1,21 +1,21 @@
 ---
 layout: default
-title: Test data in Google Cloud
+title: Load data in Google Cloud
 nav_order: 6
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Test data in Google Cloud
+# Load data in Google Cloud
 
-This page shows you how to store your custom data in Google Cloud Storage load it into Google Cloud SQL. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
+This page shows you how to store your custom data in Google Cloud, and create the data management container as a Google Cloud Run job. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 * TOC
 {:toc}
 
 ## Overview
 
-Once you have tested locally, you need to get your data into Google Cloud so you can test it remotely. You pload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and run the Data Commons data Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql) database, and generate NL embeddings stored in Cloud Storage.
+Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and run the Data Commons data Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql) database, and generate NL embeddings stored in Cloud Storage.
 
 
 ## Prerequisites

@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Deploy a custom instance to Google Cloud
+title: Deploy services to Google Cloud
 nav_order: 7
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Deploy a custom instance to Google Cloud
+# Deploy services to Google Cloud
 
 This page shows you how to store your custom data in Google Cloud database and create the data management and services containers as Google Cloud Platform artifacts and run them Google Cloud Run. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
