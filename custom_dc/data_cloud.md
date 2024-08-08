@@ -15,18 +15,18 @@ This page shows you how to store your custom data in Google Cloud, and create th
 
 ## Overview
 
-Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql) database, and generate NL embeddings stored in Cloud Storage.
+Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql) database, and generate NL embeddings stored in Cloud Storage. 
 
-TODO: add image
+![data management setup](/assets/images/custom_dc/customdc_setup3.png)
 
-Alternatively, if you have a very large data set, you may find it faster to store your input files and run the data management container locally, and output the data to Google Cloud Storage. If you would like to use this approach, see xxx 
+Alternatively, if you have a very large data set, you may find it faster to store your input files and run the data management container locally, and output the data to Google Cloud Storage. If you would like to use this approach, follow steps 1 to 3 of the one-time setup steps below and then skip to [Run the data management container locally](#run-local). 
 
 ## Prerequisites
 
 - A [GCP](https://console.cloud.google.com/welcome) billing account and project.
 - Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk).
 
-## One-time setup steps
+## One-time setup steps {#setup}
 
 ### Step 1: Choose a location {#location}
 
@@ -44,7 +44,7 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your data and name it as desired.
 1. Optionally, create separate folders to hold input and output files, or just use the same one as for the input. 
 
-   Note: If you plan to run the data management container locally, you only need an output folder to hold the embeddings files.
+   Note: If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
 1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
 
 ### Step 3: Create a Google Cloud SQL instance
@@ -71,9 +71,7 @@ This stores the data that will be served at run time. The Data Commons data mana
 
 Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at https://console.cloud.google.com.google.com/gcr/images/datcom-ci/global/datacommons-data.
 
-See also https://cloud.google.com/run/docs/create-jobs for links to more information on all the options you may set on your jobs.
-
-**Note:** If you plan to the always run the data management container locally, skip this step entirely and see instead xxx
+See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) documentation for links to more information on all the options you may set on your jobs.
 
 1. Go to https://console.cloud.google.com/run/ for your project.
 1. Click **Create job**.
@@ -90,25 +88,25 @@ See also https://cloud.google.com/run/docs/create-jobs for links to more informa
   -  **Task timeout** > **Number of retries per failed task**: **3**
 1. Click **Create** to save the job (but not run it yet).
 
-{#env-vars}
+{:.#env-vars}
 Now set environment variables:
 
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
 1. Add names and values for the following environment variables:
-- `USE_CLOUDSQL`: set to `true`
-- `DC_API_KEY`: set to the API key for your instance
-- `INPUT_DIR`: set to the Cloud Storage bucket and input folder that you created in step 2 above. 
-- `OUTPUT_DIR`: set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
-- `CLOUDSQL_INSTANCE`: set to the full connection name of the instance you created in step 3 above.
-- `DB_USER`: set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
-- `DB_PASS`: set to the user's or root password you configured when you created the instance in step 3.
-- `DB_NAME`: if you set it to a name other than `datacommons`
+- `USE_CLOUDSQL`: Set to `true`.
+- `DC_API_KEY`: Set to your API key.
+- `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
+- `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
+- `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
+- `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
+- `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
+- `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
 1. Click **Done** and **Update** to save.
 
-## Upload data files to Google Cloud Storage
+## Manage your data
 
-Note: If you plan to run the data management container locally, skip this step and see instead ....
+### Step 1: Upload data files to Google Cloud Storage
 
 1. Go to https://console.cloud.google.com/storage/browse and select your custom Data Commons bucket.
 1. Navigate to the folder you created in the earlier step.
@@ -116,23 +114,23 @@ Note: If you plan to run the data management container locally, skip this step a
 
 Note: Do not upload the local `datacommons` subdirectory or its files.
 
-As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Google SQL, follow the procedures below.
+As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
 
-## Start the data management Cloud Run job
+### Step 2: Start the data management Cloud Run job {#run-job}
 
 Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a `datacommons/nl` subfolder).
 
-Every time you upload new data files or changes to the JSON file to Google Cloud Storage, you will need to rerun the job.
-
-Note: If you plan to run the data management container locally, skip this step and see instead ....
+Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to restart the job.
 
 To run the job:
 
 1. Go to https://console.cloud.google.com/run/jobs for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. To verify that the data has been loaded correctly, see the next step.
+1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
-## Inspect the Cloud SQL database
+To verify that the data has been loaded correctly, see the next step.
+
+### Inspect the Cloud SQL database {#inspect-sql}
 
 To view information about the created tables:
 
@@ -146,19 +144,21 @@ To view information about the created tables:
 
    ![screenshot_sqlite](/assets/images/custom_dc/customdc_screenshot6.png){: height="400"}
 
-## Advanced setup (optional): Run the data management container locally
+## Advanced setup (optional): Run the data management container locally {#run-local}
 
 This process is similar to running both data management and services containers locally, with a few exceptions:
 - Your input directory will be the local file system, while the output directory will be a Google Cloud Storage bucket and folder.
 - You must start the job with credentials to be passed to Google Cloud, to access the Cloud SQL instance.
 
-### Set environment variables
+Before you proceed, ensure you have completed steps 1 to 3 of the [One-time setup steps](#setup) above.
+
+### Step 1: Set environment variables
 
 To run a local instance of the services container, you need to set all the environment variables in the `custom_dc/env.list` file. See [above](#set-vars) for the details, with the following differences:
 - For the `INPUT_DIR`, specify the full local path where your CSV and JSON files are stored, as described in the [Getting started](/custom_dc/). 
 - Set `GOOGLE_CLOUD_PROJECT` to your GCP project name.
 
-### Generate credentials for Google Cloud default application {#gen-creds}
+### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
 
 For the services to connect to the Cloud SQL instance, you need to generate credentials that can be used in the local Docker container for authentication. You should refresh the credentials every time you restart the Docker container.
 
@@ -179,7 +179,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
 
-### Run the Docker container
+### Step 3: Run the Docker container
 
 From your project root directory, run:
 
@@ -194,19 +194,21 @@ gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 
 The version is `latest` or `stable`.
 
+To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
+
 ## Advanced setup (optional): Access Cloud data from a local services container
 
 For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud, use the following procedures.
 
-### Set environment variables
+### Step 1: Set environment variables
 
 To run a local instance of the services container, you will need to set all the environment variables, as described [above](#env-vars) in the `custom_dc/env.list`. You must also set the `MAPS_API_KEY` to your Maps API key.
 
-### Generate credentials for Google Cloud default application
+### Step 2: Generate credentials for Google Cloud default application
 
 See the section [above](#gen-creds) for procedures.
 
-### Run the Docker container
+### Step 3: Run the Docker container
 
 From the root directory of your repo, run the following command, assuming you are using a locally built image:
 
@@ -222,5 +224,7 @@ docker run -it \
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 datacommons-website-compose:<var>DOCKER_TAG</var>
 </pre>
+
+
 
 

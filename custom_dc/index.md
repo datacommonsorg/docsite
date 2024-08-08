@@ -6,8 +6,10 @@ has_children: true
 ---
 
 {:.no_toc}
-
 # Build your own Data Commons
+
+* TOC
+{:toc}
 
 ## Overview
 
@@ -43,7 +45,7 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Python and Pandas API wappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
 | Bigquery interface  | yes | no
 | Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
-| Site ccess controls | yes, using any supported Cloud Run mechanisms<sup>3</sup> | n/a |
+| Site access controls | yes, using any supported Cloud Run mechanisms<sup>3</sup> | n/a |
 | Fine-grained data access controls<sup>4</sup> |  no | n/a |
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers).
@@ -82,7 +84,7 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 {: #workflow}
 ## Recommended workflow
 
-1. Work through the [Get started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
+1. Work through the [Getting started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
 1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html).
 1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. When you have finished testing locally, host your data and code in Google Cloud Platform: first, upload your data to Google Cloud Storage and create a Cloud Run job to load the data into Google Cloud SQL. See [Load data in Google Cloud](/custom_dc/data_cloud.html).

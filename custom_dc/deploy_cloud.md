@@ -17,7 +17,7 @@ This page shows you how to build a custom services Docker container as a GCP art
 
 When you are ready to host your custom Data Commons site in production, you create a [Google Cloud Run](https://cloud.google.com/run/) service for the site. This is the production setup:
 
-![setup4](/assets/images/custom_dc/customdc_setup4.png)
+![services setup](/assets/images/custom_dc/customdc_setup4.png)
 
 You push a locally built Docker image to the [Google Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and then deploy the image as a Cloud Run service.
 
@@ -54,20 +54,20 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 
 1. Create a package from the source image created in step 1:
 
- <pre> 
-docker tag datacommons-website-compose:<var>DOCKER_TAG</var> \  
-<var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
-</pre>
+    <pre> 
+   docker tag datacommons-website-compose:<var>DOCKER_TAG</var> \  
+   <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+   </pre>
 
-  - The `_ARTIFACT_REPO`_ must be an Artifact Registry repository you have created previously. 
-  - The `_IMAGE_NAME`_ may be the same as the source (`datacommons-website-compose`) or any other string. 
-  - The _`TARGET_IMAGE_TAG`_ can be the same as the source, or any other string.
+   - The `_ARTIFACT_REPO`_ must be an Artifact Registry repository you have created previously. 
+   - The `_IMAGE_NAME`_ may be the same as the source (`datacommons-website-compose`) or any other string. 
+   - The _`TARGET_IMAGE_TAG`_ can be the same as the source, or any other string.
 
 1. Push the image to the registry:
 
-<pre>
-docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
-</pre>
+   <pre>
+   docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+   </pre>
 
 This will take several minutes to upload.
 
@@ -78,7 +78,7 @@ When it completes, verify that the container has been uploaded in the Cloud Cons
 
 ## One-time setup: Create a Google Run service
 
-This procedure shows you how to create a service and set environment variables using the Cloud Console. Alternatively, you could set them in the `custom_dc/env.list` file, pipe the file contents to a system variable, and use the [gcloud CLI](https://cloud.google.com/sdk/gcloud/reference/run/jobs?hl=en) to update the job.
+This procedure shows you how to create a service and set environment variables using the Cloud Console. 
 
 See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) for more information on all the options you may set on your service.
 
@@ -102,14 +102,18 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
 1. Disable **Startup CPU boost**.
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
-1. Add the same environment variables, with the same names and values as you did when you created the [data management run job](#/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable).
-   Tip: You can copy from the job by going to
+1. Add the same environment variables, with the same names and values as you did when you created the [data management run job](/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable.
 1. Add a variable for the `MAPS_API_KEY` and set it to your Maps API key.
 1. Click **Done**.
 1. Click **Deploy**.
-1. Follow the screen output to see the status details of the operation. Once it completes, a link to the deployed image is listed at the top of the page. Click on the link  to see the running instance.
 
-For future deployments, select **Edit & Deploy Revision** from this page to select a new repository / container and locate the link to the running instance.
+Follow the screen output to see the status details of the operation. Once it completes, a link to the deployed image is listed at the top of the page. Click on the link  to see the running instance.
+
+## Manage the service
+
+Every time you make changes to the code and release a new Docker artifact, or restart the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
+
+1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**.  1. Select a new container and click **Deploy**.
 
 
 

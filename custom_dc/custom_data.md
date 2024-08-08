@@ -54,7 +54,8 @@ San Francisco,2023,300,300,200,50
 San Jose,2023,400,400,300,0
 ```
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names).
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). Avoid combining multiple entity types in the same CSV file; the type of the entities in a single file should be the same.
+
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
 The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
@@ -240,13 +241,15 @@ The `sources` section is optional. It encodes the sources and provenances associ
 
 ## Load local custom data
 
-To load custom data uploaded to Google Cloud, see instead [ ](/custom_dc/deploy_cloud.html) for procedures.
+The following procedures show you how to load and serve your custom data locally.
+
+To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
 ### Configure environment variables
 
 Edit the `env.list` file as follows:
 - Set the `INPUT_DIR` variable to the directory where your input files are stored. 
-- Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be store. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
+- Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
 **Notes:**
 - NL support increases the startup time of your server and consumes more resources. If you don't want NL functionality, you can disable it by updating the `ENABLE_MODEL` flag from `true` to `false`.
@@ -254,7 +257,7 @@ Edit the `env.list` file as follows:
 
 ### Start the Docker containers with local custom data {#docker-data}
 
-Once you have configured everything, use the following commands to restart the Docker containers, mapping your input and output directories to the same path in Docker.
+Once you have configured everything, use the following commands to restart the Docker containers, mapping your input and output directories to the same paths in Docker.
 
 In one terminal window, from the root directory, run:
 
@@ -276,9 +279,9 @@ docker run -it \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 </pre>
 
-Every time you make changes to the CSV or JSON files, you will need to rerun both of these commands.
+Every time you make changes to the CSV or JSON files, you will need to restart both containers.
 
-## Inspect the SQLite database
+### Inspect the SQLite database
 
 If you need to troubleshoot custom data, it is helpful to inspect the contents of the generated SQLite database.
 

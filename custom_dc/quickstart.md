@@ -19,9 +19,11 @@ This is step 1 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 The instructions in this page use the following setup:
 
-![setup2](/assets/images/custom_dc/customdc_setup2.png)
+![local setup](/assets/images/custom_dc/customdc_setup2.png)
 
-The "data management" Docker container consists of scripts that convert custom CSV file data into SQL tables in a local SQLite database, and generate embeddings for custom data. 
+The "data management" Docker container consists of scripts that do the following:
+- Convert custom CSV file data into SQL tables and store them in a data store -- for now, in a local SQLite database
+- Generate ML embeddings for custom data and store them -- for now, in the local file system
 
 The "services" Docker container consists of the following Data Commons components:
 - A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/), which routes incoming requests to the web or API server
@@ -68,14 +70,14 @@ The "services" Docker container consists of the following Data Commons component
 When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
 <pre>
-cd website | <var>DIRECTORY</var>
+cd website
 </pre>
 
 ### Set environment variables {#env-vars}
 
 1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
-1. Set the `INPUT_DIR`, set it to the full path to the `sample` directory. For example if you have cloned the repo directly to your home directory, this would be <code>/home/<var>USERNAME</var>/website/custom_dc/sample</code>.
+1. Set the `INPUT_DIR` to the full path to the `sample/` directory. For example if you have cloned the repo directly to your home directory, this would be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>.
 1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
 
 **Warning:** Do not use any quotes (single or double) or spaces when specifying the values.
@@ -108,7 +110,7 @@ cd website | <var>DIRECTORY</var>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list"><code>custom_dc/env.list</code></a></td>
-      <td>Contains environment variables for the Data Commons services. For details of the variables, see the comments in the file.</td>
+      <td>Contains environment variables for locally run Data Commons data management and services containers. For details of the variables, see the comments in the file.</td>
     </tr>
   </tbody>
 </table>
@@ -123,10 +125,10 @@ To load the sample data:
 1. Open a terminal window, and from the root directory, run the following command to start the data management Docker container:
 
 ```shell
-docker run -it \
+docker run \
 --env-file $PWD/custom_dc/env.list \
 -v $PWD/custom_dc/sample/:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-data:stable | latest
+gcr.io/datcom-ci/datacommons-data:stable
 ```
 This does the following:
 
@@ -172,11 +174,10 @@ Tip: If you close the terminal window in which you started the Docker services c
 
 1. Open another terminal window, and from the root directory, get the Docker container ID.
 
-   ```shell
-     docker ps
-   ```
-
-   The `CONTAINER ID` is the first column in the output.
+  ```shell
+  docker ps
+  ```
+  The `CONTAINER ID` is the first column in the output.
 
 1. Run:
 
