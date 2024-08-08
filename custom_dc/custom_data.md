@@ -278,16 +278,6 @@ gcr.io/datcom-ci/datacommons-website-compose:stable
 
 Every time you make changes to the CSV or JSON files, you will need to rerun both of these commands.
 
-## Load custom data in SQLite
-
-As you are iterating on changes to the source CSV and JSON files, you will need to reload the data. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data with a shared Docker instance.
-
-You can load the new/updated data from SQLite using the `/admin` page on the site:
-
-
-1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above).
-1. With the services running, navigate to the `/admin` page. If a secret is required, enter it in the text field, and click **Load**. This runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code><var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code><var>OUTPUT_DIRECTORY</var>/datacommons/nl/</code>.
-
 ## Inspect the SQLite database
 
 If you need to troubleshoot custom data, it is helpful to inspect the contents of the generated SQLite database.
@@ -317,3 +307,4 @@ country/BEL|average_annual_wage|2004|56195.68432|c/p/1
 country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ...
 ```
+

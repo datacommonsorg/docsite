@@ -71,7 +71,7 @@ When the downloads are complete, navigate to the root directory of the repo (e.g
 cd website | <var>DIRECTORY</var>
 </pre>
 
-### Set environment variables 
+### Set environment variables {#env-vars}
 
 1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
@@ -126,9 +126,8 @@ To load the sample data:
 docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -v $PWD/custom_dc/sample/:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-data:stable
+gcr.io/datcom-ci/datacommons-data:stable | latest
 ```
-
 This does the following:
 
 - The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.

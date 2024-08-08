@@ -65,7 +65,7 @@ Details about the components that make up the containers are provided in the [Ge
 
 ## Requirements and cost
 
-A custom Data Commons site runs in a Docker container on Google Cloud Platform (GCP). You will need the following:
+A custom Data Commons site runs in a Docker container on Google Cloud Platform (GCP), using Google Cloud Run a serverless solution that is by far the simplest and least expensive option, providing auto-scaling and other benefits. You will need the following:
 
 - A [GCP](http://console.cloud.google.com) billing account and project
 - A [Docker](http://docker.com) account
