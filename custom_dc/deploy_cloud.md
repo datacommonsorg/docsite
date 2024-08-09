@@ -114,6 +114,3 @@ Follow the screen output to see the status details of the operation. Once it com
 Every time you make changes to the code and release a new Docker artifact, or restart the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
 
 1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**.  1. Select a new container and click **Deploy**.
-
-
-

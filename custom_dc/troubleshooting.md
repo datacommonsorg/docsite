@@ -57,7 +57,7 @@ You need to download/update additional submodules (derived from other repos). Se
 
 ## Data loading problems
 
-If you try to load data using the `/admin page`, and see the following errors:
+TODO: write this for new Docker container
 
 `Error running import` or `invalid input`
 
@@ -71,8 +71,8 @@ If the load page does not show any errors but data still does not load, try chec
 ## NL queries not returning custom data
 
 If you have previously been able to get custom data in your natural-language query results, but this has suddenly stopped working, this is due to embeddings incompatibility issues between releases. To fix this, do the following:
-1. Delete the `datacommons` subdirectory from your output directory.
-1. Restart the services, and reload the data from the /admin page.
+1. Delete the `datacommons` subdirectory from your output directory, either locally or in your Google Cloud Storage bucket.
+1. Restart the data management container, as described in .
 
 ## Website display problems
 
@@ -107,11 +107,9 @@ This is a general indication that the Data Commons servers are not running. Chec
 
 `403 Forbidden: Not authorized to access resources`
 
-This may be . To fix this:
+This may be due to multiple reasons. First try the following:
 1. In the Cloud Run service page in the Cloud Console, select the **Revisions** tab, and scroll to view the **Environment variables**.
-1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you set when creating the [SQL database](/custom_dc/data_cloud.html#create-sql)
-
-
+1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you set when creating the [SQL database](/custom_dc/data_cloud.html#create-sql).
 
 If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
 
