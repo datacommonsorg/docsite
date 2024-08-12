@@ -31,7 +31,7 @@ You push a locally built Docker image to the [Google Cloud Artifact Registry](ht
 1. Enable or disable **Immutable image tags** according to the workflow you prefer; that is, if you want to be able to reuse the same Docker tag for new images, keep this option disabled.
 1. Click **Create**.
 
-## Upload the Docker container to the Artifact Registry
+## Upload the Docker container to the Artifact Registry {#upload-registry}
 
 This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry. Every time you rebuild the image, you need ro rerun this procedure.
 
@@ -111,6 +111,7 @@ Follow the screen output to see the status details of the operation. Once it com
 
 ## Manage the service
 
-Every time you make changes to the code and release a new Docker artifact, or restart the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
+Every time you make changes to the code and release a new Docker service container artifact, or restart the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
 
-1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**.  1. Select a new container and click **Deploy**.
+1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**.  
+1. Select a new container and click **Deploy**.

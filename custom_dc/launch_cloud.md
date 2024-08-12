@@ -18,7 +18,7 @@ When you are ready to launch your site to external traffic, there are many tasks
 -  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping custom domains](https://cloud.google.com/run/docs/mapping-custom-domains).
 -  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences).
 -  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
-<!---  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/) to track your website's usage. -->
+-  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/) to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
 
 ## Improve database performance {#redis}
 
@@ -81,3 +81,27 @@ To verify that traffic is hitting the cache:
 1. In the Cloud Console, go to the Memorystore page and select Redis instance.
 1. Under **Instance Functions**, click **Monitoring**.
 1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.
+
+## Add Google Analytics reporting {#analytics}
+
+Google Analytics provides detailed reports on user engagement with your site. In addition, Data Commons provides a number of custom dimensions to report on specific attributes of a Data Commons site.
+
+### Enable Analytics tracking
+
+1. If you don't already have a Google Analytics account, create one, following the procedures in Set up Analytics for a website and/or app. Record the account number.
+1. Add the following code to the `server/templates/base.html` file, in the `<head>` section.
+
+    <pre>
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ <var>GA_ACCOUNT</var}}"></script>
+            <script>
+                 window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '{{ <var>GA_ACCOUNT</var> }}', { <var>ADDITIONAL_OPTIONS</var });
+            </script>
+    </pre>
+    Additional configuration settings are optional; see the [Google Analytics Reference](https://developers.google.com/analytics/devguides/collection/ga4/reference/config) documentation for details.
+1. Reload the services container in Google Cloud Run: [build a custom image](/custom_dc/build_image.html#build-repo), [upload it](/custom_dc/cloud_run.html#upload-registry) to the Artifact Registry, and redeploy the Cloud Run service.
+
+
+### Reporting on custom dimensions
