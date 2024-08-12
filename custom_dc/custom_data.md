@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Load custom data
+title: Work with custom data
 nav_order: 3
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Load custom data
+# Work with custom data
 
 This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
 
@@ -261,7 +261,7 @@ Edit the `env.list` file as follows:
 
 Once you have configured everything, use the following commands to restart the Docker containers, mapping your input and output directories to the same paths in Docker.
 
-In one terminal window, from the root directory, run:
+In one terminal window, from the root directory, run the following command to start the data management container:
 
 <pre>
 docker run \
@@ -270,7 +270,7 @@ docker run \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
-In another terminal window, from the root directory, run:
+In another terminal window, from the root directory, run the following command to start the services container:
 
 <pre>
 docker run -it \
