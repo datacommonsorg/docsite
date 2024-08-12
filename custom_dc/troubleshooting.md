@@ -55,19 +55,6 @@ COPY failed: file not found in build context or excluded by .dockerignore: stat 
 ```
 You need to download/update additional submodules (derived from other repos). See [Build a local image](/custom_dc/build_image.html#build-repo).
 
-## Data loading problems
-
-TODO: write this for new Docker container
-
-`Error running import` or `invalid input`
-
-There is a problem with how you have set up your CSV files and/or config.json file. Check that your CSV files conform to the structure described in [Prepare the CSV files](/custom_dc/custom_data.html#prepare-csv).
-
-If the load page does not show any errors but data still does not load, try checking the following:
-
-1. In the `env.list` file, check that you are not using single or double quotes around any of the values.
-1. Check your Docker command line for invalid arguments. Often Docker won't give any error messages but failures will show up at runtime.
-
 ## NL queries not returning custom data
 
 If you have previously been able to get custom data in your natural-language query results, but this has suddenly stopped working, this is due to embeddings incompatibility issues between releases. To fix this, do the following:
