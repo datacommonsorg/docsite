@@ -33,7 +33,7 @@ You push a locally built Docker image to the [Google Cloud Artifact Registry](ht
 
 ## Upload the Docker container to the Artifact Registry
 
-This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry. Every time you rebuild the image, you need ro rerun this procedure.
+This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry. Any time you rebuild the image and want to deploy it to the cloud, you need to rerun this procedure.
 
 1. Build a local version of the Docker image, following the procedure in [Build a local image](/custom_dc/build_image.html#build-repo).
 1. Authenticate to gcloud:

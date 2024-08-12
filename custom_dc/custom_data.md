@@ -259,7 +259,7 @@ Edit the `env.list` file as follows:
 
 ### Start the Docker containers with local custom data {#docker-data}
 
-Once you have configured everything, use the following commands to restart the Docker containers, mapping your input and output directories to the same paths in Docker.
+Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
 In one terminal window, from the root directory, run the following command to start the data management container:
 
@@ -281,7 +281,7 @@ docker run -it \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 </pre>
 
-Every time you make changes to the CSV or JSON files, you will need to restart both containers.
+Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
 
 ### Inspect the SQLite database
 

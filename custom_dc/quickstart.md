@@ -136,7 +136,7 @@ This does the following:
 - Maps the input sample data to a Docker path.
 - Starts a Docker container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in `custom_dc/sample/datacommons/nl` and loads them. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
+- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
 
 Once the container has executed all the functions in the scripts, it shuts down.
 
@@ -159,7 +159,7 @@ Note: If you are running on Linux, depending on whether you have created a ["sud
 This command does the following:
 
 - The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-website-compose:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
-- Starts a long-running Docker container.
+- Starts a services Docker container.
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
 
