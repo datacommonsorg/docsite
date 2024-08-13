@@ -23,12 +23,12 @@ The instructions in this page use the following setup:
 
 The "data management" Docker container consists of scripts that do the following:
 - Convert custom CSV file data into SQL tables and store them in a data store -- for now, in a local SQLite database
-- Generate ML embeddings for custom data and store them -- for now, in the local file system
+- Generate NL embeddings for custom data and store them -- for now, in the local file system
 
 The "services" Docker container consists of the following Data Commons components:
 - A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/), which routes incoming requests to the web or API server
 - A Python-Flask web server, which handles interactive requests from users
-- An Python-Flask NL server, for generating embeddings and serving natural language queries
+- An Python-Flask NL server, for serving natural language queries
 - A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make an REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
 
 ## Prerequisites
@@ -122,7 +122,7 @@ In this step, we will add sample data that we have included as part of the downl
 To load the sample data:
 
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
-1. Open a terminal window, and from the root directory, run the following command to start the data management Docker container:
+1. Open a terminal window, and from the root directory, run the following command to run the data management Docker container:
 
 ```shell
 docker run \

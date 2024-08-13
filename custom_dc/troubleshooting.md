@@ -59,7 +59,7 @@ You need to download/update additional submodules (derived from other repos). Se
 
 If you have previously been able to get custom data in your natural-language query results, but this has suddenly stopped working, this is due to embeddings incompatibility issues between releases. To fix this, do the following:
 1. Delete the `datacommons` subdirectory from your output directory, either locally or in your Google Cloud Storage bucket.
-1. Restart the data management container, as described in .
+1. Rerun the data management container, as described in [Load data in Google Cloud](data_cloud.md), and restart the services container.
 
 ## Website display problems
 

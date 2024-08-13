@@ -79,14 +79,17 @@ See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) document
 1. Click the **Container Registry** tab.
 1. Next to the **Project**, click **Change**, search for **datcom-ci** and select it.
 1. In the list of images that appears, navigate to and expand **gcr.io/datcom-ci/datacommons-data**, highlight the image you want, **stable** or **latest**, and click **Select**.
+
+   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot1.png)
+
 1. Optionally, in the **Job name** field, enter an alternative name as desired.
 1. In the **Region** field, select the region you chose as your location.
 1. Leave the default **Number of tasks** as 1.
 1. Expand **Container, Volumes, Connections, Security** and expand **Settings**, and set the following options:
   -  **Resources** > **Memory**: **8 GiB**
   -  **Resources** > **CPU**: **2**
-  -  **Task timeout** > **Number of retries per failed task**: **3**
-1. Click **Create** to save the job (but not run it yet).
+
+   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot2.png)
 
 {:.#env-vars}
 Now set environment variables:
@@ -102,7 +105,18 @@ Now set environment variables:
 - `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
 - `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
 - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
-1. Click **Done** and **Update** to save.
+1. Click **Done**.
+
+   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot3.png)
+
+Finally, set the task options under **Task capacity**:
+  - **Task timeout** > **10**
+  - **Time unit** > **minute**
+  - **Number of retries per failed task**: **3**
+
+   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot4.png)
+
+1. Click **Create** (but don't run it immediately).
 
 ## Manage your data
 
@@ -120,7 +134,7 @@ As you are iterating on changes to the source CSV and JSON files, you can re-upl
 
 Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a `datacommons/nl` subfolder).
 
-Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to restart the job.
+Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
 To run the job:
 
@@ -128,7 +142,7 @@ To run the job:
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
-To verify that the data has been loaded correctly, see the next step.
+When it completes, to verify that the data has been loaded correctly, see the next step.
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
@@ -160,7 +174,7 @@ To run a local instance of the services container, you need to set all the envir
 
 ### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
 
-For the services to connect to the Cloud SQL instance, you need to generate credentials that can be used in the local Docker container for authentication. You should refresh the credentials every time you restart the Docker container.
+For the services to connect to the Cloud SQL instance, you need to generate credentials that can be used in the local Docker container for authentication. You should refresh the credentials every time you rerun the Docker container.
 
 Open a terminal window and run the following command:
 

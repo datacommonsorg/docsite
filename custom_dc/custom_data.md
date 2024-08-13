@@ -300,7 +300,6 @@ At the prompt, enter SQL queries. For example, for the sample OECD data, this qu
 ```shell
 sqlite> select * from observations limit 10;
 ```
-
 returns output like this:
 
 ```shell
@@ -312,4 +311,6 @@ country/BEL|average_annual_wage|2004|56195.68432|c/p/1
 country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ...
 ```
+
+To exit the sqlite shell, press Ctrl-D.
 
