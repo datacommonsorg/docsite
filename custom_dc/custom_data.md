@@ -54,7 +54,10 @@ San Francisco,2023,300,300,200,50
 San Jose,2023,400,400,300,0
 ```
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names).
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
+
+**Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
+
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
 The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
@@ -240,16 +243,34 @@ The `sources` section is optional. It encodes the sources and provenances associ
 
 ## Load local custom data
 
-To load custom data uploaded to Google Cloud, see instead [Pointing the local Data Commons site to the Cloud data](/custom_dc/data_cloud.html) for procedures.
+The following procedures show you how to load and serve your custom data locally.
 
-### Configure custom directories
+To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
+
+### Configure environment variables
 
 Edit the `env.list` file as follows:
-- Set the `OUTPUT_DIR` variable to the directory where your input files are stored. The load step will create a `datacommons` subdirectory under this directory.
+- Set the `INPUT_DIR` variable to the directory where your input files are stored. 
+- Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
-### Start the Docker container with local custom data {#docker-data}
+**Notes:**
+- NL support increases the startup time of your server and consumes more resources. If you don't want NL functionality, you can disable it by updating the `ENABLE_MODEL` flag from `true` to `false`.
+- If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables file containing secrets. Instead, store it locally only. If you are using git/Github, you can add the file name to the `.gitignore` file.
 
-Once you have configured everything, use the following command to restart the Docker container, mapping your output directory to the same path in Docker:
+### Start the Docker containers with local custom data {#docker-data}
+
+Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
+
+In one terminal window, from the root directory, run the following command to start the data management container:
+
+<pre>
+docker run \
+--env-file $PWD/custom_dc/env.list \ \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+gcr.io/datcom-ci/datacommons-data:stable
+</pre>
+
+In another terminal window, from the root directory, run the following command to start the services container:
 
 <pre>
 docker run -it \
@@ -260,19 +281,9 @@ docker run -it \
 gcr.io/datcom-ci/datacommons-website-compose:stable
 </pre>
 
-Every time you make changes to the CSV or JSON files, you should reload the data, as described below.
+Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
 
-## Load custom data in SQLite
-
-As you are iterating on changes to the source CSV and JSON files, you will need to reload the data. Custom Data Commons allows you to reload data on the fly, while the website is running, so even multiple users can reload data with a shared Docker instance.
-
-You can load the new/updated data from SQLite using the `/admin` page on the site:
-
-1. Optionally, in the `env.list` file, set the `ADMIN_SECRET` environment variable to a string that authorizes users to load data.
-1. Start the Docker container as usual, being sure to map the path to the directory containing the custom data (see command above).
-1. With the services running, navigate to the `/admin` page. If a secret is required, enter it in the text field, and click **Load**. This runs a script inside the Docker container, that converts the CSV data into SQL tables, and generates embeddings in the container as well. The database is created as <code><var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db</code> and embeddings are generated in <code><var>OUTPUT_DIRECTORY</var>/datacommons/nl/</code>.
-
-## Inspect the SQLite database
+### Inspect the SQLite database
 
 If you need to troubleshoot custom data, it is helpful to inspect the contents of the generated SQLite database.
 
@@ -289,7 +300,6 @@ At the prompt, enter SQL queries. For example, for the sample OECD data, this qu
 ```shell
 sqlite> select * from observations limit 10;
 ```
-
 returns output like this:
 
 ```shell
@@ -301,3 +311,6 @@ country/BEL|average_annual_wage|2004|56195.68432|c/p/1
 country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ...
 ```
+
+To exit the sqlite shell, press Ctrl-D.
+
