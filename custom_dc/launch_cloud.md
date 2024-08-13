@@ -97,7 +97,7 @@ Google Analytics provides detailed reports on user engagement with your site. In
                  window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '{{ <var>GA_ACCOUNT</var> }}', { <var>ADDITIONAL_OPTIONS</var });
+                gtag('config', '{{ <var>GA_ACCOUNT</var> }}', { <var>ADDITIONAL_OPTIONS</var> });
             </script>
     </pre>
     Additional configuration settings are optional; see the [Google Analytics Reference](https://developers.google.com/analytics/devguides/collection/ga4/reference/config) documentation for details.
@@ -105,3 +105,7 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 
 ### Reporting on custom dimensions
+
+Data Commons provides a number of custom dimensions that you can report on, such as search queries, specific page views, etc. You can use these to create explorations.
+
+To view the set of custom dimensions, in the Google Analytics 
