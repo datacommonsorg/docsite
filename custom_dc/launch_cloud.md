@@ -106,6 +106,4 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 ### Reporting on custom dimensions
 
-Data Commons provides a number of custom dimensions that you can report on, such as search queries, specific page views, etc. You can use these to create explorations.
-
-To view the set of custom dimensions, in the Google Analytics 
+Data Commons exports many events as Google Analytics custom dimensions, such as search queries, specific page views, etc. You can use these to create custom reports and explorations. You can see the full set defined in [`website/static/js/shared/ga_events.ts`](https://github.com/datacommonsorg/website/blob/7f896a982e8567cd96a0d8b01d1cd5eaaf285974/static/js/shared/ga_events.ts).
