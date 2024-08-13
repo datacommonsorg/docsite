@@ -94,29 +94,32 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
    - **CPU allocation and pricing**: **CPU is always allocated**
    - **Service autoscaling** > **Minimum number of instances**: **1**
 
-[add image here]
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot5.png)
+
 1. Expand **Container, Volumes, Connections, Security** > **Container** > **Settings**, and set the following options:
   -  **Resources** > **Memory**: **8 GiB**
   -  **Resources** > **CPU**: **2**
+
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot6.png)
+
 1. Expand the **Variables and secrets** tab. 
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
 1. Add the same environment variables, with the same names and values as you did when you created the [data management run job](/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable.
 1. Add a variable for the `MAPS_API_KEY` and set it to your Maps API key.
-1. Click **Done**.
+1. When you are finished, click **Done**.
 
-[add image here]
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot7.png)
+
 1. Under **Execution environment** > **Autoscaling**, set the following options:
    - **Minimum number of instances**: **1**
   -  **Maximum number of instances**: **1**
 1. Disable **Startup CPU boost**.
-1. 
+1. Under **Cloud SQL connections** click **Add connection** and select your Cloud SQL instance from the menu.
 
-[add image here]
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot8.png)
 
-1. Click **Deploy**.
-
-Click the **Logs** tab to see the status details of the operation. Once it completes, a link to the deployed image URL is listed at the top of the page. Click on the link to see the running instance.
+Click **Create** to kick off the deployment.  Click the **Logs** tab to see the status details of the operation. Once it completes, a link to the deployed image URL is listed at the top of the page. Click on the link to see the running instance.
 
 ## Manage the service
 
