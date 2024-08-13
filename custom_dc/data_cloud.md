@@ -109,14 +109,8 @@ Now set environment variables:
 
    ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
 
-Finally, set the task options under **Task capacity**:
-  - **Task timeout**: **10**
-  - **Time unit**: **minute**
-  - **Number of retries per failed task**: **3**
-
-   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot4.png){: width="450" }
-
-Click **Create** (but don't run it immediately).
+1. If you have a large amount of data, adjust the **Task capacity** > **Task timeout** option accordingly. See [Set task timeout (jobs)](https://cloud.google.com/run/docs/configuring/task-timeout) for more details.
+1. Click **Create** (but don't run it immediately).
 
 ## Manage your data
 
