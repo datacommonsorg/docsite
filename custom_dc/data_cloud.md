@@ -80,7 +80,7 @@ See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) document
 1. Next to the **Project**, click **Change**, search for **datcom-ci** and select it.
 1. In the list of images that appears, navigate to and expand **gcr.io/datcom-ci/datacommons-data**, highlight the image you want, **stable** or **latest**, and click **Select**.
 
-   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot1.png)
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot1.png){: width="450" }
 
 1. Optionally, in the **Job name** field, enter an alternative name as desired.
 1. In the **Region** field, select the region you chose as your location.
@@ -89,7 +89,7 @@ See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) document
   -  **Resources** > **Memory**: **8 GiB**
   -  **Resources** > **CPU**: **2**
 
-   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot2.png)
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot2.png){: width="450" }
 
 {:.#env-vars}
 Now set environment variables:
@@ -107,14 +107,14 @@ Now set environment variables:
    - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
 1. When you finished, click **Done**.
 
-   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot3.png)
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
 
 Finally, set the task options under **Task capacity**:
-  - **Task timeout** > **10**
-  - **Time unit** > **minute**
+  - **Task timeout**: **10**
+  - **Time unit**: **minute**
   - **Number of retries per failed task**: **3**
 
-   ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot4.png)
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot4.png){: width="450" }
 
 Click **Create** (but don't run it immediately).
 

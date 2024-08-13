@@ -94,13 +94,13 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
    - **CPU allocation and pricing**: **CPU is always allocated**
    - **Service autoscaling** > **Minimum number of instances**: **1**
 
-   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot5.png)
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot5.png){: width="450"}
 
 1. Expand **Container, Volumes, Connections, Security** > **Container** > **Settings**, and set the following options:
   -  **Resources** > **Memory**: **8 GiB**
   -  **Resources** > **CPU**: **2**
 
-   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot6.png)
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot6.png){: width="450"}
 
 1. Expand the **Variables and secrets** tab. 
 1. Click the **Variables and Secrets** tab.
@@ -109,7 +109,7 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
 1. Add a variable for the `MAPS_API_KEY` and set it to your Maps API key.
 1. When you are finished, click **Done**.
 
-   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot7.png)
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot7.png){: width="450"}
 
 1. Under **Execution environment** > **Autoscaling**, set the following options:
    - **Minimum number of instances**: **1**
@@ -117,7 +117,7 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) f
 1. Disable **Startup CPU boost**.
 1. Under **Cloud SQL connections** click **Add connection** and select your Cloud SQL instance from the menu.
 
-   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot8.png)
+   ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot8.png){: width="450"}
 
 Click **Create** to kick off the deployment.  Click the **Logs** tab to see the status details of the operation. Once it completes, a link to the deployed image URL is listed at the top of the page. Click on the link to see the running instance.
 
@@ -125,4 +125,5 @@ Click **Create** to kick off the deployment.  Click the **Logs** tab to see the 
 
 Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
 
-1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**.  1. Select a new container and click **Deploy**.
+1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**. 
+1. Select a new container and click **Deploy**.
