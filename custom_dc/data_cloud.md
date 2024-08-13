@@ -97,15 +97,15 @@ Now set environment variables:
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
 1. Add names and values for the following environment variables:
-- `USE_CLOUDSQL`: Set to `true`.
-- `DC_API_KEY`: Set to your API key.
-- `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
-- `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
-- `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
-- `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
-- `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
-- `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
-1. Click **Done**.
+   - `USE_CLOUDSQL`: Set to `true`.
+   - `DC_API_KEY`: Set to your API key.
+   - `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
+   - `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
+   - `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
+   - `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
+   - `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
+   - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
+1. When you finished, click **Done**.
 
    ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot3.png)
 
@@ -116,7 +116,7 @@ Finally, set the task options under **Task capacity**:
 
    ![Cloud Run Job](/assets/images/custom_dc/gcp_screenshot4.png)
 
-1. Click **Create** (but don't run it immediately).
+Click **Create** (but don't run it immediately).
 
 ## Manage your data
 
