@@ -55,18 +55,11 @@ COPY failed: file not found in build context or excluded by .dockerignore: stat 
 ```
 You need to download/update additional submodules (derived from other repos). See [Build a local image](/custom_dc/build_image.html#build-repo).
 
-## Data loading problems
+## NL queries not returning custom data
 
-If you try to load data using the `/admin page`, and see the following errors:
-
-`Error running import` or `invalid input`
-
-There is a problem with how you have set up your CSV files and/or config.json file. Check that your CSV files conform to the structure described in [Prepare the CSV files](/custom_dc/custom_data.html#prepare-csv).
-
-If the load page does not show any errors but data still does not load, try checking the following:
-
-1. In the `env.list` file, check that you are not using single or double quotes around any of the values.
-1. Check your Docker command line for invalid arguments. Often Docker won't give any error messages but failures will show up at runtime.
+If you have previously been able to get custom data in your natural-language query results, but this has suddenly stopped working, this is due to embeddings incompatibility issues between releases. To fix this, do the following:
+1. Delete the `datacommons` subdirectory from your output directory, either locally or in your Google Cloud Storage bucket.
+1. Rerun the data management container, as described in [Load data in Google Cloud](data_cloud.md), and restart the services container.
 
 ## Website display problems
 
@@ -94,6 +87,14 @@ This error indicates that your application requires authenticated requests but y
 If you are unable to select this option, this indicates that there is an IAM permissions setup issue with your project or account. See the [Cloud Run Troubleshooting](https://cloud.google.com/run/docs/troubleshooting#unauthorized-client) for details on how to fix this.
 
 ### "502 Bad Gateway"
+
+This is a general indication that the Data Commons servers are not running. Check the **Logs ** page for the Cloud Run service in the Google Cloud Console. Here are common errors:
+
+`403 Forbidden: Not authorized to access resources`
+
+This may be due to multiple reasons. First try the following:
+1. In the Cloud Run service page in the Cloud Console, select the **Revisions** tab, and scroll to view the **Environment variables**.
+1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you set when creating the [SQL database](/custom_dc/data_cloud.html#create-sql).
 
 If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
 
