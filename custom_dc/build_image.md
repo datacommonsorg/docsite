@@ -18,26 +18,26 @@ While you are just testing out data changes, you don't need to build the website
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
 
-- `gcr.io/datcom-ci/datacommons-website-compose:stable`. This is a tested, stable version but may be several weeks old.
-- `gcr.io/datcom-ci/datacommons-website-compose:latest`. This is the latest version built from head.
+- `gcr.io/datcom-ci/datacommons-services:stable`. This is a tested, stable version but may be several weeks old.
+- `gcr.io/datcom-ci/datacommons-services:latest`. This is the latest version built from head.
 
 If you want to pick up the latest prebuilt version, do the following:
 
 1. From the root directory (e.g. `website`), run the following command:
 
    ```shell  
-   docker pull gcr.io/datcom-ci/datacommons-website-compose:latest
+   docker pull gcr.io/datcom-ci/datacommons-services:latest
    ```
 1. Rerun the container, specifying that repo as the argument to the `docker run` command:
 
-```shell
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
--env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
-gcr.io/datcom-ci/datacommons-website-compose:latest
-```
+   ```shell
+   docker run -it \
+   -p 8080:8080 \
+   -e DEBUG=true \
+   --env-file $PWD/custom_dc/env.list \
+   -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+   gcr.io/datcom-ci/datacommons-services:latest
+   ```
 
 ## Build a local image {#build-repo}
 
@@ -61,9 +61,9 @@ In Github, use the following procedure.
 1. If you want to reuse the root directory you previously created and cloned, skip to step 3. 
 If you want to create a new source directory and start from scratch, clone the repo up to the stable release tag:
 
-      <pre>
-      git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
-      </pre>
+   <pre>
+   git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
+   </pre>
 1. Change to the root directory:
 
    <pre>
@@ -88,7 +88,7 @@ If you want to create a new source directory and start from scratch, clone the r
    ...
    ```
 
-   Verify that the last commit in the output matches that listed in [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable).
+   Verify that the last commit in the output matches that listed in https://github.com/datacommonsorg/website/releases/tag/customdc_stable.
 
 1. Press `q` to exit the output log.
 
@@ -124,12 +124,12 @@ If you want to create a new source directory and start from scratch, clone the r
 Run the following command to build the repo:
 
 <pre>
-docker build --tag datacommons-website-compose:<var>DOCKER_TAG</var> \
--f build/web_compose/Dockerfile \
--t website-compose .
+docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
+-f build/cdc_services/Dockerfile .
 </pre>
 
-The _DOCKER_TAG_ is a meaningful description of the version you are building.
+- The image name is a meaningful name, such as `datacommons-services`.
+- The image tag is a meaningful description of the version you are building, such as `latest`.
 
 It will take several minutes to build.
 
@@ -149,5 +149,5 @@ docker run -it \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-datacommons-website-compose:<var>DOCKER_TAG</var>
+<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>

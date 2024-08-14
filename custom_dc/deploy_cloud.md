@@ -47,7 +47,7 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>LOCATION</var>-docker-pkg.dev</code>, where the _LOCATION_ is the region you have selected in the repository creation step previously; for example, `us-central1`.
 
     <pre>  
-    gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev  
+    gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev
    </pre>
 
    When prompted to confirm creating the credentials file, click `Y` to accept.
@@ -55,18 +55,17 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 1. Create a package from the source image created in step 1:
 
     <pre> 
-   docker tag datacommons-website-compose:<var>DOCKER_TAG</var> \  
-   <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+   docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \  
+   <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
-   - The `_ARTIFACT_REPO`_ must be an Artifact Registry repository you have created previously. 
-   - The `_IMAGE_NAME`_ may be the same as the source (`datacommons-website-compose`) or any other string. 
-   - The _`TARGET_IMAGE_TAG`_ can be the same as the source, or any other string.
-
+   - The artifact repo must be an Artifact Registry repository you have created previously. 
+   - The target image name and tag can be the same as the source or different.
+  
 1. Push the image to the registry:
 
    <pre>
-   docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+   docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
 This will take several minutes to upload.
