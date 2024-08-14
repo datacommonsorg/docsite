@@ -151,14 +151,14 @@ docker run -it \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/env.list \
 -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-website-compose:stable
+gcr.io/datcom-ci/datacommons-services:stable
 ```
 
 Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you may need to preface every `docker` invocation with `sudo`.
 
 This command does the following:
 
-- The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-website-compose:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
+- The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-services:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
 - Starts a services Docker container.
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.

@@ -230,7 +230,7 @@ docker run -it \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-datacommons-website-compose:<var>DOCKER_TAG</var>
+datacommons-services:<var>DOCKER_TAG</var>
 </pre>
 
 

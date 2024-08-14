@@ -276,9 +276,9 @@ In another terminal window, from the root directory, run the following command t
 docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
---env-file $PWD/custom_dc/env.list \ \
+--env-file $PWD/custom_dc/env.list \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-gcr.io/datcom-ci/datacommons-website-compose:stable
+gcr.io/datcom-ci/datacommons-services:stable
 </pre>
 
 Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.

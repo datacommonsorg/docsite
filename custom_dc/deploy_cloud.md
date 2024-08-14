@@ -55,12 +55,12 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 1. Create a package from the source image created in step 1:
 
     <pre> 
-   docker tag datacommons-website-compose:<var>DOCKER_TAG</var> \  
+   docker tag datacommons-services:<var>DOCKER_TAG</var> \  
    <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
    - The `_ARTIFACT_REPO`_ must be an Artifact Registry repository you have created previously. 
-   - The `_IMAGE_NAME`_ may be the same as the source (`datacommons-website-compose`) or any other string. 
+   - The `_IMAGE_NAME`_ may be the same as the source (`datacommons-services`) or any other string. 
    - The _`TARGET_IMAGE_TAG`_ can be the same as the source, or any other string.
 
 1. Push the image to the registry:
