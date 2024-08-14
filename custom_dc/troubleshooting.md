@@ -25,7 +25,7 @@ dial unix /var/run/docker.sock: connect: permission denied.
 or this:
 
 ```
-docker: Error response from daemon: pull access denied for datacommons-website-compose, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+docker: Error response from daemon: pull access denied for datacommons-services, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
 ```
 
 1. Use `sudo` with your `docker` invocations or set up a "sudoless" docker group, as described in [Linux post-installation steps for Docker Engine](https://docs.docker.com/engine/install/linux-postinstall/).
