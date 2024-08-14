@@ -124,12 +124,13 @@ If you want to create a new source directory and start from scratch, clone the r
 Run the following command to build the repo:
 
 <pre>
-docker build --tag datacommons-services:<var>DOCKER_TAG</var> \
--f build/web_compose/Dockerfile \
+docker build --tag <var>IMAGE_NAME</var>:<var>DOCKER_TAG</var> \
+-f build/cdc_services/Dockerfile \
 -t services .
 </pre>
 
-The _DOCKER_TAG_ is a meaningful description of the version you are building.
+- The _IMAGE_NAME_ is a meaningful name for the build, such as `datacommons-services`.
+- The _DOCKER_TAG_ is a meaningful description of the version you are building, such as `latest`.
 
 It will take several minutes to build.
 
@@ -149,5 +150,5 @@ docker run -it \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-datacommons-services:<var>DOCKER_TAG</var>
+<var>IMAGE_NAME</var>:<var>DOCKER_TAG</var>
 </pre>

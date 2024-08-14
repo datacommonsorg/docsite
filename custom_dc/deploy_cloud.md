@@ -60,7 +60,7 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
    </pre>
 
    - The `_ARTIFACT_REPO`_ must be an Artifact Registry repository you have created previously. 
-   - The `_IMAGE_NAME`_ may be the same as the source (`datacommons-services`) or any other string. 
+   - The `_IMAGE_NAME`_ may be the same as the source (e.g. `datacommons-services`) or any other string. 
    - The _`TARGET_IMAGE_TAG`_ can be the same as the source, or any other string.
 
 1. Push the image to the registry:
