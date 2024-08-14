@@ -125,8 +125,7 @@ Run the following command to build the repo:
 
 <pre>
 docker build --tag <var>IMAGE_NAME</var>:<var>DOCKER_TAG</var> \
--f build/cdc_services/Dockerfile \
--t services .
+-f build/cdc_services/Dockerfile .
 </pre>
 
 - The _IMAGE_NAME_ is a meaningful name for the build, such as `datacommons-services`.
