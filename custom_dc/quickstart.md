@@ -124,12 +124,12 @@ To load the sample data:
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
 1. Open a terminal window, and from the root directory, run the following command to run the data management Docker container:
 
-```shell
-docker run \
---env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-data:stable
-```
+  ```shell
+  docker run \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
+  gcr.io/datcom-ci/datacommons-data:stable
+  ```
 This does the following:
 
 - The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.

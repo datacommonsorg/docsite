@@ -37,7 +37,7 @@ If you want to pick up the latest prebuilt version, do the following:
    --env-file $PWD/custom_dc/env.list \
    -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
    gcr.io/datcom-ci/datacommons-services:latest
-```
+   ```
 
 ## Build a local image {#build-repo}
 
@@ -61,9 +61,9 @@ In Github, use the following procedure.
 1. If you want to reuse the root directory you previously created and cloned, skip to step 3. 
 If you want to create a new source directory and start from scratch, clone the repo up to the stable release tag:
 
-      <pre>
-      git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
-      </pre>
+   <pre>
+   git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
+   </pre>
 1. Change to the root directory:
 
    <pre>
@@ -88,7 +88,7 @@ If you want to create a new source directory and start from scratch, clone the r
    ...
    ```
 
-   Verify that the last commit in the output matches that listed in [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable).
+   Verify that the last commit in the output matches that listed in https://github.com/datacommonsorg/website/releases/tag/customdc_stable.
 
 1. Press `q` to exit the output log.
 
@@ -124,12 +124,12 @@ If you want to create a new source directory and start from scratch, clone the r
 Run the following command to build the repo:
 
 <pre>
-docker build --tag <var>IMAGE_NAME</var>:<var>DOCKER_TAG</var> \
+docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
 -f build/cdc_services/Dockerfile .
 </pre>
 
-- The _IMAGE_NAME_ is a meaningful name for the build, such as `datacommons-services`.
-- The _DOCKER_TAG_ is a meaningful description of the version you are building, such as `latest`.
+- The image name is a meaningful name, such as `datacommons-services`.
+- The image tag is a meaningful description of the version you are building, such as `latest`.
 
 It will take several minutes to build.
 
@@ -149,5 +149,5 @@ docker run -it \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-<var>IMAGE_NAME</var>:<var>DOCKER_TAG</var>
+<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
