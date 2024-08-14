@@ -116,7 +116,12 @@ To find the DCID for a statistical variable:
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept9.png){: width="900"}
 
-To find a DCID programmatically for both entities and variables, you can use the REST v2 [Resolve API](/api/rest/v2/resolve.html).
+You can also the following methods that don't use the datacommons.org website:
+
+- You can use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
+- You can use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
+
+
 
 ## Property
 
