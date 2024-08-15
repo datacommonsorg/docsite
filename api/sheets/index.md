@@ -14,7 +14,8 @@ Read our [step-by-step guides](tutorials/) for examples on using the add-on for 
 
 ## Install and enable the Sheets add-on
 
-1. Go to https://workspace.google.com/marketplace/app/data_commons/454343067575 and click **Install**.
+1. Go to the [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/data_commons/454343067575) page for Data Commons.
+1. Click **Install**.
 1. To enable the Sheets add-on functions, follow the next procedure below to open the **Fill place dcids** feature and fill a place DCID.
 
 > **Note:** None of the Data Commons Sheets functions will work in a spreadsheet until you have enabled the add-on by opening the **Fill place dcids** sidebar.
