@@ -24,7 +24,7 @@ Read our [step-by-step guides](tutorials/) for examples on using the add-on for 
 
 The Data Commons Sheets add-on provides the ability to look up a place’s [DCID](/glossary.html#dcid) by using the **Fill place dcids** feature. To find a place’s DCID:
 
-1. Open a new or existing spreadsheet.
+1. In Google Sheets, open a new or existing spreadsheet.
 1. Select the destination cell where you want to add a place’s DCID.
 1. Select  **Extensions**  > **Data Commons** > **Fill place dcids**. 
 
