@@ -99,7 +99,7 @@ DCIDs are not restricted to entities; statistical variables also have DCIDs. For
 
 Many Data Commons tools and APIs require that you provide a DCID as input for a query. There are a few ways to do this.
 
-To find the DCID for a place:
+To find the DCID for a place using the datacommons.org website:
 
 1. Go to [https://docs.datacommons.org/place_types.html](https://docs.datacommons.org/place_types.html). 
 1. Click the link on the place type of interest and click its link to open the Knowledge Graph page for the entity; for example, **City**.
@@ -108,6 +108,11 @@ To find the DCID for a place:
 
 ![KG browser]({{site.url}}/assets/images/dc/concept8.png){: width="900"}
 
+To find the DCID for a place using other methods:
+
+- Use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
+- Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
+
 To find the DCID for a statistical variable:
 
 1. Open the Statistical Variable Explorer.
@@ -115,13 +120,6 @@ To find the DCID for a statistical variable:
 1. Look under the heading for the DCID.
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept9.png){: width="900"}
-
-You can also the following methods that don't use the datacommons.org website:
-
-- You can use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
-- You can use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
-
-
 
 ## Property
 
