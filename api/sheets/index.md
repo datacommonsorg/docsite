@@ -21,7 +21,7 @@ Read our [step-by-step guides](tutorials/) for examples on using the add-on for 
 
 ## Find a place's DCID {#find-dcid}
 
-Data Commons’ Sheets add-on provides the ability to look up a place’s [DCID](/glossary.html#dcid) by using the **Fill place dcids** feature. To find a place’s DCID:
+The Data Commons Sheets add-on provides the ability to look up a place’s [DCID](/glossary.html#dcid) by using the **Fill place dcids** feature. To find a place’s DCID:
 
 1. Open a new or existing spreadsheet.
 1. Select the destination cell where you want to add a place’s DCID.
@@ -48,7 +48,7 @@ The Data Commons Sheets add-on includes the five formulas listed in the followin
 
 ## Get started with Data Commons functions
 
-Here's a quick demo on using several of the Data Commons functions to get data on population data for all counties in the state of California:
+Here's a quick demo on using several of the Data Commons functions to get population data for all counties in the state of California:
 
 1. Open a new sheet and create 3 column headings: `DCID`, `County name`, and `Population`.
 1. Select cell A2 and enter the following formula to get a list of the DCIDs of all counties in California, whose DCID is `geoId/06`: `=DCPLACESIN("geoId/06", "County")`. The column fills with 58 DCIDs.
