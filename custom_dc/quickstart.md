@@ -191,7 +191,7 @@ Once the services are up and running, visit your local instance by pointing your
 
 ![screenshot_homepage](/assets/images/custom_dc/customdc_screenshot1.png){: width="900"}
 
-Now click the **Timeline** link to visit the Timeline explorer. Try entering a country and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
+Now click the **Timeline** link to visit the Timeline explorer. Click **Start**, enter a country and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 
