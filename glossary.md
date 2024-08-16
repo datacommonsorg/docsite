@@ -34,9 +34,9 @@ The date of measurement. Specified in ISO 8601 format. Examples include `2011` (
 ### DCID
 {: #dcid}
 
-Every entity in the Data Commons graph has a unique identifier, called ‘DCID’ (short for Data Commons Identifier). So, for example, the DCID of California is [`geoId/06`](https://datacommons.org/browser/geoId/06) and of India is [`country/IND`](https://datacommons.org/browser/country/IND). DCIDs are not restricted to entities; every node in the graph has a DCID. Statistical variables have DCID, for example the DCID for the Gini Index of Economic Activity is [`GiniIndex_EconomicActivity`](https://datacommons.org/tools/statvar#GiniIndex_EconomicActivity).
+Every entity in the Data Commons graph has a unique identifier, called "DCID" (short for "Data Commons Identifier"). So, for example, the DCID of California is [`geoId/06`](https://datacommons.org/browser/geoId/06) and of India is [`country/IND`](https://datacommons.org/browser/country/IND). DCIDs are not restricted to entities; every node in the graph has a DCID. Statistical variables have DCID, for example the DCID for the Gini Index of Economic Activity is [`GiniIndex_EconomicActivity`](https://datacommons.org/tools/statvar#GiniIndex_EconomicActivity).
 
-You can find the DCID for a place by searching for it in the [Place Explorer tool](https://datacommons.org/place), and the DCID for statistical variables in the [Statistical Variable Explorer tool](https://datacommons.org/tools/statvar). All nodes have an entry in the [Knowledge Graph](https://datacommons.org/browser/).
+To find a DCID for an entity or variable, see the [Key concepts](/data_model.html#find-dcid) page.
 
 ### Entity
 {: #entity}
