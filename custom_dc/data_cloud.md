@@ -23,7 +23,7 @@ Alternatively, if you have a very large data set, you may find it faster to stor
 
 ## Prerequisites
 
-- A [GCP](https://console.cloud.google.com/welcome) billing account and project.
+- A [GCP](https://console.cloud.google.com/welcome){: target="_blank"} billing account and project.
 - Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk).
 
 ## One-time setup steps {#setup}
@@ -36,7 +36,7 @@ While you are testing, you can start with a single Google Cloud region; to be cl
 
 This stores the CSV and JSON files that you will upload whenever your data changes. It also stores generated files files in a `datacommons` subdirectory when you run the data management job.
 
-1. Go to [https://console.cloud.google.com/storage/browser](https://console.cloud.google.com/storage/browser) for your project.
+1. Go to [https://console.cloud.google.com/storage/browser](https://console.cloud.google.com/storage/browser){: target="_blank"} for your project.
 1. Next to **Buckets**, click **Create**.
 1. Enter a name for this bucket.
 1. For the **Location type**, choose the same regional options as for Cloud SQL above.
@@ -51,7 +51,7 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 
 This stores the data that will be served at run time. The Data Commons data management job will create the SQL tables and populate them when you start the job.
 
-1. Go to https://console.cloud.google.com/sql/instances for your project.
+1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances){: target="_blank"} for your project.
 1. Next to **Instances**, click **Create Instance**.
 1. Click **Choose MySQL.**
 1. If necessary, enable APIs as directed.
@@ -69,11 +69,11 @@ This stores the data that will be served at run time. The Data Commons data mana
 
 ### Step 4: Create a Google Cloud Run job
 
-Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at https://console.cloud.google.com.google.com/gcr/images/datcom-ci/global/datacommons-data.
+Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at [https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data](https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data){: target="_blank"}.
 
 See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) documentation for links to more information on all the options you may set on your jobs.
 
-1. Go to https://console.cloud.google.com/run/ for your project.
+1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create job**.
 1. In the **Container image URL** field, click **Select** to open the **Select container image** window.
 1. Click the **Container Registry** tab.
@@ -116,7 +116,7 @@ Now set environment variables:
 
 ### Step 1: Upload data files to Google Cloud Storage
 
-1. Go to https://console.cloud.google.com/storage/browse and select your custom Data Commons bucket.
+1. Go to [https://console.cloud.google.com/storage/browse](https://console.cloud.google.com/storage/browse){: target="_blank"} and select your custom Data Commons bucket.
 1. Navigate to the folder you created in the earlier step.
 1. Click **Upload Files**, and select all your CSV files and `config.json`.
 
@@ -132,7 +132,7 @@ Every time you upload new input CSV or JSON files to Google Cloud Storage, you w
 
 To run the job:
 
-1. Go to https://console.cloud.google.com/run/jobs for your project.
+1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
@@ -142,7 +142,7 @@ When it completes, to verify that the data has been loaded correctly, see the ne
 
 To view information about the created tables:
 
-1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances) for your project and select the instance you created earlier.
+1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances){: target="_blank"} for your project and select the instance you created earlier.
 1. In the left panel, select **Cloud SQL Studio**.
 1. In the **Sign in to SQL Studio** page, from the Database field, select the database you created earlier, e.g. `datacommons`.
 1. Enter the user name and password and click **Authenticate**.
