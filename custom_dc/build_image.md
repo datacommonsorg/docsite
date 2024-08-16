@@ -47,7 +47,7 @@ You will need to build a local image in any of the following cases:
 
 Rather than building from "head", that is, the very latest changes in Github, which may not have been tested, we recommend that you use the tested "release" equivalent of the stable Docker image. This release uses the tag `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable).
 
-Note: If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
+> **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
 - You have a Github account and project.
 - You have created a fork off the base Data Commons `website` repo (https://github.com/datacommonsorg/website) and a remote that points to it, and that you will push to that fork. 
 

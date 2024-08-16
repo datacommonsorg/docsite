@@ -21,21 +21,16 @@ that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia
 the US state).
 
-<div markdown="span" class="alert alert-info" role="alert">
-   <span class="material-icons md-16">info </span><b>Note:</b><br />
-   Currently, this endpoint only supports [place](/glossary.html#place) entities.
-</div>
+> **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
 
-<div markdown="span" class="alert alert-danger" role="alert">
-   <span class="material-icons exclamation-icon">priority_high</span><b>IMPORTANT:</b><br />
+> **IMPORTANT:**
    This endpoint relies on name-based geocoding and is prone to inaccuracies.
    One common pattern is ambiguous place names that exist in different
    countries, states, etc. For example, there is at least one popular city
    called "Cambridge" in both the UK and USA. Thus, for more precise results,
    please provide as much context in the description as possible. For example,
    to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can.
-</div>
 
 ## Request
 
@@ -124,10 +119,8 @@ The response looks like:
 | dominantType | string | Optional field which, where present, disambiguates between multiple results. |
 {: .doc-table}
 
-<div markdown="span" class="alert alert-info" role="alert">
-  <span class="material-icons md-16">info </span><b>Note:</b><br />
+> **Note:**
   There is a deprecated field `resolvedIds` that is currently returned by the API. It will be removed soon. Examples below omit this redundant field.
-</div>
 
 ## Examples
 
@@ -174,7 +167,7 @@ Response:
 
 This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude) and [`longitude`](https://datacommons.org/browser/longitude) properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
 
-Note: If using a GET request, use the percent code `%23` for `#`.
+> Note: If using a GET request, use the percent code `%23` for `#`.
 
 Parameters:
 {: .example-box-title}
@@ -307,7 +300,7 @@ Response:
 This queries for the DCID of "Georgia". Unlike in the previous example, here
 we also specify its type using a filter and only get one place in the response.
 
-Note: When sending a GET request, you need to use the following percent codes for reserved characters:
+> Note: When sending a GET request, you need to use the following percent codes for reserved characters:
 - `%7B` for `{`
 - `%7D` for `}`
 
@@ -351,7 +344,7 @@ Response:
 
 This queries for the DCIDs of "Mountain View" and "New York City".
 
-Note: When sending a GET request, you need to use the following percent codes for reserved characters:
+> Note: When sending a GET request, you need to use the following percent codes for reserved characters:
 - `%20` for space
 - `%7B` for `{`
 - `%7D` for `}`
