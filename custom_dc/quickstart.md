@@ -33,7 +33,7 @@ The "services" Docker container consists of the following Data Commons component
 
 ## Prerequisites
 
-- Obtain a [GCP](https://console.cloud.google.com/welcome) billing account and project.
+- Obtain a [GCP](https://cloud.google.com/docs/get-started) billing account and project.
 - If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/).
 - Install [Git](https://git-scm.com/).
@@ -44,15 +44,15 @@ The "services" Docker container consists of the following Data Commons component
 
 ### Enable Google Cloud APIs and get a Maps API key {#maps-key}
 
-1. Go to [https://console.cloud.google.com/apis/dashboard](https://console.cloud.google.com/apis/dashboard) for your project.
+1. Go to [https://console.cloud.google.com/apis/dashboard](https://console.cloud.google.com/apis/dashboard){: target="_blank"} for your project.
 1. Click **Enable APIs & Services**.
 1. Under **Maps**, enable **Places API** and **Maps Javascript API**.
-1. Go to [https://console.cloud.google.com/google/maps-apis/credentials](https://console.cloud.google.com/google/maps-apis/credentials) for your project.
+1. Go to [https://console.cloud.google.com/google/maps-apis/credentials](https://console.cloud.google.com/google/maps-apis/credentials){: target="_blank"} for your project.
 1. Click **Create Credentials** > **API Key**.
 1. Record the key and click **Close**.
 1. Click on the newly created key to open the **Edit API Key** window.
-1. Under API restrictions, select Restrict key.
-1. From the drop-down menu, enable Places API and Maps Javascript API. (Optionally enable other APIs for which you want to use this key.)
+1. Under **API restrictions**, select **Restrict key**.
+1. From the drop-down menu, enable **Places API** and **Maps Javascript API**. (Optionally enable other APIs for which you want to use this key.)
 1. Click **OK** and **Save**.
 
 ### Clone the Data Commons repository
@@ -77,7 +77,7 @@ cd website
 
 1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
-1. Set the `INPUT_DIR` to the full path to the `sample/` directory. For example if you have cloned the repo directly to your home directory, this would be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>.
+1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
 1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
 
 **Warning:** Do not use any quotes (single or double) or spaces when specifying the values.
