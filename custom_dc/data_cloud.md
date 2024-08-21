@@ -15,7 +15,7 @@ This page shows you how to store your custom data in Google Cloud, and create th
 
 ## Overview
 
-Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql) database, and generate NL embeddings stored in Cloud Storage. 
+Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage){: target="_blank"}, and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql){: target="_blank"} database, and generate NL embeddings stored in Cloud Storage. 
 
 ![data management setup](/assets/images/custom_dc/customdc_setup3.png)
 
@@ -24,13 +24,13 @@ Alternatively, if you have a very large data set, you may find it faster to stor
 ## Prerequisites
 
 - A [GCP](https://console.cloud.google.com/welcome){: target="_blank"} billing account and project.
-- Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk).
+- Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"}.
 
 ## One-time setup steps {#setup}
 
 ### Step 1: Choose a location {#location}
 
-While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
+While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}.
 
 ### Step 2: Create a Google Cloud Storage bucket
 
@@ -71,7 +71,7 @@ This stores the data that will be served at run time. The Data Commons data mana
 
 Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at [https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data](https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data){: target="_blank"}.
 
-See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) documentation for links to more information on all the options you may set on your jobs.
+See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs){: target="_blank"} documentation for links to more information on all the options you may set on your jobs.
 
 1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create job**.
@@ -109,7 +109,7 @@ Now set environment variables:
 
    ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
 
-1. If you have a large amount of data, adjust the **Task capacity** > **Task timeout** option accordingly. See [Set task timeout (jobs)](https://cloud.google.com/run/docs/configuring/task-timeout) for more details.
+1. If you have a large amount of data, adjust the **Task capacity** > **Task timeout** option accordingly. See [Set task timeout (jobs)](https://cloud.google.com/run/docs/configuring/task-timeout){: target="_blank"} for more details.
 1. Click **Create** (but don't run it immediately).
 
 ## Manage your data

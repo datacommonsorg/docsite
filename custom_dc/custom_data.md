@@ -23,7 +23,7 @@ Custom Data Commons provides a simple mechanism to import your own data, but it 
 - You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - All CSV files and the JSON file _must_ be in the same directory
 
-Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample) and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples) directories.
+Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
 
 ## Prepare the CSV files {#prepare-csv}
 
@@ -60,7 +60,7 @@ The _ENTITY_ is an existing property in the Data Commons knowledge graph that is
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
@@ -100,7 +100,7 @@ geoId/08,2021,10,10
 
 ## Write the data config file
 
-The config.json file specifies how the CSV contents should be mapped and resolved to the Data Commons schema. See the example in the [`sample/config.json`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/config.json) file provided, which describes the data in the [`sample/average_annual_wage.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/average_annual_wage.csv) and [`sample/gender_wage_gap.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/gender_wage_gap.csv) files.
+The config.json file specifies how the CSV contents should be mapped and resolved to the Data Commons schema. See the example in the [`sample/config.json`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/config.json){: target="_blank"} file provided, which describes the data in the [`sample/average_annual_wage.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/average_annual_wage.csv){: target="_blank"} and [`sample/gender_wage_gap.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/gender_wage_gap.csv){: target="_blank"} files.
 
 Here is the general spec for the JSON file:
 
@@ -197,7 +197,7 @@ The name should be concise and precise; that is, the shortest possible name that
 
 `properties`
 
-: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](https://github.com/datacommonsorg/data/blob/master/docs/representing_statistics.md) for more details.
+: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](https://github.com/datacommonsorg/data/blob/master/docs/representing_statistics.md){: target="_blank"} for more details.
 
 Each property is specified as a key:value pair. Here are some examples:
 

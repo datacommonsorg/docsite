@@ -13,11 +13,11 @@ published: true
 * TOC
 {:toc}
 
-Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org) format. The following sections detail how to assemble a request.
+Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org){: target="_blank"} format. The following sections detail how to assemble a request.
 
 ## Service endpoints
 
-You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints). You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
+You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints){: target="_blank"}. You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier){: target="_blank"}.
 
 The base URL for all REST endpoints is:
 
@@ -35,7 +35,7 @@ The URIs for the V2 API are below:
 | Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
 | Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
-| SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/) graph query |
+| SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"} graph query |
 
 ### Endpoints for custom instances
 
@@ -185,7 +185,7 @@ The following table describes symbols in the V2 API relation expressions:
 
 ### Incoming and outgoing arcs
 
-Arcs in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG), the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
+Arcs in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG){: target="_blank"}, the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
@@ -222,4 +222,4 @@ To illustrate again using the Argentina example:
 
 ## Escape codes for reserved characters in GET requests
 
-HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding) for reserved characters. 
+HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. 
