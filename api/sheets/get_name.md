@@ -26,7 +26,7 @@ The `=DCGETNAME(dcids)` formula returns the names associated with given [DCIDs](
 
 The names associated with given node DCIDs to a cell or a range of cells.
 
-> **Note**: It’s best to minimize the number of function calls to `=DCGETNAME(dcids)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCGETNAME(dcids)` you can expect it to be slow and return with errors.
+> **Note**: It’s best to minimize the number of function calls to `=DCGETNAME(dcids)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains thousands of separate calls to `=DCGETNAME(dcids)` you can expect it to be slow and return with errors.
 
 ## Examples
 

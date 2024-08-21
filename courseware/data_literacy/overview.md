@@ -20,7 +20,7 @@ For more background about the course, see our [FAQs](faqs.html) page.
 
 ### FERPA Compliance 
 
-Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with [FERPA](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html). For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
+Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with [FERPA](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html){: target="_blank"}. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
 
 
 ### Objectives
@@ -46,6 +46,6 @@ We suggest only the following prerequisites for this curriculum:
 
 ### Feedback
 
-Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to hear from you at [this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to hear from you at [this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.
 
-Finally, if you end up using any of this material or find it useful, we would love to hear from you! Please [fill out this form to reach us](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+Finally, if you end up using any of this material or find it useful, we would love to hear from you! Please [fill out this form to reach us](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.

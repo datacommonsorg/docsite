@@ -22,7 +22,7 @@ The `=DCPROPERTY(dcids, property)` formula returns values associated with the gi
 ### Required Arguments
 
 * `dcids`: A list of [Place](/glossary.html#place) nodes, identified by their [DCIDs](/glossary.html#dcid).
-* `property`: The property whose value you are interested in,  such as “name” for the name of a node, or “typeOf” for the type of a node. If you aren’t sure what properties are available for a particular DCID, you can use the [Data Commons Knowledge Graph](https://datacommons.org/browser/)
+* `property`: The property whose value you are interested in,  such as “name” for the name of a node, or “typeOf” for the type of a node. If you aren’t sure what properties are available for a particular DCID, you can use the [Data Commons Knowledge Graph](https://datacommons.org/browser/){: target="_blank"}.
   to look up the DCID of interest and see what properties it is associated with.
 
 ## Returns
@@ -30,7 +30,7 @@ The `=DCPROPERTY(dcids, property)` formula returns values associated with the gi
 The values of the property label for the specified DCIDs.
 
 > **Note**:
-> It’s best to minimize the number of function calls to `=DCPROPERTY(dcids, property)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCPROPERTY(dcids, property)` you can expect it to be slow and return with errors.
+> It’s best to minimize the number of function calls to `=DCPROPERTY(dcids, property)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains thousands of separate calls to `=DCPROPERTY(dcids, property)` you can expect it to be slow and return with errors.
 
 ## Examples
 
