@@ -15,11 +15,11 @@ This page shows you how to build a custom services Docker container as a GCP art
 
 ## System overview
 
-When you are ready to host your custom Data Commons site in production, you create a [Google Cloud Run](https://cloud.google.com/run/) service for the site. This is the production setup:
+When you are ready to host your custom Data Commons site in production, you create a [Google Cloud Run](https://cloud.google.com/run/){: target="_blank"} service for the site. This is the production setup:
 
 ![services setup](/assets/images/custom_dc/customdc_setup4.png)
 
-You push a locally built Docker image to the [Google Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and then deploy the image as a Cloud Run service.
+You push a locally built Docker image to the [Google Cloud Artifact Registry](https://cloud.google.com/artifact-registry){: target="_blank"}, and then deploy the image as a Cloud Run service.
 
 ## One-time setup: Create a Google Artifact Registry repository
 
@@ -79,7 +79,7 @@ When it completes, verify that the container has been uploaded in the Cloud Cons
 
 This procedure shows you how to create a service and set environment variables using the Cloud Console. 
 
-See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) for more information on all the options you may set on your service.
+See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying){: target="_blank"} for more information on all the options you may set on your service.
 
 1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create service**.

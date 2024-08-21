@@ -126,7 +126,7 @@ The response looks like:
 
 ### Example 1: Find the DCID of a place by another known ID
 
-This queries for the DCID of a place by its Wikidata ID. This property is represented in the graph by [`wikidataId`](https://datacommons.org/browser/wikidataId).
+This queries for the DCID of a place by its Wikidata ID. This property is represented in the graph by [`wikidataId`](https://datacommons.org/browser/wikidataId){: target="_blank"}.
 
 Parameters:
 {: .example-box-title}
@@ -165,7 +165,7 @@ Response:
 
 ### Example 2: Find the DCID of a place by coordinates
 
-This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude) and [`longitude`](https://datacommons.org/browser/longitude) properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
+This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude){: target="_blank"} and [`longitude`](https://datacommons.org/browser/longitude){: target="_blank"} properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
 
 > Note: If using a GET request, use the percent code `%23` for `#`.
 
@@ -249,7 +249,7 @@ Response:
 
 ### Example 3: Find the DCID of a place by name
 
-This queries for the DCID of "Georgia". Notice that specifying `Georgia` without a type filter returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13)), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO)) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700)).
+This queries for the DCID of "Georgia". Notice that specifying `Georgia` without a type filter returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13){: target="_blank"}), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO){: target="_blank"}) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700){: target="_blank"}).
 
 Note the `description` property in the request. This currently only supports resolving place entities by name.
 
