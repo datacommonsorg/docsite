@@ -174,7 +174,7 @@ With `select=date` and `select=value` specified, the response looks like:
 
 Specify `date=LATEST` to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
 
-Note: When sending a GET request, you need to use the following percent codes for reserved characters: 
+> Note: When sending a GET request, you need to use the following percent codes for reserved characters: 
 - `%2F` for `/`
 
 Parameters:
@@ -355,7 +355,7 @@ with date and value for each variable
 ([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)) and
 entity (all counties in California).
 
-Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+> Note: When sending a GET request, you need to use the following escape codes for reserved characters:
 - `%3C` for `<`
 - `%2B` for `+`
 - `%7B` for `{`

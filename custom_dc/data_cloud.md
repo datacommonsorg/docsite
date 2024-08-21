@@ -44,7 +44,7 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your data and name it as desired.
 1. Optionally, create separate folders to hold input and output files, or just use the same one as for the input. 
 
-   Note: If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
+   **Note:** If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
 1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
 
 ### Step 3: Create a Google Cloud SQL instance
@@ -120,7 +120,7 @@ Now set environment variables:
 1. Navigate to the folder you created in the earlier step.
 1. Click **Upload Files**, and select all your CSV files and `config.json`.
 
-Note: Do not upload the local `datacommons` subdirectory or its files.
+> **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
 

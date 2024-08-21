@@ -8,7 +8,7 @@ has_children: true
 
 # Data Commons Sheets add-on
 
-The Data Commons Sheets is a Google Sheets add-on that allows you to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html#dcid)), and several custom functions for importing data into a spreadsheet.
+The Data Commons Google Sheets add-on allows you to import data from the Data Commons knowledge graph. The add-on provides an interface for finding a location’s unique Data Commons identifier ([DCID](glossary.html#dcid)), and several custom functions for importing data into a spreadsheet.
 
 Read our [step-by-step guides](tutorials/) for examples on using the add-on for various analysis and visualization use cases.
 
