@@ -12,7 +12,7 @@ countries, states, and provinces to more granular classifications like counties,
 cities, and postal codes. This page provides the DCIDs and a description of
 place types available in our APIs and tools.
 
-**Note:** Not all data is available for all place types. Sources often don’t
+> **Note:** Not all data is available for all place types. Sources often don’t
 provide data at all levels of granularity. You can check which place types have
 data available for a specific variable using the
 [Statistical Variable Explorer](https://datacommons.org/tools/statvar).

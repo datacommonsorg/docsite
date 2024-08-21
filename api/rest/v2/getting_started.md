@@ -80,7 +80,7 @@ curl -X POST \
 
 API keys are required in any REST API request. To obtain an API key, please see [Get API key](/api//rest/v2/index.html#get-key).
 
-**Note:** If you are sending API requests to a custom Data Commons instance, do _not_ include any API key in the requests.
+> **Note:** If you are sending API requests to a custom Data Commons instance, do _not_ include any API key in the requests.
 
 To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 

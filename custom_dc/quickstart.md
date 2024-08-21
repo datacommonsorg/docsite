@@ -154,7 +154,7 @@ docker run -it \
 gcr.io/datcom-ci/datacommons-services:stable
 ```
 
-Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you may need to preface every `docker` invocation with `sudo`.
+> Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you may need to preface every `docker` invocation with `sudo`.
 
 This command does the following:
 
@@ -211,7 +211,7 @@ A custom instance can accept [REST API](/api/rest/v2/index.html) requests at the
 http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage
 ```
 
-Note: You do not need to specify an API key as a [query parameter](/api/rest/v2/getting_started.html#query-param).
+> Note: You do not need to specify an API key as a [query parameter](/api/rest/v2/getting_started.html#query-param).
 
 If you select **Prettyprint**, you should see output like this:
 
