@@ -25,7 +25,7 @@ dial unix /var/run/docker.sock: connect: permission denied.
 or this:
 
 ```
-docker: Error response from daemon: pull access denied for datacommons-website-compose, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+docker: Error response from daemon: pull access denied for datacommons-services, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
 ```
 
 1. Use `sudo` with your `docker` invocations or set up a "sudoless" docker group, as described in [Linux post-installation steps for Docker Engine](https://docs.docker.com/engine/install/linux-postinstall/).
@@ -59,7 +59,7 @@ You need to download/update additional submodules (derived from other repos). Se
 
 If you have previously been able to get custom data in your natural-language query results, but this has suddenly stopped working, this is due to embeddings incompatibility issues between releases. To fix this, do the following:
 1. Delete the `datacommons` subdirectory from your output directory, either locally or in your Google Cloud Storage bucket.
-1. Restart the data management container, as described in .
+1. Rerun the data management container, as described in [Load data in Google Cloud](data_cloud.md), and restart the services container.
 
 ## Website display problems
 
@@ -80,7 +80,7 @@ In general, whenever you encounter problems with any Google Cloud Run service, c
 ### "403 Forbidden: Your client does not have permission to get URL / from this server"
 
 This error indicates that your application requires authenticated requests but you have not provided an authentication token. If your site is intended to be public, first check to see that the Cloud Run service is not set up to require authentication:
-1. Go to the [Google Cloud Console Cloud Run](https://console.cloud.google.com?run) page for your project.
+1. Go to the [Google Cloud Console Cloud Run](https://console.cloud.google.com?run){: target="_blank"} page for your project.
 1. From the list of services, select the relevant service and select the **Security** tab.
 1. Ensure that you have enabled **Allow unauthenticated invocations** and restart the Cloud Run service.
 

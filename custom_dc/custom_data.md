@@ -259,7 +259,7 @@ Edit the `env.list` file as follows:
 
 ### Start the Docker containers with local custom data {#docker-data}
 
-Once you have configured everything, use the following commands to restart the Docker containers, mapping your input and output directories to the same paths in Docker.
+Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
 In one terminal window, from the root directory, run the following command to start the data management container:
 
@@ -276,12 +276,12 @@ In another terminal window, from the root directory, run the following command t
 docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
---env-file $PWD/custom_dc/env.list \ \
+--env-file $PWD/custom_dc/env.list \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-gcr.io/datcom-ci/datacommons-website-compose:stable
+gcr.io/datcom-ci/datacommons-services:stable
 </pre>
 
-Every time you make changes to the CSV or JSON files, you will need to restart both containers.
+Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
 
 ### Inspect the SQLite database
 
@@ -300,7 +300,6 @@ At the prompt, enter SQL queries. For example, for the sample OECD data, this qu
 ```shell
 sqlite> select * from observations limit 10;
 ```
-
 returns output like this:
 
 ```shell
@@ -312,4 +311,6 @@ country/BEL|average_annual_wage|2004|56195.68432|c/p/1
 country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ...
 ```
+
+To exit the sqlite shell, press Ctrl-D.
 

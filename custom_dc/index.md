@@ -40,12 +40,12 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Feature                                                      |  Base Data Commons | Custom Data Commons |
 |--------------------------------------------------------------|--------------------|---------------------|
 | Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
-| Natural language query interface                            |  yes, using open-source models only<sup>1</sup> |  yes, using Google AI technologies and models  |
+| Natural language query interface                            | yes, using Google AI technologies and models  |  yes, using open-source models only<sup>1</sup>  |
 | REST APIs                                                   |  yes | yes, no additional setup needed |
 | Python and Pandas API wappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
 | Bigquery interface  | yes | no
 | Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
-| Site access controls | yes, using any supported Cloud Run mechanisms<sup>3</sup> | n/a |
+| Site access controls | n/a | yes, using any supported Cloud Run mechanisms<sup>3</sup> |
 | Fine-grained data access controls<sup>4</sup> |  no | n/a |
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers).
@@ -61,13 +61,13 @@ Essentially, a custom Data Commons instance is a mirror of the public Data Commo
 
 A custom Data Commons instance uses custom data that you provide as raw CSV files. An importer script converts the CSV data into the Data Commons format and stores this in a SQL database. For local development, we provide a lightweight, open-source [SQLite](http://sqlite.org) database; for production, we recommend that you use [Google Cloud SQL](https://cloud.google.com/sql/).
 
-In addition to the data, a custom Data Commons instance consists of two Docker containers: one with the core services that serve the data and website; and one with additional utilities for managing and loading custom data and embeddings used for natural-language processing. 
+In addition to the data, a custom Data Commons instance consists of two Docker containers: one with the core services that serve the data and website; and one with utilities for managing and loading custom data and embeddings used for natural-language processing. 
 
 Details about the components that make up the containers are provided in the [Getting started](quickstart.md) guide.
 
 ## Requirements and cost
 
-A custom Data Commons site runs in a Docker container on Google Cloud Platform (GCP), using Google Cloud Run a serverless solution that is by far the simplest and least expensive option, providing auto-scaling and other benefits. You will need the following:
+A custom Data Commons site runs in a Docker container on Google Cloud Platform (GCP), using Google Cloud Run, a serverless solution that provides auto-scaling and other benefits. You will need the following:
 
 - A [GCP](http://console.cloud.google.com) billing account and project
 - A [Docker](http://docker.com) account

@@ -23,12 +23,12 @@ The instructions in this page use the following setup:
 
 The "data management" Docker container consists of scripts that do the following:
 - Convert custom CSV file data into SQL tables and store them in a data store -- for now, in a local SQLite database
-- Generate ML embeddings for custom data and store them -- for now, in the local file system
+- Generate NL embeddings for custom data and store them -- for now, in the local file system
 
 The "services" Docker container consists of the following Data Commons components:
 - A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/), which routes incoming requests to the web or API server
 - A Python-Flask web server, which handles interactive requests from users
-- An Python-Flask NL server, for generating embeddings and serving natural language queries
+- An Python-Flask NL server, for serving natural language queries
 - A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make an REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
 
 ## Prerequisites
@@ -122,21 +122,21 @@ In this step, we will add sample data that we have included as part of the downl
 To load the sample data:
 
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
-1. Open a terminal window, and from the root directory, run the following command to start the data management Docker container:
+1. Open a terminal window, and from the root directory, run the following command to run the data management Docker container:
 
-```shell
-docker run \
---env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample/:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-data:stable
-```
+  ```shell
+  docker run \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
+  gcr.io/datcom-ci/datacommons-data:stable
+  ```
 This does the following:
 
 - The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
 - Maps the input sample data to a Docker path.
 - Starts a Docker container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in `custom_dc/sample/datacommons/nl` and loads them. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
+- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
 
 Once the container has executed all the functions in the scripts, it shuts down.
 
@@ -150,16 +150,16 @@ docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample/:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-website-compose:stable
+-v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
+gcr.io/datcom-ci/datacommons-services:stable
 ```
 
 Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you may need to preface every `docker` invocation with `sudo`.
 
 This command does the following:
 
-- The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-website-compose:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
-- Starts a long-running Docker container.
+- The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-services:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
+- Starts a services Docker container.
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
 

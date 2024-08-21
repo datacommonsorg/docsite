@@ -23,7 +23,7 @@ Alternatively, if you have a very large data set, you may find it faster to stor
 
 ## Prerequisites
 
-- A [GCP](https://console.cloud.google.com/welcome) billing account and project.
+- A [GCP](https://console.cloud.google.com/welcome){: target="_blank"} billing account and project.
 - Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk).
 
 ## One-time setup steps {#setup}
@@ -36,7 +36,7 @@ While you are testing, you can start with a single Google Cloud region; to be cl
 
 This stores the CSV and JSON files that you will upload whenever your data changes. It also stores generated files files in a `datacommons` subdirectory when you run the data management job.
 
-1. Go to [https://console.cloud.google.com/storage/browser](https://console.cloud.google.com/storage/browser) for your project.
+1. Go to [https://console.cloud.google.com/storage/browser](https://console.cloud.google.com/storage/browser){: target="_blank"} for your project.
 1. Next to **Buckets**, click **Create**.
 1. Enter a name for this bucket.
 1. For the **Location type**, choose the same regional options as for Cloud SQL above.
@@ -51,7 +51,7 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 
 This stores the data that will be served at run time. The Data Commons data management job will create the SQL tables and populate them when you start the job.
 
-1. Go to https://console.cloud.google.com/sql/instances for your project.
+1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances){: target="_blank"} for your project.
 1. Next to **Instances**, click **Create Instance**.
 1. Click **Choose MySQL.**
 1. If necessary, enable APIs as directed.
@@ -69,24 +69,27 @@ This stores the data that will be served at run time. The Data Commons data mana
 
 ### Step 4: Create a Google Cloud Run job
 
-Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at https://console.cloud.google.com.google.com/gcr/images/datcom-ci/global/datacommons-data.
+Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at [https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data](https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data){: target="_blank"}.
 
 See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) documentation for links to more information on all the options you may set on your jobs.
 
-1. Go to https://console.cloud.google.com/run/ for your project.
+1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create job**.
 1. In the **Container image URL** field, click **Select** to open the **Select container image** window.
 1. Click the **Container Registry** tab.
 1. Next to the **Project**, click **Change**, search for **datcom-ci** and select it.
 1. In the list of images that appears, navigate to and expand **gcr.io/datcom-ci/datacommons-data**, highlight the image you want, **stable** or **latest**, and click **Select**.
+
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot1.png){: width="450" }
+
 1. Optionally, in the **Job name** field, enter an alternative name as desired.
 1. In the **Region** field, select the region you chose as your location.
 1. Leave the default **Number of tasks** as 1.
 1. Expand **Container, Volumes, Connections, Security** and expand **Settings**, and set the following options:
   -  **Resources** > **Memory**: **8 GiB**
   -  **Resources** > **CPU**: **2**
-  -  **Task timeout** > **Number of retries per failed task**: **3**
-1. Click **Create** to save the job (but not run it yet).
+
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot2.png){: width="450" }
 
 {:.#env-vars}
 Now set environment variables:
@@ -94,21 +97,26 @@ Now set environment variables:
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
 1. Add names and values for the following environment variables:
-- `USE_CLOUDSQL`: Set to `true`.
-- `DC_API_KEY`: Set to your API key.
-- `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
-- `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
-- `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
-- `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
-- `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
-- `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
-1. Click **Done** and **Update** to save.
+   - `USE_CLOUDSQL`: Set to `true`.
+   - `DC_API_KEY`: Set to your API key.
+   - `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
+   - `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
+   - `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
+   - `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
+   - `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
+   - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
+1. When you finished, click **Done**.
+
+   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
+
+1. If you have a large amount of data, adjust the **Task capacity** > **Task timeout** option accordingly. See [Set task timeout (jobs)](https://cloud.google.com/run/docs/configuring/task-timeout) for more details.
+1. Click **Create** (but don't run it immediately).
 
 ## Manage your data
 
 ### Step 1: Upload data files to Google Cloud Storage
 
-1. Go to https://console.cloud.google.com/storage/browse and select your custom Data Commons bucket.
+1. Go to [https://console.cloud.google.com/storage/browse](https://console.cloud.google.com/storage/browse){: target="_blank"} and select your custom Data Commons bucket.
 1. Navigate to the folder you created in the earlier step.
 1. Click **Upload Files**, and select all your CSV files and `config.json`.
 
@@ -120,21 +128,21 @@ As you are iterating on changes to the source CSV and JSON files, you can re-upl
 
 Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a `datacommons/nl` subfolder).
 
-Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to restart the job.
+Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
 To run the job:
 
-1. Go to https://console.cloud.google.com/run/jobs for your project.
+1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
-To verify that the data has been loaded correctly, see the next step.
+When it completes, to verify that the data has been loaded correctly, see the next step.
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
 To view information about the created tables:
 
-1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances) for your project and select the instance you created earlier.
+1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances){: target="_blank"} for your project and select the instance you created earlier.
 1. In the left panel, select **Cloud SQL Studio**.
 1. In the **Sign in to SQL Studio** page, from the Database field, select the database you created earlier, e.g. `datacommons`.
 1. Enter the user name and password and click **Authenticate**.
@@ -160,7 +168,7 @@ To run a local instance of the services container, you need to set all the envir
 
 ### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
 
-For the services to connect to the Cloud SQL instance, you need to generate credentials that can be used in the local Docker container for authentication. You should refresh the credentials every time you restart the Docker container.
+For the services to connect to the Cloud SQL instance, you need to generate credentials that can be used in the local Docker container for authentication. You should refresh the credentials every time you rerun the Docker container.
 
 Open a terminal window and run the following command:
 
@@ -222,7 +230,7 @@ docker run -it \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-datacommons-website-compose:<var>DOCKER_TAG</var>
+<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
 
 
