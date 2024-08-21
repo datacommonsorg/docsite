@@ -42,7 +42,7 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
 | Natural language query interface                            | yes, using Google AI technologies and models  |  yes, using open-source models only<sup>1</sup>  |
 | REST APIs                                                   |  yes | yes, no additional setup needed |
-| Python and Pandas API wappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
+| Python and Pandas API wrappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
 | Bigquery interface  | yes | no
 | Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
 | Site access controls | n/a | yes, using any supported Cloud Run mechanisms<sup>3</sup> |
@@ -63,7 +63,7 @@ A custom Data Commons instance uses custom data that you provide as raw CSV file
 
 In addition to the data, a custom Data Commons instance consists of two Docker containers: one with the core services that serve the data and website; and one with utilities for managing and loading custom data and embeddings used for natural-language processing. 
 
-Details about the components that make up the containers are provided in the [Getting started](quickstart.md) guide.
+Details about the components that make up the containers are provided in the [Getting started](/custom_dc/quickstart.html) guide.
 
 ## Requirements and cost
 
