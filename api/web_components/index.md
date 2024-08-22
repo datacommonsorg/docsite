@@ -82,35 +82,9 @@ places. Variables and places are identified by
 [Data Commons Identifiers](/glossary.html#dcid), or
 [DCID](/glossary.html#dcid)s.
 
-To find the [DCID](/glossary.html#dcid) of a place or variable:
+To look up a DCID for an entity or variable, see the different methods described in [this page](/data_model.html#find-dcid).
 
-1. Browse all variables with the
-   [Data Commons Statistical Variable Explorer](https://datacommons.org/tools/statvar).
-
-2. Search for places and variables with the
-   [Data Commons Search](https://datacommons.org/search) page.
-
-3. Use the [Data Commons Knowledge Graph](https://datacommons.org/browser) to
-   understand the relationship between entities.
-
-### Finding DCIDs Examples
-
-#### Example #1: Finding places available for a variable
-
-Inspecting
-[Health / Health Insurance (Household) / No Health Insurance / Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance)
-shows us that the statistical variable `Count_Household_NoHealthInsurance` is
-available in the `United States` ([DCID](/glossary.html#dcid): `country/USA`) at
-`State`, `County`, and `City` levels.
-
-<img src="/assets/images/web_components/stat-var-explorer.png" width="600"/>
-
-#### Example #2: Finding place DCIDs
-
-The Knowledge Graph [country/USA](https://datacommons.org/browser/country/USA)
-page shows the [DCID](/glossary.html#dcid)s for all US states and territories.
-
-<img src="/assets/images/web_components/graph-explorer.png" width="600"/>
+To find places available for a statistical variable, see [this page](/data_mode.html#find-places).
 
 ## Styling
 
