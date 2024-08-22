@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Launch a custom site
+title: Launch your Data Commons
 nav_order: 8
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Launch a custom site
+# Launch your Data Commons
 
 * TOC
 {:toc}
