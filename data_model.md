@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Key concepts
+title: Key concepts and common tasks
 nav_order: 3
 ---
 
 {: .no_toc}
-# Key concepts
+# Key concepts and common tasks
 
 Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
 - If you are only using Data Commons interactive tools, Google Sheets, CSV download, or BigQuery, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
@@ -69,7 +69,7 @@ The type of a statistical variable is always the special sub-class [`Statistical
 
 A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person), or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino)`. Complex variables may be broken down into constituent parts, or not.  
 
-### Find places available for a statistical variable {#find-places}
+### Task: Find places available for a statistical variable {#find-places}
 
 Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you can do the following:
 
@@ -95,7 +95,7 @@ DCIDs are not restricted to entities; statistical variables also have DCIDs. For
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept7.png){: width="900"}
 
-### Find a DCID for an entity or variable {#find-dcid}
+### Task: Find a DCID for an entity or variable {#find-dcid}
 
 Many Data Commons tools and APIs require that you provide a DCID as input for a query. There are a few ways to do this.
 
@@ -143,7 +143,6 @@ For example, the value of the statistical variable [`Median Age of Female Popula
 Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/visualization#visType=timeline) and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/visualization#visType%3Dtimeline%26place%3DgeoId%2F0606000%26placeType%3DCensusZipCodeTabulationArea%26sv%3D%7B%22dcid%22%3A%22Median_Income_Person%22%7D), according to the US Census Bureau:
 
 ![Timeline Explorer]({{site.url}}/assets/images/dc/concept11.png){: width="900"}
-
 
 ## Provenance, Source, Dataset
 
