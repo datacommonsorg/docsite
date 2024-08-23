@@ -75,6 +75,7 @@ cd website
 
 ### Set environment variables {#env-vars}
 
+1. Copy `custom_dc/env.list.sample` to `custom_dc/env.list` to get started with our configuration template: `cp custom_dc/env.list.sample custom_dc/env.list`.
 1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
 1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)

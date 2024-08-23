@@ -249,6 +249,12 @@ To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc
 
 ### Configure environment variables
 
+Copy `env.list.sample` to `env.list` to get started:
+
+```sh
+cp env.list.sample env.list
+```
+
 Edit the `env.list` file as follows:
 - Set the `INPUT_DIR` variable to the directory where your input files are stored. 
 - Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
