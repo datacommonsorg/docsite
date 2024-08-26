@@ -10,14 +10,14 @@ published: true
 # /v2/sparql
 
 This endpoint makes it possible to query the Data Commons knowledge graph using
-[SPARQL](https://www.w3.org/TR/rdf-sparql-query/). SPARQL is a query language developed to retrieve data from [RDF graph](https://en.wikipedia.org/wiki/Resource_Description_Framework) content on the web. It leverages the graph structure innate in the data it 
+[SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"}. SPARQL is a query language developed to retrieve data from [RDF graph](https://en.wikipedia.org/wiki/Resource_Description_Framework){: target="_blank"} content on the web. It leverages the graph structure innate in the data it 
 queries to return specific information.
 
-**Note:** Data Commons only supports a limited subset of SPARQL functionality at this time: specifically, only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT` are supported.
+> **Note:** Data Commons only supports a limited subset of SPARQL functionality at this time: specifically, only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT` are supported.
 
 ## Request
 
-Note: GET requests are not provided because they are inconvenient to use with SPARQL.
+> Note: GET requests are not provided because they are inconvenient to use with SPARQL.
 
 <p class="api-header">
 POST request

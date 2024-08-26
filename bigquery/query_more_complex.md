@@ -9,7 +9,7 @@ parent: Query with SQL/BigQuery
 
 ### List places matching some criterion
 
-As an example, list the European equivalent (aka [NUTS 3](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics)) places with < 2.1 fertility rate:
+As an example, list the European equivalent (aka [NUTS 3](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"}) places with < 2.1 fertility rate:
 
 ```sql
 WITH ChildPlace AS (

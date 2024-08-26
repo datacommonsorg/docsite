@@ -28,7 +28,7 @@ or this:
 docker: Error response from daemon: pull access denied for datacommons-services, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
 ```
 
-1. Use `sudo` with your `docker` invocations or set up a "sudoless" docker group, as described in [Linux post-installation steps for Docker Engine](https://docs.docker.com/engine/install/linux-postinstall/).
+1. Use `sudo` with your `docker` invocations or set up a "sudoless" docker group, as described in [Linux post-installation steps for Docker Engine](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}.
 1. If you've just installed Docker, try rebooting the machine.
 
 ## Startup errors
@@ -80,7 +80,7 @@ In general, whenever you encounter problems with any Google Cloud Run service, c
 ### "403 Forbidden: Your client does not have permission to get URL / from this server"
 
 This error indicates that your application requires authenticated requests but you have not provided an authentication token. If your site is intended to be public, first check to see that the Cloud Run service is not set up to require authentication:
-1. Go to the [Google Cloud Console Cloud Run](https://console.cloud.google.com?run) page for your project.
+1. Go to the [Google Cloud Console Cloud Run](https://console.cloud.google.com?run){: target="_blank"} page for your project.
 1. From the list of services, select the relevant service and select the **Security** tab.
 1. Ensure that you have enabled **Allow unauthenticated invocations** and restart the Cloud Run service.
 

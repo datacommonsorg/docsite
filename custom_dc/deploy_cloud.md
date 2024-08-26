@@ -15,15 +15,15 @@ This page shows you how to build a custom services Docker container as a GCP art
 
 ## System overview
 
-When you are ready to host your custom Data Commons site in production, you create a [Google Cloud Run](https://cloud.google.com/run/) service for the site. This is the production setup:
+When you are ready to host your custom Data Commons site in production, you create a [Google Cloud Run](https://cloud.google.com/run/){: target="_blank"} service for the site. This is the production setup:
 
 ![services setup](/assets/images/custom_dc/customdc_setup4.png)
 
-You push a locally built Docker image to the [Google Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and then deploy the image as a Cloud Run service.
+You push a locally built Docker image to the [Google Cloud Artifact Registry](https://cloud.google.com/artifact-registry){: target="_blank"}, and then deploy the image as a Cloud Run service.
 
 ## One-time setup: Create a Google Artifact Registry repository
 
-1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts) for your project.
+1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project.
 1. Click **Create Repository**.
 1. Specify a name for the repository.
 1. In the **Format** option, select **Docker**.
@@ -72,16 +72,16 @@ This will take several minutes to upload.
 
 When it completes, verify that the container has been uploaded in the Cloud Console:
 
-1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts) for your project.
+1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project.
 1. In the list of repositories, click on the one you created above. Under **Repository Details**, you should see the Docker image listed.
 
 ## One-time setup: Create a Google Run service
 
 This procedure shows you how to create a service and set environment variables using the Cloud Console. 
 
-See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying) for more information on all the options you may set on your service.
+See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying){: target="_blank"} for more information on all the options you may set on your service.
 
-1. Go to https://console.cloud.google.com/run/ for your project.
+1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create service**.
 1. Keep the default **Deploy one revision from an existing container image** enabled.
 1. In the **Container image URL** field, click **Select** to open the **Select container image** window.
@@ -124,5 +124,5 @@ Click **Create** to kick off the deployment.  Click the **Logs** tab to see the 
 
 Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
 
-1. Go to the https://console.cloud.google.com/run/ page, click on the service you created above, and click **Edit & Deploy Revision**. 
+1. Go to the [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} page, click on the service you created above, and click **Edit & Deploy Revision**. 
 1. Select a new container and click **Deploy**.
