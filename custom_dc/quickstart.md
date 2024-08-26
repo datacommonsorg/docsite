@@ -8,7 +8,7 @@ parent: Build your own Data Commons
 {:.no_toc}
 # Getting started
 
-This page shows you how to run a local custom Data Commons instance inside Docker containers and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/).
+This page shows you how to run a local custom Data Commons instance inside Docker containers and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/){: target="_blank"}.
 
 This is step 1 of the [recommended workflow](/custom_dc/index.html#workflow).
 
@@ -26,19 +26,19 @@ The "data management" Docker container consists of scripts that do the following
 - Generate NL embeddings for custom data and store them -- for now, in the local file system
 
 The "services" Docker container consists of the following Data Commons components:
-- A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/), which routes incoming requests to the web or API server
+- A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/){: target="_blank"}, which routes incoming requests to the web or API server
 - A Python-Flask web server, which handles interactive requests from users
 - An Python-Flask NL server, for serving natural language queries
 - A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make an REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
 
 ## Prerequisites
 
-- Obtain a [GCP](https://cloud.google.com/docs/get-started) billing account and project.
-- If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/). 
-- Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/).
-- Install [Git](https://git-scm.com/).
-- Get an API key to authorize requests from your site to the base Data Commons, by [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog). Typical turnaround times are 24-48 hours.
-- Optional: Get a [Github](http://github.com) account, if you would like to browse the Data Commons source repos using your browser.
+- Obtain a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} billing account and project.
+- If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install){: target="_blank"} (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/){: target="_blank"}. 
+- Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/){: target="_blank"}.
+- Install [Git](https://git-scm.com/){: target="_blank"}.
+- Get an API key to authorize requests from your site to the base Data Commons, by [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog){: target="_blank"}. Typical turnaround times are 24-48 hours.
+- Optional: Get a [Github](http://github.com){: target="_blank"} account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps {#setup}
 
@@ -77,7 +77,7 @@ cd website
 
 1. Using your favorite editor, open `custom_dc/env.list`.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
-1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, in your terminal, type `pwd` to get the working directory.)
+1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
 1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
 
 **Warning:** Do not use any quotes (single or double) or spaces when specifying the values.
@@ -93,23 +93,23 @@ cd website
   </thead>
   <tbody>
     <tr>
-      <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample"><code>custom_dc/sample/</code></a></td>
+      <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
       <td>Sample supplemental data that is added to the base data in Data Commons. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the `config.json` file. </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples"><code>custom_dc/examples/</code></a></td>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples" target="_blank"><code>custom_dc/examples/</code></a></td>
       <td>More examples of custom data in CSV format and config.json. To configure your own custom data, see <a href="custom_data.html">Work with custom data</a>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom"><code>server/templates/custom_dc/custom/</code></a></td>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom" target="_blank"><code>server/templates/custom_dc/custom/</code></a></td>
       <td>Contains customizable HTML files. To modify these, see <a href="custom_ui.html#html-templates">Customize HTML templates</a>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom"><code>static/custom_dc/custom/</code></a></td>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list"><code>custom_dc/env.list</code></a></td>
+      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list" target="_blank"><code>custom_dc/env.list</code></a></td>
       <td>Contains environment variables for locally run Data Commons data management and services containers. For details of the variables, see the comments in the file.</td>
     </tr>
   </tbody>
@@ -154,7 +154,7 @@ docker run -it \
 gcr.io/datcom-ci/datacommons-services:stable
 ```
 
-Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/), you may need to preface every `docker` invocation with `sudo`.
+> Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every `docker` invocation with `sudo`.
 
 This command does the following:
 
@@ -211,7 +211,7 @@ A custom instance can accept [REST API](/api/rest/v2/index.html) requests at the
 http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date&variable.dcids=average_annual_wage
 ```
 
-Note: You do not need to specify an API key as a [query parameter](/api/rest/v2/getting_started.html#query-param).
+> Note: You do not need to specify an API key as a [query parameter](/api/rest/v2/getting_started.html#query-param).
 
 If you select **Prettyprint**, you should see output like this:
 
