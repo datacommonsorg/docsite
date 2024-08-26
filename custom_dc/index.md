@@ -43,6 +43,7 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Natural language query interface                            | yes, using Google AI technologies and models  |  yes, using open-source models only<sup>1</sup>  |
 | REST APIs                                                   |  yes | yes, no additional setup needed |
 | Python and Pandas API wrappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
+| Bigquery interface  | yes | no
 | Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
 | Site access controls | n/a | yes, using any supported Cloud Run mechanisms<sup>3</sup> |
 | Fine-grained data access controls<sup>4</sup> |  no | n/a |
