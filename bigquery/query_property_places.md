@@ -21,7 +21,7 @@ WHERE Obs.observation_about = 'geoId/06' AND
 
 ### Get the latest value from specific source for a single variable
 
-As an example, the latest CA population from [ACS 5 Year Survey](https://www.census.gov/programs-surveys/acs):
+As an example, the latest CA population from [ACS 5 Year Survey](https://www.census.gov/programs-surveys/acs){: target="_blank"}:
 
 ```sql
 SELECT Obs.value AS Value
