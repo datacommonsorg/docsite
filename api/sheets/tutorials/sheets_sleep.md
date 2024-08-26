@@ -42,16 +42,17 @@ We will use the percentage of chronically restless residents in each city using 
 ![](/assets/images/sheets/tutorials/sheets_sleep_tutorial_6.png)
 
 ## Step 4: Sort on sleep score.
-Data Commons has made a tutorial on sorting in Sheets available at <https://docs.datacommons.org/api/sheets/>. To summarize, the process of sorting on columns looks like this:
+To sort the data:
 
-- Obtain the desired data from Data Commons.
-- Turn on filter views (in the Data dropdown, click "Filter views").
-- Click the inverted triangle at the top of each column.
+1. From the **Data** menu, select **Create filter view**.
+1. Select the D column and click the inverted triangle at the top of the column to open the sort menu.
+1. Select **Sort Z to A**.
+1. Repeat for the C column.
 
-Follow the example in the video to sort your spreadsheet on the F column. Your final output should look like this:
+Your final output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_sleep_tutorial_7.png)
 
 Note the added headers and resized column widths for increased clarity. Also, if you’re experiencing slow sorting in the sheet, consider replacing the method calls in the C and D columns with their values. To do this, copy the columns, then paste by value only into their original locations in the spreadsheet.
 
-To further explore data from this tutorial, check out <https://docs.google.com/spreadsheets/d/1aSilceR2fZR-pTfMuilGebg9yDzOiR993bCtAk7GwlI/edit?usp=sharing>.
+To further explore data from this tutorial, check out <https://docs.google.com/spreadsheets/d/1aSilceR2fZR-pTfMuilGebg9yDzOiR993bCtAk7GwlI/?gid=0>.
