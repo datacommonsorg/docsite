@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieving Places Contained Within Another Place
 
-The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html#dcid). It only returns children with a place type that matches the `placeType` parameter, such as [State](https://datacommons.org/browser/State), [Country](https://datacommons.org/browser/Country), and so on.
+The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a list of parent [Place](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). It only returns children with a place type that matches the `placeType` parameter, such as [State](https://datacommons.org/browser/State){: target="_blank"}, [Country](https://datacommons.org/browser/Country){: target="_blank"}, and so on.
 
 > **Note**: Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
@@ -25,10 +25,10 @@ The `=DCPLACESIN(dcids, placeType)` formula returns lists of child places from a
 
 ## Returns
 
-Lists of child places from a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](https://docs.datacommons.org/glossary.html#dcid). Returns a list of child places of the specified place DCIDs, of the specified place type.
+Lists of child places from a list of parent [Place](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). Returns a list of child places of the specified place DCIDs, of the specified place type.
 
 > **Note**:
-> It’s best to minimize the number of function calls to `=DCPLACESIN(dcids, placeType)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains many separate calls to `=DCPLACESIN(dcids, placeType)` you can expect it to be slow and return with errors.
+> It’s best to minimize the number of function calls to `=DCPLACESIN(dcids, placeType)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [*per custom function call*](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains many separate calls to `=DCPLACESIN(dcids, placeType)` you can expect it to be slow and return with errors.
 
 ## Examples
 

@@ -41,7 +41,7 @@ WHERE Place1.id = 'geoId/0667000' AND Place1.id = Triple.subject_id AND
 
 ```
 
-### List all the places of type X within Z range of Y using [BigQuery geography functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions)
+### List all the places of type X within Z range of Y using [BigQuery geography functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions){: target="_blank"}
 
 As an example, counties in 50km vicinity of Palo Alto:
 
@@ -69,7 +69,7 @@ This is the same sequence as above, except replacing place with entities of type
 
 ### List all entities of non-place type contained in Y
 
-As an example, this gets all [EPA Reporting Facilities (within the Greenhouse Gas Reporting Program)](https://enviro.epa.gov/enviro/ad_hoc_table_column_select_v2.retrieval_list?database_type=GHG&selected_subjects=Facility+Information&subject_selection=+&table_1=+) in Texas:
+As an example, this gets all [EPA Reporting Facilities (within the Greenhouse Gas Reporting Program)](https://enviro.epa.gov/enviro/ad_hoc_table_column_select_v2.retrieval_list?database_type=GHG&selected_subjects=Facility+Information&subject_selection=+&table_1=+){: target="_blank"} in Texas:
 
 ```sql
 SELECT I.id AS Id, I.name AS name
