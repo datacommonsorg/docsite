@@ -76,17 +76,17 @@ JSON data:
 
 Here are the possible values for specifying dates/times:
 - `LATEST`: Fetch the latest observations only.
-- <var>DATE_STRING</var>: Fetch observations matching the specified date(s) and time(s). The value must be in the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see below.
+- <var>DATE_STRING</var>: Fetch observations matching the specified date(s) and time(s). The value must be in the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see below.
 - `""`: Return observations for all dates. 
 
 #### Find the date format for a statistical variable
 
 Statistical variable dates are defined as yearly, monthly, weekly, or daily. For most variables, you can find out the correct date format by searching for the variable in the
-[Statistical Variable Explorer](https://datacommons.org/tools/statvar) and looking for the **Date range**. For example, for the variable [Gini Index of Economic Activity](https://datacommons.org/tools/statvar#sv=GiniIndex_EconomicActivity), the date-time format is yearly, i.e. in YYYY format:
+[Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} and looking for the **Date range**. For example, for the variable [Gini Index of Economic Activity](https://datacommons.org/tools/statvar#sv=GiniIndex_EconomicActivity){: target="_blank"}, the date-time format is yearly, i.e. in YYYY format:
 
 ![date time example 1](/assets/images/rest/date_time_example1.png){: width="900"}
 
-For other cases, you may need to drill down further to a timeline graph to view specific observations. For example, [Mean Wind Direction](https://datacommons.org/tools/statvar#sv=Mean_WindDirection), is measured at the sub-daily level, but the frequency is not clear (hourly or every two hours, etc.)
+For other cases, you may need to drill down further to a timeline graph to view specific observations. For example, [Mean Wind Direction](https://datacommons.org/tools/statvar#sv=Mean_WindDirection){: target="_blank"}, is measured at the sub-daily level, but the frequency is not clear (hourly or every two hours, etc.)
 
 ![date time example 2](/assets/images/rest/date_time_example2.png){: width="900"}
 
@@ -95,7 +95,7 @@ In these cases, do the following:
 1. In the Statistical Variable Explorer, click on an example place to link to the variable's page in the Knowledge Graph Browser. 
 1. Scroll to the **Observations** section and click **Show Table** to get a list of observations.
 
-For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection), the observations table shows that the variable is measured every four hours, starting at midnight.
+For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection){: target="_blank"}, the observations table shows that the variable is measured every four hours, starting at midnight.
 
 ![date time example 3](/assets/images/rest/date_time_example3.png){: width="600"}
 
@@ -174,7 +174,7 @@ With `select=date` and `select=value` specified, the response looks like:
 
 Specify `date=LATEST` to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
 
-Note: When sending a GET request, you need to use the following percent codes for reserved characters: 
+> Note: When sending a GET request, you need to use the following percent codes for reserved characters: 
 - `%2F` for `/`
 
 Parameters:
@@ -260,10 +260,10 @@ Response:
 ### Example 2: Get the observations at a particular date for given entities
 
 This queries for observations in 2015 for the variable
-[`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)
+[`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}
 for two specified entities:
-[`country/USA`](https://datacommons.org/browser/country/USA) and
-[`geoId/06`](https://datacommons.org/browser/geoId/06).
+[`country/USA`](https://datacommons.org/browser/country/USA){: target="_blank"} and
+[`geoId/06`](https://datacommons.org/browser/geoId/06){: target="_blank"}.
 
 Parameters:
 {: .example-box-title}
@@ -349,13 +349,13 @@ Response:
 
 In this example, we use the [chained expression
 (`+`)](/api/rest/v2/#relation-expressions) to specify "all contained places in
-[California](https://datacommons.org/browser/geoId/06) (dcid: `geoId/06`) of
+[California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
 type `County`". Then we specify the select fields to request actual observations
 with date and value for each variable
-([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person)) and
+([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
 entity (all counties in California).
 
-Note: When sending a GET request, you need to use the following escape codes for reserved characters:
+> Note: When sending a GET request, you need to use the following escape codes for reserved characters:
 - `%3C` for `<`
 - `%2B` for `+`
 - `%7B` for `{`

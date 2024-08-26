@@ -8,8 +8,8 @@ published: true
 ---
 # Data Commons Web Components
 
-Embed [Data Commons](https://datacommons.org)
-[statistical variable](https://datacommons.org/tools/statvar) observation
+Embed [Data Commons](https://datacommons.org){: target="_blank"}
+[statistical variable](https://datacommons.org/tools/statvar){: target="_blank"} observation
 visualizations in your web application.
 
 <img

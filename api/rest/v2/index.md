@@ -16,13 +16,13 @@ published: true
 ## Overview
 
 The Data Commons REST API is a
-[REST](https://en.wikipedia.org/wiki/Representational_state_transfer) library
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer){: target="_blank"} library
 that enables developers to programmatically access data in the Data Commons
-knowledge graph, using [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods). This allows you to explore the structure of the
+knowledge graph, using [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods){: target="_blank"}. This allows you to explore the structure of the
 graph, integrate statistics from the graph into data analysis applications and
 much more.
 
-You can use the REST API with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/)), by scripting HTTP requests in another language like Javascript, or even by entering an endpoint into your web browser!
+You can use the REST API with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/){: target="_blank"}), by scripting HTTP requests in another language like Javascript, or even by entering an endpoint into your web browser!
 
 ## What's new in V2
 
@@ -41,7 +41,7 @@ We provide a trial API key for general public use. This key will let you try the
 </div>
 
 _The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits by
-[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog). Typical turnaround times are 24-48 hours.
+[filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog){: target="_blank"}. Typical turnaround times are 24-48 hours.
 
 To use the key in requests, see the [Authentication](/api/rest/v2/getting_started.html#authentication) section.
 
