@@ -23,7 +23,7 @@ Custom Data Commons provides a simple mechanism to import your own data, but it 
 - You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - All CSV files and the JSON file _must_ be in the same directory
 
-Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample) and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples) directories.
+Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
 
 ## Prepare the CSV files {#prepare-csv}
 
@@ -56,11 +56,11 @@ San Jose,2023,400,400,300,0
 
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
-**Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
+> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar) to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
@@ -100,7 +100,7 @@ geoId/08,2021,10,10
 
 ## Write the data config file
 
-The config.json file specifies how the CSV contents should be mapped and resolved to the Data Commons schema. See the example in the [`sample/config.json`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/config.json) file provided, which describes the data in the [`sample/average_annual_wage.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/average_annual_wage.csv) and [`sample/gender_wage_gap.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/gender_wage_gap.csv) files.
+The config.json file specifies how the CSV contents should be mapped and resolved to the Data Commons schema. See the example in the [`sample/config.json`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/config.json){: target="_blank"} file provided, which describes the data in the [`sample/average_annual_wage.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/average_annual_wage.csv){: target="_blank"} and [`sample/gender_wage_gap.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/gender_wage_gap.csv){: target="_blank"} files.
 
 Here is the general spec for the JSON file:
 
@@ -197,7 +197,7 @@ The name should be concise and precise; that is, the shortest possible name that
 
 `properties`
 
-: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](https://github.com/datacommonsorg/data/blob/master/docs/representing_statistics.md) for more details.
+: Additional Data Commons properties associated with this variable. These are Data Commons property entities. See [Representing statistics in Data Commons](https://github.com/datacommonsorg/data/blob/master/docs/representing_statistics.md){: target="_blank"} for more details.
 
 Each property is specified as a key:value pair. Here are some examples:
 
@@ -253,7 +253,7 @@ Edit the `env.list` file as follows:
 - Set the `INPUT_DIR` variable to the directory where your input files are stored. 
 - Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
-**Notes:**
+> **Notes:**
 - NL support increases the startup time of your server and consumes more resources. If you don't want NL functionality, you can disable it by updating the `ENABLE_MODEL` flag from `true` to `false`.
 - If you are storing your source code in a public/open-source version control system, we recommend that you do not store the environment variables file containing secrets. Instead, store it locally only. If you are using git/Github, you can add the file name to the `.gitignore` file.
 

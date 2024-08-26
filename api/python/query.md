@@ -9,7 +9,7 @@ grand_parent: API
 # Query the Data Commons knowledge graph using SPARQL
 
 Returns the results of running a graph query on the Data Commons knowledge graph
-using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/). Note that Data Commons is only
+using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"}. Note that Data Commons is only
 able to support a limited subsection of SPARQL functionality at this time: specifically only the keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
 
 Note: The Python SPARQL library currently only supports the [v1](/api/v1/query.html) version of the API.
@@ -28,7 +28,7 @@ datacommons.query(query_string, select=None)
 
 ## How to construct a call to the query() method
 
-This method makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites. It leverages the graph structure innate in the data it queries to return specific information to an end user. For more information on assembling SPARQL queries, check out [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL) and [the W3C specification information](https://www.w3.org/TR/sparql11-query/).
+This method makes it possible to query the Data Commons knowledge graph using SPARQL. SPARQL is a query language developed to retrieve data from websites. It leverages the graph structure innate in the data it queries to return specific information to an end user. For more information on assembling SPARQL queries, check out [the Wikipedia page about SPARQL](https://en.wikipedia.org/wiki/SPARQL){: target="_blank"} and [the W3C specification information](https://www.w3.org/TR/sparql11-query/){: target="_blank"}.
 
 This method accepts the additional optional argument `select`. This function selects rows to be returned by `query`. Under the hood, the `select` function examines a row in the results of executing `query_string` and returns `True` if and only if the row is to be returned by `query`. The row passed in as an argument is represented as a `dict` that maps a query variable in `query_string` to its value in the given row.
 
@@ -53,7 +53,7 @@ The response contains an array of dictionaries, each corresponding to one node m
 
 ## Examples and error responses
 
-The following examples and error responses, along with explanations and fixes for the errors, are available in this [Python notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing).
+The following examples and error responses, along with explanations and fixes for the errors, are available in this [Python notebook](https://colab.research.google.com/drive/1Jd0IDHnMdtxhsmXhL5Ib5tL0zgJud1k5?usp=sharing){: target="_blank"}.
 
 ### Example 1: Retrieve the name of the state associated with DCID geoId/06.
 
