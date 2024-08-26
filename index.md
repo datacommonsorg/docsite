@@ -30,7 +30,7 @@ The Data Commons [Knowledge Graph browser](https://datacommons.org/browser/){: t
 
 Importantly, numeric time series data are first-class entities, with "(statistical) variable" being an entity that represents a metric definition, and "observation" being an entity that represents the value of a variable at a specific time. The [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} allows you to browse existing variables, and the [Visualization tools](https://datacommons.org/tools/visualization){: target="_blank"} provide aggregated views of this data over time, geography, or 2-dimensional space. The APIs also allow you to directly query observations. 
 
-<!--To learn more about the data model and key concepts, see [Key concepts](). -->
+To learn more about the data model and key concepts, see [Key concepts](data_model.md).
 
 ## An open-source project and website platform
 
