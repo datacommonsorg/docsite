@@ -75,13 +75,7 @@ See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs){: target
 
 1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create job**.
-1. In the **Container image URL** field, click **Select** to open the **Select container image** window.
-1. Click the **Container Registry** tab.
-1. Next to the **Project**, click **Change**, search for **datcom-ci** and select it.
-1. In the list of images that appears, navigate to and expand **gcr.io/datcom-ci/datacommons-data**, highlight the image you want, **stable** or **latest**, and click **Select**.
-
-   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot1.png){: width="450" }
-
+1. In the **Container image URL** field, enter `gcr.io/datcom-ci/datacommons-data:stable`.
 1. Optionally, in the **Job name** field, enter an alternative name as desired.
 1. In the **Region** field, select the region you chose as your location.
 1. Leave the default **Number of tasks** as 1.
