@@ -16,7 +16,7 @@ grand_parent: Courseware
 
 A set of [modules](course_materials/modules.html) focusing on several [key concepts](course_materials/key_themes.html) focusing on data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g.,, the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
 
-All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/)).
+All material is provided publicly and free of charge, under a Creative Commons license ([CC BY](https://creativecommons.org/licenses/by/4.0/){: target="_blank"}).
 
 ## Who is this for?
 
@@ -24,7 +24,7 @@ Anyone and everyone. Instructors, students, aspiring data scientists and anyone 
 
 ## What's Different?
 
-There are several excellent courses that range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with Math and Statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please [share them with us through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+There are several excellent courses that range from basic data analysis to advanced data science. We make no claim about "Data Literacy with Data Commons" being a replacement for them. Instead, we hope for this curriculum to become a useful starting point for those who want to whet their appetite in becoming data literate. This material uses a hands on approach, replete with _real world_ examples but without requiring any programming. It also assumes only a high-school level of comfort with Math and Statistics. Data Commons is a natural companion platform to enable easy access to data and core visualizations. We hope that anyone exploring the suggested examples will rapidly be able to explore more and even generate new examples and case studies on their own! If you end up finding and exploring new examples and case studies, please [share them with us through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform){: target="_blank"}. If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.
 
 
 ## What do we mean by data literacy?
@@ -51,7 +51,7 @@ For the purpose of the Data Literacy, the Data Commons platform becomes an impor
 - **Real Data** Data Commons provides open and easy access to a plethora of publicly available _real_ data.
 - **Open Access** Data Commons is available to everyone at no cost and with no restrictions of use.
 - **No Programming** Much of the Data Literacy curriculum expectations can be met by using the basic data analysis tools on the Data Commons website. While all of Data Commons's data is available via APIs, that is not required for accessing the data and performing basic analyses.
-- **Customization** When viewing or analyzing any data on the Data Commons website, e.g., the [median household income in California, Nevada and Oregon](https://datacommons.org/tools/timeline#place=geoId%2F06%2CgeoId%2F32%2CgeoId%2F41&statsVar=Median_Income_Household&chart=%7B%22income%22%3A%7B%22pc%22%3Afalse%7D%7D), one can easily replace the places to display the same information for an entirely different set of locations, e.g., the [median household income in Florida, Louisiana and Texas](https://datacommons.org/tools/timeline#place=geoId%2F12%2CgeoId%2F22%2CgeoId%2F06&statsVar=Median_Income_Household&chart=%7B%22income%22%3A%7B%22pc%22%3Afalse%7D%7D).
+- **Customization** When viewing or analyzing any data on the Data Commons website, e.g., the [median household income in California, Nevada and Oregon](https://datacommons.org/tools/timeline#place=geoId%2F06%2CgeoId%2F32%2CgeoId%2F41&statsVar=Median_Income_Household&chart=%7B%22income%22%3A%7B%22pc%22%3Afalse%7D%7D){: target="_blank"}, one can easily replace the places to display the same information for an entirely different set of locations, e.g., the [median household income in Florida, Louisiana and Texas](https://datacommons.org/tools/timeline#place=geoId%2F12%2CgeoId%2F22%2CgeoId%2F06&statsVar=Median_Income_Household&chart=%7B%22income%22%3A%7B%22pc%22%3Afalse%7D%7D){: target="_blank"}.
 
 ## What topics are covered?
 
@@ -59,12 +59,12 @@ Take a look at the [Key Themes page](course_materials/key_themes.html) or the [M
 
 ## What is not covered?
 
-We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please [let us know on this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform) and we would love to work with you.
+We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources. If you wish to help contribute any themes/topics that would supplement this material, please [let us know on this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"} and we would love to work with you.
 
 We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.md) curriculum/course material.
 
 ## How can I give feedback?
 
-Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to [hear from you](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to [hear from you](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.
 
-Finally, if you end up using any of this material or find it useful, we would love to hear from you - please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+Finally, if you end up using any of this material or find it useful, we would love to hear from you - please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.

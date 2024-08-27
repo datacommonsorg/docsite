@@ -48,7 +48,7 @@ variable value from a specific variable about a single place.
 
 | Name | Type   | Description                                                                                                                                                                                                                                                                                 |
 | ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| date | string | Specific date to show data for. ISO 8601 format (e.g. "YYYY", "YYYY-MM", "YYYY-MM-DD").<br /><br />Note: Ensure your variable has data available at the specified date using the [Stat Var Explorer](https://datacommons.org/tools/statvar)<br /><br />Default: Most recent data available. |
+| date | string | Specific date to show data for. ISO 8601 format (e.g. "YYYY", "YYYY-MM", "YYYY-MM-DD").<br /><br />Note: Ensure your variable has data available at the specified date using the [Stat Var Explorer](https://datacommons.org/tools/statvar){: target="_blank"}<br /><br />Default: Most recent data available. |
 | unit | string | Unit the variable is measured in.                                                                                                                                                                                                                                                           |
 {: .doc-table }
 
