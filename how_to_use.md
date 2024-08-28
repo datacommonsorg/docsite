@@ -38,8 +38,6 @@ There are several options for directly querying the data, without accessing the 
 
 - **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
 
-- **BigQuery**: If you want to issue SQL queries, and you have a Google Cloud Platform account, you can use BigQuery Studio on Data Commons data in [Analytics Hub](https://cloud.google.com/analytics-hub){: target="_blank"}. See the [Data Commons in BigQuery](/bigquery/index.html) page for more details.
-
 ## Embed Data Commons visualizations in your website {#embed}
 
 Data Commons provides a [Web components API](/api/web_components/index.html) that makes it a snap to embed various chart elements in your own site, such as scatter plots, maps, pie charts, and many more, using the base Data Commons data.
