@@ -15,22 +15,22 @@ parent: Build your own Data Commons
 
 When you are ready to launch your site to external traffic, there are many tasks you will need to perform, including:
 
--  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping custom domains](https://cloud.google.com/run/docs/mapping-custom-domains).
--  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences).
+-  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="_blank"}.
+-  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}.
 -  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
--  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/) to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
+-  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
 
 ## Improve database performance {#redis}
 
-We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore), a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering). Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access).
+We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore){: target="_blank"}, a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering){: target="_blank"}. Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access){: target="_blank"}.
 
 In the following procedures, we show you how to create a Redis instance that connects to your project's "default" VPC network.
 
 **Step 1: Create the Redis instance**
 
-The following is a sample configuration that you can tune as needed. For additional information, see [Create and manage Redis instances](https://cloud.google.com/memorystore/docs/redis/create-manage-instances).
+The following is a sample configuration that you can tune as needed. For additional information, see [Create and manage Redis instances](https://cloud.google.com/memorystore/docs/redis/create-manage-instances){: target="_blank"}.
 
-1. Go to https://console.cloud.google.com/memorystore/redis/instances for your project.
+1. Go to [https://console.cloud.google.com/memorystore/redis/instances](https://console.cloud.google.com/memorystore/redis/instances){: target="_blank"} for your project.
 1. Select the **Redis** tab and click **Create Instance**.
 1. If prompted to enable the Redis API server, accept.
 1. Name your instance.
@@ -47,7 +47,7 @@ The following is a sample configuration that you can tune as needed. For additio
 
 **Step 3: Create the VPC connector**
 
-1. Go to https://console.cloud.google.com/networking/connectors/list for your instance.
+1. Go to [https://console.cloud.google.com/networking/connectors/list](https://console.cloud.google.com/networking/connectors/list){: target="_blank"} for your instance.
 1. If you are prompted to enable the VPC Access API, accept.
 1. In the **Serverless VPC Access** screen, click **Create Connector**.
 1. Name the connector.
@@ -57,7 +57,7 @@ The following is a sample configuration that you can tune as needed. For additio
 1. In the **IP Range** field, enter a valid IP range; for example, `10.9.0.0`.
 1. Click **Create**.
 
-For additional information, see [Serverless VPC Access](https://cloud.google.com/vpc/docs/serverless-vpc-access).
+For additional information, see [Serverless VPC Access](https://cloud.google.com/vpc/docs/serverless-vpc-access){: target="_blank"}.
 
 **Step 4: Configure your Cloud Run service to connect to the VPC**
 
@@ -84,26 +84,16 @@ To verify that traffic is hitting the cache:
 
 ## Add Google Analytics reporting {#analytics}
 
-Google Analytics provides detailed reports on user engagement with your site. In addition, Data Commons provides a number of custom dimensions to report on specific attributes of a Data Commons site.
+Google Analytics provides detailed reports on user engagement with your site. In addition, Data Commons provides a number of custom parameters you can use to report on specific attributes of a Data Commons site such as, search queries, specific page views, etc.
 
 ### Enable Analytics tracking
 
-1. If you don't already have a Google Analytics account, create one, following the procedures in Set up Analytics for a website and/or app. Record the account number.
-1. Add the following code to the `server/templates/base.html` file, in the `<head>` section.
+1. If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://analytics.google.com/analytics/web/?authuser=0#/provision/create){: target="_blank"}. Record the Analytics tag ID assigned to your account.
+1. Go to the Cloud Console for your [Cloud Run service](https://console.cloud.google.com/run/), and click **Edit & deploy new revision**.
+1. Expand **Variables and secrets* and click **Add new variable**.
+1. Add the name `GOOGLE_ANALYTICS_TAG_ID` and in the value field, type in your tag ID.
+1. Click **Deploy** to redeploy the service. Data collection will take a day or two to start and begin showing up in your reports.
 
-    <pre>
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ <var>GA_ACCOUNT</var}}"></script>
-            <script>
-                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '{{ <var>GA_ACCOUNT</var> }}', { <var>ADDITIONAL_OPTIONS</var> });
-            </script>
-    </pre>
-    Additional configuration settings are optional; see the [Google Analytics Reference](https://developers.google.com/analytics/devguides/collection/ga4/reference/config) documentation for details.
-1. Reload the services container in Google Cloud Run: [build a custom image](/custom_dc/build_image.html#build-repo), [upload it](/custom_dc/cloud_run.html#upload-registry) to the Artifact Registry, and redeploy the Cloud Run service.
-
-
-### Reporting on custom dimensions
+### Report on custom dimensions
 
 Data Commons exports many events as Google Analytics custom dimensions, such as search queries, specific page views, etc. You can use these to create custom reports and explorations. You can see the full set defined in [`website/static/js/shared/ga_events.ts`](https://github.com/datacommonsorg/website/blob/7f896a982e8567cd96a0d8b01d1cd5eaaf285974/static/js/shared/ga_events.ts).
