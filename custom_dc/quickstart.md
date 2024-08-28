@@ -94,7 +94,7 @@ cd website
   <tbody>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data in Data Commons. This page shows you how to easily load and view this data. The data is in CSV format and mapped to Data Commons entity definitions using the `config.json` file. </td>
+      <td>Sample supplemental data that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples" target="_blank"><code>custom_dc/examples/</code></a></td>
@@ -115,9 +115,33 @@ cd website
   </tbody>
 </table>
 
-## Load data
+## Look at the sample data
 
-In this step, we will add sample data that we have included as part of the download for you to load it into your custom instance. This data is from the Organisation for Economic Co-operation and Development (OECD): "per country data for annual average wages" and "gender wage gaps".
+Before you start up a Data Commons site, it's important to understand the basics of the data model that is expected in a custom Data Commons instance. Let's look at the sample data in the CSV files in the `custom_dc/sample/` folder. This data is from the Organisation for Economic Co-operation and Development (OECD): "per country data for annual average wages" and "gender wage gaps":
+
+countryAlpha3Code	| date	| average_annual_wage |
+------------------|-------|---------------------|
+BEL	| 2000	| 54577.62735 |
+BEL	| 2001	| 54743.96009 |
+BEL	| 2002	| 56157.24355 |
+BEL	| 2003	| 56491.99591 |
+... | ...   |     ...     |
+
+countryAlpha3Code	| date	| gender_wage_gap |
+------------------|-------|-----------------|
+DNK	| 2005	| 10.16733044 |
+DNK	| 2006	| 10.17206126 |
+DNK	| 2007	| 9.850297951 |
+DNK	| 2008	| 10.18354903 |
+... |  ...  |   ...       |
+
+There are a few important things to note:
+- There are only 3 columns: one representing a place (`countryAlpha3Code`); one representing a date (`date`); and one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept representing a metric: `average_annual_wage` and `gender_wage_gap`. Actually, there can be any number of statistical variable columns -- but no other types of additional columns -- and these two CSV files could be combined into one.
+- Every row is a separate [_observation_](/glossary.html#observation), or a value of the variable for a given place and time. 
+
+This is the scheme to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. (That topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
+
+## Load sample data
 
 To load the sample data:
 

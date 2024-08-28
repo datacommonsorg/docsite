@@ -84,8 +84,9 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 {: #workflow}
 ## Recommended workflow
 
-1. Work through the [Getting started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample custom data.
-1. Prepare your real-world custom data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Work with custom data](/custom_dc/custom_data.html).
+1. Work through the [Getting started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
+1. Prepare your real-world data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Prepare and load your own data](/custom_dc/custom_data.html) for details. 
+> Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
 1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. When you have finished testing locally, host your data and code in Google Cloud Platform: first, upload your data to Google Cloud Storage and create a Cloud Run job to load the data into Google Cloud SQL. See [Load data in Google Cloud](/custom_dc/data_cloud.html).
 1. Build a custom image, upload it to the Google Cloud Artifact Registry and create a Cloud Run service to run the site. See [Deploy services to Google Cloud](deploy_cloud.md)

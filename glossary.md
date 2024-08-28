@@ -87,7 +87,16 @@ Property of [variables](#variable) that measure proportions, used in conjunction
 
 As an example, in 1999, [approximately 36% of Canadians were Internet users](https://datacommons.org/browser/dc/o/0d9e3dd3y6yt3){: target="_blank"}. Here the measured value of `Count_Person_IsInternetUser_PerCapita` is 36, and the scaling factor or denominator for this per capita measurement is 100. Without the scaling factor, we would interpret the value to be 36/1, or 3600%.
 
-A complete list of properties can be found in the [Knowledge Graph](https://datacommons.org/browser/scalingFactor){: target="_blank"}.
+### [Statistical Variable](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}
+{: #variable}
+
+Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears){: target="_blank"}, [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female){: target="_blank"}, [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person){: target="_blank"}, or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes){: target="_blank"}. A complete list of variables can be found in the [Knowledge Graph](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}.
+
+### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup){: target="_blank"}
+{: #variable-group}
+
+Represents a grouping of variables that are conceptually related. For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"} consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"}, [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome){: target="_blank"} and etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female){: target="_blank"} is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"}. It contains variables that have age constraints.
+
 
 ### Triple
 {: #triple}
@@ -113,13 +122,3 @@ USA -- containedInPlace --> northamerica
 {: #unit}
 
 The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour){: target="_blank"}, [inches](https://datacommons.org/browser/Inch){: target="_blank"}, and [Indian Rupees](https://datacommons.org/browser/IndianRupee){: target="_blank"}. A complete list of properties can be found in the [Knowledge Graph](https://datacommons.org/browser/unit){: target="_blank"}.
-
-### [Statistical Variable](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}
-{: #variable}
-
-Any type of metric, statistic, or measure that can be measured at a place and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears){: target="_blank"}, [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female){: target="_blank"}, [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person){: target="_blank"}, or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes){: target="_blank"}. A complete list of variables can be found in the [Knowledge Graph](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}.
-
-### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup){: target="_blank"}
-{: #variable-group}
-
-Represents a grouping of variables that are conceptually related. For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"} consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"}, [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome){: target="_blank"} and etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female){: target="_blank"} is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"}. It contains variables that have age constraints.
