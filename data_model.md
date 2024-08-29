@@ -75,13 +75,17 @@ Note that not all statistical variables have observations for all places or othe
 
 1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}, and search for a variable of interest.
 1. Optionally, filter by data source and data set.
-1. Scroll to the **Places** section.
+1. In the right-hand window, scroll to the **Places** section.
 
-For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance){: target="_blank"} shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
+#### Example 1: Find regions supported for households without health insurance
+
+In the Statistical Variable Explorer, select [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance){: target="_blank"}. In the **Places** section, you can see that the statistical variable `Count_Household_NoHealthInsurance` is available only for the United States as a country, but it is measured at state, county, and city levels:
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept4.png){: width="900"}
 
-On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity){: target="_blank"}, or `Quarterly_Average_RetailPrice_Electricity`, is only available at the state level states in the US but not at the city or county level. 
+#### Example 2: Find the U.S. regional levels supported for average electricity prices
+
+In the Statistical Variable Explorer, select  [Energy > Electricity > Annual Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity){: target="_blank"}. In the **Places** section, you can see that the statistical variable `Annual_Average_RetailPrice_Electricity` is available only for the United States as a country, and only at the state level.
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept5.png){: width="900"}
 
@@ -113,13 +117,23 @@ To find the DCID for a place using other methods:
 - Use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
 - Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
 
+To find the DCID for other entity types:
+
+1. Go to the Data [Commons Knowledge Graph browser](https://datacommons.org/browser/){: target="_blank"}. 
+1. Next to the category of interest, click **More...**.
+1. In the resulting page, scroll down to the **In arcs** section to view DCIDs for the relevant entities.
+
+To find the DCID for 
+
+
 To find the DCID for a statistical variable:
 
-1. Open the Statistical Variable Explorer.
+1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
 1. Search for the variable of interest, and optionally filter by data source and dataset.
-1. Look under the heading for the DCID.
+1. In the right-hand window, look under the heading for the DCID.
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept9.png){: width="900"}
+
 
 ## Property
 
