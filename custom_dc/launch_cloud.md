@@ -101,4 +101,17 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 ### Report on custom dimensions
 
-Data Commons exports many events as Google Analytics custom dimensions, such as search queries, specific page views, etc. You can use these to create custom reports and explorations. You can see the full set defined in [`website/static/js/shared/ga_events.ts`](https://github.com/datacommonsorg/website/blob/7f896a982e8567cd96a0d8b01d1cd5eaaf285974/static/js/shared/ga_events.ts).
+Data Commons exports many Google Analytics [custom events](https://support.google.com/analytics/answer/12229021){: target="_blank"} and [parameters](https://support.google.com/analytics/answer/13675006){: target="_blank"}, to allow Data Commons-specific features to be logged, such as search queries, specific page views, etc. You can use these to create custom reports and explorations. The full set is defined in [`website/static/js/shared/ga_events.ts`](https://github.com/datacommonsorg/website/blob/7f896a982e8567cd96a0d8b01d1cd5eaaf285974/static/js/shared/ga_events.ts){: target="blank"}. Before you can get reports on them, you need to create [custom dimensions](https://support.google.com/analytics/answer/14240153){: target="blank"} from them.  
+
+To create a custom dimension for a Data Commons custom event:
+
+1. In the [Google Analytics dashboard](https://analytics.google.com/analytics/web/){: target="blank"} for your account, go to the **Admin** page.
+1. Select **Data display** > **Custom definitions**.
+1. Click **Create custom dimension**. 
+1. Keep the **Scope** as **Event** and click the **Event parameter** > **Select event parameter** drop-down to see the list of custom event parameters.
+1. Select the parameter you need.
+1. Add a dimension name and description. These can be anything you want but the name should be meaningful as it will show up in reports.
+1. When done, click **Save**.
+1. Select **Data display** > **Events** and you will see a number of new custom events that have been added to your account.
+
+
