@@ -137,7 +137,7 @@ DNK	| 2008	| 10.18354903 |
 
 There are a few important things to note:
 - There are only 3 columns: one representing a place (`countryAlpha3Code`, a [special Data Commons place type](/custom_dc/custom_data.html#special-names)); one representing a date (`date`); and one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept for a metric: `average_annual_wage` and `gender_wage_gap`. (Actually, there can be any number of statistical variable columns -- but no other types of additional columns -- and these two CSV files could be combined into one.)
-- Every row is a separate [_observation_](/glossary.html#observation), or a value of the variable for a given place and time. In the case where multiple statistical variable columns, each row would, of course, consist of multiple observations.
+- Every row is a separate [_observation_](/glossary.html#observation), or a value of the variable for a given place and time. In the case of multiple statistical variable columns in the same file, each row would, of course, consist of multiple observations.
 
 This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. (That topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
 
