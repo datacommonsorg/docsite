@@ -15,7 +15,7 @@ This page shows you how to store your custom data in Google Cloud, and create th
 
 ## Overview
 
-Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage), and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql) database, and generate NL embeddings stored in Cloud Storage. 
+Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage){: target="_blank"}, and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql){: target="_blank"} database, and generate NL embeddings stored in Cloud Storage. 
 
 ![data management setup](/assets/images/custom_dc/customdc_setup3.png)
 
@@ -24,13 +24,13 @@ Alternatively, if you have a very large data set, you may find it faster to stor
 ## Prerequisites
 
 - A [GCP](https://console.cloud.google.com/welcome){: target="_blank"} billing account and project.
-- Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk).
+- Optional: Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"}.
 
 ## One-time setup steps {#setup}
 
 ### Step 1: Choose a location {#location}
 
-While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations).
+While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}.
 
 ### Step 2: Create a Google Cloud Storage bucket
 
@@ -44,7 +44,7 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your data and name it as desired.
 1. Optionally, create separate folders to hold input and output files, or just use the same one as for the input. 
 
-   Note: If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
+   **Note:** If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
 1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
 
 ### Step 3: Create a Google Cloud SQL instance
@@ -71,17 +71,11 @@ This stores the data that will be served at run time. The Data Commons data mana
 
 Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at [https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data](https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data){: target="_blank"}.
 
-See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs) documentation for links to more information on all the options you may set on your jobs.
+See also the [Cloud Run](https://cloud.google.com/run/docs/create-jobs){: target="_blank"} documentation for links to more information on all the options you may set on your jobs.
 
 1. Go to [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} for your project.
 1. Click **Create job**.
-1. In the **Container image URL** field, click **Select** to open the **Select container image** window.
-1. Click the **Container Registry** tab.
-1. Next to the **Project**, click **Change**, search for **datcom-ci** and select it.
-1. In the list of images that appears, navigate to and expand **gcr.io/datcom-ci/datacommons-data**, highlight the image you want, **stable** or **latest**, and click **Select**.
-
-   ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot1.png){: width="450" }
-
+1. In the **Container image URL** field, enter `gcr.io/datcom-ci/datacommons-data:stable`.
 1. Optionally, in the **Job name** field, enter an alternative name as desired.
 1. In the **Region** field, select the region you chose as your location.
 1. Leave the default **Number of tasks** as 1.
@@ -109,7 +103,7 @@ Now set environment variables:
 
    ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
 
-1. If you have a large amount of data, adjust the **Task capacity** > **Task timeout** option accordingly. See [Set task timeout (jobs)](https://cloud.google.com/run/docs/configuring/task-timeout) for more details.
+1. If you have a large amount of data, adjust the **Task capacity** > **Task timeout** option accordingly. See [Set task timeout (jobs)](https://cloud.google.com/run/docs/configuring/task-timeout){: target="_blank"} for more details.
 1. Click **Create** (but don't run it immediately).
 
 ## Manage your data
@@ -120,7 +114,7 @@ Now set environment variables:
 1. Navigate to the folder you created in the earlier step.
 1. Click **Upload Files**, and select all your CSV files and `config.json`.
 
-Note: Do not upload the local `datacommons` subdirectory or its files.
+> **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
 

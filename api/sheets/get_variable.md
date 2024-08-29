@@ -8,7 +8,7 @@ grand_parent: API
 
 # Getting the Value of a Statistical Variable at a Given Place and Time
 
-The`=DCGET(dcids, variable, date)` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [Place](https://datacommons.org/browser/Place) [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+The`=DCGET(dcids, variable, date)` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [Place](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
 
 > **Note**: Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
 
@@ -25,17 +25,17 @@ The`=DCGET(dcids, variable, date)` formula returns the measurements of a specifi
 
 ### Optional Arguments
 
-`date`: The date or dates of interest. If this argument is not specified, the API returns the latest variable observation. You can specify this argument as a single value, row, or column. All dates must be in ISO 8601 format (such as 2017, “2017”, “2017-12”) or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en).
+`date`: The date or dates of interest. If this argument is not specified, the API returns the latest variable observation. You can specify this argument as a single value, row, or column. All dates must be in ISO 8601 format (such as 2017, “2017”, “2017-12”) or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en){: target="_blank"}.
 
 ## Returns
 
 The value of the variable at those places on the specified date or on the latest available date, if no date is specified.
 
-> **Note**: It’s best to minimize the number of function calls to `=DCGET(dcids, variable, date)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization). If your sheet contains thousands of separate calls to `=DCGET(dcids, variable, date)` you can expect it to be slow and return with errors.
+> **Note**: It’s best to minimize the number of function calls to `=DCGET(dcids, variable, date)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains thousands of separate calls to `=DCGET(dcids, variable, date)` you can expect it to be slow and return with errors.
 
 ## Examples
 
-This section contains examples of using the `=DCGET(dcids, variable, date)` formula to returns lists of [statistical variable](/glossary.html#variable) such as "Count_Person" and "Median_Income_Person". A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar).
+This section contains examples of using the `=DCGET(dcids, variable, date)` formula to returns lists of [statistical variable](/glossary.html#variable) such as "Count_Person" and "Median_Income_Person". A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
 
 ### Example 1: Get the Total Population of Hawaii in 2017
 
