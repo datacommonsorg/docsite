@@ -80,4 +80,4 @@ To verify that traffic is hitting the cache:
 1. Run some queries against your running Cloud Run service. 
 1. In the Cloud Console, go to the Memorystore page and select Redis instance.
 1. Under **Instance Functions**, click **Monitoring**.
-1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.gi
+1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.
