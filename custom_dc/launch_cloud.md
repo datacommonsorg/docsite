@@ -109,9 +109,14 @@ To create a custom dimension for a Data Commons custom event:
 1. Select **Data display** > **Custom definitions**.
 1. Click **Create custom dimension**. 
 1. Keep the **Scope** as **Event** and click the **Event parameter** > **Select event parameter** drop-down to see the list of custom event parameters.
+    ![Custom parameters](/assets/images/custom_dc/analytics1.png)
 1. Select the parameter you need.
 1. Add a dimension name and description. These can be anything you want but the name should be meaningful as it will show up in reports.
 1. When done, click **Save**.
-1. Select **Data display** > **Events** and you will see a number of new custom events that have been added to your account.
+1. Select **Data display** > **Events** and you should see a number of new custom events that have been added to your account.
+
+#### Example: Create a report on your users' search queries
+
+This creates a custom dimension for "exploration
 
 
