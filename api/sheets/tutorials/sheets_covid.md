@@ -1,11 +1,11 @@
 ---
 layout: default
 title: Sheets COVID-19 analysis
-nav_order: 1
 parent: Tutorials
 parent_url: /api/sheets/tutorials
 grand_parent: Google Sheets
 grand_parent_url: /api/sheets
+show_in_nav: false
 ---
 
 # Analyze the COVID-19 pandemic
@@ -31,18 +31,18 @@ Next, double-click on A1 in the chart and type `country/USA`.
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_4.png)
 
 ## Step 2: Retrieve place names and DCIDs
-To obtain the DCIDs for all the states, you can use the plugin function `DCPLACESIN`. Type `=DCPLACESIN(A1, "State")` into cell B1. Your spreadsheet output should look like this:
+To obtain the DCIDs for all the states, you can use the plugin function `DCPLACESIN`. Type `=DCPLACESIN(A1, "State")` into cell B1. Sheets provides pointers to help guide your function inputs. Your spreadsheet output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_5.png)
 
-Finally, you’ll want to retrieve the state names and position them conveniently near these DCIDs. You can use the plugin function `DCGETNAME` to access this information. In cell C1, type `=DCGETNAME(B1:B52)`. Your final output should look like this:
+Finally, you’ll want to retrieve the state names and position them conveniently near these DCIDs. You can use the plugin function `DCGETNAME` to access this information. In cell C1, type `=DCGETNAME(B1:B)`. Your final output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_6.png)
 
 ## Step 3: Populate the spreadsheet with COVID information
 Let's analyze each state’s cumulative count of deaths due to COVID as of December 31, 2022. To do this, we get the value of the [statistical variable](/glossary.html) `CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased` for each state on the date specified. You can use the `DCGET` method to do this.
 
-In cell D1, type `=DCGET(B1:B52, "CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased", "2022-12-31")`. Your final output should look like this:
+In cell D1, type `=DCGET(B1:B, "CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased", "2022-12-31")`. Your final output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_7.png)
 

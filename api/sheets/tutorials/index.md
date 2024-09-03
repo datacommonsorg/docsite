@@ -1,15 +1,15 @@
 ---
 layout: default
 title: Tutorials
-nav_order: 0
+nav_order: 1
 parent: Google Sheets
 grand_parent: API
-has_children: true
+has_children: false
 ---
 
 # Tutorials
 
-Get familiar with the [Data Commons Google Sheets API](..) with these step-by-step guides:
+Get familiar with the [Data Commons Google Sheets add-on with these step-by-step guides:
 
 -   [Analyze the COVID-19 pandemic](sheets_covid.html)
 -   [Obtain latitude information for country capitals in South America](sheets_latitude.html)

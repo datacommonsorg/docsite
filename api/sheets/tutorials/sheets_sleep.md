@@ -1,11 +1,11 @@
 ---
 layout: default
 title: Sheets CDC 500 cities sleep health
-nav_order: 3
 parent: Tutorials
 parent_url: /api/sheets/tutorials
 grand_parent: Google Sheets
 grand_parent_url: /api/sheets
+show_in_nav: false
 ---
 
 # Analyze the CDC 500 cities for sleep health
@@ -32,12 +32,12 @@ In cell B1, enter `=DCCOHORTMEMBERS(A1)`. The output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_sleep_tutorial_4.png)
 
-To get the names of these cities, enter `=DCGETNAME(B1:B500)` into cell C1. The output should look like this:
+To get the names of these cities, enter `=DCGETNAME(B1:B)` into cell C1. The output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_sleep_tutorial_5.png)
 
 ## Step 3: Obtain the sleep health level for each city
-We will use the percentage of chronically restless residents in each city using the `DCGET` method with the statistical variable `Percent_Person_SleepLessThan7Hours`. (More information on statistical variables is available in the [glossary](https://docs.datacommons.org/glossary.html).) Enter `=DCGET(B1:B500, "Percent_Person_SleepLessThan7Hours", "2016")` into cell D1 in your spreadsheet. The output should look like this:
+We will use the percentage of chronically restless residents in each city using the `DCGET` method with the statistical variable `Percent_Person_SleepLessThan7Hours`. (More information on statistical variables is available in the [glossary](https://docs.datacommons.org/glossary.html).) Enter `=DCGET(B1:B, "Percent_Person_SleepLessThan7Hours", "2020")` into cell D1 in your spreadsheet. The output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_sleep_tutorial_6.png){: width="600"}
 
