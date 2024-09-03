@@ -109,26 +109,27 @@ To create a custom dimension for a Data Commons custom event:
 1. Select **Data display** > **Custom definitions**.
 1. Click **Create custom dimension**. 
 1. Keep the **Scope** as **Event** and click the **Event parameter** > **Select event parameter** drop-down to see the list of custom event parameters.
-    ![Custom parameters](/assets/images/custom_dc/analytics1.png)
+
+    ![Custom parameters](/assets/images/custom_dc/analytics1.png){: width="400"}
+
 1. Select the parameter you need, for example, **query**.
 1. Add a dimension name and description. These can be anything you want but the name should be meaningful as it will show up in reports; for example, `Search query`.
 1. When done, click **Save**.
 1. Select **Data display** > **Events** and you should see a number of new custom events that have been added to your account.
 
-#### Example: Create a report on your users' search queries
+To create a report based on a custom event:
 
-This procedure creates a report that counts the number of specific search queries submitted by users. It is based on a custom dimension called `Search query`, which is based on the event parameter `query`. `query` is a parameter for various events representing natural-language search queries. This example reports on all of them.
-
-1. In the [Google Analytics dashboard](https://analytics.google.com/analytics/web/){: target="blank"} for your account, use the **Admin** page to create a custom dimension called `Search query`, as described above.
-1. Go to the **Explore** page and select **Blank - create a new exploration**.
+1. In the [Google Analytics dashboard](https://analytics.google.com/analytics/web/){: target="blank"} for your account, go to the **Explore** page and select **Blank - create a new exploration**.
 1. Select **Variables** > **Dimensions** > **+** to open the **Select dimensions** window.
-1. Select the **Custom** tab and select **Custom** > **Search query** and click **Import**.
- ![Custom parameters](/assets/images/custom_dc/analytics2.png){: width="400"}
+1. Select the **Custom**, select the dimension you want, for example, **Search query**, and click **Import**.
+
+    ![Custom parameters](/assets/images/custom_dc/analytics2.png){: width="400"}
+
 1. Select **Variables** > **Metrics** > **+** to open the **Select metrics** window.
-1. Select **Session** > **Sessions** and click **Import**.
-1. Select **Settings** > **Rows** > **Drop or select dimension** and from the drop-down menu, select **Search query**.
-1. Select **Settings** > **Values** > **Drop or select dimension** and from the drop-down menu, select **Sessions**.
-1. Edit any other settings you like and name the report. For the first 48 hours you will see **(not set)** for the first row. Afterwards, rows will be populated with real search query terms.
+1. Select the relevant metric you want, such as users, sessions, or views, etc. and click **Import**.
+1. Select **Settings** > **Rows** > **Drop or select dimension** and from the drop-down menu, select the dimension you want, such as **Search query**.
+1. Select **Settings** > **Values** > **Drop or select metric** and from the drop-down menu, select the metric of interest, such as users, sessions, views, etc.
+1. Edit any other settings you like and name the report. For the first 48 hours you will see **(not set)** for the first row. Afterwards, rows will be populated with real values.
 
 ![Custom exploration](/assets/images/custom_dc/analytics3.png){: width="400"}
 
