@@ -86,8 +86,6 @@ This error indicates that your application requires authenticated requests but y
 
 If you are unable to select this option, this indicates that there is an IAM permissions setup issue with your project or account. See the [Cloud Run Troubleshooting](https://cloud.google.com/run/docs/troubleshooting#unauthorized-client) for details on how to fix this.
 
-### "403: Not authorized to access resources"
-
 ### "502 Bad Gateway"
 
 This is a general indication that the Data Commons servers are not running. Check the **Logs ** page for the Cloud Run service in the Google Cloud Console. Here are common errors:
