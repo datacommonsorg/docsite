@@ -93,7 +93,7 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 ### Enable Analytics tracking
 
-1. If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://analytics.google.com/analytics/web/?authuser=0#/provision/create){: target="_blank"}. Record the Analytics tag ID assigned to your account.
+1. If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://support.google.com/analytics/answer/9304153){: target="_blank"}. Record the Analytics tag ID assigned to your account.
 1. Go to the Cloud Console for your [Cloud Run service](https://console.cloud.google.com/run/), and click **Edit & deploy new revision**.
 1. Expand **Variables and secrets* and click **Add new variable**.
 1. Add the name `GOOGLE_ANALYTICS_TAG_ID` and in the value field, type in your tag ID.
@@ -110,13 +110,32 @@ To create a custom dimension for a Data Commons custom event:
 1. Click **Create custom dimension**. 
 1. Keep the **Scope** as **Event** and click the **Event parameter** > **Select event parameter** drop-down to see the list of custom event parameters.
     ![Custom parameters](/assets/images/custom_dc/analytics1.png)
-1. Select the parameter you need.
-1. Add a dimension name and description. These can be anything you want but the name should be meaningful as it will show up in reports.
+1. Select the parameter you need, for example, **query**.
+1. Add a dimension name and description. These can be anything you want but the name should be meaningful as it will show up in reports; for example, `Search query`.
 1. When done, click **Save**.
 1. Select **Data display** > **Events** and you should see a number of new custom events that have been added to your account.
 
 #### Example: Create a report on your users' search queries
 
-This creates a custom dimension for "exploration
+This procedure creates a report that counts the number of specific search queries submitted by users. It is based on a custom dimension called `Search query`, which is based on the event parameter `query`. `query` is a parameter for various events representing natural-language search queries. This example reports on all of them.
+
+1. In the [Google Analytics dashboard](https://analytics.google.com/analytics/web/){: target="blank"} for your account, use the **Admin** page to create a custom dimension called `Search query`, as described above.
+1. Go to the **Explore** page and select **Blank - create a new exploration**.
+1. Select **Variables** > **Dimensions** > **+** to open the **Select dimensions** window.
+1. Select the **Custom** tab and select **Custom** > **Search query** and click **Import**.
+ ![Custom parameters](/assets/images/custom_dc/analytics2.png){: width="400"}
+1. Select **Variables** > **Metrics** > **+** to open the **Select metrics** window.
+1. Select **Session** > **Sessions** and click **Import**.
+1. Select **Settings** > **Rows** > **Drop or select dimension** and from the drop-down menu, select **Search query**.
+1. Select **Settings** > **Values** > **Drop or select dimension** and from the drop-down menu, select **Sessions**.
+1. Edit any other settings you like and name the report. For the first 48 hours you will see **(not set)** for the first row. Afterwards, rows will be populated with real search query terms.
+
+![Custom exploration](/assets/images/custom_dc/analytics3.png){: width="400"}
+
+
+
+
+
+
 
 
