@@ -99,7 +99,7 @@ Google Analytics provides detailed reports on user engagement with your site. In
 1. Add the name `GOOGLE_ANALYTICS_TAG_ID` and in the value field, type in your tag ID.
 1. Click **Deploy** to redeploy the service. Data collection will take a day or two to start and begin showing up in your reports.
 
-### Report on custom dimensions
+### Report on custom dimensions {#custom-dimensions}
 
 Data Commons exports many Google Analytics [custom events](https://support.google.com/analytics/answer/12229021){: target="_blank"} and [parameters](https://support.google.com/analytics/answer/13675006){: target="_blank"}, to allow Data Commons-specific features to be logged, such as search queries, specific page views, etc. You can use these to create custom reports and explorations. The full set is defined in [`website/static/js/shared/ga_events.ts`](https://github.com/datacommonsorg/website/blob/7f896a982e8567cd96a0d8b01d1cd5eaaf285974/static/js/shared/ga_events.ts){: target="blank"}. Before you can get reports on them, you need to create [custom dimensions](https://support.google.com/analytics/answer/14240153){: target="blank"} from them.  
 
