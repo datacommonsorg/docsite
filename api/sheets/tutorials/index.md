@@ -13,4 +13,4 @@ Get familiar with the [Data Commons Google Sheets API](..) with these step-by-st
 
 -   [Analyze the COVID-19 pandemic](sheets_covid.html)
 -   [Obtain latitude information for country capitals in South America](sheets_latitude.html)
--   [Sorting the CDC 500 cohort on sleep](sheets_sleep.html)
+-   [Analyze CDC 500 cities sleep health](sheets_sleep.html)
