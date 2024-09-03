@@ -60,7 +60,7 @@ This stores the data that will be served at run time. The Data Commons data mana
 1. For the **Location type**, choose the relevant regional option.
 1. When you have finished setting all the configuration options, click **Create Instance**. It may take several minutes for the instance to be created.
 1. When the instance is created and the left navigation bar appears, select **Users**.
-1. Add at least one user and password. Be sure to at least assign a password to the "root" user.
+1. Add at least one user and password.
 1. Select **Databases**.
 1. Click **Create Database**.
 1. Choose a name for the database or use the default, `datacommons`.
