@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sheets CDC 500 cities sleep health
-nav_order: 2
+nav_order: 3
 parent: Tutorials
 parent_url: /api/sheets/tutorials
 grand_parent: Google Sheets

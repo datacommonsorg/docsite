@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tutorials
-nav_order: 100
+nav_order: 0
 parent: Google Sheets
 grand_parent: API
 has_children: true
