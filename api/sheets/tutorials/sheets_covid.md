@@ -31,11 +31,11 @@ Next, double-click on A1 in the chart and type `country/USA`.
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_4.png)
 
 ## Step 2: Retrieve place names and DCIDs
-To obtain the DCIDs for all the states, you can use the plugin function `DCPLACESIN`. Type `=DCPLACESIN(A1, "State")` into cell B1. Sheets provides pointers to help guide your function inputs. Your spreadsheet output should look like this:
+To obtain the DCIDs for all the states, you can use the plugin function `DCPLACESIN`. In cell B1, type `=DCPLACESIN(A1, "State")`. Sheets provides pointers to help guide your function inputs. Your spreadsheet output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_5.png)
 
-Finally, you’ll want to retrieve the state names and position them conveniently near these DCIDs. You can use the plugin function `DCGETNAME` to access this information. In cell C1, type `=DCGETNAME(B1:B)`. Your final output should look like this:
+Finally, you’ll want to retrieve the state names and position them conveniently near these DCIDs. You can use the add-on function `DCGETNAME` to access this information. In cell C1, type `=DCGETNAME(B1:B)`. Your final output should look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_covid_tutorial_6.png)
 
@@ -44,14 +44,14 @@ Let's analyze each state’s cumulative count of deaths due to COVID as of Decem
 
 In cell D1, type `=DCGET(B1:B, "CumulativeCount_MedicalConditionIncident_COVID_19_PatientDeceased", "2022-12-31")`. Your final output should look like this:
 
-![](/assets/images/sheets/tutorials/sheets_covid_tutorial_7.png)
+![](/assets/images/sheets/tutorials/sheets_covid_tutorial_7.png){: width="600"}
 
 ## Step 4: Visualize the data
 As a final step, you can use Google Sheets' Chart option to map this data! Select cells C1 to D52, then select **Insert** > **Chart**. Your spreadsheet will look like this:
 
-![](/assets/images/sheets/tutorials/sheets_covid_tutorial_8.png)
+![](/assets/images/sheets/tutorials/sheets_covid_tutorial_8.png){: width="800"}
 
 Feel free to drag the histogram out of the way of the numbers! As a final step, in the right sidebar **Chart editor**, from the **Setup** > **Chart type** drop-down menu, select **Map**. Then, from the  **Customize** > **Geo** > **Region** drop-down menu, select the **United States**. Your final sheet should look something like this:
 
-![](/assets/images/sheets/tutorials/sheets_covid_tutorial_9.png)
+![](/assets/images/sheets/tutorials/sheets_covid_tutorial_9.png){: width="800"}
 

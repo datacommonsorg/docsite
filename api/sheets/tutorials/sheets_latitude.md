@@ -31,7 +31,7 @@ To obtain the DCIDs for all the countries, you can use the add-on function [`DCP
 
 ![](/assets/images/sheets/tutorials/sheets_latitude_tutorial_4.png)
 
-Next, you’ll want to retrieve the country names and position them conveniently near these DCIDs. You can use the plugin function [`DCGETNAME`](/api/sheets/get_name.html) to access this information. In cell C1, type `=dcgetname(B1:B)`. Your final output will look like this:
+Next, you’ll want to retrieve the country names and position them conveniently near these DCIDs. You can use the addon-on function [`DCGETNAME`](/api/sheets/get_name.html) to access this information. In cell C1, type `=dcgetname(B1:B)`. Your final output will look like this:
 
 ![](/assets/images/sheets/tutorials/sheets_latitude_tutorial_5.png)
 
