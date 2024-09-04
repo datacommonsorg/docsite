@@ -13,7 +13,7 @@ programmatically access nodes in the Data Commons knowledge graph. This package
 allows users to explore the structure of the graph, integrate statistics from
 the graph into data analysis workflows and much more. 
 
-> **Note:** The Python API only supports [v1](/api/rest/v1/index.html) of the REST APIs. 
+> **Note:** The Python API only supports [v1](/api/rest/v1/) of the REST APIs. 
 
 Before proceeding, make sure you have followed the setup instructions below.
 
