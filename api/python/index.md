@@ -8,7 +8,7 @@ has_children: true
 
 # Data Commons Python API
 
-The **Data Commons Python API** is a Python library that enables developers to
+The Data Commons Python API is a Python library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package
 allows users to explore the structure of the graph, integrate statistics from
 the graph into data analysis workflows and much more. 
@@ -29,7 +29,7 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 $ pip install datacommons
 ```
 
-You are ready to go! You can view our [tutorials](tutorials.md) on how to use the
+You are ready to go! You can view our [tutorials](/api/python/tutorials.html) on how to use the
 API to perform certain tasks using [Google Colab](https://colab.sandbox.google.com/){: target="_blank"}, or refer to pages in the navigation bar for detailed information about all the methods available.
 
 ## Run Python interactively
