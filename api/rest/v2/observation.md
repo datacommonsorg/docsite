@@ -2,7 +2,7 @@
 layout: default
 title: Get statistical observations
 nav_order: 1
-parent: REST (v2)
+parent: REST (V2)
 grand_parent: API
 published: true
 ---

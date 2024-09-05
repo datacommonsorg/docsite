@@ -2,7 +2,7 @@
 layout: default
 title: Resolve entities
 nav_order: 4
-parent: REST (v2)
+parent: REST (V2)
 grand_parent: API
 published: true
 ---

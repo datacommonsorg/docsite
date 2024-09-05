@@ -2,7 +2,7 @@
 layout: default
 title: Query with SPARQL
 nav_order: 5
-parent: REST (v2)
+parent: REST (V2)
 grand_parent: API
 published: true
 ---

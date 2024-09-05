@@ -1,6 +1,6 @@
 ---
 layout: default
-title: REST (v2)
+title: REST (V2)
 nav_order: 10
 parent: API
 has_children: true
@@ -8,7 +8,7 @@ published: true
 ---
 
 {:.no_toc}
-# Data Commons REST API v2
+# Data Commons REST API V2
 
 * TOC
 {:toc}

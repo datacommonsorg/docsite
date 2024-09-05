@@ -2,7 +2,7 @@
 layout: default
 title: Get node properties
 nav_order: 3
-parent: REST (v2)
+parent: REST (V2)
 grand_parent: API
 published: true
 ---
