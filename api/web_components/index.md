@@ -73,7 +73,6 @@ See a live version of this example you can play around with in
 - [Static page with all chart types playground](https://lit.dev/playground/#gist=822ce6018bb41113c866d703760c1def){: target="_blank"}
   ([source](/assets/examples/web-components/all-charts.html))
 - [Dynamically updating charts playground](https://lit.dev/playground/#gist=9e3ac88e162248f849dd276ff5895ad0){: target="_blank"}
-- [Dynamically updating charts playground](https://lit.dev/playground/#gist=9e3ac88e162248f849dd276ff5895ad0){: target="_blank"}
   ([source](/assets/examples/web-components/dynamic-map.html))
 
 ## Variables and places
