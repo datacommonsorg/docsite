@@ -39,7 +39,7 @@ http://api.datacommons.org/v1/variables/{ENTITY_DCID}?key={your_api_key}
 
 | Name     | Type   | Description                |
 | -------- | ------ | -------------------------- |
-| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/index#authentication) for a demo key, as well as instructions on how to get your own key. |
+| key <br /> <required-tag>Required</required-tag>   | string | Your API key. See the [page on authentication](/api/rest/v1/getting_started#authentication) for a demo key, as well as instructions on how to get your own key. |
 {: .doc-table}
 
 ## Response
