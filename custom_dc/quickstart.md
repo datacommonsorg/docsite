@@ -43,7 +43,7 @@ The "services" Docker container consists of the following Data Commons component
 
 ### Get a Data Commons API key
 
-An API key is required to authorize requests from your site to the base Data Commons site. API keys are managed by Apigee. To obtain an API key, go to the Data Commons Apigee portal at [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"} and request a key for the `api.datacommons.org` domain. 
+An API key is required to authorize requests from your site to the base Data Commons site. API keys are managed by a self-serve portal. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"} and request a key for the `api.datacommons.org` domain. 
 
 ### Enable Google Cloud APIs and get a Maps API key {#maps-key}
 

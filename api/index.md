@@ -45,7 +45,7 @@ In addition, Data Commons provides additional tools for accessing its data that 
 A key is required by some APIs to authenticate and authorize requests. 
 - All REST [V2](rest/v2/index.md) and [V1](rest/v1/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
-- All DataGemma APIs <!-- TODO: Add link to docs about these when available -->. These requests are served by endpoints at `datagemma.datacommons.org`.
+- Data Commons NL API requests <!-- TODO: Add link to docs about these when available -->. These are served by endpoints at `datagemma.datacommons.org`.
 
 A key is currently not required for the following, although this may change in the future:
 - Python and Pandas client libraries other than DataGemma
@@ -55,7 +55,7 @@ A key is currently not required for the following, although this may change in t
 
 ### Obtain an API key 
 
-Data Commons API keys are managed by Apigee. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"}  and request a key for the hostname(s) listed above. You will need separate keys for Data Commons and DataGemma.
+Data Commons API keys are managed by a self-service portal. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"}  and request a key for the hostname(s) listed above. You will need separate keys for Data Commons and DataGemma.
 
 To use the key in requests, see the relevant documentation:
 - For REST V2 APIs, see the section on [Authentication](/api/rest/v2/index.html#authentication).

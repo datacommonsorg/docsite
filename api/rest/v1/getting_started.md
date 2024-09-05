@@ -157,7 +157,7 @@ We've provided a trial API key for general public use. This key will let you try
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
-<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please go to the Data Commons Apigee portal at https://apikeys.datacommons.org and request a key for `api.datacommons.org`.
+<b>The trial key is capped with a limited quota for requests.</b> If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please go to the portal at https://apikeys.datacommons.org and request a key for `api.datacommons.org`.
 
 ### Pagination
 {: #pagination}
