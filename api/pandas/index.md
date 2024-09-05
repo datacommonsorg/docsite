@@ -15,7 +15,7 @@ the Pandas API, and supplemental functions help with directly creating
 objects using data from the Data Commons knowledge graph for common
 use cases. 
 
-> **Note:** The Pandas API only supports [v1](/api/rest/v1/index.html) of the REST APIs. 
+> **Note:** The Pandas API only supports [V1](/api/rest/v1/index.html) of the REST APIs. 
 
 Before proceeding, make sure you have followed the setup instructions below.
 

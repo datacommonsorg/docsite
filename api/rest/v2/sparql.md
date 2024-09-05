@@ -38,7 +38,7 @@ JSON data: { "query": "<var>SPARQL_QUERY</var>" }
 
 | Name                                                | Type   | Description                                                                                                                                                     |
 | --------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the the section on [authentication](/api/rest/v2/getting_started.html#authentication) for instructions on how to get a key. |
+| key <br /> <required-tag>Required</required-tag>    | string | Your API key. See the the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | query <br /> <required-tag>Required</required-tag> | string | A SPARQL query string.<br/>In the query, all desired entities must be specified; wildcards are not supported. Each node or entity should have a `typeOf` condition, for example, <code>?<var>ENTITY_NAME</var> typeOf City</code>.    |
 {: .doc-table }
 
