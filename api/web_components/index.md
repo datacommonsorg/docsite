@@ -54,7 +54,6 @@ For example, to embed a line chart:
 
 See a live version of this example you can play around with in
 [Playground](https://lit.dev/playground/#gist=c0c88276739f4f6061807cc943937a14){: target="_blank"}
-[Playground](https://lit.dev/playground/#gist=c0c88276739f4f6061807cc943937a14){: target="_blank"}
 ([source](/assets/examples/web-components/line-chart.html)).
 
 ## Components
@@ -71,7 +70,6 @@ See a live version of this example you can play around with in
 
 ## Code Playground Examples
 
-- [Static page with all chart types playground](https://lit.dev/playground/#gist=822ce6018bb41113c866d703760c1def){: target="_blank"}
 - [Static page with all chart types playground](https://lit.dev/playground/#gist=822ce6018bb41113c866d703760c1def){: target="_blank"}
   ([source](/assets/examples/web-components/all-charts.html))
 - [Dynamically updating charts playground](https://lit.dev/playground/#gist=9e3ac88e162248f849dd276ff5895ad0){: target="_blank"}
@@ -92,7 +90,6 @@ To find places available for a statistical variable, see [this page](/data_mode.
 ## Styling
 
 Custom styles are supported through
-[CSS shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/::part){: target="_blank"}.
 [CSS shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/::part){: target="_blank"}.
 
 <div markdown="span" class="alert alert-danger" role="alert">
@@ -130,7 +127,6 @@ Additionally, the following css variables are supported:
 ### Styling Example
 
 See a live version of this example you can play around with in
-[Playground](https://lit.dev/playground/#gist=719f5d71c2823ac3e58f504cb6ceccd3){: target="_blank"}
 [Playground](https://lit.dev/playground/#gist=719f5d71c2823ac3e58f504cb6ceccd3){: target="_blank"}
 ([source](/assets/examples/web-components/map-styles.html)).
 
@@ -186,11 +182,9 @@ See a live version of this example you can play around with in
 ## License
 
 [Apache 2.0](https://github.com/datacommonsorg/website/blob/master/packages/web-components/LICENSE){: target="_blank"}
-[Apache 2.0](https://github.com/datacommonsorg/website/blob/master/packages/web-components/LICENSE){: target="_blank"}
 
 ## Support
 
 For general questions or issues, please open an issue on our
-[issues](https://github.com/datacommonsorg/website/issues){: target="_blank"} page. For all other
 [issues](https://github.com/datacommonsorg/website/issues){: target="_blank"} page. For all other
 questions, please send an email to `support@datacommons.org`.
