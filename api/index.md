@@ -55,7 +55,7 @@ A key is currently not required for the following, although this may change in t
 
 ### Obtain an API key
 
-Data Commons API keys are managed by Apigee. To obtain an API key, go to https://apikeys.datacommons.org and request a key for the hostname(s) listed above.
+Data Commons API keys are managed by Apigee. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"}  and request a key for the hostname(s) listed above. You will need separate keys for Data Commons and DataGemma.
 
 To use the key in requests, see the relevant documentation:
 - For REST V2 APIs, see the section on [Authentication](/api/rest/v2/index.html#authentication).

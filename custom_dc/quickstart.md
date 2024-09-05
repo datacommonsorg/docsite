@@ -37,10 +37,13 @@ The "services" Docker container consists of the following Data Commons component
 - If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install){: target="_blank"} (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/){: target="_blank"}. 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/){: target="_blank"}.
 - Install [Git](https://git-scm.com/){: target="_blank"}.
-- Get an API key to authorize requests from your site to the base Data Commons, by [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog){: target="_blank"}. Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com){: target="_blank"} account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps {#setup}
+
+### Get a Data Commons API key
+
+An API key is required to authorize requests from your site to the base Data Commons site. API keys are managed by Apigee. To obtain an API key, go to the Data Commons Apigee portal at [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"} and request a key for the `api.datacommons.org` domain. 
 
 ### Enable Google Cloud APIs and get a Maps API key {#maps-key}
 
