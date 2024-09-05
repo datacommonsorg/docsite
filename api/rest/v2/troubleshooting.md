@@ -29,7 +29,7 @@ published: true
 }
 ```
 
-This is seen when your request is missing an API key. Please [request your own API key](/api/rest/v2/index.html#get-key).
+This is seen when your request is missing an API key. Please [request your own API key](/api/index.html#get-key).
 
 ## Empty response
 
