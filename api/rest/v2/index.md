@@ -1,7 +1,7 @@
 ---
 layout: default
 title: REST (v2)
-nav_order: 0
+nav_order: 10
 parent: API
 has_children: true
 published: true
@@ -99,7 +99,7 @@ We provide a trial API key for general public use. This key will let you try the
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
-_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits; please see [Get API key](/api/index.html#get-key) for information.
+_The trial key is capped with a limited quota for requests._ If you are planning on using our APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits; please see [Obtain an API key](/api/index.html#get-key) for information.
 
 > **Note:** If you are sending API requests to a custom Data Commons instance, do _not_ include any API key in the requests.
 
@@ -139,54 +139,6 @@ Many requests require the [DCID](/glossary.html#dcid) of the entity or variable 
 
 - [Find a DCID for an entity or variable](/data_model.html#find-dcid)
 - [Find places available for a statistical variable](/data_model.html#find-places)
-
-{: #pagination}
-## Pagination
-
-When the response to a request is too long, the returned payload is
-_paginated_. Only a subset of the response is returned, along with a long string
-of characters called a _token_. To get the next set of entries, repeat the
-request with `nextToken` as an query parameter, with the token as its value.
-
-For example, the request:
-
-```bash
-curl --request GET \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*'
-```
-
-will return something like:
-
-```json
-{
-  "data": {
-    "geoId/06": {
-      "arcs": < ... output truncated for brevity ...>
-    },
-  },
-  "nextToken": "SoME_veRy_L0ng_S+rIng"
-}
-```
-
-To get the next set of entries, repeat the previous command and append the `nextToken`:
-
-```bash
-curl --request GET \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
-```
-
-Similarly for POST requests, this would look like:
-
-```bash
-curl -X POST \
--H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
---url https://api.datacommons.org/v2/node \
---data '{
-  "nodes": "geoId/06",
-  "property": "<-*",
-  "nextToken": "SoME_veRy_L0ng_S+rIng"
-}'
-```
 
 {: #relation-expressions}
 ## Relation expressions
@@ -251,3 +203,51 @@ To illustrate again using the Argentina example:
 ## Escape codes for reserved characters in GET requests
 
 HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. 
+
+{: #pagination}
+## Pagination
+
+When the response to a request is too long, the returned payload is
+_paginated_. Only a subset of the response is returned, along with a long string
+of characters called a _token_. To get the next set of entries, repeat the
+request with `nextToken` as an query parameter, with the token as its value.
+
+For example, the request:
+
+```bash
+curl --request GET \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*'
+```
+
+will return something like:
+
+```json
+{
+  "data": {
+    "geoId/06": {
+      "arcs": < ... output truncated for brevity ...>
+    },
+  },
+  "nextToken": "SoME_veRy_L0ng_S+rIng"
+}
+```
+
+To get the next set of entries, repeat the previous command and append the `nextToken`:
+
+```bash
+curl --request GET \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
+```
+
+Similarly for POST requests, this would look like:
+
+```bash
+curl -X POST \
+-H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+--url https://api.datacommons.org/v2/node \
+--data '{
+  "nodes": "geoId/06",
+  "property": "<-*",
+  "nextToken": "SoME_veRy_L0ng_S+rIng"
+}'
+```

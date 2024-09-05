@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Pandas
-nav_order: 30
+nav_order: 50
 parent: API
 has_children: true
 ---
@@ -27,7 +27,7 @@ Before proceeding, make sure you have followed the setup instructions below.
 ```bash
 $ pip install datacommons_pandas
 ```
-You are ready to go! You can view our [tutorials](tutorials.md) on how to use the
+You are ready to go! You can view our [tutorials](/api/python/tutorials.html) on how to use the
 API to perform certain tasks using [Google Colab](https://colab.sandbox.google.com/){: target="_blank"}, or refer to pages in the navigation bar for detailed information about all the methods available.
 
 ## Run Python interactively

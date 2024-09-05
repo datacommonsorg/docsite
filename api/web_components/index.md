@@ -2,7 +2,7 @@
 layout: default
 title: Web Components
 parent: API
-nav_order: 20
+nav_order: 30
 has_children: true
 published: true
 ---

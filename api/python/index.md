@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Python
-nav_order: 20
+nav_order: 40
 parent: API
 has_children: true
 ---

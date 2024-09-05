@@ -1,7 +1,7 @@
 ---
 layout: default
 title: API
-nav_order: 20
+nav_order: 0
 has_children: true
 ---
 
@@ -39,13 +39,13 @@ In addition, Data Commons provides additional tools for accessing its data that 
 - [Google Sheets](sheets/index.md): provides several custom functions that populate spreadsheets with data from the Data Commons knowledge graph
 - [Web Components](web_components/index.md): provides JavaScript APIs and HTML templates that allow you to embed Data Commons data and visualizations into web pages
 
-{: #get-key}
-## API keys
+
+## API keys {: #get-key}
 
 A key is required by some APIs to authenticate and authorize requests. 
 - All REST [V2](rest/v2/index.md) and [V1](rest/v1/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
-- all DataGemma APIs <!-- TODO: Add link to docs about these when available -->. These requests are served by endpoints at `datagemma.datacommons.org`.
+- All DataGemma APIs <!-- TODO: Add link to docs about these when available -->. These requests are served by endpoints at `datagemma.datacommons.org`.
 
 A key is currently not required for the following, although this may change in the future:
 - Python and Pandas client libraries other than DataGemma
@@ -53,7 +53,7 @@ A key is currently not required for the following, although this may change in t
 - Google Sheets
 - Web Components
 
-### Obtain an API key
+### Obtain an API key 
 
 Data Commons API keys are managed by Apigee. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"}  and request a key for the hostname(s) listed above. You will need separate keys for Data Commons and DataGemma.
 
