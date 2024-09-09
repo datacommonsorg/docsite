@@ -45,7 +45,7 @@ In addition, Data Commons provides additional tools for accessing its data that 
 A key is required by some APIs to authenticate and authorize requests. 
 - All REST [V2](rest/v2/index.md) and [V1](rest/v1/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
-- Data Commons [NL API requests](https://developers.google.com/gemma/docs/datagemma){: target="_blank"}. These are served by endpoints at `datagemma.datacommons.org`.
+- Data Commons [NL API requests](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"}. These are served by endpoints at `datagemma.datacommons.org`.
 
 A key is currently not required for the following, although this may change in the future:
 - Python and Pandas client libraries other than NL APIs
