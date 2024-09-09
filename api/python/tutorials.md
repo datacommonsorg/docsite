@@ -15,8 +15,6 @@ Example [Google Colab
 notebooks](https://colab.sandbox.google.com/notebooks/intro.ipynb) written in
 Python:
 
-**Pandas**
-
 -   [Getting Started: Analyzing Census Data](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/analyzing_census_data.ipynb){:target="_blank"}
 
 -   [COVID-19 Feature Exploration Analysis (by Google Health)](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/COVID_19_Feature_Exploration_Analysis_with_Data_Commons.ipynb){:target="_blank"}
@@ -32,10 +30,3 @@ Python:
 -   [Analyzing Superfund Sites with Data Commons](https://colab.sandbox.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Analyzing_SuperfundSites_with_Data_Commons.ipynb){:target="_blank"}
 
 -   [Estimating CMIP6 Temperature Distributions](https://colab.sandbox.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Estimating_(Temperature)_Distributions_With_DataCommons_.ipynb){:target="_blank"}
-
-{: #datagemma}
-**DataGemma**
-
-- [Grounding LLM statistics facts using Retrieval Augmented Generation (RAG)](https://colab.sandbox.google.com/https://github.com/datacommonsorg/llm-tools/blob/main/notebooks/data_gemma_rag.ipynb)
-
-- [Grounding LLM statistics facts using Retrieval Interleaved Generation (RIG)](https://colab.sandbox.google.com/github.com/datacommonsorg/llm-tools/blob/main/notebooks/data_gemma_rig.ipynb)
