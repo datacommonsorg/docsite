@@ -45,7 +45,7 @@ In addition, Data Commons provides additional tools for accessing its data that 
 A key is required by some APIs to authenticate and authorize requests. 
 - All REST [V2](rest/v2/index.md) and [V1](rest/v1/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
-- Data Commons [NL API requests](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"}. These are served by endpoints at `datagemma.datacommons.org`.
+- Data Commons NL API requests (used by the [DataGemma](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"} tool). These are served by endpoints at `nl.datacommons.org`.
 
 A key is currently not required for the following, although this may change in the future:
 - Python and Pandas client libraries other than NL APIs
@@ -60,7 +60,7 @@ Data Commons API keys are managed by a self-service portal. To obtain an API key
 To use the key in requests, see the relevant documentation:
 - For REST V2 APIs, see the section on [Authentication](/api/rest/v2/index.html#authentication).
 - For REST V1 APIs, see the section on [Authentication](/api/rest/v2/getting_started.html#authentication).
-- For NL APIs (DataGemma), see the Colab notebooks in [https://github.com/datacommonsorg/llm-tools/tree/main/notebooks](https://github.com/datacommonsorg/llm-tools/tree/main/notebooks){: target="_blank"}
+- For NL APIs in DataGemma, see the Colab notebooks in [https://github.com/datacommonsorg/llm-tools/tree/main/notebooks](https://github.com/datacommonsorg/llm-tools/tree/main/notebooks){: target="_blank"}
 
 
 
