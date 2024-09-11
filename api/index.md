@@ -39,10 +39,10 @@ In addition, Data Commons provides additional tools for accessing its data that 
 - [Google Sheets](sheets/index.md): provides several custom functions that populate spreadsheets with data from the Data Commons knowledge graph
 - [Web Components](web_components/index.md): provides JavaScript APIs and HTML templates that allow you to embed Data Commons data and visualizations into web pages
 
+{: #get-key}
+## API keys
 
-## API keys {: #get-key}
-
-A key is required by some APIs to authenticate and authorize requests. 
+A key is required by some APIs to authenticate and authorize requests.
 - All REST [V2](rest/v2/index.md) and [V1](rest/v1/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
 - Data Commons NL API requests (used by the [DataGemma](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"} tool). These are served by endpoints at `nl.datacommons.org`.
@@ -53,7 +53,7 @@ A key is currently not required for the following, although this may change in t
 - Google Sheets
 - Web Components
 
-### Obtain an API key 
+### Obtain an API key
 
 Data Commons API keys are managed by a self-service portal. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"}  and request a key for the hostname(s) listed above. Enable each of the APIs you want; you can share a single key for all of them.
 
