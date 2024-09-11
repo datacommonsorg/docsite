@@ -5,7 +5,7 @@ nav_order: 40
 has_children: false
 ---
 
-- [Data Commons](http://arxiv.org/abs/2309.13054) overview paper &mdash; background on the motivation, development, and architecture of the Data Commons initiative
+- [Data Commons](http://arxiv.org/abs/2309.13054) gioverview paper &mdash; background on the motivation, development, and architecture of the Data Commons initiative
 
     Citation:
 
