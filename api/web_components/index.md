@@ -84,7 +84,7 @@ places. Variables and places are identified by
 
 To look up a DCID for an entity or variable, see the different methods described in [this page](/data_model.html#find-dcid).
 
-To find places available for a statistical variable, see [this page](/data_mode.html#find-places).
+To find places available for a statistical variable, see [this page](/data_model.html#find-places).
 
 ## Styling
 
