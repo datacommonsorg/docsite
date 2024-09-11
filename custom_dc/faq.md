@@ -45,3 +45,7 @@ The ML model runs entirely on your custom Data Commons instance, inside the Dock
 
 No. However, you have the ability to improve query quality by improving your [search descriptions](/custom_dc/custom_data.html#varparams).
 
+### How can I find out what terms my users are searching on?
+
+The best way to record your users' search queries is with Google Analytics. Data Commons exports many custom Google Analytics events that you can use to create dimensions to report on. In particular, for NL queries, there are three different event types, that are triggered when a user submits a query, when results are returned and so on. See [https://github.com/datacommonsorg/website/blob/f5e8e87c2291d87dfa37a3a887f01d7ff28d6467/static/js/shared/ga_events.ts](https://github.com/datacommonsorg/website/blob/f5e8e87c2291d87dfa37a3a887f01d7ff28d6467/static/js/shared/ga_events.ts){: target="_blank"} for details. For procedures on setting this up, see [Report on custom dimensions](/custom_dc/launch_cloud.html#custom-dimensions).
+

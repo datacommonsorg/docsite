@@ -145,7 +145,6 @@ For example, in this node for the city of Addis Ababa, Ethiopia, the `typeOf` an
 
 ![KG browser]({{site.url}}/assets/images/dc/concept10.png){: width="600"}
 
-
 Note that the DCID for a property is the same as its name.
 
 ## Observation

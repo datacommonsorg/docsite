@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Google Sheets
-nav_order: 5
+nav_order: 0
 parent: API
 has_children: true
 ---
@@ -59,3 +59,11 @@ Here's a quick demo on using several of the Data Commons functions to get popula
 Your spreadsheet should now look like this:
 
 ![Sheets first demo](/assets/images/sheets/home_page_demo.png){: height="400"}
+
+### Sort data
+
+Because the Data Commons add-on does not actually store values, but only formulas, in a sheet, you can't directly sort the data. To sort the data, you need to copy it as values to a new sheet and then sort as usual:
+
+1. Select all the columns in the sheet and select **Edit** > **Copy**.
+1. Select **Insert** > **Sheet** to create a new sheet.
+1. Select **Edit** > **Paste special** > **Values only**. You can now sort each column as desired.

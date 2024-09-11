@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Names Associated with a DCID
-nav_order: 1
+nav_order: 6
 parent: Google Sheets
 grand_parent: API
 ---
