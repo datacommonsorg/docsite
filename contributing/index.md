@@ -33,7 +33,7 @@ Data Commons welcomes the development of new tools that make the data on Data Co
 
 ### Share analysis
 
-Example analyses are available on the [tutorials]](/tutorials) page. To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls){: target="_blank"} with the title of the analysis and links to its Colab notebook and Github raw .ipynb file.
+Example analyses are available on the [tutorials](/api/python/tutorials.html) page. To add your analysis on that page, open a PR in [the Data Commons documentation repo](https://github.com/datacommonsorg/docsite/pulls){: target="_blank"} with the title of the analysis and links to its Colab notebook and Github raw .ipynb file.
 
 ### Update documentation
 

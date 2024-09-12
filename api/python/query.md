@@ -12,7 +12,7 @@ Returns the results of running a graph query on the Data Commons knowledge graph
 using [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"}. Note that Data Commons is only
 able to support a limited subsection of SPARQL functionality at this time: specifically only the keywords `ORDER BY`, `DISTINCT`, and `LIMIT`.
 
-Note: The Python SPARQL library currently only supports the [v1](/api/v1/query.html) version of the API.
+Note: The Python SPARQL library currently only supports the [V1](/api/v1/query.html) version of the API.
 
 ## General information about the query() method
 
