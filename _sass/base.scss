@@ -107,11 +107,17 @@ $container-max-widths: (
   font-weight: 400;
 }
 
-#main-nav .navbar-brand span,
+#main-nav .navbar-brand span {
+  margin-left: 0.35rem;
+}
+
+#main-nav .navbar-brand span.separator {
+  font-weight: 600;
+}
+
 #main-nav .navbar-brand span a {
   font-family: $font-family-base;
   font-weight: 200;
-  margin-left: 0.35rem;
 }
 
 #main-header #main-header-logo {
