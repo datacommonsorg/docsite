@@ -2,7 +2,7 @@
 layout: default
 title: Get node properties
 nav_order: 3
-parent: REST (v2)
+parent: REST (V2)
 grand_parent: API
 published: true
 ---
@@ -62,7 +62,7 @@ JSON data:
 
 | Name                                                  | Type   |  Description           |
 | ----------------------------------------------------- | ------ | -----------------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/getting_started.html#authentication) details. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
 | property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
 
@@ -99,7 +99,7 @@ The response looks like:
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | A token used to query [next page of data](/api/rest/v2/getting_started.html#pagination)                   |
+| nextToken | string | A token used to query [next page of data](/api/rest/v2/index.html#pagination)                   |
 {: .doc-table}
 
 ## Examples

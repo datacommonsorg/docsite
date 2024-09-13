@@ -2,7 +2,7 @@
 layout: default
 title: Troubleshooting
 nav_order: 6
-parent: REST (v2)
+parent: REST (V2)
 grand_parent: API
 published: true
 ---
@@ -29,7 +29,7 @@ published: true
 }
 ```
 
-This is seen when your request is missing an API key. Please [request your own API key](/api/rest/v2/index.html#get-key).
+This is seen when your request is missing an API key. Please [request your own API key](/api/index.html#get-key).
 
 ## Empty response
 
