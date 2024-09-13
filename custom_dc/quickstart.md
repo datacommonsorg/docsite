@@ -78,7 +78,7 @@ cd website
 
 ### Set environment variables {#env-vars}
 
-1. Using your favorite editor, open `custom_dc/env.list`.
+1. Using your favorite editor, copy `custom_dc/env.sample` and save it as a new file `custom_dc/env.list`. It provides a template for getting started.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
 1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
 1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
@@ -110,10 +110,6 @@ cd website
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list" target="_blank"><code>custom_dc/env.list</code></a></td>
-      <td>Contains environment variables for locally run Data Commons data management and services containers. For details of the variables, see the comments in the file.</td>
     </tr>
   </tbody>
 </table>
