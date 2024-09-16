@@ -37,10 +37,13 @@ The "services" Docker container consists of the following Data Commons component
 - If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install){: target="_blank"} (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/){: target="_blank"}. 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/){: target="_blank"}.
 - Install [Git](https://git-scm.com/){: target="_blank"}.
-- Get an API key to authorize requests from your site to the base Data Commons, by [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?usp=dialog){: target="_blank"}. Typical turnaround times are 24-48 hours.
 - Optional: Get a [Github](http://github.com){: target="_blank"} account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps {#setup}
+
+### Get a Data Commons API key
+
+An API key is required to authorize requests from your site to the base Data Commons site. API keys are managed by a self-serve portal. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"} and request a key for the `api.datacommons.org` domain. 
 
 ### Enable Google Cloud APIs and get a Maps API key {#maps-key}
 
@@ -75,7 +78,7 @@ cd website
 
 ### Set environment variables {#env-vars}
 
-1. Using your favorite editor, open `custom_dc/env.list`.
+1. Using your favorite editor, copy `custom_dc/env.list.sample` and save it as a new file `custom_dc/env.list`. It provides a template for getting started.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
 1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
 1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
@@ -107,10 +110,6 @@ cd website
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/custom_dc/env.list" target="_blank"><code>custom_dc/env.list</code></a></td>
-      <td>Contains environment variables for locally run Data Commons data management and services containers. For details of the variables, see the comments in the file.</td>
     </tr>
   </tbody>
 </table>

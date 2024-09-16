@@ -30,6 +30,8 @@
                 </a>
             </div>
             <a href="https://datacommons.org">Data Commons</a>
+            <!-- dot separater -->
+            <span class="separator">&#8226;</span>
             <span><a href="/">Docs</a></span>
             </a>
           </div>
@@ -38,60 +40,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
-          <ul class="navbar-nav float-md-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="nav-explore-dropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                Explore
-              </a>
-              <div class="dropdown-menu" aria-labelledby="nav-explore-dropdown">
-                <a class="dropdown-item" href="https://datacommons.org/place">Place
-                  Explorer</a>
-                <a class="dropdown-item"
-                  href="https://datacommons.org/browser">Knowledge Graph</a>
-                <a class="dropdown-item"
-                  href="https://datacommons.org/tools/visualization#visType=timeline">Timelines Explorer</a>
-                <a class="dropdown-item"
-                  href="https://datacommons.org/tools/visualization#visType=scatter">Scatter Plot Explorer</a>
-                <a class="dropdown-item"
-                  href="https://datacommons.org/tools/visualization#visType=map">Map Explorer</a>
-                <a class="dropdown-item"
-                  href="https://datacommons.org/tools/statvar">Statistical Variable Explorer</a>
-                <a class="dropdown-item"
-                  href="https://datacommons.org/tools/download">Data Download Tool</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="nav-doc-dropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                Documentation
-              </a>
-              <div class="dropdown-menu" aria-labelledby="nav-doc-dropdown">
-                <a class="dropdown-item" href="/">Documentation</a>
-                <a class="dropdown-item" href="/api">APIs</a>
-                <a class="dropdown-item" href="/tutorials">Tutorials</a>
-                <a class="dropdown-item" href="/contributing/">Contribute</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="nav-about-dropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                About
-              </a>
-              <div class="dropdown-menu" aria-labelledby="nav-about-dropdown">
-                <a class="dropdown-item" href="https://datacommons.org/about">About Data
-                  Commons</a>
-                <a class="dropdown-item" href="https://blog.datacommons.org/">Blog</a>
-                <a class="dropdown-item" href="https://datacommons.org/datasets">Data
-                  Sources</a>
-                <a class="dropdown-item" href="https://datacommons.org/faq">FAQ</a>
-                <a class="dropdown-item" href="https://datacommons.org/feedback">Feedback</a>
-              </div>
-            </li>
-            </ul>
             <div class="gcse-searchbox-only"
               data-resultsUrl="https://datacommons.org/search"></div>
             </div>
@@ -191,6 +139,17 @@
     gtag('config', 'G-KWSES5WXZE', {
       client_storage: 'none',
       anonymize_ip: true,
+    });
+  </script>
+  <script>
+    /**
+     * Add placeholder text for Google Custom Search Engine search box in the page header
+     */
+    window.addEventListener("load", function() {
+      const googleCustomSearchInput = document.querySelector(".gsc-search-box input[name=\"search\"]");
+      if (googleCustomSearchInput) {
+        googleCustomSearchInput.placeholder = "Search docs";
+      }
     });
   </script>
   <script src="/assets/js/tabs.js"></script>
