@@ -95,7 +95,7 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 1. If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://support.google.com/analytics/answer/9304153){: target="_blank"}. Record the Analytics tag ID assigned to your account.
 1. Go to the Cloud Console for your [Cloud Run service](https://console.cloud.google.com/run/), and click **Edit & deploy new revision**.
-1. Expand **Variables and secrets* and click **Add new variable**.
+1. Expand **Variables and secrets** and click **Add new variable**.
 1. Add the name `GOOGLE_ANALYTICS_TAG_ID` and in the value field, type in your tag ID.
 1. Click **Deploy** to redeploy the service. Data collection will take a day or two to start and begin showing up in your reports.
 
