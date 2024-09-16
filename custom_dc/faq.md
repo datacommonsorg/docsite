@@ -26,7 +26,7 @@ Your user queries, observations data, or property values are never transferred t
 - At run time, when a user enters an NL query, the custom instance uses its NL model to identify the relevant statistical variables. The custom instance then issues two SQL queries for the statistical variable observations: one to your database and one to the base Data Commons database. These queries only include DCIDs and contain no information about the original query or context of the user request. The data is joined by entity DCIDs.
 - At run time, when the website frontend renders a data visualization, it will also make the same two SQL queries to get observations data.
 
-## Natural language processinggit
+## Natural language processing
 
 ### How does the natural language (NL) interface work?
 
