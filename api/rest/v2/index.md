@@ -1,7 +1,7 @@
 ---
 layout: default
 title: REST (V2)
-nav_order: 10
+nav_order: 5
 parent: API
 has_children: true
 published: true
@@ -200,9 +200,25 @@ To illustrate again using the Argentina example:
 - All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
 - All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
 
-## Escape codes for reserved characters in GET requests
+{: #url-encode}
+## URL-encoding reserved characters in GET requests
 
-HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. 
+HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. For example, a query string such as the following:
+
+```
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*
+```
+ should be encoded as:
+
+```
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%
+```
+
+Although sometimes the original characters may work, it's safest to always encode them.
+
+> **Tip:** Don't URL-encode delimiters between parameters (`&`), separators between parameter names and values  (`=`), or `-`. 
+
+See [https://www.w3schools.com/tags/ref_urlencode.ASP](https://www.w3schools.com/tags/ref_urlencode.ASP){: target="_blank"} for a handy reference.
 
 {: #pagination}
 ## Pagination
@@ -216,7 +232,7 @@ For example, the request:
 
 ```bash
 curl --request GET \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%'
 ```
 
 will return something like:
@@ -228,7 +244,7 @@ will return something like:
       "arcs": < ... output truncated for brevity ...>
     },
   },
-  "nextToken": "SoME_veRy_L0ng_S+rIng"
+  "nextToken": "SoME_veRy_L0ng_STrIng"
 }
 ```
 
@@ -236,7 +252,7 @@ To get the next set of entries, repeat the previous command and append the `next
 
 ```bash
 curl --request GET \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*&nextToken=SoME_veRy_L0ng_S+rIng'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%&nextToken=SoME_veRy_L0ng_STrIng'
 ```
 
 Similarly for POST requests, this would look like:
@@ -248,6 +264,7 @@ curl -X POST \
 --data '{
   "nodes": "geoId/06",
   "property": "<-*",
-  "nextToken": "SoME_veRy_L0ng_S+rIng"
+  "nextToken": "SoME_veRy_L0ng_STrIng"
 }'
 ```
+Don't forget to URL-encode any special characters that appear in the string.
