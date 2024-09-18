@@ -19,9 +19,12 @@ Yes; there are many options for doing so. If you want an entirely private site w
 
 Note that you cannot apply fine-grained access restrictions, such as access to specific data or pages. Access is either all or nothing. If you want to be able to partition off data, you would need to create additional custom instances.
 
-### Will my custom data end up in the base Data Commons?
+### Will my data or queries end up in base Data Commons? {#data-security}
 
-No. Even if a query needs data from the base Data Commons, gleaned from the (incomplete) results from your custom data, it will never transfer any custom data to the base data store.
+Your user queries, observations data, or property values are never transferred to base Data Commons. The NL model built from your custom data lives solely in your custom instance. The custom Data Commons instance does make API calls to the base Data Commons instance (as depicted in [this diagram](/custom_dc/index.html#system-overview)) only in the following instances:
+- At data load time, API calls are made from the custom instance to the base instance to resolve entity names to [DCIDs](/glossary.html#dcid); for example, if your data refers to a particular country name, the custom instance will send an API request to look up its DCID. 
+- At run time, when a user enters an NL query, the custom instance uses its local NL model to identify the relevant statistical variables. The custom instance then issues two requests for statistical variable observations: a SQL query to your custom SQL database and an API call to the base Data Commons database. These requests only include DCIDs and contain no information about the original query or context of the user request. The data is joined by entity DCIDs.
+- At run time, when the website frontend renders a data visualization, it will also make the same two requests to get observations data. 
 
 ## Natural language processing
 
