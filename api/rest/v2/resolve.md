@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Resolve entities
-nav_order: 4
+nav_order: 8
 parent: REST (V2)
 grand_parent: API
 published: true
@@ -135,14 +135,22 @@ Parameters:
 nodes: "Q30"
 property: "<-wikidataId->dcid"
 ```
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Q30&property=<-wikidataId->dcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Q30&property=%3C-wikidataId-%3Edcid'
 ```
-{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve \
+  -d '{"nodes": ["Q30"], "property": "<-wikidataId->dcid"}'
+```
 
 Response:
 {: .example-box-title}
@@ -167,8 +175,6 @@ Response:
 
 This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude){: target="_blank"} and [`longitude`](https://datacommons.org/browser/longitude){: target="_blank"} properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
 
-> Note: If using a GET request, use the percent code `%23` for `#`.
-
 Parameters:
 {: .example-box-title}
 
@@ -176,12 +182,22 @@ Parameters:
 nodes: "37.42#-122.08"
 property: "<-geoCoordinate->dcid"
 ```
-Request:
+
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=37.42%23-122.08&property=<-geoCoordinate->dcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=37.42%23-122.08&property=%3C-geoCoordinate-%3Edcid'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve \
+  -d '{"nodes": ["37.42#-122.08"], "property": "<-geoCoordinate->dcid"}'
 ```
 
 {: .example-box-content .scroll}
@@ -191,7 +207,6 @@ Response:
 
 ```json
 {
-   
    "entities" : [
       {
          "node" : "37.42#-122.08",
@@ -261,14 +276,21 @@ nodes: "Georgia"
 property: "<-description->dcid"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description->dcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=%3C-description-%3Edcid'
 ```
-{: .example-box-content .scroll}
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve \
+  -d '{"nodes": ["Georgia"], "property": "<-description->dcid"}'
+```
 
 Response:
 {: .example-box-title}
@@ -300,11 +322,6 @@ Response:
 This queries for the DCID of "Georgia". Unlike in the previous example, here
 we also specify its type using a filter and only get one place in the response.
 
-> Note: When sending a GET request, you need to use the following percent codes for reserved characters:
-- `%7B` for `{`
-- `%7D` for `}`
-
-
 Parameters:
 {: .example-box-title}
 
@@ -312,14 +329,22 @@ Parameters:
 nodes: "Georgia"
 property: "<-description{typeOf:State}->dcid"
 ```
-Request:
+
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description%7BtypeOf:State%7D->dcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=%3C-description%7BtypeOf:State%7D-%3Edcid'
 ```
-{: .example-box-content .scroll}
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve \
+  -d '{"nodes": ["Georgia"], "property": "<-description{typeOf:State}->dcid"}'
+```
 
 Response:
 {: .example-box-title}
@@ -344,11 +369,6 @@ Response:
 
 This queries for the DCIDs of "Mountain View" and "New York City".
 
-> Note: When sending a GET request, you need to use the following percent codes for reserved characters:
-- `%20` for space
-- `%7B` for `{`
-- `%7D` for `}`
-
 Parameters:
 {: .example-box-title}
 
@@ -356,16 +376,16 @@ Parameters:
 nodes: "Mountain View, CA", "New York City"
 property: "<-description{typeOf:City}->dcid"
 ```
-Request (GET):
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Mountain%20View,%20CA&nodes=New%20York%20City&property=<-description%7BtypeOf:City%7D->dcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Mountain%20View,%20CA&nodes=New%20York%20City&property=%3C-description%7BtypeOf:City%7D-%3Edcid'
 ```
 {: .example-box-content .scroll}
 
-Request (POST):
+POST Request:
 {: .example-box-title}
 
 ```bash
@@ -402,5 +422,5 @@ Response:
       }
    ]
 }
-
 ```
+{: .example-box-content .scroll}
