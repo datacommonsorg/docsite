@@ -376,7 +376,7 @@ Parameters:
 nodes: "Mountain View, CA", "New York City"
 property: "<-description{typeOf:City}->dcid"
 ```
-Request (GET):
+GET Request:
 {: .example-box-title}
 
 ```bash
@@ -385,7 +385,7 @@ curl --request GET --url \
 ```
 {: .example-box-content .scroll}
 
-Request (POST):
+POST Request:
 {: .example-box-title}
 
 ```bash

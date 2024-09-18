@@ -203,7 +203,7 @@ To illustrate again using the Argentina example:
 {: #url-encode}
 ## URL-encoding reserved characters in GET requests
 
-HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. For example, a query string such as the following:
+HTTP GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need to use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. For example, a query string such as the following:
 
 ```
 https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*
@@ -211,7 +211,7 @@ https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&
  should be encoded as:
 
 ```
-https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%2A
 ```
 
 Although sometimes the original characters may work, it's safest to always encode them.
@@ -232,7 +232,7 @@ For example, the request:
 
 ```bash
 curl --request GET \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%2A'
 ```
 
 will return something like:
@@ -252,7 +252,7 @@ To get the next set of entries, repeat the previous command and append the `next
 
 ```bash
 curl --request GET \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%&nextToken=SoME_veRy_L0ng_STrIng'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%2A&nextToken=SoME_veRy_L0ng_STrIng'
 ```
 
 Similarly for POST requests, this would look like:
