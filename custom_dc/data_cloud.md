@@ -157,7 +157,7 @@ Before you proceed, ensure you have completed steps 1 to 3 of the [One-time setu
 ### Step 1: Set environment variables
 
 To run a local instance of the services container, you need to set all the environment variables in the `custom_dc/env.list` file. See [above](#set-vars) for the details, with the following differences:
-- For the `INPUT_DIR`, specify the full local path where your CSV and JSON files are stored, as described in the [Getting started](/custom_dc/). 
+- For the `INPUT_DIR`, specify the full local path where your CSV and JSON files are stored, as described in the [Quickstart](/custom_dc/quickstart.html#env-vars). 
 - Set `GOOGLE_CLOUD_PROJECT` to your GCP project name.
 
 ### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
