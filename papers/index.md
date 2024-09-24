@@ -21,7 +21,7 @@ has_children: false
     }
     ```
 
-- [Knowing When to Ask - Bridging Large Language Models and Data](https://datacommons.org/link/DataGemmaPaper) &mdash; technical report on the use of Data Commons statistical data for improving the accuracy of large-language model outputs
+- [Knowing When to Ask - Bridging Large Language Models and Data](https://arxiv.org/abs/2409.13741) &mdash; technical report on the use of Data Commons statistical data for improving the accuracy of large-language model outputs
 
     Citation:
     
@@ -33,6 +33,6 @@ has_children: false
       eprint={},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
-      url={https://datacommons.org/link/DataGemmaPaper}, 
+      url={https://arxiv.org/abs/2409.13741}, 
     }
     ```

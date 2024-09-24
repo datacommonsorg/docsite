@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Getting started
+title: Quickstart
 nav_order: 2
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Getting started
+# Quickstart
 
 This page shows you how to run a local custom Data Commons instance inside Docker containers and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/){: target="_blank"}.
 
@@ -49,7 +49,7 @@ An API key is required to authorize requests from your site to the base Data Com
 
 1. Go to [https://console.cloud.google.com/apis/dashboard](https://console.cloud.google.com/apis/dashboard){: target="_blank"} for your project.
 1. Click **Enable APIs & Services**.
-1. Under **Maps**, enable **Places API** and **Maps Javascript API**.
+1. Under **Maps**, enable **[Places API](https://console.cloud.google.com/apis/library/places-backend.googleapis.com){: target="_blank"}** and **[Maps Javascript API](https://console.cloud.google.com/apis/library/maps-backend.googleapis.com){: target="_blank"}**.
 1. Go to [https://console.cloud.google.com/google/maps-apis/credentials](https://console.cloud.google.com/google/maps-apis/credentials){: target="_blank"} for your project.
 1. Click **Create Credentials** > **API Key**.
 1. Record the key and click **Close**.
@@ -159,7 +159,7 @@ This does the following:
 - Maps the input sample data to a Docker path.
 - Starts a Docker container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](faq.md#natural-language-processing).
+- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
 
 Once the container has executed all the functions in the scripts, it shuts down.
 
@@ -214,7 +214,7 @@ Once the services are up and running, visit your local instance by pointing your
 
 ![screenshot_homepage](/assets/images/custom_dc/customdc_screenshot1.png){: width="900"}
 
-Now click the **Timeline** link to visit the Timeline explorer. Click **Start**, enter a country and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
+Now click the **Timeline** link to visit the Timeline explorer. Click **Start**, enter an OECD country (e.g. Canada) and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 

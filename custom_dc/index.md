@@ -28,8 +28,6 @@ If you have the resources to develop and maintain a custom Data Commons instance
 - You want to add your own data to Data Commons but want to customize the UI of the site.
 - You want to add your own private data to Data Commons, and restrict access to it.
 
-Also, if you want to add all of your data to the base Data Commons and test how it will work with the exploration tools and natural language queries, you will need to at least host a local development site for testing purposes.
-
 For the following use cases, a custom Data Commons instance is not necessary:
 
 - You only want to make your own data available to the base public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html).
@@ -53,6 +51,7 @@ For the following use cases, a custom Data Commons instance is not necessary:
 1. You cannot set access controls on specific data, only the entire custom site.
 
 ## System overview
+{: #system-overview}
 
 Essentially, a custom Data Commons instance is a mirror of the public Data Commons, that runs in [Docker](http://docker.com) containers hosted in the cloud. In the browsing tools, the custom data appears alongside the base data in the list of variables. When a query is sent to the custom website, a Data Commons server fetches both the custom and base data to provide multiple visualizations. At a high level, here is a conceptual view of a custom Data Commons instance:
 
@@ -60,9 +59,14 @@ Essentially, a custom Data Commons instance is a mirror of the public Data Commo
 
 A custom Data Commons instance uses custom data that you provide as raw CSV files. An importer script converts the CSV data into the Data Commons format and stores this in a SQL database. For local development, we provide a lightweight, open-source [SQLite](http://sqlite.org) database; for production, we recommend that you use [Google Cloud SQL](https://cloud.google.com/sql/){: target="_blank"}.
 
-In addition to the data, a custom Data Commons instance consists of two Docker containers: one with the core services that serve the data and website; and one with utilities for managing and loading custom data and embeddings used for natural-language processing. 
 
-Details about the components that make up the containers are provided in the [Getting started](/custom_dc/quickstart.html) guide.
+> **Note**: You have full control and ownership of your data, which will live in SQL data stores that you own and manage. Your data is never transferred to the base Data Commons data stores managed by Google; see full details in this [FAQ](/custom_dc/faq.html#data-security). 
+
+In addition to the data, a custom Data Commons instance consists of two Docker containers: 
+- A "data management" container, with utilities for managing and loading custom data and embeddings used for natural-language processing
+- A "services" container, with the core services that serve the data and website
+
+Details about the components that make up the containers are provided in the [Quickstart](/custom_dc/quickstart.html) guide.
 
 ## Requirements and cost
 
@@ -83,7 +87,7 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 {: #workflow}
 ## Recommended workflow
 
-1. Work through the [Getting started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
+1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
 1. Prepare your real-world data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Prepare and load your own data](/custom_dc/custom_data.html) for details. 
 > Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
 1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
