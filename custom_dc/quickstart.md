@@ -159,7 +159,7 @@ This does the following:
 - Maps the input sample data to a Docker path.
 - Starts a Docker container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](faq.html#natural-language-processing)).
+- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
 
 Once the container has executed all the functions in the scripts, it shuts down.
 
