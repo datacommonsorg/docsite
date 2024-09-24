@@ -361,17 +361,18 @@ Response:
   "data": {
     "PowerPlant": {
       "arcs": {
-        "domainIncludes": {
+        "subClassOf": {
           "nodes": [
             {
+              "name": "PowerPlantUnit",
               "types": [
-                "Property"
+                "Class"
               ],
-              "dcid": "ashImpoundmentStatus",
+              "dcid": "PowerPlantUnit",
               "provenanceId": "dc/base/BaseSchema"
-            },
-            ...
-        }
+            }
+          ]
+        },
         "subClassOf" : {
           "nodes" : [
             {
@@ -425,6 +426,69 @@ Response:
               ],
               "dcid": "dc/006cgl79w0bj9",
               "provenanceId": "dc/base/EIA_860"
+           } ...
+          ]
+        },
+        "domainIncludes": {
+          "nodes": [
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "ashImpoundmentStatus",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "co2Mass",
+              "types": [
+                "Property"
+              ],
+              "dcid": "co2Mass",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "co2Rate",
+              "types": [
+                "Property"
+              ],
+              "dcid": "co2Rate",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "eiaPlantCode",
+              "types": [
+                "Property"
+              ],
+              "dcid": "eiaPlantCode",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercCogenerationDocketNumber",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercExemptWholesaleGeneratorDocketNumber",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercSmallPowerProducerDocketNumber",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercStatus",
+              "provenanceId": "dc/base/BaseSchema"
             } ...
           ]
         }
