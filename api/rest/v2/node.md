@@ -317,7 +317,6 @@ Response:
       }
    }
 }
-
 ```
 {: .example-box-content .scroll}
 
@@ -435,8 +434,8 @@ Response:
   "nextToken": "H4sIAAAAAAAA/0zIMQ6CMBjFcfus9fnpYP4Xs4MXYCgTAUKaEG7PyvqLf0Rd9rbVaZh7lH6s7TdejRtyQhbyHTkjP5AL8hPZyC/kQH6T/fmmEwAA//8BAAD///dHSrJWAAAA"
 }
 ```
-
 {: .example-box-content .scroll}
+
 ### Example 5: Get a list of all existing statistical variables
 
 Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, or entity type, this effectively gets all statistical variables.
@@ -517,8 +516,7 @@ Response:
               ],
               "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP85",
               "provenanceId": "dc/base/HumanReadableStatVars"
-            },
-            ...
+            }...
           ]
         }
       }
@@ -527,7 +525,6 @@ Response:
   "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
 }
 ```
-
 {: .example-box-content .scroll}
 
 ### Example 6: Get a list of all existing entity types
@@ -682,8 +679,7 @@ Response:
               ],
               "dcid": "ActivateAction",
               "provenanceId": "dc/base/BaseSchema"
-            },
-            ...
+            }...
           ]
         }
       }
