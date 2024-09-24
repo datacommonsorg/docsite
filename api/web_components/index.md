@@ -2,7 +2,7 @@
 layout: default
 title: Web Components
 parent: API
-nav_order: 20
+nav_order: 30
 has_children: true
 published: true
 ---
@@ -83,6 +83,8 @@ places. Variables and places are identified by
 [DCID](/glossary.html#dcid)s.
 
 To look up a DCID for an entity or variable, see the different methods described in [this page](/data_model.html#find-dcid).
+
+To find places available for a statistical variable, see [this page](/data_model.html#find-places).
 
 ## Styling
 

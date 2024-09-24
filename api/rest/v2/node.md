@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Get node properties
-nav_order: 3
-parent: REST (v2)
+nav_order: 7
+parent: REST (V2)
 grand_parent: API
 published: true
 ---
@@ -62,7 +62,7 @@ JSON data:
 
 | Name                                                  | Type   |  Description           |
 | ----------------------------------------------------- | ------ | -----------------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/getting_started.html#authentication) details. |
+| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
 | property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
 
@@ -99,14 +99,14 @@ The response looks like:
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | A token used to query [next page of data](/api/rest/v2/getting_started.html#pagination)                   |
+| nextToken | string | A token used to query [next page of data](/api/rest/v2/index.html#pagination)                   |
 {: .doc-table}
 
 ## Examples
 
-### Example 1: Get all incoming arcs for a given node
+### Example 1: Get all incoming arc labels for a given node
 
-Get all incoming arcs of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels.
+Get all incoming arc property labels of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels but not the property values.
 
 Parameters:
 {: .example-box-title}
@@ -116,12 +116,21 @@ nodes: "geoId/06"
 property: "<-"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["geoId/06"], "property": "<-"}'
 ```
 
 Response:
@@ -142,7 +151,6 @@ Response:
   }
 }
 ```
-{: .example-box-content .scroll}
 
 ### Example 2: Get one property for a given node
 
@@ -156,12 +164,21 @@ nodes: "dc/03lw9rhpendw5"
 property: "->name"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc/03lw9rhpendw5&property=->name'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc%2F03lw9rhpendw5&property=-%3Ename'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["dc/03lw9rhpendw5"], "property": "->name"}'
 ```
 
 Response:
@@ -187,7 +204,6 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-
 {: #multiple-properties}
 ### Example 3: Get multiple property values for multiple nodes
 
@@ -203,7 +219,16 @@ nodes: "geoId/06085", "geoId/06087"
 property: "->[name, latitude, longitude]"
 ```
 
-Request:
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06085&nodes=geoId%2F06087&property=-%3E%5Bname,%20latitude,%20longitude%5D'
+
+```
+
+POST Request:
 {: .example-box-title}
 
 ```bash
@@ -310,12 +335,21 @@ nodes: "PowerPlant"
 property: "<-*"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PowerPlant&property=<-*'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PowerPlant&property=%3C-%2A'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["PowerPlant"], "property": "<-*"}'
 ```
 
 Response:

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Troubleshooting
-nav_order: 6
-parent: REST (v2)
+nav_order: 10
+parent: REST (V2)
 grand_parent: API
 published: true
 ---
@@ -29,7 +29,7 @@ published: true
 }
 ```
 
-This is seen when your request is missing an API key. Please [request your own API key](/api/rest/v2/index.html#get-key).
+The request is missing an API key or the parameter specifying it is misspelled. Please [request your own API key](/api/index.html#get-key).
 
 ## Empty response
 
@@ -37,7 +37,7 @@ This is seen when your request is missing an API key. Please [request your own A
 {}
 ```
 
-Sometimes your query might return an empty result. This is most commonly seen when the value provided for a query parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly.
+This is most commonly seen when the value provided for a query parameter is misspelled or doesn't exist. Make sure the values you are passing for parameters are spelled correctly, that you are correctly [URL-encoding](/api/rest/v2/index.html#url-encode) special characters in parameter values, and not URL-encoding parameter delimiters.
 
 ## Marshaling errors
 
@@ -55,4 +55,4 @@ Sometimes your query might return an empty result. This is most commonly seen wh
 }
 ```
 
-This is most commonly seen when a query parameter is missing, misspelled or incorrect. Check the spelling of query parameters and ensure all required parameters are sent in the request.
+This is most commonly seen when a query parameter is missing, misspelled or incorrect. Check the spelling of query parameters, ensure all required parameters are sent in the request, that you are correctly [URL-encoding](/api/rest/v2/index.html#url-encode) special characters in parameter values, and not URL-encoding parameter delimiters.
