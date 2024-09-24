@@ -76,7 +76,112 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Query the Data Commons knowledge graph with SPARQL
+### Example 1: Get a list of all cities with a particular property
+
+Retrieve a list of the DCIDs of cities that have the property [`unDataLabel`](https://datacommons.org/browser/unDataLabel){: target="_blank"}.
+
+Request:
+{: .example-box-title}
+
+```bash
+curl --request POST \
+  --url https://api.datacommons.org/v2/sparql \
+  --header 'X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI' \
+  --data '{
+            "query": "SELECT DISTINCT ?subject  \
+                WHERE { \
+                  ?subject unDataLabel ?object . \
+                  ?subject typeOf City 
+                }
+                LIMIT 10"
+  }'
+```
+
+Response:
+{: .example-box-title}
+
+```json
+{
+   "header" : [
+      "?subject"
+   ],
+   "rows" : [
+      {
+         "cells" : [
+            {
+               "value" : "nuts/DED12"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "wikidataId/Q623736"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "wikidataId/Q33986"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "wikidataId/Q221921"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "wikidataId/Q841241"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "wikidataId/Q200797"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "undata-geo/C16801100"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "undata-geo/C07501077"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "undata-geo/C23400001"
+            }
+         ]
+      },
+      {
+         "cells" : [
+            {
+               "value" : "wikidataId/Q1005090"
+            }
+         ]
+      }
+   ]
+}
+```
+{: .example-box-content .scroll}
+
+### Example 2: Get a list of biological specimens
 
 Retrieve a list of 10 biological specimens (DCID: `BiologicalSpecimen`) in
 reverse alphabetical order.
