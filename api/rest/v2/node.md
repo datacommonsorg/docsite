@@ -386,18 +386,49 @@ Response:
           ]
         },
         "typeOf" : {
-          "nodes" : [
+          "nodes": [
             {
-              "dcid" : "dc/000qxlm93vn93",
-              "name" : "Suzlon Project VIII LLC",
-              "provenanceId" : "dc/base/EIA_860",
-              "types" : [
+              "name": "Suzlon Project VIII LLC",
+              "types": [
                 "PowerPlant"
-              ]
-           },
-          ...
-        },
-        ...
+              ],
+              "dcid": "dc/000qxlm93vn93",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "NYC-HH - CONEY ISLAND HOSPITAL",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/002x855kf3wv3",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "Bridgeport Gas Processing Plant",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/0053j61z19gn6",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "Hennepin Island",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/005r26ht43r1f",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "Bountiful City",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/006cgl79w0bj9",
+              "provenanceId": "dc/base/EIA_860"
+            } ...
+          ]
+        }
       }
     }
   },
@@ -408,7 +439,7 @@ Response:
 
 ### Example 5: Get a list of all existing statistical variables
 
-Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, this effectively gets all statistical variables by DCID.
+Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, or entity type, this effectively gets all statistical variables.
 
 Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
 
@@ -496,6 +527,7 @@ Response:
   "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
 }
 ```
+
 {: .example-box-content .scroll}
 
 ### Example 6: Get a list of all existing entity types
