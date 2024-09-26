@@ -21,7 +21,7 @@ The `=DCPLACESIN` formula returns lists of child places from a list of parent [`
 * `dcids`: A single [place](/glossary.html#place) node or range of cells representing place nodes, identified by their [DCIDs](/glossary.html#dcid).
 * `place_type`: The type of the contained child place nodes to filter by. For example,`City` and `County`are contained within `State`. For a full list of available types, see the [place types page](/place_types.html).
 
-## Returns
+### Returns
 
 A list of child place DCIDs of the specified place DCIDs, of the specified place type.
 

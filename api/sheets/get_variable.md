@@ -25,7 +25,7 @@ The`=DCGET` formula returns the measurements of a specified [statistical variabl
 
 `date`: The date or dates of interest. If this argument is not specified, the API returns the latest variable observation. You can specify this argument as a single value, row, or column. All dates must be in ISO 8601 format (such as 2017, “2017”, “2017-12”) or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en){: target="_blank"}.
 
-## Returns
+### Returns
 
 The value of the variable at those places on the specified date or on the latest available date, if no date is specified.
 

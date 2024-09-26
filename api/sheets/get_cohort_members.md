@@ -19,7 +19,7 @@ The `DCCOHORTMEMBERS` formula returns the [members](http://browser.datacommons.o
 ### Required arguments
 *    `dcids` -  A single node or range of cells representing nodes, identified by their [DCIDs](/glossary.html#dcid), whose members are sought.
 
-## Returns
+### Returns
 
 The DCIDs of the cohort members. For a single DCID, the result is a column of members of the cohort represented by that DCID. For a row of DCIDs, the result is a matrix with each column the members of the cohort whose DCID serves as the column's index. For a column of DCIDs, the result is a matrix with each row the members of the cohort whose DCID serves as the row's index.
 

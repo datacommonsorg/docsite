@@ -20,7 +20,7 @@ The `=DCGETNAME` formula returns the names associated with given [DCIDs](/glossa
 
 * `dcids` - A node or range of cells representing multiple nodes, identified by their [DCIDs](/glossary.html#dcid).
 
-## Returns
+### Returns
 
 The names associated with given node DCIDs to a cell or a range of cells.
 
