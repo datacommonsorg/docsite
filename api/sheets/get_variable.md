@@ -8,7 +8,7 @@ grand_parent: API
 
 # Retrieve the value of a statistical variable at a given place and time
 
-The`=DCGET` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [`Plac`e](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
+The`=DCGET` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [place](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
 
 ## Formula
 
@@ -29,8 +29,6 @@ The`=DCGET` formula returns the measurements of a specified [statistical variabl
 
 The value of the variable at those places on the specified date or on the latest available date, if no date is specified.
 
-> **Note**: It’s best to minimize the number of function calls to `=DCGET` by using a single call to get the values for a column of statistical variables. This is because a spreadsheet will make one call to a Google server [per function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains thousands of separate calls to `=DCGET` you can expect it to be slow and return with errors.
-
 ## Examples
 
 This section contains examples of using the `=DCGET` formula to returns the values of [statistical variable](/glossary.html#variable)s such as `Count_Person` and `Median_Income_Person`. 
@@ -39,7 +37,7 @@ This section contains examples of using the `=DCGET` formula to returns the valu
 
 ### Example 1: Get the total population of Hawaii in 2017
 
-To get the total population of Hawaii in 2017, using the `geoId/15` DCID and `Count_Person` variable:
+To get the total population of Hawaii in 2017:
 
 1. Place your cursor in the desired cell.
 1. Enter the formula `=DCGET("geoId/15", "Count_Person", 2017)`. The value `1425763` populates the cell.
@@ -48,8 +46,7 @@ To get the total population of Hawaii in 2017, using the `geoId/15` DCID and `Co
 
 To get the population of the five counties in 2017:
 
-1. Place your cursor in the desired cell; in this case A2. 
-1. Enter the DCID of Hawaii, namely `geoId/15`.
+1. Place your cursor in the desired cell; in this case A2, and enter the DCID of Hawaii, namely `geoId/15`.
 1. In cell B2, enter the formula `=DCPLACESIN(A2, "County")`. The DCIDs of the Hawaii counties populate column B.
 1. (Optional) In cell C2, enter `=DCGETNAME(B2:B6)` to retrieve the names of the counties in column C.
 1. In cell D2, enter the formula `=DCGET(B2:B6, "Count_Person", 2017)`.
@@ -66,7 +63,7 @@ This example shows how to get the median income in Hawaii for the years 2011 - 2
 
 1. In a new sheet, in row 1, create cells with the headings shown in the image below.
 1. In cell A2, enter `Hawaii`, and in cell B2, `geoId/15`.
-1. Select cells C2, D2 and E2, and in cell C2, enter the formula `=DCGET(B2, "Median_Income_Person", C1:E1)`.
+1. Select cells C2 to E2, and enter the formula `=DCGET(B2, "Median_Income_Person", C1:E1)`.
 
     ![DCGET example](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
 

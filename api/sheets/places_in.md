@@ -16,44 +16,40 @@ The `=DCPLACESIN` formula returns lists of child places from a list of parent [`
 =DCPLACESIN(dcids, place_type)
 ```
 
-## Required arguments
+### Required arguments
 
 * `dcids`: A single [place](/glossary.html#place) node or range of cells representing place nodes, identified by their [DCIDs](/glossary.html#dcid).
-* `place_type`: The type of the contained child `Place` nodes to filter by. For example,`City` and `County`are contained within `State`. For a full list of available types, see the [place types page](/place_types.html).
+* `place_type`: The type of the contained child place nodes to filter by. For example,`City` and `County`are contained within `State`. For a full list of available types, see the [place types page](/place_types.html).
 
 ## Returns
 
 A list of child place DCIDs of the specified place DCIDs, of the specified place type.
 
-> **Note**:
-> It’s best to minimize the number of function calls to `=DCPLACESIN` by using a single call to get the child nodes places. This is because a spreadsheet will make one call to a Google server [per function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains many separate calls to `=DCPLACESIN(dcids, place_type)` you can expect it to be slow and return with errors.
-
 ## Examples
 
-This section contains examples of using the `=DCPLACESIN` formula.
+This section contains examples of using the `=DCPLACESIN` formula to return places contained in another place.
 
 > **Note**: Be sure to follow the instructions for for [enabling the Sheets add-on](/api/sheets/index.html#install) before trying these examples.
 
 ### Example 1: Retrieve a list of counties in Delaware
 
-To retrieve a list of counties in Delaware, perform the following steps:
-
+To retrieve a list of counties in Delaware:
 1. Place your cursor in the cell where you want to add the DCID for Delaware; in this case, cell A2.
 2. Enter the Delaware DCID of `geoId/10`.
 3. (Optional) In cell B2, enter `DCGETNAME(A2)` to retrieve Delaware's name from the DCID in cell A2.
-4. Move to the cell C3 and enter the formula `=DCPLACESIN(A2, "County")` to retrieve the county names. The DCIDs for the three Delaware counties populate column C.
-5. Retrieve the Delaware county names by entering the formula `DCGETNAME(C2:C4)` into cell D2.
+4. In cell C2, enter the formula `=DCPLACESIN(A2, "County")`. The DCIDs for the three Delaware counties populate column C.
+5. In cell D2, enter the formula `DCGETNAME(C2:C4)` to retrieve the names of the counties. 
 
-![Retrieving a List of Counties in Delaware](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
+![Retrieving a list of counties in Delaware](/assets/images/sheets/sheets_places_in_counties_in_delaware.png)
 
 ### Example 2: Retrieve congressional districts in Alaska and Hawaii
 
-To retrieve the congressional districts in Alaska and Hawaii, perform the following steps:
+To retrieve the congressional districts in Alaska and Hawaii:
 
 1. In cell A2, enter `geoId/02` for the DCID of Alaska and in cell A3, enter `geoId/15` for the DCID of Hawaii.
 2. (Optional) In cell B1, enter `=DCGETNAME(A2:A3)` to retrieve the names of Alaska and Hawaii into column B.
-3. Retrieve the DCIDs for the congressional districts by entering `=DCPLACESIN(A2:A3, "CongressionalDistrict")` into cell C2.
-4. Retrieve the names of the congressional districts by entering `=DCGETNAMES(C2:C4)` into cell D2.
+3. In cell C2, enter `=DCPLACESIN(A2:A3, "CongressionalDistrict")` to retrieve the DCIDs of the congressional districts.
+4. In cell D2, enter `=DCGETNAMES(C2:C4)` to retrieve the names of the congressional districts.
 
 ![Retrieving Congressional Districts in Alaska and Hawaii](/assets/images/sheets/sheets_places_in_congressional_districts_ak_hi.png)
 

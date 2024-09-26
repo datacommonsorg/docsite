@@ -25,7 +25,9 @@ The DCIDs of the cohort members. For a single DCID, the result is a column of me
 
 ## Example: Retrieve the list of cities that are members of the CDC 500 cohort
 
-To retrieve the members of the [Centers for Disease Control 500 cities](https://datacommons.org/browser/CDC500_City) cohort:
+> **Note**: Be sure to follow the instructions for for [enabling the Sheets add-on](/api/sheets/index.html#install) before trying this example.
+
+To retrieve the members of the [CDC 500 cities](https://datacommons.org/browser/CDC500_City) cohort:
 
 1. Place your cursor in any cell, say A1, and enter `CDC500_City`.
 1. In cell B1, enter `=DCCOHORTMEMBERS(A1)`. 

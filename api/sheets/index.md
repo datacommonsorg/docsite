@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Google Sheets
-nav_order: 2
+nav_order: 20
 parent: API
 has_children: true
 ---
@@ -53,9 +53,11 @@ You supply arguments as follows:
 - Multiple values must be a range of cells (row or column), such as `A2:A5`, and are not enclosed in quotation marks..
 See below for examples.
 
+> **Note**: It’s always best to minimize the number of calls to Data Commons functions by using arguments containing a column or row of values. This is because a spreadsheet will make one call to a Google server [per function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}, so if your sheet contains thousands of separate calls to a function, it will be slow and return with errors.
+
 ## Get started with Data Commons functions
 
-Here's a quick demo on using several of the Data Commons functions to get population data for all counties in the state of California:
+Here's a quick demo on using several of the Data Commons functions to get population data for all counties in the state of California.
 
 1. Open a new sheet and create 3 column headings: `DCID`, `County name`, and `Population`.
 1. Select cell A2 and enter the following formula to get a list of the DCIDs of all counties in California, whose DCID is `geoId/06`: `=DCPLACESIN("geoId/06", "County")`. The column fills with 58 DCIDs.

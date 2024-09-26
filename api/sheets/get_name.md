@@ -8,7 +8,7 @@ grand_parent: API
 
 # Return the names associated with DCIDs
 
-The `=DCGETNAME` formula returns the names associated with given [DCIDs](/glossary.html#dcid) to a cell or a column range of cells.
+The `=DCGETNAME` formula returns the names associated with given [DCIDs](/glossary.html#dcid) to a cell or range of cells.
 
 ## Formula
 
@@ -24,17 +24,15 @@ The `=DCGETNAME` formula returns the names associated with given [DCIDs](/glossa
 
 The names associated with given node DCIDs to a cell or a range of cells.
 
-> **Note**: It’s best to minimize the number of function calls to `=DCGETNAME` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains thousands of separate calls to `=DCGETNAME(dcids)` you can expect it to be slow and return with errors.
-
 ## Examples
 
-This section contains examples of returning the names associated with given DCIDs.
+This section contains examples of using `DCGETNAME` to return the names associated with given DCIDs.
 
 > **Note**: Be sure to follow the instructions for for [enabling the Sheets add-on](/api/sheets/index.html#install) before trying these examples.
 
 ### Example 1: Retrieve the name of a place by its DCID
 
-To retrieve the name of a place by its DCID, perform the following steps:
+To retrieve the name of a place by its DCID:
 
 1. Place your cursor in the cell where you want to add a DCID; in this case, cell A1, and enter `geoId/06`.
 1. Move to the cell where you want to retrieve the place name.
@@ -44,7 +42,7 @@ To retrieve the name of a place by its DCID, perform the following steps:
 
 ### Example 2: Retrieve the names of a list of power plants
 
-To retrieve the names of a list of power plants, perform the following steps:
+To retrieve the names of a list of power plants:
 
 1. Enter into column A the DCIDs that are shown in the following image.
 1. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the power plants for each DCID populate column B.
@@ -53,7 +51,7 @@ To retrieve the names of a list of power plants, perform the following steps:
 
 ### Example 3: Retrieve the names of a list of statistical variables
 
-Statistical variables are also nodes in the Data Commons Graph with a DCID. To retrieve the names of a list of statistical variables, perform the following steps:
+Statistical variables are also nodes in the Data Commons knowledge with a DCID. To retrieve the names of a list of statistical variables:
 
 1. Enter into column A the DCIDs that are shown in the following image.
 1. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the variables for each DCID populate column B.
