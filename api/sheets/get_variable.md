@@ -109,9 +109,9 @@ The `=DCGET` formula returns a blank value under the following circumstances:
 
 For example, because the `geoId/123123123` DCID does not exist, no value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")`:
 
-![No value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")` because the DCID does not exist](/assets/images/sheets/sheets_get_variable_nonexistent_dcid.png)
+![DCGET error example](/assets/images/sheets/sheets_get_variable_nonexistent_dcid.png)
 
-If you fail to provide all required arguments, you will receive an error:
+If you fail to provide all required arguments, you will get a response of `#ERROR!`:
 
-![Error returned if you fail to provide all required arguments](/assets/images/sheets/sheets_get_variable_incorrect_args.png)
+![DCGET error example](/assets/images/sheets/sheets_get_variable_incorrect_args.png)
 

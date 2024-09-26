@@ -57,13 +57,13 @@ To retrieve the congressional districts in Alaska and Hawaii:
 
 If a DCID does not exist, the `=DCPLACESIN` formula returns a value of `#REF!`. For example, because the `geoId/123123123` DCID does not exist, an error of `#REF!` is returned to cell B1 in the following sheet:
 
-![Error example](/assets/images/sheets/sheets_places_in_wrong_dcid.png)
+![DCPLACESIN error example](/assets/images/sheets/sheets_places_in_wrong_dcid.png)
 
 If you provide an empty cell for a DCID, the `=DCPLACESIN` formula returns a value of `#ERROR!`, as shown show in the following image:
 
-![Error example](/assets/images/sheets/sheets_places_in_no_input.png)
+![DCPLACESIN error example](/assets/images/sheets/sheets_places_in_no_input.png)
 
 Finally, if you provide an invalid property to the `=DCPLACESIN` formula, an error of `#REF!` is also returned, as follows:
 
-![Error example](/assets/images/sheets/sheets_places_in_bad_property.png)
+![DCPLACESIN error example](/assets/images/sheets/sheets_places_in_bad_property.png)
 

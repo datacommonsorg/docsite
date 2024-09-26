@@ -62,9 +62,9 @@ Statistical variables are also nodes in the Data Commons knowledge with a DCID. 
 
 If a DCID does not exist, the `=DCGETNAME` formula does not return a value. For example, because the DCID `geoId/123123123` does not exist, no value is returned to cell B1 in the following sheet:
 
-![No value returned for a DCID that does not exist](/assets/images/sheets/sheets_get_name_wrong_dcid_cropped.png)
+![DCGETNAME error example](/assets/images/sheets/sheets_get_name_wrong_dcid_cropped.png)
 
 If you provide an empty cell for a DCID, the `=DCGETNAME` formula returns a value of `#ERROR!`, as shown show in the following image:
 
-![#ERROR! value returned for an empty cell for a DCID](/assets/images/sheets/sheets_get_name_no_input_cropped.png)
+![DGCETNAME error example](/assets/images/sheets/sheets_get_name_no_input_cropped.png)
 

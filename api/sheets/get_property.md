@@ -66,17 +66,17 @@ To retrieve the addresses of Stuyvesant High School in New York and Gunn High Sc
 
 If you pass a nonexistent property, an empty value is returned. For example, because the “nonexistent property” does not exist, no value is returned to cell B1 in the following sheet:
 
-![Google Sheets nonexistent property return](/assets/images/sheets/sheets_get_property_bad_property.png)
+![DCPROPERTY error example](/assets/images/sheets/sheets_get_property_bad_property.png)
 
 If you pass a bad DCID, an empty value is returned:
 
-![Google Sheets empty value return](/assets/images/sheets/sheets_get_property_bad_dcid.png)
+![DCPROPERTY error example](/assets/images/sheets/sheets_get_property_bad_dcid.png)
 
-If you pass an empty DCID, an error is returned:
+If you pass an empty DCID, a response of `#ERROR!` is returned:
 
-![Google Sheets empty DCID error return](/assets/images/sheets/sheets_get_property_empty_dcid.png)
+![DCPROPERTY error example](/assets/images/sheets/sheets_get_property_empty_dcid.png)
 
-If you do not pass a required property argument, an error is returned:
+If you do not pass a required property argument, a response of `#ERROR!` is returned:
 
-![Google Sheets return for missing required property argument](/assets/images/sheets/sheets_get_property_bad_args.png)
+![DCPROPERTY error example](/assets/images/sheets/sheets_get_property_bad_args.png)
 
