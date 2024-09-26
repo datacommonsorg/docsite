@@ -99,7 +99,7 @@ The response looks like:
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
 | data      | object | Data of the property label and value information, keyed by the queried nodes |
-| nextToken | string | A token used to query [next page of data](/api/rest/v2/index.html#pagination)                   |
+| nextToken | string | A token used to query [next page of data](/api/rest/v2/index.html#pagination) |
 {: .doc-table}
 
 ## Examples
@@ -317,15 +317,16 @@ Response:
       }
    }
 }
-
 ```
 {: .example-box-content .scroll}
 
 
 {: #wildcard}
-### Example 4: Get all incoming linked nodes for a node
+### Example 4: Get all incoming arc values for a node
 
-Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels.
+Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels. 
+
+Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
 
 Parameters:
 {: .example-box-title}
@@ -360,17 +361,18 @@ Response:
   "data": {
     "PowerPlant": {
       "arcs": {
-        "domainIncludes": {
+        "subClassOf": {
           "nodes": [
             {
+              "name": "PowerPlantUnit",
               "types": [
-                "Property"
+                "Class"
               ],
-              "dcid": "ashImpoundmentStatus",
+              "dcid": "PowerPlantUnit",
               "provenanceId": "dc/base/BaseSchema"
-            },
-            ...
-        }
+            }
+          ]
+        },
         "subClassOf" : {
           "nodes" : [
             {
@@ -384,22 +386,370 @@ Response:
           ]
         },
         "typeOf" : {
-          "nodes" : [
+          "nodes": [
             {
-              "dcid" : "dc/000qxlm93vn93",
-              "name" : "Suzlon Project VIII LLC",
-              "provenanceId" : "dc/base/EIA_860",
-              "types" : [
+              "name": "Suzlon Project VIII LLC",
+              "types": [
                 "PowerPlant"
-              ]
-           },
-          ...
+              ],
+              "dcid": "dc/000qxlm93vn93",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "NYC-HH - CONEY ISLAND HOSPITAL",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/002x855kf3wv3",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "Bridgeport Gas Processing Plant",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/0053j61z19gn6",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "Hennepin Island",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/005r26ht43r1f",
+              "provenanceId": "dc/base/EIA_860"
+            },
+            {
+              "name": "Bountiful City",
+              "types": [
+                "PowerPlant"
+              ],
+              "dcid": "dc/006cgl79w0bj9",
+              "provenanceId": "dc/base/EIA_860"
+           } ...
+          ]
         },
-        ...
+        "domainIncludes": {
+          "nodes": [
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "ashImpoundmentStatus",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "co2Mass",
+              "types": [
+                "Property"
+              ],
+              "dcid": "co2Mass",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "co2Rate",
+              "types": [
+                "Property"
+              ],
+              "dcid": "co2Rate",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "eiaPlantCode",
+              "types": [
+                "Property"
+              ],
+              "dcid": "eiaPlantCode",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercCogenerationDocketNumber",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercExemptWholesaleGeneratorDocketNumber",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercSmallPowerProducerDocketNumber",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "types": [
+                "Property"
+              ],
+              "dcid": "fercStatus",
+              "provenanceId": "dc/base/BaseSchema"
+            } ...
+          ]
+        }
       }
     }
   },
   "nextToken": "H4sIAAAAAAAA/0zIMQ6CMBjFcfus9fnpYP4Xs4MXYCgTAUKaEG7PyvqLf0Rd9rbVaZh7lH6s7TdejRtyQhbyHTkjP5AL8hPZyC/kQH6T/fmmEwAA//8BAAD///dHSrJWAAAA"
 }
+```
+{: .example-box-content .scroll}
+
+### Example 5: Get a list of all existing statistical variables
+
+Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, or entity type, this effectively gets all statistical variables.
+
+Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "StatisticalVariable"
+property: "<-typeOf"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=StatisticalVariable&property=%3C-typeOf'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["StatisticalVariable"], "property": "<-typeOf"}'
+```
+
+Response:
+{: .example-box-title}
+
+```json
+{
+  "data": {
+    "StatisticalVariable": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To 1990, Highest Value, Median Across Models",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate1990_Max_Temperature",
+              "provenanceId": "dc/base/HumanReadableStatVars"
+            },
+            {
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 4.5, Highest Value, Median Across Models",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP45",
+              "provenanceId": "dc/base/HumanReadableStatVars"
+            },
+            {
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 8.5, Highest Value, Median Across Models",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP85",
+              "provenanceId": "dc/base/HumanReadableStatVars"
+            },
+            {
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 4.5, Highest Value, Median Across Models",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP45",
+              "provenanceId": "dc/base/HumanReadableStatVars"
+            },
+            {
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 8.5, Highest Value, Median Across Models",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP85",
+              "provenanceId": "dc/base/HumanReadableStatVars"
+            }...
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
+}
+```
+{: .example-box-content .scroll}
+
+### Example 6: Get a list of all existing entity types
+
+Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
+
+Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "Class"
+property: "<-typeOf"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Class&property=%3C-typeOf'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["Class"], "property": "<-typeOf"}'
+```
+
+Response:
+{: .example-box-title}
+
+```json
+{
+  "data": {
+    "Class": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "name": "ACLGroup",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACLGroup",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "ACSEDChild",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACSEDChild",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "ACSEDParent",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACSEDParent",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "APIReference",
+              "types": [
+                "Class"
+              ],
+              "dcid": "APIReference",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "AboutPage",
+              "types": [
+                "Class"
+              ],
+              "dcid": "AboutPage",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "AcademicAssessmentEvent",
+              "types": [
+                "Class"
+              ],
+              "dcid": "AcademicAssessmentEvent",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "AcademicAssessmentTypeEnum",
+              "types": [
+                "Class"
+              ],
+              "dcid": "AcademicAssessmentTypeEnum",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "AcceptAction",
+              "types": [
+                "Class"
+              ],
+              "dcid": "AcceptAction",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "Accommodation",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Accommodation",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "AccountingService",
+              "types": [
+                "Class"
+              ],
+              "dcid": "AccountingService",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "AchieveAction",
+              "types": [
+                "Class"
+              ],
+              "dcid": "AchieveAction",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "Action",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Action",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "ActionStatusType",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ActionStatusType",
+              "provenanceId": "dc/base/BaseSchema"
+            },
+            {
+              "name": "ActivateAction",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ActivateAction",
+              "provenanceId": "dc/base/BaseSchema"
+            }...
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/yzHsQ5EQBiF0Z27O7PXTyFf5X20Es+goFJIRuPtRaI7J6bI477UGuW8jnXe3vKhOPVp+CEL+Yv8OCMX5D+ykRvkQG6RuxsAAP//AQAA//8tG+Q2TgAAAA=="
+}         
 ```
 {: .example-box-content .scroll}
