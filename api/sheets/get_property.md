@@ -39,7 +39,7 @@ To retrieve the name of a country by its DCID:
 2. Enter `country/CIV` for the country Ivory Coast.
 3. Place your cursor in cell B2 and enter `=DCPROPERTY(A1, "name")` to retrieve the Ivory Coast country names in column B; note that the French and English spellings for Ivory Coast appear in column B.
 
-![DCPROPERTY example](/assets/images/sheets/sheets_get_property_ivory_coast.png)
+![DCPROPERTY example 1](/assets/images/sheets/sheets_get_property_ivory_coast.png)
 
 ### Example 2: Retrieve the order to which a plant belongs
 
@@ -49,7 +49,7 @@ To retrieve the order to which the plant Austrobaileya Scandens belongs:
 2. Enter `dc/bsmvthtq89217` for the plant Austrobaileya Scandens.
 3. Place your cursor in cell B2 and enter `=DCPROPERTY(A1, "order")`. `Austrobaileyales` appears in cell B2.
 
-![DCPROPERTY example](/assets/images/sheets/sheets_get_property_austrobaileyales_order.png)
+![DCPROPERTY example 2](/assets/images/sheets/sheets_get_property_austrobaileyales_order.png)
 
 ### Example 3: Retrieve the addresses of two high schools
 
@@ -59,7 +59,7 @@ To retrieve the addresses of Stuyvesant High School in New York and Gunn High Sc
 2. Place your cursor in cell A2 and enter `nces/062961004587` for Gunn High School in California.
 3. Place your cursor in cell B2, and enter the formula `=DCPROPERTY(A1:A2, "address")`. The addresses of both high schools are populated in column B.
 
-![DCPROPERTY example](/assets/images/sheets/sheets_get_property_school_addresses.png)
+![DCPROPERTY example 3](/assets/images/sheets/sheets_get_property_school_addresses.png)
 
 
 ## Error responses

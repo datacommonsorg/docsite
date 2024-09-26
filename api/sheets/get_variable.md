@@ -51,11 +51,11 @@ To get the population of the five counties in 2017:
 1. (Optional) In cell C2, enter `=DCGETNAME(B2:B6)` to retrieve the names of the counties in column C.
 1. In cell D2, enter the formula `=DCGET(B2:B6, "Count_Person", 2017)`.
 
-    ![DCGET example](/assets/images/sheets/sheets_get_variable_input.png)
+    ![DCGET example 2](/assets/images/sheets/sheets_get_variable_input.png)
 
     The values populate column D.
 
-    ![DCGET example](/assets/images/sheets/sheets_get_variable_output.png)
+    ![DCGET example 2](/assets/images/sheets/sheets_get_variable_output.png)
 
 ### Example 3: Get the median income of a single place in multiple years
 
@@ -65,11 +65,11 @@ This example shows how to get the median income in Hawaii for the years 2011 - 2
 1. In cell A2, enter `Hawaii`, and in cell B2, `geoId/15`.
 1. Select cells C2 to E2, and enter the formula `=DCGET(B2, "Median_Income_Person", C1:E1)`.
 
-    ![DCGET example](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
+    ![DCGET example 3](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
 
     The values populate C2, D2 and E2.
 
-    ![DCGET example](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
+    ![DCGET example 3](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
 
 ### Example 4: Get the median age of multiple places in multiple years
 
@@ -83,7 +83,7 @@ To get the results with the counties in rows and the dates in columns, do the fo
 1. In cell D2, enter the formula `=DCGETNAME(C2:C6) `. The county names populate column D.
 1. Place your cursor in cell E2 and enter the formula `=DCGET(C2:C6, "Median_Age_Person", E1:I1)`. The ages for each county and year appear in columns E to I.  
 
-![DCGET example](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
+![DCGET example 4](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
 
 To get the results with the counties in columns and the dates in rows, do the following:
 
@@ -93,11 +93,11 @@ To get the results with the counties in columns and the dates in rows, do the fo
 1. Place your cursor in cell B4 and enter the formula `=DCGETNAME(B3:F3) `. The county names populate column D.
 1. Place your cursor in cell B5 and enter the formula `=DCGET(B3:F3, "Median_Age_Person", A5:A9)`. 
 
-    ![DCGET example)](/assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
+    ![DCGET example 4](/assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
 
     The ages for each county and year appear in rows 5 to 9.
 
-    ![DCGET example](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
+    ![DCGET example 4](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
 
 ## Error responses
 

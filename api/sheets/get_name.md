@@ -38,7 +38,7 @@ To retrieve the name of a place by its DCID:
 1. Move to the cell where you want to retrieve the place name.
 1. Enter the formula `=DCGETNAME(A1)` to retrieve the name. `California` populates the cell.
 
-![Retrieve the name of a place by its DCID](/assets/images/sheets/sheets_get_name_california.png)
+![DCGETNAME example 1](/assets/images/sheets/sheets_get_name_california.png)
 
 ### Example 2: Retrieve the names of a list of power plants
 
@@ -47,7 +47,7 @@ To retrieve the names of a list of power plants:
 1. Enter into column A the DCIDs that are shown in the following image.
 1. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the power plants for each DCID populate column B.
 
-![Retrieving the names of a list of power plants](/assets/images/sheets/sheets_get_name_power_plant.png)
+![DCGETNAME example 2](/assets/images/sheets/sheets_get_name_power_plant.png)
 
 ### Example 3: Retrieve the names of a list of statistical variables
 
@@ -56,7 +56,7 @@ Statistical variables are also nodes in the Data Commons knowledge with a DCID. 
 1. Enter into column A the DCIDs that are shown in the following image.
 1. In cell B2, enter the formula `=DCGETNAME(A2:A4)`. The names of the variables for each DCID populate column B.
 
-![Retrieving the names of a list of variables](/assets/images/sheets/sheets_get_name_sv.png)
+![DCGETNAME example 3](/assets/images/sheets/sheets_get_name_sv.png)
 
 ## Error responses
 
