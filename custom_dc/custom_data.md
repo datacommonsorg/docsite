@@ -261,7 +261,7 @@ In one terminal window, from the root directory, run the following command to st
 
 <pre>
 docker run \
---env-file $PWD/custom_dc/env.list \ \
+--env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
