@@ -263,6 +263,7 @@ In one terminal window, from the root directory, run the following command to st
 docker run \
 --env-file $PWD/custom_dc/env.list \ \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
@@ -273,6 +274,7 @@ docker run -it \
 -p 8080:8080 \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/env.list \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-services:stable
 </pre>
