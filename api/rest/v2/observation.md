@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get statistical observations
-nav_order: 1
+nav_order: 6
 parent: REST (V2)
 grand_parent: API
 published: true
@@ -38,20 +38,22 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 JSON data:
 {
   "date": "<var>DATE_EXPRESSION</var>",
-  "variable.dcids": [
+  "variable": {
+    "dcids": [
       "<var>VARIABLE_DCID_1</var>",
       "<var>VARIABLE_DCID_2</var>",
       ...
-    ],
-  "entity.dcids": [
+    ]
+  },
+  "entity": {
+    "dcids":[
       "<var>ENTITY_DCID_1</var>",
       "<var>ENTITY_DCID_2</var>",
       ...
-    ],
-  "entity.expression": <var>ENTITY_EXPRESSION</var>,
-  "select": "variable",
-  "select": "entity",
-  ...
+    ]
+    "expression": "<var>ENTITY_EXPRESSION</var>"
+  },
+  "select": ["date", "entity", "variable", "value"]
 }
 </div>
 
@@ -174,9 +176,6 @@ With `select=date` and `select=value` specified, the response looks like:
 
 Specify `date=LATEST` to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
 
-> Note: When sending a GET request, you need to use the following percent codes for reserved characters: 
-- `%2F` for `/`
-
 Parameters:
 {: .example-box-title}
 
@@ -190,13 +189,22 @@ select: "value"
 select: "date"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date'
 ```
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/observation \
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"] }'
+```
+
 {: .example-box-content .scroll}
 
 Response:
@@ -279,13 +287,23 @@ select: "value"
 select: "variable"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Count_Person&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable'
 ```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/observation \
+  -d '{"date": "2015", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["entity", "variable", "value", "date"] }'
+```
+
 {: .example-box-content .scroll}
 
 Response:
@@ -355,13 +373,6 @@ with date and value for each variable
 ([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
 entity (all counties in California).
 
-> Note: When sending a GET request, you need to use the following escape codes for reserved characters:
-- `%3C` for `<`
-- `%2B` for `+`
-- `%7B` for `{`
-- `%3A` for `:`
-- `%7D` for `}`
-
 Parameters:
 {: .example-box-title}
 
@@ -375,13 +386,23 @@ select: "value"
 select: "variable"
 ```
 
-Request:
+GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
 ```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/observation \
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable", "value", "date"] }'
+```
+
 {: .example-box-content .scroll}
 
 Response:
