@@ -11,6 +11,12 @@ parent: Build your own Data Commons
 * TOC
 {:toc}
 
+## General questions
+
+### How can I make feature requests or provide feedback?
+
+Please see [Send feedback](/custom_dc/index.html#feedback) for details.
+
 ## Privacy and security
 
 ### Can I restrict access to my custom instance?

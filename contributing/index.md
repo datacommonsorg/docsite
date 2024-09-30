@@ -62,7 +62,3 @@ uses GitHub pull requests for this purpose. Consult
 [GitHub Help](https://help.github.com/articles/about-pull-requests/){: target="_blank"} for more
 information on using pull requests.
 This project follows Google's [code style guide](https://google.github.io/styleguide/){: target="_blank"}, [documentation style guide](https://developers.google.com/style){: target="_blank"}, and [open source community guidelines](https://opensource.google/conduct/){: target="_blank"}.
-
-## Other ways to get involved
-- If you have a concern or a suggested feature, feel free to open an issue on [Github](https://github.com/datacommonsorg/docsite/issues){: target="_blank"}.
-- Share feedback with the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform){: target="_blank"}.
