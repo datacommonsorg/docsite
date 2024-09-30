@@ -13,7 +13,7 @@ parent: Build your own Data Commons
 
 ## General questions
 
-### How can I make request new features or provide feedback?
+### How can I request new features or provide feedback?
 
 Please see [Send feedback](/custom_dc/index.html#feedback) for details.
 
