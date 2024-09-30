@@ -98,7 +98,7 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 
 ## Send feedback {#feedback}
 
-We use [https://issuetracker.google.com](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable by all users and partners of Data Commons.
+We use [https://issuetracker.google.com](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable.
 
 - To make a feature request, please see if an [existing request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} has already been filed. If yes, upvote (click the **+1** button ) and subscribe to it (add yourself to the **CC** list). If not, open a [new feature request](https://issuetracker.google.com/issues/new?component=1659535){: target="_blank"}.
 
