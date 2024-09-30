@@ -104,4 +104,4 @@ We use [https://issuetracker.google.com](https://issuetracker.google.com){: targ
 
 - To report a bug, first see if one is [already opened](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} for your issue. If not, open a [new bug report](https://issuetracker.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
 
-For all issues, make sure to indicate that it affects your Data Commons instance.
+For any issue you file, make sure to indicate that it affects your Data Commons instance.
