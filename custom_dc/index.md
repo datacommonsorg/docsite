@@ -102,6 +102,6 @@ We use [https://issuetracker.google.com](https://issuetracker.google.com){: targ
 
 - To make a feature request, please see if an [existing request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} has already been filed. If yes, upvote (click the **+1** button ) and subscribe to it (add yourself to the **CC** list). If not, open a [new feature request](https://issuetracker.google.com/issues/new?component=1659535){: target="_blank"}.
 
-- To report a bug, first see if one is [already opened](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} for your issue. If not, open a [new bug report](https://issuetracker.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
+- To report a bug, first see if one is [already opened](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} for your issue. If not, open a [new bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
 
 For any issue you file, make sure to indicate that it affects your Data Commons instance.
