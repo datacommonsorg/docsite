@@ -100,8 +100,6 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 
 We use [Google Issue Tracker](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable.
 
-- To make a feature request, please see if an [existing request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} has already been filed. If yes, upvote (click the **+1** button ) and [subscribe](https://developers.google.com/issue-tracker/guides/subscribe){: target="_blank"} to it. If not, open a [new feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
-
-- To report a bug, first see if one is [already opened](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} for your issue. If not, open a [new bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
+Before opening a new ticket, please see if an existing [feature request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} or [bug report](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} covering your issue has already been filed. If yes, upvote (click the **+1** button ) and [subscribe](https://developers.google.com/issue-tracker/guides/subscribe){: target="_blank"} to it. If not, open a new [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"} or [bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
 
 For any issue you file, make sure to indicate that it affects your Data Commons instance.
