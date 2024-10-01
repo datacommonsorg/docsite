@@ -21,7 +21,7 @@ Data Commons welcomes patches and contributions to this project from everyone, n
 
 ### Add data
 
-We welcome contributions of public data to the Data Commons Graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the graph with [these datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. If you are interested in importing your data to Data Commons, please file a [data request](https://issuetracker.google.com/issues/new?component=1660823&template=2053232){: target="_blank"} in our issue tracker. You can see a list of existing requests [here](https://issuetracker.google.com/issues?q=componentid:1660823%2B).
+We welcome contributions of public data to the Data Commons knowledge graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the knowledge graph with [these datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. If you are interested in importing your data to Data Commons, please file a [data request](https://issuetracker.google.com/issues/new?component=1660823&template=2053232){: target="_blank"} in our issue tracker. You can see a list of existing requests [here](https://issuetracker.google.com/issues?q=componentid:1660823%2B){: target="_blank"}.
 
 ### Create new curriculum
 
