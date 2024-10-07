@@ -11,14 +11,6 @@ parent: Data Sources
 * TOC
 {:toc}
 
-### [Broad Institute](https://www.broadinstitute.org/resources-services-and-tools)
-
-#### [GTEx Analysis V8 eQTL](https://www.gtexportal.org/home/datasets)
-The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used.
-
-GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
-
-
 ### [ELIXIR Core Data Resources](https://elixir-europe.org/platforms/data/core-data-resources)
 
 #### [The Molecular INTeraction (MINT) Database](https://mint.bio.uniroma2.it/)
@@ -36,10 +28,6 @@ Data made available under: [ENCODE Data Use Policy for External Users](https://w
 
 
 ### [European Molecular Biology Laboratory - European Bioinformatics Institute (EMBL-EBI)](https://www.ebi.ac.uk/)
-
-#### [ChEMBL](https://www.ebi.ac.uk/chembl/)
-"ChEMBL is a manually curated database of bioactive molecules with drug-like properties. It brings together chemical, bioactivity and genomic data to aid the translation of genomic information into effective new drugs." It includes information on drugs at all stages of drug discovery.
-
 
 #### [UniProt](https://www.uniprot.org/)
 Data Commons includes protein sequence and functional information including protein interaction with chemical compounds maintained by the UniProt Consortium. The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) UniProt data used in a journal article.
@@ -93,14 +81,6 @@ PharmGKB reports association between chemicals, diseases, genes, and genetic var
 Data made available under Creative Commons Attribution-ShareAlike 4.0 Intergovernmental Organization (CC BY-SA 4.0 IGO) licence. Explicit licensing for PharmGKB can be viewed on the [download page](https://www.pharmgkb.org/downloads).
 
 
-### [Temporary Data Commons Data](https://www.datacommons.org/)
-
-#### [Temporary Gene Mappings](https://www.datacommons.org/)
-This maps the new way of generating Gene dcids (bio/<gene_symbol>) with the old, preexisting Gene dcids(bio/<genome_assembly>_<gene_symbol>). These are temporary mappings until all data using the old method of Gene dcid generation has been updated.
-
-Data is publicly available via Data Commons.
-
-
 ### [The Human Protein Atlas](https://www.proteinatlas.org/)
 
 #### [The Tissue Atlas](https://www.proteinatlas.org/humanproteome/tissue)
@@ -117,32 +97,7 @@ This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is a
 This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
 
 
-### [U.S. Food and Drug Administration (FDA)](https://www.fda.gov/)
-
-#### [FDA-Approved Drugs](https://www.accessdata.fda.gov/scripts/cder/daf/)
-"Drugs@FDA includes information about drugs, including biological products, approved for human use in the United States." Data Commons includes the information about the FDA application for the drug as well as the drug’s strength, active ingredients, dosage forms, administration routes, FDA therapeutic equivalence code, and marketing status.
-
-This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
-
-
 ### [U.S. National Institutes of Health: National Center for Biotechnology Information (NIH: NCBI)](https://www.ncbi.nlm.nih.gov/)
-
-#### [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
-"ClinVar is a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence." It contains reports of genetic "variants found in patient samples, assertions made regarding their clinical significance, information about the submitter, and other supporting data." Data Commons includes the January 6, 2020 release of the ClinVar archive supporting both hg19 and hg38 genome assemblies.
-
-
-#### [Gene](https://www.ncbi.nlm.nih.gov/gene)
-The NIH NCBI gene info datasets from NCBI Gene for a subset of species contains "gene-specific content based on NCBI's RefSeq project, information from model organism databases, and links to other resources." The NCBI RefSeq project is "a comprehensive, integrated, non-redundant, well-annotated set of reference sequences including genomic, transcript, and protein". The datasets included are from the February 19, 2020 update. The gene info files for the following species have been added:
-
-* _Caenorhabditis elegans_
-* _Danio rerio_
-* _Drosophila melanogaster_
-* _Gallus gallus_
-* _Homo sapiens_
-* _Mus musculus_
-* _Saccharomyces cerevisiae_
-* _Xenepus laevis_
-
 
 #### [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly)
 "The [NCBI Assembly database](www.ncbi.nlm.nih.gov/assembly/) provides stable accessioning and data tracking for genome assembly data. The model underlying the database can accommodate a range of assembly structures, including sets of unordered contig or scaffold sequences, bacterial genomes consisting of a single complete chromosome, or complex structures such as a human genome with modeled allelic variation. The database provides an assembly accession and version to unambiguously identify the set of sequences that make up a particular version of an assembly, and tracks changes to updated genome assemblies. The Assembly database reports metadata such as assembly names, simple statistical reports of the assembly (number of contigs and scaffolds, contiguity metrics such as contig N50, total sequence length and total gap length) as well as the assembly update history. The Assembly database also tracks the relationship between an assembly submitted to the International Nucleotide Sequence Database Consortium (INSDC) and the assembly represented in the NCBI RefSeq project" (Kitts et al. 2016). In this import we include the metadata for all genome assemblies documented in `assembly_summary_genbank.txt` and `assembly_summary_refseq.txt`. Assemblies are stored in GenomeAssembly nodes whose information is integrated from both the GenBank and RefSeq datasets.
@@ -164,37 +119,6 @@ The Medical Subject Headings (MeSH) thesaurus is a controlled and hierarchically
 PubChem is the world's largest collection of freely accessible chemical information. Search chemicals by name, molecular formula, structure, and other identifiers. Find chemical and physical properties, biological activities, safety and toxicity information, patents, literature citations and more.
 
 This data is from the National Library of Medicine (NLM) and is not subject to copyright and is freely reproducible as stated in the [NLM’s copyright policy](https://www.nlm.nih.gov/web_policies.html).
-
-
-### [UCSC Genomics Institute](https://genome.ucsc.edu/)
-
-#### [Genome Browser](https://genome.ucsc.edu/)
-The UCSC Genome Browser originated from The Human Genome Project in 2000 to share and visualize genome data. It has grown to include an agglomeration of various genome assemblies and annotations. Data Commons includes data annotating chromosomes, genes, RNA transcripts, and genetic variants from the UCSC Genome Browser. The .chrom.sizes.txt files were downloaded from the UCSC Genome Browser Downloads page on August 13, 2019. The NCBI RefSeq files were downloaded from the UCSC Table Browser on August 2, 2019 for the following genome assemblies:
-
-* ce10
-* ce11
-* danRer10
-* danRer11
-* dm3
-* dm6
-* galGal5
-* galGal6
-* hg19
-* hg38
-* mm9
-* mm10
-* sacCer3
-* xenLae2
-
-The All SNPs files were downloaded from the UCSC Table Browser on August 13, 2019 for the following genome assemblies and dbSNP builds:
-
-* gaGal5 (dbSNP Build 147)
-* hg19 (dbSNP Build 151)
-* hg38 (dbSNP Build 151)
-* mm9 (dbSNP Build 128)
-* mm10 (dbSNP Build 142)
-
-The annotation data is made freely available under the UCSC Genome Browser [terms of use](https://genome.ucsc.edu/conditions.html). The UCSC Genome Browser states [how to cite](https://genome.ucsc.edu/cite.html) use of their data in a journal article publication.
 
 
 ### [University of Maryland School of Medicine, Institute of Genome Sciences](https://www.igs.umaryland.edu/)
