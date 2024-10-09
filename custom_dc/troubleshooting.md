@@ -43,6 +43,13 @@ Failed to create metadata: failed to create secret manager client: google: could
 
 This indicates that you have not specified API keys in the environment file. Follow procedures in [One-time setup steps](/custom_dc/quickstart.html#setup) to obtain and configure API keys.
 
+### "SQL schema check failed"
+
+This error indicates that there is a problem with the database schema. Check for the following additional errors:
+
+- "The following columns are missing..." -- This indicates that there is has been an update to the schema in the latest Docker build. To remedy this, restart the data management Docker container and then try again to start the services container.
+- "Cannot create tables in database" -- This indicates a problem with your CSV files and/or config.json file. Please see [Prepare and load your own data](/custom_d/custom_data.html) for details.
+
 ## Local build errors
 
 ### "file not found in build context"
@@ -76,13 +83,6 @@ This is because you are missing a valid API key or the necessary APIs are not en
 ## Cloud Run Service problems
 
 In general, whenever you encounter problems with any Google Cloud Run service, check the **Logs** page for your Cloud Run service, to get detailed output from the services.
-
-### "SQL schema check failed"
-
-This error indicates that there is a problem with the database schema. Check for the following additional errors:
-
-- "The following columns are missing..." -- This indicates that there is has been an update to the schema in the latest services build. To remedy this, restart the data management Docker container and then try again to start the services container.
-- "Cannot create tables in database" -- This indicates a problem with your CSV files and/or config.json file. Please see [Prepare and load your own data](/custom_d/custom_data.html) for details.
 
 ### "403 Forbidden: Your client does not have permission to get URL / from this server"
 
