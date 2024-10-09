@@ -169,7 +169,7 @@ Arcs in the Data Commons Graph have directions. In the example below, for the no
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-Note the directionality of the property `containedInPlace`: incoming arc represents "Argentina contains Buenos Aires", while the outgoing arc represents "Argentina is in South America".*
+Note the directionality of the property `containedInPlace`: incoming arc represents "Argentina contains Buenos Aires", while the outgoing arc represents "Argentina is in South America".
 
 Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
 arcs are represented by `<-`. To illustrate using the above example:
