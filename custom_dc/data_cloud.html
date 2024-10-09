@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Load data in Google Cloud - Docs - Data Commons</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  
+  
+</head>
+<body>
+  <div id="main">
+    <header id="main-header">
+      <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <div id="main-header-logo">
+                <a href="https://datacommons.org/">
+                  <img src="/assets/images/dc-logo.svg" />
+                </a>
+            </div>
+            <a href="https://datacommons.org">Data Commons</a>
+            <!-- dot separater -->
+            <span class="separator">&#8226;</span>
+            <span><a href="/">Docs</a></span>
+            </a>
+          </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#dc-main-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
+            <div class="gcse-searchbox-only"
+              data-resultsUrl="https://datacommons.org/search"></div>
+            </div>
+            </div>
+      </nav>
+    </header>
+
+    <main id="" class="container-fluid">
+      <div class="row">
+        <div id="main-side-nav" class="col-3">
+          <div id="sidebar"><details class="parent" open>
+          <summary>
+            <a href="/" class="">What is Data Commons?</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/how_to_use.html" class="">How to use Data Commons</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/data_model.html" class="">Key concepts and common tasks</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/api/" class="">API</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-48"><details class="child" >
+                  <summary>
+                    <a href="/api/rest/v2/" class="">REST (V2)</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-3"><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/observation.html" class="">
+                              
+                              Get statistical observations
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/node.html" class="">
+                              
+                              Get node properties
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/resolve.html" class="">
+                              
+                              Resolve entities
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/sparql.html" class="">
+                              
+                              Query with SPARQL
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/troubleshooting.html" class="">
+                              
+                              Troubleshooting
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/" class="">Google Sheets</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-4"><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/tutorials/" class="">
+                              
+                              Tutorials
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/places_in.html" class="">
+                              
+                              Places Contained Within Another Place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_variable.html" class="">
+                              
+                              Statistical Variable Values
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_property.html" class="">
+                              
+                              Node Property Values
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_cohort_members.html" class="">
+                              
+                              Cohort Members
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/sheets/get_name.html" class="">
+                              
+                              Names Associated with a DCID
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/" class="">Web Components</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-5"><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/bar" class="">
+                              
+                              Bar Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/gauge" class="">
+                              
+                              Gauge Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/highlight" class="">
+                              
+                              Highlight Tile
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/line" class="">
+                              
+                              Line Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/map" class="">
+                              
+                              Map Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/pie" class="">
+                              
+                              Pie Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/ranking" class="">
+                              
+                              Ranking Chart
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/scatter" class="">
+                              
+                              Scatter Plot
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/web_components/slider" class="">
+                              
+                              Slider Control
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/python/" class="">Python</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-6"><details class="child" >
+                          <summary>
+                            <a href="/api/python/tutorials.html" class="">
+                              
+                              Tutorials
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/query.html" class="">
+                              
+                              SPARQL
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/triple.html" class="">
+                              
+                              Triple
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_label.html" class="">
+                              
+                              Property Label
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_value.html" class="">
+                              
+                              Property Value
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/place_in.html" class="">
+                              
+                              Places within a Place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_value.html" class="">
+                              
+                              Place Statistics - Single Value
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_series.html" class="">
+                              
+                              Place Statistics - Time Series
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_all.html" class="">
+                              
+                              Place Statistics - All
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/pandas/" class="">Pandas</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-7"><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series.html" class="">
+                              
+                              Time Series as pd.Series
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series_dataframe.html" class="">
+                              
+                              Time Series Table as pd.DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/multivariate_dataframe.html" class="">
+                              
+                              Multivariate Table as pd.DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/bigquery/" class="">Query with SQL/BigQuery</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-94"><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_places.html" class="">Places</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_property_places.html" class="">Properties of places</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_more_complex.html" class="">More complex queries</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_join_your_data.html" class="">Join with external data</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/papers/" class="">Papers</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/courseware/" class="">Courseware</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-98"><details class="child" >
+                  <summary>
+                    <a href="/courseware/data_literacy/" class="">Data Literacy with Data Commons</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-1"><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/overview.html" class="">
+                              
+                              Overview
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/course_materials/" class="">
+                              
+                              Course Materials
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                          </summary>
+                          <ul id="grandchild-2"><li class="">
+                                  <a href="/courseware/data_literacy/course_materials/modules.html" class="">
+                                    Modules
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/course_materials/key_themes.html" class="">
+                                    Key Themes
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/course_materials/how_to_use.html" class="">
+                                    How to Use
+                                  </a>
+                                </li></ul></details><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/faqs.html" class="">
+                              
+                              FAQs
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/courseware/intro_data_science.html" class="">Intro to Data Science</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/contributing/" class="">Contribute to Data Commons</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/custom_dc/" class="">Build your own Data Commons</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-100"><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/quickstart.html" class="">Quickstart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_data.html" class="">Prepare and load your own data</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_ui.html" class="">Customize the site</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/build_image.html" class="">Build and run a custom image</a>
+                    
+                  </summary>
+                  </details><details class="child" open>
+                  <summary>
+                    <a href="/custom_dc/data_cloud.html" class=" active">Load data in Google Cloud</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/deploy_cloud.html" class="">Deploy services to Google Cloud</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/launch_cloud.html" class="">Launch your Data Commons</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/troubleshooting.html" class="">Troubleshooting</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/faq.html" class="">Frequently asked questions</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/place_types.html" class="">Place Types</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/datasets/" class="">Data Sources</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-112"><details class="child" >
+                  <summary>
+                    <a href="/datasets/Agriculture.html" class="">Agriculture</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Biomedical.html" class="">Biomedical</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Crime.html" class="">Crime</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Demographics.html" class="">Demographics</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Economy.html" class="">Economy</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Education.html" class="">Education</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Energy.html" class="">Energy</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Environment.html" class="">Environment</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Health.html" class="">Health</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/datasets/Housing.html" class="">Housing</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/import_dataset/" class="">Data Imports</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-117"><details class="child" >
+                  <summary>
+                    <a href="/import_dataset/schema_less_guide.html" class="">Data Commons Schema-less Guide</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/glossary.html" class="">Glossary</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/blog.html" class="">Blog</a>
+            
+          </summary>
+          </details></div>
+        </div>
+        <div class="col-9">
+          <div id="main-doc-content">
+            
+              
+                <nav aria-label="Breadcrumb" id="main-breadcrumb">
+                  <ol class="breadcrumb">
+                    
+                      <li class="breadcrumb-item">
+                        <a href="/custom_dc/">
+                          Build your own Data Commons
+                        </a>
+                      </li>
+                    
+                    <li class="breadcrumb-item active"><span>Load data in Google Cloud </span></li>
+                  </ol>
+                </nav>
+              
+            
+            <h1 class="no_toc" id="load-data-in-google-cloud">Load data in Google Cloud</h1>
+
+<p>This page shows you how to store your custom data in Google Cloud, and create the data management container as a Google Cloud Run job. This is step 4 of the <a href="/custom_dc/index.html#workflow">recommended workflow</a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#setup" id="markdown-toc-setup">One-time setup steps</a>    <ul>
+      <li><a href="#location" id="markdown-toc-location">Step 1: Choose a location</a></li>
+      <li><a href="#step-2-create-a-google-cloud-storage-bucket" id="markdown-toc-step-2-create-a-google-cloud-storage-bucket">Step 2: Create a Google Cloud Storage bucket</a></li>
+      <li><a href="#step-3-create-a-google-cloud-sql-instance" id="markdown-toc-step-3-create-a-google-cloud-sql-instance">Step 3: Create a Google Cloud SQL instance</a></li>
+      <li><a href="#step-4-create-a-google-cloud-run-job" id="markdown-toc-step-4-create-a-google-cloud-run-job">Step 4: Create a Google Cloud Run job</a></li>
+    </ul>
+  </li>
+  <li><a href="#manage-your-data" id="markdown-toc-manage-your-data">Manage your data</a>    <ul>
+      <li><a href="#step-1-upload-data-files-to-google-cloud-storage" id="markdown-toc-step-1-upload-data-files-to-google-cloud-storage">Step 1: Upload data files to Google Cloud Storage</a></li>
+      <li><a href="#run-job" id="markdown-toc-run-job">Step 2: Start the data management Cloud Run job</a></li>
+      <li><a href="#inspect-sql" id="markdown-toc-inspect-sql">Inspect the Cloud SQL database</a></li>
+    </ul>
+  </li>
+  <li><a href="#run-local" id="markdown-toc-run-local">Advanced setup (optional): Run the data management container locally</a>    <ul>
+      <li><a href="#step-1-set-environment-variables" id="markdown-toc-step-1-set-environment-variables">Step 1: Set environment variables</a></li>
+      <li><a href="#gen-creds" id="markdown-toc-gen-creds">Step 2: Generate credentials for Google Cloud authentication</a></li>
+      <li><a href="#step-3-run-the-docker-container" id="markdown-toc-step-3-run-the-docker-container">Step 3: Run the Docker container</a></li>
+    </ul>
+  </li>
+  <li><a href="#advanced-setup-optional-access-cloud-data-from-a-local-services-container" id="markdown-toc-advanced-setup-optional-access-cloud-data-from-a-local-services-container">Advanced setup (optional): Access Cloud data from a local services container</a>    <ul>
+      <li><a href="#step-1-set-environment-variables-1" id="markdown-toc-step-1-set-environment-variables-1">Step 1: Set environment variables</a></li>
+      <li><a href="#step-2-generate-credentials-for-google-cloud-default-application" id="markdown-toc-step-2-generate-credentials-for-google-cloud-default-application">Step 2: Generate credentials for Google Cloud default application</a></li>
+      <li><a href="#step-3-run-the-docker-container-1" id="markdown-toc-step-3-run-the-docker-container-1">Step 3: Run the Docker container</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to <a href="https://cloud.google.com/storage" target="_blank">Google Cloud Storage</a>, and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a <a href="https://cloud.google.com/sql" target="_blank">Google Cloud SQL</a> database, and generate NL embeddings stored in Cloud Storage.</p>
+
+<p><img src="/assets/images/custom_dc/customdc_setup3.png" alt="data management setup" /></p>
+
+<p>Alternatively, if you have a very large data set, you may find it faster to store your input files and run the data management container locally, and output the data to Google Cloud Storage. If you would like to use this approach, follow steps 1 to 3 of the one-time setup steps below and then skip to <a href="#run-local">Run the data management container locally</a>.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>A <a href="https://console.cloud.google.com/welcome" target="_blank">GCP</a> billing account and project.</li>
+  <li>Optional: Install the <a href="https://cloud.google.com/sdk/docs/install-sdk" target="_blank">gcloud CLI</a>.</li>
+</ul>
+
+<h2 id="setup">One-time setup steps</h2>
+
+<h3 id="location">Step 1: Choose a location</h3>
+
+<p>While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use <code class="language-plaintext highlighter-rouge">us-central1</code>. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the <em>same region</em> for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the <a href="/pages/datacommonsorg/docsite/custom_dc/deploy_cloud.html">Google Cloud Run service</a> where you will host the site. For a list of supported regions, see Cloud SQL <a href="https://cloud.google.com/sql/docs/mysql/locations" target="_blank">Manage instance locations</a>.</p>
+
+<h3 id="step-2-create-a-google-cloud-storage-bucket">Step 2: Create a Google Cloud Storage bucket</h3>
+
+<p>This stores the CSV and JSON files that you will upload whenever your data changes. It also stores generated files files in a <code class="language-plaintext highlighter-rouge">datacommons</code> subdirectory when you run the data management job.</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/storage/browser" target="_blank">https://console.cloud.google.com/storage/browser</a> for your project.</li>
+  <li>Next to <strong>Buckets</strong>, click <strong>Create</strong>.</li>
+  <li>Enter a name for this bucket.</li>
+  <li>For the <strong>Location type</strong>, choose the same regional options as for Cloud SQL above.</li>
+  <li>When you have finished setting all the configuration options, click <strong>Create</strong>.</li>
+  <li>In the <strong>Bucket Details</strong> page, click <strong>Create Folder</strong> to create a new folder to hold your data and name it as desired.</li>
+  <li>
+    <p>Optionally, create separate folders to hold input and output files, or just use the same one as for the input.</p>
+
+    <p><strong>Note:</strong> If you plan to run the data management container locally, you only need to create a single folder to hold the output files.</p>
+  </li>
+  <li>Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the <code class="language-plaintext highlighter-rouge">INPUT_DIR</code> and <code class="language-plaintext highlighter-rouge">OUTPUT_DIR</code> environment variables below.</li>
+</ol>
+
+<h3 id="step-3-create-a-google-cloud-sql-instance">Step 3: Create a Google Cloud SQL instance</h3>
+
+<p>This stores the data that will be served at run time. The Data Commons data management job will create the SQL tables and populate them when you start the job.</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/sql/instances" target="_blank">https://console.cloud.google.com/sql/instances</a> for your project.</li>
+  <li>Next to <strong>Instances</strong>, click <strong>Create Instance</strong>.</li>
+  <li>Click <strong>Choose MySQL.</strong></li>
+  <li>If necessary, enable APIs as directed.</li>
+  <li>Set an instance ID. Record the instance connection name in the form of <em><code class="language-plaintext highlighter-rouge">INSTANCE_ID</code></em> for setting environment variables below.</li>
+  <li>Set a root password, and record it for setting environment variables below.</li>
+  <li>For the <strong>Location type</strong>, choose the relevant regional option.</li>
+  <li>When you have finished setting all the configuration options, click <strong>Create Instance</strong>. It may take several minutes for the instance to be created.</li>
+  <li>When the instance is created and the left navigation bar appears, select <strong>Users</strong>.</li>
+  <li>Add at least one user and password.</li>
+  <li>Select <strong>Databases</strong>.</li>
+  <li>Click <strong>Create Database</strong>.</li>
+  <li>Choose a name for the database or use the default, <code class="language-plaintext highlighter-rouge">datacommons</code>.</li>
+  <li>Click <strong>Create</strong>.</li>
+  <li>In the <strong>Overview</strong> page for the new instance, record the <strong>Connection name</strong> to set in environment variables in the next step.</li>
+</ol>
+
+<h3 id="step-4-create-a-google-cloud-run-job">Step 4: Create a Google Cloud Run job</h3>
+
+<p>Since you won’t need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at <a href="https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data" target="_blank">https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data</a>.</p>
+
+<p>See also the <a href="https://cloud.google.com/run/docs/create-jobs" target="_blank">Cloud Run</a> documentation for links to more information on all the options you may set on your jobs.</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
+  <li>Click <strong>Create job</strong>.</li>
+  <li>In the <strong>Container image URL</strong> field, enter <code class="language-plaintext highlighter-rouge">gcr.io/datcom-ci/datacommons-data:stable</code>.</li>
+  <li>Optionally, in the <strong>Job name</strong> field, enter an alternative name as desired.</li>
+  <li>In the <strong>Region</strong> field, select the region you chose as your location.</li>
+  <li>Leave the default <strong>Number of tasks</strong> as 1.</li>
+  <li>Expand <strong>Container, Volumes, Connections, Security</strong> and expand <strong>Settings</strong>, and set the following options:
+    <ul>
+      <li><strong>Resources</strong> &gt; <strong>Memory</strong>: <strong>8 GiB</strong></li>
+      <li><strong>Resources</strong> &gt; <strong>CPU</strong>: <strong>2</strong></li>
+    </ul>
+
+    <p><img src="/assets/images/custom_dc/gcp_screenshot2.png" alt="Cloud Run job" width="450" /></p>
+  </li>
+</ol>
+
+<p>Now set environment variables:</p>
+
+<ol>
+  <li>Click the <strong>Variables and Secrets</strong> tab.</li>
+  <li>Click <strong>Add variable</strong>.</li>
+  <li>Add names and values for the following environment variables:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">USE_CLOUDSQL</code>: Set to <code class="language-plaintext highlighter-rouge">true</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">DC_API_KEY</code>: Set to your API key.</li>
+      <li><code class="language-plaintext highlighter-rouge">INPUT_DIR</code>: Set to the Cloud Storage bucket and input folder that you created in step 2 above.</li>
+      <li><code class="language-plaintext highlighter-rouge">OUTPUT_DIR</code>: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn’t create a separate folder for output, specify the same folder as the <code class="language-plaintext highlighter-rouge">INPUT_DIR</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">CLOUDSQL_INSTANCE</code>: Set to the full connection name of the instance you created in step 3 above.</li>
+      <li><code class="language-plaintext highlighter-rouge">DB_USER</code>: Set to a user you configured when you created the instance in step 3, or to <code class="language-plaintext highlighter-rouge">root</code> if you didn’t create a new user.</li>
+      <li><code class="language-plaintext highlighter-rouge">DB_PASS</code>: Set to the user’s or root password you configured when you created the instance in step 3.</li>
+      <li><code class="language-plaintext highlighter-rouge">DB_NAME</code>: Only set this if you configured the database name to something other than <code class="language-plaintext highlighter-rouge">datacommons</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>When you finished, click <strong>Done</strong>.</p>
+
+    <p><img src="/assets/images/custom_dc/gcp_screenshot3.png" alt="Cloud Run job" width="450" /></p>
+  </li>
+  <li>If you have a large amount of data, adjust the <strong>Task capacity</strong> &gt; <strong>Task timeout</strong> option accordingly. See <a href="https://cloud.google.com/run/docs/configuring/task-timeout" target="_blank">Set task timeout (jobs)</a> for more details.</li>
+  <li>Click <strong>Create</strong> (but don’t run it immediately).</li>
+</ol>
+
+<h2 id="manage-your-data">Manage your data</h2>
+
+<h3 id="step-1-upload-data-files-to-google-cloud-storage">Step 1: Upload data files to Google Cloud Storage</h3>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> and select your custom Data Commons bucket.</li>
+  <li>Navigate to the folder you created in the earlier step.</li>
+  <li>Click <strong>Upload Files</strong>, and select all your CSV files and <code class="language-plaintext highlighter-rouge">config.json</code>.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Note:</strong> Do not upload the local <code class="language-plaintext highlighter-rouge">datacommons</code> subdirectory or its files.</p>
+</blockquote>
+
+<p>As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above.</p>
+
+<h3 id="run-job">Step 2: Start the data management Cloud Run job</h3>
+
+<p>Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a <code class="language-plaintext highlighter-rouge">datacommons/nl</code> subfolder).</p>
+
+<p>Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.</p>
+
+<p>To run the job:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
+  <li>From the list of jobs, click the link of the “datacommons-data” job you created above.</li>
+  <li>Click <strong>Execute</strong>. It will take several minutes for the job to run. You can click the <strong>Logs</strong> tab to view the progress.</li>
+</ol>
+
+<p>When it completes, to verify that the data has been loaded correctly, see the next step.</p>
+
+<h3 id="inspect-sql">Inspect the Cloud SQL database</h3>
+
+<p>To view information about the created tables:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/sql/instances" target="_blank">https://console.cloud.google.com/sql/instances</a> for your project and select the instance you created earlier.</li>
+  <li>In the left panel, select <strong>Cloud SQL Studio</strong>.</li>
+  <li>In the <strong>Sign in to SQL Studio</strong> page, from the Database field, select the database you created earlier, e.g. <code class="language-plaintext highlighter-rouge">datacommons</code>.</li>
+  <li>Enter the user name and password and click <strong>Authenticate</strong>.</li>
+  <li>In the left Explorer pane that appears, expand the <strong>Databases</strong> icon, your database name, and <strong>Tables</strong>. The table of interest is <code class="language-plaintext highlighter-rouge">observations</code>. You can see column names and other metadata.</li>
+  <li>To view the actual data, in the main window, click <strong>New SQL Editor tab</strong>. This opens an environment in which you can enter and run SQL queries.</li>
+  <li>
+    <p>Enter a query and click <strong>Run</strong>. For example, for the sample OECD data, if you do <code class="language-plaintext highlighter-rouge">select * from observations limit 10;</code>, you should see output like this:</p>
+
+    <p><img src="/assets/images/custom_dc/customdc_screenshot6.png" alt="screenshot_sqlite" height="400" /></p>
+  </li>
+</ol>
+
+<h2 id="run-local">Advanced setup (optional): Run the data management container locally</h2>
+
+<p>This process is similar to running both data management and services containers locally, with a few exceptions:</p>
+<ul>
+  <li>Your input directory will be the local file system, while the output directory will be a Google Cloud Storage bucket and folder.</li>
+  <li>You must start the job with credentials to be passed to Google Cloud, to access the Cloud SQL instance.</li>
+</ul>
+
+<p>Before you proceed, ensure you have completed steps 1 to 3 of the <a href="#setup">One-time setup steps</a> above.</p>
+
+<h3 id="step-1-set-environment-variables">Step 1: Set environment variables</h3>
+
+<p>To run a local instance of the services container, you need to set all the environment variables in the <code class="language-plaintext highlighter-rouge">custom_dc/env.list</code> file. See <a href="#set-vars">above</a> for the details, with the following differences:</p>
+<ul>
+  <li>For the <code class="language-plaintext highlighter-rouge">INPUT_DIR</code>, specify the full local path where your CSV and JSON files are stored, as described in the <a href="/custom_dc/quickstart.html#env-vars">Quickstart</a>.</li>
+  <li>Set <code class="language-plaintext highlighter-rouge">GOOGLE_CLOUD_PROJECT</code> to your GCP project name.</li>
+</ul>
+
+<h3 id="gen-creds">Step 2: Generate credentials for Google Cloud authentication</h3>
+
+<p>For the services to connect to the Cloud SQL instance, you need to generate credentials that can be used in the local Docker container for authentication. You should refresh the credentials every time you rerun the Docker container.</p>
+
+<p>Open a terminal window and run the following command:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud auth application-default login
+</code></pre></div></div>
+
+<p>This opens a browser window that prompts you to enter credentials, sign in to Google Auth Library and allow Google Auth Library to access your account. Accept the prompts. When it has completed, a credential JSON file is created in<br />
+<code class="language-plaintext highlighter-rouge">$HOME/.config/gcloud/application_default_credentials.json</code>. Use this in the command below to authenticate from the docker container.</p>
+
+<p>The first time you run it, may be prompted to specify a quota project for billing that will be used in the credentials file. If so, run this command:</p>
+
+<pre>  
+gcloud auth application-default set-quota-project <var>PROJECT_ID</var>  
+</pre>
+
+<p>If you are prompted to install the Cloud Resource Manager API, press <code class="language-plaintext highlighter-rouge">y</code> to accept.</p>
+
+<h3 id="step-3-run-the-docker-container">Step 3: Run the Docker container</h3>
+
+<p>From your project root directory, run:</p>
+
+<pre>
+docker run \
+--env-file $PWD/custom_dc/env.list \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+-e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
+-v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
+gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
+</pre>
+
+<p>The version is <code class="language-plaintext highlighter-rouge">latest</code> or <code class="language-plaintext highlighter-rouge">stable</code>.</p>
+
+<p>To verify that the data is correctly created in your Cloud SQL database, use the procedure in <a href="#inspect-sql">Inspect the Cloud SQL database</a> above.</p>
+
+<h2 id="advanced-setup-optional-access-cloud-data-from-a-local-services-container">Advanced setup (optional): Access Cloud data from a local services container</h2>
+
+<p>For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud, use the following procedures.</p>
+
+<h3 id="step-1-set-environment-variables-1">Step 1: Set environment variables</h3>
+
+<p>To run a local instance of the services container, you will need to set all the environment variables, as described <a href="#env-vars">above</a> in the <code class="language-plaintext highlighter-rouge">custom_dc/env.list</code>. You must also set the <code class="language-plaintext highlighter-rouge">MAPS_API_KEY</code> to your Maps API key.</p>
+
+<h3 id="step-2-generate-credentials-for-google-cloud-default-application">Step 2: Generate credentials for Google Cloud default application</h3>
+
+<p>See the section <a href="#gen-creds">above</a> for procedures.</p>
+
+<h3 id="step-3-run-the-docker-container-1">Step 3: Run the Docker container</h3>
+
+<p>From the root directory of your repo, run the following command, assuming you are using a locally built image:</p>
+
+<pre>  
+docker run -it \
+--env-file $PWD/custom_dc/env.list \
+-p 8080:8080 \
+-e DEBUG=true \
+-e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
+-v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+[-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
+[-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
+<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
+</pre>
+
+
+          </div>
+          <div style="text-align:center" id="feedback-form">
+             <p>
+              <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf23mC17idzIpzg6v4frCh8iWTl9dxeb4iSTVgo0WiBvnv5ZA/viewform?usp=pp_url&entry.871991796=/custom_dc/data_cloud.html">
+              Send feedback about this page
+              </a>
+            </p>
+          </div>
+      </div>
+    </main>
+
+    <footer id="main-footer">
+      <div id="sub-footer">
+        <span class="brand-byline">
+          <span class="brand-text">An initiative from</span>
+          <img class="brand-logo" src="/assets/images/google-logo.svg" />
+        </span>
+        <div class="sub-footer-links">
+          <a href="https://policies.google.com/terms">Terms and Conditions</a>
+          <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script async
+    src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWSES5WXZE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KWSES5WXZE', {
+      client_storage: 'none',
+      anonymize_ip: true,
+    });
+  </script>
+  <script>
+    /**
+     * Add placeholder text for Google Custom Search Engine search box in the page header
+     */
+    window.addEventListener("load", function() {
+      const googleCustomSearchInput = document.querySelector(".gsc-search-box input[name=\"search\"]");
+      if (googleCustomSearchInput) {
+        googleCustomSearchInput.placeholder = "Search docs";
+      }
+    });
+  </script>
+  <script src="/assets/js/tabs.js"></script>
+</body>
+</html>
