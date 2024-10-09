@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Getting started
+title: Quickstart
 nav_order: 2
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Getting started
+# Quickstart
 
 This page shows you how to run a local custom Data Commons instance inside Docker containers and load sample custom data from a local SQLite database. A custom Data Commons instance uses code from the public open-source repo, available at [https://github.com/datacommonsorg/](https://github.com/datacommonsorg/){: target="_blank"}.
 
@@ -159,7 +159,7 @@ This does the following:
 - Maps the input sample data to a Docker path.
 - Starts a Docker container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
-- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](faq.html#natural-language-processing)).
+- Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
 
 Once the container has executed all the functions in the scripts, it shuts down.
 

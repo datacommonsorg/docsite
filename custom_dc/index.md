@@ -28,8 +28,6 @@ If you have the resources to develop and maintain a custom Data Commons instance
 - You want to add your own data to Data Commons but want to customize the UI of the site.
 - You want to add your own private data to Data Commons, and restrict access to it.
 
-Also, if you want to add all of your data to the base Data Commons and test how it will work with the exploration tools and natural language queries, you will need to at least host a local development site for testing purposes.
-
 For the following use cases, a custom Data Commons instance is not necessary:
 
 - You only want to make your own data available to the base public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html).
@@ -48,11 +46,12 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Fine-grained data access controls<sup>4</sup> |  no | n/a |
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers){: target="_blank"}.
-1. If you would like to support these facilities, please contact us.
+1. If you would like to support these facilities, please file a [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or upvote an [existing one](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"}.
 1. For example, Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress){: target="_blank"} for more information on these options. 
 1. You cannot set access controls on specific data, only the entire custom site.
 
 ## System overview
+{: #system-overview}
 
 Essentially, a custom Data Commons instance is a mirror of the public Data Commons, that runs in [Docker](http://docker.com) containers hosted in the cloud. In the browsing tools, the custom data appears alongside the base data in the list of variables. When a query is sent to the custom website, a Data Commons server fetches both the custom and base data to provide multiple visualizations. At a high level, here is a conceptual view of a custom Data Commons instance:
 
@@ -60,9 +59,14 @@ Essentially, a custom Data Commons instance is a mirror of the public Data Commo
 
 A custom Data Commons instance uses custom data that you provide as raw CSV files. An importer script converts the CSV data into the Data Commons format and stores this in a SQL database. For local development, we provide a lightweight, open-source [SQLite](http://sqlite.org) database; for production, we recommend that you use [Google Cloud SQL](https://cloud.google.com/sql/){: target="_blank"}.
 
-In addition to the data, a custom Data Commons instance consists of two Docker containers: one with the core services that serve the data and website; and one with utilities for managing and loading custom data and embeddings used for natural-language processing. 
 
-Details about the components that make up the containers are provided in the [Getting started](/custom_dc/quickstart.html) guide.
+> **Note**: You have full control and ownership of your data, which will live in SQL data stores that you own and manage. Your data is never transferred to the base Data Commons data stores managed by Google; see full details in this [FAQ](/custom_dc/faq.html#data-security). 
+
+In addition to the data, a custom Data Commons instance consists of two Docker containers: 
+- A "data management" container, with utilities for managing and loading custom data and embeddings used for natural-language processing
+- A "services" container, with the core services that serve the data and website
+
+Details about the components that make up the containers are provided in the [Quickstart](/custom_dc/quickstart.html) guide.
 
 ## Requirements and cost
 
@@ -83,11 +87,19 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 {: #workflow}
 ## Recommended workflow
 
-1. Work through the [Getting started](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
+1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
 1. Prepare your real-world data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Prepare and load your own data](/custom_dc/custom_data.html) for details. 
 > Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
 1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. When you have finished testing locally, host your data and code in Google Cloud Platform: first, upload your data to Google Cloud Storage and create a Cloud Run job to load the data into Google Cloud SQL. See [Load data in Google Cloud](/custom_dc/data_cloud.html).
-1. Build a custom image, upload it to the Google Cloud Artifact Registry and create a Cloud Run service to run the site. See [Deploy services to Google Cloud](deploy_cloud.md)
+1. Build a custom image, upload it to the Google Cloud Artifact Registry and create a Cloud Run service to run the site. See [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html)
 1. Launch and productionize your site for external traffic. See [Launch your Data Commons](/custom_dc/launch_cloud.html).
 1. For future updates and launches, continue to make UI and data changes locally, before deploying the changes to GCP.
+
+## Send feedback {#feedback}
+
+We use [Google Issue Tracker](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable.
+
+Before opening a new ticket, please see if an existing [feature request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} or [bug report](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} covering your issue has already been filed. If yes, upvote (click the **+1** button ) and [subscribe](https://developers.google.com/issue-tracker/guides/subscribe){: target="_blank"} to it. If not, open a new [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or [bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
+
+For any issue you file, make sure to indicate that it affects your Data Commons instance.
