@@ -45,10 +45,10 @@ This indicates that you have not specified API keys in the environment file. Fol
 
 ### "SQL schema check failed"
 
-This error indicates that there is a problem with the database schema. Check for the following additional errors:
+This error indicates that there is a problem with the database schema. Check for the following additional error:
 
-- "The following columns are missing..." -- This indicates that there is has been an update to the schema in the latest Docker build. To remedy this, restart the data management Docker container and then try again to start the services container.
-- "Cannot create tables in database" -- This indicates a problem with your CSV files and/or config.json file. Please see [Prepare and load your own data](/custom_d/custom_data.html) for details.
+- "The following columns are missing..." -- This indicates that there is has been an update to the schema in the latest Docker build. To remedy this, rerun the data management Docker container and then restart the services container.
+
 
 ## Local build errors
 
