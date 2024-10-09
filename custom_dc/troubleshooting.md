@@ -47,7 +47,7 @@ This indicates that you have not specified API keys in the environment file. Fol
 
 This error indicates that there is a problem with the database schema. Check for the following additional error:
 
-- "The following columns are missing..." -- This indicates that there is has been an update to the schema in the latest Docker build. To remedy this, rerun the data management Docker container and then restart the services container.
+- "The following columns are missing..." -- This indicates that there has been an update to the database schema. To remedy this, rerun the data management Docker container and then restart the services container.
 
 
 ## Local build errors
