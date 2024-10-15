@@ -43,6 +43,13 @@ Failed to create metadata: failed to create secret manager client: google: could
 
 This indicates that you have not specified API keys in the environment file. Follow procedures in [One-time setup steps](/custom_dc/quickstart.html#setup) to obtain and configure API keys.
 
+### "SQL schema check failed"
+
+This error indicates that there is a problem with the database schema. Check for the following additional error:
+
+- "The following columns are missing..." -- This indicates that there has been an update to the database schema. To remedy this, rerun the data management Docker container and then restart the services container.
+
+
 ## Local build errors
 
 ### "file not found in build context"

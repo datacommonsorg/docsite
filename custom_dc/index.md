@@ -46,7 +46,7 @@ For the following use cases, a custom Data Commons instance is not necessary:
 | Fine-grained data access controls<sup>4</sup> |  no | n/a |
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers){: target="_blank"}.
-1. If you would like to support these facilities, please contact us.
+1. If you would like to support these facilities, please file a [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or upvote an [existing one](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"}.
 1. For example, Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress){: target="_blank"} for more information on these options. 
 1. You cannot set access controls on specific data, only the entire custom site.
 
@@ -92,6 +92,14 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 > Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
 1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
 1. When you have finished testing locally, host your data and code in Google Cloud Platform: first, upload your data to Google Cloud Storage and create a Cloud Run job to load the data into Google Cloud SQL. See [Load data in Google Cloud](/custom_dc/data_cloud.html).
-1. Build a custom image, upload it to the Google Cloud Artifact Registry and create a Cloud Run service to run the site. See [Deploy services to Google Cloud](deploy_cloud.md)
+1. Build a custom image, upload it to the Google Cloud Artifact Registry and create a Cloud Run service to run the site. See [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html)
 1. Launch and productionize your site for external traffic. See [Launch your Data Commons](/custom_dc/launch_cloud.html).
 1. For future updates and launches, continue to make UI and data changes locally, before deploying the changes to GCP.
+
+## Send feedback {#feedback}
+
+We use [Google Issue Tracker](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable.
+
+Before opening a new ticket, please see if an existing [feature request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} or [bug report](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} covering your issue has already been filed. If yes, upvote (click the **+1** button ) and [subscribe](https://developers.google.com/issue-tracker/guides/subscribe){: target="_blank"} to it. If not, open a new [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or [bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
+
+For any issue you file, make sure to indicate that it affects your Data Commons instance.

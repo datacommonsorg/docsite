@@ -35,7 +35,8 @@ If you want to pick up the latest prebuilt version, do the following:
    -p 8080:8080 \
    -e DEBUG=true \
    --env-file $PWD/custom_dc/env.list \
-   -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+   -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+   -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
    gcr.io/datcom-ci/datacommons-services:latest
    ```
 
