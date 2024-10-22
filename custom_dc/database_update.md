@@ -51,18 +51,14 @@ Run your existing Cloud Run job with an environment variable override.
 If you followed [these instructions](/custom_dc/data_cloud.html#run-local){: target="_blank"} to load data from your local machine into a Cloud SQL database, add `-e SCHEMA_UPDATE_ONLY=true` to the Docker run command from the final step:
 
 <pre>
-docker run -it \
+docker run \
 --env-file $PWD/custom_dc/env.list \
--p 8080:8080 \
--e DEBUG=true \
--e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
-<b>-e SCHEMA_UPDATE_ONLY=true</b> \
--v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-[-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
-[-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
+-e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
+-v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
+<b>-e SCHEMA_UPDATE_ONLY=true</b> \
+gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
-Substitute the `IMAGE_TAG` that matches the services container image which threw the schema check error.
+Substitute the `VERSION` that matches the services container image which failed with a schema check error (typically either `stable` or `latest`).
