@@ -54,7 +54,7 @@ San Francisco,2023,300,300,200,50
 San Jose,2023,400,400,300,0
 ```
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names).
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
@@ -105,11 +105,11 @@ The config.json file specifies how the CSV contents should be mapped and resolve
 Here is the general spec for the JSON file:
 
 <pre>
-{  
-  "inputFiles": {  
-    "<var>FILE_NAME1</var>": {  
-      "entityType": "<var>ENTITY_PROPERTY</var>",  
-      "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
+{
+  "inputFiles": {
+    "<var>FILE_NAME1</var>": {
+      "entityType": "<var>ENTITY_PROPERTY</var>",
+      "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],
       "provenance": "<var>NAME</var>",
       "observationProperties" {
         "unit": "<var>MEASUREMENT_UNIT</var>",
@@ -117,37 +117,37 @@ Here is the general spec for the JSON file:
         "scalingFactor": "<var>DENOMINATOR_VALUE</var>",
         "measurementMethod": "<var>METHOD</var>"
       }
-    },  
-    "<var>FILE_NAME2</var>": {  
-     ...  
-    },  
- ...  
-  "variables": {  
-    "<var>VARIABLE1</var>": {"group": "<var>GROUP_NAME1</var>"},  
-    "VARIABLE2": {"group": "<var>GROUP_NAME1</var>"},  
-    "<var>VARIABLE3</var>": {  
-      "name": "<var>DISPLAY_NAME</var>",  
-      "description": "<var>DESCRIPTION</var>",  
-      "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],  
-      "group": "<var>GROUP_NAME2</var>",  
-      "properties": {  
-        "<var>PROPERTY_NAME1</var>":"<var>VALUE</var>",  
-        "<var>PROPERTY_NAME2</var>":"<var>VALUE</var>",  
-         …  
-           }  
-    },  
-  },   
-  "sources": {  
-    "<var>SOURCE_NAME1</var>": {  
-      "url": "<var>URL</var>",  
-      "provenances": {  
-        "<var>PROVENANCE_NAME1</var>": "<var>URL</var>",  
-        "<var>PROVENANCE_NAME2</var>": "<var>URL</var>",  
-        ...  
-      }  
-    }  
-  }  
-}  
+    },
+    "<var>FILE_NAME2</var>": {
+     ...
+    },
+ ...
+  "variables": {
+    "<var>VARIABLE1</var>": {"group": "<var>GROUP_NAME1</var>"},
+    "VARIABLE2": {"group": "<var>GROUP_NAME1</var>"},
+    "<var>VARIABLE3</var>": {
+      "name": "<var>DISPLAY_NAME</var>",
+      "description": "<var>DESCRIPTION</var>",
+      "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],
+      "group": "<var>GROUP_NAME2</var>",
+      "properties": {
+        "<var>PROPERTY_NAME1</var>":"<var>VALUE</var>",
+        "<var>PROPERTY_NAME2</var>":"<var>VALUE</var>",
+         …
+           }
+    },
+  },
+  "sources": {
+    "<var>SOURCE_NAME1</var>": {
+      "url": "<var>URL</var>",
+      "provenances": {
+        "<var>PROVENANCE_NAME1</var>": "<var>URL</var>",
+        "<var>PROVENANCE_NAME2</var>": "<var>URL</var>",
+        ...
+      }
+    }
+  }
+}
 </pre>
 
 Each section contains some required and optional fields, which are described in detail below.
@@ -192,7 +192,7 @@ You must specify the provenance details under `sources`.`provenances`; this fiel
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
 - [`measurementPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
 - [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
-- [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`. 
+- [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`.
 
 Note that you cannot mix different property values in a single CSV file. If you have observations using different properties, you must put them in separate CSV files.
 
@@ -204,7 +204,7 @@ The `variables` section is optional. You can use it to override names and associ
 
 `name`
 
-: The display name of the variable, which will show up in the site's exploration tools. If not specified, the column name is used as the display name.  
+: The display name of the variable, which will show up in the site's exploration tools. If not specified, the column name is used as the display name.
 The name should be concise and precise; that is, the shortest possible name that allow humans to uniquely identify a given variable. The name is used to generate NL embeddings.
 
 `description`
@@ -234,7 +234,7 @@ Each property is specified as a key:value pair. Here are some examples:
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-`searchDescriptions` 
+`searchDescriptions`
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
@@ -261,12 +261,12 @@ The `sources` section is optional. It encodes the sources and provenances associ
 
 The following procedures show you how to load and serve your custom data locally.
 
-To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
+To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc/data_cloud.html) for procedures.
 
 ### Configure environment variables
 
 Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env-vars) as follows:
-- Set the `INPUT_DIR` variable to the directory where your input files are stored. 
+- Set the `INPUT_DIR` variable to the directory where your input files are stored.
 - Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
 ### Start the Docker containers with local custom data {#docker-data}
@@ -303,7 +303,7 @@ If you need to troubleshoot custom data, it is helpful to inspect the contents o
 
 To do so, from a terminal window, open the database:
 
-<pre>  
+<pre>
 sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
 </pre>
 
@@ -327,4 +327,6 @@ country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ```
 
 To exit the sqlite shell, press Ctrl-D.
+
+### Database schema updates
 

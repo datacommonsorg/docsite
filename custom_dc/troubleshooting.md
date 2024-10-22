@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Troubleshooting
-nav_order: 9
+nav_order: 10
 parent: Build your own Data Commons
 ---
 
@@ -45,9 +45,7 @@ This indicates that you have not specified API keys in the environment file. Fol
 
 ### "SQL schema check failed"
 
-This error indicates that there is a problem with the database schema. Check for the following additional error:
-
-- "The following columns are missing..." -- This indicates that there has been an update to the database schema. To remedy this, rerun the data management Docker container and then restart the services container.
+This error indicates that there is a problem with the database schema. [Update your database schema](/custom_dc/database_update.html), then restart the services container.
 
 
 ## Local build errors

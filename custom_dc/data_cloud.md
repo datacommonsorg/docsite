@@ -15,11 +15,11 @@ This page shows you how to store your custom data in Google Cloud, and create th
 
 ## Overview
 
-Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage){: target="_blank"}, and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql){: target="_blank"} database, and generate NL embeddings stored in Cloud Storage. 
+Once you have tested locally, the next step is to get your data into the Google Cloud Platform. You upload your CSV and JSON files to [Google Cloud Storage](https://cloud.google.com/storage){: target="_blank"}, and run the Data Commons data management Docker container as a Cloud Run job. The job will transform and store the data in a [Google Cloud SQL](https://cloud.google.com/sql){: target="_blank"} database, and generate NL embeddings stored in Cloud Storage.
 
 ![data management setup](/assets/images/custom_dc/customdc_setup3.png)
 
-Alternatively, if you have a very large data set, you may find it faster to store your input files and run the data management container locally, and output the data to Google Cloud Storage. If you would like to use this approach, follow steps 1 to 3 of the one-time setup steps below and then skip to [Run the data management container locally](#run-local). 
+Alternatively, if you have a very large data set, you may find it faster to store your input files and run the data management container locally, and output the data to Google Cloud Storage. If you would like to use this approach, follow steps 1 to 3 of the one-time setup steps below and then skip to [Run the data management container locally](#run-local).
 
 ## Prerequisites
 
@@ -42,10 +42,10 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 1. For the **Location type**, choose the same regional options as for Cloud SQL above.
 1. When you have finished setting all the configuration options, click **Create**.
 1. In the **Bucket Details** page, click **Create Folder** to create a new folder to hold your data and name it as desired.
-1. Optionally, create separate folders to hold input and output files, or just use the same one as for the input. 
+1. Optionally, create separate folders to hold input and output files, or just use the same one as for the input.
 
    **Note:** If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
-1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
+1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below.
 
 ### Step 3: Create a Google Cloud SQL instance
 
@@ -64,7 +64,7 @@ This stores the data that will be served at run time. The Data Commons data mana
 1. Select **Databases**.
 1. Click **Create Database**.
 1. Choose a name for the database or use the default, `datacommons`.
-1. Click **Create**. 
+1. Click **Create**.
 1. In the **Overview** page for the new instance, record the **Connection name** to set in environment variables in the next step.
 
 ### Step 4: Create a Google Cloud Run job
@@ -93,13 +93,13 @@ Now set environment variables:
 1. Add names and values for the following environment variables:
    - `USE_CLOUDSQL`: Set to `true`.
    - `DC_API_KEY`: Set to your API key.
-   - `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
+   - `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above.
    - `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
    - `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
    - `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
    - `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
    - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
-1. When you finished, click **Done**.
+1. When you have finished, click **Done**.
 
    ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
 
@@ -116,7 +116,7 @@ Now set environment variables:
 
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
-As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
+As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above.
 
 ### Step 2: Start the data management Cloud Run job {#run-job}
 
@@ -128,7 +128,7 @@ To run the job:
 
 1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
+1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress.
 
 When it completes, to verify that the data has been loaded correctly, see the next step.
 
@@ -157,7 +157,7 @@ Before you proceed, ensure you have completed steps 1 to 3 of the [One-time setu
 ### Step 1: Set environment variables
 
 To run a local instance of the services container, you need to set all the environment variables in the `custom_dc/env.list` file. See [above](#set-vars) for the details, with the following differences:
-- For the `INPUT_DIR`, specify the full local path where your CSV and JSON files are stored, as described in the [Quickstart](/custom_dc/quickstart.html#env-vars). 
+- For the `INPUT_DIR`, specify the full local path where your CSV and JSON files are stored, as described in the [Quickstart](/custom_dc/quickstart.html#env-vars).
 - Set `GOOGLE_CLOUD_PROJECT` to your GCP project name.
 
 ### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
@@ -170,13 +170,13 @@ Open a terminal window and run the following command:
 gcloud auth application-default login
 ```
 
-This opens a browser window that prompts you to enter credentials, sign in to Google Auth Library and allow Google Auth Library to access your account. Accept the prompts. When it has completed, a credential JSON file is created in  
+This opens a browser window that prompts you to enter credentials, sign in to Google Auth Library and allow Google Auth Library to access your account. Accept the prompts. When it has completed, a credential JSON file is created in
 `$HOME/.config/gcloud/application_default_credentials.json`. Use this in the command below to authenticate from the docker container.
 
 The first time you run it, may be prompted to specify a quota project for billing that will be used in the credentials file. If so, run this command:
 
-<pre>  
-gcloud auth application-default set-quota-project <var>PROJECT_ID</var>  
+<pre>
+gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 </pre>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
@@ -215,7 +215,7 @@ See the section [above](#gen-creds) for procedures.
 
 From the root directory of your repo, run the following command, assuming you are using a locally built image:
 
-<pre>  
+<pre>
 docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
