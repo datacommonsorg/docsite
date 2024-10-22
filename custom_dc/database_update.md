@@ -23,7 +23,7 @@ This page contains detailed instructions for passing `SCHEMA_UPDATE_ONLY` to the
 
 ## Local data management job with local SQLite database
 
-Add `-e SCHEMA_UPDATE_ONLY=true` to the Docker run command for the data management container (the first command in [this doc section](/custom_dc/custom_data.html#docker-data)):
+Add `-e SCHEMA_UPDATE_ONLY=true` to the Docker run command for the data management container (the first command in [this doc section](/custom_dc/custom_data.html#docker-data){: target="_blank"}):
 
 <pre>
 docker run \
@@ -48,7 +48,7 @@ Run your existing Cloud Run job with an environment variable override.
 
 ## (Advanced) Local data management job with Cloud SQL
 
-If you followed [these instructions](/custom_dc/data_cloud.html#run-local) to load data from your local machine into a Cloud SQL database, add `-e SCHEMA_UPDATE_ONLY=true` to the Docker run command from the final step:
+If you followed [these instructions](/custom_dc/data_cloud.html#run-local){: target="_blank"} to load data from your local machine into a Cloud SQL database, add `-e SCHEMA_UPDATE_ONLY=true` to the Docker run command from the final step:
 
 <pre>
 docker run -it \
