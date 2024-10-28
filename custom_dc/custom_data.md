@@ -284,7 +284,7 @@ docker run \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
-> Note: The DATA_RUN_MODE flag is only relevant if you have received a `SQL check failed` error, and is optional to speed up the startup process.
+> Note: The DATA_RUN_MODE flag is only relevant if you have received a `SQL check failed` error, and you wish to minimize the startup time.
 
 In another terminal window, from the root directory, run the following command to start the services container:
 

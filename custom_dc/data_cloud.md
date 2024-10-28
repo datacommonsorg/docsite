@@ -128,7 +128,7 @@ To run the job using the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Optionally, if you have received a `SQL check failed` error when previously trying to start the container, and would like to speed up the startup, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
+1. Optionally, if you have received a `SQL check failed` error when previously trying to start the container, and would like to minimize startup time, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
 When it completes, to verify that the data has been loaded correctly, see the next step.
