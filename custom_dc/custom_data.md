@@ -280,8 +280,11 @@ docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+[-e DATA_RUN_MODE=schemaupdate \]
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
+
+> Note: The DATA_RUN_MODE flag is only relevant if you have received a `SQL check failed` error, and is optional to speed up the startup process.
 
 In another terminal window, from the root directory, run the following command to start the services container:
 

@@ -124,10 +124,11 @@ Now that everything is configured, and you have uploaded your data in Google Clo
 
 Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
-To run the job:
+To run the job using the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
+1. Optionally, if you have received a `SQL check failed` error when previously trying to start the container, and would like to speed up the startup, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
 When it completes, to verify that the data has been loaded correctly, see the next step.
@@ -181,7 +182,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
 
-### Step 3: Run the Docker container
+### Step 3: Run the data management Docker container
 
 From your project root directory, run:
 
@@ -192,10 +193,13 @@ docker run \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
+[-e DATA_RUN_MODE=schemaupdate \]
 gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
 The version is `latest` or `stable`.
+
+> Note: The DATA_RUN_MODE flag is only relevant if you have previously received a `SQL check failed` error, and is optional to speed up the startup process.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
@@ -211,7 +215,7 @@ To run a local instance of the services container, you will need to set all the 
 
 See the section [above](#gen-creds) for procedures.
 
-### Step 3: Run the Docker container
+### Step 3: Run the services Docker container
 
 From the root directory of your repo, run the following command, assuming you are using a locally built image:
 
@@ -228,7 +232,5 @@ docker run -it \
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
-
-
 
 
