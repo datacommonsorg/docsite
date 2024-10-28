@@ -273,6 +273,8 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
+#### Step 1: Start the data management container
+
 In one terminal window, from the root directory, run the following command to start the data management container:
 
 <pre>
@@ -280,11 +282,24 @@ docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-[-e DATA_RUN_MODE=schemaupdate \]
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
-> Note: The DATA_RUN_MODE flag is only relevant if you have received a `SQL check failed` error, and you wish to minimize the startup time.
+##### Start the data management container in schema update mode {#schema-update-mode}
+
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
+
+To do so, add the following line to the above command:
+
+```
+...
+-e DATA_RUN_MODE=schemaupdate \
+...
+```
+
+Once the job has run, go to step 2 below.
+
+#### Step 2: Start the services container
 
 In another terminal window, from the root directory, run the following command to start the services container:
 

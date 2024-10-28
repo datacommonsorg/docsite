@@ -52,8 +52,8 @@ This error indicates that there has been an update to the database schema, and y
 1. Restart the services Docker container.
 
 For full command details, see the following sections:
-- For local services, see [Start the Docker containers with local custom data](/custom_dc/custom_data.html#docker-data).
-- For services running on Google Cloud, [see Start the data management Cloud Run job](/custom_dc/data_cloud#run-job).
+- For local services, see [Start the Docker containers with local custom data](/custom_dc/custom_data.html#schema-update-mode).
+- For services running on Google Cloud, see [Start the data management Cloud Run job](/custom_dc/data_cloud#schema-update-mode).
 
 ## Local build errors
 
