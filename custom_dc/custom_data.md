@@ -292,9 +292,11 @@ If you have tried to start a container, and have received a `SQL check failed` e
 To do so, add the following line to the above command:
 
 ```
+docker run \
 ...
 -e DATA_RUN_MODE=schemaupdate \
 ...
+gcr.io/datcom-ci/datacommons-data:stable
 ```
 
 Once the job has run, go to step 2 below.

@@ -132,7 +132,7 @@ To run the job using the Cloud Console:
 
 When it completes, to verify that the data has been loaded correctly, see the next step.
 
-#### Start the data management container in schema update mode {#schema-update-mode}
+#### Start the data management Cloud Run job in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
 
@@ -140,10 +140,8 @@ To run the job using the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Optionally, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
+1. Optionally, select **Execute** > **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
-
-When it completes, to verify that the data has been loaded correctly, see the next step.
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
@@ -205,7 +203,6 @@ docker run \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-[-e DATA_RUN_MODE=schemaupdate \]
 gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
@@ -213,16 +210,18 @@ The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
-#### Start the data management container in schema update mode
+#### Run the data management Docker container in schema update mode
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
 
 To do so, add the following line to the above command:
 
 ```
+docker run \
 ...
 -e DATA_RUN_MODE=schemaupdate \
 ...
+gcr.io/datcom-ci/datacommons-data:stable
 ```
 
 ## Advanced setup (optional): Access Cloud data from a local services container
