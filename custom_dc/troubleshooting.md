@@ -48,7 +48,7 @@ This indicates that you have not specified API keys in the environment file. Fol
 
 This error indicates that there has been an update to the database schema, and you need to update your data management job to be compatible with the new schema. To update the schema:
 
-1. Rerun the data management Docker container, optionally adding the flag `-e DATA_RUN_MODE=schemaupdate` to the `docker run` command, to minimize startup time.
+1. Rerun the data management Docker container, optionally adding the flag `-e DATA_RUN_MODE=schemaupdate` to the `docker run` command. This updates the database schema without re-importing data or re-building natural language embeddings. 
 1. Restart the services Docker container.
 
 For full command details, see the following sections:
