@@ -118,19 +118,30 @@ Now set environment variables:
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
 
-### Step 2: Start the data management Cloud Run job {#run-job}
+### Step 2: Run the data management Cloud Run job {#run-job}
 
 Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a `datacommons/nl` subfolder).
 
 Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
-To run the job:
+To run the job using the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
 When it completes, to verify that the data has been loaded correctly, see the next step.
+
+#### Run the data management Cloud Run job in schema update mode {#schema-update-mode}
+
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
+
+To run the job using the Cloud Console:
+
+1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
+1. From the list of jobs, click the link of the "datacommons-data" job you created above.
+1. Optionally, select **Execute** > **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
+1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
@@ -181,7 +192,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
 
-### Step 3: Run the Docker container
+### Step 3: Run the data management Docker container
 
 From your project root directory, run:
 
@@ -199,6 +210,20 @@ The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
+#### Run the data management Docker container in schema update mode 
+
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
+
+To do so, add the following line to the above command:
+
+```
+docker run \
+...
+-e DATA_RUN_MODE=schemaupdate \
+...
+gcr.io/datcom-ci/datacommons-data:stable
+```
+
 ## Advanced setup (optional): Access Cloud data from a local services container
 
 For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud, use the following procedures.
@@ -211,7 +236,7 @@ To run a local instance of the services container, you will need to set all the 
 
 See the section [above](#gen-creds) for procedures.
 
-### Step 3: Run the Docker container
+### Step 3: Run the services Docker container
 
 From the root directory of your repo, run the following command, assuming you are using a locally built image:
 
@@ -228,7 +253,5 @@ docker run -it \
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
-
-
 
 
