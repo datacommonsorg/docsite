@@ -282,7 +282,6 @@ docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-[-e DATA_RUN_MODE=schemaupdate \]
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
