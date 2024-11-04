@@ -44,6 +44,7 @@ Failed to create metadata: failed to create secret manager client: google: could
 This indicates that you have not specified API keys in the environment file. Follow procedures in [One-time setup steps](/custom_dc/quickstart.html#setup) to obtain and configure API keys.
 
 {: #schema-check-failed}
+{: #schema-check-failed}
 ### "SQL schema check failed"
 
 This error indicates that there has been an update to the database schema, and you need to update your data management job to be compatible with the new schema. To update the schema:
