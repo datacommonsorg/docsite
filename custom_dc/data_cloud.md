@@ -110,11 +110,22 @@ Now set environment variables:
 
 ### Step 1: Upload data files to Google Cloud Storage
 
+To upload data using the Cloud Console:
+
 1. Go to [https://console.cloud.google.com/storage/browse](https://console.cloud.google.com/storage/browse){: target="_blank"} and select your custom Data Commons bucket.
 1. Navigate to the folder you created in the earlier step.
 1. Click **Upload Files**, and select all your CSV files and `config.json`.
 
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
+
+To upload data using the command line:
+
+1. Navigate to your local "input" directory where your source files are located.
+1. Run the following command:
+
+   <pre>
+   gcloud storage cp config.json *.csv *.mcf gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
+   </pre>
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
 
@@ -130,6 +141,18 @@ To run the job using the Cloud Console:
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
 1. Optionally, if you have received a `SQL check failed` error when previously trying to start the container, and would like to minimize startup time, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
+
+To run the job using the command line:
+
+1. From any local directory, run the following command:
+   <pre>
+   gcloud run jobs execute <var>JOB_NAME</var> [--update-env-vars DATA_RUN_MODE=schemaupdate]
+   </pre>
+   You can use the optional flag in the case that you have received a `SQL check failed` error when previously trying to start the container, and would like to minimize startup time,
+1. To view the progress of the job, run the following command:
+   <pre>
+   gcloud beta run jobs logs tail <var>JOB_NAME</var>
+   </pre>
 
 When it completes, to verify that the data has been loaded correctly, see the next step.
 
