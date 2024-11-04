@@ -43,7 +43,6 @@ Failed to create metadata: failed to create secret manager client: google: could
 
 This indicates that you have not specified API keys in the environment file. Follow procedures in [One-time setup steps](/custom_dc/quickstart.html#setup) to obtain and configure API keys.
 
-
 {: #schema-check-failed}
 ### "SQL schema check failed"
 
