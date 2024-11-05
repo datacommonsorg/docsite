@@ -104,8 +104,7 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying){:
 1. Expand the **Variables and secrets** tab. 
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
-1. Add the same environment variables, with the same names and values as you did when you created the [data management run job](/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable.
-1. Add a variable for the `MAPS_API_KEY` and set it to your Maps API key.
+1. Add the same environment variables and secrets, with the same names and values as you did when you created the [data management run job](/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable. Add a variable or reference a secret for `MAPS_API_KEY`.
 1. When you are finished, click **Done**.
 
    ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot7.png){: width="450"}

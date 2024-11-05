@@ -67,7 +67,18 @@ This stores the data that will be served at run time. The Data Commons data mana
 1. Click **Create**. 
 1. In the **Overview** page for the new instance, record the **Connection name** to set in environment variables in the next step.
 
-### Step 4: Create a Google Cloud Run job
+### Step 4 (optional but recommended): Add secrets to the Google Cloud Secret Manager
+
+Although this is not strictly required, we recommend that you store secrets, including your API keys and DB passwords, in [Google Cloud Secret Manager](https://cloud.google.com/security/products/secret-manager){: target="_blank"}, where they are encrypted in transit and at rest, rather than stored and transmitted in plain text. See also the [Secret Manager](https://cloud.google.com/run/docs/create-jobs){: target="_blank"} documentation for additional options available. 
+
+1. Go to [https://console.cloud.google.com/security/secret-manager](https://console.cloud.google.com/security/secret-manager){: target="_blank"} for your project.
+1. Click **Create secret**.
+1. Enter a name that indicates the purpose of the secret; for example, for the Data Commons API key, name it something like `dc-api-key`.
+1. In the **Secret value** field, enter the value.
+1. Click **Create secret**.
+1. Repeat the same procedure for the Maps API key and and one or more passwords you created for your Cloud SQL database in step 3.
+
+### Step 5: Create a Google Cloud Run job
 
 Since you won't need to customize the data management container, you can simply run an instance of the released container provided by Data Commons team, at [https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data](https://console.cloud.google.com/gcr/images/datcom-ci/global/datacommons-data){: target="_blank"}.
 
@@ -92,13 +103,13 @@ Now set environment variables:
 1. Click **Add variable**.
 1. Add names and values for the following environment variables:
    - `USE_CLOUDSQL`: Set to `true`.
-   - `DC_API_KEY`: Set to your API key.
    - `INPUT_DIR`: Set to the Cloud Storage bucket and input folder that you created in step 2 above. 
    - `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
    - `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
    - `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
    - `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
    - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
+1. If you are not storing API keys and passwords in Google Secret Manager, add variables for `DC_API_KEY` and `DB_PASS`. Otherwise, click **Reference a secret**, in the **Name** field, enter `DC_API_KEY`, and from the **Secret** drop-down field, select the relevant secret you created in step 4. Repeat for `DB_PASS`.
 1. When you finished, click **Done**.
 
    ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
@@ -109,6 +120,8 @@ Now set environment variables:
 ## Manage your data
 
 ### Step 1: Upload data files to Google Cloud Storage
+
+As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. If you want versioned snapshots, we recommend that you create a new subfolder and store the latest version of the files there. If you prefer to simply incrementally update, you can simply overwrite files in a pre-existing folder. Creating new subfolders is slower but safer. Overwriting files is faster but riskier.
 
 To upload data using the Cloud Console:
 
@@ -124,16 +137,16 @@ To upload data using the command line:
 1. Run the following command:
 
    <pre>
-   gcloud storage cp config.json *.csv *.mcf gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
+   gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
    </pre>
 
-As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. To load them into Cloud SQL, you run the Cloud Run job you created above. 
+Once you have uploaded the new data, you must rerun the data management Cloud Run job.
 
 ### Step 2: Run the data management Cloud Run job {#run-job}
 
 Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a `datacommons/nl` subfolder).
 
-Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
+Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job. If you want to 
 
 To run the job using the Cloud Console:
 
