@@ -76,7 +76,7 @@ Although this is not strictly required, we recommend that you store secrets, inc
 1. Enter a name that indicates the purpose of the secret; for example, for the Data Commons API key, name it something like `dc-api-key`.
 1. In the **Secret value** field, enter the value.
 1. Click **Create secret**.
-1. Repeat the same procedure for the Maps API key and and one or more passwords you created for your Cloud SQL database in step 3.
+1. Repeat the same procedure for the Maps API key and any passwords you created for your Cloud SQL database in step 3.
 
 ### Step 5: Create a Google Cloud Run job
 
@@ -107,10 +107,9 @@ Now set environment variables:
    - `OUTPUT_DIR`: Set to the Cloud Storage bucket (and, optionally, output folder) that you created in step 2 above. If you didn't create a separate folder for output, specify the same folder as the `INPUT_DIR`.
    - `CLOUDSQL_INSTANCE`: Set to the full connection name of the instance you created in step 3 above.
    - `DB_USER`: Set to a user you configured when you created the instance in step 3, or to `root` if you didn't create a new user.
-   - `DB_PASS`: Set to the user's or root password you configured when you created the instance in step 3.
    - `DB_NAME`: Only set this if you configured the database name to something other than `datacommons`.
 1. If you are not storing API keys and passwords in Google Secret Manager, add variables for `DC_API_KEY` and `DB_PASS`. Otherwise, click **Reference a secret**, in the **Name** field, enter `DC_API_KEY`, and from the **Secret** drop-down field, select the relevant secret you created in step 4. Repeat for `DB_PASS`.
-1. When you finished, click **Done**.
+1. When you are finished, click **Done**.
 
    ![Cloud Run job](/assets/images/custom_dc/gcp_screenshot3.png){: width="450" }
 
@@ -129,16 +128,15 @@ To upload data using the Cloud Console:
 1. Navigate to the folder you created in the earlier step.
 1. Click **Upload Files**, and select all your CSV files and `config.json`.
 
-> **Note:** Do not upload the local `datacommons` subdirectory or its files.
-
 To upload data using the command line:
 
 1. Navigate to your local "input" directory where your source files are located.
 1. Run the following command:
-
    <pre>
    gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
    </pre>
+
+> **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
 Once you have uploaded the new data, you must rerun the data management Cloud Run job.
 
@@ -146,7 +144,7 @@ Once you have uploaded the new data, you must rerun the data management Cloud Ru
 
 Now that everything is configured, and you have uploaded your data in Google Cloud Storage, you simply have to start the Cloud Run data management job to convert the CSV data into tables in the Cloud SQL database and generate the embeddings (in a `datacommons/nl` subfolder).
 
-Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job. If you want to 
+Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
 To run the job using the Cloud Console:
 
@@ -159,26 +157,34 @@ To run the job using the command line:
 
 1. From any local directory, run the following command:
    <pre>
-   gcloud run jobs execute <var>JOB_NAME</var> [--update-env-vars DATA_RUN_MODE=schemaupdate]
+   gcloud run jobs execute <var>JOB_NAME</var>
    </pre>
-   You can use the optional flag in the case that you have received a `SQL check failed` error when previously trying to start the container, and would like to minimize startup time,
 1. To view the progress of the job, run the following command:
    <pre>
    gcloud beta run jobs logs tail <var>JOB_NAME</var>
    </pre>
 
-When it completes, to verify that the data has been loaded correctly, see the next step.
+When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
 
-#### Run the data management Cloud Run job in schema update mode {#schema-update-mode}
+#### Optional: Run the data management Cloud Run job in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
 To run the job using the Cloud Console:
-
 1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
 1. From the list of jobs, click the link of the "datacommons-data" job you created above.
 1. Optionally, select **Execute** > **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
 1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
+
+To run the job using the command line:
+1. From any local directory, run the following command:
+   <pre>
+   gcloud run jobs execute <var>JOB_NAME</var> --update-env-vars DATA_RUN_MODE=schemaupdate
+   </pre>
+1. To view the progress of the job, run the following command:
+   <pre>
+   gcloud beta run jobs logs tail <var>JOB_NAME</var>
+   </pre>
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
