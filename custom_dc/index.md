@@ -82,7 +82,7 @@ If you already have an account with another cloud provider, we can provide a con
 
 In terms of development time and effort, to launch a site with custom data in compatible format and no UI customization, you can expect it to take less than three weeks. If you need substantial UI customization it may take up to four months.
 
-The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a small dataset, we have found the cost comes out to roughly $100 per year. You can get more precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing){: target="_blank"}.
+The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. You can get precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing){: target="_blank"}.
 
 {: #workflow}
 ## Recommended workflow

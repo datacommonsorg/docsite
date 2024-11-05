@@ -104,8 +104,7 @@ See also [Deploying to Cloud Run](https://cloud.google.com/run/docs/deploying){:
 1. Expand the **Variables and secrets** tab. 
 1. Click the **Variables and Secrets** tab.
 1. Click **Add variable**.
-1. Add the same environment variables, with the same names and values as you did when you created the [data management run job](/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable.
-1. Add a variable for the `MAPS_API_KEY` and set it to your Maps API key.
+1. Add the same environment variables and secrets, with the same names and values as you did when you created the [data management run job](/custom_dc/data_cloud.html#env-vars) You can omit the `INPUT_DIR` variable. Add a variable or reference a secret for `MAPS_API_KEY`.
 1. When you are finished, click **Done**.
 
    ![Cloud Run service](/assets/images/custom_dc/gcp_screenshot7.png){: width="450"}
@@ -122,7 +121,17 @@ Click **Create** to kick off the deployment.  Click the **Logs** tab to see the 
 
 ## Manage the service
 
-Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. To do so:
+Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. 
+
+To restart the service using the Cloud Console:
 
 1. Go to the [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} page, click on the service you created above, and click **Edit & Deploy Revision**. 
-1. Select a new container and click **Deploy**.
+1. Select a new container image and click **Deploy**.
+
+To restart the service using the command line:
+
+From any local directory, run the following command:
+
+<pre>
+gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var>
+</pre>
