@@ -166,7 +166,7 @@ To run the job using the command line:
 
 When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
 
-#### Optional: Run the data management Cloud Run job in schema update mode {#schema-update-mode}
+#### (Optional) Run the data management Cloud Run job in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
@@ -246,17 +246,14 @@ docker run \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-[-e DATA_RUN_MODE=schemaupdate \]
 gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
 The version is `latest` or `stable`.
 
-> Note: The DATA_RUN_MODE flag is only relevant if you have previously received a `SQL check failed` error, and is optional to speed up the startup process.
-
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
-#### Run the data management Docker container in schema update mode 
+#### (Optional) Run the data management Docker container in schema update mode 
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
 
