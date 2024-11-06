@@ -110,7 +110,13 @@ Here is the general spec for the JSON file:
     "<var>FILE_NAME1</var>": {  
       "entityType": "<var>ENTITY_PROPERTY</var>",  
       "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
-      "provenance": "<var>NAME</var>"  
+      "provenance": "<var>NAME</var>",
+      "observationProperties" {
+        "unit": "<var>MEASUREMENT_UNIT</var>",
+        "observationPeriod": "<var>OBSERVATION_PERIOD</var>",
+        "scalingFactor": "<var>DENOMINATOR_VALUE</var>",
+        "measurementMethod": "<var>METHOD</var>"
+      }
     },  
     "<var>FILE_NAME2</var>": {  
      ...  
@@ -179,6 +185,16 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 : Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, `WorldDevelopmentIndicators` provenance (or dataset) is from the `WorldBank` source.
 
 You must specify the provenance details under `sources`.`provenances`; this field associates one of the provenances defined there to this file.
+
+`observationProperties`
+
+: Optional: Additional information about each contained in the CSV file. Currently, four properties are supported:
+- [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
+- [`measurementPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
+- [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
+- [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`. 
+
+Note that you cannot mix different property values in a single CSV file. If you have observations using different properties, you must put them in separate CSV files.
 
 ### Variables
 
@@ -257,6 +273,8 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
+#### Step 1: Start the data management container
+
 In one terminal window, from the root directory, run the following command to start the data management container:
 
 <pre>
@@ -266,6 +284,24 @@ docker run \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
+
+##### Start the data management container in schema update mode {#schema-update-mode}
+
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
+
+To do so, add the following line to the above command:
+
+```
+docker run \
+...
+-e DATA_RUN_MODE=schemaupdate \
+...
+gcr.io/datcom-ci/datacommons-data:stable
+```
+
+Once the job has run, go to step 2 below.
+
+#### Step 2: Start the services container
 
 In another terminal window, from the root directory, run the following command to start the services container:
 
