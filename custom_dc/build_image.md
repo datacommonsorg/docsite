@@ -41,66 +41,64 @@ If you want to pick up the latest prebuilt version, do the following:
    ```
 
 ## Build a local image {#build-repo}
-
 You will need to build a local image in any of the following cases:
 - You are making substantive changes to the website UI
 - You are ready to deploy your custom site to GCP
 
-Rather than building from "head", that is, the very latest changes in Github, which may not have been tested, we recommend that you use the tested "release" equivalent of the stable Docker image. This release uses the tag `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable){: target="_blank"}.
+Rather than building from the master branch, which includes the very latest changes in Github, that may not have been tested, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
 
 > **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
 - You have a Github account and project.
-- You have created a fork off the base Data Commons `website` repo (https://github.com/datacommonsorg/website){: target="_blank"} and a remote that points to it, and that you will push to that fork. 
-
+- You have created a fork off the base Data Commons `website` repo [https://github.com/datacommonsorg/website](https://github.com/datacommonsorg/website){: target="_blank"}. 
 
 ### Sync a local workspace to the stable release
 
-If you are using a version control system other than Github, you can download a ZIP or TAR file from [https://github.com/datacommonsorg/website/releases/tag/customdc_stable](https://github.com/datacommonsorg/website/releases/tag/customdc_stable){: target="_blank"}. 
+#### Clone the stable branch only
 
-In Github, use the following procedure.
+Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch. If you are using Github and want to use the same directory and files you previously cloned, skip to the next section.
 
-1. If you want to reuse the root directory you previously created and cloned, skip to step 3. 
-If you want to create a new source directory and start from scratch, clone the repo up to the stable release tag:
-
+1. Run the following command:
    <pre>
-   git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
+   git clone https://github.com/datacommonsorg/website --b customdc_stable --single-branch  [<var>DIRECTORY</var>]
    </pre>
-1. Change to the root directory:
-
+   This creates a new local branch called `customdc_stable` set to track the Data Commons repo branch. 
+1. To verify, run:
    <pre>
    cd website | cd <var>DIRECTORY</var>
+   git branch -vv
    </pre>
+   You should see output like the following:
 
-1. Create a new branch synced to the stable release:
+   ```
+   * customdc_stable 83732891 [origin/customdc_stable] 2024-11-06 Custom DC stable release (#4710)
+   ```
+   Rather than developing on this default branch, we recommend that you create another branch, as described in the next step.
 
+#### Create a remote and sync a local branch to the stable branch
+This procedure assumes that you are using Github and have already created a forked repo of `datacommonsorg/website`.
+
+1. From the `website` or other directory where you have cloned the code, create a remote that points to your fork, and only uses the stable branch:
    <pre>
-   git checkout -b <var>BRANCH_NAME</var> customdc_stable
+   git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
    </pre>
-
-1. To verify that your local repo is at the same version of the code, run the following command:
-
+1. Create a new branch synced to the stable branch:
+   <pre>
+   git checkout -b <var>BRANCH_NAME</var> origin/customdc_stable
+   </pre>
+1. Verify that the branch is set up correctly:
    ```
-   git log --oneline --graph
+   git log --oneline
    ```
-   You should see output similar to the following:
-
+   You should see output like the following:
    ```
-   * 52635c8 (grafted, HEAD -> branch1, tag: customdc_stable) ...
-   ...
+   commit 8373289160e8ea2ce831b448b20d40bfaa6bd6e0 (HEAD -> mynewbranch, origin/customdc_stable, myremote/customdc_stable)
    ```
-
-   Verify that the last commit in the output matches that listed in https://github.com/datacommonsorg/website/releases/tag/customdc_stable.
-
-1. Press `q` to exit the output log.
-
 1. Create and update the necessary submodules:
-
    ```
    git submodule foreach git pull origin customdc_stable
    git submodule update --init --recursive
    ```
    You should see output like the following:
-
    ```
    Submodule 'import' (https://github.com/datacommonsorg/import.git) registered for path 'import'
    Submodule 'mixer' (https://github.com/datacommonsorg/mixer.git) registered for path 'mixer'
@@ -108,15 +106,14 @@ If you want to create a new source directory and start from scratch, clone the r
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
    ```
 1. Update all other files:
-
    ```
    git pull origin customdc_stable
    ```
-   You will likely see the following output:
-
+   
+   You should see output like the following:
    ```
-   From https://github.com/datacommonsorg/website 
-   * tag               customdc_stable -> FETCH_HEAD
+   From https://github.com/datacommonsorg/website
+   * branch              customdc_stable -> FETCH_HEAD
    Already up to date.
    ```
 
