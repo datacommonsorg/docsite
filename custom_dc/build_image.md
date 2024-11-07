@@ -95,7 +95,7 @@ This procedure assumes that you are using Github, with the following setup:
    ```
    83732891 (HEAD -> mynewbranch, origin/customdc_stable) 2024-11-06 Custom DC stable release (#4710)
    ```
-   Press `q` to quit.
+   Press `q` to exit the output log.
 
 1. Create and update the necessary submodules:
    ```
