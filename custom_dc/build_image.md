@@ -49,7 +49,7 @@ Rather than building from the master branch, which includes the very latest chan
 
 > **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
 - You have a Github account and project.
-- You have created a fork off the base Data Commons `website` repo [https://github.com/datacommonsorg/website](https://github.com/datacommonsorg/website){: target="_blank"}. 
+- You have created a fork off the base Data Commons `website` repo [https://github.com/datacommonsorg/website](https://github.com/datacommonsorg/website){: target="_blank"}, which you will use to develop with. 
 
 ### Sync a local workspace to the stable release
 
@@ -75,11 +75,11 @@ Use this procedure if you are not using Github, or if you are using Github and w
    Rather than developing on this default branch, we recommend that you create another branch, as described in the next step.
 
 #### Create a remote and sync a local branch to the stable branch
-This procedure assumes that you are using Github and have already created a forked repo of `datacommonsorg/website`.
+This procedure assumes that you are using Github.
 
-1. From the `website` or other directory where you have cloned the code, create a remote that points to your fork, and only uses the stable branch:
+1. From the `website` or other directory where you have cloned the code, create a remote that points to the Data Commons repo, and only uses the stable branch:
    <pre>
-   git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
+   git remote add -t customdc_stable <var>REMOTE_NAME</var> https://github.com/datacommonsorg/website
    </pre>
 1. Create a new branch synced to the stable branch:
    <pre>
