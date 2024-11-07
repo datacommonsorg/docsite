@@ -78,9 +78,13 @@ This procedure assumes that you are using Github, with the following setup:
 - You are using the default `origin` as the remote that points to the `datacommons.org/website` repo.
 - You have created a forked repo, and a remote that pushes to it, that you use for development.
 
-1. Create a new branch synced to the stable branch:
+1. To ensure your fork is synced only to the stable branch when you push to it, create a remote as follows:
    <pre>
    cd website | cd <var>DIRECTORY</var>
+   git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
+   </pre>
+1. Create a new branch synced to the stable branch:
+   <pre>
    git checkout -b <var>BRANCH_NAME</var> origin/customdc_stable
    </pre>
 1. Verify that the branch is set up correctly:
@@ -114,10 +118,6 @@ This procedure assumes that you are using Github, with the following setup:
    * branch              customdc_stable -> FETCH_HEAD
    Already up to date.
    ```
-1. To ensure your fork is synced only to the stable branch when you push to it, create a remote as follows:
-   <pre>
-   git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
-   </pre>
 
 ### Build the repo locally
 
