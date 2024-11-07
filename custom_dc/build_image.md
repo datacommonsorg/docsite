@@ -47,9 +47,7 @@ You will need to build a local image in any of the following cases:
 
 Rather than building from the master branch, which includes the very latest changes in Github, that may not have been tested, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
 
-> **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github, and assume the following:
-- You have a Github account and project.
-- You have created a fork off the base Data Commons `website` repo [https://github.com/datacommonsorg/website](https://github.com/datacommonsorg/website){: target="_blank"}, which you will use to develop with. 
+> **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github.
 
 ### Sync a local workspace to the stable release
 
@@ -75,12 +73,11 @@ Use this procedure if you are not using Github, or if you are using Github and w
    Rather than developing on this default branch, we recommend that you create another branch, as described in the next step.
 
 #### Create a remote and sync a local branch to the stable branch
-This procedure assumes that you are using Github.
 
-1. From the `website` or other directory where you have cloned the code, create a remote that points to the Data Commons repo, and only uses the stable branch:
-   <pre>
-   git remote add -t customdc_stable <var>REMOTE_NAME</var> https://github.com/datacommonsorg/website
-   </pre>
+This procedure assumes that you are using Github, with the following setup:
+- You are using the default `origin` as the remote that points to the `datacommons.org/website` repo.
+- You have created a forked repo, and a remote that pushes to it, that you use for development.
+
 1. Create a new branch synced to the stable branch:
    <pre>
    git checkout -b <var>BRANCH_NAME</var> origin/customdc_stable
@@ -91,11 +88,12 @@ This procedure assumes that you are using Github.
    ```
    You should see output like the following:
    ```
-   commit 8373289160e8ea2ce831b448b20d40bfaa6bd6e0 (HEAD -> mynewbranch, origin/customdc_stable, myremote/customdc_stable)
+   83732891 (HEAD -> mynewbranch, origin/customdc_stable) 2024-11-06 Custom DC stable release (#4710)
    ```
+   Press `q` to quit.
+
 1. Create and update the necessary submodules:
    ```
-   git submodule foreach git pull origin customdc_stable
    git submodule update --init --recursive
    ```
    You should see output like the following:
@@ -109,13 +107,17 @@ This procedure assumes that you are using Github.
    ```
    git pull origin customdc_stable
    ```
-   
    You should see output like the following:
    ```
    From https://github.com/datacommonsorg/website
    * branch              customdc_stable -> FETCH_HEAD
    Already up to date.
    ```
+1. To ensure your fork is synced only to the stable branch when you push to it, create a remote as follows:
+   <pre>
+   cd website | cd <var>DIRECTORY</var>
+   git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
+   </pre>
 
 ### Build the repo locally
 
@@ -144,6 +146,7 @@ docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
