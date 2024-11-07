@@ -55,7 +55,7 @@ Rather than building from the master branch, which includes the very latest chan
 
 Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch. If you are using Github and want to use the same directory and files you previously cloned, skip to the next section.
 
-1. Run the following command:
+1. From your `website` directory or wherever you have cloned the code previously, run the following command:
    <pre>
    git clone https://github.com/datacommonsorg/website --b customdc_stable --single-branch  [<var>DIRECTORY</var>]
    </pre>
@@ -115,7 +115,6 @@ This procedure assumes that you are using Github, with the following setup:
    ```
 1. To ensure your fork is synced only to the stable branch when you push to it, create a remote as follows:
    <pre>
-   cd website | cd <var>DIRECTORY</var>
    git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
    </pre>
 
