@@ -55,7 +55,7 @@ Rather than building from the master branch, which includes the very latest chan
 
 Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch. If you are using Github and want to use the same directory and files you previously cloned, skip to the next section.
 
-1. From your `website` directory or wherever you have cloned the code previously, run the following command:
+1. Run the following command:
    <pre>
    git clone https://github.com/datacommonsorg/website --b customdc_stable --single-branch  [<var>DIRECTORY</var>]
    </pre>
@@ -80,6 +80,7 @@ This procedure assumes that you are using Github, with the following setup:
 
 1. Create a new branch synced to the stable branch:
    <pre>
+   cd website | cd <var>DIRECTORY</var>
    git checkout -b <var>BRANCH_NAME</var> origin/customdc_stable
    </pre>
 1. Verify that the branch is set up correctly:
