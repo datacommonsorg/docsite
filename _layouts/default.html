@@ -99,6 +99,11 @@
             {% endunless %}
             {{ content }}
           </div>
+          <div style="text-align:center" id="last-update">
+            <p>
+             Page last updated: {% last_modified_at %}
+           </p>
+         </div>
           <div style="text-align:center" id="feedback-form">
              <p>
               <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf23mC17idzIpzg6v4frCh8iWTl9dxeb4iSTVgo0WiBvnv5ZA/viewform?usp=pp_url&entry.871991796={{ page.url }}">
