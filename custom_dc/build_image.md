@@ -47,17 +47,15 @@ You will need to build a local image in any of the following cases:
 
 Rather than building from the master branch, which includes the very latest changes in Github, that may not have been tested, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
 
-> **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide procedures for Github.
-
-### Sync a local workspace to the stable release
+> **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide some procedures for Github.
 
 #### Clone the stable branch only
 
-Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch. If you are using Github and want to use the same directory and files you previously cloned, skip to the next section.
+Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch.
 
 1. Run the following command:
    <pre>
-   git clone https://github.com/datacommonsorg/website --b customdc_stable --single-branch  [<var>DIRECTORY</var>]
+   git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
    </pre>
    This creates a new local branch called `customdc_stable` set to track the Data Commons repo branch. 
 1. To verify, run:
@@ -70,32 +68,29 @@ Use this procedure if you are not using Github, or if you are using Github and w
    ```
    * customdc_stable 83732891 [origin/customdc_stable] 2024-11-06 Custom DC stable release (#4710)
    ```
-   Rather than developing on this default branch, we recommend that you create another branch, as described in the next step.
+   Rather than developing on this default branch, we recommend that you create another branch.
 
-#### Create a remote and sync a local branch to the stable branch
+#### Sync code to the stable branch
 
-This procedure assumes that you are using Github, with the following setup:
-- You are using the default `origin` as the remote that points to the `datacommons.org/website` repo.
-- You have created a forked repo, and a remote that pushes to it, that you use for development.
+The following procedure uses Github. If you are using another version control system, use the appropriate methods for updating submodules and syncing.
 
-1. To ensure your fork is synced only to the stable branch when you push to it, create a remote as follows:
+1. Switch to the directory where you have cloned the Data Commons doe:
    <pre>
    cd website | cd <var>DIRECTORY</var>
-   git remote add -t customdc_stable <var>REMOTE_NAME</var> <var>FORK_URL</var>
    </pre>
-1. Create a new branch synced to the stable branch:
-   <pre>
-   git checkout -b <var>BRANCH_NAME</var> origin/customdc_stable
-   </pre>
-1. Verify that the branch is set up correctly:
+
+1. Update files:
    ```
-   git log --oneline
+   git pull origin customdc_stable
    ```
+   Note that`origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
+
    You should see output like the following:
    ```
-   83732891 (HEAD -> mynewbranch, origin/customdc_stable) 2024-11-06 Custom DC stable release (#4710)
+   From https://github.com/datacommonsorg/website
+   * branch              customdc_stable -> FETCH_HEAD
+   Already up to date.
    ```
-   Press `q` to exit the output log.
 
 1. Create and update the necessary submodules:
    ```
@@ -107,16 +102,6 @@ This procedure assumes that you are using Github, with the following setup:
    Submodule 'mixer' (https://github.com/datacommonsorg/mixer.git) registered for path 'mixer'
    Submodule path 'import': checked out '7d197583b6ad0dfe0568532f919482527c004a8e'
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
-   ```
-1. Update all other files:
-   ```
-   git pull origin customdc_stable
-   ```
-   You should see output like the following:
-   ```
-   From https://github.com/datacommonsorg/website
-   * branch              customdc_stable -> FETCH_HEAD
-   Already up to date.
    ```
 
 ### Build the repo locally
