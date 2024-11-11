@@ -4,6 +4,9 @@ title: Python
 nav_order: 40
 parent: API
 has_children: true
+redirect_from:
+    /tutorials/
+    /tutorials/index
 ---
 
 # Data Commons Python API
