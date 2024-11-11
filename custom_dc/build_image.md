@@ -45,11 +45,11 @@ You will need to build a local image in any of the following cases:
 - You are making substantive changes to the website UI
 - You are ready to deploy your custom site to GCP
 
-Rather than building from the master branch, which includes the very latest changes in Github, that may not have been tested, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
+Building from the master branch includes the very latest changes in Github, that may not have been tested. Instead, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
 
 > **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide some procedures for Github.
 
-#### Clone the stable branch only
+### Clone the stable branch only
 
 Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch.
 
@@ -70,7 +70,7 @@ Use this procedure if you are not using Github, or if you are using Github and w
    ```
    Rather than developing on this default branch, we recommend that you create another branch.
 
-#### Sync code to the stable branch
+### Sync code to the stable branch
 
 The following procedure uses Github. If you are using another version control system, use the appropriate methods for updating submodules and syncing.
 
@@ -83,7 +83,7 @@ The following procedure uses Github. If you are using another version control sy
    ```
    git pull origin customdc_stable
    ```
-   Note that`origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
+   Note that g`origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
 
    You should see output like the following:
    ```
