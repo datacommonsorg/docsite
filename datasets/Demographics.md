@@ -46,11 +46,6 @@ Israel Demographics, Health, Economy statistics for Israel at country, district 
 #### [Ireland Census](https://www.cso.ie/en/statistics/)
 Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
 
-### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
-
-#### [Colombia Census](https://www.dane.gov.co/index.php)
-Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
-
 ### [DataMeet](https://datameet.org/)
 
 #### [DataMeet Maps](http://projects.datameet.org/maps)
@@ -128,17 +123,11 @@ India National Family Health Survey - Data on population dynamics and health ind
 #### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
 India poverty statistics - percentage of people below poverty line.
 
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
-
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)
 Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
 [Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
-
-#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
-Demographics, Health, Agriculture and Education Statistics for Nigeria.
 
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.

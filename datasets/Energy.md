@@ -11,21 +11,6 @@ parent: Data Sources
 * TOC
 {:toc}
 
-### [India Energy Dashboard](https://niti.gov.in/edm/)
-The India Energy Dashboard is an open energy data portal for India that provides state-wise production and consumption of Electricity, Renewables, Coal, Oil and Gas.
-
-#### [India Energy Production and Consumption by States](https://niti.gov.in/edm/#stateOverview)
-Historical data on energy generated and fuel quantiy consumed by different states in India.
-[Disclaimer](https://niti.gov.in/edm/#help)
-
-### [Stanford University](https://www.stanford.edu/)
-
-#### [DeepSolar](http://web.stanford.edu/group/deepsolar/home)
-Location and size of solar photovoltaic panels in the US based on satellite imagery.
-
-[Paper for Citation](https://www.cell.com/joule/fulltext/S2542-4351(18)30570-1).
-
-
 ### [U.S. Energy Information Administration (EIA)](https://www.eia.gov/)
 
 #### [Commercial Buildings Energy Consumption Survey (CBECS)](https://www.eia.gov/consumption/commercial/)
