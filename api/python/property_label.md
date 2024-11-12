@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Property Label
-nav_order: 4
+title: Get property labels of nodes
+nav_order: 36
 parent: Python
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve property labels of nodes

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Place Statistics - Single Value
-nav_order: 7
+title: Get a single statistical value for a place
+nav_order: 33
 parent: Python
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve statistics value for a place

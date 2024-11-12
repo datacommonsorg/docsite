@@ -1,9 +1,9 @@
 ---
 layout: default
-title: SPARQL
-nav_order: 2
+title: Query using SPARQL
+nav_order: 38
 parent: Python
-grand_parent: API
+grand_parent: Retrieve statistics value for a place
 ---
 
 # Query the Data Commons knowledge graph using SPARQL

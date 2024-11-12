@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Time Series Table as pd.DataFrame
-nav_order: 2
+title: Get time series DataFrame
+nav_order: 42
 parent: Pandas
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve time series DataFrame

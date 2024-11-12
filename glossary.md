@@ -1,8 +1,9 @@
 ---
 layout: default
 title: Glossary
-nav_order: 130
+nav_order: 4
 published: true
+parent: How to use Data Commons
 ---
 
 # Glossary of Common Terms

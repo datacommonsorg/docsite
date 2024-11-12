@@ -1,8 +1,8 @@
 ---
 layout: default
 title: REST (V2)
-nav_order: 5
-parent: API
+nav_order: 11
+parent: API - Query data programmatically
 has_children: true
 published: true
 ---

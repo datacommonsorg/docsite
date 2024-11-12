@@ -2,6 +2,7 @@
 layout: default
 title: Key concepts and common tasks
 nav_order: 3
+parent: How to use Data Commons
 ---
 
 {: .no_toc}
