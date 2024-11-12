@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get node properties
-nav_order: 13
+nav_order: 3
 parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true

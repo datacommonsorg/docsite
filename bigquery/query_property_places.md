@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Query observations and properties of places
-nav_order: 72
+nav_order: 2
 parent: Query with SQL/BigQuery
 ---
 

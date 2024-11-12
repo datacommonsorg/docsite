@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Ranking chart
-nav_order: 67
+nav_order: 7
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/ranking

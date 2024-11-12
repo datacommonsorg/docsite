@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get places within other places
-nav_order: 33
+nav_order: 3
 parent: Python
 grand_parent: API - Query data programmatically
 ---

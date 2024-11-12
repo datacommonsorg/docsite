@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Slider control
-nav_order: 69
+nav_order: 9
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/slider

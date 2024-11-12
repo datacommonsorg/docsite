@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Scatter plot
-nav_order: 68
+nav_order: 8
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/scatter

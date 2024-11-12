@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Query places
-nav_order: 71
+nav_order: 1
 parent: Query with SQL/BigQuery
 ---
 

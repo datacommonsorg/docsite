@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Bar chart
-nav_order: 61
+nav_order: 1
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/bar

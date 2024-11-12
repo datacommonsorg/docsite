@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Troubleshooting
-nav_order: 16
+nav_order: 6
 parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true

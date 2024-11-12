@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Line chart
-nav_order: 64
+nav_order: 4
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/line

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Highlight tile
-nav_order: 63
+nav_order: 3
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/highlight

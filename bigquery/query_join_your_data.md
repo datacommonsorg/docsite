@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Join with external data
-nav_order: 74
+nav_order: 4
 parent: Query with SQL/BigQuery
 ---
 

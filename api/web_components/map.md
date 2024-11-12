@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Map chart
-nav_order: 65
+nav_order: 5
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/map

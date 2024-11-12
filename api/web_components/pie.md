@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Pie chart
-nav_order: 66
+nav_order: 6
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/pie

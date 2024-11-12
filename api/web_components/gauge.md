@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Gauge chart
-nav_order: 62
+nav_order: 2
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/gauge
