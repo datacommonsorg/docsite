@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Pie Chart
-nav_order: 6
-parent: Web Components
-grand_parent: API
+title: Pie chart
+nav_order: 66
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/pie
 ---
 
-# Data Commons Pie Chart Web Component
+# Data Commons pie chart Web Component
 
 [Data Commons Web Component](/api/web_components/) for visualizing multiple statistical variables around a single place on a pie/donut chart.
 

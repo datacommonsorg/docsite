@@ -2,10 +2,8 @@
 layout: default
 title: Sheets South American latitudes
 parent: Tutorials
-parent_url: /api/sheets/tutorials
-grand_parent: Google Sheets
-grand_parent_url: /api/sheets
-show_in_nav: false
+grand_parent: Analyze data with Google Sheets
+nav_exclude: true
 ---
 
 # Obtain latitude information for country capitals in South America

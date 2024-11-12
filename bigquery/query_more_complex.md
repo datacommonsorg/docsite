@@ -1,7 +1,7 @@
 ---
 layout: default
 title: More complex queries
-nav_order: 3
+nav_order: 73
 parent: Query with SQL/BigQuery
 ---
 

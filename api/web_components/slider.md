@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Slider Control
-nav_order: 9
-parent: Web Components
-grand_parent: API
+title: Slider control
+nav_order: 69
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/slider
 ---
 
-# Data Commons Slider Web Component
+# Data Commons slider Web Component
 
 [Data Commons Web Component](/api/web_components/) for controlling the date in [datacommons-map](./map.md) or 
 [datacommons-bar](./bar.md).

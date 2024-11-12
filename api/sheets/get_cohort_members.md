@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Get members of a cohort
-nav_order: 7
-parent: Google Sheets
-grand_parent: API
+nav_order: 56
+parent: Analyze data with Google Sheets
 ---
 
 # Retrieve members of a cohort

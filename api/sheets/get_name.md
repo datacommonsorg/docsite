@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Get names associated with DCIDs
-nav_order: 3
-parent: Google Sheets
-grand_parent: API
+nav_order: 52
+parent: Analyze data with Google Sheets
 ---
 
 # Return the names associated with DCIDs

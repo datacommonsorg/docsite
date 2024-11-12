@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Map Chart
-nav_order: 5
-parent: Web Components
-grand_parent: API
+title: Map chart
+nav_order: 65
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/map
 ---
 
-# Data Commons Map Web Component
+# Data Commons map chart Web Component
 
 [Data Commons Web Component](/api/web_components) for visualizing a single statistical variables around one or more places on a map.
 

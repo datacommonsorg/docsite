@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Data Sources
-nav_order: 110
-has_children: true
+title: Data sources
+nav_order: 6
+parent: How to use Data Commons
+has_children: false
 ---
 
 # Data Sources

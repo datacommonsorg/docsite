@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Line Chart
-nav_order: 4
-parent: Web Components
-grand_parent: API
+title: Line chart
+nav_order: 64
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/line
 ---
 
-# Data Commons Line Chart Web Component
+# Data Commons line chart Web Component
 
 [Data Commons Web Component](/api/web_components/) for visualizing one or more statistical variables about a number of places as a line chart.
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Query with SQL/BigQuery
-nav_order: 30
+nav_order: 70
 has_children: true
 ---
 
