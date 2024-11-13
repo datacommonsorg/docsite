@@ -17,15 +17,35 @@ This page shows you how to format and load your own custom data into your local 
 
 ## Overview
 
-Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure.
+Custom Data Commons requires that you provide your data in a specific schema, format, and file structure. We strongly recommend that, before proceeding, you familiarize yourself with the basics of the Data Commons data model by reading through [Key concepts](/data_model.html), in particular, _entities_, _statistical variables_, and _observations_.
+
+At a high level, you need to provide the following:
 
 - All data must be in CSV format, using the schema described below.
 - You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
-- All CSV files and the JSON file _must_ be in the same directory
+- Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
+- All CSV files, and JSON (and MCF, if needed) files _must_ be in the same directory; for example:
+
+```
+input-directory/
+├─ data1.csv
+├─ data2.csv
+|─ data3.csv
+├─ config.json
+├─ statvardefs.mcf
+```
+The following sections walk you through the process of setting up your data.
+
+## Step 1: Identify your statistical variables
+
+
+
+
+## Prepare the CSV files {#prepare-csv}
 
 Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
 
-## Prepare the CSV files {#prepare-csv}
+
 
 Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](/glossary.html#dcid)s.
 
