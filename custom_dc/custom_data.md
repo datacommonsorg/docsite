@@ -26,24 +26,45 @@ At a high level, you need to provide the following:
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
 - All CSV files, and JSON (and MCF, if needed) files _must_ be in the same directory; for example:
 
-```
-input-directory/
-├─ data1.csv
-├─ data2.csv
-|─ data3.csv
-├─ config.json
-├─ statvardefs.mcf
-```
 The following sections walk you through the process of setting up your data.
 
 ## Step 1: Identify your statistical variables
 
+Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
+Statistical variables must follow a certain model; in particular, they must represent any breakdown properties and even encode those properties in their name. To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example)::
 
+| CITY | YEAR | SCHOOL_TYPE | SCHOOL_LEVEL | COUNT |
+|------|------|----------------|-------|
+| San Francisco | 2023 | public | elementary | 300 |
+| San Francisco | 2023 | public | middle | 300 |
+| San Francisco | 2023 | public | secondary | 200 |
+| San Francisco | 2023 | private | elementary | 100 |
+| San Francisco | 2023 | private | middle | 100 |
+| San Francisco | 2023 | private | secondary | 50 |
+| San Jose | 2023 | public | elementary | 400 |
+| San Jose | 2023 | public | middle | 400 |
+| San Jose | 2023 | public | secondary | 300 |
+| San Jose | 2023 | private | elementary | 200 |
+| San Jose | 2023 | private | middle | 200 |
+| San Jose | 2023 | private | secondary | 100 |
+
+Although the properties of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they cannot be present in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
+- `CountPublicElementary`
+- `CountPublicMiddle`
+- `CountPublicSecondary`
+- `CountPrivateElementary`
+- `CountPrivateMiddle`
+- `CountPrivateSecondary`
+
+If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
+
+# Step 2: Choose between "implicit" and "explicit" schema definition
+
+Custom Data Commons supports two ways of importing your data:
+- 
 
 ## Prepare the CSV files {#prepare-csv}
-
-Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
 
 
 
