@@ -2,7 +2,7 @@
 layout: default
 title: Papers
 has_children: false
-nav_exclude: true
+nav_order: 100
 ---
 
 - [Data Commons](http://arxiv.org/abs/2309.13054) overview paper &mdash; background on the motivation, development, and architecture of the Data Commons initiative
