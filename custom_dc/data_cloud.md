@@ -141,9 +141,7 @@ As you are iterating on changes to the source CSV and JSON files, you can re-upl
 <ol>
 <li>Navigate to your local "input" directory where your source files are located.</li>
 <li>Run the following command:
-   <pre>
-   gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
-   </pre>
+   <pre>gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></pre>
 </li>
 </ol>
 </div>
@@ -159,23 +157,32 @@ Now that everything is configured, and you have uploaded your data in Google Clo
 
 Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
-To run the job using the Cloud Console:
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'consolea')">Cloud Console
+  </button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'clia')">gcloud CLI
+  </button>
+</div>
 
-1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
-1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Optionally, if you have received a `SQL check failed` error when previously trying to start the container, and would like to minimize startup time, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
-1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
+<div id="consolea" class="api-tabcontent">
+<ol>
+<li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
+<li>From the list of jobs, click the link of the "datacommons-data" job you created above.</li>
+<li>Optionally, if you have received a <code>SQL check failed</code> error when previously trying to start the container, and would like to minimize startup time, click <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
+<li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress. </li>
+</ol>
+</div>
 
-To run the job using the command line:
-
-1. From any local directory, run the following command:
-   <pre>
-   gcloud run jobs execute <var>JOB_NAME</var>
-   </pre>
-1. To view the progress of the job, run the following command:
-   <pre>
-   gcloud beta run jobs logs tail <var>JOB_NAME</var>
-   </pre>
+<div id="clia" class="api-tabcontent">
+<ol>
+<li>From any local directory, run the following command:
+   <pre>gcloud run jobs execute <var>JOB_NAME</var></pre></li>
+<li>To view the progress of the job, run the following command:
+   <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
+</li>
+</ol>
+</div>
+<script src="/assets/js/api-doc-tabs.js"></script>
 
 When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
 

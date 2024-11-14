@@ -65,15 +65,13 @@ An API key is required to authorize requests from your site to the base Data Com
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
 
-  <pre>
-   git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
-  </pre>
-  If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
+   <pre>git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]</pre>
+   If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
 When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
 <pre>
-cd website
+cd website | <var>DIRECTORY</var>
 </pre>
 
 ### Set environment variables {#env-vars}

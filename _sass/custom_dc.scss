@@ -9,10 +9,16 @@
   white-space: pre-wrap;
 }
 
-#console.api-tabcontent, #cli.api-tabcontent { 
+#console.api-tabcontent, #cli.api-tabcontent, #clia.api-tabcontent, #consolea.api-tabcontent,  {
   font-family: inherit !important;
   font-size: inherit !important;
   color: inherit !important;
   padding-bottom: inherit !important;
-  margin-bottom: inherit !important;
+  margin-bottom: 5px;
+  white-space: inherit !important;
+  line-height: inherit !important;
+  ol {
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
 }
