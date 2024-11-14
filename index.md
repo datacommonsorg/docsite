@@ -3,7 +3,7 @@ layout: default
 title: How to use Data Commons
 nav_order: 1
 has_children: true
-redirect_from:gi /how_to_use
+redirect_from: /how_to_use
 ---
 
 # How to use Data Commons
