@@ -174,7 +174,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 `entityType`
 
-: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the <code>entityType</code> field. The importer tries to resolve entities to DCIDs of that type. In most cases, the <code>entityType</code> will be a supported place type; see [Place types](../place_types.html) for a list.
+: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the `entityType` field. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](../place_types.html) for a list.
 
 `ignoreColumns`
 
@@ -184,7 +184,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 : Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, `WorldDevelopmentIndicators` provenance (or dataset) is from the `WorldBank` source.
 
-You must specify the provenance details under `sources`.`provenances`; this field associates one of the provenances defined there to this file.
+You must specify the provenance details under `sources.provenances`; this field associates one of the provenances defined there to this file.
 
 `observationProperties`
 
