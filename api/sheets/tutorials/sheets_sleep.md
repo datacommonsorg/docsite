@@ -2,10 +2,8 @@
 layout: default
 title: Sheets CDC 500 cities sleep health
 parent: Tutorials
-parent_url: /api/sheets/tutorials
-grand_parent: Google Sheets
-grand_parent_url: /api/sheets
-show_in_nav: false
+grand_parent: Analyze data with Google Sheets
+nav_exclude: true
 ---
 
 # Analyze the CDC 500 cities for sleep health

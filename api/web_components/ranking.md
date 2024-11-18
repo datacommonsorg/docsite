@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Ranking Chart
+title: Ranking chart
 nav_order: 7
-parent: Web Components
-grand_parent: API
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/ranking
 ---
 
-# Data Commons Ranking Chart Web Component
+# Data Commons ranking chart Web Component
 
 [Data Commons Web Component](/api/web_components/) for listing statistical variables around a single place in descending or ascending order.
 

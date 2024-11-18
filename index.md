@@ -1,59 +1,67 @@
 ---
 layout: default
-title: What is Data Commons?
+title: How to use Data Commons
 nav_order: 1
+has_children: true
+redirect_from: /how_to_use
 ---
 
-{: .no_toc}
-# What is Data Commons?
+# How to use Data Commons
 
-* TOC
-{:toc}
+Data Commons offers many different ways to consume its data: 
 
-## A single source for publicly available statistical data
+- [Interact with the website](#interact), datacommons.org
+- [Learn about the data sources](#learn)
+- [Query the base data directly](#query), interactively and programmatically
+- [Embed data visualizations](#embed) in your own site
+- [Download data in CSV format](#download), for offline analysis
 
-In keeping with Google's mission to organize the world's information and make it universally accessible and useful, Data Commons offers a unified view of large-scale, public, statistical data, created by organizations across the world. Data Commons enables researchers, consumers, journalists, students, public policy and other key decision-makers to get high-level analytical answers to data questions, at the click of a button, and in your own words. 
+There are also several options for providing new data to Data Commons:
+- [Contribute data to the base Data Commons](#contribute-data)
+- [Host your own data site](#custom) using Data Commons' web framework 
 
-Data Commons is not a repository of public datasets (such as Kaggle or Google Cloud BiqQuery Public Datasets). Instead, it is a single unified data source created by normalizing and aligning schemas and references to the same entities (such as cities, counties, organizations, etc.) across different datasets. Behind the scenes, Data Commons does the tedious work of finding data, understanding the data collection methodologies, cleaning the data, reconciling different formats and schemas, figuring out how to merge data about the same entity from different sources, and so on -- saving organizations months of tedious, costly and error-prone work. 
+## Interact with the datacommons.org website {#interact}
 
-For example, if you wanted to get [population stats, poverty and unemployment rates of a specific county](https://datacommons.org/place/geoId/06081){: target="_blank"}, you don't need to go to three different datasets; instead, you can get the data from a single data source, using one schema, and one API. Data Commons is also used by Google Search whenever it can provide the most relevant statistical results to a query. For example, the top Google Search result for the query "what is the life expectancy of Vietnam" returns a Data Commons timeline graph and a link to the [Place page](https://datacommons.org/place/country/VNM?utm_medium=explore&mprop=lifeExpectancy&popt=Person&hl=en){: target="_blank"} for Vietnam:
+For quick analysis, use the search query bar on the [home page](https://datacommons.org/){: target="_blank"} or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/visualization#visType=timeline){: target="_blank"}, [Scatter](https://datacommons.org/tools/visualization#visType%3Dscatter){: target="_blank"}, and [Map](https://datacommons.org/tools/visualization#visType%3Dmap){: target="_blank"} explorers.
 
-![Google Search query result]({{site.url}}/assets/images/dc/dcoverview1.png){:width="640"}
+## Learn about the data in Data Commons {#learn}
 
+To find out what data is available in Data Commons, see the [Data sources](/datasets) pages, and check out the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
 
+## Query the Data Commons data directly {#query}
 
-## A standards-based knowledge graph, schema, and APIs
+There are several options for directly querying the data, without accessing the datacommons.org website, both interactive and programmatic:
 
-Data Commons needs to be able to stitch together data from disparate data sets in different formats and encodings, in a wide range of domains, from time series about demographics and employment, to hurricanes, to protein structures. To do so, it models the world as a [knowledge graph](https://blog.google/products/search/introducing-knowledge-graph-things-not/){: target="_blank"} consisting of nodes, or entities, with properties (attributes) and relationships between them forming directed edges between the nodes. The data model is based on the [Schema.org](https://www.schema.org){: target="_blank"} framework, an open framework used by over 40M websites; its schema is an extension of [Schema.org](https://www.schema.org/docs/schemas.html){: target="_blank"} constructs, introducing both general constructs (such as intervals) and values for common properties. 
+- **APIs**: Data Commons publishes REST, Python, Pandas, and SPARQL [APIs](/api/index.html). These APIs support both low-level exploration of the knowledge graph as well as higher-level statistical analysis of data. You can call them from any application that supports REST protocols. 
 
-The Data Commons [Knowledge Graph browser](https://datacommons.org/browser/){: target="_blank"} allows you to peek into the structure of the graph, and the APIs allow you to directly query the parts of the graph (e.g. nodes, triples, etc.).
+    The [Python](/api/python)/ and [Pandas](/api/pandas/) APIs provide convenient wrappers, that you can call programatically or interactively, for example, from a Python virtual environment shell or from [Google Colab](https://colab.sandbox.google.com/){: target="_blank"}. We have developed a set of [Google Colab tutorials](/tutorials/index.html) to help you get started with analysis.  
 
-Importantly, numeric time series data are first-class entities, with "(statistical) variable" being an entity that represents a metric definition, and "observation" being an entity that represents the value of a variable at a specific time. The [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} allows you to browse existing variables, and the [Visualization tools](https://datacommons.org/tools/visualization){: target="_blank"} provide aggregated views of this data over time, geography, or 2-dimensional space. The APIs also allow you to directly query observations. 
+    Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring the Python APIs and data, currently in use at MIT.
 
-To learn more about the data model and key concepts, see [Key concepts](data_model.md).
+- **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
 
-## An open-source project and website platform
+## Embed Data Commons visualizations in your website {#embed}
 
-Data Commons is a community-based resource, where individuals and organizations can contribute data, code, documentation and educational materials. Source code, schemas, and documentation are publicly available at [https://github.com/datacommonsorg](https://github.com/datacommonsorg){: target="_blank"}. 
+Data Commons provides a [Web components API](/api/web_components/index.html) that makes it a snap to embed various chart elements in your own site, such as scatter plots, maps, pie charts, and many more, using the base Data Commons data.
 
-Google has partnerships with the [United Nations](https://unstats.un.org/UNSDWebsite/undatacommons/sdgs){: target="_blank"}, the [World Health Organization](https://unstats.un.org/UNSDWebsite/undatacommons/areas/1471028664){: target="_blank"}, [One.org](https://datacommons.one.org/){: target="_blank"}, [TechSoup](https://publicdata.techsoup.org/){: target="_blank"}, and many other non-profit, academic, and governmental organizations across the world. We are always looking to expand data coverage and welcome contributions from data owners around the world.
+## Download data for offline analysis {#download}
 
-In addition, Data Commons makes its data and visualizations accessible to any website through [REST](/api/rest/v2/index.html) and [Web components](/api/web_components/index.html) APIs. 
+Data Commons provides tools for downloading its data in CSV format. To preview and download for selected places and statistical variables:
 
-Finally, Data Commons provides an open-source, [customizable implementation](/custom_dc/index.html), for organizations that want to host their own version of a Data Commons website, using their own data and user interfaces. 
+- Use the standalone [Data Download Tool](https://datacommons.org/tools/download){: target="_blank"}
+- Click the **Download** link in any of the results pages of the visualization tools.	
 
-## Key features
+## Contribute data to datacommons.org {#contribute-data}
 
-Here are just some of the unique features of Data Commons:
+We are always looking to expand the data available from the base Data Commons site, datacommons.org. If you are interested in contributing data, please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSf_kZ13bmzXvgEbim0OXeAVsTQYsIhN8_o9ekdbjKoeFjfvRA/viewform){: target="_blank"}.
 
--  Reliable data from official sources such as governmental agencies and NGOs 
--  Out-of-the-box visualizations, such as timeline charts, scatter plots, and maps.
--  Natural-language query interface offers a Google Search-like experience, allowing users to answer high-level queries with low latency
--  Massive scale, with over 100 datasets and 250 billion data points
--  Support for interactive and programmatic querying, ad hoc and bulk data downloads.
--  Easily customizable website implementation that can be adapted for specific data needs
--  Integration with the Google Search stack 
+## Develop and host a Data Commons site with your own data {#custom}
 
-## Learn more
+If you would like to leverage Data Commons' analytical and visualization tools, and natural-language query interface for your own data and website, we provide a reference website implementation you can customize to meet your needs. See [Build your own Data Commons](/custom_dc/index.html) for details.
 
-For more background on why and how Data Commons was built, see the [Data Commons Overview](https://arxiv.org/abs/2309.13054){: target="_blank"} paper.
+## Contribute to the open-source initiative {#contribute-project}
+
+We also welcome code, documentation, and educational contributions to the Data Commons open-source project. See [Contribute to Data Commons](/contributing/index.html) for the myriad ways you can help improve Data Commons!
+
+---
+l

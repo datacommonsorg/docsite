@@ -2,7 +2,7 @@
 layout: default
 title: Data Commons Schema-less Guide
 parent: Data Imports
-published: true
+nav_exclude: true
 ---
 
 # Data Commons Schema-less Guide

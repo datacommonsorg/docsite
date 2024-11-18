@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Place Types
-nav_order: 100
+title: Place types
+nav_order: 5
+parent: How to use Data Commons
 ---
 
 # Place types

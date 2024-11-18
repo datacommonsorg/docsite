@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Places
+title: Query places
 nav_order: 1
 parent: Query with SQL/BigQuery
 ---

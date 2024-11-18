@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Triple
-nav_order: 3
+title: Get triples associated with nodes
+nav_order: 32
 parent: Python
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve triples associated with nodes

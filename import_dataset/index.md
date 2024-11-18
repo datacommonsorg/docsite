@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Data Imports
-nav_order: 120
-has_children: true
+has_children: false
+nav_exclude: true
 ---
 
 # Data Commons Data Imports
