@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Crime
-nav_order: 3
-parent: Data Sources
+parent: Data sources
+nav_exclude: true
 ---
 
 {:.no_toc}

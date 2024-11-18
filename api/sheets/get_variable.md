@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Get statistical variable values
-nav_order: 5
-parent: Google Sheets
-grand_parent: API
+nav_order: 54
+parent: Analyze data with Google Sheets
 ---
 
 # Retrieve the value of a statistical variable at a given place and time

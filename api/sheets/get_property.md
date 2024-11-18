@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Get node property values
-nav_order: 6
-parent: Google Sheets
-grand_parent: API
+nav_order: 55
+parent: Analyze data with Google Sheets
 ---
 
 # Retrieve node property values

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Pandas
-nav_order: 50
-parent: API
+nav_order: 40
+parent: API - Query data programmatically
 has_children: true
 ---
 

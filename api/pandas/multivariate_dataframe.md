@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Multivariate Table as pd.DataFrame
+title: Get multivariate DataFrame
 nav_order: 3
 parent: Pandas
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve multivariate DataFrame

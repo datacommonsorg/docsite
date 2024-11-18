@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Places within a Place
-nav_order: 6
+title: Get places within other places
+nav_order: 3
 parent: Python
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve places contained within other places

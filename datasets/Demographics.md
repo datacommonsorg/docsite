@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Demographics
-nav_order: 4
-parent: Data Sources
+parent: Data sources
+nav_exclude: true
 ---
 
 {:.no_toc}

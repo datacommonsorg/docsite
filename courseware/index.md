@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Courseware
-nav_order: 60
+nav_order: 299
 has_children: true
 ---
 
