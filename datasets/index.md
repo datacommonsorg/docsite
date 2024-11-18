@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Data Sources
+title: Data sources
 nav_order: 6
 has_children: false
 redirect_from:
@@ -9,7 +9,6 @@ redirect_from:
     - /datasets/sustainability
     - /datasets/united_states
     - /datasets/Disasters
-
 ---
 
 # Data Sources
