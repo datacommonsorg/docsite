@@ -5,6 +5,8 @@ nav_order: 5
 parent: API
 has_children: true
 published: true
+redirect_from: 
+  - / api/rest/v2/getting_started
 ---
 
 {:.no_toc}
