@@ -1,4 +1,4 @@
 ---
 layout: redirect
-redirect: https://datacommons.org/tools/statvar
+redirect_to: https://datacommons.org/tools/statvar
 ---
