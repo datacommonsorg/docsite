@@ -146,8 +146,6 @@ As you are iterating on changes to the source CSV and JSON files, you can re-upl
   </div>
 </div>
 
-
-
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
 Once you have uploaded the new data, you must rerun the data management Cloud Run job.
@@ -187,6 +185,7 @@ Every time you upload new input CSV or JSON files to Google Cloud Storage, you w
 
 When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
 
+{:.no_toc}
 #### (Optional) Run the data management Cloud Run job in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
@@ -270,8 +269,7 @@ If you are prompted to install the Cloud Resource Manager API, press `y` to acce
 
 From your project root directory, run:
 
-<pre>
-docker run \
+<pre>docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
@@ -284,6 +282,7 @@ The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
+{:.no_toc}
 #### (Optional) Run the data management Docker container in schema update mode 
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
