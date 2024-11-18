@@ -123,15 +123,27 @@ Click **Create** to kick off the deployment.  Click the **Logs** tab to see the 
 
 Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. 
 
-To restart the service using the Cloud Console:
+<div class="tab-group">
+  <ul class="tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="tab-content">
+      <div class="active">
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page, click on the service you created above, and click <b>Edit & Deploy Revision</b></li>. 
+           <li>Select a new container image and click <b>Deploy</b>.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>From any local directory, run the following command:
+            <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre>
+         </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
-1. Go to the [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} page, click on the service you created above, and click **Edit & Deploy Revision**. 
-1. Select a new container image and click **Deploy**.
 
-To restart the service using the command line:
-
-From any local directory, run the following command:
-
-<pre>
-gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var>
-</pre>
+<script src="/assets/js/customdc-doc-tabs.js"></script>

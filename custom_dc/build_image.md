@@ -83,7 +83,7 @@ The following procedure uses Github. If you are using another version control sy
    ```
    git pull origin customdc_stable
    ```
-   Note that g`origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
+   Note that `origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
 
    You should see output like the following:
    ```
