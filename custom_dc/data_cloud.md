@@ -122,19 +122,31 @@ Now set environment variables:
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. If you want versioned snapshots, we recommend that you create a new subfolder and store the latest version of the files there. If you prefer to simply incrementally update, you can simply overwrite files in a pre-existing folder. Creating new subfolders is slower but safer. Overwriting files is faster but riskier.
 
-To upload data using the Cloud Console:
+<div class="tab-group">
+  <ul class="tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="tab-content">
+      <div class="active">
+           <ol>
+        <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> and select your custom Data Commons bucket.</li>
+        <li>Navigate to the folder you created in the earlier step.</li>
+        <li>Click <b>Upload Files</b>, and select all your CSV files and <code>config.json</code>.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>Navigate to your local "input" directory where your source files are located.</li>
+         <li>Run the following command:
+             <pre>gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></pre>
+          </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
-1. Go to [https://console.cloud.google.com/storage/browse](https://console.cloud.google.com/storage/browse){: target="_blank"} and select your custom Data Commons bucket.
-1. Navigate to the folder you created in the earlier step.
-1. Click **Upload Files**, and select all your CSV files and `config.json`.
-
-To upload data using the command line:
-
-1. Navigate to your local "input" directory where your source files are located.
-1. Run the following command:
-   <pre>
-   gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
-   </pre>
+<script src="/assets/js/customdc-doc-tabs.js"></script>
 
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
