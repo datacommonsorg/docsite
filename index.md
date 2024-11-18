@@ -1,7 +1,6 @@
 ---
 layout: default
 title: How to use Data Commons
-title: How to use Data Commons
 nav_order: 1
 has_children: true
 redirect_from: /how_to_use
