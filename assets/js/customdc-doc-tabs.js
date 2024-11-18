@@ -1,8 +1,8 @@
-const tabGroups = document.querySelectorAll('.tab-group');
+const tabGroups = document.querySelectorAll('.gcp-tab-group');
 
 tabGroups.forEach(group => {
-  const headers = group.querySelectorAll('.tab-headers li');
-  const contents = group.querySelectorAll('.tab-content > div');
+  const headers = group.querySelectorAll('.gcp-tab-headers li');
+  const contents = group.querySelectorAll('.gcp-tab-content > div');
 
   headers.forEach((header, index) => {
     header.addEventListener('click', () => {

@@ -122,12 +122,12 @@ Now set environment variables:
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. If you want versioned snapshots, we recommend that you create a new subfolder and store the latest version of the files there. If you prefer to simply incrementally update, you can simply overwrite files in a pre-existing folder. Creating new subfolders is slower but safer. Overwriting files is faster but riskier.
 
-<div class="tab-group">
-  <ul class="tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Cloud Console</li>
     <li>gcloud CLI</li>
   </ul>
-  <div class="tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
            <ol>
         <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> and select your custom Data Commons bucket.</li>
@@ -158,12 +158,12 @@ Now that everything is configured, and you have uploaded your data in Google Clo
 
 Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
-<div class="tab-group">
-  <ul class="tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Cloud Console</li>
     <li>gcloud CLI</li>
   </ul>
-  <div class="tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
            <ol>
            <li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
@@ -191,12 +191,12 @@ When it completes, to verify that the data has been loaded correctly, see [Inspe
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
-<div class="tab-group">
-  <ul class="tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Cloud Console</li>
     <li>gcloud CLI</li>
   </ul>
-  <div class="tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
            <ol>
            <li> Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>

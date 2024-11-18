@@ -1,38 +1,38 @@
 
-.tab-group {
+.gcp-tab-group {
   margin-bottom: 20px;
   border: 1px solid #ccc;
 }
 
-.tab-headers {
+.gcp-tab-headers {
   list-style: none;
   padding: 0;
   margin: 0;
   border-bottom: 1px solid #ccc;
 }
 
-.tab-headers li {
+.gcp-tab-headers li {
   display: inline-block;
   padding: 10px 20px;
   cursor: pointer;
 
 }
 
-.tab-headers .active {
+.gcp-tab-headers .active {
   border-bottom: 4px solid  #1e87f0;
   font-weight: bold;
 }
 
-.tab-content div {
+.gcp-tab-content div {
   display: none;
   padding: 20px;
 }
 
-.tab-content .active {
+.gcp-tab-content .active {
   display: block;
   padding: 20px;
 }
 
-.tab-content > * {
+.gcp-tab-content > * {
   display: initial;
 }

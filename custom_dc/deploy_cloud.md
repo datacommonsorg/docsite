@@ -123,12 +123,12 @@ Click **Create** to kick off the deployment.  Click the **Logs** tab to see the 
 
 Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. 
 
-<div class="tab-group">
-  <ul class="tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Cloud Console</li>
     <li>gcloud CLI</li>
   </ul>
-  <div class="tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
            <ol>
            <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page, click on the service you created above, and click <b>Edit & Deploy Revision</b></li>. 
