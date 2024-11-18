@@ -126,7 +126,8 @@ To upload and deploy the container to the Cloud, see [Deploy services to Google 
 
 Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
 
-<pre>docker run -it \
+<pre>  
+docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \

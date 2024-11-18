@@ -11,7 +11,7 @@ parent: Build your own Data Commons
 This page shows you how to store your custom data in Google Cloud, and create the data management container as a Google Cloud Run job. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 * TOC
-{: toc}
+{:toc}
 
 ## Overview
 
@@ -28,11 +28,9 @@ Alternatively, if you have a very large data set, you may find it faster to stor
 
 ## One-time setup steps {#setup}
 
-
 ### Step 1: Choose a location {#location}
 
 While you are testing, you can start with a single Google Cloud region; to be close to the base Data Commons data, you can use `us-central1`. However, once you launch, you may want to host your data and application closer to where your users will be. In any case, you should use the _same region_ for your Google Cloud SQL instance, the Google Cloud Storage buckets, and the [Google Cloud Run service](deploy_cloud.md) where you will host the site. For a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}.
-
 
 ### Step 2: Create a Google Cloud Storage bucket
 
@@ -48,7 +46,6 @@ This stores the CSV and JSON files that you will upload whenever your data chang
 
    **Note:** If you plan to run the data management container locally, you only need to create a single folder to hold the output files.
 1. Record the folder path(s) as <code>gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></code> for setting the `INPUT_DIR` and `OUTPUT_DIR` environment variables below. 
-
 
 ### Step 3: Create a Google Cloud SQL instance
 
@@ -149,6 +146,8 @@ As you are iterating on changes to the source CSV and JSON files, you can re-upl
   </div>
 </div>
 
+
+
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
 Once you have uploaded the new data, you must rerun the data management Cloud Run job.
@@ -188,7 +187,6 @@ Every time you upload new input CSV or JSON files to Google Cloud Storage, you w
 
 When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
 
-{:.no_toc}
 #### (Optional) Run the data management Cloud Run job in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
@@ -286,7 +284,6 @@ The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
-{:.no_toc}
 #### (Optional) Run the data management Docker container in schema update mode 
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
