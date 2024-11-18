@@ -62,6 +62,3 @@ If you would like to leverage Data Commons' analytical and visualization tools, 
 ## Contribute to the open-source initiative {#contribute-project}
 
 We also welcome code, documentation, and educational contributions to the Data Commons open-source project. See [Contribute to Data Commons](/contributing/index.html) for the myriad ways you can help improve Data Commons!
-
----
-l
