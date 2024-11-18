@@ -1,9 +1,15 @@
 ---
 layout: default
-title: Data sources
+title: Data Sources
 nav_order: 6
-parent: How to use Data Commons
 has_children: false
+redirect_from:
+    - /datasets/covid19
+    - /datasets/international
+    - /datasets/sustainability
+    - /datasets/united_states
+    - /datasets/Disasters
+
 ---
 
 # Data Sources
