@@ -323,9 +323,7 @@ If you need to troubleshoot custom data, it is helpful to inspect the contents o
 
 To do so, from a terminal window, open the database:
 
-<pre>  
-sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
-</pre>
+<pre>sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db</pre>
 
 This starts the interactive SQLite shell. To view a list of tables, at the prompt type `.tables`. The relevant table is `observations`.
 

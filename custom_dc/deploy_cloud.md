@@ -46,16 +46,14 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 
 1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>LOCATION</var>-docker-pkg.dev</code>, where the _LOCATION_ is the region you have selected in the repository creation step previously; for example, `us-central1`.
 
-    <pre>  
-    gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev
+   <pre>gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev
    </pre>
 
    When prompted to confirm creating the credentials file, click `Y` to accept.
 
 1. Create a package from the source image created in step 1:
 
-    <pre> 
-   docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \  
+   <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \  
    <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
@@ -64,8 +62,7 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
   
 1. Push the image to the registry:
 
-   <pre>
-   docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+   <pre>docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
 This will take several minutes to upload.
@@ -131,7 +128,7 @@ Every time you make changes to the code and release a new Docker artifact, or re
   <div class="tab-content">
       <div class="active">
            <ol>
-           <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page, click on the service you created above, and click <b>Edit & Deploy Revision</b></li>. 
+           <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page, click on the service you created above, and click <b>Edit & Deploy Revision</b>.</li> 
            <li>Select a new container image and click <b>Deploy</b>.</li>
         </ol>
       </div>

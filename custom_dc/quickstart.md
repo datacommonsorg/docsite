@@ -64,17 +64,12 @@ An API key is required to authorize requests from your site to the base Data Com
 
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
-
-  <pre>
-   git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
-  </pre>
-  If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
+     <pre>git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]</pre>
+   If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
 When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
-<pre>
-cd website
-</pre>
+<pre>cd website</pre>
 
 ### Set environment variables {#env-vars}
 
@@ -168,14 +163,14 @@ Once the container has executed all the functions in the scripts, it shuts down.
 1. Open a new terminal window.
 1. From the root directory, run the following command to start the services Docker container:
 
-```shell
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
---env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-services:stable
-```
+  ```shell
+  docker run -it \
+  -p 8080:8080 \
+  -e DEBUG=true \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
+  gcr.io/datcom-ci/datacommons-services:stable
+  ```
 
 > Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every `docker` invocation with `sudo`.
 
@@ -194,19 +189,14 @@ If you need to restart the services for any reason, do the following:
 1. Rerun the `docker run` command as described in [Start the services](#start-services).
 
 Tip: If you close the terminal window in which you started the Docker services container, you can kill it as follows:
-
 1. Open another terminal window, and from the root directory, get the Docker container ID.
 
-  ```shell
-  docker ps
-  ```
+   ```shell
+    docker ps
+    ```
   The `CONTAINER ID` is the first column in the output.
-
 1. Run:
-
-  <pre>
-  docker kill <var>CONTAINER_ID</var>
-	</pre>
+    <pre>docker kill <var>CONTAINER_ID</var></pre>
 
 ## View the local website
 
