@@ -39,43 +39,6 @@ There are several options for directly querying the data, without accessing the 
     Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring the Python APIs and data, currently in use at MIT.
 
 - **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
-has_children: true
-redirect_from: /how_to_use
----
-
-# How to use Data Commons
-
-Data Commons offers many different ways to consume its data: 
-
-- [Interact with the website](#interact), datacommons.org
-- [Learn about the data sources](#learn)
-- [Query the base data directly](#query), interactively and programmatically
-- [Embed data visualizations](#embed) in your own site
-- [Download data in CSV format](#download), for offline analysis
-
-There are also several options for providing new data to Data Commons:
-- [Contribute data to the base Data Commons](#contribute-data)
-- [Host your own data site](#custom) using Data Commons' web framework 
-
-## Interact with the datacommons.org website {#interact}
-
-For quick analysis, use the search query bar on the [home page](https://datacommons.org/){: target="_blank"} or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/visualization#visType=timeline){: target="_blank"}, [Scatter](https://datacommons.org/tools/visualization#visType%3Dscatter){: target="_blank"}, and [Map](https://datacommons.org/tools/visualization#visType%3Dmap){: target="_blank"} explorers.
-
-## Learn about the data in Data Commons {#learn}
-
-To find out what data is available in Data Commons, see the [Data sources](/datasets) pages, and check out the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
-
-## Query the Data Commons data directly {#query}
-
-There are several options for directly querying the data, without accessing the datacommons.org website, both interactive and programmatic:
-
-- **APIs**: Data Commons publishes REST, Python, Pandas, and SPARQL [APIs](/api/index.html). These APIs support both low-level exploration of the knowledge graph as well as higher-level statistical analysis of data. You can call them from any application that supports REST protocols. 
-
-    The [Python](/api/python)/ and [Pandas](/api/pandas/) APIs provide convenient wrappers, that you can call programatically or interactively, for example, from a Python virtual environment shell or from [Google Colab](https://colab.sandbox.google.com/){: target="_blank"}. We have developed a set of [Google Colab tutorials](/tutorials/index.html) to help you get started with analysis.  
-
-    Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring the Python APIs and data, currently in use at MIT.
-
-- **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
 
 ## Embed Data Commons visualizations in your website {#embed}
 
