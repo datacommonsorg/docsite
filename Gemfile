@@ -18,6 +18,7 @@ group :jekyll_plugins do
   gem "jekyll-tabs"
   gem "jekyll-relative-links"
   gem 'jekyll-redirect-from'
+  gem "jekyll-last-modified-at"
 end
 
 gem "webrick", "~> 1.8"

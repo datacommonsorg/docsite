@@ -26,6 +26,10 @@ plugins:
   - jekyll-redirect-from
   - jekyll-tabs
   - jekyll-relative-links
+  - jekyll-last-modified-at
+
+last-modified-at:
+  date-format: '%B %d, %Y'
 
 sass:
   style: compressed

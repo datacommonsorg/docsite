@@ -31,11 +31,6 @@ Ireland Demographics, Health and Economy data from Central Statistics Office(CSO
 #### [Food Resources in California](https://controllerdata.lacity.org/dataset/Food-Resources-in-California/v2mg-qsxf/data)
 This dataset contains a list of resources such food pantries, food banks, and other food distribution sites throughout the state of California. The data is current as of May 1, 2020. Due to the coronavirus pandemic, many food pantries may change their hours or close temporarily. Please contact a food pantry prior to visiting them to confirm their operating hours and ensure you are in their service area.
 
-### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
-
-#### [Colombia Census](https://www.dane.gov.co/index.php)
-Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
-
 ### [Dartmouth Atlas Project](https://www.dartmouthatlas.org/)
 
 #### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
@@ -117,17 +112,11 @@ Population Census and Statistics for Argentina.
 #### [India National Family Health Survey](https://ndap.niti.gov.in/dataset/6822)
 India National Family Health Survey - Data on population dynamics and health indicators as well as data on emerging issues in health and family welfare and associated domains.
 
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
-
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)
 Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
 [Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
-
-#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
-Demographics, Health, Agriculture and Education Statistics for Nigeria.
 
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
@@ -257,14 +246,6 @@ Data Commons includes variables related to demographics, energy, health, labor, 
 
 #### [Coronavirus Disease (COVID-19) Dashboard](https://covid19.who.int/)
 The World Health Organization publishes national COVID-19 cases and death counts for countries across the world. Data Commons imports this data on a daily basis.
-
-
-#### [Global Health Observatory](https://www.who.int/data/gho/data/indicators/indicators-index)
-Data Commons imports variables about a variety of health indicators at a country level.
-
-
-#### [WHO Data](https://www.who.int/data)
-The UN curated this import of data from the World Health Organization.
 
 Data made available under [CC BY-NC-SA 3.0 IGO](https://www.who.int/about/policies/publishing/copyright).
 
