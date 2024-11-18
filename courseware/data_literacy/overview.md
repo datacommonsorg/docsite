@@ -4,6 +4,8 @@ title: Overview
 nav_order: 1
 parent: Data Literacy with Data Commons
 grand_parent: Courseware
+redirect_from:
+    /courseware/data_literacy/index
 ---
 
 # Data Literacy with Data Commons

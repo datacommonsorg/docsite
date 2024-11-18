@@ -1,14 +1,14 @@
 <html>
   <head>
       <meta charset="utf-8"/>
-      <meta http-equiv="refresh" content="1;url={{ page.redirect }}"/>
-      <link rel="canonical" href="{{ page.redirect }}"/>
+      <meta http-equiv="refresh" content="0;url={{ page.redirect.to }}"/>
+      <link rel="canonical" href="{{ page.redirect.to }}"/>
       <script type="text/javascript">
-              window.location.href = "{{ page.redirect }}"
+              window.location.href = "{{ page.redirect.to }}"
       </script>
       <title>Page Redirection</title>
   </head>
   <body>
-  The content has moved. If you are not redirected automatically, please follow <a href='{{ page.redirect }}'>this link</a>.
+  The content has moved. If you are not redirected automatically, please follow <a href='{{ page.redirect.to }}'>this link</a>.
   </body>
   </html>
