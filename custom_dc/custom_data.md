@@ -25,6 +25,8 @@ At a high level, you need to provide the following:
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
 
+You can have as many CSV and MCF files as you like, and they can be stored in a single directory together, or in multiple subdirectories. There must only be one JSON config file, in the top-level input directory.
+
 The following sections walk you through the process of setting up your data.
 
 ## Step 1: Identify your statistical variables
@@ -164,7 +166,7 @@ geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
 
-### Prepare the JSON config file
+### Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide 3 specifications:
 - the input files location and entity type
@@ -231,6 +233,39 @@ The following fields are specific to the variable-per-column format:
     ![group_screenshot](/assets/images/custom_dc/customdc_screenshot9.png){: width="250"}
 
 The other fields are explained in the [Data config file specification reference](#json-ref)
+
+## Prepare your data using implicit schema
+
+In this section, we will walk you through a concrete example of how to go about setting up your CSV, MCF and JSON files.
+
+### Write the MCF file
+
+
+
+### Prepare the CSV data files {#prepare-csv}
+
+As mentioned above, CSV files using implicit must contain these columns -- and _only_ these columns, no others -- in this order:
+
+_ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
+
+The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
+
+> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
+
+The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
+
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable for you.
+
+The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
+
+```csv
+country,year,percentage_of_population,percentage_of_population_female,percentage_of_population_male
+Afghanistan,2019,7.5,1.2,13.4
+Angola,2016,,1.8,14.3
+Albania,2018,,4.5,35.7
+United Arab Emirates,2018,6.3,1.6,11.1
+```
+Note that the data is missing values for the total population percentage for Angola and Albania.
 
 
 
