@@ -46,16 +46,14 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 
 1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>LOCATION</var>-docker-pkg.dev</code>, where the _LOCATION_ is the region you have selected in the repository creation step previously; for example, `us-central1`.
 
-    <pre>  
-    gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev
+    <pre>gcloud auth configure-docker <var>LOCATION</var>-docker.pkg.dev
    </pre>
 
    When prompted to confirm creating the credentials file, click `Y` to accept.
 
 1. Create a package from the source image created in step 1:
 
-    <pre> 
-   docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \  
+    <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \  
    <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
@@ -64,8 +62,7 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
   
 1. Push the image to the registry:
 
-   <pre>
-   docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
+   <pre>docker push <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
 
 This will take several minutes to upload.
@@ -123,15 +120,27 @@ Click **Create** to kick off the deployment.  Click the **Logs** tab to see the 
 
 Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](/custom_dc/data_cloud.html#run-job), you need to restart the service as well. 
 
-To restart the service using the Cloud Console:
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page, click on the service you created above, and click <b>Edit & Deploy Revision</b></li>. 
+           <li>Select a new container image and click <b>Deploy</b>.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>From any local directory, run the following command:
+            <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre>
+         </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
-1. Go to the [https://console.cloud.google.com/run/](https://console.cloud.google.com/run/){: target="_blank"} page, click on the service you created above, and click **Edit & Deploy Revision**. 
-1. Select a new container image and click **Deploy**.
 
-To restart the service using the command line:
-
-From any local directory, run the following command:
-
-<pre>
-gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var>
-</pre>
+<script src="/assets/js/customdc-doc-tabs.js"></script>
