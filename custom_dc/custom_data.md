@@ -22,7 +22,7 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 At a high level, you need to provide the following:
 
 - All data must be in CSV format, using the schema described below. 
-- You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
 
 The following sections walk you through the process of setting up your data.
@@ -62,7 +62,10 @@ If you wanted totals or subtotals of combinations, you would need to create addi
 
 Custom Data Commons supports two ways of importing your data:
 - "Implicit" schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, (described below). Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is recommended for most datasets.
-- "Explicit" schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables and variable groups as nodes in MCF files. All variables and entities in the CSVs must reference these DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. If you have hundreds of variables, which would be impractical to specify as separate columns, this method is recommended.
+- "Explicit" schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables and variable groups as nodes in MCF files. All variables and entities in the CSVs must reference these DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. There are a number of cases for which this option is a better choice:
+  - You have hundreds of variables, which may be unmanageable as separate columns or files.
+  - You want to be able to specify different "metadata", or additional properties, of the observations at a more granular level than per-file. (See more about this in xxx) 
+  - You don't want to have "sparse" data tables (tables with lots of null values) or separate out variables into different files, in the case that you are missing observations for specific entities (e.g. places) or time periods for specific varoables. For example, for one statistical variable you might have observations for all countries; but for another one, only a small number of countries; if this is the case, and you dont' want to separate the variables into different files, the "explicit" schema option might be better.
 
 To illustrate the difference between variable-per-column and variable-per-row schemas, let's use the schools example data again. In variable-per-column, you would represent the dataset as follows:
 
@@ -98,13 +101,11 @@ In variable-per-row, the same dataset would be provided as follows:
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
-Note that the two approaches are not mutually exclusive; your datasets could use both implicit and explicit schemas; you just indicate which files are using which approach in the global JSON config file you provide. 
-
 ## Prepare your data using implicit schema
 
-In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. A complete reference to the JSON file specification is provided in xxx
+In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
 
-### Prepare the CSV files {#prepare-csv}
+### Prepare the CSV data files {#prepare-csv}
 
 As mentioned above, CSV files using implicit must contain these columns -- and _only_ these columns, no others -- in this order:
 
@@ -116,15 +117,24 @@ The _ENTITY_ is an existing property in the Data Commons knowledge graph that is
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The heading can be anything, but you should encode the relevant attributes being measured, and the importer will create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable for you.
 
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of real-world data from the WHO on the prevalance of smoking in adult populations:
+The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
+```csv
+country,year,percentage_of_population,percentage_of_population_female,percentage_of_population_male
+Afghanistan,2019,7.5,1.2,13.4
+Angola,2016,,1.8,14.3
+Albania,2018,,4.5,35.7
+United Arab Emirates,2018,6.3,1.6,11.1
+```
+Note that the data is missing values for the total population percentage for Angola and Albania.
 
+You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.
 
-### Special place names {#special-names}
+#### Special place names {#special-names}
 
-In addition to the place names listed in [Place types](/place_types.html), you can also use the following special names:
+In addition to the place names listed in [Place types](/place_types.html), you can also use the following special names as headings:
 
 - [`dcid`](/glossary.html#dcid) --- An already resolved DC ID. Examples:`country/USA`, `geoId/06`
 - `country3AlphaCode` --- Three-character country codes. Examples: `USA`, `CHN`
@@ -154,9 +164,78 @@ geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
 
-## Write the data config file
+### Prepare the JSON config file
 
-The config.json file specifies how the CSV contents should be mapped and resolved to the Data Commons schema. See the example in the [`sample/config.json`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/config.json){: target="_blank"} file provided, which describes the data in the [`sample/average_annual_wage.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/average_annual_wage.csv){: target="_blank"} and [`sample/gender_wage_gap.csv`](https://github.com/datacommonsorg/website/blob/master/custom_dc/sample/gender_wage_gap.csv){: target="_blank"} files.
+You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide 3 specifications:
+- the input files location and entity type
+- the statistical variables you are defining
+- the sources and provenances of the data
+
+Here is an example of how the config file would look for WHO CSV file we defined earlier. More details are below.
+
+```json
+{
+  "inputFiles": {
+    "adult_cig_smoking_var_per_column.csv": {
+      "entityType": "Country",
+      "provenance": "UN_WHO"
+    }
+  },
+  "variables": {
+    "percentage_of_population": {
+      "name": "Percentage of Smokers Adult Population",
+      "description": "Percentage of smokers in the total adult population",
+      "searchDescriptions": [
+        "Prevalence of smoking among adults in world countries in the years 2016 - 2019."
+      ],
+      "group": "WHO"
+    },
+    "percentage_of_population_female": {
+      "name": "Percentage of Smokers Adult Population Female",
+      "description": "Percentage of smokers in the female adult population",
+      "searchDescriptions": [
+        "Prevalence of smoking among adult women in world countries in the years 2016 - 2019."
+      ],
+      "group": "WHO"
+    },
+      "percentage_of_population_male": {
+      "name": "Percentage of Smokers Adult Population Male",
+      "description": "Percentage of smokers in the male adult population",
+      "searchDescriptions": [
+        "Prevalence of smoking among adult men in world countries in the years 2016 - 2019."
+      ],
+      "group": "WHO"
+    }
+  },
+ "sources": {
+      "custom.who.int": {
+        "url": "https://custom.who.int",
+        "provenances": {
+          "UN_WHO": "https://custom.who.int/data/gho/indicator-metadata-registry/imr-details/6128"
+        }
+      }
+   }
+}
+```
+The following fields are specific to the variable-per-column format:
+
+- `input_files`:
+  - `entityType` must be an existing entity class in the Data Commons knowledge graph; it's most commonly a place type. For a full list of supported classes, go to [https://datacommons.org/browser/Class](https://datacommons.org/browser/Class){: target="_blank"} and scroll to the **Subject Type: Class** list:
+
+   ![group_screenshot](/assets/images/custom_dc/customdc_screenshot8.png){: width="250"}
+
+- `variables`: You must list out all of the variables you are using in your CSV files. The name should match the heading that appears in the CSV. The and description will be shown in the UI. 
+  - `searchDescriptions` is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
+  - `group` is optional, to display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. For example:
+
+    ![group_screenshot](/assets/images/custom_dc/customdc_screenshot9.png){: width="250"}
+
+The other fields are explained in the [Data config file specification reference](#json-ref)
+
+
+
+
+## Data config file specification reference {#json-ref}
 
 Here is the general spec for the JSON file:
 
