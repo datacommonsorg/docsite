@@ -21,10 +21,9 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 
 At a high level, you need to provide the following:
 
-- All data must be in CSV format, using the schema described below.
+- All data must be in CSV format, using the schema described below. 
 - You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
-- All CSV files, and JSON (and MCF, if needed) files _must_ be in the same directory; for example:
 
 The following sections walk you through the process of setting up your data.
 
@@ -49,7 +48,7 @@ Statistical variables must follow a certain model; in particular, they must repr
 | San Jose | 2023 | private | middle | 200 |
 | San Jose | 2023 | private | secondary | 100 |
 
-Although the properties of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they cannot be present in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
+Although the properties of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
 - `CountPublicElementary`
 - `CountPublicMiddle`
 - `CountPublicSecondary`
@@ -62,38 +61,54 @@ If you wanted totals or subtotals of combinations, you would need to create addi
 # Step 2: Choose between "implicit" and "explicit" schema definition
 
 Custom Data Commons supports two ways of importing your data:
-- 
+- "Implicit" schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, (described below). Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is recommended for most datasets.
+- "Explicit" schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables and variable groups as nodes in MCF files. All variables and entities in the CSVs must reference these DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. If you have hundreds of variables, which would be impractical to specify as separate columns, this method is recommended.
 
-## Prepare the CSV files {#prepare-csv}
+To illustrate the difference between variable-per-column and variable-per-row schemas, let's use the schools example data again. In variable-per-column, you would represent the dataset as follows:
 
+**Variable-per-column schema**
 
+| CITY | YEAR | COUNT_PUBLIC_ELEMENTARY | COUNT_PUBLIC_MIDDLE | COUNT_PUBLIC_SECONDARY | COUNT_PRIVATE_ELEMENTARY | COUNT_PRIVATE_MIDDLE | COUNT_PRIVATE_SECONDARY |
+|------|------|-------------------------|---------------------|------------------------|---------------------------|---------------------|-------------------------|
+| San Francisco | 2023 | 300 | 300 | 200 | 100 | 100 | 50 |
+| San Jose | 2023 | 400 | 400 | 300 | 200 | 200 | 100 |
 
-Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](/glossary.html#dcid)s.
-
-With the variable-per-column scheme, data is provided in this format, in this exact sequence:
+The names that appear in the columns and rows don't need to be DCIDs or follow any convention, because the columns must always be specified in this exact sequence:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There are two properties, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](/glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
+In variable-per-row, the same dataset would be provided as follows:
 
-```csv
-city,year,typeOfSchool,count
-San Francisco,2023,elementary,300
-San Francisco,2023,middle,300
-San Francisco,2023,secondary,200
-San Francisco,2023,postsecondary,50
-San Jose,2023,elementary,400
-San Jose,2023,middle,400
-San Jose,2023,secondary,300
-San Jose,2023,postsecondary,50
-```
-For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
+**Variable-per-row schema**
 
-```csv
-city,year,countElementary,countMiddle,countSecondary,countPostSecondary
-San Francisco,2023,300,300,200,50
-San Jose,2023,400,400,300,0
-```
+| CITY | YEAR |  VARIABLE | OBSERVATION |
+|------|------|-----------|-------|
+| San Francisco | 2023 | CountPublicElementary | 300 |
+| San Francisco | 2023 | CountPublicMiddle | 300 |
+| San Francisco | 2023 | CountPublicSecondary | 200 |
+| San Francisco | 2023 | CountPrivateElementary | 100 |
+| San Francisco | 2023 | CountPrivateMiddle | 100 |
+| San Francisco | 2023 | CountPrivateSecondary | 50 |
+| San Jose | 2023 | CountPublicElementary | 400 |
+| San Jose | 2023 | CountPublicMiddle | 400 |
+| San Jose | 2023 | CountPublicSecondary | 300 |
+| San Jose | 2023 | CountPrivateElementary | 200 |
+| San Jose | 2023 | CountPrivateMiddle | 200 |
+| San Jose | 2023 | CountPrivateSecondary | 100 |
+
+The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
+
+Note that the two approaches are not mutually exclusive; your datasets could use both implicit and explicit schemas; you just indicate which files are using which approach in the global JSON config file you provide. 
+
+## Prepare your data using implicit schema
+
+In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. A complete reference to the JSON file specification is provided in xxx
+
+### Prepare the CSV files {#prepare-csv}
+
+As mentioned above, CSV files using implicit must contain these columns -- and _only_ these columns, no others -- in this order:
+
+_ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
@@ -101,11 +116,11 @@ The _ENTITY_ is an existing property in the Data Commons knowledge graph that is
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The heading can be anything, but you should encode the relevant attributes being measured, and the importer will create a new variable for you.
 
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
+The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of real-world data from the WHO on the prevalance of smoking in adult populations:
 
-All headers must be in camelCase.
+
 
 ### Special place names {#special-names}
 
