@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Bar Chart
+title: Bar chart
 nav_order: 1
-parent: Web Components
-grand_parent: API
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/bar
 ---
 
-# Data Commons Bar Chart Web Component
+# Data Commons bar chart Web Component
 
 [Data Commons Web Component](/api/web_components/) for visualizing one or more statistical variables around one or more places on a bar chart.
 

@@ -1,8 +1,10 @@
 ---
 layout: default
 title: Query with SQL/BigQuery
-nav_order: 30
+nav_order: 70
 has_children: true
+redirect_from:
+    /bigquery/dc_to_bq_queries
 ---
 
 # Query Data Commons using SQL with BigQuery

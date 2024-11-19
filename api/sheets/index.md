@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Google Sheets
-nav_order: 20
-parent: API
+title: Analyze data with Google Sheets
+nav_order: 50
 has_children: true
 ---
 

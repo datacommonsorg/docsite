@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Highlight Tile
+title: Highlight tile
 nav_order: 3
-parent: Web Components
-grand_parent: API
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/highlight
 ---
 
-# Data Commons Highlight Chart Web Component
+# Data Commons highlight chart Web Component
 
 [Data Commons Web Component](/api/web_components) for highlighting a specific
 variable value from a specific variable about a single place.

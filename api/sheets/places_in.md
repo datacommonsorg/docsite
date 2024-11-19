@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Get places contained in another place
-nav_order: 4
-parent: Google Sheets
-grand_parent: API
+nav_order: 53
+parent: Analyze data with Google Sheets
 ---
 
 # Retrieve places contained within another place

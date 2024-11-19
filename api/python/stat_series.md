@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Place Statistics - Time Series
-nav_order: 8
+title: Get time series for a place
+nav_order: 4
 parent: Python
-grand_parent: API
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve statistical time series for a place
