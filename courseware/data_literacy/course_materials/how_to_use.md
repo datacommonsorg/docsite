@@ -1,10 +1,10 @@
 ---
 layout: default
-title: How to Use
-nav_order: 3
-parent: Course Materials
-grand_parent: Data Literacy with Data Commons
-great_grand_parent: Courseware
+title: How to use
+parent: Course materials
+grand_parent: Data literacy with Data Commons
+great_grand_parent: Educational materials
+exclude_from_nav: true
 ---
 
 ## How To Use
