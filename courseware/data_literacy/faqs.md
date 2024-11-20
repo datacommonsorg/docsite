@@ -9,7 +9,7 @@ exclude_from_nav: true
 
 # Frequently Asked Questions
 
-<div markdown "span" class="alert alert-info" role="alert" style="text-align: center">
+<div markdown="span" class="alert alert-info" role="alert" style="text-align: center">
     >> [Access the course materials here](course_materials/). <<
 </div>
 
