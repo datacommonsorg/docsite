@@ -18,8 +18,8 @@ While you are just testing out data changes, you don't need to build the website
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
 
-- `gcr.io/datcom-ci/datacommons-services:stable`. This is a tested, stable version but may be several weeks old.
-- `gcr.io/datcom-ci/datacommons-services:latest`. This is the latest version built from head.
+- `gcr.io/datcom-ci/datacommons-data:stable` and `gcr.io/datcom-ci/datacommons-services:stable`. This is a tested, stable version but may be several weeks old.
+- `gcr.io/datcom-ci/datacommons-data:latest` and `gcr.io/datcom-ci/datacommons-services:latest`. This is the latest version built from head.
 
 If you want to pick up the latest prebuilt version, do the following:
 
@@ -27,18 +27,26 @@ If you want to pick up the latest prebuilt version, do the following:
 
    ```shell  
    docker pull gcr.io/datcom-ci/datacommons-services:latest
-   ```
-1. Rerun the container, specifying that repo as the argument to the `docker run` command:
+   docker pull gcr.io/datcom-ci/datacommons-data:latest
 
-   ```shell
-   docker run -it \
+   ```
+1. Rerun the data container, specifying that repo specifying that repo as the argument to the `docker run` command:
+   <pre>docker run \
+   --env-file $PWD/custom_dc/env.list \
+   -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+   -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+   gcr.io/datcom-ci/datacommons-data:latest
+   </pre>
+
+1. Restart the services container:
+   <pre>docker run -it \
    -p 8080:8080 \
    -e DEBUG=true \
    --env-file $PWD/custom_dc/env.list \
    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
    gcr.io/datcom-ci/datacommons-services:latest
-   ```
+   </pre>
 
 ## Build a local image {#build-repo}
 You will need to build a local image in any of the following cases:
