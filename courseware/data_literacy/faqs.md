@@ -1,14 +1,15 @@
 ---
 layout: default
-title: FAQs
-nav_order: 3
-parent: Data Literacy with Data Commons
-grand_parent: Courseware
+title: Frequently Asked Questions
+parent: Data literacy with Data Commons
+grand_parent: Educational materials
+great-grandparent: Additional resources
+exclude_from_nav: true
 ---
 
 # Frequently Asked Questions
 
-<div markdown="span" class="alert alert-info" role="alert" style="text-align: center">
+<div markdown "span" class="alert alert-info" role="alert" style="text-align: center">
     >> [Access the course materials here](course_materials/). <<
 </div>
 

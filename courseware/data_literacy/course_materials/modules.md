@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Modules
-nav_order: 1
-parent: Course Materials
-grand_parent: Data Literacy with Data Commons
-great_grand_parent: Courseware
+parent: Course materials
+grand_parent: Data literacy with Data Commons
+great-grandparent: Educational materials
+exclude_from_nav: true
 ---
 
 # Modules
