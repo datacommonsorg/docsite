@@ -3,7 +3,7 @@ layout: default
 title: Frequently Asked Questions
 parent: Data literacy with Data Commons
 grand_parent: Educational materials
-great-grandparent: Additional resources
+great_grand_parent: Additional resources
 exclude_from_nav: true
 ---
 

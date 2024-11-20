@@ -1,10 +1,9 @@
 ---
 layout: default
 title: How to use
-exclude_from_nav: true
 parent: Course materials
 grand_parent: Data literacy with Data Commons
-great-grandparent: Educational materials
+great_grand_parent: Educational materials
 exclude_from_nav: true
 ---
 
