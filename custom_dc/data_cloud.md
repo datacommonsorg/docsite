@@ -122,19 +122,29 @@ Now set environment variables:
 
 As you are iterating on changes to the source CSV and JSON files, you can re-upload them at any time, either overwriting existing files or creating new folders. If you want versioned snapshots, we recommend that you create a new subfolder and store the latest version of the files there. If you prefer to simply incrementally update, you can simply overwrite files in a pre-existing folder. Creating new subfolders is slower but safer. Overwriting files is faster but riskier.
 
-To upload data using the Cloud Console:
-
-1. Go to [https://console.cloud.google.com/storage/browse](https://console.cloud.google.com/storage/browse){: target="_blank"} and select your custom Data Commons bucket.
-1. Navigate to the folder you created in the earlier step.
-1. Click **Upload Files**, and select all your CSV files and `config.json`.
-
-To upload data using the command line:
-
-1. Navigate to your local "input" directory where your source files are located.
-1. Run the following command:
-   <pre>
-   gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var>
-   </pre>
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+        <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> and select your custom Data Commons bucket.</li>
+        <li>Navigate to the folder you created in the earlier step.</li>
+        <li>Click <b>Upload Files</b>, and select all your CSV files and <code>config.json</code>.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>Navigate to your local "input" directory where your source files are located.</li>
+         <li>Run the following command:
+             <pre>gcloud storage cp config.json *.csv gs://<var>BUCKET_NAME</var>/<var>FOLDER_PATH</var></pre>
+          </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
@@ -146,45 +156,66 @@ Now that everything is configured, and you have uploaded your data in Google Clo
 
 Every time you upload new input CSV or JSON files to Google Cloud Storage, you will need to rerun the job.
 
-To run the job using the Cloud Console:
-
-1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
-1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Optionally, if you have received a `SQL check failed` error when previously trying to start the container, and would like to minimize startup time, click **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
-1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
-
-To run the job using the command line:
-
-1. From any local directory, run the following command:
-   <pre>
-   gcloud run jobs execute <var>JOB_NAME</var>
-   </pre>
-1. To view the progress of the job, run the following command:
-   <pre>
-   gcloud beta run jobs logs tail <var>JOB_NAME</var>
-   </pre>
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+           <li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
+        <li>From the list of jobs, click the link of the "datacommons-data" job you created above.</li>
+         <li>Optionally, if you have received a <code>SQL check failed</code> error when previously trying to start the container, and would like to minimize startup time, click <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
+      <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>From any local directory, run the following command:
+           <pre>gcloud run jobs execute <var>JOB_NAME</var></pre>
+         </li>
+         <li>To view the progress of the job, run the following command:
+              <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
+          </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
 When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
 
+{:.no_toc}
 #### (Optional) Run the data management Cloud Run job in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
-To run the job using the Cloud Console:
-1. Go to [https://console.cloud.google.com/run/jobs](https://console.cloud.google.com/run/jobs){: target="_blank"} for your project.
-1. From the list of jobs, click the link of the "datacommons-data" job you created above.
-1. Optionally, select **Execute** > **Execute with overrides** and click **Add variable** to set a new variable with name `DATA_RUN_MODE` and value `schemaupdate`.
-1. Click **Execute**. It will take several minutes for the job to run. You can click the **Logs** tab to view the progress. 
-
-To run the job using the command line:
-1. From any local directory, run the following command:
-   <pre>
-   gcloud run jobs execute <var>JOB_NAME</var> --update-env-vars DATA_RUN_MODE=schemaupdate
-   </pre>
-1. To view the progress of the job, run the following command:
-   <pre>
-   gcloud beta run jobs logs tail <var>JOB_NAME</var>
-   </pre>
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+           <li> Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
+            <li>From the list of jobs, click the link of the "datacommons-data" job you created above.</li>
+            <li>Optionally, select <b>Execute</b> &gt; <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
+            <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress. </li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>From any local directory, run the following command:
+            <pre>gcloud run jobs execute <var>JOB_NAME</var> --update-env-vars DATA_RUN_MODE=schemaupdate</pre>
+         </li>
+         <li>To view the progress of the job, run the following command:
+            <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
+          </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
@@ -229,8 +260,7 @@ This opens a browser window that prompts you to enter credentials, sign in to Go
 
 The first time you run it, may be prompted to specify a quota project for billing that will be used in the credentials file. If so, run this command:
 
-<pre>  
-gcloud auth application-default set-quota-project <var>PROJECT_ID</var>  
+<pre>gcloud auth application-default set-quota-project <var>PROJECT_ID</var>  
 </pre>
 
 If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
@@ -239,8 +269,7 @@ If you are prompted to install the Cloud Resource Manager API, press `y` to acce
 
 From your project root directory, run:
 
-<pre>
-docker run \
+<pre>docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
@@ -253,6 +282,7 @@ The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
 
+{:.no_toc}
 #### (Optional) Run the data management Docker container in schema update mode 
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE` to miminize the startup time.
@@ -282,9 +312,7 @@ See the section [above](#gen-creds) for procedures.
 ### Step 3: Run the services Docker container
 
 From the root directory of your repo, run the following command, assuming you are using a locally built image:
-
-<pre>  
-docker run -it \
+<pre>docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \
@@ -296,5 +324,7 @@ docker run -it \
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
+
+<script src="/assets/js/customdc-doc-tabs.js"></script>
 
 

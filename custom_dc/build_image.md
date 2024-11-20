@@ -83,7 +83,7 @@ The following procedure uses Github. If you are using another version control sy
    ```
    git pull origin customdc_stable
    ```
-   Note that g`origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
+   Note that `origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
 
    You should see output like the following:
    ```
@@ -126,8 +126,7 @@ To upload and deploy the container to the Cloud, see [Deploy services to Google 
 
 Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
 
-<pre>  
-docker run -it \
+<pre>docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \

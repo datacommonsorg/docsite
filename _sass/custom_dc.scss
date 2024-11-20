@@ -1,10 +1,38 @@
-.schema-example {
-  background-color: $code-background-color;
-  border-radius: 4px;
-  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-  font-size: 87.5%;
+
+.gcp-tab-group {
   margin-bottom: 20px;
-  overflow-wrap: break-word;
-  padding-bottom: 20px;
-  white-space: pre-wrap;
+  border: 1px solid #ccc;
+}
+
+.gcp-tab-headers {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.gcp-tab-headers li {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+
+}
+
+.gcp-tab-headers .active {
+  border-bottom: 4px solid  #1e87f0;
+  font-weight: bold;
+}
+
+.gcp-tab-content div {
+  display: none;
+  padding: 20px;
+}
+
+.gcp-tab-content .active {
+  display: block;
+  padding: 20px;
+}
+
+.gcp-tab-content > * {
+  display: initial;
 }
