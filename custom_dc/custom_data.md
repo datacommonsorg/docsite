@@ -71,7 +71,7 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 There are two columns, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other columns must be expressed as variables, as described above. To continue with the above example, a CSV file would need to look like this:
 
 ```csv
-city,year,count_public_elementary,count_public_middle,count_public_secondary,count_private_elementary,count_private_middle,count_private_secondary
+city,year,CountPublicElementary,CountPublicMiddle,CountPublicSecondary,CountPrivateElementary,CountPrivateMiddle,CountPrivateSecondary
 San Francisco,2023,300,300,200,100,100,50
 San Jose,2023,400,400,300,200,200,100
 ```
@@ -188,6 +188,7 @@ You can use the `*` wildcard; matches are applied in the order in which they are
 
 The first set of parameters only applies to `foo.csv`. The second set of parameters applies to `bar.csv`, `bar1.csv`, `bar2.csv`, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely `foo.csv` and `bar*.csv`.
 
+{: .no_toc}
 #### Input file parameters
 
 `entityType`
@@ -218,6 +219,7 @@ Note that you cannot mix different property values in a single CSV file. If you 
 
 The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
+{:.no_toc}
 #### Variable parameters {#varparams}
 
 `name`
@@ -256,10 +258,12 @@ You can have a multi-level group hierarchy by using `/` as a separator between e
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
+{:.no_toc}
 ### Sources
 
 The `sources` section is optional. It encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
 
+{:.no_toc}
 #### Source parameters
 
 `url`
@@ -291,6 +295,7 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
+{:.no_toc}
 #### Step 1: Start the data management container
 
 In one terminal window, from the root directory, run the following command to start the data management container:
@@ -303,6 +308,7 @@ docker run \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
+{:.no_toc}
 ##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
@@ -319,6 +325,7 @@ gcr.io/datcom-ci/datacommons-data:stable
 
 Once the job has run, go to step 2 below.
 
+{:.no_toc}
 #### Step 2: Start the services container
 
 In another terminal window, from the root directory, run the following command to start the services container:
