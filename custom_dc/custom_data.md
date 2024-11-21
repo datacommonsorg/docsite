@@ -25,6 +25,46 @@ Custom Data Commons provides a simple mechanism to import your own data, but it 
 
 Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
 
+Custom Data Commons requires that you provide your data in a specific schema, format, and file structure. We strongly recommend that, before proceeding, you familiarize yourself with the basics of the Data Commons data model by reading through [Key concepts](/data_model.html), in particular, _entities_, _statistical variables_, and _observations_.
+
+At a high level, you need to provide the following:
+
+- All data must be in CSV format, using the schema described below. 
+- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+
+The following sections walk you through the process of setting up your data.
+
+## Before you start: Identify your statistical variables
+
+Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
+
+Statistical variables must follow a certain model; in particular, they must represent any breakdown properties and even encode those properties in their name. To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example)::
+
+| CITY | YEAR | SCHOOL_TYPE | SCHOOL_LEVEL | COUNT |
+|------|------|----------------|-------|
+| San Francisco | 2023 | public | elementary | 300 |
+| San Francisco | 2023 | public | middle | 300 |
+| San Francisco | 2023 | public | secondary | 200 |
+| San Francisco | 2023 | private | elementary | 100 |
+| San Francisco | 2023 | private | middle | 100 |
+| San Francisco | 2023 | private | secondary | 50 |
+| San Jose | 2023 | public | elementary | 400 |
+| San Jose | 2023 | public | middle | 400 |
+| San Jose | 2023 | public | secondary | 300 |
+| San Jose | 2023 | private | elementary | 200 |
+| San Jose | 2023 | private | middle | 200 |
+| San Jose | 2023 | private | secondary | 100 |
+
+Although the properties of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
+- `CountPublicElementary`
+- `CountPublicMiddle`
+- `CountPublicSecondary`
+- `CountPrivateElementary`
+- `CountPrivateMiddle`
+- `CountPrivateSecondary`
+
+If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
+
 ## Prepare the CSV files {#prepare-csv}
 
 Custom Data Commons provides a simplified data model, which allows your data to be mapped to the Data Commons knowledge graph schema. Data in the CSV files should conform to a _variable per column_ scheme. This requires minimal manual configuration; the Data Commons importer can create observations and statistical variables if they don't already exist, and it resolves all columns to [DCID](/glossary.html#dcid)s.
@@ -33,18 +73,7 @@ With the variable-per-column scheme, data is provided in this format, in this ex
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There are two properties, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](/glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
-
-```csv
-city,year,typeOfSchool,count
-San Francisco,2023,elementary,300
-San Francisco,2023,middle,300
-San Francisco,2023,secondary,200
-San Francisco,2023,postsecondary,50
-San Jose,2023,elementary,400
-San Jose,2023,middle,400
-San Jose,2023,secondary,300
-San Jose,2023,postsecondary,50
+There are two columns, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other columns must be expressed as as described above. So to continue the above example, a CSV file would need to look like this:
 ```
 For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
 
