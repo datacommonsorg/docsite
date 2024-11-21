@@ -17,20 +17,15 @@ This page shows you how to format and load your own custom data into your local 
 
 ## Overview
 
-Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure.
+Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure. At a high level, you need to provide the following:
 
-- All data must be in CSV format, using the schema described below.
-- You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+- All data must be in CSV format, using the schema described below. 
+- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - All CSV files and the JSON file _must_ be in the same directory
 
 Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
 
-Custom Data Commons requires that you provide your data in a specific schema, format, and file structure. We strongly recommend that, before proceeding, you familiarize yourself with the basics of the Data Commons data model by reading through [Key concepts](/data_model.html), in particular, _entities_, _statistical variables_, and _observations_.
-
-At a high level, you need to provide the following:
-
-- All data must be in CSV format, using the schema described below. 
-- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+We strongly recommend that, before proceeding, you familiarize yourself with the basics of the Data Commons data model by reading through [Key concepts](/data_model.html), in particular, _entities_, _statistical variables_, and _observations_.
 
 The following sections walk you through the process of setting up your data.
 
@@ -73,14 +68,12 @@ With the variable-per-column scheme, data is provided in this format, in this ex
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There are two columns, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other columns must be expressed as as described above. So to continue the above example, a CSV file would need to look like this:
-```
-For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
+There are two columns, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other columns must be expressed as variables, as described above. To continue with the above example, a CSV file would need to look like this:
 
 ```csv
-city,year,countElementary,countMiddle,countSecondary,countPostSecondary
-San Francisco,2023,300,300,200,50
-San Jose,2023,400,400,300,0
+city,year,count_public_elementary,count_public_middle,count_public_secondary,count_private_elementary,count_private_middle,count_private_secondary
+San Francisco,2023,300,300,200,100,100,50
+San Jose,2023,400,400,300,200,200,100
 ```
 
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
@@ -89,11 +82,7 @@ The _ENTITY_ is an existing property in the Data Commons knowledge graph that is
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
-
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
-
-All headers must be in camelCase.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
 ### Special place names {#special-names}
 
