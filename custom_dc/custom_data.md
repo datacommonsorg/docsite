@@ -51,12 +51,12 @@ Statistical variables must follow a certain model; in particular, they must repr
 | San Jose | 2023 | private | secondary | 100 |
 
 Although the properties of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
-- `CountPublicElementary`
-- `CountPublicMiddle`
-- `CountPublicSecondary`
-- `CountPrivateElementary`
-- `CountPrivateMiddle`
-- `CountPrivateSecondary`
+- `Count_Public_Elementary`
+- `Count_Public_Middle`
+- `Count_Public_Secondary`
+- `Count_Private_Elementary`
+- `Count_Private_Middle`
+- `Count_Private_Secondary`
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
