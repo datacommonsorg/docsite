@@ -33,7 +33,7 @@ The following sections walk you through the process of setting up your data.
 
 Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
-Statistical variables must follow a certain model; in particular, they must represent any breakdown properties and even encode those properties in their name. To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example)::
+Statistical variables must follow a certain model; in particular, they must represent any breakdown properties and even encode those properties in their name. To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
 
 | CITY | YEAR | SCHOOL_TYPE | SCHOOL_LEVEL | COUNT |
 |------|------|----------------|-------|
