@@ -243,7 +243,7 @@ In this section, we will walk you through a concrete example of how to go about 
 
 ### Write the MCF file
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Copntent Format. For custom Data Commons using explicit schema, you must define your statistical variables using MCF. Here's an example of defining the same statistical variables in the WHO data in MCF:
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format. For custom Data Commons using explicit schema, you must define your statistical variables using MCF. Here's an example of defining the same statistical variables in the WHO data in MCF:
 
 ```
 Node: dcid:Adult_curr_cig_smokers
@@ -263,20 +263,23 @@ populationType: dcs:WHO_Adult_curr_cig_smokers
 Node: dcid:Adult_curr_cig_smokers_male
 typeOf: dcs:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
+statType: dcs:measuredValue
 measuredProperty: dcs:value
-name: "Prevalence of current cigarette smoking among adults (%) [Male]"
+populationType: dcs:WHO_Adult_curr_cig_smokers
 ```
 The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. It must be prefixed with `dcid:`. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`.
 - `typeOf`: In the case of statistical variable, this is always `dcs:StatisticalVariable`. `dcs` stands for "Data Commons schema", and should be used as the prefix for all, non-quoted field values.
-
+- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
+`statType`: 
 
 
 ### Prepare the CSV data files {#prepare-csv}
 
-As mentioned above, CSV files using implicit must contain these columns -- and _only_ these columns, no others -- in this order:
+CSV files using explicit must contain the following columns -- and _only_ these columns, using the following headings:
 
-_ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
+```csv
+entity, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
