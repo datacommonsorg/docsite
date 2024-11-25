@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Overview
-nav_order: 1
-parent: Data Literacy with Data Commons
-grand_parent: Courseware
+title: Data literacy with Data Commons
+nav_order: 221
+parent: Educational materials
+grand_parent: Additional resources
 redirect_from:
-    /courseware/data_literacy/index
+    /courseware/data_literacy/overview
 ---
 
-# Data Literacy with Data Commons
+# Data literacy with Data Commons
 
 <div markdown="span" class="alert alert-info" role="alert" style="text-align: center">
     >> [Access the course materials here](course_materials/). <<

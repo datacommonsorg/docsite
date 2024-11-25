@@ -1,9 +1,10 @@
 ---
 layout: default
-title: FAQs
-nav_order: 3
-parent: Data Literacy with Data Commons
-grand_parent: Courseware
+title: Frequently Asked Questions
+parent: Data literacy with Data Commons
+grand_parent: Educational materials
+great_grand_parent: Additional resources
+exclude_from_nav: true
 ---
 
 # Frequently Asked Questions
