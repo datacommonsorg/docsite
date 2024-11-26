@@ -15,8 +15,9 @@
 # in the templates via {{ site.myvariable }}.
 title: "Data Commons Docs"
 description: Data Commons Documentation
+baseurl: ""
 url: "https://docs.datacommons.org"
-github_username:  datacommonsorg
+github_username: datacommonsorg
 repository: datacommonsorg/docsite
 
 # Build settings
@@ -29,7 +30,7 @@ plugins:
   - jekyll-last-modified-at
 
 last-modified-at:
-  date-format: '%B %d, %Y'
+  date-format: "%B %d, %Y"
 
 sass:
   style: compressed
@@ -47,4 +48,4 @@ exclude:
   - vendor/ruby/
   - STYLE_GUIDE.md
 
-include: ['CNAME']
+include: ["CNAME"]
