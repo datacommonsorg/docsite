@@ -4,6 +4,9 @@ title: Tutorials
 nav_order: 31
 parent: Python
 grand_parent: API - Query data programmatically
+redirect_from:
+    - /tutorials
+    - /tutorials/index
 ---
 
 # Tutorials

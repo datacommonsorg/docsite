@@ -4,8 +4,7 @@ title: Data literacy with Data Commons
 nav_order: 221
 parent: Educational materials
 grand_parent: Additional resources
-redirect_from:
-    /courseware/data_literacy/overview
+redirect_from: /courseware/data_literacy/overview
 ---
 
 # Data literacy with Data Commons
