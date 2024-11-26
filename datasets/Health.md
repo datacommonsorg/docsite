@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Health
-nav_order: 9
-parent: Data Sources
+parent: Data sources
+nav_exclude: true
 ---
 
 {:.no_toc}

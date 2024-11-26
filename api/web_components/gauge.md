@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Gauge Chart
+title: Gauge chart
 nav_order: 2
-parent: Web Components
-grand_parent: API
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/gauge
 ---
 
-# Data Commons Gauge Chart Web Component
+# Data Commons gauge chart Web Component
 
 [Data Commons Web Component](/api/web_components/) for visualizing a single statistical variable about a single place.
 

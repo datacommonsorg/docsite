@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Tutorials
-nav_order: 1
-parent: Google Sheets
-grand_parent: API
+nav_order: 51
+parent: Analyze data with Google Sheets
 has_children: false
 ---
 

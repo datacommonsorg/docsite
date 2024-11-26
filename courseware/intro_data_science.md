@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Intro to Data Science
-nav_order: 2
-parent: Courseware
+title: Introduction to data science
+nav_order: 222
+parent: Educational materials
+grand_parent: Additional resources
 ---
 
 # Data Science with _Real Data_

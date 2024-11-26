@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Economy
-nav_order: 5
-parent: Data Sources
+parent: Data sources
+nav_exclude: true
 ---
 
 {:.no_toc}

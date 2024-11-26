@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Environment
-nav_order: 8
-parent: Data Sources
+parent: Data sources
+nav_exclude: true
 ---
 
 {:.no_toc}
@@ -187,16 +187,8 @@ Includes data about various heat-stress-induced medical incidents.
 Air quality data collected from outdoor monitors on the county, CBSA, and site monitor level.
 
 
-#### [EJSCREEN](https://www.epa.gov/ejscreen)
-Environmental justice mapping tool based on environmental and demographic indicators.
-
-
 #### [Greenhouse Gas Reporting Program](https://www.epa.gov/enviro/greenhouse-gas-overview)
 Annual reporting of greenhouse gases from large emission sources.
-
-
-#### [National Emissions Inventory](https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei)
-The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 OnRoad air emission sources (such as Mobile Sources Highway Vehicles Electricity and Mobile Sources Border Crossing), 248 NonRoad air emissions sources (such as Mobile Sources Off-highway Vehicle Gasoline and LPG Construction Mining Equipment), 703 NonPoint air emissions sources (such as Industrial Processes Oil Gas Exploration Production and LPG Distribution) and 5818 Point air emissions sources (such as Chemical Evaporation Organic Solvent Evaporation and External Combustion Electric Generation Boilers)at US County Level.
 
 
 #### [Superfund Sites](https://www.epa.gov/superfund)

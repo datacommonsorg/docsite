@@ -78,11 +78,19 @@ A custom Data Commons site runs in a Docker container on Google Cloud Platform (
 
 > **Note:** Data Commons does not support local Windows development natively. If you wish to develop Data Commons on Windows, you will need to use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){: target="_blank"}.
 
-If you already have an account with another cloud provider, we can provide a connector; please contact us if you are interested in this option.
+If you already have an account with another cloud provider, we can provide a connector; please [contact us](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?resourcekey=0-yJ9nT9ST-TfoKNtmGIws-g){: target="_blank"} if you are interested in this option.
 
 In terms of development time and effort, to launch a site with custom data in compatible format and no UI customization, you can expect it to take less than three weeks. If you need substantial UI customization it may take up to four months.
 
-The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a small dataset, we have found the cost comes out to roughly $100 per year. You can get more precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing){: target="_blank"}.
+The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a singly-homed service with 5 GB of data serving 1 M queries per month, you can expect a cost of approximately $400 per month. 
+
+You can get precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing){: target="_blank"}. A GCP setup must include:
+- Cloud SQL
+- Cloud Storage
+- Cloud Run: Job + Service
+- Artifact Registry (< 1 GB storage>)
+
+You may also need Cloud DNS, Networking - Cloud Loadbalancing, and Redis Memorystore + VPC networking (see [Launch your Data Commons](launch_cloud.md) for details).
 
 {: #workflow}
 ## Recommended workflow

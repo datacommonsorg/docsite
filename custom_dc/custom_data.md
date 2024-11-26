@@ -174,7 +174,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 `entityType`
 
-: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the <code>entityType</code> field. The importer tries to resolve entities to DCIDs of that type. In most cases, the <code>entityType</code> will be a supported place type; see [Place types](../place_types.html) for a list.
+: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the `entityType` field. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](../place_types.html) for a list.
 
 `ignoreColumns`
 
@@ -184,7 +184,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 : Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, `WorldDevelopmentIndicators` provenance (or dataset) is from the `WorldBank` source.
 
-You must specify the provenance details under `sources`.`provenances`; this field associates one of the provenances defined there to this file.
+You must specify the provenance details under `sources.provenances`; this field associates one of the provenances defined there to this file.
 
 `observationProperties`
 
@@ -273,6 +273,8 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
+#### Step 1: Start the data management container
+
 In one terminal window, from the root directory, run the following command to start the data management container:
 
 <pre>
@@ -282,6 +284,24 @@ docker run \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
+
+##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
+
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
+
+To do so, add the following line to the above command:
+
+```
+docker run \
+...
+-e DATA_RUN_MODE=schemaupdate \
+...
+gcr.io/datcom-ci/datacommons-data:stable
+```
+
+Once the job has run, go to step 2 below.
+
+#### Step 2: Start the services container
 
 In another terminal window, from the root directory, run the following command to start the services container:
 
@@ -303,8 +323,7 @@ If you need to troubleshoot custom data, it is helpful to inspect the contents o
 
 To do so, from a terminal window, open the database:
 
-<pre>  
-sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
+<pre>sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
 </pre>
 
 This starts the interactive SQLite shell. To view a list of tables, at the prompt type `.tables`. The relevant table is `observations`.
@@ -326,5 +345,5 @@ country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ...
 ```
 
-To exit the sqlite shell, press Ctrl-D.
+To exit the sqlite shell, press `Ctrl-D`.
 
