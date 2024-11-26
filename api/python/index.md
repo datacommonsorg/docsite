@@ -5,7 +5,7 @@ nav_order: 30
 parent: API - Query data programmatically
 has_children: true
 redirect_from:
-    /tutorials/
+    /tutorials
     /tutorials/index
 ---
 
