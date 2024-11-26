@@ -72,9 +72,6 @@ India's Central Pollution Control Board (CPCB) portal for Air Quality Management
 #### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
 Air Quality Index and possible health impacts reported for states, cities and stations in India.
 
-#### [India aqi pollutants](https://app.cpcbccr.com/AQI_India/)
-India Air Quality Data contains mean values of various pollutants measured once in 4 hours along with other details like station name, state, city and date for the period.
-
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
@@ -83,11 +80,6 @@ Water quality data measured at ground and surface water qualiy stations across I
 
 #### [WRIS India Rainfall](https://indiawris.gov.in/wris/#/DataDownload)
 WRIS India monthly rainfall data of district level.
-
-### [National Institution for Transforming India.](https://niti.gov.in/)
-
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
 
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
@@ -100,20 +92,8 @@ Population connected to the waste water treatment using different methods from t
 
 ### [Resources for the Future (RFF)](https://www.rff.org/)
 
-#### [US Forecast Weather Variability - 0.25 degree resolution](https://www.rff.org/publications/data-tools/)
-This dataset includes US forecast (till 2100) weather variability at 0.25 degree resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
-
-#### [US Forecast Weather Variability - County](https://www.rff.org/publications/data-tools/)
-This dataset includes US county-level forecast (till 2100) weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 0.25 degree resolution by Data Commons.
-
 #### [US Geo Grids for RFF](https://www.rff.org/publications/data-tools/)
 This dataset includes geo grid places in US at 0.25 degree resolution and 4km resolution.
-
-#### [US Historical Weather Variability - 4km resolution](https://www.rff.org/publications/data-tools/)
-This dataset includes US historical weather variability at 4 KM resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
-
-#### [US Historical Weather Variability - County](https://www.rff.org/publications/data-tools/)
-This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 4 KM resolution by RFF.
 
 #### [US Wildfire, Smoke and Drought statistics - County and State](https://www.rff.org/publications/data-tools/)
 This dataset incorporates statistics aggregated by RFF from the following
