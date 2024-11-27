@@ -30,7 +30,7 @@ If you have the resources to develop and maintain a custom Data Commons instance
 
 For the following use cases, a custom Data Commons instance is not necessary:
 
-- You only want to make your own data available to the base public Data Commons site. In this case, see the procedures in [Data imports](/import_dataset/index.html).
+- You want to share your data publicly on the public Data Commons. In this case, see the procedures in [Data imports](/import_dataset/index.html).
 - You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](/api/web_components/index.html) for more details.
 
 {: #comparison }
