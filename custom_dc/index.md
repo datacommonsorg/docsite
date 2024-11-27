@@ -30,8 +30,7 @@ If you have the resources to develop and maintain a custom Data Commons instance
 
 For the following use cases, a custom Data Commons instance is not necessary:
 
-- You want to share your data publicly on datacommons.org. In this case, please file a <a href="https://issuetracker.google.com/issues/new?component=1660823&template=2053232"
-        target="_blank">data request</a> in our issue tracker to get started.
+- You want to share your data publicly on datacommons.org. In this case, please file a [data request](https://issuetracker.google.com/issues/new?component=1660823&template=2053232){: target="_blank"} in our issue tracker to get started.
 - You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](/api/web_components/index.html) for more details.
 
 {: #comparison }
