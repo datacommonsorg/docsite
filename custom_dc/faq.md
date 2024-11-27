@@ -13,6 +13,16 @@ parent: Build your own Data Commons
 
 ## General questions
 
+### Should I contribute my data to the base Data Commons or should I run my own instance?
+
+If you have determined that your data is a good fit for Data Commons, the main considerations for whether to host your data in the base, Google-run datacommons.org or in your own custom instance are as follows:
+- If you have any private data, or you want to restrict access to your data, you must use your own instance.
+- If you want to maintain complete control and governance over your data, you should use your own instance.
+- If you want to control the UI of the website hosting your data, use your own instance.
+- If you want the widest possible visibility of your data, including direct access through Google Search, add your data to base Data Commons.
+
+For detailed comparison on the differences between base and custom Data Commons, see the [Overview](/custom_dc/index.html#comparison) page.
+
 ### How can I request new features or provide feedback?
 
 Please see [Send feedback](/custom_dc/index.html#feedback) for details.
