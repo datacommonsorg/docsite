@@ -9,9 +9,9 @@ redirect_from:
     - /courseware/data_literacy/course_materials/how_to_use
 ---
 
-# Course materials - how to use
+# How to use the course materials
 
-TThe curriculum is organized in self-contained modules. Instructors (and students) are welcome to consume or work through any of the modules or the components within any module. Each [module](modules.html) is available as a detailed document with several pedagogical notes, objectives and an outline/table of contents to allow easy navigation.
+The curriculum is organized in self-contained modules. Instructors (and students) are welcome to consume or work through any of the modules or the components within any module. Each [module](modules.html) is available as a detailed document with several pedagogical notes, objectives and an outline/table of contents to allow easy navigation.
 
 To find what you may be looking for, or to use any content in your own courses/curriculum, we recommend the following approach:
 

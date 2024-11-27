@@ -30,4 +30,4 @@ An introduction to key data science concepts, targeted at an undergraduate audie
 
 ## Feedback
 
-If you use any of this material, we would love to hear from you! Please [share feedback with this form](https://docs.google.com/forms/d/e/1FAIpQLScJTtNlIItT-uSPXI98WT6yNlavF-kf5JS0jMrCvJ9TPLmelg/viewform). If you end up finding any of this material useful and would like to be notified of updates, do [drop us a line](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform).
+If you use any of this material, we would love to hear from you! Please [share feedback with this form](https://docs.google.com/forms/d/e/1FAIpQLSdo_IpV4rlQzDcSZOBOnXLlJDSFv_lFU7j8m2_i1ctRCP3HGw/viewform).
