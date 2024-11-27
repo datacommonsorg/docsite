@@ -22,9 +22,11 @@ To see the extent of data we have today, [browse the Knowledge Graph](https://da
 
 The Data Commons documentation uses [Kramdown](https://kramdown.gettalong.org/syntax.html) Markdown.
 
-## Navigation
+## Navigation and breadcrumbs
 
-The navigation bar is generated automatically from the YAML "front matter" at the top of each Markdown file. See [Using YAML front matter](https://docs.github.com/en/contributing/writing-for-github-docs/using-yaml-frontmatter) for details.
+The navigation bar and breadcrumbs are generated automatically from the YAML "front matter" at the top of each Markdown file, using the `parent`, `grand_parent` and `great_grand_parent` tags. See [Using YAML front matter](https://docs.github.com/en/contributing/writing-for-github-docs/using-yaml-frontmatter) for details.
+
+To disable a page from showing up in the navigation, use `exclude_from_nav: true`.
 
 ## Build locally
 
@@ -36,7 +38,7 @@ The documentation site is built using Jekyll. To run this locally:
 
 You can continue to make local changes and just refresh the browser. You will need to rerun `bundle exec jekyll serve` if you make changes that affect the overall site, such as changes to YAML files, cross-page links, etc.
 
-Tip: If you want to make the staged site accessible to others (and not just on the loopback), add `--host 0.0.0.0` to the command. Then, users can access the site using the hostname of the machine where the site is running.
+> **Tip:** If you want to make the staged site accessible to others (and not just on the loopback), add `--host 0.0.0.0` to the command. Then, users can access the site using the hostname of the machine where the site is running.
 
 ## License
 
@@ -44,22 +46,20 @@ Apache 2.0
 
 ## Contribute changes
 
+Be sure to follow [the style guide](STYLE_GUIDE.md) when making any changes to the content of the docsite repo.
+
 ### One-time setup steps
+
+This is a suggested way to set up your forks and remotes:
 
 1. In https://github.com/datacommonsorg/docsite, click the **Fork** button to fork the repo.
 1. Clone your forked repo to your desktop:
-
-    <pre>
-    git clone https://github.com/<var>USER_NAME</var>/docsite
-    </pre>
-
+    <pre>git clone https://github.com/<var>USER_NAME</var>/docsite</pre>
     This adds your fork as the remote called `origin`.
-
 1. Add `datacommonsorg/docsite` repo as a remote:
-
-    <pre>
-    git remote add <var>REMOTE_NAME</var> https://github.com/datacommonsorg/docsite.git
-    </pre>
+    <pre>git remote add <var>REMOTE_NAME</var> https://github.com/datacommonsorg/docsite.git</pre>
+1. If this is your first time contributing to a Google Open Source project, follow the
+steps in [CONTRIBUTING.md](CONTRIBUTING.md) to sign a CLA.
 
 ### Create a pull request
 
@@ -79,14 +79,11 @@ git commit -m "<var>COMMIT_MESSAGE</var>"
 git push -u origin <var>BRANCH_NAME</var>
 </pre>
 
-Then, in github.com, in your forked repo, you can send a pull request. You will need to assign at least one reviewer to approve.
-
-If this is your first
-time contributing to a Google Open Source project, you may need to follow the
-steps in [CONTRIBUTING.md](CONTRIBUTING.md). Be sure to follow [the style guide](STYLE_GUIDE.md)
-when submitting documentation PRs.
+Then, in https://github.com, in your forked repo, you can create a pull request. You will need to assign at least one reviewer to approve.
 
 Wait for approval of the pull request and merge the change.
+
+> **Tip:** If you are working on multiple PRs/branches at a time, and switching between them, it's desirable to use `git switch --discard-changes` instead of `git checkout`. This prevents changes in the local work tree (committed or not) from automatically bleeding from one branch to another, and keeps the PR diffs clean.
 
 ## Support
 
