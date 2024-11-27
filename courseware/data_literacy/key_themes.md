@@ -1,13 +1,15 @@
 ---
 layout: default
 title: Key themes
-parent: Course materials
-grand_parent: Data literacy with Data Commons
-great_grand_parent: Educational materials
+parent: Data literacy with Data Commons
+grand_parent: Educational materials
+great_grand_parent: Additional resources
 exclude_from_nav: true
+redirect_from: 
+    - /courseware/data_literacy/course_materials/key_themes
 ---
 
-# Key Themes
+# Key themes
 {:#key-themes}
 
 - **Data and Modeling Overview** [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub)]
@@ -18,6 +20,7 @@ exclude_from_nav: true
     - Interpolation as an instance of estimation (indirect)
     - Introduce concepts such as sampling vs complete population-level observations
       - Types of sampling e.g., random, systematic, cluster, etc.
+    
 - **Basic Data Analysis**
   - Summary Statistics [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub), [Deep Dive into Data “Set”](https://docs.google.com/document/d/e/2PACX-1vRSLiNxqIQJP3Tp-6eLdz_-Iv5nPp_Q_yS2cY1SbF2wrNbGRsQS26s32fd1gZYrVyarnH8R364G3I3N/pub)]
     - Measures of central tendency and their benefits/drawbacks
@@ -33,12 +36,14 @@ exclude_from_nav: true
   - Outliers [[Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)]
     - Why we care about outliers
     - How to spot and handle outliers
+
 - **Techniques for Data Visualization** [[Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)]
   - Plotting vs graphing
   - Why we visualize data
   - Types of plots
     - Scatter, line, map, bar, histogram, etc.
-  - How to visualize 1-D vs 2-D vs N-D Data
+  - How to visualize 1-D vs 2-D vs N-D data
+
 - **Techniques for Statistical Modeling**
   - Distributions [[Plotting/Graphing](https://docs.google.com/document/d/e/2PACX-1vQUn3ShN4vdfeXw5o-nXkMHWu9Q6DoyO1Ihk1V0QQ6J3ZaRSB9KhPcgymjvZYA95G86tLQGnsWHNPzd/pub)(Advanced Topic)]
     - Theoretical vs empirical (i.e. probability distributions vs frequency distributions)
@@ -57,6 +62,7 @@ exclude_from_nav: true
       - Numerically (e.g., correlation coefficient)
     - Common pitfalls such as overgeneralization, Simpson’s paradox, etc.
     - Correlation vs. causation
+    
 - **Data Science in the Real World** [[Data and Modeling Overview](https://docs.google.com/document/d/e/2PACX-1vTOMdb9IwrL14be61bxeIaAwOuBrueAELoRJNceE8FLlYP2QE8yEr2px2fGnupUWZAfzq_i00Dco3JJ/pub)]
   - Lies, damn lies and statistics
     - Manipulative visuals
