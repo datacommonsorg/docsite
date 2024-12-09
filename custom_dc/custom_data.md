@@ -17,13 +17,48 @@ This page shows you how to format and load your own custom data into your local 
 
 ## Overview
 
-Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure.
+Custom Data Commons provides a simple mechanism to import your own data, but it requires that the data be provided in a specific format and file structure. At a high level, you need to provide the following:
 
-- All data must be in CSV format, using the schema described below.
-- You must also provide a JSON configuration file, named `config.json`, to map the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+- All data must be in CSV format, using the schema described below. 
+- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - All CSV files and the JSON file _must_ be in the same directory
 
 Examples are provided in [`custom_dc/sample`](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"} and [`custom_dc/examples`](https://github.com/datacommonsorg/website/tree/master/custom_dc/examples){: target="_blank"} directories.
+
+We strongly recommend that, before proceeding, you familiarize yourself with the basics of the Data Commons data model by reading through [Key concepts](/data_model.html), in particular, _entities_, _statistical variables_, and _observations_.
+
+The following sections walk you through the process of setting up your data.
+
+## Before you start: Identify your statistical variables
+
+Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
+
+Statistical variables must follow a certain model; in particular, they must represent any breakdown properties and even encode those properties in their name. To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
+
+| CITY | YEAR | SCHOOL_TYPE | SCHOOL_LEVEL | COUNT |
+|------|------|----------------|-------|
+| San Francisco | 2023 | public | elementary | 300 |
+| San Francisco | 2023 | public | middle | 300 |
+| San Francisco | 2023 | public | secondary | 200 |
+| San Francisco | 2023 | private | elementary | 100 |
+| San Francisco | 2023 | private | middle | 100 |
+| San Francisco | 2023 | private | secondary | 50 |
+| San Jose | 2023 | public | elementary | 400 |
+| San Jose | 2023 | public | middle | 400 |
+| San Jose | 2023 | public | secondary | 300 |
+| San Jose | 2023 | private | elementary | 200 |
+| San Jose | 2023 | private | middle | 200 |
+| San Jose | 2023 | private | secondary | 100 |
+
+Although the properties of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
+- `Count_Public_Elementary`
+- `Count_Public_Middle`
+- `Count_Public_Secondary`
+- `Count_Private_Elementary`
+- `Count_Private_Middle`
+- `Count_Private_Secondary`
+
+If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
 ## Prepare the CSV files {#prepare-csv}
 
@@ -33,25 +68,12 @@ With the variable-per-column scheme, data is provided in this format, in this ex
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-There are two properties, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other properties must be expressed as [statistical variables](/glossary.html#variable). To illustrate what this means, consider this example: let's say you have a dataset that provides the number of public schools in U.S. cities, broken down by elementary, middle, secondary and postsecondary. Your data might have the following structure, which we identify as _variable per row_ (numbers are not real, but are just made up for the sake of example):
+There are two columns, the _ENTITY_ and the _OBSERVATION_DATE_, that specify the place and time of the observation; all other columns must be expressed as variables, as described above. To continue with the above example, a CSV file would need to look like this:
 
 ```csv
-city,year,typeOfSchool,count
-San Francisco,2023,elementary,300
-San Francisco,2023,middle,300
-San Francisco,2023,secondary,200
-San Francisco,2023,postsecondary,50
-San Jose,2023,elementary,400
-San Jose,2023,middle,400
-San Jose,2023,secondary,300
-San Jose,2023,postsecondary,50
-```
-For custom Data Commons, you need to format it so that every property corresponds to a separate statistical variable, like this:
-
-```csv
-city,year,countElementary,countMiddle,countSecondary,countPostSecondary
-San Francisco,2023,300,300,200,50
-San Jose,2023,400,400,300,0
+city,year,CountPublicElementary,CountPublicMiddle,CountPublicSecondary,CountPrivateElementary,CountPrivateMiddle,CountPrivateSecondary
+San Francisco,2023,300,300,200,100,100,50
+San Jose,2023,400,400,300,200,200,100
 ```
 
 The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
@@ -60,11 +82,7 @@ The _ENTITY_ is an existing property in the Data Commons knowledge graph that is
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. We recommend that you try to reuse existing statistical variables where feasible; use the base Data Commons [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} to find them. If there is no existing statistical variable you can use, name the heading with an illustrative name and the importer will create a new variable for you.
-
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
-
-All headers must be in camelCase.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.
 
 ### Special place names {#special-names}
 
@@ -170,6 +188,7 @@ You can use the `*` wildcard; matches are applied in the order in which they are
 
 The first set of parameters only applies to `foo.csv`. The second set of parameters applies to `bar.csv`, `bar1.csv`, `bar2.csv`, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely `foo.csv` and `bar*.csv`.
 
+{: .no_toc}
 #### Input file parameters
 
 `entityType`
@@ -200,6 +219,7 @@ Note that you cannot mix different property values in a single CSV file. If you 
 
 The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
+{:.no_toc}
 #### Variable parameters {#varparams}
 
 `name`
@@ -238,10 +258,12 @@ You can have a multi-level group hierarchy by using `/` as a separator between e
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
+{:.no_toc}
 ### Sources
 
 The `sources` section is optional. It encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
 
+{:.no_toc}
 #### Source parameters
 
 `url`
@@ -273,6 +295,7 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
 
+{:.no_toc}
 #### Step 1: Start the data management container
 
 In one terminal window, from the root directory, run the following command to start the data management container:
@@ -285,6 +308,7 @@ docker run \
 gcr.io/datcom-ci/datacommons-data:stable
 </pre>
 
+{:.no_toc}
 ##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
@@ -301,6 +325,7 @@ gcr.io/datcom-ci/datacommons-data:stable
 
 Once the job has run, go to step 2 below.
 
+{:.no_toc}
 #### Step 2: Start the services container
 
 In another terminal window, from the root directory, run the following command to start the services container:
