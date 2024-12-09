@@ -248,24 +248,26 @@ Nodes in the Data Commons knowledge graph are defined in Metadata Content Format
 ```
 Node: dcid:Adult_curr_cig_smokers
 typeOf: dcs:StatisticalVariable
+measuredProperty: dcs:percent
 name: "Prevalence of current cigarette smoking among adults (%)"
+populationType: dcs:Person
 statType: dcs:measuredValue
-measuredProperty: dcs:value
-populationType: dcs:WHO_Adult_curr_cig_smokers
 
 Node: dcid:Adult_curr_cig_smokers_female
 typeOf: dcs:StatisticalVariable
+measuredProperty: dcs:percent
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
+populationType: dcs:Person
 statType: dcs:measuredValue
-measuredProperty: dcs:value
-populationType: dcs:WHO_Adult_curr_cig_smokers
+gender: dcs:Female
 
 Node: dcid:Adult_curr_cig_smokers_male
 typeOf: dcs:StatisticalVariable
+measuredProperty: dcs:percent
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
+populationType: dcs:Person
 statType: dcs:measuredValue
-measuredProperty: dcs:value
-populationType: dcs:WHO_Adult_curr_cig_smokers
+gender: dcs:Male
 ```
 The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. It must be prefixed with `dcid:`. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`.
@@ -295,15 +297,62 @@ The remaining columns are optional, and allow you to specify additional per-obse
 Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
 ```csv
-country,year,percentage_of_population,percentage_of_population_female,percentage_of_population_male
-Afghanistan,2019,7.5,1.2,13.4
-Angola,2016,,1.8,14.3
-Albania,2018,,4.5,35.7
-United Arab Emirates,2018,6.3,1.6,11.1
+SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE,UNIT_MEASURE
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/AFG,2019,1.2,percentage
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/AFG,2019,13.4,percentage
+dcs:who/Adult_curr_cig_smokers,dcid:country/AFG,2019,7.5,percentage
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/AGO,2016,1.8,percentage
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/AGO,2016,14.3,percentage
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/ALB,2018,4.5,percentage
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/ALB,2018,35.7,percentage
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/ARE,2018,11.1,percentage
+dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6,percentage
+dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3,percentage
 ```
-Note that the data is missing values for the total population percentage for Angola and Albania.
 
+### Write the JSON config file
 
+You must define a `config.json` in the top-level directory where your CSV files are located. With the explicit schema method, you need to provide these specifications:
+- the input files location and entity type
+- the sources and provenances of the data
+- column mappings, if you are using custom names for the column headings
+
+Here is an example of how the config file would look for WHO CSV file we defined earlier. More details are below.
+
+```json
+{
+  "inputFiles": {
+    "adult_cig_smoking.csv": {
+        "provenance": "UN_WHO",
+        "format": "variablePerRow",
+      "columnMappings": {
+        "variable": "SERIES",
+        "entity": "GEOGRAPHY",
+        "date": "TIME_PERIOD",
+        "value": "OBS_VALUE",
+        "unit": "UNIT_MEASURE"
+      }
+    }
+  },
+  "groupStatVarsByProperty": true,
+  "sources": {
+    "custom.who.int": {
+      "url": "https://custom.who.int",
+        "provenances": {
+          "UN_WHO": "https://custom.who.int/data/gho/indicator-metadata-registry/imr-details/6128"
+        }
+    }
+  }
+}
+```
+
+The following fields are specific to the variable-per-row format:
+- `input_files`:
+  - `format` must be `variablePerRow` (the default is `variablePerColumn` if not specified)
+  - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
+  - `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type.
+
+The other fields are explained in the [Data config file specification reference](#json-ref)
 
 
 ## Data config file specification reference {#json-ref}
