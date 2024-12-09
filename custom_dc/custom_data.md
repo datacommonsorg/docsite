@@ -33,7 +33,7 @@ The following sections walk you through the process of setting up your data.
 
 Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
-Statistical variables must follow a certain model: it includes a measure (e.g. "median age") on a set of things of a certain type (e.g. "people") that satisfy some set of constraints (e.g. "gender is female"). To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
+Statistical variables must follow a certain model: it includes a measure (e.g. "median age") on a set of things of a certain type (e.g. "persons") that satisfy some set of constraints (e.g. "gender is female"). To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
 
 | CITY | YEAR | SCHOOL_TYPE | SCHOOL_LEVEL | COUNT |
 |------|------|----------------|-------|
@@ -109,11 +109,11 @@ In this section, we will walk you through a concrete example of how to go about 
 
 ### Prepare the CSV data files {#prepare-csv}
 
-As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in this order:
+As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
+The _ENTITY_ is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
@@ -274,22 +274,25 @@ The following fields are always required:
 `statType`: By default this is `dcs:measuredValue` 
 
 
-### Prepare the CSV data files {#prepare-csv}
+### Prepare the CSV data files
 
-CSV files using explicit must contain the following columns -- and _only_ these columns, using the following headings:
+CSV files using explicit schema contain the following columns using the following headings:
 
 ```csv
-entity, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
+entity, variable, date, value [, unit] [, scalingFactor] [, measurementMethod] [, observationPeriod]
+```
+The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
-The _ENTITY_ is an existing property in the Data Commons knowledge graph that is used to describe an entity, most commonly a place. The best way to think of the entity type is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
+These columns are required:
+- The `entity` is the DCID of an existing entity in the Data Commons knowledge graph, typically a place. 
+- The `variable` is the DCID of the node you have defined in the MCF. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+- The `date` is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
-The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
+The remaining columns are optional, and allow you to specify additional per-observation properties. See xxx for a description of these.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable for you.
-
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
+Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
 ```csv
 country,year,percentage_of_population,percentage_of_population_female,percentage_of_population_male
