@@ -58,7 +58,7 @@ For the purpose of the data literacy, the Data Commons platform becomes an impor
 ## Course content
 
 The course consists of a set of [modules](course_materials/modules.html) focusing on several [key concepts](course_materials/key_themes.html), including data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g.,, the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
-
+The course consists of a set of [modules](course_materials/modules.html) focusing on several [key concepts](course_materials/key_themes.html), including data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g., the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
 ## What is not covered?
 
 We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources.
