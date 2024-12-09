@@ -4,31 +4,27 @@ title: Data literacy with Data Commons
 nav_order: 221
 parent: Educational materials
 grand_parent: Additional resources
-redirect_from: /courseware/data_literacy/overview
+has_children: true
+redirect_from: 
+    - /courseware/data_literacy/overview
+    - /courseware/data_literacy/faq
 ---
 
+{:.no_toc}
 # Data literacy with Data Commons
 
 <div markdown="span" class="alert alert-info" role="alert" style="text-align: center">
-    >> [Access the course materials here](course_materials/). <<
+    >> [Access the course materials here](how_to_use.md). <<
 </div>
+
+* TOC
+{:toc}
 
 ## Overview
 
-"Data Literacy with Data Commons" comprises curriculum/course materials for instructors, students and other practitioners working on or helping others become _data literate_. This includes detailed modules with pedagogical narratives, explanations of key concepts, examples, and suggestions for exercises/projects focused on advancing the _consumption_, _understanding_ and _interpretation_ of data in the contemporary world. In our quest to expand the reach and utility of this material, we assume no background in computer science or programming, thereby removing a key obstacle to many such endeavors.
-
-For more background about the course, see our [FAQs](faqs.html) page.
-
-### FERPA Compliance 
-
-Data Commons collects no personal information (PII), records, or private information from users and can be used in compliance with [FERPA](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html){: target="_blank"}. For specific questions about FERPA compliance, please contact your organization’s legal counsel for advice. 
-
+"Data literacy with Data Commons" comprises curriculum/course materials for instructors, students and other practitioners working on or helping others become _data-literate_. This includes detailed modules with pedagogical narratives, explanations of key concepts, examples, and suggestions for exercises/projects focused on advancing the _consumption_, _understanding_ and _interpretation_ of data in the contemporary world. In our quest to expand the reach and utility of this material, we assume no background in computer science or programming, thereby removing a key obstacle to many such endeavors.
 
 ### Objectives
-
-We embarked on a mission to imagine a Data Literacy curriculum aimed at anyone and everyone who consumes data and aspires to correctly understand and interpret it to help with better decision-making.
-
-We list the following core objectives of such a curriculum:
 
 - Exposing students (and practitioners) to the basics of data comprehension and interpretation.
 - Introducing some basic and intermediate data-driven decision making concepts.
@@ -38,15 +34,33 @@ We list the following core objectives of such a curriculum:
 - Using as many of the out-of-the-box and freely available data exploration tools to preclude any advanced or specialized knowledge.
 - Make the curriculum materials openly available and support extensive customizations for any instructors who wish to adopt components/modules to suit their needs.
 
-### Suggested Prerequisites
+## Who is this for?
+
+Anyone and everyone. Instructors, students, aspiring data scientists and anyone interested in advancing their data comprehension and analysis skills without needing to code. For instructors, the rest of this page details the curriculum organization and how to find key concepts/ideas to use.
+
+### Suggested prerequisites
 
 We suggest only the following prerequisites for this curriculum:
 
-- High-School level Mathematics (basic).
-- High-School level Statistics (basic).
+- High-school level mathematics (basic).
+- High-school level statistics (basic).
 
-### Feedback
+## Why Data Commons?
 
-Data Literacy with Data Commons is constantly a work in progress and we aim to keep making additions and complete the "TBD" modules over time. If there are discrepancies or if you do not find what you are looking for and/or if you would like to contribute to this effort by helping develop more content (or have suggested corrections), we would love to hear from you at [this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.
+Data Commons (datacommons.org) is an open and public-access platform to all sorts of publicly available data in the world. From demographic data to economic/financial data to health indicators to weather/climate, Data Commons aggregates and makes available data about millions of places and thousands of metrics, e.g.,population growth rate.Additionally, Data Commons also provides some out-of-the-box data analysis tools, e.g., timeline charts, maps, scatter plots and the ability to download the data.
 
-Finally, if you end up using any of this material or find it useful, we would love to hear from you! Please [fill out this form to reach us](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"}.
+For the purpose of the data literacy, the Data Commons platform becomes an important component of the curriculum because it helps satisfy several curriculum development objectives:
+
+- **Real data** Data Commons provides open and easy access to a plethora of publicly available _real_ data.
+- **Open access** Data Commons is available to everyone at no cost and with no restrictions of use.
+- **Customization** When viewing or analyzing any data on the Data Commons website, e.g., the [median household income in California, Nevada and Oregon](https://datacommons.org/tools/timeline#place=geoId%2F06%2CgeoId%2F32%2CgeoId%2F41&statsVar=Median_Income_Household&chart=%7B%22income%22%3A%7B%22pc%22%3Afalse%7D%7D){: target="_blank"}, one can easily replace the places to display the same information for an entirely different set of locations, e.g., the [median household income in Florida, Louisiana and Texas](https://datacommons.org/tools/timeline#place=geoId%2F12%2CgeoId%2F22%2CgeoId%2F06&statsVar=Median_Income_Household&chart=%7B%22income%22%3A%7B%22pc%22%3Afalse%7D%7D){: target="_blank"}.
+
+## Course content
+
+The course consists of a set of [modules](course_materials/modules.html) focusing on several [key concepts](course_materials/key_themes.html), including data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g.,, the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
+The course consists of a set of [modules](course_materials/modules.html) focusing on several [key concepts](course_materials/key_themes.html), including data modeling, analysis, visualization and the (ab)use of data to tell (false) narratives. Each module lists its objectives and builds on a pedagogical narrative around the explanation of key concepts, e.g., the differences between correlations and causation. We extensively use the Data Commons platform to point to _real world_ examples without needing to write a single line of code!  
+## What is not covered?
+
+We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources.
+
+We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.html) curriculum/course material.
