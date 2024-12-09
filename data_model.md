@@ -4,8 +4,8 @@ title: Key concepts and common tasks
 nav_order: 3
 parent: How to use Data Commons
 redirect_from: 
-    /bigquery/data_in_bq
-    /bigquery/unique_identifiers#dcid
+  - /bigquery/data_in_bq
+  - /bigquery/unique_identifiers
 ---
 
 {: .no_toc}
