@@ -5,8 +5,7 @@ nav_order: 1
 parent: API - Query data programmatically
 has_children: true
 published: true
-redirect_from: 
-  - / api/rest/v2/getting_started
+redirect_from: /api/rest/v2/getting_started
 ---
 
 {:.no_toc}
