@@ -17,4 +17,4 @@ To find what you may be looking for, or to use any content in your own courses/c
 
 1. Navigate to the [Key Themes pages](key_themes.html). It lists several key themes along with some pointers to specific modules which have the complete details.
 
-3. Navigate to the [Modules page](modules.html). For each module, we describe its goal and include its table of contents. If you find what you are looking for (e.g., search "categorical vs numeric variables" and you should find yourself at the second module), you can then access the module directly for the content.
+1. Navigate to the [Modules page](modules.html). For each module, we describe its goal and include its table of contents. If you find what you are looking for (e.g., search "categorical vs numeric variables" and you should find yourself at the second module), you can then access the module directly for the content.
