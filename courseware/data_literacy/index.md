@@ -63,4 +63,4 @@ The course consists of a set of [modules](course_materials/modules.html) focusin
 
 We note that the curriculum objectives, themes, content and areas of focus are neither exhaustive nor a one size fits all. For example, we do not focus on the ethics of data collection in this curriculum. While these issues are of utmost importance, we chose to focus on a more basic and hands-on approach with the available resources.
 
-We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.md) curriculum/course material.
+We also have more advanced ["Data Science with Real Data"](/courseware/intro_data_science.html) curriculum/course material.
