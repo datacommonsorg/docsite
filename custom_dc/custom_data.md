@@ -273,12 +273,14 @@ The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. It must be prefixed with `dcid:`. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`.
 - `typeOf`: In the case of statistical variable, this is always `dcs:StatisticalVariable`. `dcs` stands for "Data Commons schema", and should be used as the prefix for all, non-quoted field values.
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-- `statType`: By default this is `dcs:measuredValue` 
+
 - `populationType`: This must be an existing class. (same as entity type)
 - `measuredProperty`: 
 
 
 The following fields are optional:
+
+- `statType`: By default this is `dcs:measuredValue` 
 
 measurementQualifier (optional): additional qualifiers of the variable; e.g., Nominal for GDP.
 measurementDenominator (optional): for percentages or ratios, this refers to another StatisticalVariable node. E.g. for per-capita, the measurementDenominator is Count_Person.
