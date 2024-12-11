@@ -272,7 +272,7 @@ The following fields are always required:
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
 
 - `populationType`: This must be an existing class. (same as entity type)
-- `measuredProperty`:  This is a  rangeincludes property of the population type you have specified. 
+- `measuredProperty`:  This is a  domainIncludes property of the population type you have specified. 
 
 
 The following fields are optional:
