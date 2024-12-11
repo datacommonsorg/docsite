@@ -248,25 +248,22 @@ Nodes in the Data Commons knowledge graph are defined in Metadata Content Format
 ```
 Node: dcid:Adult_curr_cig_smokers
 typeOf: dcs:StatisticalVariable
-measuredProperty: dcs:percent
 name: "Prevalence of current cigarette smoking among adults (%)"
 populationType: dcs:Person
-statType: dcs:measuredValue
+measuredProperty: dcs:percent
 
 Node: dcid:Adult_curr_cig_smokers_female
 typeOf: dcs:StatisticalVariable
-measuredProperty: dcs:percent
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
 populationType: dcs:Person
-statType: dcs:measuredValue
+measuredProperty: dcs:percent
 gender: dcs:Female
 
 Node: dcid:Adult_curr_cig_smokers_male
 typeOf: dcs:StatisticalVariable
-measuredProperty: dcs:percent
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcs:Person
-statType: dcs:measuredValue
+measuredProperty: dcs:percent
 gender: dcs:Male
 ```
 The following fields are always required:
@@ -275,7 +272,7 @@ The following fields are always required:
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
 
 - `populationType`: This must be an existing class. (same as entity type)
-- `measuredProperty`: 
+- `measuredProperty`:  This is a  rangeincludes property of the population type you have specified. 
 
 
 The following fields are optional:
@@ -308,17 +305,17 @@ The remaining columns are optional, and allow you to specify additional per-obse
 Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
 ```csv
-SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE,UNIT_MEASURE
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/AFG,2019,1.2,percentage
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/AFG,2019,13.4,percentage
-dcs:who/Adult_curr_cig_smokers,dcid:country/AFG,2019,7.5,percentage
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/AGO,2016,1.8,percentage
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/AGO,2016,14.3,percentage
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/ALB,2018,4.5,percentage
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/ALB,2018,35.7,percentage
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/ARE,2018,11.1,percentage
-dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6,percentage
-dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3,percentage
+SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/AFG,2019,1.2
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/AFG,2019,13.4
+dcs:who/Adult_curr_cig_smokers,dcid:country/AFG,2019,7.5
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/AGO,2016,1.8
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/AGO,2016,14.3
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/ALB,2018,4.5
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/ALB,2018,35.7
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/ARE,2018,11.1
+dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6
+dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
 ```
 
 ### Write the JSON config file
@@ -334,14 +331,13 @@ Here is an example of how the config file would look for WHO CSV file we defined
 {
   "inputFiles": {
     "adult_cig_smoking.csv": {
-        "provenance": "UN_WHO",
-        "format": "variablePerRow",
+      "provenance": "UN_WHO",
+      "format": "variablePerRow",
       "columnMappings": {
         "variable": "SERIES",
         "entity": "GEOGRAPHY",
         "date": "TIME_PERIOD",
-        "value": "OBS_VALUE",
-        "unit": "UNIT_MEASURE"
+        "value": "OBS_VALUE"
       }
     }
   },
@@ -377,6 +373,17 @@ Here is the general spec for the JSON file:
       "entityType": "<var>ENTITY_PROPERTY</var>",  
       "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
       "provenance": "<var>NAME</var>",
+      "format": "variablePerColumn" | "variablePerRow",
+      "columnMappings": {
+        "variable": "<var>NAME</var>",
+        "entity": "<var>NAME</var>",
+        "date": "<var>NAME</var>",
+        "value": "<var>NAME</var>",
+        "unit": "<var>NAME</var>",
+        "scalingFactor": "<var>NAME</var>",
+        "measurementMethod": "<var>NAME</var>",
+        "observationPeriod": "<var>NAME</var>"
+      }
       "observationProperties" {
         "unit": "<var>MEASUREMENT_UNIT</var>",
         "observationPeriod": "<var>OBSERVATION_PERIOD</var>",
@@ -403,6 +410,7 @@ Here is the general spec for the JSON file:
            }  
     },  
   },   
+  "groupStatVarsByProperty": false | true,
   "sources": {  
     "<var>SOURCE_NAME1</var>": {  
       "url": "<var>URL</var>",  
@@ -438,7 +446,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 #### Input file parameters
 
-`entityType`
+`entityType` (implicit schema only)
 
 : Required: All entities in a given file must be of a specific type. This type should be specified as the value of the `entityType` field. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](../place_types.html) for a list.
 
@@ -452,7 +460,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 You must specify the provenance details under `sources.provenances`; this field associates one of the provenances defined there to this file.
 
-`observationProperties`
+`observationProperties` (implicit schema only)
 
 : Optional: Additional information about each contained in the CSV file. Currently, four properties are supported:
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
@@ -462,7 +470,15 @@ You must specify the provenance details under `sources.provenances`; this field 
 
 Note that you cannot mix different property values in a single CSV file. If you have observations using different properties, you must put them in separate CSV files.
 
-### Variables
+`format`
+
+: Only needed to specify `variablePerRow` for explicit schemas. The assumed default is `variablePerColumn`.
+
+`columnMappings` (explicit schema only)
+
+: Optional: If headings in the CSV file does not use the default names, the equivalent names for each column.
+
+### Variables (implicit schema only)
 
 The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
@@ -504,9 +520,17 @@ You can have a multi-level group hierarchy by using `/` as a separator between e
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
+### `groupStatVarsByProperty` (explicit schema only)
+
+: Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
+
+![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png) {: width="400"}
+
+If you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
+
 ### Sources
 
-The `sources` section is optional. It encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
+The `sources` section encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
 
 #### Source parameters
 
@@ -514,7 +538,7 @@ The `sources` section is optional. It encodes the sources and provenances associ
 : Required: The URL of the named source. For example, for named source `U.S. Social Security Administration`, it would be `https://www.ssa.gov`.
 
 `provenances`
-: Required: A set of name:URL pairs. Here are some examples:
+: Required: A set of _NAME_:_URL_ pairs. Here are some examples:
 
 ```json
 {
@@ -532,8 +556,8 @@ To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc
 ### Configure environment variables
 
 Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env-vars) as follows:
-- Set the `INPUT_DIR` variable to the directory where your input files are stored. 
-- Set the `OUTPUT_DIR` variable to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
+- Set the `INPUT_DIR` variable to the full path to the directory where your input files are stored. 
+- Set the `OUTPUT_DIR` variable to the full path to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
 ### Start the Docker containers with local custom data {#docker-data}
 
