@@ -444,6 +444,8 @@ You can use the `*` wildcard; matches are applied in the order in which they are
 
 The first set of parameters only applies to `foo.csv`. The second set of parameters applies to `bar.csv`, `bar1.csv`, `bar2.csv`, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely `foo.csv` and `bar*.csv`.
 
+If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as the input directory).
+
 #### Input file parameters
 
 `entityType` (implicit schema only)
