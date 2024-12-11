@@ -225,11 +225,8 @@ Here is an example of how the config file would look for WHO CSV file we defined
 The following fields are specific to the variable-per-column format:
 
 - `input_files`:
-  - `entityType` must be an existing entity class in the Data Commons knowledge graph; it's most commonly a place type. For a full list of supported classes, go to [https://datacommons.org/browser/Class](https://datacommons.org/browser/Class){: target="_blank"} and scroll to the **Subject Type: Class** list:
-
-   ![group_screenshot](/assets/images/custom_dc/customdc_screenshot8.png){: width="250"}
-
-- `variables`: You must list out all of the variables you are using in your CSV files. The name should match the heading that appears in the CSV. The and description will be shown in the UI. 
+  - `entityType` must be an existing entity class in the Data Commons knowledge graph; it's most commonly a [place type](/place_types.html).
+Get a list of all existing statistical variables- `variables`: You must list out all of the variables you are using in your CSV files. The name should match the heading that appears in the CSV. The and description will be shown in the UI. 
   - `searchDescriptions` is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
   - `group` is optional, to display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. For example:
 
@@ -270,19 +267,18 @@ The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. It must be prefixed with `dcid:`. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`.
 - `typeOf`: In the case of statistical variable, this is always `dcs:StatisticalVariable`. `dcs` stands for "Data Commons schema", and should be used as the prefix for all, non-quoted field values.
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-
-- `populationType`: This must be an existing class. (same as entity type)
-- `measuredProperty`:  This is a  domainIncludes property of the population type you have specified. 
-
+- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. In this example it is is `Person`.  For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
+- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
+  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var>, e.g. `https://datacommons.org/browser/Person` and scroll to the `domainIncludes` section of the page. For example: 
+  ![domain incudes](/assets/images/customdc_screenshot9.png)
+   - Use the [`node` API](/api/rest/v2/node.html#wildcard) filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. `https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes`.
 
 The following fields are optional:
-
 - `statType`: By default this is `dcs:measuredValue` 
-
-measurementQualifier (optional): additional qualifiers of the variable; e.g., Nominal for GDP.
+- `measurementQualifier`: additional qualifiers of the variable; e.g., Nominal for GDP.
 measurementDenominator (optional): for percentages or ratios, this refers to another StatisticalVariable node. E.g. for per-capita, the measurementDenominator is Count_Person.
-Additionally, there can be a number of property-value (PV) pairs representing the constraints on the type identified by populationType. In this example, there is one constraint property gender (which should be of type Person) with value Female. The constraint property values are typically Enumerations (here GenderType) or Quantity nodes.
 
+Additionally, there can be a number of property-value (PV) pairs representing the constraints on the type identified by populationType. In this example, there is one constraint property gender (which should be of type Person) with value Female. The constraint property values are typically Enumerations (here GenderType) or Quantity nodes.
 
 ### Prepare the CSV data files
 
