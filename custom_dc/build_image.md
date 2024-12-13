@@ -143,3 +143,8 @@ Start the services using the locally built repo. If you have made changes to any
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
+
+## Troubleshooting
+
+Having trouble? Visit our [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
+

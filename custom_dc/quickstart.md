@@ -231,3 +231,7 @@ http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=
 If you select **Prettyprint**, you should see output like this:
 
 ![screenshot_api_call](/assets/images/custom_dc/customdc_screenshot4.png){: height="400" }
+
+## Troubleshooting
+
+Having trouble? Visit our [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
