@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Demographics
-parent: Data sources
-nav_exclude: true
+nav_order: 4
+parent: Data Sources
 ---
 
 {:.no_toc}
@@ -158,6 +158,9 @@ Japan Demographics, Economy, Health, Education data from Portal Site of Official
 
 ### [Stadt Zurich open data](https://data.stadt-zuerich.ch//)
 
+#### [Zurich GeoCoordinates](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise)
+Administrative Area divisions of Zurich.
+
 #### [Zurich population](https://data.stadt-zuerich.ch/)
 Population of Zurich city contains structure and organization of the city administration
 
@@ -294,12 +297,6 @@ Statistics on relative deprivation in small areas in England.
 
 #### [UK Open Geography Portal](https://geoportal.statistics.gov.uk/)
 The Open Geography portal from the Office for National Statistics (ONS) provides free and open access to the definitive source of geographic products, web applications, story maps, services and APIs.
-
-### [Unique Identification Authority of India](https://uidai.gov.in/)
-Unique Identification Authority of India issues Aadhaar to all residents of India.
-
-#### [India Aadhaar Dashboard](https://uidai.gov.in/aadhaar_dashboard)
-Aadhaar dashboard has the details of unique identifier (Aadhaar) enrollment, update, authentication and KYC statistics.
 
 ### [United Nations (UN)](https://www.un.org/en/)
 
