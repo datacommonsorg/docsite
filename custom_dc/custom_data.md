@@ -134,6 +134,7 @@ Note that the data is missing values for the total population percentage for Ang
 
 You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.
 
+{:.no_toc}
 #### Special place names {#special-names}
 
 In addition to the place names listed in [Place types](/place_types.html), you can also use the following special names as headings:
@@ -431,6 +432,7 @@ Here is the general spec for the JSON file:
 
 Each section contains some required and optional fields, which are described in detail below.
 
+{:.no_toc}
 ### Input files
 
 The top-level `inputFiles` field should encode a map from the input file name to parameters specific to that file. Keys can be individual file names or wildcard patterns if the same config applies to multiple files.
@@ -451,6 +453,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as the input directory).
 
+{:.no_toc}
 #### Input file parameters
 
 entityType (implicit schema only)
@@ -486,10 +489,12 @@ columnMappings (explicit schema only)
 
 : Optional: If headings in the CSV file does not use the default names, the equivalent names for each column.
 
+{:.no_toc}
 ### Variables (implicit schema only)
 
 The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
 
+{:.no_toc}
 #### Variable parameters {#varparams}
 
 name
@@ -528,6 +533,7 @@ searchDescriptions
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
+{:.no_toc}
 ### groupStatVarsByProperty (explicit schema only)
 
 Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
@@ -536,10 +542,12 @@ Optional: Causes the Statistical Variable Explorer to create a top-level categor
 
 If you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
 
+{:.no_toc}
 ### Sources
 
 The `sources` section encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
 
+{:.no_toc}
 #### Source parameters
 
 url
