@@ -7,6 +7,8 @@ has_children: true
 nav_exclude: true
 ---
 
+> **NOTE: The Data Commons V0 REST API is deprecated. Please use the [V2 REST API](/api/rest/v2).**
+
 # Data Commons V0 REST API
 
 The **Data Commons REST API** is a REST library that enables developers to
