@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Environment
-nav_order: 8
-parent: Data Sources
+parent: Data sources
+nav_exclude: true
 ---
 
 {:.no_toc}
