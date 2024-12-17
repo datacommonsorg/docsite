@@ -66,12 +66,6 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 A global inventory of glaciers, including surface areas.
 
 
-### [India Central Pollution Control Board (CPCB)](https://app.cpcbccr.com)
-India's Central Pollution Control Board (CPCB) portal for Air Quality Management.
-
-#### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
-Air Quality Index and possible health impacts reported for states, cities and stations in India.
-
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
@@ -91,9 +85,6 @@ Population connected to the waste water treatment using different methods from t
 [License](https://www.oecd.org/termsandconditions/)
 
 ### [Resources for the Future (RFF)](https://www.rff.org/)
-
-#### [US Geo Grids for RFF](https://www.rff.org/publications/data-tools/)
-This dataset includes geo grid places in US at 0.25 degree resolution and 4km resolution.
 
 #### [US Wildfire, Smoke and Drought statistics - County and State](https://www.rff.org/publications/data-tools/)
 This dataset incorporates statistics aggregated by RFF from the following
@@ -187,8 +178,16 @@ Includes data about various heat-stress-induced medical incidents.
 Air quality data collected from outdoor monitors on the county, CBSA, and site monitor level.
 
 
+#### [EJSCREEN](https://www.epa.gov/ejscreen)
+Environmental justice mapping tool based on environmental and demographic indicators.
+
+
 #### [Greenhouse Gas Reporting Program](https://www.epa.gov/enviro/greenhouse-gas-overview)
 Annual reporting of greenhouse gases from large emission sources.
+
+
+#### [National Emissions Inventory](https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei)
+The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 onroad air emission sources (mobile sources such as highway and border crossing vehicles electricity measurement), 248 nonroad air emissions sources (mobile sources such as off-highway vehicle gasoline measurement), 703 nonpoint air emissions sources (such as industrial processes, oil and gas exploration and production) and 5818 point air emissions sources (such as chemical and organic solvent evaporation measurement) at the US county level.
 
 
 #### [Superfund Sites](https://www.epa.gov/superfund)
@@ -260,29 +259,10 @@ Information related to the wildland fire management incidents and resources.
 
 ### [United States Geological Service (USGS)](https://www.usgs.gov/)
 
-#### [Advanced National Seismic System Comprehensive Earthquake Catalog (ComCat)](https://earthquake.usgs.gov/data/comcat)
-Earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and amplitudes) and other products (e.g. moment tensor solutions, macroseismic information, tectonic summaries, maps) produced by contributing seismic networks. Data Commons includes date, time, location, magnitudes, magnitude errors, depth, depth error, and review status of earthquakes of magnitude 3 onwards starting from 1900.
-
-
 #### [National Water Use Data](https://waterdata.usgs.gov/nwis/wu)
 Water use data for states and counties in the US, broken down by water source (ground water, surface water), water type (fresh water, saline water), and category of use (domestic, industrial, etc.).
 
 [USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
-
-
-### [Wildland Fire Interagency Geospatial Services](https://data-nifc.opendata.arcgis.com/)
-
-#### [WFIGS Wildland Fire Areas](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
-The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides areas for all reported wildland fires in the United States at county, state and country level.
-
-#### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
-Point Locations for all reported wildland fires in the United States.
-
-
-#### [WFIGS Wildland Fire Perimeters](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-perimeters-full-history/about)
-The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides perimeters for all reported wildland fires in the United States. We simplify those parameters by using Ramer-Douglas-Peucker algorithm on geoJsonCoordinates with epsilon of 0.01.
-
-[Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 
 
 ### [World Bank](https://www.worldbank.org/en/home)

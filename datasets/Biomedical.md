@@ -64,17 +64,7 @@ DISEASES is a weekly updated web resource that integrates evidence on disease-ge
 #### [DISEASES: Textmining](https://diseases.jensenlab.org/Search)
 DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. All files start with the following four columns: gene identifier, gene name, disease identifier, and disease name. The textmining files contain the z-score, the confidence score, and a URL to a viewer of the underlying abstracts. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
-
-#### [Side Effect Resource (SIDER) 4.1](http://sideeffects.embl.de/)
-SIDER is a database of adverse drug reactions. Available information includes side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations. However, this database uses MEDRA ontology, which is under the UMLS license that is limited to non-commercial use. Therefore, only the data under zero license - mappings of PubChem Compound IDs (CIDs), and ATC Codes - are hosted. Data Commons hosts version 4.1 of SIDER released on October 21, 2015. Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/).
-
 This data is made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
-
-
-### [New York Botanical Garden (NYBG)](https://sweetgum.nybg.org/science/)
-
-#### [C. V. Starr Virtual Herbarium (Collaboration)](https://sweetgum.nybg.org/science/vh/learn-more/)
-C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
 
 
 ### [PharmGKB](https://www.pharmgkb.org/)
@@ -95,14 +85,6 @@ Data made available under Creative Commons Attribution-ShareAlike 4.0 Intergover
 The Human Protein Tissue Atlas contains information about the distribution of proteins on human tissues derived from the antibody-based protein profiling from 44 normal human tissues types and mRNA expression data from 37 different normal tissue types.
 
 This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Please also see their [Disclaimer](https://www.proteinatlas.org/about/disclaimer) and [Licence & Citation](https://www.proteinatlas.org/about/licence).
-
-
-### [U.S. Adopted Names (USAN) Council](https://www.ama-assn.org/about/united-states-adopted-names/usan-council)
-
-#### [USAN Stems](https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems)
- USAN stems represent common stems for which chemical and/or pharmacologic parameters have been established. These council-approved stems and their definitions are recommended for use in coining new nonproprietary drug names belonging to an established series of related agents. USAN appropriately incorporates this established class stem system. By doing so, similar compounds maintain a common "family" name that provides immediate recognition.
-
-This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
 
 
 ### [U.S. National Institutes of Health: National Center for Biotechnology Information (NIH: NCBI)](https://www.ncbi.nlm.nih.gov/)
@@ -139,12 +121,4 @@ This data is from the National Library of Medicine (NLM) and is not subject to c
 The Disease Ontology was developed as a project by the Institute of Genome Sciences at the University of Maryland School of Medicine. It "is a community driven, open source ontology that is designed to link disparate datasets through disease concepts". It provides a "standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts".
 
 The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do).
-
-
-### [World Health Organization (WHO)](https://www.who.int/)
-
-#### [ATC Codes](https://www.whocc.no/atc_ddd_index/)
-Anatomical Therapeutic Chemical (ATC) is a heirarchical classification system for pharmacological substances. 'In the ATC classification system, the active substances are classified in a hierarchy with five different levels. The system has fourteen main anatomical/pharmacological groups or 1st levels. Each ATC main group is divided into 2nd levels which could be either pharmacological or therapeutic groups. The 3rd and 4th levels are chemical, pharmacological or therapeutic subgroups and the 5th level is the chemical substance. The 2nd, 3rd and 4th levels are often used to identify pharmacological subgroups when that is considered more appropriate than therapeutic or chemical subgroups.'
-
-Data made available under [CC BY-NC-SA 3.0 IGO](https://www.who.int/about/policies/publishing/copyright).
 
