@@ -268,4 +268,4 @@ curl -X POST \
   "nextToken": "SoME_veRy_L0ng_STrIng"
 }'
 ```
-Don't forget to URL-encode any special characters that appear in the string.
+You must [URL-encode](#url-encode) any special characters that appear in the string.
