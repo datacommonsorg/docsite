@@ -63,8 +63,8 @@ If you wanted totals or subtotals of combinations, you would need to create addi
 ## Step 2: Choose between "implicit" and "explicit" schema definition
 
 Custom Data Commons supports two ways of importing your data:
-- **"Implicit"** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is _simpler and recommended_ for most datasets.
-- **"Explicit"** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables as nodes in MCF files. All variables and entities in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. There are a number of cases for which this option might be a better choice:
+- **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is _simpler and recommended_ for most datasets.
+- **Explicit** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables as nodes in MCF files. All variables and entities in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. There are a number of cases for which this option might be a better choice:
   - You have hundreds of variables, which may be unmanageable as separate columns or files.
   - You want to be able to specify additional properties, for example, unit of measurement, of the observations at a more granular level than per-file. As an example, let's say you have a variable that measures financial expenses, across multiple countries; you may want to be able to specify the country-specific currency of each observation.
   - In the case that you are missing observations for specific entities (e.g. places) or time periods for specific variables, and you don't want to have lots of null values in columns (sparse tables).
@@ -139,7 +139,7 @@ You can have as many CSV files as you like, and they can be stored in a single d
 
 In addition to the place names listed in [Place types](/place_types.html), you can also use the following special names as headings:
 
-- [`dcid`](/glossary.html#dcid) --- An already resolved DC ID. Examples:`country/USA`, `geoId/06`
+- [`dcid`](/glossary.html#dcid) --- An already resolved DCID. Examples:`country/USA`, `geoId/06`
 - `country3AlphaCode` --- Three-character country codes. Examples: `USA`, `CHN`
 - `geoId` --- Place geo IDs. Examples: `06`, `023`
 - `lat#lng` --- Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
@@ -230,7 +230,7 @@ The following fields are specific to the variable-per-column format:
   - `variables`: This section is optional but recommended. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
     - `name`: A human-friendly readable name that will be shown throughout the UI.
     - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
-    - `searchDescriptions`" This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
+    - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
     - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. For example:
 
        ![group_screenshot](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
@@ -299,10 +299,10 @@ entity, variable, date, value [, unit] [, scalingFactor] [, measurementMethod] [
 The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
 These columns are required:
-- The `entity` is the DCID of an existing entity in the Data Commons knowledge graph, typically a place. 
-- The `variable` is the DCID of the node you have defined in the MCF. 
-- The `date` is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
-- The `value` is the value of the observation and must be numeric. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+- `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place. 
+- `variable`: The DCID of the node you have defined in the MCF. 
+- `date`: The date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
+- `value`: The value of the observation and must be numeric. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
@@ -365,9 +365,9 @@ The following fields are specific to the variable-per-row format:
 - `input_files`:
   - `format` must be `variablePerRow` (the default is `variablePerColumn` if not specified)
   - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
-  - `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer; for example:
+- `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer; for example:
 
-    ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
+  ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
 
 The other fields are explained in the [Data config file specification reference](#json-ref)
 
@@ -495,7 +495,7 @@ columnMappings (explicit schema only)
 {:.no_toc}
 ### Variables (implicit schema only)
 
-The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
+The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional. If you don't provide this section, the importer will automatically derive the variable names from the CSV file.
 
 {:.no_toc}
 #### Variable parameters {#varparams}
