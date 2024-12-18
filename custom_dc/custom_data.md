@@ -227,13 +227,11 @@ The following fields are specific to the variable-per-column format:
 
 - `input_files`:
   - `entityType`: This must be an existing entity class in the Data Commons knowledge graph; it's most commonly a [place type](/place_types.html).
-  - `variables`: This section is optional but recommended. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
-    - `name`: A human-friendly readable name that will be shown throughout the UI.
-    - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
-    - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
-    - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. For example:
-
-       ![group_screenshot](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
+- `variables`: This section is optional but recommended. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
+  - `name`: A human-friendly readable name that will be shown throughout the UI.
+  - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
+  - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
+  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. 
 
 The other fields are explained in the [Data config file specification reference](#json-ref).
 
@@ -365,9 +363,7 @@ The following fields are specific to the variable-per-row format:
 - `input_files`:
   - `format` must be `variablePerRow` (the default is `variablePerColumn` if not specified)
   - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
-- `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer; for example:
-
-  ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
+- `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
 
 The other fields are explained in the [Data config file specification reference](#json-ref)
 
