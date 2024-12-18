@@ -243,7 +243,7 @@ In this section, we will walk you through a concrete example of how to go about 
 
 ### Write the MCF file {#mcf}
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format(MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. Here's an example of defining the same statistical variables in the WHO data in MCF:
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. Here's an example of defining the same statistical variables in the WHO data in MCF:
 
 ```
 Node: dcid:Adult_curr_cig_smokers
@@ -270,7 +270,7 @@ The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. 
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`.
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
+- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
 - `dcid:measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
 
@@ -282,8 +282,8 @@ Note that all non-quoted field values must be prefixed with `dcid:` or `dcs:`, w
 
 The following fields are optional:
 - `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
-- `measurementQualifier`: This is similar to `observationPeriod` field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance if `measuredProperty` is "income", `Annual` or `Monthly` is used to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period,you can use this field keep them separate.
-- `measurementDenominator` : For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is `Count_Person`.
+- `measurementQualifier`: This is similar to the `observationPeriod` field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
+- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is `Count_Person`.
 
 Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:
 
@@ -300,9 +300,9 @@ The columns can be in any order, and you can specify custom names for the headin
 
 These columns are required:
 - The `entity` is the DCID of an existing entity in the Data Commons knowledge graph, typically a place. 
-- The `variable` is the DCID of the node you have defined in the MCF. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+- The `variable` is the DCID of the node you have defined in the MCF. 
 - The `date` is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
-- The `value` is the value of the observation and must be numeric.
+- The `value` is the value of the observation and must be numeric. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
@@ -324,6 +324,8 @@ dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6
 dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
 ```
 
+In this case, the columns need to be mapped to the expected columns listed above; see below for details.
+
 ### Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the explicit schema method, you need to provide these specifications:
@@ -331,7 +333,7 @@ You must define a `config.json` in the top-level directory where your CSV files 
 - The sources and provenances of the data
 - Column mappings, if you are using custom names for the column headings
 
-Here is an example of how the config file would look for WHO CSV file we defined earlier. More details are below.
+Here is an example of how the config file would look for the CSV file we defined above. More details are below.
 
 ```json
 {
@@ -363,14 +365,15 @@ The following fields are specific to the variable-per-row format:
 - `input_files`:
   - `format` must be `variablePerRow` (the default is `variablePerColumn` if not specified)
   - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
-  - `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type.
+  - `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer; for example:
+
+    ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
 
 The other fields are explained in the [Data config file specification reference](#json-ref)
 
-
 ## Data config file specification reference {#json-ref}
 
-Here is the general spec for the JSON file:
+Here is the general spec for the `config.json` file:
 
 <pre>
 {  
