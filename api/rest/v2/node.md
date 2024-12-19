@@ -7,7 +7,11 @@ grand_parent: API - Query data programmatically
 published: true
 ---
 
+{: .no_toc}
 # /v2/node
+
+* TOC
+{:toc}
 
 Data Commons represents node relations as directed edges between nodes, or
 _properties_. The name of the property is a _label_, while the target node is the _value_ of
@@ -322,11 +326,11 @@ Response:
 
 
 {: #wildcard}
-### Example 4: Get all incoming arc values for a node
+### Example 4: Get all incoming arc values (properties) for a node
 
 Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels. 
 
-Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+Also note that the response contains a `nextToken`, so to get all the data, you need to send additional requests with [continuation tokens](/api/rest/v2/index.html#pagination), until no `nextToken` is returned.
 
 Parameters:
 {: .example-box-title}
@@ -500,11 +504,12 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: #liststatvars}
 ### Example 5: Get a list of all existing statistical variables
 
 Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, or entity type, this effectively gets all statistical variables.
 
-Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+Also note that the response contains a `nextToken`, so to get all the data, you need to send additional requests with [continuation tokens](/api/rest/v2/index.html#pagination), until no `nextToken` is returned.
 
 Parameters:
 {: .example-box-title}
