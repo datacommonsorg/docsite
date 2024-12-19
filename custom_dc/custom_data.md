@@ -29,7 +29,16 @@ At a high level, you need to provide the following:
 
 You can have as many CSV and MCF files as you like. There must only be one JSON config file, in the top-level input directory. MCF files must also be in this directory, but CSV files can be in multiple subdirectories. For example:
 
-![config file directory structure](/assets/images/custom_dc/dir_structure.png){: width="3g00"}
+```
+my_data/
+├── config.json
+├── (nodes.mcf)
+├── datafile1.csv
+├── datafile2.csv
+└── some_more_data/
+    ├── datafile3.csv
+    └── datafile4.csv
+```
 
 The following sections walk you through the process of setting up your data.
 
