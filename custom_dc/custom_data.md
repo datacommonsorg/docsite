@@ -25,7 +25,11 @@ At a high level, you need to provide the following:
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
 
-You can have as many CSV and MCF files as you like, and they can be stored in a single directory together, or in multiple subdirectories. There must only be one JSON config file, in the top-level input directory.
+### Files and directory structure
+
+You can have as many CSV and MCF files as you like. There must only be one JSON config file, in the top-level input directory. MCF files must also be in this directory, but CSV files can be in multiple subdirectories. For example:
+
+![config file directory structure](/assets/images/custom_dc/dir_structure.png){: width="3g00"}
 
 The following sections walk you through the process of setting up your data.
 
@@ -51,12 +55,12 @@ Statistical variables must follow a certain model: it includes a measure (e.g. "
 | San Jose | 2023 | private | secondary | 100 |
 
 The measure here is a simple count; the set of things is "schools"; and the constraints are the type and levels of the schools, namely "public", "private", "elementary", "middle" and "secondary". All of these things must be encoded as separate variables. Therefore, although the _properties_ of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
-- `CountPublicElementary`
-- `CountPublicMiddle`
-- `CountPublicSecondary`
-- `CountPrivateElementary`
-- `CountPrivateMiddle`
-- `CountPrivateSecondary`
+- `Count_School_Public_Elementary`
+- `Count_School_Public_Middle`
+- `Count_School_Public_Secondary`
+- `Count_School_Private_Elementary`
+- `Count_School_Private_Middle`
+- `Count_School_Private_Secondary`
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
@@ -73,7 +77,7 @@ To illustrate the difference between variable-per-column and variable-per-row sc
 
 **Variable-per-column schema**
 
-| CITY | YEAR | COUNT_PUBLIC_ELEMENTARY | COUNT_PUBLIC_MIDDLE | COUNT_PUBLIC_SECONDARY | COUNT_PRIVATE_ELEMENTARY | COUNT_PRIVATE_MIDDLE | COUNT_PRIVATE_SECONDARY |
+| CITY | YEAR | COUNT_SCHOOL_PUBLIC_ELEMENTARY | COUNT_SCHOOL_PUBLIC_MIDDLE | COUNT_SCHOOL_PUBLIC_SECONDARY | COUNT_SCHOOL_PRIVATE_ELEMENTARY | COUNT_SCHOOL_PRIVATE_MIDDLE | COUNT_SCHOOL_PRIVATE_SECONDARY |
 |------|------|-------------------------|---------------------|------------------------|---------------------------|---------------------|-------------------------|
 | San Francisco | 2023 | 300 | 300 | 200 | 100 | 100 | 50 |
 | San Jose | 2023 | 400 | 400 | 300 | 200 | 200 | 100 |
@@ -88,18 +92,18 @@ In variable-per-row, the same dataset would be provided as follows:
 
 | CITY | YEAR |  VARIABLE | OBSERVATION |
 |------|------|-----------|-------|
-| San Francisco | 2023 | CountPublicElementary | 300 |
-| San Francisco | 2023 | CountPublicMiddle | 300 |
-| San Francisco | 2023 | CountPublicSecondary | 200 |
-| San Francisco | 2023 | CountPrivateElementary | 100 |
-| San Francisco | 2023 | CountPrivateMiddle | 100 |
-| San Francisco | 2023 | CountPrivateSecondary | 50 |
-| San Jose | 2023 | CountPublicElementary | 400 |
-| San Jose | 2023 | CountPublicMiddle | 400 |
-| San Jose | 2023 | CountPublicSecondary | 300 |
-| San Jose | 2023 | CountPrivateElementary | 200 |
-| San Jose | 2023 | CountPrivateMiddle | 200 |
-| San Jose | 2023 | CountPrivateSecondary | 100 |
+| geoId/0667000 | 2023 | Count_School_Public_Elementary | 300 |
+| geoId/0667000 | 2023 | Count_School_Public_Middle | 300 |
+| geoId/0667000 | 2023 | Count_School_Public_Secondary | 200 |
+| geoId/0667000 | 2023 | Count_School_Private_Elementary | 100 |
+| geoId/0667000 | 2023 | Count_School_Private_Middle | 100 |
+| geoId/0667000 | 2023 | Count_School_Private_Secondary | 50 |
+| geoId/06085 | 2023 | Count_School_Public_Elementary | 400 |
+| geoId/06085 | 2023 | Count_School_Public_Middle | 400 |
+| geoId/06085 | 2023 | Count_School_Public_Secondary | 300 |
+| geoId/06085 | 2023 | Count_School_Private_Elementary | 200 |
+| geoId/06085 | 2023 | Count_School_Private_Middle | 200 |
+| geoId/06085 | 2023 | Count_School_Private_Secondary | 100 |
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
@@ -241,7 +245,9 @@ In this section, we will walk you through a concrete example of how to go about 
 
 ### Write the MCF file {#mcf}
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. Here's an example of defining the same statistical variables in the WHO data in MCF:
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file should have a .mcf suffix and be placed in the same top-level directory as the `config.json` file.
+
+Here's an example of defining the same statistical variables in the WHO data in MCF:
 
 ```
 Node: dcid:Adult_curr_cig_smokers
@@ -269,7 +275,7 @@ The following fields are always required:
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`.
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
 - `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
-- `dcid:measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
+- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
 
     ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
