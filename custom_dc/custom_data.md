@@ -480,6 +480,8 @@ If you are using subdirectories, specify the file names using paths relative to 
   "includeInputSubdirs": true
 ```
 
+> Note: Although you don't need to specify the names of MCF files in the `inputFiles` block, if you want to store them in subdirectories, you still need to set `"includeInputSubdirs": true` here.
+
 {:.no_toc}
 #### Input file parameters
 
