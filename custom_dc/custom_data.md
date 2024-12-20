@@ -279,6 +279,9 @@ populationType: dcid:Person
 measuredProperty: dcid:percent
 gender: dcid:Male
 ```
+
+The order of nodes and fields within nodes does not matter.
+
 The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. 
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`.
