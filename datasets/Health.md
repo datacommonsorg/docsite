@@ -26,11 +26,6 @@ Israel Demographics, Health, Economy statistics for Israel at country, district 
 #### [Ireland Census](https://www.cso.ie/en/statistics/)
 Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
 
-### [City Controller, City of Los Angeles](https://controller.lacity.gov/)
-
-#### [Food Resources in California](https://controllerdata.lacity.org/dataset/Food-Resources-in-California/v2mg-qsxf/data)
-This dataset contains a list of resources such food pantries, food banks, and other food distribution sites throughout the state of California. The data is current as of May 1, 2020. Due to the coronavirus pandemic, many food pantries may change their hours or close temporarily. Please contact a food pantry prior to visiting them to confirm their operating hours and ensure you are in their service area.
-
 ### [Dartmouth Atlas Project](https://www.dartmouthatlas.org/)
 
 #### [Dartmouth Atlas of Health Care](https://www.dartmouthatlas.org/)
