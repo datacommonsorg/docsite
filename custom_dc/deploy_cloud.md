@@ -31,7 +31,7 @@ You upload your data and configuration files to [Google Cloud Storage](https://c
 - Install [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"} on your local machine. gcloud is required for authentication and management tasks.
 - Install [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform){: target="_blank"} on your local machine. Terraform is used to automate the setup steps of all the components.
 
-## Enable all APIs
+## One-time step: Create service accounts and enable all APIs
 
 `website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up service account roles and all necessary Cloud APIs. To run it:
 
@@ -57,16 +57,28 @@ The first time you run it, may be prompted to specify a quota project for billin
 gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 </pre>
 
-## Configure Terraform deployment variables
+## Configure and run a Terraform deployment
 
-Data Commons Terraform scripts are located at [website/deploy/terraform-custom-datacommons](https://github.com/datacommonsorg/website/edit/master/deploy/terraform-custom-datacommons/){: target="_blank"}.  
+We recommend using the Data Commons Terraform scripts to greatly simplify and automate the deployment of all the required GCP services. The scripts are located at [website/deploy/terraform-custom-datacommons](https://github.com/datacommonsorg/website/edit/master/deploy/terraform-custom-datacommons/){: target="_blank"}. 
 
-### Provide required variables
+Terraform provisions and runs all the necessary Cloud Platform services:
+
+- Creates a [Cloud Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"} repository, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
+- Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var><code>, but you can override this in `terraform.tf`.
+- Creates a Cloud SQL MySQL instance, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</var> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names in `terraform.tf`.
+- Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</var></code>.
+- Creates the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
+- Stores all secrets (API keys and database passwords) in the [Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/overview){: target="_blank"}.
+- Creates a URL for accessing your service in the browser, in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>run.app</var></code>,
+
+Follow the steps below to create and run a Terraform deployment.
+
+### Configure the deployment
 
 1. From the root directory of the `website` repo, using your favorite editor, copy `deploy/terraform-custom-datacommons/modules/terraform.tfvars.sample` and save it as a new file `deploy/terraform-custom-datacommons/modules/terraform.tfvars`. 
 1. Edit the required variables to specify the relevant values. The `namespace` variable allows you uniquely identify the Data Commons deployment, in the case that you decide to set up multiple instances, e.g. development, staging, testing, production, etc. Since this is a development environment, you may want to have a suffix such as `-dev`.
 
-### Edit optional variables
+#### Edit optional variables
 
 All of the deployment options you can configure are listed in [deploy/terraform-custom-datacommons/modules/variables.tf](https://github.com/datacommonsorg/website/blob/master/deploy/terraform-custom-datacommons/modules/variables.tf){: target="_blank"}. We recommend you keep the default settings for most options at this point. However, you may want to override the following:
 
@@ -80,18 +92,7 @@ To customize any option, do not edit in place in `variables.tf`. Instead, overri
 region  = "us-east1"
 ```
 
-## Run the Terraform script
-
-The Terraform script provisions and runs all the necessary Cloud Platform services:
-
-- Creates a [Cloud Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"} repository, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
-- Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var><code>, but you can override this in `terraform.tf`.
-- Creates a Cloud SQL MySQL instance, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</var> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names in `terraform.tf`.
-- Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</var></code>.
-- Creates the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
-- Stores all secrets (API keys and database passwords) in the [Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/overview){: target="_blank"}.
-
-To run the script:
+### Run the Terraform deployment
 
 1. Open a terminal and navigate to the `website/deploy/deploy/terraform-custom-datacommons/modules` directory.
 1. Initialize Terraform and validate the configuration:
@@ -106,7 +107,17 @@ To run the script:
    ```
    terraform apply
    ```
-1. At the prompt asking you to confirm the actions before creating resources, type `yes` to proceed. It will take about 15 minutes to complete. You will see extensive output showing the progress of the deployment.
+1. At the prompt asking you to confirm the actions before creating resources, type `yes` to proceed. It will take about 15 minutes to complete. You will see extensive output showing the progress of the deployment. You may want to take note of the names of the various services created.
+1. To view the running application (which initially just serves the sample data and default UI), open the browser link listed in the `cloud_run_service_url` output.
+
+### Update your Terraform deployment
+
+If you want to continue to use Terraform to deploy changes to your service, do the following:
+1. Add your updated variables in the `terraform.tf` file.
+1. [Authenticate to GCP](#gen-creds).  
+1. Run all the Terraform commands as listed in the above procedure.
+
+If you intend to deploy several cloud instances, see xxx for a recommended way of using Terraform to do this.
 
 ## Manage your data
 
@@ -141,7 +152,7 @@ As you are iterating on changes to the source CSV, JSON, or MCF files, you can r
 
 > **Note:** Do not upload the local `datacommons` subdirectory or its files.
 
-Once you have uploaded the new data, you must rerun the data management Cloud Run job.
+Once you have uploaded the new data, you must rerun the data management Cloud Run job, by either running `terraform apply` again, or using any of the other methods described below.
 
 ### Run the data management Cloud Run job {#run-job}
 
@@ -153,7 +164,6 @@ Every time you upload new input files to Google Cloud Storage, you will need to 
   <ul class="gcp-tab-headers">
     <li class="active">Cloud Console</li>
     <li>gcloud CLI</li>
-    <li>Terraform CLI</li>
   </ul>
   <div class="gcp-tab-content">
       <div class="active">
@@ -175,9 +185,7 @@ Every time you upload new input files to Google Cloud Storage, you will need to 
       </ol>
       The <var>JOB_NAME</var> is <code><var>NAMESPACE</var>-datacommons-data-job</code>.
       </div>
-      <div>
-From the <code>website/deploy/deploy/terraform-custom-datacommons/modules</code> directory, run <code>terraform apply</code>.
-   </div>
+      </div>
 </div>
 
 When it completes, to verify that the data has been loaded correctly, see [Inspect the Cloud SQL database](#inspect-sql).
@@ -232,7 +240,7 @@ To view information about the created tables:
 
 ## Manage your service
 
-### Upload a custom Docker container to the Artifact Registry
+## Upload a custom Docker container to the Artifact Registry
 
 This procedure creates a "dev" Docker package that you upload to the Google Cloud Artifact Registry repository that was created by the Terraform script. Any time you rebuild the image and want to deploy it to the cloud, you need to rerun this procedure.
 
@@ -274,9 +282,7 @@ When it completes, verify that the container has been uploaded in the Cloud Cons
 1. In the list of repositories, select ...
 You should see the new Docker image listed.
 
-### One-time step: Update the Terraform variable to point to your custom image
 
-1. In your `terraform.tf` file, 
 
 ### Run the services Cloud Run service
 
@@ -290,7 +296,9 @@ Every time you make changes to the code and release a new Docker artifact, or re
   <div class="gcp-tab-content">
       <div class="active">
            <ol>
-           <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page, click on the service created by the Terraform script. By default, this is  and click <b>Edit & Deploy Revision</b></li>. 
+           <li>Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page for your project.</li>
+             <li>From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>.</li>
+             <li>click <b>Edit & Deploy Revision</b></li>. 
            <li>Select a new container image and click <b>Deploy</b>.</li>
         </ol>
       </div>
@@ -304,5 +312,10 @@ Every time you make changes to the code and release a new Docker artifact, or re
   </div>
 </div>
 
+### View and monitor your running application
+
+When you run `terraform apply`, it starts up your web service with a URL like <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>run.app</var></code>. To get the exact URL, you can do either of the following:
+- Look for the `cloud_run_service_url` in the Terraform output.
+- Go to the
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
