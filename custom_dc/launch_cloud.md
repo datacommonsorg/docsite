@@ -17,18 +17,19 @@ When you are ready to launch your site to external traffic, there are many tasks
 
 -  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="_blank"}.
 -  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}.
+-  Create a production environment using Terraform; see [Configure a Terraform production environment](#create-env).
 -  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
 -  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
 
-## Run multiple deployments using Terraform
+## Configure a Terraform production environment {#create-env}
 
 
 ## Improve database performance {#redis}
 
 We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore){: target="_blank"}, a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering){: target="_blank"}. Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access){: target="_blank"}.
 
-
-**Step 5: Verify that everything is working**
+The Terraform scripts provide default settings for the 
+### Verify connector usage
 
 To verify that your Cloud Run service is using the connector:
 
@@ -48,12 +49,33 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 ### One-time setup: Enable Analytics tracking
 
-1. If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://support.google.com/analytics/answer/9304153){: target="_blank"}. Record the Analytics tag ID assigned to your account.
+If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://support.google.com/analytics/answer/9304153){: target="_blank"}. Record the Analytics tag ID assigned to your account.
 
-1. Go to the Cloud Console for your [Cloud Run service](https://console.cloud.google.com/run/), and click **Edit & deploy new revision**.
-1. Expand **Variables and secrets** and click **Add new variable**.
-1. Add the name `GOOGLE_ANALYTICS_TAG_ID` and in the value field, type in your tag ID.
-1. Click **Deploy** to redeploy the service. 
+Enable tracking for your service:
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>Terraform CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+        <li>Go to the Cloud Console for your <a href="https://console.cloud.google.com/run/" target="_blank">Cloud Run service</b>, and click <b>Edit & deploy new revision</b>.</li>
+        <li>Expand <b>Variables and secrets</b> and click <b>Add new variable</b>.</li>
+        <li>Add the name <code>GOOGLE_ANALYTICS_TAG_ID</code> and in the <b>value</b> field, type in your tag ID.</li>
+        <li>Click <b>Deploy</b> to redeploy the service. 
+      </div>
+    <div>
+    <ol>
+         <li>Edit <code>website/deploy/terraform-custom-datacommons/modules/terraform.tfvars</code> and add the following line:
+         <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre>
+         <li> From the <code>modules</code> directory, run <code>terraform apply</code> to redeploy the service.
+          </li>
+      </ol>
+   </div>
+  </div>
+</div>
 
 Data collection will take a day or two to start and begin showing up in your reports.
 

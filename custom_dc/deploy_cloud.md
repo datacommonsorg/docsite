@@ -63,13 +63,13 @@ We recommend using the Data Commons Terraform scripts to greatly simplify and au
 
 Terraform provisions and runs all the necessary Cloud Platform services:
 
+- Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var><code>, but you can override this.
+- Creates a Cloud SQL MySQL instance, with basic resources, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</var> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names.
 - Creates a [Cloud Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"} repository, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
-- Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var><code>, but you can override this in `terraform.tf`.
-- Creates a Cloud SQL MySQL instance, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</var> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names in `terraform.tf`.
-- Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</var></code>.
-- Creates the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
+- Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</var></code>, with basic resources. 
+- Creates the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>, with basic resources. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
 - Stores all secrets (API keys and database passwords) in the [Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/overview){: target="_blank"}.
-- Creates a URL for accessing your service in the browser, in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>run.app</var></code>,
+- Creates a URL for accessing your service in the browser, in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>run.app</var></code>.
 
 Follow the steps below to create and run a Terraform deployment.
 
@@ -85,6 +85,8 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 - `region`: This specifies where all the GCP services, and your data will be located. By default, this is set to `us-central1`, close to the base Data Commons data. If you want to set this to a different value, for a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}. 
 - `dc_data_job_image`: By default this is set to `gcr.io/datcom-ci/datacommons-data:stable`. You may wish to set it to `cr.io/datcom-ci/datacommons-data:latest`
 - `make_dc_web_service_public`: By default this is set to `true`. If you intend to restrict access to your instance, set this to `false`.
+
+Other recommended settings for a production environment are provided in [Launch your Data Commons](launch_cloud.md#create-env).
 
 To customize any option, do not edit in place in `variables.tf`. Instead, override the default, you add the variable to the `terraform.tfvars` file and set it to the desired value. For example, if you wanted to set the  `region` variable to `us-east1`, specify it as follows:
 
@@ -113,7 +115,7 @@ region  = "us-east1"
 ### Update your Terraform deployment
 
 If you want to continue to use Terraform to deploy changes to your service, do the following:
-1. Add your updated variables in the `terraform.tf` file.
+1. Add your updated variables in the `terraform.tfvars` file.
 1. [Authenticate to GCP](#gen-creds).  
 1. Run all the Terraform commands as listed in the above procedure.
 
