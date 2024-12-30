@@ -76,9 +76,9 @@ Follow the steps below to create and run a Terraform deployment.
 ### Configure the deployment
 
 1. From the root directory of the `website` repo, using your favorite editor, copy `deploy/terraform-custom-datacommons/modules/terraform.tfvars.sample` and save it as a new file `deploy/terraform-custom-datacommons/modules/terraform.tfvars`. 
-1. Edit the required variables to specify the relevant values. The `namespace` variable allows you uniquely identify the Data Commons deployment, in the case that you decide to set up multiple instances, e.g. development, staging, testing, production, etc. Since this is a development environment, you may want to have a suffix such as `-dev`.
+1. Edit the required variables to specify the relevant values. The `namespace` variable allows you uniquely identify the Data Commons deployment, in the case that you decide to set up [multiple instances](#multiple), e.g. development, staging, testing, production, etc. Since this is a development environment, you may want to have a suffix such as `-dev`.
 
-#### Edit optional variables
+#### Edit optional variables {#optional}
 
 All of the deployment options you can configure are listed in [deploy/terraform-custom-datacommons/modules/variables.tf](https://github.com/datacommonsorg/website/blob/master/deploy/terraform-custom-datacommons/modules/variables.tf){: target="_blank"}. We recommend you keep the default settings for most options at this point. However, you may want to override the following:
 
@@ -325,3 +325,37 @@ Every time you make changes to the code and release a new Docker artifact, or re
 </div>
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
+
+## Manage multiple Terraform deployments {#multiple}
+
+If you would like to create multiple Terraform deployments, for example, development, staging, and production, you can easily do so using Terraform Workspaces and multiple `tfvars` configuration files. You can run the deployments in different projects, or run them in the same project using namespaces to keep them separate.  
+
+To create additional deployments:
+
+1. In the `website/deploy/terraform-custom-datacommons/modules` directory, make a copy of the `terraform.tfvars` and name it to something different that indicates its purpose, for example:
+```
+cp terraform.tfvars terraform_prod.tfvars
+```
+You may wish to rename the original `terraform.tfvars` to something more descriptive as well.
+1. Do any of the following:
+   - If you intend to run the new deployment in a different GCP project, edit the `project_id` variable and specify the project ID.
+   - If you intend to run the new deployment in the same GCP project, edit the `namespace` variable to name it according to the environment you are creating, e.g. `-prod`. When you run the deployment, all created services will use the new namespace.
+   You can also edit both variables if you like.
+1. Add any relevant variables you want to change to the file, as described in [Edit optional variables](#optional).  For example, for a production environment, you will likely want to increase the number of resources, add a caching layer, and so on. (See [Launch on Cloud](launch_cloud.md) for more details.)
+1. Add a new workspace for each environment you want:
+  <pre>
+  terraform workspace new <var>WORKSPACE_NAME</var>
+  </pre>
+  This creates an empty workspace with no configuration attached to it.
+1. When you are ready to actually run the deployment, switch to the desired workspace, and attach the relevant configuration to it:
+   <pre>
+   terraform workspace select <var>WORKSPACE_NAME</var>
+   terraform plan -var-file=<var>FILE_NAME</var>
+   </pre>
+1. When you are ready to run the deployment, specify the configuration file again:
+  <pre>
+  terraform apply -var-file=<var>FILE_NAME</var>
+  </pre>
+
+
+   

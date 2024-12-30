@@ -17,23 +17,40 @@ When you are ready to launch your site to external traffic, there are many tasks
 
 -  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="_blank"}.
 -  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}.
--  Create a production environment using Terraform; see [Configure a Terraform production environment](#create-env).
 -  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
 -  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
-
-## Configure a Terraform production environment {#create-env}
-
 
 ## Improve database performance {#redis}
 
 We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore){: target="_blank"}, a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering){: target="_blank"}. Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access){: target="_blank"}.
 
-The Terraform scripts provide default settings for the 
+The Terraform scripts provide default settings for all required services. We strongly recommend using Terraform to set these up, to save a lot of time and effort.
+
+To configure caching using Terraform:
+
+1. Create a [production Terraform configuration file and Terraform workspace](deploy_cloud.md#multiple), if you haven't already done so.
+1. Edit the file to add the following:
+    ```
+    enable_redis = true
+    ```
+1. Optionally, override any of the default values for the VPC network and Redis instance in `variables.tf` by adding the variables to your file with the desired values.
+1. From the `modules` ddirectory, switch to the production workspace:
+  <pre>
+  terraform workspace select <var>WORKSPACE_NAME</var>
+  </pre>
+1. Run the deployment:
+  <pre>
+  terraform plan -var-file=<var>FILE_NAME</var>
+  terraform apply -var-file=<var>FILE_NAME</var>
+  </pre>
+  It will take several minutes to create the Redis instance.
+
 ### Verify connector usage
 
 To verify that your Cloud Run service is using the connector:
 
-1. Go to the **Service details** page for your service
+1. Go to the Cloud Run [Cloud Console](https://console.cloud.google.com/run){: target="_blank"} for your project.
+1. In the list of services, click on your production service to display the **Service details** page.
 1. Click the **Networking** tab. Under **VPC**, you should see your connector listed.
 
 To verify that traffic is hitting the cache:
@@ -68,10 +85,18 @@ Enable tracking for your service:
       </div>
     <div>
     <ol>
-         <li>Edit <code>website/deploy/terraform-custom-datacommons/modules/terraform.tfvars</code> and add the following line:
-         <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre>
-         <li> From the <code>modules</code> directory, run <code>terraform apply</code> to redeploy the service.
-          </li>
+         <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
+         <li>Edit the file to add the following line:
+         <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre></li>
+         <li>From the `modules` directory, switch to the production workspace:
+          <pre>
+          terraform workspace select <var>WORKSPACE_NAME</var>
+        </pre>
+     <li>Run the deployment:
+      <pre>
+         terraform plan -var-file=<var>FILE_NAME</var>
+           terraform apply -var-file=<var>FILE_NAME</var>
+       </pre></li>
       </ol>
    </div>
   </div>
