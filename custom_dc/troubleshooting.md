@@ -53,7 +53,7 @@ This error indicates that there has been an update to the database schema, and y
 
 For full command details, see the following sections:
 - For local services, see [Start the data management container in schema update mode](/custom_dc/custom_data.html#schema-update-mode).
-- For services running on Google Cloud, see [Run the data management Cloud Run job in schema update mode](/custom_dc/data_cloud#schema-update-mode).
+- For services running on Google Cloud, see [Run the data management Cloud Run job in schema update mode](/custom_dc/deploy_cloud.html#schema-update-mode).
 
 ## Local build errors
 
@@ -106,7 +106,7 @@ This is a general indication that the Data Commons servers are not running. Chec
 
 This may be due to multiple reasons. First try the following:
 1. In the Cloud Run service page in the Cloud Console, select the **Revisions** tab, and scroll to view the **Environment variables**.
-1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you set when creating the [SQL database](/custom_dc/data_cloud.html#create-sql).
+1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you expect when you [set up GCP](deploy_cloud.md#terraform).
 
 If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
 

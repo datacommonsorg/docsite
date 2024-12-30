@@ -35,14 +35,10 @@ To configure caching using Terraform:
     ```
 1. Optionally, override any of the default values for the VPC network and Redis instance in `variables.tf` by adding the variables to your file with the desired values.
 1. From the `modules` ddirectory, switch to the production workspace:
-  <pre>
-  terraform workspace select <var>WORKSPACE_NAME</var>
-  </pre>
+   <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre>
 1. Run the deployment:
-  <pre>
-  terraform plan -var-file=<var>FILE_NAME</var>
-  terraform apply -var-file=<var>FILE_NAME</var>
-  </pre>
+   <pre>terraform plan -var-file=<var>FILE_NAME</var>
+   terraform apply -var-file=<var>FILE_NAME</var></pre>
   It will take several minutes to create the Redis instance.
 
 ### Verify caching
@@ -50,7 +46,7 @@ To configure caching using Terraform:
 To verify that traffic is hitting the cache:
 
 1. Run some queries against your running Cloud Run service. 
-1. In the Cloud Console, go to the [Redis Memorystore instance page](https://console.cloud.google.com/) for your project.
+1. Go to <https://console.cloud.google.com/memorystore/redis/instances>{: target="_blank"} for your project.
 1. Select the Redis instance that has just been created.
 1. Under **Instance Functions**, click **Monitoring**.
 1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.
@@ -73,31 +69,32 @@ Enable tracking for your service:
   <div class="gcp-tab-content">
       <div class="active">
            <ol>
-        <li>Go to the Cloud Console for your <a href="https://console.cloud.google.com/run/" target="_blank">Cloud Run service</b>, and click <b>Edit & deploy new revision</b>.</li>
+        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project, and click <b>Edit & deploy new revision</b>.</li>
         <li>Expand <b>Variables and secrets</b> and click <b>Add new variable</b>.</li>
         <li>Add the name <code>GOOGLE_ANALYTICS_TAG_ID</code> and in the <b>value</b> field, type in your tag ID.</li>
-        <li>Click <b>Deploy</b> to redeploy the service. 
+        <li>Click <b>Deploy</b> to redeploy the service. </li>
+        </ol>
       </div>
     <div>
     <ol>
-         <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
-         <li>Edit the file to add the following line:
-         <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre></li>
-         <li>From the `modules` directory, switch to the production workspace:
-          <pre>
-          terraform workspace select <var>WORKSPACE_NAME</var>
-        </pre>
-     <li>Run the deployment:
-      <pre>
-         terraform plan -var-file=<var>FILE_NAME</var>
-           terraform apply -var-file=<var>FILE_NAME</var>
-       </pre></li>
+      <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
+      <li>Edit the file to add the following line:
+      <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre></li>
+      <li>From the <code>modules</code> directory, switch to the production workspace:
+<pre>
+terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
+<li>Run the deployment:
+<pre>
+terraform plan -var-file=<var>FILE_NAME</var>
+terraform apply -var-file=<var>FILE_NAME</var></pre></li>
       </ol>
    </div>
   </div>
 </div>
 
 Data collection will take a day or two to start and begin showing up in your reports.
+
+<script src="/assets/js/customdc-doc-tabs.js"></script>
 
 ### Report on custom dimensions {#custom-dimensions}
 
@@ -132,9 +129,6 @@ To create a report based on a custom event:
 1. Edit any other settings you like and name the report. For the first 48 hours you will see **(not set)** for the first row. Afterwards, rows will be populated with real values.
 
 ![Custom exploration](/assets/images/custom_dc/analytics3.png){: width="400"}
-
-
-
 
 
 
