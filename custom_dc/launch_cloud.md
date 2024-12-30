@@ -45,18 +45,13 @@ To configure caching using Terraform:
   </pre>
   It will take several minutes to create the Redis instance.
 
-### Verify connector usage
-
-To verify that your Cloud Run service is using the connector:
-
-1. Go to the Cloud Run [Cloud Console](https://console.cloud.google.com/run){: target="_blank"} for your project.
-1. In the list of services, click on your production service to display the **Service details** page.
-1. Click the **Networking** tab. Under **VPC**, you should see your connector listed.
+### Verify caching
 
 To verify that traffic is hitting the cache:
 
 1. Run some queries against your running Cloud Run service. 
-1. In the Cloud Console, go to the Memorystore page and select Redis instance.
+1. In the Cloud Console, go to the [Redis Memorystore instance page](https://console.cloud.google.com/) for your project.
+1. Select the Redis instance that has just been created.
 1. Under **Instance Functions**, click **Monitoring**.
 1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.
 
