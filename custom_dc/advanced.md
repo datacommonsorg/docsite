@@ -1,21 +1,34 @@
+---
+layout: default
+title: Advanced setups
+nav_order: 9
+parent: Build your own Data Commons
+---
 
+This page covers hybrid setups that are not recommended for most use cases, but may be helpful for some custom Data Commons instances:
+- Running the data management container locally, and the service container in Google Cloud. This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
+- Running the service container locally, and the data management container in Google Cloud. If you have already set up a data processing pipeline to send your input data to Google Cloud, but are still iterating on the website code, this might be a useful option.
 
-Alternatively, if you have a very large data set, you may find it faster to store your input files and run the data management container locally, and output the data to Google Cloud Storage. If you would like to use this approach, follow steps 1 to 3 of the one-time setup steps below and then skip to [Run the data management container locally](#run-local). 
+* TOC
+{:toc}
 
-
-## Advanced setup (optional): Run the data management container locally {#run-local}
+## Run the data management container locally {#run-local}
 
 This process is similar to running both data management and services containers locally, with a few exceptions:
 - Your input directory will be the local file system, while the output directory will be a Google Cloud Storage bucket and folder.
 - You must start the job with credentials to be passed to Google Cloud, to access the Cloud SQL instance.
 
-Before you proceed, ensure you have completed steps 1 to 3 of the [One-time setup steps](#setup) above.
+Before you proceed, ensure you have [set up all necessary GCP services](deploy_cloud.md).
 
 ### Step 1: Set environment variables
 
-To run a local instance of the services container, you need to set all the environment variables in the `custom_dc/env.list` file. See [above](#set-vars) for the details, with the following differences:
-- For the `INPUT_DIR`, specify the full local path where your CSV and JSON files are stored, as described in the [Quickstart](/custom_dc/quickstart.html#env-vars). 
-- Set `GOOGLE_CLOUD_PROJECT` to your GCP project name.
+To run a local instance of the data management container, you need to set all of the environment variables in the `custom_dc/env.list` file, including all the GCP ones. 
+
+1. Obtain the values output by Terraform scripts: 
+    1. Go to <https://console.cloud.google.com/run>{: target="_blank"}, select the **Services** tab, select your service from the list, and click **Revisions**. 
+    1. In the right-hand window, scroll to the **Environment variables** section.
+    1. Copy the variable values to your `env.list` file.
+1. For the `INPUT_DIR` variable, specify the full local path where your CSV and JSON files are stored, as described in the [Quickstart](/custom_dc/quickstart.html#env-vars). 
 
 ### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
 
@@ -52,7 +65,7 @@ gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 
 The version is `latest` or `stable`.
 
-To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](#inspect-sql) above.
+To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](deploy_cloud.md#inspect-sql).
 
 {:.no_toc}
 #### (Optional) Run the data management Docker container in schema update mode 
@@ -69,13 +82,19 @@ docker run \
 gcr.io/datcom-ci/datacommons-data:stable
 ```
 
-## Advanced setup (optional): Access Cloud data from a local services container
+## Access Cloud data from a local services container
 
 For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud, use the following procedures.
 
 ### Step 1: Set environment variables
 
-To run a local instance of the services container, you will need to set all the environment variables, as described [above](#env-vars) in the `custom_dc/env.list`. You must also set the `MAPS_API_KEY` to your Maps API key.
+To run a local instance of the data management container, you need to set all of the environment variables in the `custom_dc/env.list` file, including all the GCP ones. 
+
+Obtain the values output by Terraform scripts: 
+
+1. Go to <https://console.cloud.google.com/run>{: target="_blank"}, select the **Services** tab, select your service from the list, and click **Revisions**. 
+1. In the right-hand window, scroll to the **Environment variables** section.
+1. Copy the variable values to your `env.list ` file.
 
 ### Step 2: Generate credentials for Google Cloud default application
 
@@ -96,5 +115,3 @@ From the root directory of your repo, run the following command, assuming you ar
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>

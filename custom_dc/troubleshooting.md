@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Troubleshooting
-nav_order: 9
+nav_order: 10
 parent: Build your own Data Commons
 ---
 
@@ -84,6 +84,18 @@ If you try to enter input into any of the explorer tools fields, and you get thi
 ![screenshot_troubleshoot](/assets/images/custom_dc/customdc_screenshot7.png){: width="800"}
 
 This is because you are missing a valid API key or the necessary APIs are not enabled. Follow procedures in [Enable Google Cloud APIs and get a Maps API key](/custom_dc/quickstart.html#maps-key), and be sure to obtain a permanent Maps/Places API key.
+
+## Terraform deployment problems
+
+### "Error when reading or editing Network Not Found"
+
+If you have run `terraform apply` and it fails with this error:
+
+```
+Error: Error when reading or editing Network Not Found : default: Get "https://compute.googleapis.com/compute/v1/projects/datcom-website-dev/global/networks/default?alt=json&prettyPrint=false": oauth2: "invalid_grant" "reauth related error (invalid_rapt)" "https://support.google.com/a/answer/9368756"
+```
+
+This is due to expired credentials. Generate new credentials as described in [Generate credentials for Google Cloud authentication](deploy_cloud.md#gen-creds). You may also configure the frequency with which credentials must be refreshed; see <https://support.google.com/a/answer/9368756>{: target="_blank"} for details.
 
 ## Cloud Run Service problems
 
