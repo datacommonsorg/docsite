@@ -43,14 +43,7 @@ gcloud auth application-default login
 ```
 
 This opens a browser window that prompts you to enter credentials, sign in to Google Auth Library and allow Google Auth Library to access your account. Accept the prompts. When it has completed, a credential JSON file is created in  
-`$HOME/.config/gcloud/application_default_credentials.json`. Use this in the command below to authenticate from the docker container.
-
-The first time you run it, may be prompted to specify a quota project for billing that will be used in the credentials file. If so, run this command:
-
-<pre>gcloud auth application-default set-quota-project <var>PROJECT_ID</var>  
-</pre>
-
-If you are prompted to install the Cloud Resource Manager API, press `y` to accept.
+`$HOME/.config/gcloud/application_default_credentials.json`. Use this in the Docker commands below to authenticate from the Docker container.
 
 ### Step 3: Run the data management Docker container
 
