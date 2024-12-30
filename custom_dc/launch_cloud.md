@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Launch your Data Commons
-nav_order: 8
+nav_order: 7
 parent: Build your own Data Commons
 ---
 

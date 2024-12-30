@@ -1,9 +1,11 @@
 ---
 layout: default
 title: Advanced setups
-nav_order: 9
+nav_order: 8
 parent: Build your own Data Commons
 ---
+
+# Advanced setups
 
 This page covers hybrid setups that are not recommended for most use cases, but may be helpful for some custom Data Commons instances:
 - Running the data management container locally, and the service container in Google Cloud. This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
@@ -85,6 +87,8 @@ gcr.io/datcom-ci/datacommons-data:stable
 ## Access Cloud data from a local services container
 
 For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud, use the following procedures.
+
+Before you proceed, ensure you have [set up all necessary GCP services](deploy_cloud.md).
 
 ### Step 1: Set environment variables
 

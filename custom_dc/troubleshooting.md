@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Troubleshooting
-nav_order: 10
+nav_order: 9
 parent: Build your own Data Commons
 ---
 

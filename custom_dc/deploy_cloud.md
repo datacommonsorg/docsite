@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deploy to Google Cloud
-nav_order: 7
+nav_order: 6
 parent: Build your own Data Commons
 ---
 

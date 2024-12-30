@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Frequently asked questions
-nav_order: 11
+nav_order: 10
 parent: Build your own Data Commons
 ---
 
