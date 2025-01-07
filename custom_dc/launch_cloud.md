@@ -34,8 +34,8 @@ Google Cloud Run services use [auto-scaling](https://cloud.google.com/run/docs/a
       <div class="active">
            <ol>
         <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project, and click <b>Edit & deploy new revision</b>.</li>
-        <li>Scroll to **Revision scaling**.</li>
-        <li>Set the **Maximum number of service instances** to 3.</li>
+        <li>Scroll to <b>Revision scaling</b>.</li>
+        <li>Set the <b>Maximum number of service instances</b> to 3.</li>
         <li>Click <b>Deploy</b> to redeploy the service. </li>
         </ol>
       </div>

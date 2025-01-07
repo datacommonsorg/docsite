@@ -41,8 +41,7 @@ This opens a browser window that prompts you to enter credentials, sign in to Go
 The first time you run it, may be prompted to specify a quota project for billing that will be used in the credentials file. If so, run this command:
 
 <pre>
-gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
-</pre>
+gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 
 ## One-time setup: Create service accounts and enable all APIs
 
@@ -51,22 +50,20 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 <pre>
  cd website | cd <var>DIRECTORY</var>
  cd deploy/terraform-custom-datacommons
- ./setup.sh <var>PROJECT_ID</var>
- </pre>
+ ./setup.sh <var>PROJECT_ID</var></pre>
 
- ## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
+## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
 
  If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
 
- `website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to set up a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){target="_blank"}. The script creates a repository called <code>artifacts-<var>PROJECT_ID</var>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
+`website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to create a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"}. The script creates a repository called <code>artifacts-<var>PROJECT_ID</var></code>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
  
  To run it:
 
  <pre>
  cd website | cd <var>DIRECTORY</var>
  cd deploy/terraform-custom-datacommons
- ./create_artifact_repository.sh <var>PROJECT_ID</var>
- </pre>
+ ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
 
  The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases. 
 
@@ -98,8 +95,6 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 - `region`: This specifies where all the GCP services, and your data will be located. By default, this is set to `us-central1`, close to the base Data Commons data. If you want to set this to a different value, for a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}. 
 - `dc_data_job_image`: This specifies the image for the Docker data management container. By default this is set to `gcr.io/datcom-ci/datacommons-data:stable`. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`.
 - `make_dc_web_service_public`: By default this is set to `true`. If you intend to restrict access to your instance, set this to `false`.
-
-When you are ready to deploy a custom-built image, you will also need to set `
 
 Other recommended settings for a production environment are provided in [Launch your Data Commons](launch_cloud.md#create-env).
 
@@ -289,16 +284,18 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
 
    <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
 
-  The container image URL is the full name of the package you created in step 2, including the tag.
+  The container image URL is the full name of the package you created in the previous step, including the tag.
 
-This will take several minutes to upload.
+This will take several minutes to upload. Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service), as described below.
 
-When it completes, verify that the container has been uploaded in the Cloud Console:
+{: .no_toc}
+#### Verify the upload
+
+When the push completes, verify that the container has been uploaded in the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project.
 1. In the list of repositories, you should see the new Docker image listed. Click on it to view details about build revisions.
 
-Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service), as described below.
 
 ### Start/restart the services container {#start-service}
 
