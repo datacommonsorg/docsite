@@ -28,16 +28,6 @@ You upload your data and configuration files to [Google Cloud Storage](https://c
 - Install [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"} on your local machine. gcloud is required for authentication and management tasks.
 - Install [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform){: target="_blank"} on your local machine. Terraform is used to automate the setup steps of all the components.
 
-## One-time step: Create service accounts and enable all APIs
-
-`website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up service account roles and all necessary Cloud APIs. To run it:
-
-<pre>
- cd website | cd <var>DIRECTORY</var>
- cd deploy/terraform-custom-datacommons
- ./setup.sh <var>PROJECT_ID</var>
- </pre>
-
 ## Generate credentials for Google Cloud authentication {#gen-creds}
 
 From any directory, run:
@@ -54,6 +44,32 @@ The first time you run it, may be prompted to specify a quota project for billin
 gcloud auth application-default set-quota-project <var>PROJECT_ID</var>
 </pre>
 
+## One-time setup: Create service accounts and enable all APIs
+
+`website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up service account roles and all necessary Cloud APIs. To run it:
+
+<pre>
+ cd website | cd <var>DIRECTORY</var>
+ cd deploy/terraform-custom-datacommons
+ ./setup.sh <var>PROJECT_ID</var>
+ </pre>
+
+ ## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
+
+ If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
+
+ `website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to set up a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){target="_blank"}. The script creates a repository called <code>artifacts-<var>PROJECT_ID</var>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
+ 
+ To run it:
+
+ <pre>
+ cd website | cd <var>DIRECTORY</var>
+ cd deploy/terraform-custom-datacommons
+ ./create_artifact_repository.sh <var>PROJECT_ID</var>
+ </pre>
+
+ The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases. 
+
 ## Configure and run a Terraform deployment {#terraform}
 
 We recommend using the Data Commons Terraform scripts to greatly simplify and automate the deployment of all the required GCP services. The scripts are located at [website/deploy/terraform-custom-datacommons](https://github.com/datacommonsorg/website/edit/master/deploy/terraform-custom-datacommons/){: target="_blank"}. 
@@ -62,9 +78,8 @@ Terraform provisions and runs all the necessary Cloud Platform services:
 
 - Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, but you can override this.
 - Creates a Cloud SQL MySQL instance, with basic resources, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</var></code> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names.
-- Creates a [Cloud Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"} repository, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
 - Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</code>, with basic resources. 
-- Creates the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>, with basic resources. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
+- Creates a single instance of the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>, with basic resources. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
 - Stores all secrets (API keys and database passwords) in the [Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/overview){: target="_blank"}.
 - Creates a URL for accessing your service in the browser, in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>.
 
@@ -81,8 +96,10 @@ Follow the steps below to create and run a Terraform deployment.
 All of the deployment options you can configure are listed in [deploy/terraform-custom-datacommons/modules/variables.tf](https://github.com/datacommonsorg/website/blob/master/deploy/terraform-custom-datacommons/modules/variables.tf){: target="_blank"}. We recommend you keep the default settings for most options at this point. However, you may want to override the following:
 
 - `region`: This specifies where all the GCP services, and your data will be located. By default, this is set to `us-central1`, close to the base Data Commons data. If you want to set this to a different value, for a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}. 
-- `dc_data_job_image`: By default this is set to `gcr.io/datcom-ci/datacommons-data:stable`. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`
+- `dc_data_job_image`: This specifies the image for the Docker data management container. By default this is set to `gcr.io/datcom-ci/datacommons-data:stable`. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`.
 - `make_dc_web_service_public`: By default this is set to `true`. If you intend to restrict access to your instance, set this to `false`.
+
+When you are ready to deploy a custom-built image, you will also need to set `
 
 Other recommended settings for a production environment are provided in [Launch your Data Commons](launch_cloud.md#create-env).
 
@@ -265,7 +282,7 @@ This procedure creates a "dev" Docker package that you upload to the Google Clou
     <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \  
    <var>REGION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>  
    </pre>
-   The artifact repo is ...
+   The artifact repo is <code>artifacts-<var>PROJECT_ID</var></code>.
    The target image name and tag can be the same as the source or different.
   
 1. Push the image to the registry:
@@ -279,14 +296,13 @@ This will take several minutes to upload.
 When it completes, verify that the container has been uploaded in the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project.
-1. In the list of repositories, select ...
-You should see the new Docker image listed.
+1. In the list of repositories, you should see the new Docker image listed. Click on it to view details about build revisions.
 
-Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service).  
+Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service), as described below.
 
 ### Start/restart the services container {#start-service}
 
-Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](#run-job), you need point the service at the container image URL and restart the service. You can simply run `terraform apply` again, or use any of the other methods described below.
+Every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](#run-job), you need to point the service at the container image URL and restart the service.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -335,7 +351,7 @@ You may wish to rename the original `terraform.tfvars` to something more descrip
    - If you intend to run the new deployment in a different GCP project, edit the `project_id` variable and specify the project ID.
    - If you intend to run the new deployment in the same GCP project, edit the `namespace` variable to name it according to the environment you are creating, e.g. `-prod`. When you run the deployment, all created services will use the new namespace.
    You can also edit both variables if you like.
-1. Add any relevant variables you want to change to the file, as described in [Edit optional variables](#optional).  For example, for a production environment, you will likely want to increase the number of resources, add a caching layer, and so on. (See [Launch on Cloud](launch_cloud.md) for more details.)
+1. Add any relevant variables you want to change to the file, as described in [Edit optional variables](#optional).  For example, for a production environment, you will likely want to increase the number of service replicas, add a caching layer, and so on. (See [Launch on Cloud](launch_cloud.md) for more details.)
 1. Add a new workspace for each environment you want:
   <pre>
   terraform workspace new <var>WORKSPACE_NAME</var>

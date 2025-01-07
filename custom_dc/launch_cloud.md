@@ -17,8 +17,44 @@ When you are ready to launch your site to external traffic, there are many tasks
 
 -  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="_blank"}.
 -  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}.
+-  Optionally, increase the number of Docker service container instances. See [Increase the services container replication](#replication) for procedures.
 -  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
 -  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
+
+## Increase replication of the services container {#replication}
+
+Google Cloud Run services use [auto-scaling](https://cloud.google.com/run/docs/about-instance-autoscaling){: target="_blank"}, which means that the number of instances of your services container is increased or decreased according to the traffic the service is receiving. By default, the Terraform scripts set the minimum and maximum number of instances to 1. For production traffic, we suggest increasing the maximum to at least 3. (We recommend keeping the default minimum instances setting of 1, to avoid delays when new revisions are deployed.)
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>Terraform CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project, and click <b>Edit & deploy new revision</b>.</li>
+        <li>Scroll to **Revision scaling**.</li>
+        <li>Set the **Maximum number of service instances** to 3.</li>
+        <li>Click <b>Deploy</b> to redeploy the service. </li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+      <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
+      <li>Edit the file to add the following line:
+      <pre>dc_web_service_max_instance_count = 3</pre></li>
+      <li>From the <code>modules</code> directory, switch to the production workspace:
+<pre>
+terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
+<li>Run the deployment:
+<pre>
+terraform plan -var-file=<var>FILE_NAME</var>
+terraform apply -var-file=<var>FILE_NAME</var></pre></li>
+      </ol>
+   </div>
+  </div>
+</div>
 
 ## Improve database performance {#redis}
 
