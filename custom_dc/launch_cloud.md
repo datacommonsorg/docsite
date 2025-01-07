@@ -16,10 +16,47 @@ parent: Build your own Data Commons
 When you are ready to launch your site to external traffic, there are many tasks you will need to perform, including:
 
 -  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="_blank"}.
--  Optionally, restrict access to your service; see [Custom audiences (services)](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}.
+-  Optionally, restrict access to your service; see [Restrict public access to your service](#access).
 -  Optionally, increase the number of Docker service container instances. See [Increase the services container replication](#replication) for procedures.
 -  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
 -  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
+
+## Restrict public access to your service {#access}
+
+By default when you create a new Cloud Run service, it is set up with global public access. If you wish to restrict access to only authenticated and authorized users, you can do so by making the service [private](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}) and requring access tokens from your users. To set your instance to private:
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>Terraform CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
+        <li>Under the <b>Services</b> tab, select the desired service, and select the <b>Security tab</b>.</li>
+        <li>Enable <b>Require authentication</b>.</li>
+        <li>Click <b>Deploy</b> to redeploy the service. </li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+      <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
+      <li>Edit the file to add the following line:
+      <pre>make_dc_web_service_public = false</pre></li>
+      <li>From the <code>modules</code> directory, switch to the production workspace:
+<pre>
+terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
+<li>Run the deployment:
+<pre>
+terraform plan -var-file=<var>FILE_NAME</var>
+terraform apply -var-file=<var>FILE_NAME</var></pre></li>
+      </ol>
+   </div>
+  </div>
+</div>
+
+Follow additional procedures in [Authenticate users](https://cloud.google.com/run/docs/authenticating/end-users){: target="_blank"} to complete your setup.
 
 ## Increase replication of the services container {#replication}
 
@@ -33,7 +70,8 @@ Google Cloud Run services use [auto-scaling](https://cloud.google.com/run/docs/a
   <div class="gcp-tab-content">
       <div class="active">
            <ol>
-        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project, and click <b>Edit & deploy new revision</b>.</li>
+        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
+        <li>Under the <b>Services</b> tab, select the desired service, and click <b>Edit & deploy new revision</b>.</li>
         <li>Scroll to <b>Revision scaling</b>.</li>
         <li>Set the <b>Maximum number of service instances</b> to 3.</li>
         <li>Click <b>Deploy</b> to redeploy the service. </li>
@@ -105,7 +143,8 @@ Enable tracking for your service:
   <div class="gcp-tab-content">
       <div class="active">
            <ol>
-        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project, and click <b>Edit & deploy new revision</b>.</li>
+       <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
+        <li>Under the <b>Services</b> tab, select the desired service, and click <b>Edit & deploy new revision</b>.</li>
         <li>Expand <b>Variables and secrets</b> and click <b>Add new variable</b>.</li>
         <li>Add the name <code>GOOGLE_ANALYTICS_TAG_ID</code> and in the <b>value</b> field, type in your tag ID.</li>
         <li>Click <b>Deploy</b> to redeploy the service. </li>
