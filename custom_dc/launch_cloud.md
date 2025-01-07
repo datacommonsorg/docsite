@@ -23,7 +23,7 @@ When you are ready to launch your site to external traffic, there are many tasks
 
 ## Restrict public access to your service {#access}
 
-By default when you create a new Cloud Run service, it is set up with global public access. If you wish to restrict access to only authenticated and authorized users, you can do so by making the service [private](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"}) and requring access tokens from your users. To set your instance to private:
+By default when you create a new Cloud Run service, it is set up with global public access. If you wish to restrict access to only authenticated and authorized users, you can do so by making the service [private](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"} and requring access tokens from your users. To set your instance to private:
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -115,6 +115,7 @@ To configure caching using Terraform:
    terraform apply -var-file=<var>FILE_NAME</var></pre>
   It will take several minutes to create the Redis instance.
 
+{: .no_toc}
 ### Verify caching
 
 To verify that traffic is hitting the cache:
@@ -129,7 +130,7 @@ To verify that traffic is hitting the cache:
 
 Google Analytics provides detailed reports on user engagement with your site. In addition, Data Commons provides a number of custom parameters you can use to report on specific attributes of a Data Commons site such as, search queries, specific page views, etc.
 
-### One-time setup: Enable Analytics tracking
+### Enable Analytics tracking
 
 If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://support.google.com/analytics/answer/9304153){: target="_blank"}. Record the Analytics tag ID assigned to your account.
 
