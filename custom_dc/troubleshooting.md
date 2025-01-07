@@ -87,9 +87,9 @@ This is because you are missing a valid API key or the necessary APIs are not en
 
 ## Terraform deployment problems
 
-### "Error when reading or editing Network Not Found"
+### "Error: Error when reading or editing...oauth2: "invalid_grant" "reauth related error (invalid_rapt)""
 
-If you have run `terraform apply` and it fails with this error:
+If you have run `terraform apply` and it fails with an error like this:
 
 ```
 Error: Error when reading or editing Network Not Found : default: Get "https://compute.googleapis.com/compute/v1/projects/datcom-website-dev/global/networks/default?alt=json&prettyPrint=false": oauth2: "invalid_grant" "reauth related error (invalid_rapt)" "https://support.google.com/a/answer/9368756"
