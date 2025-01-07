@@ -74,7 +74,7 @@ We recommend using the Data Commons Terraform scripts to greatly simplify and au
 Terraform provisions and runs all the necessary Cloud Platform services:
 
 - Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, but you can override this.
-- Creates a Cloud SQL MySQL instance, with basic resources, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</var></code> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names.
+- Creates a Cloud SQL MySQL instance, with basic resources, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names.
 - Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</code>, with basic resources. 
 - Creates a single instance of the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>, with basic resources. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
 - Stores all secrets (API keys and database passwords) in the [Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/overview){: target="_blank"}.
@@ -330,6 +330,13 @@ Every time you make changes to the code and release a new Docker artifact, or re
   </div>
   </div>
 </div>
+
+### View your running application
+
+The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
+
+1. Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page for your project.
+1. From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
 
