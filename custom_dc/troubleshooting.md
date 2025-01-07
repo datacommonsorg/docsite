@@ -85,11 +85,11 @@ If you try to enter input into any of the explorer tools fields, and you get thi
 
 This is because you are missing a valid API key or the necessary APIs are not enabled. Follow procedures in [Enable Google Cloud APIs and get a Maps API key](/custom_dc/quickstart.html#maps-key), and be sure to obtain a permanent Maps/Places API key.
 
-## Terraform deployment problems
+## Terraform problems
 
 ### "Error: Error when reading or editing...oauth2: "invalid_grant" "reauth related error (invalid_rapt)""
 
-If you have run `terraform apply` and it fails with an error like this:
+If you are trying to run `terraform plan` or `terraform apply` and it fails with an error like this:
 
 ```
 Error: Error when reading or editing Network Not Found : default: Get "https://compute.googleapis.com/compute/v1/projects/datcom-website-dev/global/networks/default?alt=json&prettyPrint=false": oauth2: "invalid_grant" "reauth related error (invalid_rapt)" "https://support.google.com/a/answer/9368756"
