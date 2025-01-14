@@ -30,6 +30,8 @@ You upload your data and configuration files to [Google Cloud Storage](https://c
 
 ## Generate credentials for Google Cloud authentication {#gen-creds}
 
+You will need to regenerate credentials on a periodic basis whenever you run gcloud or Terraform scripts. You can also adjust the frequency with which credentials must be refreshed; see <https://support.google.com/a/answer/9368756>{: target="_blank"} for details.
+
 From any directory, run:
 
 ```shell
@@ -120,7 +122,7 @@ region  = "us-east1"
    terraform apply
    ```
 1. At the prompt asking you to confirm the actions before creating resources, type `yes` to proceed. It will take about 15 minutes to complete. You will see extensive output showing the progress of the deployment. You may want to take note of the names of the various services created.
-1. To view the running application (which initially just serves the sample data and default UI), open the browser link listed in the `cloud_run_service_url` output.
+1. To view the running application (which initially just serves the sample data and default UI), open the browser link listed in the `cloud_run_service_url` output, or see [View the running application](#view-app) for more details.
 
 ### Update your Terraform deployment
 
@@ -331,12 +333,14 @@ Every time you make changes to the code and release a new Docker artifact, or re
   </div>
 </div>
 
-### View your running application
+### View your running application {#view-app}
 
 The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
 
 1. Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page for your project.
-1. From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link.
+1. From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab. 
+
+If the link is not clickable and the service is not running, go to back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
 

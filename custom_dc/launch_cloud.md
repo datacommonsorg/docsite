@@ -45,12 +45,10 @@ By default when you create a new Cloud Run service, it is set up with global pub
       <li>Edit the file to add the following line:
       <pre>make_dc_web_service_public = false</pre></li>
       <li>From the <code>modules</code> directory, switch to the production workspace:
-<pre>
-terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
-<li>Run the deployment:
-<pre>
-terraform plan -var-file=<var>FILE_NAME</var>
-terraform apply -var-file=<var>FILE_NAME</var></pre></li>
+        <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
+      <li>Run the deployment:
+        <pre>terraform plan -var-file=<var>FILE_NAME</var>
+        terraform apply -var-file=<var>FILE_NAME</var></pre></li>
       </ol>
    </div>
   </div>
@@ -83,12 +81,10 @@ Google Cloud Run services use [auto-scaling](https://cloud.google.com/run/docs/a
       <li>Edit the file to add the following line:
       <pre>dc_web_service_max_instance_count = 3</pre></li>
       <li>From the <code>modules</code> directory, switch to the production workspace:
-<pre>
-terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
-<li>Run the deployment:
-<pre>
-terraform plan -var-file=<var>FILE_NAME</var>
-terraform apply -var-file=<var>FILE_NAME</var></pre></li>
+        <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
+      <li>Run the deployment:
+        <pre>terraform plan -var-file=<var>FILE_NAME</var>
+            terraform apply -var-file=<var>FILE_NAME</var></pre></li>
       </ol>
    </div>
   </div>
@@ -96,9 +92,15 @@ terraform apply -var-file=<var>FILE_NAME</var></pre></li>
 
 ## Improve database performance {#redis}
 
+
+### Use a caching layer
+
 We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore){: target="_blank"}, a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering){: target="_blank"}. Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access){: target="_blank"}.
 
-The Terraform scripts provide default settings for all required services. We strongly recommend using Terraform to set these up, to save a lot of time and effort.
+The Terraform scripts provide default settings for all required services. We strongly recommend using Terraform to set these up, to save a lot of time and effort. The Terraform scripts set up a single Redis instance called <pre><var>NAMESPACE</var>-datacommons-redis-instance</pre> with the following characteristics:
+
+- "Standard high-availability" tier, without read replicas
+- 2 GiB memory reservation
 
 To configure caching using Terraform:
 
@@ -108,7 +110,7 @@ To configure caching using Terraform:
     enable_redis = true
     ```
 1. Optionally, override any of the default values for the VPC network and Redis instance in `variables.tf` by adding the variables to your file with the desired values.
-1. From the `modules` ddirectory, switch to the production workspace:
+1. From the `modules` directory, switch to the production workspace:
    <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre>
 1. Run the deployment:
    <pre>terraform plan -var-file=<var>FILE_NAME</var>
@@ -116,7 +118,7 @@ To configure caching using Terraform:
   It will take several minutes to create the Redis instance.
 
 {: .no_toc}
-### Verify caching
+#### Verify caching
 
 To verify that traffic is hitting the cache:
 
@@ -125,6 +127,24 @@ To verify that traffic is hitting the cache:
 1. Select the Redis instance that has just been created.
 1. Under **Instance Functions**, click **Monitoring**.
 1. Scroll to the **Cache Hit Ratio** graph. You should see a significant percentage of your traffic hitting the cache.
+
+{: .no_toc}
+#### Boost Redis resources
+
+If you encounter performance problems after launch, there are various Redis parameters you can adjust. In particular, if needded, we suggest increasing the memory allocation and enabling instance replication. We recommend using Terraform, as this will save you time setting up Redis replication. 
+
+1. Go to <https://console.cloud.google.com/memorystore/redis/instances>{: target="_blank"} for your project and select your Redis instance.
+1. Check memory usage: Go to the **Monitoring** page and look at the **Memory usage/Max memory graph**. 
+1. If you notice that memory is filling up, add the following line to your production `terraform.tfvars` file:
+```
+redis_memory_size_gb = 4
+```
+1. Check traffic volumes: go to the **Monitoring** page and look at the **Received connections/Rejected connections**.
+1. If you notice that the connection rejection rate is too high, add the following line to your production `terraform.tfvars` file:
+```
+redis_replica_count = 3
+```
+1. Run the Terraform deployment as usual.
 
 ## Add Google Analytics reporting {#analytics}
 

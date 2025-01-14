@@ -112,3 +112,8 @@ From the root directory of your repo, run the following command, assuming you ar
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
+The image name and image tag are the values you set when you [created the package](build_image.md#build-package). 
+
+Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080).
+
+If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
