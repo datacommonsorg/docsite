@@ -112,15 +112,4 @@ If you are unable to select this option, this indicates that there is an IAM per
 
 ### "502 Bad Gateway"
 
-This is a general indication that the Data Commons servers are not running. Check the **Logs ** page for the Cloud Run service in the Google Cloud Console. Here are common errors:
-
-`403 Forbidden: Not authorized to access resources`
-
-This may be due to multiple reasons. First try the following:
-1. In the Cloud Run service page in the Cloud Console, select the **Revisions** tab, and scroll to view the **Environment variables**.
-1. Ensure that the `DB_USER` and `DB_PASS` variables are set to the values you expect when you [set up GCP](deploy_cloud.md#terraform).
-
-If you see no errors in the logs, except `connect() failed (111: Connection refused) while connecting to upstream`, try the following:
-
-1. Wait a few minutes and try to access the app again. Sometimes it appears to be deployed, but some of the services haven't yet started up.
-1. In the Cloud Run **Service details** page, click the **Revisions** tab. Under the **Containers** tab, under **General**, check that **CPU Allocation** is set to **CPU is always allocated**. If it is not, click **Edit & Deploy New Revision**, and the **Containers** tab. Under **CPU allocation and pricing** enable **CPU is always allocated** and click **Deploy**.
+This is a general indication that the Data Commons servers are not running. Check the **Logs** page for the Cloud Run service in the Google Cloud Console.

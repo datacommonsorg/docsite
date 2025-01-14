@@ -148,6 +148,7 @@ To load the sample data:
    -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
    gcr.io/datcom-ci/datacommons-data:stable
    ```
+> Tip: While the `env.list` file requires full paths for input and output directories, in Docker commands you can use system variables like `$PWD` as shortcuts. 
 This does the following:
 
 - The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.

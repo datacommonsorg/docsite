@@ -14,7 +14,7 @@ This page covers hybrid setups that are not recommended for most use cases, but 
 * TOC
 {:toc}
 
-## Run the data management container locally {#run-local}
+## Run the data management container locally and service container in the cloud {#run-local}
 
 This process is similar to running both data management and services containers locally, with a few exceptions:
 - Your input directory will be the local file system, while the output directory will be a Google Cloud Storage bucket and folder.
@@ -31,6 +31,7 @@ To run a local instance of the data management container, you need to set all of
     1. In the right-hand window, scroll to the **Environment variables** section.
     1. Copy the variable values to your `env.list` file.
 1. For the `INPUT_DIR` variable, specify the full local path where your CSV and JSON files are stored, as described in the [Quickstart](/custom_dc/quickstart.html#env-vars). 
+1. For the `OUTPUT_DIR`, specify the Google Cloud Storage bucket and path where your files are written. By default, this is ....
 
 ### Step 2: Generate credentials for Google Cloud authentication {#gen-creds}
 
@@ -58,6 +59,7 @@ From your project root directory, run:
 gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
+The input directory is a local path. The output directory is a Cloud Storage path.
 The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](deploy_cloud.md#inspect-sql).
@@ -76,6 +78,10 @@ docker run \
 ...
 gcr.io/datcom-ci/datacommons-data:stable
 ```
+{:.no_toc}
+### Step 4: Restart the services in container in Google Cloud
+
+Follow any of the procedures provided in [Start/restart the services container](deploy_cloud.md#start-service).
 
 ## Access Cloud data from a local services container
 
@@ -112,6 +118,7 @@ From the root directory of your repo, run the following command, assuming you ar
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
+The input and output directories are Google Cloud Storage paths, i.e. <pre>gs://<var>BUCKET_NAME</var>/<FOLDER_NAME</var</pre>.
 The image name and image tag are the values you set when you [created the package](build_image.md#build-package). 
 
 Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080).

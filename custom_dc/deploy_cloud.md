@@ -75,8 +75,8 @@ We recommend using the Data Commons Terraform scripts to greatly simplify and au
 
 Terraform provisions and runs all the necessary Cloud Platform services:
 
-- Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, but you can override this.
-- Creates a Cloud SQL MySQL instance, with basic resources, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> with database `datacommons`, a database user, `datacommons` and random password. You can override the instance, database and user names.
+- Creates a Cloud Storage bucket, which will store your data files. You will upload your input data in the subsequent steps. The default bucket name is <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, but you can override this. It also creates folders `input` and `output` in the bucket.
+- Creates a Cloud SQL MySQL instance, with basic resources, called <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> with database `datacommons`, a database user, `datacommons` and random password stored as a secret called <pre><var>NAMESPACE</var>-datacommons-mysql-password</pre>. You can override the instance, database and user names.
 - Creates the Data Commons data management container as a Cloud Run job called <code><var>NAMESPACE</var>-datacommons-data-job</code>, with basic resources. 
 - Creates a single instance of the Data Commons services container as a Cloud Run service called <code><var>NAMESPACE</var>-datacommons-web-service</code>, with basic resources. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.
 - Stores all secrets (API keys and database passwords) in the [Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/overview){: target="_blank"}.
@@ -131,6 +131,8 @@ If you want to continue to use Terraform to deploy changes to your service, do t
 1. [Authenticate to GCP](#gen-creds).  
 1. Run all the Terraform commands as listed in the above procedure.
 
+> Note: Whenever you make future updates to your deployments, we recommend always using Terraform to do so. If you use the Cloud Console or gcloud to make updates, you must not run Terraform again, as it will override any changes you have made outside of Terraform.
+
 If you intend to deploy several Google Cloud instances, see [Manage multiple Terraform deployments](#multiple) for a recommended way of using Terraform to do this.
 
 ## Manage your data
@@ -147,9 +149,11 @@ As you are iterating on changes to the source CSV, JSON, or MCF files, you can r
   <div class="gcp-tab-content">
       <div class="active">
            <ol>
-        <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> for your serviceand select the custom Data Commons bucket that was created by the Terraform script.</li>
-        <li>Click <b>Create folder</b> to create a subfolder to store your input files.</li>
-        <li>Click <b>Upload Files</b>, and select all your CSV files, MCF files, and <code>config.json</code>.</li>
+        <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> for your service and select the custom Data Commons bucket that was created by the Terraform script. By default this is ...</li>
+
+
+
+        <li>Click <b>Upload Files</b>, and select the CSV files, MCF files, and <code>config.json</code>.</li>
         </ol>
       </div>
     <div>
@@ -219,14 +223,14 @@ If you have tried to start a container, and have received a `SQL check failed` e
            <ol>
            <li> Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
              <li>From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-data-job</code>.</li>
-            <li>Optionally, select <b>Execute</b> &gt; <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
+            <li>Select <b>Execute</b> &gt; <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
             <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress. </li>
         </ol>
       </div>
     <div>
     <ol>
          <li>From any local directory, run the following command:
-            <pre>gcloud run jobs execute <var>JOB_NAME</var> --update-env-vars DATA_RUN_MODE=schemaupdate</pre>
+            <pre>gcloud run jobs execute <var>JOB_NAME</var> -update-env-vars DATA_RUN_MODE=schemaupdate</pre>
          </li>
          <li>To view the progress of the job, run the following command:
             <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
@@ -239,13 +243,19 @@ If you have tried to start a container, and have received a `SQL check failed` e
 
 ### Inspect the Cloud SQL database {#inspect-sql}
 
-To view information about the created tables:
+Before you can inspect the database, you need to retrieve the password created by the Terraform scripts: 
+
+1. Go to <https://console.cloud.google.com/security/secret-manager>{: target="_blank"} for your project and in the list of secrets, select <code><var>NAMESPACE</var>-datacommons-mysql-password</code>.
+1. Click the **Versions** tab, and select **Actions > View secret value**. Record the password. 
+
+To view the tables:
 
 1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances){: target="_blank"} for your project.
-1. Sselect the instance created by the Terraform script. By default, this is <code><var>PROJECT_ID</var>:us-central1:<var>NAMESPACE</var>-datacommons-mysql-instance</code>.
+1. Select the instance created by the Terraform script. By default, this is <code><var>PROJECT_ID</var>:us-central1:<var>NAMESPACE</var>-datacommons-mysql-instance</code>.
 1. In the left panel, select **Cloud SQL Studio**.
-1. In the **Sign in to SQL Studio** page, from the Database field, select the database you created earlier, e.g. `datacommons`.
-1. Enter the user name and password and click **Authenticate**.
+1. In the **Sign in to SQL Studio** page, from the **Database** field, select the database; by default, this is `datacommons`. 
+1. In the **User** field, select a user; by default, this is `datacommons`.
+1. In the **Password** field, enter the password you have retrieved from the Cloud Secret Manager
 1. In the left Explorer pane that appears, expand the **Databases** icon, your database name, and **Tables**. The table of interest is `observations`. You can see column names and other metadata.
 1. To view the actual data, in the main window, click **New SQL Editor tab**. This opens an environment in which you can enter and run SQL queries.
 1. Enter a query and click **Run**. For example, for the sample OECD data, if you do `select * from observations limit 10;`, you should see output like this:
@@ -340,7 +350,7 @@ The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datac
 1. Go to the <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> page for your project.
 1. From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab. 
 
-If the link is not clickable and the service is not running, go to back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
+If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
 

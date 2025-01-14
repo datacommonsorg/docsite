@@ -18,41 +18,26 @@ When you are ready to launch your site to external traffic, there are many tasks
 -  Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="_blank"}.
 -  Optionally, restrict access to your service; see [Restrict public access to your service](#access).
 -  Optionally, increase the number of Docker service container instances. See [Increase the services container replication](#replication) for procedures.
--  Optionally, add a caching layer to improve performance. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
+-  Optionally, add a caching layer to improve performance. This is recommended for all production Data Commons instances. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
+- Optionally, boost SQL instance resources if needed. See 
 -  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
+
+> Note: Throughout these procedures, we recommend using Terraform to manage updates to your deployments. If you use the Cloud Console or gcloud to make updates, you must not run Terraform again, as it will override any changes you have made outside of Terraform.
 
 ## Restrict public access to your service {#access}
 
 By default when you create a new Cloud Run service, it is set up with global public access. If you wish to restrict access to only authenticated and authorized users, you can do so by making the service [private](https://cloud.google.com/run/docs/configuring/custom-audiences){: target="_blank"} and requring access tokens from your users. To set your instance to private:
 
-<div class="gcp-tab-group">
-  <ul class="gcp-tab-headers">
-    <li class="active">Cloud Console</li>
-    <li>Terraform CLI</li>
-  </ul>
-  <div class="gcp-tab-content">
-      <div class="active">
-           <ol>
-        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
-        <li>Under the <b>Services</b> tab, select the desired service, and select the <b>Security tab</b>.</li>
-        <li>Enable <b>Require authentication</b>.</li>
-        <li>Click <b>Deploy</b> to redeploy the service. </li>
-        </ol>
-      </div>
-    <div>
-    <ol>
-      <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
-      <li>Edit the file to add the following line:
-      <pre>make_dc_web_service_public = false</pre></li>
-      <li>From the <code>modules</code> directory, switch to the production workspace:
-        <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
-      <li>Run the deployment:
-        <pre>terraform plan -var-file=<var>FILE_NAME</var>
-        terraform apply -var-file=<var>FILE_NAME</var></pre></li>
-      </ol>
-   </div>
-  </div>
-</div>
+1. Create a [production Terraform configuration file and Terraform workspace](deploy_cloud.md#multiple){target="_blank"}, if you haven't already done so.
+1. Edit the file to add the following line:
+   ```
+   make_dc_web_service_public = false
+  ```
+1. From the <code>modules</code> directory, switch to the production workspace:
+   <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre>
+1. Run the deployment:
+  <pre>terraform plan -var-file=<var>FILE_NAME</var>
+  terraform apply -var-file=<var>FILE_NAME</var></pre>
 
 Follow additional procedures in [Authenticate users](https://cloud.google.com/run/docs/authenticating/end-users){: target="_blank"} to complete your setup.
 
@@ -60,47 +45,24 @@ Follow additional procedures in [Authenticate users](https://cloud.google.com/ru
 
 Google Cloud Run services use [auto-scaling](https://cloud.google.com/run/docs/about-instance-autoscaling){: target="_blank"}, which means that the number of instances of your services container is increased or decreased according to the traffic the service is receiving. By default, the Terraform scripts set the minimum and maximum number of instances to 1. For production traffic, we suggest increasing the maximum to at least 3. (We recommend keeping the default minimum instances setting of 1, to avoid delays when new revisions are deployed.)
 
-<div class="gcp-tab-group">
-  <ul class="gcp-tab-headers">
-    <li class="active">Cloud Console</li>
-    <li>Terraform CLI</li>
-  </ul>
-  <div class="gcp-tab-content">
-      <div class="active">
-           <ol>
-        <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
-        <li>Under the <b>Services</b> tab, select the desired service, and click <b>Edit & deploy new revision</b>.</li>
-        <li>Scroll to <b>Revision scaling</b>.</li>
-        <li>Set the <b>Maximum number of service instances</b> to 3.</li>
-        <li>Click <b>Deploy</b> to redeploy the service. </li>
-        </ol>
-      </div>
-    <div>
-    <ol>
-      <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
-      <li>Edit the file to add the following line:
-      <pre>dc_web_service_max_instance_count = 3</pre></li>
-      <li>From the <code>modules</code> directory, switch to the production workspace:
-        <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
-      <li>Run the deployment:
-        <pre>terraform plan -var-file=<var>FILE_NAME</var>
-            terraform apply -var-file=<var>FILE_NAME</var></pre></li>
-      </ol>
-   </div>
-  </div>
-</div>
+1. Create a [production Terraform configuration file and Terraform workspace](deploy_cloud.md#multiple){target="_blank"}, if you haven't already done so.
+1. Edit the file to add the following line:
+   ```
+   dc_web_service_max_instance_count = 3
+   ```
+1. From the <code>modules</code> directory, switch to the production workspace:
+   <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre>
+1. Run the deployment:
+  <pre>terraform plan -var-file=<var>FILE_NAME</var>
+  terraform apply -var-file=<var>FILE_NAME</var></pre>
 
 ## Improve database performance {#redis}
-
 
 ### Use a caching layer
 
 We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore){: target="_blank"}, a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering){: target="_blank"}. Your Cloud Run service connects to the instance using a [VPC connector](https://cloud.google.com/vpc/docs/serverless-vpc-access){: target="_blank"}.
 
-The Terraform scripts provide default settings for all required services. We strongly recommend using Terraform to set these up, to save a lot of time and effort. The Terraform scripts set up a single Redis instance called <pre><var>NAMESPACE</var>-datacommons-redis-instance</pre> with the following characteristics:
-
-- "Standard high-availability" tier, without read replicas
-- 2 GiB memory reservation
+The Terraform scripts set up a single Redis instance called <pre><var>NAMESPACE</var>-datacommons-redis-instance</pre>. 
 
 To configure caching using Terraform:
 
@@ -115,7 +77,8 @@ To configure caching using Terraform:
 1. Run the deployment:
    <pre>terraform plan -var-file=<var>FILE_NAME</var>
    terraform apply -var-file=<var>FILE_NAME</var></pre>
-  It will take several minutes to create the Redis instance.
+  
+It will take several minutes to create the Redis instance.
 
 {: .no_toc}
 #### Verify caching
@@ -131,20 +94,46 @@ To verify that traffic is hitting the cache:
 {: .no_toc}
 #### Boost Redis resources
 
-If you encounter performance problems after launch, there are various Redis parameters you can adjust. In particular, if needded, we suggest increasing the memory allocation and enabling instance replication. We recommend using Terraform, as this will save you time setting up Redis replication. 
+By default, the Terraform scripts configure the Redis instance with the following characteristics:
+- 2 GiB memory reservation
+- "Standard high-availability" tier, without read replicas
+
+
+If you encounter performance problems after launch, there are a few Redis parameters you can adjust. In particular, if needed, we suggest increasing the memory allocation.
 
 1. Go to <https://console.cloud.google.com/memorystore/redis/instances>{: target="_blank"} for your project and select your Redis instance.
-1. Check memory usage: Go to the **Monitoring** page and look at the **Memory usage/Max memory graph**. 
-1. If you notice that memory is filling up, add the following line to your production `terraform.tfvars` file:
+1. Go to **Overview** > **Monitoring** and from the **Chart** menu, select **Memory usage/Max memory graph**. 
+1. If you notice that memory usage is approaching the max memory, set the following variable in your production `terraform.tfvars` file, with this recommended value:
 ```
 redis_memory_size_gb = 4
 ```
-1. Check traffic volumes: go to the **Monitoring** page and look at the **Received connections/Rejected connections**.
-1. If you notice that the connection rejection rate is too high, add the following line to your production `terraform.tfvars` file:
-```
-redis_replica_count = 3
-```
 1. Run the Terraform deployment as usual.
+
+You may also want to enable read-only replication; you can set `redis_replica_count = 3` if needed.
+
+### Boost SQL resources
+
+By default, the Terraform scripts configure the MySQL instance with the following characteristics:
+- 2 CPUs
+- 20 GB SSD storage
+- 7680 MB memory
+
+If you are still noticing slow performance after adding a caching layer, you may need to increase resource reservations. In particular, if your storage is filling up, you will need to add more storage quota.
+
+1. Go to <https://console.cloud.google.com/sql/instances>{: target="_blank"} for your project and select your MySQL instance.
+1. Go to **Overview** > **Monitoring** and from the **Chart** menu, and select **Storage Usage**. 
+1. If you notice that storage using is approaching quota, set the following variable in your production `terraform.tfvars` file:
+```
+mysql_storage_size_gb
+```
+1. Set a value that fits your database size.
+1. Run the Terraform deployment as usual.
+
+You may also use the following variables to increase memory and CPU reservations if needed:
+```
+mysql_memory_size_mb
+mysql_cpu_count
+```
 
 ## Add Google Analytics reporting {#analytics}
 
@@ -154,39 +143,16 @@ Google Analytics provides detailed reports on user engagement with your site. In
 
 If you don't already have a Google Analytics account, create one, following the procedures in [Set up Analytics for a website and/or app](https://support.google.com/analytics/answer/9304153){: target="_blank"}. Record the Analytics tag ID assigned to your account.
 
-Enable tracking for your service:
+Enable tracking:
 
-<div class="gcp-tab-group">
-  <ul class="gcp-tab-headers">
-    <li class="active">Cloud Console</li>
-    <li>Terraform CLI</li>
-  </ul>
-  <div class="gcp-tab-content">
-      <div class="active">
-           <ol>
-       <li>Go to <a href="https://console.cloud.google.com/run/" target="_blank">https://console.cloud.google.com/run/</a> for your project.</li>
-        <li>Under the <b>Services</b> tab, select the desired service, and click <b>Edit & deploy new revision</b>.</li>
-        <li>Expand <b>Variables and secrets</b> and click <b>Add new variable</b>.</li>
-        <li>Add the name <code>GOOGLE_ANALYTICS_TAG_ID</code> and in the <b>value</b> field, type in your tag ID.</li>
-        <li>Click <b>Deploy</b> to redeploy the service. </li>
-        </ol>
-      </div>
-    <div>
-    <ol>
-      <li>Create a <a href="deploy_cloud.md#multiple" target="_blank">production Terraform configuration file and Terraform workspace</a>, if you haven't already done so.</li>
-      <li>Edit the file to add the following line:
-      <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre></li>
-      <li>From the <code>modules</code> directory, switch to the production workspace:
-<pre>
-terraform workspace select <var>WORKSPACE_NAME</var></pre></li>
-<li>Run the deployment:
-<pre>
-terraform plan -var-file=<var>FILE_NAME</var>
-terraform apply -var-file=<var>FILE_NAME</var></pre></li>
-      </ol>
-   </div>
-  </div>
-</div>
+1. Create a [production Terraform configuration file and Terraform workspace](deploy_cloud.md#multiple), if you haven't already done so.
+1. Edit the file to add the following line:
+   <pre>google_analytics_tag_id = "<var>ANALYTICS_TAG_ID</var>"</pre>
+1. From the `modules` directory, switch to the production workspace:
+   <pre>terraform workspace select <var>WORKSPACE_NAME</var></pre>
+1. Run the deployment:
+   <pre>terraform plan -var-file=<var>FILE_NAME</var>
+   terraform apply -var-file=<var>FILE_NAME</var></pre>
 
 Data collection will take a day or two to start and begin showing up in your reports.
 
