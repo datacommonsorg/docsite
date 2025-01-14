@@ -22,7 +22,9 @@ When you are ready to launch your site to external traffic, there are many tasks
 - Optionally, boost SQL instance resources if needed. See 
 -  Optionally, add [Google Analytics](https://marketingplatform.google.com/about/analytics/){: target="_blank"} to track your website's usage. Procedures for configuring Google Analytics support are in [Add Google Analytics tracking](#analytics).
 
-> Note: Throughout these procedures, we recommend using Terraform to manage updates to your deployments. If you use the Cloud Console or gcloud to make updates, you must not run Terraform again, as it will override any changes you have made outside of Terraform.
+Throughout these procedures, we recommend using Terraform to create a production deployment. 
+
+>**Note:** If you make future updates to this deployment, we recommend always using Terraform to do so. If you use the Cloud Console or gcloud to make updates and try to run Terraform again, it will override any changes you have made outside of Terraform. For options that are available as variables in the Data Commons `variables.tf`, you must sync your `terraform.tfvars` options to the same values you have set outside Terraform before running Terraform again. For options that are not available as Data Commons variables, you must not run Terraform again.
 
 ## Restrict public access to your service {#access}
 
@@ -97,7 +99,6 @@ To verify that traffic is hitting the cache:
 By default, the Terraform scripts configure the Redis instance with the following characteristics:
 - 2 GiB memory reservation
 - "Standard high-availability" tier, without read replicas
-
 
 If you encounter performance problems after launch, there are a few Redis parameters you can adjust. In particular, if needed, we suggest increasing the memory allocation.
 
