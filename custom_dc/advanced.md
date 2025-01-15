@@ -27,7 +27,7 @@ Before you proceed, ensure you have [set up all necessary GCP services](deploy_c
 To run a local instance of the data management container, you need to set all of the environment variables in the `custom_dc/env.list` file, including all the GCP ones. 
 
 1. Obtain the values output by Terraform scripts: Go to <https://console.cloud.google.com/run/jobs>{: target="_blank"} for your project, select the relevant job from the list, and click **View and edit job configuration**. 
-1. Expand **Edit container**, select the **Variables and secrets** tab.
+1. Expand **Edit container**, and select the **Variables and secrets** tab.
 1. Copy the values of all the variables, with the exception of `FORCE_RESTART` and `INPUT_DIR` to your `env.list` file.
 1. Set the value of `INPUT_DIR` to the full local path where your CSV, JSON, and JSON files are located.
 
