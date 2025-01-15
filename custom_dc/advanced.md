@@ -70,11 +70,7 @@ If you have tried to start a container, and have received a `SQL check failed` e
 To do so, add the following line to the above command:
 
 ```
-docker run \
-...
 -e DATA_RUN_MODE=schemaupdate \
-...
-gcr.io/datcom-ci/datacommons-data:stable
 ```
 {:.no_toc}
 ### Step 4: Restart the services container in Google Cloud
@@ -83,7 +79,7 @@ Follow any of the procedures provided in [Start/restart the services container](
 
 ## Access Cloud data from a local services container
 
-For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud, use the following procedures.
+For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud. This process is similar to running both data management and services containers in the cloud, but with a step to start a local Docker services container.
 
 Before you proceed, ensure you have [set up all necessary GCP services](deploy_cloud.md).
 
