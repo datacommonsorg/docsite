@@ -58,7 +58,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 
  If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
 
-`website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to create a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"}. The script creates a repository called <code>artifacts-<var>PROJECT_ID</var></code>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
+`website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to create a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"}. The script creates a repository called <code><var>PROJECT_ID</var>-artifacts</code>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
  
  To run it:
 
@@ -68,6 +68,8 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
  ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
 
  The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases. 
+
+ To verify that the repo is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repo in the list.
 
 ## Configure and run a Terraform deployment {#terraform}
 
@@ -95,12 +97,13 @@ Follow the steps below to create and run a Terraform deployment.
 All of the deployment options you can configure are listed in [deploy/terraform-custom-datacommons/modules/variables.tf](https://github.com/datacommonsorg/website/blob/master/deploy/terraform-custom-datacommons/modules/variables.tf){: target="_blank"}. We recommend you keep the default settings for most options at this point. However, you may want to override the following:
 
 | Option | Default | Description |
-|`region`| us-central1`, close to the base Data Commons data | Specifies where your services will be run and data will be served from. |  If you want to set this to a different value, for a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}. |
-| `gcs_data_bucket_name` | <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code> | Cloud Storage bucket name. You can override the ? portion. |
+|--------|---------|-------------|
+| `region` | `us-central1`, close to the base Data Commons data | Specifies where your services will be run and data will be served from. If you want to set this to a different value, for a list of supported regions, see Cloud SQL [Manage instance locations](https://cloud.google.com/sql/docs/mysql/locations){: target="_blank"}. |
+| `gcs_data_bucket_name` | <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code> | Cloud Storage bucket name. You can override the `datacommons-data` portion of the name. |
 | `gcs_data_bucket_location` | `US` | Specifies where your uploaded data is stored. |
 | `gcs_data_bucket_input_folder` | `input` | The GCS folder to which you will upload your data and config files. If you have subfolders, you create these manually. |
 | `gcs_data_bucket_output_folder` | `output` | The GCS folder where NL embeddings will be stored. |
-| `mysql_instance_name` | <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> | Cloud SQL instance name. You can override the ? portion. |
+| `mysql_instance_name` | <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> | Cloud SQL instance name. You can override the `datacommons-mysql-instance` portion of the name. |
 | `mysql_database_name` | `datacommons` | The MySQL database managed by Cloud SQL. |
 | `mysql_user` | `datacommons` | The default user of the MySQL database. |
 | `dc_data_job_image` | `gcr.io/datcom-ci/datacommons-data:stable` | Specifies the image for the Docker data management container. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`. |
@@ -151,7 +154,7 @@ To upload data files:
       <div class="active">
            <ol>
         <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> for your service and select the Data Commons bucket that was created by the Terraform script.</li>
-        <li>Select the <code>input</code> folder.</li>
+        <li>Select the <b>input</b> folder.</li>
         <li>Click <b>Upload Files</b>, and select the CSV files, MCF files, and <code>config.json</code> from your local file system.</li>
         </ol>
       </div>
@@ -172,7 +175,7 @@ Once you have uploaded the new data, you must [rerun the data management Cloud R
 
 ### Run the data management container {#run-job}
 
-When you run the data management job, it converts CSV (and MCF) data into tables in the Cloud SQL database and generates  embeddings in the `output` folder of the Cloud Storage bucket.
+By default, the Terraform scripts create and run a Google Run job called <code><var>NAMESPACE</var>-datacommons-data-job</code>. When you run the data management job, it converts CSV (and MCF) data into tables in the Cloud SQL database and generates embeddings in the `output` folder of the Cloud Storage bucket. 
 
 Every time you upload new input files to Google Cloud Storage, you will need to rerun the job. You can simply run `terraform apply` again, or use any of the other methods described below.
 
@@ -185,7 +188,7 @@ Every time you upload new input files to Google Cloud Storage, you will need to 
       <div class="active">
            <ol>
            <li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
-        <li>From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-data-job</code>.</li>
+        <li>From the list of jobs, select the job created by the Terraform script. </li>
       <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress.</li>
         </ol>
       </div>
@@ -198,7 +201,6 @@ Every time you upload new input files to Google Cloud Storage, you will need to 
               <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
           </li>
       </ol>
-      The job name is <code><var>NAMESPACE</var>-datacommons-data-job</code>.
       </div>
       </div>
 </div>
@@ -219,7 +221,7 @@ If you have tried to start a container, and have received a `SQL check failed` e
       <div class="active">
            <ol>
            <li> Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
-             <li>From the list of jobs, click the link of <code><var>NAMESPACE</var>-datacommons-data-job</code>.</li>
+             <li>From the list of jobs, select the job created by the Terraform script.</li>
             <li>Select <b>Execute</b> &gt; <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
             <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress. </li>
         </ol>
@@ -233,12 +235,13 @@ If you have tried to start a container, and have received a `SQL check failed` e
             <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
           </li>
       </ol>
-      The job name is <code><var>NAMESPACE</var>-datacommons-data-job</code>.
    </div>
   </div>
 </div>
 
 ### Inspect the Cloud SQL database {#inspect-sql}
+
+By default, the Terraform scripts create a Cloud SQL instance called <code><var>PROJECT_ID</var>:us-central1:<var>NAMESPACE</var>-datacommons-mysql-instance</code>, with a database named `datacommons`, and a default user with admin permissions called `datacommons`.
 
 Before you can inspect the database, you need to retrieve the password created by the Terraform scripts: 
 
@@ -248,12 +251,12 @@ Before you can inspect the database, you need to retrieve the password created b
 To view the tables:
 
 1. Go to [https://console.cloud.google.com/sql/instances](https://console.cloud.google.com/sql/instances){: target="_blank"} for your project.
-1. Select the instance created by the Terraform script. By default, this is <code><var>PROJECT_ID</var>:us-central1:<var>NAMESPACE</var>-datacommons-mysql-instance</code>.
+1. Select the instance created by the Terraform script. 
 1. In the left panel, select **Cloud SQL Studio**.
-1. In the **Sign in to SQL Studio** page, from the **Database** field, select the database; by default, this is `datacommons`. 
-1. In the **User** field, select a user; by default, this is `datacommons`.
+1. In the **Sign in to SQL Studio** page, from the **Database** field, select the database created by the Terraform script. 
+1. In the **User** field, select the user created by the Terraform script.
 1. In the **Password** field, enter the password you have retrieved from the Cloud Secret Manager
-1. In the left Explorer pane that appears, expand the **Databases** icon, your database name, and **Tables**. The table of interest is `observations`. You can see column names and other metadata.
+1. In the left Explorer pane that appears, expand the **Databases** icon, your database name, and **Tables**. The table of interest is **observations**. You can see column names and other metadata.
 1. To view the actual data, in the main window, click **New SQL Editor tab**. This opens an environment in which you can enter and run SQL queries.
 1. Enter a query and click **Run**. For example, for the sample OECD data, if you do `select * from observations limit 10;`, you should see output like this:
 
@@ -263,13 +266,13 @@ To view the tables:
 
 ### Upload a custom Docker image to the Artifact Registry
 
-If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
+When you ran the "create artifact registry" script If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
 
 Any time you rebuild the image and want to deploy it to the cloud, you need to rerun this procedure.
 
 1. Build a local version of the Docker image, following the procedure in [Build a local image](/custom_dc/build_image.html#build-repo).
 
-1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. _REGION_ is the region you have specified in the Terraform script; by default this is `us-central1`.
+1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
     <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre>
 1. When prompted to confirm creating the credentials file, click `Y` to accept.
 1. Create a package from the source image you created in step 1:
@@ -321,7 +324,7 @@ You need to restart the services container every time you make changes to the co
   <div class="active">
            <ol>
            <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
-             <li>From the list of services, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>.</li>
+             <li>From the list of services, click the link of the service created by the Terraform scripts</li>
              <li>click <b>Edit & Deploy Revision</b>.</li>
            <li>Under <b>Container image URL</b>, click <b>Select</b>.</li>
            <li>Expand the package name you created in the previous step.</li>
@@ -350,7 +353,7 @@ You need to restart the services container every time you make changes to the co
 The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
 
 1. Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.
-1. From the list of services, click the link of <code><var>NAMESPACE</var>-datacommons-web-service</code>. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab. 
+1. From the list of services, click the link the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab. 
 
 If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
 
