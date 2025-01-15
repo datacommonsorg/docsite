@@ -66,7 +66,6 @@ To configure caching using Terraform:
     ```
     enable_redis = true
     ```
-1. Optionally, override any of the default values for the VPC network and Redis instance in `variables.tf` by adding the variables to your file `.tfvars` file with the desired values.
 1. Switch to the production workspace and [run the Terraform deployment](deploy_cloud.md#multiple) as usual.
 
 It will take several minutes to create the Redis instance. To verify that queries are hitting the cache, see below.
@@ -93,7 +92,7 @@ If you encounter performance problems after launch, there are a few Redis parame
 
 1. Go to <https://console.cloud.google.com/memorystore/redis/instances>{: target="_blank"} for your project and select your Redis instance.
 1. Go to **Overview** > **Monitoring** and from the **Chart** menu, select **Memory usage/Max memory graph**. 
-1. If you notice that memory usage is approaching the max memory, set the following variable in your production `.tfvars` file, with this recommended value:
+1. If you notice that memory usage is approaching the max memory, add the following variable in your production `.tfvars` file, with this recommended value:
 ```
 redis_memory_size_gb = 4
 ```
