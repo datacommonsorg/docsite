@@ -244,8 +244,8 @@ The following fields are specific to the variable-per-column format:
   - `name`: A human-friendly readable name that will be shown throughout the UI.
   - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
-  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. 
-    > Tip: You can only assign a variable to a single group this way. If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
+  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. 
+    > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
 
 The other fields are explained in the [Data config file specification reference](#json-ref).
 
@@ -257,7 +257,7 @@ In this section, we will walk you through a concrete example of how to go about 
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-#### Define statistical variable nodes
+#### Define statistical variables
 
 Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
 
@@ -307,13 +307,13 @@ Additionally, you can specify any number of property-value pairs representing th
 
 ![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
 
-#### (Optional) Define a statistical variable group node {#statvar-group}
+#### (Optional) Define a statistical variable group {#statvar-group}
 
 If you would like to display variables in specific groups whose headings you define, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
 
-> Tip: If you are using implicit schema, where your variables are defined in the .csv files only (and optionally in `config.json`), and you want to assign variables to multiple groups, you can simply create an MCF file like the one below, where only the `Node` and `memberOf` fields of each variable to assign to a group are listed.
+> Tip: If you are using implicit schema, where your variables are defined in the .csv files only (and optionally in `config.json`), and you want to assign variables to multiple groups, you can simply create an MCF file like the one below, and just specify the `Node` and `memberOf` fields for each variable.
 
-Here is an example that defines a single group node with the heading "UN-WHO" and assigns all 3 statistical variables to the same group.
+Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
 ```
 Node: dcid:Adult_curr_cig_smokers
@@ -330,16 +330,16 @@ memberOf: dcid:who/g/WHO
 
 Node: dcid:who/g/WHO
 typeOf: dcid:StatVarGroup
-name: "UN-WHO"
+name: "WHO"
 specializationOf: dcid:dc/g/Root
 
 ```
 You can define as many statistical variable group nodes as you like. Each must include the following fields:
 
-- `Node`: This is the DCID of the stat var group you are defining. It must be prefixed by `g/` and may include an additional prefix.
+- `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
 - `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`. 
 - `name`: This is the name of the heading that will appear in the Statistical Variable Explorer. 
-- `specializationOf`: For a top-level group, this must be `dcid:/dc/g/Root`. To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/gWHO`. Here's an example:
+- `specializationOf`: For a top-level group, this must be `dcid:/dc/g/Root`. To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
 
 ```
 Node: dcid:who/g/WHO
@@ -622,7 +622,7 @@ group
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-> Note: You can only assign a variable to one group. If you would like to assign the same variables to multiple groups, you will need to define the groups as nodes in MCF; see 
+> Note: You can only assign a variable to one group. If you would like to assign the same variables to multiple groups, you will need to define the groups as nodes in MCF; see [Define a statistical variable group node](#statvar-group) for details.
 
 searchDescriptions
 
