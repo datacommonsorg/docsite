@@ -309,7 +309,7 @@ Additionally, you can specify any number of property-value pairs representing th
 
 #### (Optional) Define a statistical variable group {#statvar-group}
 
-If you would like to display variables in specific groups whose headings you define, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
+If you would like to display variables in specific named groups, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
 
 > Tip: If you are using implicit schema, where your variables are defined in the .csv files only (and optionally in `config.json`), and you want to assign variables to multiple groups, you can simply create an MCF file like the one below, and just specify the `Node` and `memberOf` fields for each variable.
 
@@ -339,7 +339,7 @@ You can define as many statistical variable group nodes as you like. Each must i
 - `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
 - `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`. 
 - `name`: This is the name of the heading that will appear in the Statistical Variable Explorer. 
-- `specializationOf`: For a top-level group, this must be `dcid:/dc/g/Root`. To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
+- `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
 
 ```
 Node: dcid:who/g/WHO
