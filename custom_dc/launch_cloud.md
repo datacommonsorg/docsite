@@ -118,10 +118,25 @@ mysql_storage_size_gb
 1. Set a value that fits your database size.
 1. [Run the Terraform deployment](deploy_cloud.md#multiple) as usual.
 
-You may also use the following variables to increase memory and CPU reservations if needed:
+You may also use the following variables to increase memory and CPU reservations if needed. You must set them together to align with the Cloud SQL Enterprise edition machine type constraints; for details, see the section **Machine types for Cloud SQL Enterprise edition instances** in <https://cloud.google.com/sql/docs/mysql/instance-settings>{target="_blank"}.
+
 ```
 mysql_memory_size_mb
 mysql_cpu_count
+```
+
+For example, this is legal because it aligns with the "db-n1-standard-4" machine type:
+
+```
+mysql_cpu_count = 4
+mysql_memory_size_mb = 15360
+```
+
+But this is not legal because it does not align with any machine type:
+
+```
+mysql_cpu_count = 2
+mysql_memory_size_mb = 15360
 ```
 
 ## Add Google Analytics reporting {#analytics}

@@ -50,8 +50,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 `website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up service account roles and all necessary Cloud APIs. To run it:
 
 <pre>
- cd website | cd <var>DIRECTORY</var>
- cd deploy/terraform-custom-datacommons
+ cd website/deploy/terraform-custom-datacommons
  ./setup.sh <var>PROJECT_ID</var></pre>
 
 ## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
@@ -62,14 +61,12 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
  
  To run it:
 
- <pre>
- cd website | cd <var>DIRECTORY</var>
- cd deploy/terraform-custom-datacommons
+ <pre>cd website/deploy/terraform-custom-datacommons
  ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
 
  The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases. 
 
- To verify that the repo is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repo in the list.
+ To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repository in the list.
 
 ## Configure and run a Terraform deployment {#terraform}
 
@@ -107,6 +104,7 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 | `mysql_database_name` | `datacommons` | The MySQL database managed by Cloud SQL. |
 | `mysql_user` | `datacommons` | The default user of the MySQL database. |
 | `dc_data_job_image` | `gcr.io/datcom-ci/datacommons-data:stable` | Specifies the image for the Docker data management container. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`. |
+| `dc_web_service_image` | `gcr.io/datcom-ci/datacommons-services:stable` | Specifies the image for the Docker services container. You will want to change this to a custom image once you have created it in [Upload a custom Docker image](#upload). |
 | `make_dc_web_service_public` | `true` | If you intend to restrict access to your instance, set this to `false`. |
 
 Other recommended settings for a production environment are provided in [Launch your Data Commons](launch_cloud.md#create-env).
@@ -262,13 +260,16 @@ To view the tables:
 
    ![screenshot_sqlite](/assets/images/custom_dc/customdc_screenshot6.png){: height="400"}
 
+If you don't see any data, go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project, select 
+the job you ran in the previous step, and click the **Logs** tab to look for errors.
+ 
 ## Manage your service
 
-### Upload a custom Docker image to the Artifact Registry
+### Upload a custom Docker image to the Artifact Registry {#upload}
 
-When you ran the "create artifact registry" script If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
+When you ran the "create artifact registry" script, it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
 
-Any time you rebuild the image and want to deploy it to the cloud, you need to rerun this procedure.
+Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
 1. Build a local version of the Docker image, following the procedure in [Build a local image](/custom_dc/build_image.html#build-repo).
 
@@ -313,7 +314,7 @@ If you are using a custom image, which is normally the case, you first need to r
 1. From the `modules` directory, run `terraform apply`.
 1. To view the running application with your custom UI and data, open the browser link listed in the `cloud_run_service_url` output, or see [View the running application](#view-app) for more details.
 
-You need to restart the services container every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](#run-job) to process new data. For future pushes and restarts, if you use a different image or tag name, re-edit the `terraform.tfvars` file. If you use the same image name or tag you can simply rerun `terraform apply` every time.</li> You can also use either of the following procedures:
+You need to restart the services container every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](#run-job) to process new data. For future pushes and restarts, if you use a different image or tag name, re-edit the `terraform.tfvars` file. If you use the same image name or tag you can simply rerun `terraform apply` every time to restart the services. Alternatively, you can also use either of the following procedures:
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
