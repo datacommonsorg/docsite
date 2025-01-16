@@ -111,7 +111,7 @@ The following procedure uses Github. If you are using another version control sy
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
    ```
 
-### Build the repo locally
+### Build the repo locally {#build-package}
 
 Run the following command to build the repo:
 
@@ -129,7 +129,7 @@ To run the container with the local SQLite database, start the Docker container 
 
 To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
-## Run the services container locally
+## Run the services container locally {#run-local}
 
 Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
 
@@ -144,7 +144,7 @@ Start the services using the locally built repo. If you have made changes to any
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
 
-## Troubleshooting
+Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080). 
 
-Having trouble? Visit our [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
+If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
 
