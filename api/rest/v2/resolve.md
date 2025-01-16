@@ -21,7 +21,7 @@ that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia
 the US state).
 
-Note that you can only resolve entities by their terminal properties. You cannot resolve neighboring entities that have incoming or outgoing arc relationships to a given entity. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
+Note that you can only resolve entities by their terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
 > **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
