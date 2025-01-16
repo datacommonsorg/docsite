@@ -5,7 +5,7 @@ nav_order: 7
 parent: Build your own Data Commons
 ---
 
-{:.no_toc}
+{: .no_toc}
 # Launch your Data Commons
 
 * TOC
@@ -118,7 +118,7 @@ mysql_storage_size_gb
 1. Set a value that fits your database size.
 1. [Run the Terraform deployment](deploy_cloud.md#multiple) as usual.
 
-You may also use the following variables to increase memory and CPU reservations if needed. You must set them together to align with the Cloud SQL Enterprise edition machine type constraints; for details, see the section **Machine types for Cloud SQL Enterprise edition instances** in <https://cloud.google.com/sql/docs/mysql/instance-settings>{target="_blank"}.
+You may also use the following variables to increase memory and CPU reservations if needed. You must set them together to align with the Cloud SQL Enterprise edition machine type constraints; for details, see the section **Machine types for Cloud SQL Enterprise edition instances** in <https://cloud.google.com/sql/docs/mysql/instance-settings>{: target="_blank"}.
 
 ```
 mysql_memory_size_mb

@@ -5,14 +5,12 @@ nav_order: 8
 parent: Build your own Data Commons
 ---
 
+{: .no_toc}
 # Advanced setups
 
 This page covers hybrid setups that are not recommended for most use cases, but may be helpful for some custom Data Commons instances:
-- Running the data management container locally, and the service container in Google Cloud. This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
-- Running the service container locally, and the data management container in Google Cloud. If you have already set up a data processing pipeline to send your input data to Google Cloud, but are still iterating on the website code, this might be a useful option.
-
-* TOC
-{:toc}
+- [Running the data management container locally, and the service container in Google Cloud](#run-local). This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
+- [Running the service container locally, and the data management container in Google Cloud](#local-services). If you have already set up a data processing pipeline to send your input data to Google Cloud, but are still iterating on the website code, this might be a useful option.
 
 ## Run the data management container locally and the service container in the cloud {#run-local}
 
@@ -72,12 +70,12 @@ To do so, add the following line to the above command:
 ```
 -e DATA_RUN_MODE=schemaupdate \
 ```
-{:.no_toc}
+
 ### Step 4: Restart the services container in Google Cloud
 
 Follow any of the procedures provided in [Start/restart the services container](deploy_cloud.md#start-service).
 
-## Access Cloud data from a local services container
+## Access Cloud data from a local services container {#local-services}
 
 For testing purposes, if you wish to run the services Docker container locally but access the data in Google Cloud. This process is similar to running both data management and services containers in the cloud, but with a step to start a local Docker services container.
 
@@ -113,6 +111,6 @@ From the root directory of your repo, run the following command, assuming you ar
 The input and output directories are Google Cloud Storage paths.
 The image name and image tag are the values you set when you [created the package](build_image.md#build-package). 
 
-Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080).
+Once the services are up and running, visit your local instance by pointing your browser to <http://localhost:8080>.
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
