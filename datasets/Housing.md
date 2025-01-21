@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Housing
-parent: Data sources
-nav_exclude: true
+nav_order: 10
+parent: Data Sources
 ---
 
 {:.no_toc}

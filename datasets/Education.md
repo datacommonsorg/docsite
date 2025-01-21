@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Education
-parent: Data sources
-nav_exclude: true
+nav_order: 6
+parent: Data Sources
 ---
 
 {:.no_toc}
