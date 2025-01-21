@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Biomedical
-parent: Data sources
-nav_exclude: true
+nav_order: 2
+parent: Data Sources
 ---
 
 {:.no_toc}
