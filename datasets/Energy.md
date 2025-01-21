@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Energy
-parent: Data sources
-nav_exclude: true
+nav_order: 7
+parent: Data Sources
 ---
 
 {:.no_toc}

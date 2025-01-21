@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Environment
-parent: Data sources
-nav_exclude: true
+nav_order: 8
+parent: Data Sources
 ---
 
 {:.no_toc}
@@ -187,7 +187,7 @@ Annual reporting of greenhouse gases from large emission sources.
 
 
 #### [National Emissions Inventory](https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei)
-The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 onroad air emission sources (mobile sources such as highway and border crossing vehicles electricity measurement), 248 nonroad air emissions sources (mobile sources such as off-highway vehicle gasoline measurement), 703 nonpoint air emissions sources (such as industrial processes, oil and gas exploration and production) and 5818 point air emissions sources (such as chemical and organic solvent evaporation measurement) at the US county level.
+The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 OnRoad air emission sources (such as Mobile Sources Highway Vehicles Electricity and Mobile Sources Border Crossing), 248 NonRoad air emissions sources (such as Mobile Sources Off-highway Vehicle Gasoline and LPG Construction Mining Equipment), 703 NonPoint air emissions sources (such as Industrial Processes Oil Gas Exploration Production and LPG Distribution) and 5818 Point air emissions sources (such as Chemical Evaporation Organic Solvent Evaporation and External Combustion Electric Generation Boilers)at US County Level.
 
 
 #### [Superfund Sites](https://www.epa.gov/superfund)
