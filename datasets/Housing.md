@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Housing
-nav_order: 10
+nav_exclude: true
 parent: Data Sources
 ---
 

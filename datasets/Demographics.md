@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Demographics
-nav_order: 4
+nav_exclude: true
 parent: Data Sources
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Education
-nav_order: 6
+nav_exclude: true
 parent: Data Sources
 ---
 

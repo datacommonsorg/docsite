@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Biomedical
-nav_order: 2
+nav_exclude: true
 parent: Data Sources
 ---
 

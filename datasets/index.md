@@ -2,7 +2,13 @@
 layout: default
 title: Data Sources
 nav_order: 110
-has_children: true
+has_children: false
+redirect_from:
+    - /datasets/covid19
+    - /datasets/international
+    - /datasets/sustainability
+    - /datasets/united_states
+    - /datasets/Disasters
 ---
 
 # Data Sources
