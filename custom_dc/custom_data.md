@@ -24,6 +24,7 @@ At a high level, you need to provide the following:
 - All data must be in CSV format, using the schema described below. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
+- If you need to define new entities, you may want to provide them in MCF; if you need to define new entities types, you _will need_ to provide them in MCF.
 
 ### Files and directory structure
 
@@ -42,7 +43,49 @@ my_data/
 ```
 The following sections walk you through the process of setting up your data.
 
-## Step 1: Identify your statistical variables
+## Step 1: Determine whether you need new entities or entity types
+
+Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is very rare that you would need to create a new entity type, unless you are working in a highly specialized domain, such as biomedical data.
+
+An _entity_ is an instance of an entity type. For example, for public schools, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may be interested in more than that. If you are an organization that wants to collect data about different divisions or departments in your organization, you would for sure need to define them.
+
+> **Note:** You should always reuse existing entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
+
+Currently it is not possible to search the knowledge graph, so you need to drill down from higher-level nodes to find an entity you are looking for.
+
+To determine if a given entity exists in base Data Commons through the UI:
+
+1. Find a relevant entity type: Go to <https://datacommons.org/browser/Class>{: target="_blank"} and scroll to the **Subject type: Class** section.
+
+  ![Class types](/assets/images/custom_dc/customdc_screenshot11.png)
+
+  If you don't find anything in this list, you'll need to use the API, as described next.
+
+To determine if a given entity exists in base Data Commons through the API:
+
+1. Use the REST Node API through your browser to get a complete list of entity types: See [Get a list of all existing entity types](/api/rest/v2/node.md#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to create one; see xxx for details.
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `Drug`.
+1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
+
+  <pre>
+  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf
+  </pre>
+  _ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
+
+  ```
+  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
+  ```
+
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. 
+
+## Step 1a: Choose between CSV + JSON or MCF
+
+If it turns out that you do need to define new custom entities you can do so in two ways:
+- CSV + JSON: With this option, This is simplest and reco
+
+
+
+## Step 2: Identify your statistical variables
 
 Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
@@ -73,7 +116,8 @@ The measure here is a simple count; the set of things is "schools"; and the cons
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
-## Step 2: Choose between "implicit" and "explicit" schema definition
+{: #schema}
+## Step 3: Choose between "implicit" and "explicit" schema definition
 
 Custom Data Commons supports two ways of importing your data:
 - **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is _simpler and recommended_ for most datasets.
@@ -121,6 +165,14 @@ The names and order of the columns aren't important, as you can map them to the 
 In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
 
 ### Prepare the CSV data files {#prepare-csv}
+
+#### Define entities (if needed)
+
+Before creating new entities, please see xxx to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if they already exist in base.
+
+
+
+#### Define CSV observations
 
 As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
 
