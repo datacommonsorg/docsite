@@ -43,11 +43,12 @@ my_data/
 ```
 The following sections walk you through the process of setting up your data.
 
+{: #entities}
 ## Step 1: Determine whether you need new entities or entity types
 
-Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is very rare that you would need to create a new entity type, unless you are working in a highly specialized domain, such as biomedical data.
+Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is very rare that you would need to create a new entity type, unless you are working in a highly specialized domain, such as biomedical data.
 
-An _entity_ is an instance of an entity type. For example, for public schools, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may be interested in more than that. If you are an organization that wants to collect data about different divisions or departments in your organization, you would for sure need to define them.
+An _entity_ is an instance of an entity type. For example, for public schools, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
 
 > **Note:** You should always reuse existing entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
 
@@ -77,13 +78,6 @@ To determine if a given entity exists in base Data Commons through the API:
   ```
 
 1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. 
-
-## Step 1a: Choose between CSV + JSON or MCF
-
-If it turns out that you do need to define new custom entities you can do so in two ways:
-- CSV + JSON: With this option, This is simplest and reco
-
-
 
 ## Step 2: Identify your statistical variables
 
@@ -117,14 +111,18 @@ The measure here is a simple count; the set of things is "schools"; and the cons
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
 {: #schema}
-## Step 3: Choose between "implicit" and "explicit" schema definition
+## Step 3: Choose between "implicit" and "explicit" schema definitions
 
 Custom Data Commons supports two ways of importing your data:
-- **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is _simpler and recommended_ for most datasets.
-- **Explicit** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables as nodes in MCF files. All variables and entities in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. There are a number of cases for which this option might be a better choice:
+- **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format (although you may); but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations based on a predictable column order or for entities based on the column you identify. This method is _simpler and recommended_ for most datasets.
+- **Explicit** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables (and entities if needed) as nodes in MCF files. All variables in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format and to specify additional properties of variables or entities, offering greater flexibility. There are a few cases for which this option might be a better choice:
   - You have hundreds of variables, which may be unmanageable as separate columns or files.
   - You want to be able to specify additional properties, for example, unit of measurement, of the observations at a more granular level than per-file. As an example, let's say you have a variable that measures financial expenses, across multiple countries; you may want to be able to specify the country-specific currency of each observation.
   - In the case that you are missing observations for specific entities (e.g. places) or time periods for specific variables, and you don't want to have lots of null values in columns (sparse tables).
+
+> Note: You can actually mix and match these two methods for variable versus entity definitions. However, you may find it much simpler to stick to one schema specification scheme.
+
+#### Variable schemas
 
 To illustrate the difference between variable-per-column and variable-per-row schemas, let's use the schools example data again. In variable-per-column, you would represent the dataset as follows:
 
@@ -162,17 +160,28 @@ The names and order of the columns aren't important, as you can map them to the 
 
 ## Prepare your data using implicit schema
 
-In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
+In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
 
 ### Prepare the CSV data files {#prepare-csv}
 
-#### Define entities (if needed)
+You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.
 
-Before creating new entities, please see xxx to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if they already exist in base.
+{:.no_toc}
+#### Step 0: Define CSV entities (if needed)
+
+Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if they already exist in base. Just skip to the next section.
+
+If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
+
+For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
+
+```csv
+
+```
 
 
-
-#### Define CSV observations
+{:.no_toc}
+#### Step 1: Define CSV observations
 
 As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
 
@@ -180,13 +189,17 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
 The _ENTITY_ is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
+If the entity is not a place, it must be the DCID of the entity of interest. For example, if the entity type for which you are tracking observations is `PublicSchool`, all rows must contain DCIDs of the public schools rather than their names; for example, rather than `Andalusia Elementary School`, you would need to specify `nces/010006001467`.
+
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable node for you.
 
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
+The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+
+Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
 ```csv
 country,year,Adult_curr_cig_smokers,Adult_curr_cig_smokers_female,Adult_curr_cig_smokers_male
@@ -196,8 +209,6 @@ Albania,2018,,4.5,35.7
 United Arab Emirates,2018,6.3,1.6,11.1
 ```
 Note that the data is missing values for the total population percentage for Angola and Albania.
-
-You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.
 
 {:.no_toc}
 #### Special place names {#special-names}
@@ -231,8 +242,8 @@ dcId,observationYear,statVar1,statVar2
 geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
-
-### Write the JSON config file
+{:.no_toc}
+#### Step 3: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide 3 specifications:
 - The input files location and entity type
