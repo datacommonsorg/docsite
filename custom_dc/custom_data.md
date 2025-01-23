@@ -119,10 +119,11 @@ Custom Data Commons supports two ways of importing your data:
   - You have hundreds of variables, which may be unmanageable as separate columns or files.
   - You want to be able to specify additional properties, for example, unit of measurement, of the observations at a more granular level than per-file. As an example, let's say you have a variable that measures financial expenses, across multiple countries; you may want to be able to specify the country-specific currency of each observation.
   - In the case that you are missing observations for specific entities (e.g. places) or time periods for specific variables, and you don't want to have lots of null values in columns (sparse tables).
+  - You need to create an entity type, and need to define more fields than allowed by the implicit method (name and description).
 
 > Note: You can actually mix and match these two methods for variable versus entity definitions. However, you may find it much simpler to stick to one schema specification scheme.
 
-#### Variable schemas
+### Variable schemas
 
 To illustrate the difference between variable-per-column and variable-per-row schemas, let's use the schools example data again. In variable-per-column, you would represent the dataset as follows:
 
@@ -162,16 +163,18 @@ The names and order of the columns aren't important, as you can map them to the 
 
 In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
 
-### Prepare the CSV data files {#prepare-csv}
+### Step 0: Define custom entities (if needed)
 
-You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.
+Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. Just skip to the next section on [variables and observations]()
 
-{:.no_toc}
-#### Step 0: Define CSV entities (if needed)
-
-Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if they already exist in base. Just skip to the next section.
+#### Step 0a: Define custom entities in CSV
 
 If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
+
+The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you.
+
+{:.no_toc}
+##### Example 1: New entities with existing entity type
 
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
@@ -179,9 +182,30 @@ For example, let's say you wanted to track the performance of individual hospita
 
 ```
 
+The CCN is a certification number 
+
+#### Step 0b: Define new entities in JSON config
+
+
 
 {:.no_toc}
-#### Step 1: Define CSV observations
+##### Example 2: New entities with new entity type
+
+
+
+{:.no_toc}
+##### Example 2: New entities with new entity type
+
+
+
+
+
+##### Example 1: New entities with existing entity type
+
+##### Example 2: New entities with new entity type
+
+
+### Step 1: Provide variables and observations in CSV
 
 As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
 
@@ -191,13 +215,16 @@ The _ENTITY_ is an existing entity, most commonly a place. The best way to think
 
 If the entity is not a place, it must be the DCID of the entity of interest. For example, if the entity type for which you are tracking observations is `PublicSchool`, all rows must contain DCIDs of the public schools rather than their names; for example, rather than `Andalusia Elementary School`, you would need to specify `nces/010006001467`.
 
-> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
+> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one. In addition, if you are using custom-defined entities, keep your entity definition files and variable/observation files separate.
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
 The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable node for you.
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+
+{:.no_toc}
+#### Example 1: Observations with (existing) place entity
 
 Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
@@ -242,15 +269,24 @@ dcId,observationYear,statVar1,statVar2
 geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
-{:.no_toc}
-#### Step 3: Write the JSON config file
+
+#### Example 2: Observations with new (custom) entities 
+
+
+
+
+### Step 2: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide 3 specifications:
 - The input files location and entity type
 - The sources and provenances of the data
 - Optionally, additional properties of the statistical variables you've used in the CSV files
+- Optionally, 
 
-Here is an example of how the config file would look for WHO CSV file we defined earlier. More details are below.
+{:.no_toc}
+#### Implicit example 1: Observations with existing entities
+
+Here is an example of how the config file would look for the WHO CSV file we defined earlier. More details are below.
 
 ```json
 {
@@ -311,11 +347,21 @@ The following fields are specific to the variable-per-column format:
 
 The other fields are explained in the [Data config file specification reference](#json-ref).
 
+{:.no_toc}
+#### Implicit example 5: New entities
+
+{:.no_toc}
+#### Implicit Example 6: 
+
+
+
 ## Prepare your data using explicit schema
 
 In this section, we will walk you through a concrete example of how to go about setting up your CSV, MCF and JSON files.
 
-### Write the MCF file {#mcf}
+### Step 0: 
+
+### Step 1: Define statistical variables in MCF
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file should have a .mcf suffix and be placed in the same top-level directory as the `config.json` file.
 
