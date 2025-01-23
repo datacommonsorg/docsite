@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Agriculture
-parent: Data sources
 nav_exclude: true
+parent: Data Sources
 ---
 
 {:.no_toc}
