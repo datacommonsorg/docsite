@@ -53,8 +53,6 @@ An API key is required to authorize requests from your site to the base Data Com
 1. Go to [https://console.cloud.google.com/google/maps-apis/credentials](https://console.cloud.google.com/google/maps-apis/credentials){: target="_blank"} for your project.
 1. Click **Create Credentials** > **API Key**.
 1. Record the key and click **Close**.
-1. Click on the newly created key to open the **Edit API Key** window.
-1. Under **API restrictions**, select **Restrict key**.
 1. From the drop-down menu, enable **Places API** and **Maps Javascript API**. (Optionally enable other APIs for which you want to use this key.)
 1. Click **OK** and **Save**.
 
@@ -150,6 +148,7 @@ To load the sample data:
    -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
    gcr.io/datcom-ci/datacommons-data:stable
    ```
+> Tip: While the `env.list` file requires full paths for input and output directories, in Docker commands you can use system variables like `$PWD` as shortcuts. 
 This does the following:
 
 - The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
