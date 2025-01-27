@@ -33,7 +33,7 @@ If you want to pick up the latest prebuilt version, do the following:
    <pre>docker run \
    --env-file $PWD/custom_dc/env.list \
    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-   -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+   [-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var>] \
    gcr.io/datcom-ci/datacommons-data:latest
    </pre>
 
@@ -43,7 +43,7 @@ If you want to pick up the latest prebuilt version, do the following:
    -e DEBUG=true \
    --env-file $PWD/custom_dc/env.list \
    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-   -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+   [-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var>] \
    gcr.io/datcom-ci/datacommons-services:latest
    </pre>
 
@@ -138,7 +138,7 @@ Start the services using the locally built repo. If you have made changes to any
 -p 8080:8080 \
 -e DEBUG=true \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+[-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var>] \
 [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
 [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
