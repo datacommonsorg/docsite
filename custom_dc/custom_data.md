@@ -171,25 +171,37 @@ Before creating new entities, please see [above](#entities) to determine if you 
 
 If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
 
-The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you.
+The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. If there is no existing entity type for your entities you can create those using the JSON config.
 
-{:.no_toc}
-##### Example 1: New entities with existing entity type
-
-For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
+For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
 ```csv
+CCN,hospitalName,address,city,zipCode,hospitalSubtype
+22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,99503,Long Term
+20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,99508,Short Term
+20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,99801,Short Term
+20012,Fairbanks Memorial Hospital,1650 Cowles Street,Fairbanks,99701,Short Term
+21307,Cordova Community Medical Center,Po Box 160 - 602 Chase Avenue,Cordova,99574,Critical Access Hospitals
+21313,South Peninsula Hospital,4300 Bartlett St,Homer,99603,Critical Access Hospitals
+21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,99901,Critical Access Hospitals
+20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,99508,Short Term
+20024,Central Peninsula General Hospital,250 Hospital Place,Soldotna,99669,Short Term
+21301,Providence Valdez Medical Center,Po Box 550,Valdez,99686,Critical Access Hospitals
+21306,Providence Kodiak Island Medical Ctr,1915 East Rezanof Drive,Kodiak,99615,Critical Access Hospitals
+21304,Petersburg Medical Center,Po Box 589,Petersburg,99833,Critical Access Hospitals
+20006,Mat-Su Regional Medical Center,2500 South Woodworth Loop,Palmer,99645,Short Term
+21302,Providence Seward Medical Center,417 First Avenue Po Box 365,Seward,99664,Critical Access Hospitals
 
 ```
+The CCN is a certification number that uniquely identifies U.S. hospitals. You could use it as the DCID, or you could have Data Commons automatically assign a DCID. In both cases, you would do that in the JSON config.
 
-The CCN is a certification number 
-
-#### Step 0b: Define new entities in JSON config
-
+#### Step 0b: Define new entities (and entity types) in JSON config
 
 
-{:.no_toc}
-##### Example 2: New entities with new entity type
+
+
+
+
 
 
 
