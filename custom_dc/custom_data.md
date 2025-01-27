@@ -629,7 +629,7 @@ Note that the `measuredProperty` property has an effect on the display: if it is
        "properties": {
          "measuredProperty": "percent"
       }
-    }...
+    }
   }
 ```
 
