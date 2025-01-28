@@ -566,7 +566,9 @@ You must specify the provenance details under `sources.provenances`; this field 
 {: #observation-properties} 
 observationProperties (implicit schema only)
 
-: Optional: Additional information about each contained in the CSV file. Currently, the following properties are supported:
+: Optional: Additional information about each variable contained in the CSV file. Whatever setting you specify will apply to all variables in the file. (If you need different properties among variables, put your variables in different CSV files.)
+
+Currently, the following properties are supported:
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
 - [`measurementPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
 - [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
@@ -601,7 +603,7 @@ description
 
 properties
 
-: Additional Data Commons properties associated with this variable. This section is analogous to the fields specified in an [MCF Node definition](#mcf).
+: Additional Data Commons properties associated with this variable. The properties are any property required or optional in the [MCF Node definition](#mcf) of a variable. The value of the property must be a DCID.
 
 Each property is specified as a key:value pair. Here are some examples:
 
@@ -612,6 +614,23 @@ Each property is specified as a key:value pair. Here are some examples:
   "statType": "medianValue",
   "gender": "Female"
 }
+```
+
+Note that the `measuredProperty` property has an effect on the display: if it is not set for any variable, the importer assumes that it is different for every defined variable, so that each variable will be shown in a different chart in the UI tools. If you would like multiple variables to show up in the same chart, be sure to set this property on all of the relevant variables, to the same (DCID) value. For example, if you wanted `Adult_curr_cig_smokers_female` and `Adult_curr_cig_smokers_male` to appear on the same Timeline chart, set `measuredProperty` to a common property of the two variables, for example [`percent`](https://datacommons.org/browser/percent){: target="_blank"}. 
+
+```json
+"variables": {
+    "Adult_curr_cig_smokers": {
+      "properties": {
+        "measuredProperty": "percent"
+      }
+    },
+    "Adult_curr_cig_smokers_female": {
+       "properties": {
+         "measuredProperty": "percent"
+      }
+    }
+  }
 ```
 
 group
@@ -686,7 +705,6 @@ docker run \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
-</pre>
 
 
 {:.no_toc}
