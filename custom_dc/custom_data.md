@@ -703,11 +703,8 @@ In one terminal window, from the root directory, run the following command to st
 docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-[-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var>] \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
-</pre>
-
-If you have set the output directory to be the same as the input directory, the second path specification is optional.
 
 
 {:.no_toc}
@@ -739,11 +736,9 @@ docker run -it \
 -e DEBUG=true \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-[-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var>] \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-services:stable
 </pre>
-
-If you have set the output directory to be the same as the input directory, the second path specification is optional.
 
 Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
 
