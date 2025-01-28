@@ -566,7 +566,7 @@ You must specify the provenance details under `sources.provenances`; this field 
 {: #observation-properties} 
 observationProperties (implicit schema only)
 
-: Optional: Additional information about each variable contained in the CSV file. Whatever setting you specify will apply to all variables in the file. (If you need different properties among variables, put your variables in different CSV files.)
+: Optional: Additional information about each observation contained in the CSV file. Whatever setting you specify will apply to all observations in the file. (If you need different properties among observations, put them in different CSV files.)
 
 Currently, the following properties are supported:
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
