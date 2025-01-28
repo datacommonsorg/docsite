@@ -131,7 +131,7 @@ region  = "us-east1"
    terraform apply
    ```
 1. At the prompt asking you to confirm the actions before creating resources, type `yes` to proceed. It will take about 15 minutes to complete. You will see extensive output showing the progress of the deployment. You may want to take note of the names of the various services created.
-1. To view the running application, which initially just serves the default "Custom Data Commons" UI with the base data, open the browser link listed in the `cloud_run_service_url` output, or see [View the running application](#view-app) for more details. To run the application with your own data and/or custom build, continue with the rest of this page.
+1. To view the running application, which initially just serves the default "Custom Data Commons" UI without any, open the browser link listed in the `cloud_run_service_url` output, or see [View the running application](#view-app) for more details. To run the application with your data and/or custom build, continue with the rest of this page.
 
 ## Manage your data
 
