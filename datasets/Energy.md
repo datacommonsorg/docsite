@@ -14,22 +14,22 @@ parent: Data Sources
 ### [U.S. Energy Information Administration (EIA)](https://www.eia.gov/)
 
 #### [Commercial Buildings Energy Consumption Survey (CBECS)](https://www.eia.gov/consumption/commercial/)
-Energy consumption and expenditures for U.S. commercial buildings including energy sources across U.S. census regions and divisions.
+Energy consumption and expenditures for U.S. commercial buildings, including energy sources across U.S. census regions and divisions.
 
 #### [Form EIA-860](https://www.eia.gov/electricity/data/eia860/)
-Survey form collects generator-level data about electric power plants.
+Survey collects generator-level data about electric power plants.
 
 
 #### [Open Data](https://www.eia.gov/opendata/qb.php)
-County, state, and plant-level data on generation, consumption, and sales for different energy sources and "sectors" (residential, commercial, etc). Data Commons has imported data about coal, electricity, natural gas, nuclear outages, and petroleum.
+County, state, and plant-level data on generation, consumption, and sales for different energy sources and sectors (residential, commercial, etc). Data Commons has imported data about coal, electricity, natural gas, nuclear outages, and petroleum.
 
-[Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php).
+[Copyrights and reuse](https://www.eia.gov/about/copyrights_reuse.php).
 
 
 ### [U.S. National Renewable Energy Laboratory (NREL)](https://www.nrel.gov/)
 
 #### [RE Atlas](https://maps.nrel.gov/re-atlas)
-Data Commons has imported the potential for solar energy generation in different counties in the US.
+Data Commons has imported the potential for solar energy generation in different counties in the U.S..
 
 [Disclaimer](https://maps.nrel.gov/re-atlas/).
 
@@ -37,18 +37,18 @@ Data Commons has imported the potential for solar energy generation in different
 ### [United Nations (UN)](https://www.un.org/en/)
 
 #### [Energy Statistics](https://unstats.un.org/unsd/energystats/data/)
-Data Commons has imported energy data about annual energy production, transformation, and consumption for countries.
+Data Commons has imported energy data about annual energy production, transformation, and consumption by countries.
 
-[Terms of Use](http://data.un.org/Host.aspx?Content=UNdataUse).
+[Terms of use](http://data.un.org/Host.aspx?Content=UNdataUse), [terms of Use](https://data.humdata.org/faqs/licenses) for UN OCHA Subnational Administrative Boundaries data
 
 
 ### [World Bank](https://www.worldbank.org/en/home)
 
 #### [World Bank Datasets](https://data.worldbank.org)
-World Bank datasets related to demographics, economy, education, etc.
+Datasets related to demographics, economy, education, etc.
 
 #### [World Development Indicators](https://datacatalog.worldbank.org/search/dataset/003771)
-Data Commons includes variables related to demographics, energy, health, labor, etc. from the World Bank.
+Data Commons includes variables related to demographics, energy, health, labor, etc.
 
-[Terms of Use](https://datacatalog.worldbank.org/public-licenses).
+[Terms of use](https://datacatalog.worldbank.org/public-licenses)
 

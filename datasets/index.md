@@ -30,18 +30,18 @@ Data in the Data Commons Graph comes from a variety of sources, each of which of
 
 # Data coverage
 
-The following charts illustrate the data coverage in terms of global statistical variables at the country, state, and district levels. The first chart illustrates the total number of statistical variables available per country, excluding the USA where data coverage is currently most extensive
+The following charts illustrate the data coverage in terms of global statistical variables at the country, state, and district levels. The first chart illustrates the total number of statistical variables available per country, excluding the USA where data coverage is currently most extensive:
 
 <p> &nbsp; </p>
 <div class="flourish-embed flourish-map" data-src="visualisation/17709428"></div>
 <p> &nbsp; </p>
 
-This chart goes a level deeper and illustrates the total number of statistical variables available at the state level for each country worldwide.
+This chart goes a level deeper and illustrates the total number of statistical variables available at the state level for each country worldwide:
 <p> &nbsp; </p>
 <div class="flourish-embed flourish-map" data-src="visualisation/17716780"></div>
 <p> &nbsp; </p>
 
-Finally, this third chart illustrates the total number of statistical variables available at the district/county level worldwide.
+Finally, this third chart illustrates the total number of statistical variables available at the district/county level worldwide:
 
 <p> &nbsp; </p>
 <div class="flourish-embed flourish-map" data-src="visualisation/17719383"></div>
