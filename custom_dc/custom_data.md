@@ -21,7 +21,7 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 
 At a high level, you need to provide the following:
 
-- All data must be in CSV format, using the schema described below. 
+- All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
 - If you need to define new custom entities, you may want to provide them in MCF; if you need to define new entities types, you _will need_ to provide them in MCF.
@@ -159,13 +159,14 @@ In variable-per-row, the same dataset would be provided as follows:
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
-## Prepare your data using implicit schema
+## Prepare your data using implicit schema 
 
 In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
 
-### Step 0: Define custom entities (if needed)
+{: #custom-entities}
+### Step 0: Define custom entities (if needed) 
 
-Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. Just skip to the next section on [variables and observations]()
+Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. Just skip to the next section on [variables and observations](#csv).
 
 If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
 
@@ -177,7 +178,7 @@ The columns can be in any order, with any heading, and there can be as many as y
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
 ```csv
-CCN,hospitalName,address,City,zipCode,hospitalSubtype
+CCN,name,address,City,zipCode,hospitalSubtype
 ccn/22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,99503,Long Term
 ccn/20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,99508,Short Term
 ccn/20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,99801,Short Term
@@ -200,7 +201,7 @@ If you are defining more than one type of entity (for example a `Hospital` and a
 {:.no_toc}
 #### Example 2: New entities, new entity type 
 
-Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type in []`config.json`], while the following CSV file identifies some actual stems:
+Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type in [`config.json`](), while the following CSV file identifies some actual stems:
 
 ```csv
 Stem,Definition,Examples
@@ -212,7 +213,7 @@ adol,analgesics,tazadolene
 adox,antibacterials,carbadox
 ```
 
-### Step 1: Provide variables and observations in CSV
+### Step 1: Provide variables and observations in CSV {#csv}
 
 As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
 
@@ -427,13 +428,13 @@ Here's an example of defining new entities _and_ a new entity type in the JSON f
   "inputFiles": {
     "usan.csv": {
       "importType": "entities",
-      "rowEntityType": "NameStem",
+      "rowEntityType": "Stem",
       "idColumn": "Stem",
       "provenance": "United States Adopted Names approved stems"
     }
   },
   "entities": {
-    "NameStem": {
+    "Stem": {
       "name": "USAN Stem",
       "description": "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
     }
@@ -453,7 +454,7 @@ Here's an example of defining new entities _and_ a new entity type in the JSON f
 
 Here's an example of the previous hospital data, covering both the entities and the observations:
 
-```
+```json
 {
   "inputFiles": {
     "hospital_entities.csv": {
@@ -543,19 +544,29 @@ Here's an example of the previous hospital data, covering both the entities and 
 
 ## Prepare your data using explicit schema
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables (and custom entity types, if needed) using MCF. The MCF file should have a .mcf suffix and be placed in the same top-level directory as the `config.json` file.
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables. You can choose to define custom entities in either CSV files (as described in [Define new entities](#custom-entities) above) or MCF; in this section, we demonstrate how to do so using MCF. When you define any entity type, property, or variable in MCF, you must explicitly assign them DCIDs. 
 
-For custom entities, you define them using CSV, as described in 
+You can define your statistical variables in a single MCF files, or split them up into as many separate MCF files as you like. MCF files must have .mcf suffix.
 
-In this section, we will walk you through a concrete example of how to go about setting up your CSV, MCF and JSON files.
+In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
 ### Step 0: Define custom entity types (if needed) in MCF
 
-Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you can use any random key-value pair to define your entity types.
+Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you can use any random key-value pair to define your entity types and properties.
 
-Here's an example of the aforementioned `NameStem` entity type discussed in 
+You can even attach new properties to existing entity types and define enums for entity types.
+
+Here's an example of the aforementioned `Stem` entity type discussed earlier:
+
+
 
 #### Example 1: 
+
+### Step 0: Define custom entities (if needed)
+
+
+
+
 
 ### Step 1: Define statistical variables in MCF
 
