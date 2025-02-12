@@ -178,21 +178,21 @@ The columns can be in any order, with any heading, and there can be as many as y
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
 ```csv
-CCN,name,address,City,zipCode,hospitalSubtype
-ccn/22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,99503,Long Term
-ccn/20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,99508,Short Term
-ccn/20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,99801,Short Term
-ccn/20012,Fairbanks Memorial Hospital,1650 Cowles Street,Fairbanks,99701,Short Term
-ccn/21307,Cordova Community Medical Center,Po Box 160 - 602 Chase Avenue,Cordova,99574,Critical Access Hospitals
-ccn/21313,South Peninsula Hospital,4300 Bartlett St,Homer,99603,Critical Access Hospitals
-ccn/21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,99901,Critical Access Hospitals
-ccn/20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,99508,Short Term
-ccn/20024,Central Peninsula General Hospital,250 Hospital Place,Soldotna,99669,Short Term
-ccn/21301,Providence Valdez Medical Center,Po Box 550,Valdez,99686,Critical Access Hospitals
-ccn/21306,Providence Kodiak Island Medical Ctr,1915 East Rezanof Drive,Kodiak,99615,Critical Access Hospitals
-ccn/21304,Petersburg Medical Center,Po Box 589,Petersburg,99833,Critical Access Hospitals
-ccn/20006,Mat-Su Regional Medical Center,2500 South Woodworth Loop,Palmer,99645,Short Term
-ccn/21302,Providence Seward Medical Center,417 First Avenue Po Box 365,Seward,99664,Critical Access Hospitals
+CCN,name,address,city_name,City,zipCode,hospitalSubtype
+A22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,geoId/02,99503,Long Term
+A20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,geoId/02,99508,Short Term
+A20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,geoId/02,99801,Short Term
+A20012,Fairbanks Memorial Hospital,1650 Cowles Street,Fairbanks,geoId/02,99701,Short Term
+A21307,Cordova Community Medical Center,Po Box 160 - 602 Chase Avenue,Cordova,geoId/02,99574,Critical Access Hospitals
+A21313,South Peninsula Hospital,4300 Bartlett St,Homer,geoId/02,99603,Critical Access Hospitals
+A21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,geoId/02,99901,Critical Access Hospitals
+A20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,geoId/02,99508,Short Term
+A20024,Central Peninsula General Hospital,250 Hospital Place,Soldotna,geoId/02,99669,Short Term
+A21301,Providence Valdez Medical Center,Po Box 550,Valdez,geoId/02,99686,Critical Access Hospitals
+A21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,KodigeoId/02,geoId/02,99615,Critical Access Hospitals
+A21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02,99833,Critical Access Hospitals
+A20006,Mat-Su Regional Medical Center,2500 South Woodworth Loop,Palmer,geoId/02,99645,Short Term
+A21302,Providence Seward Medical Center,417 First Avenue Po Box 365,Seward,geoId/02,99664,Critical Access Hospitals
 ```
 The CCN is a certification number that uniquely identifies U.S. hospitals. You could use it as the DCID, or you could have Data Commons automatically assign a DCID. In both cases, you would do that in the JSON config.
 
@@ -201,7 +201,7 @@ If you are defining more than one type of entity (for example a `Hospital` and a
 {:.no_toc}
 #### Example 2: New entities, new entity type 
 
-Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type in [`config.json`](), while the following CSV file identifies some actual stems:
+Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type in [`config.json`](#new-entity-json), while the following CSV file identifies some actual stems (entities):
 
 ```csv
 Stem,Definition,Examples
@@ -550,20 +550,35 @@ You can define your statistical variables in a single MCF files, or split them u
 
 In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
-### Step 0: Define custom entity types (if needed) in MCF
+{: #custom-entities}
+### Step 0: Define custom entities (if needed) in MCF
 
-Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you can use any random key-value pair to define your entity types and properties.
+Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you define new nodes with DCIDs, and you can use any random key-value pair as properties of the node. You can even attach new properties to existing entity types and define enums for entity types.
 
-You can even attach new properties to existing entity types and define enums for entity types.
+#### Example 1: New entity type
 
-Here's an example of the aforementioned `Stem` entity type discussed earlier:
+Here is an example of the aforementioned [`Stem` entity type](). This MCF object serves the same function as the `config.json` `entities` section, but it additionally explicitly specifies a DCID (instead of letting the system create one) and adds a few other properties.
+
+```
+Node: dcid:Stem
+name: "US Adopted Name Stem"
+typeOf: schema:Class
+subClassOf: dcs:ChemicalSubstance
+shortDisplayName: "USAN Stem"
+description: "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
+descriptionUrl: "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
+```
+
+Note that a new entity type must be defined as a type of `schema:Class`. 
+
+#### Example 2: New property on existing entity
 
 
+{:.no_toc}
+#### Example 3: New entities, existing entity type
 
-#### Example 1: 
-
-### Step 0: Define custom entities (if needed)
-
+Here is an example of the hospitals entities discussed earlier. These MCF objects serve the same function as the CSV file mentioned above. 
+```
 
 
 
