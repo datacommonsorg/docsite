@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Agriculture
-nav_order: 1
+nav_exclude: true
 parent: Data Sources
 ---
 

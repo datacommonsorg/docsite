@@ -368,7 +368,8 @@ The following fields are specific to the variable-per-column format:
   - `name`: A human-friendly readable name that will be shown throughout the UI.
   - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
-  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as heading. 
+  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. 
+    > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
 
 The other fields are explained in the [Data config file specification reference](#json-ref).
 
@@ -585,9 +586,11 @@ Here is an example of the hospitals entities discussed earlier. These MCF object
 
 ### Step 1: Define statistical variables in MCF
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file should have a .mcf suffix and be placed in the same top-level directory as the `config.json` file.
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Here's an example of defining the same statistical variables in the WHO data in MCF:
+#### Define statistical variables
+
+Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
 
 ```
 Node: dcid:Adult_curr_cig_smokers
@@ -610,12 +613,11 @@ populationType: dcid:Person
 measuredProperty: dcid:percent
 gender: dcid:Male
 ```
-
 The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. 
-- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`.
+- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. For a group of 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
 - `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
@@ -843,7 +845,9 @@ You must specify the provenance details under `sources.provenances`; this field 
 {: #observation-properties} 
 observationProperties (implicit schema only)
 
-: Optional: Additional information about each contained in the CSV file. Currently, the following properties are supported:
+: Optional: Additional information about each observation contained in the CSV file. Whatever setting you specify will apply to all observations in the file. (If you need different properties among observations, put them in different CSV files.)
+
+Currently, the following properties are supported:
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
 - [`measurementPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
 - [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
@@ -878,7 +882,7 @@ description
 
 properties
 
-: Additional Data Commons properties associated with this variable. This section is analogous to the fields specified in an [MCF Node definition](#mcf).
+: Additional Data Commons properties associated with this variable. The properties are any property required or optional in the [MCF Node definition](#mcf) of a variable. The value of the property must be a DCID.
 
 Each property is specified as a key:value pair. Here are some examples:
 
@@ -891,13 +895,32 @@ Each property is specified as a key:value pair. Here are some examples:
 }
 ```
 
+Note that the `measuredProperty` property has an effect on the display: if it is not set for any variable, the importer assumes that it is different for every defined variable, so that each variable will be shown in a different chart in the UI tools. If you would like multiple variables to show up in the same chart, be sure to set this property on all of the relevant variables, to the same (DCID) value. For example, if you wanted `Adult_curr_cig_smokers_female` and `Adult_curr_cig_smokers_male` to appear on the same Timeline chart, set `measuredProperty` to a common property of the two variables, for example [`percent`](https://datacommons.org/browser/percent){: target="_blank"}. 
+
+```json
+"variables": {
+    "Adult_curr_cig_smokers": {
+      "properties": {
+        "measuredProperty": "percent"
+      }
+    },
+    "Adult_curr_cig_smokers_female": {
+       "properties": {
+         "measuredProperty": "percent"
+      }
+    }
+  }
+```
+
 group
 
-: By default, the Statistical Variables Explorer will display all custom variables as a group called "Custom Variables". You can use this option to create multi-level hierarchies, and assign different variables to groups. The value of the `group` option is used as the heading of the group. For example, in the sample data, the group name `OECD` is used to group together the two variables from the two CSV files:
+: By default, the Statistical Variables Explorer will display all custom variables as a group called "Custom Variables". You can use this option to create one or more custom group names and assign different variables to groups. The value of the `group` option is used as the heading of the group. For example, in the sample data, the group name `OECD` is used to group together the two variables from the two CSV files:
 
 ![group_screenshot](/assets/images/custom_dc/customdc_screenshot5.png){: width="400"}
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
+
+> Note: You can only assign a variable to one group. If you would like to assign the same variables to multiple groups, you will need to define the groups as nodes in MCF; see [Define a statistical variable group node](#statvar-group) for details.
 
 searchDescriptions
 
@@ -961,7 +984,6 @@ docker run \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
-</pre>
 
 
 {:.no_toc}
