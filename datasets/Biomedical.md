@@ -14,7 +14,7 @@ parent: Data Sources
 ### [ELIXIR Core Data Resources](https://elixir-europe.org/platforms/data/core-data-resources)
 
 #### [The Molecular INTeraction (MINT) Database](https://mint.bio.uniroma2.it/)
-Focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators.
+The MINT Database "focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators."
 
 Licata, Luana, Leonardo Briganti, Daniele Peluso, Livia Perfetto, Marta Iannuccelli, Eugenia Galeota, Francesca Sacco et al. "MINT, the molecular interaction database: 2012 update." Nucleic acids research 40, no. D1 (2012): D857-D861.
 
@@ -22,9 +22,9 @@ Licata, Luana, Leonardo Briganti, Daniele Peluso, Livia Perfetto, Marta Iannucce
 ### [Encyclopedia of DNA Elements (ENCODE)](https://www.encodeproject.org/)
 
 #### [Experimental Data](https://www.encodeproject.org/help/project-overview/)
-Contains information for approximately 7000 experiments along with 14,000 BED files collected by The Encyclopedia of DNA Elements (ENCODE) Consortium. Examples of experiment metadata captured include the target biosample, assay type, gene assembly, etc. Data Commons include the metadata for all experimental datasets in ENCODE as of 2019.
+The ENCODE experimental dataset contains information for approximately 7000 experiments along with 14,000 BED files collected by The Encyclopedia of DNA Elements (ENCODE) Consortium. Examples of experiment metadata captured include the target biosample, assay type, gene assembly, etc. Data Commons include the meta data for all experimental datasets in ENCODE as of 2019.
 
-Data made available under the [ENCODE data use policy for external users](https://www.encodeproject.org/help/citing-encode/). This data was formatted for Data Commons through a collaboration with Dr. Anthony Oro’s group at Stanford University.
+Data made available under: [ENCODE Data Use Policy for External Users](https://www.encodeproject.org/help/citing-encode/). This data was formatted for Data Commons through a collaboration with Dr. Anthony Oro’s group at Stanford University.
 
 
 ### [European Molecular Biology Laboratory - European Bioinformatics Institute (EMBL-EBI)](https://www.ebi.ac.uk/)
@@ -32,7 +32,7 @@ Data made available under the [ENCODE data use policy for external users](https:
 #### [UniProt](https://www.uniprot.org/)
 Data Commons includes protein sequence and functional information including protein interaction with chemical compounds maintained by the UniProt Consortium. The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) UniProt data used in a journal article.
 
-Data made available by the [EMBL-EPI terms of use](https://www.ebi.ac.uk/about/terms-of-use/)
+This data is made available by [EMBL-EPI Terms of Use](https://www.ebi.ac.uk/about/terms-of-use/).
 
 
 ### [Gene Ontology Consortium](https://geneontology.org/)
@@ -48,7 +48,7 @@ The official, current virus taxonomy approved by the ICTV. To accomplish the tas
 
 #### [Virus Metadata Resource](https://ictv.global/vmr)
 The ICTV chooses an exemplar virus for each species and the VMR provides a list of these exemplars. An exemplar virus serves as an example of a well-characterized virus isolate of that species and includes the GenBank accession number for the genomic sequence of the isolate as well as the virus name, isolate designation, suggested abbreviation, genome composition, and host source. The VMR version currently in the graph is VMR MSL38 v2 released on 2023-09-13.
-Data made available under Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0).
+This data is made available under Creative Commons Attribution ShareAlike 4.0 International (CC BY-SA 4.0).
 
 
 ### [Jensen Lab (University of Copenhagen)](https://jensenlab.org/resources/)
@@ -64,7 +64,7 @@ DISEASES is a weekly updated web resource that integrates evidence on disease-ge
 #### [DISEASES: Textmining](https://diseases.jensenlab.org/Search)
 DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. All files start with the following four columns: gene identifier, gene name, disease identifier, and disease name. The textmining files contain the z-score, the confidence score, and a URL to a viewer of the underlying abstracts. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
-Data made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+This data is made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 
 ### [PharmGKB](https://www.pharmgkb.org/)
