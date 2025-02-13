@@ -85,17 +85,23 @@ If you try to enter input into any of the explorer tools fields, and you get thi
 
 This is because you are missing a valid API key or the necessary APIs are not enabled. Follow procedures in [Enable Google Cloud APIs and get a Maps API key](/custom_dc/quickstart.html#maps-key), and be sure to obtain a permanent Maps/Places API key.
 
-## Terraform problems
+## Terraform setup problems
 
 ### "Error: Error when reading or editing...oauth2: "invalid_grant" "reauth related error (invalid_rapt)""
 
-If you are trying to run `terraform plan` or `terraform apply` and it fails with an error like this:
-
-```
-Error: Error when reading or editing Network Not Found : default: Get "https://compute.googleapis.com/compute/v1/projects/datcom-website-dev/global/networks/default?alt=json&prettyPrint=false": oauth2: "invalid_grant" "reauth related error (invalid_rapt)" "https://support.google.com/a/answer/9368756"
-```
-
 This is due to expired credentials. Generate new credentials as described in [Generate credentials for Google Cloud authentication](deploy_cloud.md#gen-creds). You may also configure the frequency with which credentials must be refreshed; see <https://support.google.com/a/answer/9368756>{: target="_blank"} for details.
+
+### "Error: Error applying IAM policy for cloudrun service ..." 
+
+This indicates that the project for which you are trying to create resources has an organizational policy that prevents resource creation, such as domain resource sharing constraints. To remedy this:
+1. Go to <https://console.cloud.google.com/iam-admin/orgpolicies/list>{: target="_blank"} for your project and click **View active policies**.
+1. Check to see if there is a policy with a constraint that interfers with resource creation (e.g. `iam.allowedPolicyMemberDomains`). 
+1. Edit the policy to remove the relevant constraint.
+1. Rerun Terraform.
+
+### "Error: Error waiting to create Job...timeout while waiting for state to become 'done: true'"
+
+This is likely a transient issue; try exiting and rerunning Terraform.
 
 ## Cloud Run Service problems
 
