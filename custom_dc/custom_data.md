@@ -24,7 +24,7 @@ At a high level, you need to provide the following:
 - All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
-- If you need to define new custom entities, you may want to provide them in MCF; if you need to define new entities types, you _will need_ to provide them in MCF.
+- If you need to define new custom entities, please see xxx
 
 ### Files and directory structure
 
@@ -163,52 +163,6 @@ The names and order of the columns aren't important, as you can map them to the 
 
 In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
 
-{: #custom-entities}
-### Step 0: Define custom entities (if needed) 
-
-Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. Just skip to the next section on [variables and observations](#csv).
-
-If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
-
-The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. If there is no existing entity type for your entities you can create those using the JSON config.
-
-{:.no_toc}
-#### Example 1: New entities, existing entity type
-
-For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
-
-```csv
-ccn,name,address,city_name,City,zipCode,hospitalSubtype
-22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,geoId/02020,99503,Long Term
-20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,geoId/02020,Short Term
-20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,geoId/02110,99801,Short Term
-21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,geoId/02150,99901,Critical Access Hospitals
-20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,geoId/02020,99508,Short Term
-21301,Providence Valdez Medical Center,Po Box 550,Valdez,geoId/02261,99686,Critical Access Hospitals
-21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,Kodiak,geoId/02150,99615,Critical Access Hospitals
-21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02280,99833,Critical Access Hospitals
-```
-The CCN is a certification number that uniquely identifies U.S. hospitals. You could use it as the DCID, or you could have Data Commons automatically assign a DCID. In both cases, you would do that in the JSON config. Note that the "city" column uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; later we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, the zip code won't be linked to the existing entity type [`CensusZipCodeTabulationArea`]. 
-
-> Note: Whenever you want to new entity properties to be linked to an existing entity, you must use its DCID in the column heading. 
-
-If you are defining more than one type of entity (for example a `Hospital` and a `School`), use a separate CSV for each.
-
-{:.no_toc}
-#### Example 2: New entities, new entity type 
-
-Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type, `NameStem`, in [`config.json`](#new-entity-json), while the following CSV file identifies some actual stems (entities):
-
-```csv
-Stem,Definition,Examples
-ac,anti-inflammatory agents,bromfenac
-zolac,anti-inflammatory;  pyrazole acetic acid derivatives,rovazolac
-actant,pulmonary surfactants,"beractant, lucinactant, calfactant"
-adenant,adensosine receptor antagonists,preladenant
-adol,analgesics,tazadolene
-adox,antibacterials,carbadox
-```
-
 ### Step 1: Provide variables and observations in CSV {#csv}
 
 As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
@@ -226,9 +180,6 @@ The _DATE_ is the date of the observation and should be in the format _YYYY_, _Y
 The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable node for you.
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
-
-{:.no_toc}
-#### Example 1: Observations with (existing) place entity
 
 Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
@@ -274,20 +225,6 @@ geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
 
-#### Example 2: Observations with new (custom) entities 
-
-If you are providing observations for custom entities, the observations should be in a separate file. Using our original example, here are some metrics and observations for indnividual hospitals. Note that the first column must contain the DCIDs that you have defined, and its heading must be `dcid`. In this particular case, the dataset uses a negative number, rather than a null value, to indicate that the data is not available for that observation.
-
-```csv
-dcid,week,total_num_staffed_beds,num_staffed_adult_beds,num_staffed_inpatient_icu_beds,num_staffed_adult_inpatient_icu_beds,num_staffed_inpatient_icu_beds_occupied,num_staffed_adult_icu_beds_occupied
-22001,2023-01-27,79,79,12,12,-999999,-999999
-20001,2023-01-27,1262,1048,264,146,264,146
-20017,2023-01-27,0,0,-999999,-999999,0,0
-21301,2023-01-27,836,780,101,62,66,62
-21306,2023-01-27,0,0,9,9,8,8
-21304,2023-01-27,6,6,0,0,0,0
-```
-
 ### Step 2: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide the following specifications:
@@ -297,9 +234,6 @@ You must define a `config.json` in the top-level directory where your CSV files 
 - If needed, some information about custom entities
 
 If you are using custom entities, you include the specifications for them in the same `config.json` file as observations.
-
-{:.no_toc}
-#### Example 1: Observations with existing entities
 
 Here is an example of how the config file would look for the WHO CSV file we defined earlier. More details are below.
 
@@ -363,207 +297,14 @@ The following fields are specific to the variable-per-column format:
 
 The other fields are explained in the [Data config file specification reference](#json-ref).
 
-{:.no_toc}
-#### Example 2: New entities, existing entity type
-
-Here's an example of how a `config.json` file could look for our hospital data:
-
-```json
-{
-  "inputFiles": {
-    "hospital_entities.csv": {
-      "importType": "entities",
-      "rowEntityType": "Hospital",
-      "idColumn": "ccn",
-      "entityColumns": [
-        "City"
-      ],
-      "provenance": "Alaska Weekly Hospital Capacity"
-    },
-  },
-  "entities": {
-    "Hospital": {
-      "name": "Hospital"
-    }
-  },
-  "sources": {
-    "HHS Protect Public Data Hub": {
-      "url": "https://public-data-hub-dhhs.hub.arcgis.com/",
-      "provenances": {
-        "Alaska Weekly Hospital Capacity": "https://public-data-hub-dhhs.hub.arcgis.com/datasets/d47bfcaac2544c2eb1fcfb3d36b5ed23_0/explore"
-      }
-    }
-  }
-}
-```
-Note the presence of the `entities` section and these important fields:
-
-- `input_files`:
-  - `importType`: By default this is `variables`; to tell the importer that you are adding entities in that CSV file, you must specify `entities`.
-  - `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID. It must also match the identifier in the `entities` section. 
-  - `idColumn`: This is optional, and tells the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities. If you don't specify this field, Data Commons will just create DCIDs automatically.
-  - `entityColumns`: This is also optional: if you want your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. 
-    Note that the heading of the column and its reference here must use the DCID of the entity. If you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
-- `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. 
-  - `name`: This is optional and only relevant if you are creating a new entity type (see below).
-  - `description`: This is optional and only relevant if you are creating a new entity type (see below).
-  
-The other fields are explained in the [Data config file specification reference](#json-ref).
-
-{:.no_toc}
-#### Example 3: New entities, new entity type {#new-entity-json}
-
-Here's an example of defining new entities _and_ a new entity type in the JSON file, building on the earlier "stem" example. In this example, `NameStem` is a new entity type, used for the `rowEntityType`. By identifying the `Stem` column from the CSV, DCIDs will be created for all the entity values in the column.
-
-```json
-{
-  "inputFiles": {
-    "usan.csv": {
-      "importType": "entities",
-      "rowEntityType": "NameStem",
-      "idColumn": "Stem",
-      "provenance": "United States Adopted Names approved stems"
-    }
-  },
-  "entities": {
-    "Stem": {
-      "name": "USAN Stem",
-      "description": "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
-    }
-  },
-  "sources": {
-    "AMA": {
-      "url": "https://www.ama-assn.org/",
-      "provenances": {
-        "United States Adopted Names approved stems": "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
-    }
-  }
-}
-```
-
-{:.no_toc}
-#### Example 4: Observations with new entities
-
-Here's an example of the previous hospital data, covering both the entities and the observations:
-
-```json
-{
-  "inputFiles": {
-    "hospital_entities.csv": {
-      "importType": "entities",
-      "rowEntityType": "Hospital",
-      "idColumn": "ccn",
-      "entityColumns": [ "City"],
-      "provenance": "Alaska Weekly Hospital Capacity"
-    },
-    "hospital_observations.csv": {
-      "importType": "observations",
-      "entityType": "Hospital",
-      "provenance": "Alaska Weekly Hospital Capacity"
-    }
-  },
-  "entities": {
-    "Hospital": {
-      "name": "Hospital"
-    }
-  },
-  "variables": {
-    "total_num_staffed_beds": {
-      "name": "All beds",
-      "description": "Weekly sum of all staffed beds per hospital",
-      "searchDescriptions": [
-        "Total number of beds in Alaska hospitals each week",
-        "Total number of staffed beds in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    "num_staffed_adult_beds": {
-      "name": "Beds for adults",
-      "description": "Weekly sum of all staffed beds reserved for adults per hospital",
-      "searchDescriptions": [
-        "Number of beds for adults in Alaska hospitals each week",
-        "Number of staffed beds for adults in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    ...
-  },
-  "sources": {
-    "HHS Protect Public Data Hub": {
-      "url": "https://public-data-hub-dhhs.hub.arcgis.com/",
-      "provenances": {
-        "Alaska Weekly Hospital Capacity": "https://public-data-hub-dhhs.hub.arcgis.com/datasets/d47bfcaac2544c2eb1fcfb3d36b5ed23_0/explore"
-      }
-    }
-  }
-}
-```
 
 ## Prepare your data using explicit schema
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables as new nodes using MCF. You can choose to define custom entities in either CSV files (as described in [Define new entities](#custom-entities) above) or in MCF; in this section, we demonstrate how to do so using MCF. When you define any entity type, property, or variable in MCF, you must explicitly assign them DCIDs. 
-
-In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
-
-### Overview of MCF format
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables as new _nodes_ using MCF. When you define any variable in MCF, you must explicitly assign them DCIDs. 
 
 You can define your statistical variables (and entities and entity types, if desired) in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
 
-Data Commons supports a somewhat simplified syntax, which we summarize here.
-
-
-
-{: #custom-entities}
-### Step 0: Define custom entities (if needed) in MCF
-
-Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you define new nodes with DCIDs, and you can use any random key-value pair as properties of the node. You can even attach new properties to existing entity types and define enums for entity types.
-
-#### Example 1: New entity type and new entities
-
-Here is an example of the aforementioned [`NameStem` entity type](). This MCF block serves the same function as the `config.json` `entities` section, but it additionally explicitly specifies a DCID (instead of letting the system create one) and adds a few other properties.
-
-```
-Node: dcid:NameStem
-name: "US Adopted Name Stem"
-typeOf: schema:Class
-subClassOf: dcs:ChemicalSubstance
-shortDisplayName: "USAN Stem"
-description: "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
-descriptionUrl: "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
-```
-
-Here is an example of the hospitals entities discussed earlier. These MCF blocks serve the same function as the [CSV file mentioned above](). It's a bit more tedious to provide the entity definitions in this fashion, and there isn't really any benefit. 
-
-```
-Node: dcid:A22001
-name: "St Elias Specialty Hospital"
-typeOf: dcid:Hospital
-address: "4800 Cordova Street"
-cityName: "Anchorage"
-City: dcid:geoId/02
-zipCode: 99503
-hospitalSubType: "Long Term"
-
-Node: dcid:A20001
-name: "Providence Alaska Medical Center"
-typeOf: dcid:Hospital
-address: "3200 Providence Drive"
-City: dcid:geoId/02
-cityName: "Anchorage"
-zipCode: 99508
-hospitalSubType: "Short Term"
-...
-```
-
-The following fields are always required:
-- `Node`: For an entity type, this is the DCID of the entity type you are defining. For an entity, this is the DCID of the entity you are defining.
-- `typeOf`: For an entity type, this must be `Class`. For an entity this must be the DCID of the entity type of which your entity is an instance.
-- `name`: This is the readable name that will be displayed in various parts ot the UI.
-
-All of the other fields are optional and just provide additional information.
-
-Note that each node definition and properties that reference other nodes in the graph must be prefixed by `dcid:` or `dcs:` or `schema:` (with no space between the prefix and the DCID), which are interchangeable. 
-
+In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
 ### Step 1: Define statistical variables in MCF
 
@@ -618,87 +359,6 @@ The following fields are optional:
 Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:
 
 ![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
-
-#### Statistical variables with new entities
-
-If you are also defining new entities in MCF, you can mix statistical variables with entities in the same file, or in as many files as you like. For the hospital data, you could have an MCF file that looks like this:
-
-```
-Node: dcid:A22001
-name: "St Elias Specialty Hospital"
-typeOf: dcid:Hospital
-address: "4800 Cordova Street"
-cityName: "Anchorage"
-City: dcid:geoId/02
-zipCode: 99503
-hospitalSubType: "Long Term"
-
-Node:dcid:A20001
-name: "Providence Alaska Medical Center"
-typeOf: dcid:Hospital
-address: "3200 Providence Drive"
-City: dcid:geoId/02
-cityName: "Anchorage"
-zipCode: 99508
-hospitalSubType: "Short Term"
-...
-
-Node: dcid:total_num_staffed
-      "name": "All beds",
-      "description": "Weekly sum of all staffed beds per hospital",
-      "searchDescriptions": [
-        "Total number of beds in Alaska hospitals each week",
-        "Total number of staffed beds in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    "num_staffed_adult_beds": {
-      "name": "Beds for adults",
-      "description": "Weekly sum of all staffed beds reserved for adults per hospital",
-      "searchDescriptions": [
-        "Number of beds for adults in Alaska hospitals each week",
-        "Number of staffed beds for adults in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    "num_staffed_inpatient_icu_beds": {
-      "name": "Inpatient ICU beds",
-      "description": "Weekly sum of all staffed inpatient beds in the ICU per hospital",
-      "searchDescriptions": [
-        "Number of beds in inpatient ICUs in Alaska hospitals each week",
-        "Number of staffed beds there are in inpatient ICUs in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    "num_staffed_adult_inpatient_icu_beds": {
-      "name": "Inpatient ICU beds for adults",
-      "description": "Weekly sum of all staffed beds that are reserved for adults in inpatient ICs per hospital",
-      "searchDescriptions": [
-        "Number of beds for adults in inpatient ICUs in Alaska hospitals each week",
-        "Number of staffed beds for adults in ICUs in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    "num_staffed_inpatient_icu_beds_occupied": {
-      "name": "Occupied inpatient ICU beds",
-      "description": "Weekly sum of all staffed beds that are occupied in the inpatient ICU per hospital",
-      "searchDescriptions": [
-        "Number of beds that are occupied in inpatient ICUs in Alaska hospitals each week",
-        "Number of staffed beds that are occupied in inpatient ICUs in Alaska hospitals"
-      ],
-      "group": "Alaska Hospitals"
-    },
-    "num_staffed_adult_icu_beds_occupied": {
-      "name": "Occupied ICU beds for adults",
-      "description": "Weekly sum of all staffed beds that are occupied by adults in the ICU per hospital",
-      "searchDescriptions": [
-        "Total number of beds occupied by adults in ICUs in Alaska hospitals each week",
-        "Total number of staffed beds that are occupied by adults in ICUs in Alaska hospitals each week"
-      ],
-      "group": "Alaska Hospitals"
-    }
-```
-
 
 ### Prepare the CSV observation files
 
@@ -778,7 +438,9 @@ The following fields are specific to the variable-per-row format:
   - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
 - `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
 
-The other fields are explained in the [Data config file specification reference](#json-ref)
+Note that you don't specify your MCF files as input files; the Data Commons importer will identify them automatically.
+
+The other fields are explained in the [Data config file specification reference](#json-ref).
 
 ## Data config file specification reference {#json-ref}
 
