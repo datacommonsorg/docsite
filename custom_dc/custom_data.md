@@ -178,30 +178,26 @@ The columns can be in any order, with any heading, and there can be as many as y
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
 ```csv
-CCN,name,address,city_name,City,zipCode,hospitalSubtype
-A22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,geoId/02,99503,Long Term
-A20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,geoId/02,99508,Short Term
-A20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,geoId/02,99801,Short Term
-A20012,Fairbanks Memorial Hospital,1650 Cowles Street,Fairbanks,geoId/02,99701,Short Term
-A21307,Cordova Community Medical Center,Po Box 160 - 602 Chase Avenue,Cordova,geoId/02,99574,Critical Access Hospitals
-A21313,South Peninsula Hospital,4300 Bartlett St,Homer,geoId/02,99603,Critical Access Hospitals
-A21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,geoId/02,99901,Critical Access Hospitals
-A20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,geoId/02,99508,Short Term
-A20024,Central Peninsula General Hospital,250 Hospital Place,Soldotna,geoId/02,99669,Short Term
-A21301,Providence Valdez Medical Center,Po Box 550,Valdez,geoId/02,99686,Critical Access Hospitals
-A21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,KodigeoId/02,geoId/02,99615,Critical Access Hospitals
-A21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02,99833,Critical Access Hospitals
-A20006,Mat-Su Regional Medical Center,2500 South Woodworth Loop,Palmer,geoId/02,99645,Short Term
-A21302,Providence Seward Medical Center,417 First Avenue Po Box 365,Seward,geoId/02,99664,Critical Access Hospitals
+ccn,name,address,city_name,City,zipCode,hospitalSubtype
+22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,geoId/02020,99503,Long Term
+20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,geoId/02020,Short Term
+20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,geoId/02110,99801,Short Term
+21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,geoId/02150,99901,Critical Access Hospitals
+20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,geoId/02020,99508,Short Term
+21301,Providence Valdez Medical Center,Po Box 550,Valdez,geoId/02261,99686,Critical Access Hospitals
+21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,Kodiak,geoId/02150,99615,Critical Access Hospitals
+21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02280,99833,Critical Access Hospitals
 ```
-The CCN is a certification number that uniquely identifies U.S. hospitals. You could use it as the DCID, or you could have Data Commons automatically assign a DCID. In both cases, you would do that in the JSON config.
+The CCN is a certification number that uniquely identifies U.S. hospitals. You could use it as the DCID, or you could have Data Commons automatically assign a DCID. In both cases, you would do that in the JSON config. Note that the "city" column uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; later we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, the zip code won't be linked to the existing entity type [`CensusZipCodeTabulationArea`]. 
+
+> Note: Whenever you want to new entity properties to be linked to an existing entity, you must use its DCID in the column heading. 
 
 If you are defining more than one type of entity (for example a `Hospital` and a `School`), use a separate CSV for each.
 
 {:.no_toc}
 #### Example 2: New entities, new entity type 
 
-Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type in [`config.json`](#new-entity-json), while the following CSV file identifies some actual stems (entities):
+Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type, `NameStem`, in [`config.json`](#new-entity-json), while the following CSV file identifies some actual stems (entities):
 
 ```csv
 Stem,Definition,Examples
@@ -280,22 +276,16 @@ geoId/08,2021,10,10
 
 #### Example 2: Observations with new (custom) entities 
 
-If you are providing observations for custom entities, the observations should be in a separate file. Using our original example, here are some metrics and observations for indnividual hospitals. Note that the first column must contain the DCIDs that you have defined. In this particular case, the dataset uses a negative number, rather than a null value, to indicate that the data is not available for that observation
+If you are providing observations for custom entities, the observations should be in a separate file. Using our original example, here are some metrics and observations for indnividual hospitals. Note that the first column must contain the DCIDs that you have defined, and its heading must be `dcid`. In this particular case, the dataset uses a negative number, rather than a null value, to indicate that the data is not available for that observation.
 
 ```csv
 dcid,week,total_num_staffed_beds,num_staffed_adult_beds,num_staffed_inpatient_icu_beds,num_staffed_adult_inpatient_icu_beds,num_staffed_inpatient_icu_beds_occupied,num_staffed_adult_icu_beds_occupied
 22001,2023-01-27,79,79,12,12,-999999,-999999
 20001,2023-01-27,1262,1048,264,146,264,146
-20012,2023-01-27,0,0,9,9,7,7
-21307,2023-01-27,0,0,13,13,4,4
-21313,2023-01-27,0,0,0,0,0,0
 20017,2023-01-27,0,0,-999999,-999999,0,0
-20024,2023-01-27,10,10,-999999,-999999,-999999,-999999
 21301,2023-01-27,836,780,101,62,66,62
 21306,2023-01-27,0,0,9,9,8,8
 21304,2023-01-27,6,6,0,0,0,0
-20006,2023-01-27,50,50,0,0,0,0
-21302,2023-01-27,0,0,0,0,0,0
 ```
 
 ### Step 2: Write the JSON config file
@@ -384,7 +374,7 @@ Here's an example of how a `config.json` file could look for our hospital data:
     "hospital_entities.csv": {
       "importType": "entities",
       "rowEntityType": "Hospital",
-      "idColumn": "CCN",
+      "idColumn": "ccn",
       "entityColumns": [
         "City"
       ],
@@ -411,8 +401,9 @@ Note the presence of the `entities` section and these important fields:
 - `input_files`:
   - `importType`: By default this is `variables`; to tell the importer that you are adding entities in that CSV file, you must specify `entities`.
   - `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID. It must also match the identifier in the `entities` section. 
-  - `idColumn`: This is optional, and tells the importer to use the values in the specified column as DCIDs. In this case, we specify `CCN`, which indicates that the values in the `CCN` column should be used as the DCIDs for the entities. If you don't specify this field, Data Commons will just create DCIDs automatically.
-  - `entityColumns`: This is also optional: if you want your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. Note that the heading of the column and its reference here must use the DCID of the entity. So if you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
+  - `idColumn`: This is optional, and tells the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities. If you don't specify this field, Data Commons will just create DCIDs automatically.
+  - `entityColumns`: This is also optional: if you want your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. 
+    Note that the heading of the column and its reference here must use the DCID of the entity. If you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
 - `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. 
   - `name`: This is optional and only relevant if you are creating a new entity type (see below).
   - `description`: This is optional and only relevant if you are creating a new entity type (see below).
@@ -429,7 +420,7 @@ Here's an example of defining new entities _and_ a new entity type in the JSON f
   "inputFiles": {
     "usan.csv": {
       "importType": "entities",
-      "rowEntityType": "Stem",
+      "rowEntityType": "NameStem",
       "idColumn": "Stem",
       "provenance": "United States Adopted Names approved stems"
     }
@@ -495,6 +486,181 @@ Here's an example of the previous hospital data, covering both the entities and 
       ],
       "group": "Alaska Hospitals"
     },
+    ...
+  },
+  "sources": {
+    "HHS Protect Public Data Hub": {
+      "url": "https://public-data-hub-dhhs.hub.arcgis.com/",
+      "provenances": {
+        "Alaska Weekly Hospital Capacity": "https://public-data-hub-dhhs.hub.arcgis.com/datasets/d47bfcaac2544c2eb1fcfb3d36b5ed23_0/explore"
+      }
+    }
+  }
+}
+```
+
+## Prepare your data using explicit schema
+
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables as new nodes using MCF. You can choose to define custom entities in either CSV files (as described in [Define new entities](#custom-entities) above) or in MCF; in this section, we demonstrate how to do so using MCF. When you define any entity type, property, or variable in MCF, you must explicitly assign them DCIDs. 
+
+In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
+
+### Overview of MCF format
+
+You can define your statistical variables (and entities and entity types, if desired) in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
+
+Data Commons supports a somewhat simplified syntax, which we summarize here.
+
+
+
+{: #custom-entities}
+### Step 0: Define custom entities (if needed) in MCF
+
+Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you define new nodes with DCIDs, and you can use any random key-value pair as properties of the node. You can even attach new properties to existing entity types and define enums for entity types.
+
+#### Example 1: New entity type and new entities
+
+Here is an example of the aforementioned [`NameStem` entity type](). This MCF block serves the same function as the `config.json` `entities` section, but it additionally explicitly specifies a DCID (instead of letting the system create one) and adds a few other properties.
+
+```
+Node: dcid:NameStem
+name: "US Adopted Name Stem"
+typeOf: schema:Class
+subClassOf: dcs:ChemicalSubstance
+shortDisplayName: "USAN Stem"
+description: "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
+descriptionUrl: "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
+```
+
+Here is an example of the hospitals entities discussed earlier. These MCF blocks serve the same function as the [CSV file mentioned above](). It's a bit more tedious to provide the entity definitions in this fashion, and there isn't really any benefit. 
+
+```
+Node: dcid:A22001
+name: "St Elias Specialty Hospital"
+typeOf: dcid:Hospital
+address: "4800 Cordova Street"
+cityName: "Anchorage"
+City: dcid:geoId/02
+zipCode: 99503
+hospitalSubType: "Long Term"
+
+Node: dcid:A20001
+name: "Providence Alaska Medical Center"
+typeOf: dcid:Hospital
+address: "3200 Providence Drive"
+City: dcid:geoId/02
+cityName: "Anchorage"
+zipCode: 99508
+hospitalSubType: "Short Term"
+...
+```
+
+The following fields are always required:
+- `Node`: For an entity type, this is the DCID of the entity type you are defining. For an entity, this is the DCID of the entity you are defining.
+- `typeOf`: For an entity type, this must be `Class`. For an entity this must be the DCID of the entity type of which your entity is an instance.
+- `name`: This is the readable name that will be displayed in various parts ot the UI.
+
+All of the other fields are optional and just provide additional information.
+
+Note that each node definition and properties that reference other nodes in the graph must be prefixed by `dcid:` or `dcs:` or `schema:` (with no space between the prefix and the DCID), which are interchangeable. 
+
+
+### Step 1: Define statistical variables in MCF
+
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
+
+#### Define statistical variables
+
+Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
+
+```
+Node: dcid:Adult_curr_cig_smokers
+typeOf: dcid:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adults (%)"
+populationType: dcid:Person
+measuredProperty: dcid:percent
+
+Node: dcid:Adult_curr_cig_smokers_female
+typeOf: dcid:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adults (%) [Female]"
+populationType: dcid:Person
+measuredProperty: dcid:percent
+gender: dcid:Female
+
+Node: dcid:Adult_curr_cig_smokers_male
+typeOf: dcid:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adults (%) [Male]"
+populationType: dcid:Person
+measuredProperty: dcid:percent
+gender: dcid:Male
+```
+The order of nodes and fields within nodes does not matter.
+
+The following fields are always required:
+- `Node`: This is the DCID of the entity you are defining. 
+- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
+- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
+- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
+- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
+  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
+
+    ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
+
+  - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
+
+Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`. All fields that do not reference another node must be in quotation marks.
+
+The following fields are optional:
+- `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
+- `measurementQualifier`: This is similar to the `observationPeriod` field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
+- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is `Count_Person`.
+
+Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:
+
+![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
+
+#### Statistical variables with new entities
+
+If you are also defining new entities in MCF, you can mix statistical variables with entities in the same file, or in as many files as you like. For the hospital data, you could have an MCF file that looks like this:
+
+```
+Node: dcid:A22001
+name: "St Elias Specialty Hospital"
+typeOf: dcid:Hospital
+address: "4800 Cordova Street"
+cityName: "Anchorage"
+City: dcid:geoId/02
+zipCode: 99503
+hospitalSubType: "Long Term"
+
+Node:dcid:A20001
+name: "Providence Alaska Medical Center"
+typeOf: dcid:Hospital
+address: "3200 Providence Drive"
+City: dcid:geoId/02
+cityName: "Anchorage"
+zipCode: 99508
+hospitalSubType: "Short Term"
+...
+
+Node: dcid:total_num_staffed
+      "name": "All beds",
+      "description": "Weekly sum of all staffed beds per hospital",
+      "searchDescriptions": [
+        "Total number of beds in Alaska hospitals each week",
+        "Total number of staffed beds in Alaska hospitals each week"
+      ],
+      "group": "Alaska Hospitals"
+    },
+    "num_staffed_adult_beds": {
+      "name": "Beds for adults",
+      "description": "Weekly sum of all staffed beds reserved for adults per hospital",
+      "searchDescriptions": [
+        "Number of beds for adults in Alaska hospitals each week",
+        "Number of staffed beds for adults in Alaska hospitals each week"
+      ],
+      "group": "Alaska Hospitals"
+    },
     "num_staffed_inpatient_icu_beds": {
       "name": "Inpatient ICU beds",
       "description": "Weekly sum of all staffed inpatient beds in the ICU per hospital",
@@ -531,112 +697,8 @@ Here's an example of the previous hospital data, covering both the entities and 
       ],
       "group": "Alaska Hospitals"
     }
-  },
-  "sources": {
-    "HHS Protect Public Data Hub": {
-      "url": "https://public-data-hub-dhhs.hub.arcgis.com/",
-      "provenances": {
-        "Alaska Weekly Hospital Capacity": "https://public-data-hub-dhhs.hub.arcgis.com/datasets/d47bfcaac2544c2eb1fcfb3d36b5ed23_0/explore"
-      }
-    }
-  }
-}
 ```
 
-## Prepare your data using explicit schema
-
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables. You can choose to define custom entities in either CSV files (as described in [Define new entities](#custom-entities) above) or MCF; in this section, we demonstrate how to do so using MCF. When you define any entity type, property, or variable in MCF, you must explicitly assign them DCIDs. 
-
-You can define your statistical variables in a single MCF files, or split them up into as many separate MCF files as you like. MCF files must have .mcf suffix.
-
-In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
-
-{: #custom-entities}
-### Step 0: Define custom entities (if needed) in MCF
-
-Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you define new nodes with DCIDs, and you can use any random key-value pair as properties of the node. You can even attach new properties to existing entity types and define enums for entity types.
-
-#### Example 1: New entity type
-
-Here is an example of the aforementioned [`Stem` entity type](). This MCF object serves the same function as the `config.json` `entities` section, but it additionally explicitly specifies a DCID (instead of letting the system create one) and adds a few other properties.
-
-```
-Node: dcid:Stem
-name: "US Adopted Name Stem"
-typeOf: schema:Class
-subClassOf: dcs:ChemicalSubstance
-shortDisplayName: "USAN Stem"
-description: "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
-descriptionUrl: "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
-```
-
-Note that a new entity type must be defined as a type of `schema:Class`. 
-
-#### Example 2: New property on existing entity
-
-
-{:.no_toc}
-#### Example 3: New entities, existing entity type
-
-Here is an example of the hospitals entities discussed earlier. These MCF objects serve the same function as the CSV file mentioned above. 
-```
-
-
-
-
-### Step 1: Define statistical variables in MCF
-
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
-
-#### Define statistical variables
-
-Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
-
-```
-Node: dcid:Adult_curr_cig_smokers
-typeOf: dcid:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adults (%)"
-populationType: dcid:Person
-measuredProperty: dcid:percent
-
-Node: dcid:Adult_curr_cig_smokers_female
-typeOf: dcid:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adults (%) [Female]"
-populationType: dcid:Person
-measuredProperty: dcid:percent
-gender: dcid:Female
-
-Node: dcid:Adult_curr_cig_smokers_male
-typeOf: dcid:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adults (%) [Male]"
-populationType: dcid:Person
-measuredProperty: dcid:percent
-gender: dcid:Male
-```
-The order of nodes and fields within nodes does not matter.
-
-The following fields are always required:
-- `Node`: This is the DCID of the entity you are defining. 
-- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. For a group of 
-- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
-- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
-  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
-
-    ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
-
-  - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
-
-Note that all non-quoted field values must be prefixed with `dcid:` or `dcs:`, which are interchangeable. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`.
-
-The following fields are optional:
-- `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
-- `measurementQualifier`: This is similar to the `observationPeriod` field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is `Count_Person`.
-
-Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:
-
-![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
 
 ### Prepare the CSV observation files
 
