@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Prepare and load your own data - Docs - Data Commons</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  
+  
+</head>
+<body>
+  <div id="main">
+    <header id="main-header">
+      <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <div id="main-header-logo">
+                <a href="https://datacommons.org/">
+                  <img src="/assets/images/dc-logo.svg" />
+                </a>
+            </div>
+            <a href="https://datacommons.org">Data Commons</a>
+            <!-- dot separater -->
+            <span class="separator">&#8226;</span>
+            <span><a href="/">Docs</a></span>
+            </a>
+          </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#dc-main-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
+            <div class="gcse-searchbox-only"
+              data-resultsUrl="https://datacommons.org/search"></div>
+            </div>
+            </div>
+      </nav>
+    </header>
+
+    <main id="" class="container-fluid">
+      <div class="row">
+        <div id="main-side-nav" class="col-3">
+          <div id="sidebar"><details class="parent" open>
+          <summary>
+            <a href="/" class="">How to use Data Commons</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-3"><details class="child" >
+                  <summary>
+                    <a href="/what_is.html" class="">What is Data Commons?</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/data_model.html" class="">Key concepts and common tasks</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/glossary.html" class="">Glossary</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/place_types.html" class="">Place types</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/datasets/" class="">Data sources</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/api/" class="">API - Query data programmatically</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-63"><details class="child" >
+                  <summary>
+                    <a href="/api/rest/v2/" class="">REST (V2)</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-1"><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/observation.html" class="">
+                              
+                              Get statistical observations
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/node.html" class="">
+                              
+                              Get node properties
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/resolve.html" class="">
+                              
+                              Resolve entities
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/sparql.html" class="">
+                              
+                              Query with SPARQL
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/troubleshooting.html" class="">
+                              
+                              Troubleshooting
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/python/" class="">Python</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-2"><details class="child" >
+                          <summary>
+                            <a href="/api/python/place_in.html" class="">
+                              
+                              Get places within other places
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_value.html" class="">
+                              
+                              Get a single statistical value for a place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_series.html" class="">
+                              
+                              Get time series for a place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_all.html" class="">
+                              
+                              Get statistical data for multiple places
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_label.html" class="">
+                              
+                              Get property labels of nodes
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_value.html" class="">
+                              
+                              Get property values of nodes
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/tutorials.html" class="">
+                              
+                              Tutorials
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/triple.html" class="">
+                              
+                              Get triples associated with nodes
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/pandas/" class="">Pandas</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-3"><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series.html" class="">
+                              
+                              Get time series for a place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series_dataframe.html" class="">
+                              
+                              Get time series DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/multivariate_dataframe.html" class="">
+                              
+                              Get multivariate DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/api/sheets/" class="">Analyze data with Google Sheets</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-73"><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/tutorials/" class="">Tutorials</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_name.html" class="">Get names associated with DCIDs</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/places_in.html" class="">Get places contained in another place</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_variable.html" class="">Get statistical variable values</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_property.html" class="">Get node property values</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_cohort_members.html" class="">Get members of a cohort</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/api/web_components/" class="">Embed data and visualizations in your own website</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-80"><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/bar" class="">Bar chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/gauge" class="">Gauge chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/highlight" class="">Highlight tile</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/line" class="">Line chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/map" class="">Map chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/pie" class="">Pie chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/ranking" class="">Ranking chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/scatter" class="">Scatter plot</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/slider" class="">Slider control</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/bigquery/" class="">Query with SQL/BigQuery</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-81"><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_places.html" class="">Query places</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_property_places.html" class="">Query observations and properties of places</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_more_complex.html" class="">More complex queries</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_join_your_data.html" class="">Join with external data</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/contributing/" class="">Contribute to Data Commons</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/custom_dc/" class="">Build your own Data Commons</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-83"><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/quickstart.html" class="">Quickstart</a>
+                    
+                  </summary>
+                  </details><details class="child" open>
+                  <summary>
+                    <a href="/custom_dc/custom_data.html" class=" active">Prepare and load your own data</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_ui.html" class="">Customize the site</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/build_image.html" class="">Build and run a custom image</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/deploy_cloud.html" class="">Deploy to Google Cloud</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/launch_cloud.html" class="">Launch your Data Commons</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/advanced.html" class="">Advanced setups</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/troubleshooting.html" class="">Troubleshooting</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/faq.html" class="">Frequently asked questions</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/resources.html" class="">Additional resources</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-98"><details class="child" >
+                  <summary>
+                    <a href="/papers/" class="">Papers</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/courseware/" class="">Educational materials</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-2"><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/" class="">
+                              
+                              Data literacy with Data Commons
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                          </summary>
+                          <ul id="grandchild-1"><li class="">
+                                  <a href="/courseware/data_literacy/how_to_use.html" class="">
+                                    How to use the course materials
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/key_themes.html" class="">
+                                    Key themes
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/modules.html" class="">
+                                    Modules
+                                  </a>
+                                </li></ul></details><details class="child" >
+                          <summary>
+                            <a href="/courseware/intro_data_science.html" class="">
+                              
+                              Introduction to data science
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details></div>
+        </div>
+        <div class="col-9">
+          <div id="main-doc-content">
+            
+              
+                <nav aria-label="Breadcrumb" id="main-breadcrumb">
+                  <ol class="breadcrumb">
+                    
+                      <li class="breadcrumb-item">
+                        <a href="/custom_dc/">
+                          Build your own Data Commons
+                        </a>
+                      </li>
+                    
+                    <li class="breadcrumb-item active"><span>Prepare and load your own data </span></li>
+                  </ol>
+                </nav>
+              
+            
+            <h1 class="no_toc" id="prepare-and-load-your-own-data">Prepare and load your own data</h1>
+
+<p>This page shows you how to format and load your own custom data into your local instance. This is step 2 of the <a href="/custom_dc/index.html#workflow">recommended workflow</a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a>    <ul>
+      <li><a href="#files-and-directory-structure" id="markdown-toc-files-and-directory-structure">Files and directory structure</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-1-identify-your-statistical-variables" id="markdown-toc-step-1-identify-your-statistical-variables">Step 1: Identify your statistical variables</a></li>
+  <li><a href="#step-2-choose-between-implicit-and-explicit-schema-definition" id="markdown-toc-step-2-choose-between-implicit-and-explicit-schema-definition">Step 2: Choose between “implicit” and “explicit” schema definition</a></li>
+  <li><a href="#prepare-your-data-using-implicit-schema" id="markdown-toc-prepare-your-data-using-implicit-schema">Prepare your data using implicit schema</a>    <ul>
+      <li><a href="#prepare-csv" id="markdown-toc-prepare-csv">Prepare the CSV data files</a></li>
+      <li><a href="#write-the-json-config-file" id="markdown-toc-write-the-json-config-file">Write the JSON config file</a></li>
+    </ul>
+  </li>
+  <li><a href="#prepare-your-data-using-explicit-schema" id="markdown-toc-prepare-your-data-using-explicit-schema">Prepare your data using explicit schema</a>    <ul>
+      <li><a href="#mcf" id="markdown-toc-mcf">Write the MCF file</a>        <ul>
+          <li><a href="#define-statistical-variables" id="markdown-toc-define-statistical-variables">Define statistical variables</a></li>
+          <li><a href="#statvar-group" id="markdown-toc-statvar-group">(Optional) Define a statistical variable group</a></li>
+        </ul>
+      </li>
+      <li><a href="#prepare-the-csv-data-files" id="markdown-toc-prepare-the-csv-data-files">Prepare the CSV data files</a></li>
+      <li><a href="#write-the-json-config-file-1" id="markdown-toc-write-the-json-config-file-1">Write the JSON config file</a></li>
+    </ul>
+  </li>
+  <li><a href="#json-ref" id="markdown-toc-json-ref">Data config file specification reference</a></li>
+  <li><a href="#load-local-custom-data" id="markdown-toc-load-local-custom-data">Load local custom data</a>    <ul>
+      <li><a href="#configure-environment-variables" id="markdown-toc-configure-environment-variables">Configure environment variables</a></li>
+      <li><a href="#docker-data" id="markdown-toc-docker-data">Start the Docker containers with local custom data</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Custom Data Commons requires that you provide your data in a specific schema, format, and file structure. We strongly recommend that, before proceeding, you familiarize yourself with the basics of the Data Commons data model by reading through <a href="/data_model.html">Key concepts</a>, in particular, <em>entities</em>, <em>statistical variables</em>, and <em>observations</em>.</p>
+
+<p>At a high level, you need to provide the following:</p>
+
+<ul>
+  <li>All data must be in CSV format, using the schema described below.</li>
+  <li>You must also provide a JSON configuration file, named <code class="language-plaintext highlighter-rouge">config.json</code>, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.</li>
+  <li>Depending on how you define your statistical variables (metrics), you may need to provide <a href="https://en.wikipedia.org/wiki/Meta_Content_Framework" target="_blank">MCF (Meta Content Framework)</a> files.</li>
+</ul>
+
+<h3 id="files-and-directory-structure">Files and directory structure</h3>
+
+<p>You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories. There must only be one JSON config file, in the top-level input directory. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my_data/
+├── config.json
+├── (nodes1.mcf)
+├── datafile1.csv
+├── datafile2.csv
+└── some_more_data/
+    ├── (nodes2.mcf)
+    ├── datafile3.csv
+    └── datafile4.csv
+</code></pre></div></div>
+<p>The following sections walk you through the process of setting up your data.</p>
+
+<h2 id="step-1-identify-your-statistical-variables">Step 1: Identify your statistical variables</h2>
+
+<p>Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as <em>nodes</em> in the Data Commons knowledge graph.</p>
+
+<p>Statistical variables must follow a certain model: it includes a measure (e.g. “median age”) on a set of things of a certain type (e.g. “persons”) that satisfy some set of constraints (e.g. “gender is female”). To explain what this means, consider the following example. Let’s say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>CITY</th>
+      <th>YEAR</th>
+      <th>SCHOOL_TYPE</th>
+      <th>SCHOOL_LEVEL</th>
+      <th>COUNT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>public</td>
+      <td>elementary</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>public</td>
+      <td>middle</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>public</td>
+      <td>secondary</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>private</td>
+      <td>elementary</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>private</td>
+      <td>middle</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>private</td>
+      <td>secondary</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>public</td>
+      <td>elementary</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>public</td>
+      <td>middle</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>public</td>
+      <td>secondary</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>private</td>
+      <td>elementary</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>private</td>
+      <td>middle</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>private</td>
+      <td>secondary</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The measure here is a simple count; the set of things is “schools”; and the constraints are the type and levels of the schools, namely “public”, “private”, “elementary”, “middle” and “secondary”. All of these things must be encoded as separate variables. Therefore, although the <em>properties</em> of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they <em>cannot</em> be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate “count” variables to represent each case. In our example, you would actually need 6 different variables:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Count_School_Public_Elementary</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Count_School_Public_Middle</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Count_School_Public_Secondary</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Count_School_Private_Elementary</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Count_School_Private_Middle</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Count_School_Private_Secondary</code></li>
+</ul>
+
+<p>If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.</p>
+
+<h2 id="step-2-choose-between-implicit-and-explicit-schema-definition">Step 2: Choose between “implicit” and “explicit” schema definition</h2>
+
+<p>Custom Data Commons supports two ways of importing your data:</p>
+<ul>
+  <li><strong>Implicit</strong> schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don’t need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in <em>variable-per-column</em> format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is <em>simpler and recommended</em> for most datasets.</li>
+  <li><strong>Explicit</strong> schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables as nodes in MCF files. All variables and entities in the CSVs must reference DCIDs. Using this method allows you to specify variables in <em>variable-per-row</em> format, which is a bit more flexible. There are a number of cases for which this option might be a better choice:
+    <ul>
+      <li>You have hundreds of variables, which may be unmanageable as separate columns or files.</li>
+      <li>You want to be able to specify additional properties, for example, unit of measurement, of the observations at a more granular level than per-file. As an example, let’s say you have a variable that measures financial expenses, across multiple countries; you may want to be able to specify the country-specific currency of each observation.</li>
+      <li>In the case that you are missing observations for specific entities (e.g. places) or time periods for specific variables, and you don’t want to have lots of null values in columns (sparse tables).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>To illustrate the difference between variable-per-column and variable-per-row schemas, let’s use the schools example data again. In variable-per-column, you would represent the dataset as follows:</p>
+
+<p><strong>Variable-per-column schema</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>CITY</th>
+      <th>YEAR</th>
+      <th>COUNT_SCHOOL_PUBLIC_ELEMENTARY</th>
+      <th>COUNT_SCHOOL_PUBLIC_MIDDLE</th>
+      <th>COUNT_SCHOOL_PUBLIC_SECONDARY</th>
+      <th>COUNT_SCHOOL_PRIVATE_ELEMENTARY</th>
+      <th>COUNT_SCHOOL_PRIVATE_MIDDLE</th>
+      <th>COUNT_SCHOOL_PRIVATE_SECONDARY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>San Francisco</td>
+      <td>2023</td>
+      <td>300</td>
+      <td>300</td>
+      <td>200</td>
+      <td>100</td>
+      <td>100</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>San Jose</td>
+      <td>2023</td>
+      <td>400</td>
+      <td>400</td>
+      <td>300</td>
+      <td>200</td>
+      <td>200</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The names that appear in the columns and rows don’t need to be DCIDs or follow any convention, because the columns must always be specified in this exact sequence:</p>
+
+<p><em>ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …</em></p>
+
+<p>In variable-per-row, the same dataset would be provided as follows:</p>
+
+<p><strong>Variable-per-row schema</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>CITY</th>
+      <th>YEAR</th>
+      <th>VARIABLE</th>
+      <th>OBSERVATION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>geoId/0667000</td>
+      <td>2023</td>
+      <td>Count_School_Public_Elementary</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>geoId/0667000</td>
+      <td>2023</td>
+      <td>Count_School_Public_Middle</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>geoId/0667000</td>
+      <td>2023</td>
+      <td>Count_School_Public_Secondary</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>geoId/0667000</td>
+      <td>2023</td>
+      <td>Count_School_Private_Elementary</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>geoId/0667000</td>
+      <td>2023</td>
+      <td>Count_School_Private_Middle</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>geoId/0667000</td>
+      <td>2023</td>
+      <td>Count_School_Private_Secondary</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>geoId/06085</td>
+      <td>2023</td>
+      <td>Count_School_Public_Elementary</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <td>geoId/06085</td>
+      <td>2023</td>
+      <td>Count_School_Public_Middle</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <td>geoId/06085</td>
+      <td>2023</td>
+      <td>Count_School_Public_Secondary</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>geoId/06085</td>
+      <td>2023</td>
+      <td>Count_School_Private_Elementary</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>geoId/06085</td>
+      <td>2023</td>
+      <td>Count_School_Private_Middle</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>geoId/06085</td>
+      <td>2023</td>
+      <td>Count_School_Private_Secondary</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The names and order of the columns aren’t important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don’t already exist in the base Data Commons, you must provide definitions of them in MCF files.</p>
+
+<h2 id="prepare-your-data-using-implicit-schema">Prepare your data using implicit schema</h2>
+
+<p>In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. Also see the example files provided in <a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank">https://github.com/datacommonsorg/website/tree/master/custom_dc/sample</a>.</p>
+
+<h3 id="prepare-csv">Prepare the CSV data files</h3>
+
+<p>As mentioned above, CSV files using implicit schema must contain these columns – and <em>only</em> these columns, no others – in the following order:</p>
+
+<p><em>ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …</em></p>
+
+<p>The <em>ENTITY</em> is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see <a href="/place_types.html">Place types</a> for a full list. It may also be any of the special DCID prefixes listed in <a href="#special-names">Special place names</a>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.</p>
+</blockquote>
+
+<p>The <em>DATE</em> is the date of the observation and should be in the format <em>YYYY</em>, <em>YYYY</em>-<em>MM</em>, or <em>YYYY</em>-<em>MM</em>-<em>DD</em>. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as <code class="language-plaintext highlighter-rouge">year</code>, <code class="language-plaintext highlighter-rouge">month</code> or <code class="language-plaintext highlighter-rouge">date</code>.</p>
+
+<p>The <em>VARIABLE</em> should contain a metric <a href="/glossary.html#observation">observation</a> at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable for you.</p>
+
+<p>The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:</p>
+
+<pre><code class="language-csv">country,year,Adult_curr_cig_smokers,Adult_curr_cig_smokers_female,Adult_curr_cig_smokers_male
+Afghanistan,2019,7.5,1.2,13.4
+Angola,2016,,1.8,14.3
+Albania,2018,,4.5,35.7
+United Arab Emirates,2018,6.3,1.6,11.1
+</code></pre>
+<p>Note that the data is missing values for the total population percentage for Angola and Albania.</p>
+
+<p>You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.</p>
+
+<h4 id="special-names" class="no_toc">Special place names</h4>
+
+<p>In addition to the place names listed in <a href="/place_types.html">Place types</a>, you can also use the following special names as headings:</p>
+
+<ul>
+  <li><a href="/glossary.html#dcid"><code class="language-plaintext highlighter-rouge">dcid</code></a> — An already resolved DCID. Examples:<code class="language-plaintext highlighter-rouge">country/USA</code>, <code class="language-plaintext highlighter-rouge">geoId/06</code></li>
+  <li><code class="language-plaintext highlighter-rouge">country3AlphaCode</code> — Three-character country codes. Examples: <code class="language-plaintext highlighter-rouge">USA</code>, <code class="language-plaintext highlighter-rouge">CHN</code></li>
+  <li><code class="language-plaintext highlighter-rouge">geoId</code> — Place geo IDs. Examples: <code class="language-plaintext highlighter-rouge">06</code>, <code class="language-plaintext highlighter-rouge">023</code></li>
+  <li><code class="language-plaintext highlighter-rouge">lat#lng</code> — Latitude and longitude of the place using the format <em>lat</em>#<em>long</em>. Example: <code class="language-plaintext highlighter-rouge">38.7#-119.4</code></li>
+  <li><code class="language-plaintext highlighter-rouge">wikidataId</code> — Wikidata place identifiers. Example: <code class="language-plaintext highlighter-rouge">Q12345</code></li>
+</ul>
+
+<p>You can also simply use the heading <code class="language-plaintext highlighter-rouge">name</code> or <code class="language-plaintext highlighter-rouge">place</code> and the importer will resolve it automatically.</p>
+
+<p>The following are all valid examples of headers:</p>
+
+<pre><code class="language-csv">geoId,observationYear,statVar1,statVar2
+06,2021,555,666
+08,2021,10,10
+</code></pre>
+
+<pre><code class="language-csv">name,observationYear,statVar1,statVar2
+California,2021,555,666
+Colorado,2021,10,10
+</code></pre>
+
+<pre><code class="language-csv">dcId,observationYear,statVar1,statVar2
+geoId/06,2021,555,666
+geoId/08,2021,10,10
+</code></pre>
+
+<h3 id="write-the-json-config-file">Write the JSON config file</h3>
+
+<p>You must define a <code class="language-plaintext highlighter-rouge">config.json</code> in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide 3 specifications:</p>
+<ul>
+  <li>The input files location and entity type</li>
+  <li>The sources and provenances of the data</li>
+  <li>Optionally, additional properties of the statistical variables you’ve used in the CSV files</li>
+</ul>
+
+<p>Here is an example of how the config file would look for WHO CSV file we defined earlier. More details are below.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"inputFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"adult_cig_smoking.csv"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"provenance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_WHO"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"observationProperties"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percentage"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Adult_curr_cig_smokers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adult Current Cigarette Smokers"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percentage of smokers in the total adult population"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"searchDescriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Prevalence of smoking among adults in world countries in the years 2016 - 2019."</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WHO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"Adult_curr_cig_smokers_female"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adult Current Cigarette Smokers Female"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percentage of smokers in the female adult population"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"searchDescriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Prevalence of smoking among adult women in world countries in the years 2016 - 2019."</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WHO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"Adult_curr_cig_smokers_male"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adult Current Cigarette Smokers Male"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percentage of smokers in the male adult population"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"searchDescriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Prevalence of smoking among adult men in world countries in the years 2016 - 2019."</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WHO"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+ </span><span class="nl">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"custom.who.int"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://custom.who.int"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"provenances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"UN_WHO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://custom.who.int/data/gho/indicator-metadata-registry/imr-details/6128"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>The following fields are specific to the variable-per-column format:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">input_files</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">entityType</code>: This must be an existing entity class in the Data Commons knowledge graph; it’s most commonly a <a href="/place_types.html">place type</a>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">variables</code>: This section is optional but recommended. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name</code>: A human-friendly readable name that will be shown throughout the UI.</li>
+      <li><code class="language-plaintext highlighter-rouge">description</code>: A more detailed name that will be shown in the Statistical Variable Explorer.</li>
+      <li><code class="language-plaintext highlighter-rouge">searchDescriptions</code>: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.</li>
+      <li><code class="language-plaintext highlighter-rouge">group</code>: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time.
+        <blockquote>
+          <p>Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See <a href="#statvar-group">Define a statistical variable group node</a> for details.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>The other fields are explained in the <a href="#json-ref">Data config file specification reference</a>.</p>
+
+<h2 id="prepare-your-data-using-explicit-schema">Prepare your data using explicit schema</h2>
+
+<p>In this section, we will walk you through a concrete example of how to go about setting up your CSV, MCF and JSON files.</p>
+
+<h3 id="mcf">Write the MCF file</h3>
+
+<p>Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a <code class="language-plaintext highlighter-rouge">.mcf</code> suffix. The importer will automatically find them when you start the Docker data container.</p>
+
+<h4 id="define-statistical-variables">Define statistical variables</h4>
+
+<p>Here’s an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node: dcid:Adult_curr_cig_smokers
+typeOf: dcid:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adults (%)"
+populationType: dcid:Person
+measuredProperty: dcid:percent
+
+Node: dcid:Adult_curr_cig_smokers_female
+typeOf: dcid:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adults (%) [Female]"
+populationType: dcid:Person
+measuredProperty: dcid:percent
+gender: dcid:Female
+
+Node: dcid:Adult_curr_cig_smokers_male
+typeOf: dcid:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adults (%) [Male]"
+populationType: dcid:Person
+measuredProperty: dcid:percent
+gender: dcid:Male
+</code></pre></div></div>
+<p>The order of nodes and fields within nodes does not matter.</p>
+
+<p>The following fields are always required:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Node</code>: This is the DCID of the entity you are defining.</li>
+  <li><code class="language-plaintext highlighter-rouge">typeOf</code>: In the case of statistical variable, this is always <code class="language-plaintext highlighter-rouge">dcid:StatisticalVariable</code>. For a group of</li>
+  <li><code class="language-plaintext highlighter-rouge">name</code>: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.</li>
+  <li><code class="language-plaintext highlighter-rouge">populationType</code>: This is the type of thing being measured, and its value must be an existing <code class="language-plaintext highlighter-rouge">Class</code> type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is <code class="language-plaintext highlighter-rouge">dcid:Person</code>. For a full list of supported classes, you will have to send an API request, as described in <a href="/api/rest/v2/node.html#liststatvars">Get a list of all existing statistical variables</a>.</li>
+  <li><code class="language-plaintext highlighter-rouge">measuredProperty</code>: This is a property of the thing being measured. It must be a <code class="language-plaintext highlighter-rouge">domainIncludes</code> property of the <code class="language-plaintext highlighter-rouge">populationType</code> you have specified. In this example, it is the <code class="language-plaintext highlighter-rouge">percent</code> of persons being measured. You can see the set of <code class="language-plaintext highlighter-rouge">domainIncludes</code> properties for a given <code class="language-plaintext highlighter-rouge">populationType</code>, using either of the following methods:
+    <ul>
+      <li>
+        <p>Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <a href="https://datacommons.org/browser/Person" target="_blank">https://datacommons.org/browser/Person</a> and scroll to the <code class="language-plaintext highlighter-rouge">domainIncludes</code> section of the page. For example:</p>
+
+        <p><img src="/assets/images/custom_dc/customdc_screenshot9.png" alt="domain incudes" width="800" /></p>
+      </li>
+      <li>
+        <p>Use the <a href="/api/rest/v2/node.html#wildcard">Node API</a>, filtering on <code class="language-plaintext highlighter-rouge">domainIncludes</code> incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&amp;nodes=<var>POPULATION_TYPE</var>&amp;property=%3C-domainIncludes</code>, e.g. <a href="https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&amp;nodes=Person&amp;property=%3C-domainIncludes" target="_blank">https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&amp;nodes=Person&amp;property=%3C-domainIncludes</a>.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Note that all non-quoted field values must be prefixed with <code class="language-plaintext highlighter-rouge">dcid:</code> or <code class="language-plaintext highlighter-rouge">dcs:</code>, which are interchangeable. You may wish to add an optional namespace, separated by a slash (/); for example, <code class="language-plaintext highlighter-rouge">who/Adult_curr_cig_smokers</code>.</p>
+
+<p>The following fields are optional:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">statType</code>: By default this is <code class="language-plaintext highlighter-rouge">dcid:measuredValue</code>, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use <code class="language-plaintext highlighter-rouge">minValue</code>, <code class="language-plaintext highlighter-rouge">maxValue</code>, <code class="language-plaintext highlighter-rouge">meanValue</code>, <code class="language-plaintext highlighter-rouge">medianValue</code>, <code class="language-plaintext highlighter-rouge">sumvalue</code>, <code class="language-plaintext highlighter-rouge">varianceValue</code>, <code class="language-plaintext highlighter-rouge">marginOfError</code>, <code class="language-plaintext highlighter-rouge">stdErr</code>. In this case, your data set should only include the observations that correspond to those calculated values.</li>
+  <li><code class="language-plaintext highlighter-rouge">measurementQualifier</code>: This is similar to the <code class="language-plaintext highlighter-rouge">observationPeriod</code> field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. <code class="language-plaintext highlighter-rouge">Weekly</code>, <code class="language-plaintext highlighter-rouge">Monthly</code>, <code class="language-plaintext highlighter-rouge">Annual</code>. For instance, if the <code class="language-plaintext highlighter-rouge">measuredProperty</code> is income, you can use <code class="language-plaintext highlighter-rouge">Annual</code> or <code class="language-plaintext highlighter-rouge">Monthly</code> to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.</li>
+  <li><code class="language-plaintext highlighter-rouge">measurementDenominator</code>: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is <code class="language-plaintext highlighter-rouge">Count_Person</code>.</li>
+</ul>
+
+<p>Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by <code class="language-plaintext highlighter-rouge">populationType</code>. In our example, there is one constraint property, <code class="language-plaintext highlighter-rouge">gender</code>, which is a property of <code class="language-plaintext highlighter-rouge">Person</code>. The constraint property values are typically enumerations; such as <code class="language-plaintext highlighter-rouge">genderType</code>, which is a <code class="language-plaintext highlighter-rouge">rangeIncludes</code> property of <code class="language-plaintext highlighter-rouge">gender</code>. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:</p>
+
+<p><img src="/assets/images/custom_dc/customdc_screenshot10.png" alt="Stat Var Explorer" width="600" /></p>
+
+<h4 id="statvar-group">(Optional) Define a statistical variable group</h4>
+
+<p>If you would like to display variables in specific named groups, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.</p>
+
+<blockquote>
+  <p>Tip: If you are using implicit schema, where your variables are defined in the .csv files only (and optionally in <code class="language-plaintext highlighter-rouge">config.json</code>), and you want to assign variables to multiple groups, you can simply create an MCF file like the one below, and just specify the <code class="language-plaintext highlighter-rouge">Node</code> and <code class="language-plaintext highlighter-rouge">memberOf</code> fields for each variable.</p>
+</blockquote>
+
+<p>Here is an example that defines a single group node with the heading “WHO” and assigns all 3 statistical variables to the same group.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node: dcid:Adult_curr_cig_smokers
+...
+memberOf: dcid:who/g/WHO
+
+Node: dcid:Adult_curr_cig_smokers_female
+...
+memberOf:dcid:who/g/WHO
+
+Node: dcid:Adult_curr_cig_smokers_male
+...
+memberOf: dcid:who/g/WHO
+
+Node: dcid:who/g/WHO
+typeOf: dcid:StatVarGroup
+name: "WHO"
+specializationOf: dcid:dc/g/Root
+
+</code></pre></div></div>
+<p>You can define as many statistical variable group nodes as you like. Each must include the following fields:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Node</code>: This is the DCID of the group you are defining. It must be prefixed by <code class="language-plaintext highlighter-rouge">g/</code> and may include an additional prefix before the <code class="language-plaintext highlighter-rouge">g</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">typeOf</code>: In the case of statistical variable group, this is always <code class="language-plaintext highlighter-rouge">dcid:StatVarGroup</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">name</code>: This is the name of the heading that will appear in the Statistical Variable Explorer.</li>
+  <li><code class="language-plaintext highlighter-rouge">specializationOf</code>: For a top-level group, this must be <code class="language-plaintext highlighter-rouge">dcid:dc/g/Root</code>, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of <code class="language-plaintext highlighter-rouge">WHO</code> called <code class="language-plaintext highlighter-rouge">Smoking</code>, you would create a “Smoking” node with <code class="language-plaintext highlighter-rouge">specializationOf: dcid:who/g/WHO</code>. Here’s an example:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node: dcid:who/g/WHO
+typeOf: dcs:StatVarGroup
+name: "WHO"
+specializationOf: dcid:dc/g/Root
+
+Node: dcid:who/g/Smoking
+typeOf: dcs:StatVarGroup
+name: "Smoking"
+specializationOf: dcid:who/g/WHO
+</code></pre></div></div>
+
+<p>You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the <code class="language-plaintext highlighter-rouge">memberOf</code>. For example, to assign the 3 variables to both groups:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node: dcid:Adult_curr_cig_smokers
+...
+memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
+
+Node: dcid:Adult_curr_cig_smokers_female
+...
+memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
+
+Node: dcid:Adult_curr_cig_smokers_male
+...
+memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
+</code></pre></div></div>
+
+<h3 id="prepare-the-csv-data-files">Prepare the CSV data files</h3>
+
+<p>CSV files using explicit schema contain the following columns using the following headings:</p>
+
+<pre><code class="language-csv">entity, variable, date, value [, unit] [, scalingFactor] [, measurementMethod] [, observationPeriod]
+</code></pre>
+<p>The columns can be in any order, and you can specify custom names for the headings and use the <code class="language-plaintext highlighter-rouge">columnMappings</code> field in the JSON file to map them accordingly (see below for details).</p>
+
+<p>These columns are required:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">entity</code>: The DCID of an existing entity in the Data Commons knowledge graph, typically a place.</li>
+  <li><code class="language-plaintext highlighter-rouge">variable</code>: The DCID of the node you have defined in the MCF.</li>
+  <li><code class="language-plaintext highlighter-rouge">date</code>: The date of the observation and should be in the format <em>YYYY</em>, <em>YYYY</em>-<em>MM</em>, or <em>YYYY</em>-<em>MM</em>-<em>DD</em>.</li>
+  <li><code class="language-plaintext highlighter-rouge">value</code>: The value of the observation and must be numeric. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong> The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.</p>
+</blockquote>
+
+<p>The remaining columns are optional, and allow you to specify additional per-observation properties; see the descriptions of these in the <a href="#observation-properties">JSON config file reference</a>.</p>
+
+<p>Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:</p>
+
+<pre><code class="language-csv">SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/AFG,2019,1.2
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/AFG,2019,13.4
+dcs:who/Adult_curr_cig_smokers,dcid:country/AFG,2019,7.5
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/AGO,2016,1.8
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/AGO,2016,14.3
+dcs:who/Adult_curr_cig_smokers_female,dcid:country/ALB,2018,4.5
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/ALB,2018,35.7
+dcs:who/Adult_curr_cig_smokers_male,dcid:country/ARE,2018,11.1
+dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6
+dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
+</code></pre>
+
+<p>In this case, the columns need to be mapped to the expected columns listed above; see below for details.</p>
+
+<h3 id="write-the-json-config-file-1">Write the JSON config file</h3>
+
+<p>You must define a <code class="language-plaintext highlighter-rouge">config.json</code> in the top-level directory where your CSV files are located. With the explicit schema method, you need to provide these specifications:</p>
+<ul>
+  <li>The input files location and entity type</li>
+  <li>The sources and provenances of the data</li>
+  <li>Column mappings, if you are using custom names for the column headings</li>
+</ul>
+
+<p>Here is an example of how the config file would look for the CSV file we defined above. More details are below.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"inputFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"adult_cig_smoking.csv"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"provenance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_WHO"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"variablePerRow"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"columnMappings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"variable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERIES"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GEOGRAPHY"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TIME_PERIOD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OBS_VALUE"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"groupStatVarsByProperty"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"custom.who.int"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://custom.who.int"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"provenances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"UN_WHO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://custom.who.int/data/gho/indicator-metadata-registry/imr-details/6128"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The following fields are specific to the variable-per-row format:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">input_files</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">format</code> must be <code class="language-plaintext highlighter-rouge">variablePerRow</code> (the default is <code class="language-plaintext highlighter-rouge">variablePerColumn</code> if not specified)</li>
+      <li><code class="language-plaintext highlighter-rouge">columnMappings</code> are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">groupStatVarsByProperty</code> is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.</li>
+</ul>
+
+<p>The other fields are explained in the <a href="#json-ref">Data config file specification reference</a></p>
+
+<h2 id="json-ref">Data config file specification reference</h2>
+
+<p>Here is the general spec for the <code class="language-plaintext highlighter-rouge">config.json</code> file:</p>
+
+<pre>
+{  
+  "inputFiles": {  
+    "<var>FILE_NAME1</var>": {  
+      "entityType": "<var>ENTITY_PROPERTY</var>",  
+      "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
+      "provenance": "<var>NAME</var>",
+      "format": "variablePerColumn" | "variablePerRow",
+      "columnMappings": {
+        "variable": "<var>NAME</var>",
+        "entity": "<var>NAME</var>",
+        "date": "<var>NAME</var>",
+        "value": "<var>NAME</var>",
+        "unit": "<var>NAME</var>",
+        "scalingFactor": "<var>NAME</var>",
+        "measurementMethod": "<var>NAME</var>",
+        "observationPeriod": "<var>NAME</var>"
+      }
+      "observationProperties" {
+        "unit": "<var>MEASUREMENT_UNIT</var>",
+        "observationPeriod": "<var>OBSERVATION_PERIOD</var>",
+        "scalingFactor": "<var>DENOMINATOR_VALUE</var>",
+        "measurementMethod": "<var>METHOD</var>"
+      }
+    },  
+  ...  
+  "includeInputSubdirs": true | false,
+
+  "variables": {  
+    "<var>VARIABLE1</var>": {"group": "<var>GROUP_NAME1</var>"},  
+    "VARIABLE2": {"group": "<var>GROUP_NAME1</var>"},  
+    "<var>VARIABLE3</var>": {  
+      "name": "<var>DISPLAY_NAME</var>",  
+      "description": "<var>DESCRIPTION</var>",  
+      "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],  
+      "group": "<var>GROUP_NAME2</var>",  
+      "properties": {  
+        "<var>PROPERTY_NAME1</var>":"<var>VALUE</var>",  
+        "<var>PROPERTY_NAME2</var>":"<var>VALUE</var>",  
+         …  
+           }  
+    },  
+  },   
+  "groupStatVarsByProperty": false | true,
+  "sources": {  
+    "<var>SOURCE_NAME1</var>": {  
+      "url": "<var>URL</var>",  
+      "provenances": {  
+        "<var>PROVENANCE_NAME1</var>": "<var>URL</var>",  
+        "<var>PROVENANCE_NAME2</var>": "<var>URL</var>",  
+        ...  
+      }  
+    }  
+  }  
+}  
+</pre>
+
+<p>Each section contains some required and optional fields, which are described in detail below.</p>
+
+<h3 class="no_toc" id="input-files">Input files</h3>
+
+<p>The top-level <code class="language-plaintext highlighter-rouge">inputFiles</code> field should encode a map from the CSV input file name to parameters specific to that file. Keys can be individual file names or wildcard patterns if the same configuration applies to multiple files.</p>
+
+<p>You can use the <code class="language-plaintext highlighter-rouge">*</code> wildcard; matches are applied in the order in which they are specified in the config. For example, in the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+ "inputFiles": {
+    "foo.csv": {...},
+    "bar*.csv": {...},
+    "*.csv": {...}
+  }
+}
+</code></pre></div></div>
+
+<p>The first set of parameters only applies to <code class="language-plaintext highlighter-rouge">foo.csv</code>. The second set of parameters applies to <code class="language-plaintext highlighter-rouge">bar.csv</code>, <code class="language-plaintext highlighter-rouge">bar1.csv</code>, <code class="language-plaintext highlighter-rouge">bar2.csv</code>, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely <code class="language-plaintext highlighter-rouge">foo.csv</code> and <code class="language-plaintext highlighter-rouge">bar*.csv</code>.</p>
+
+<p>If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the <code class="language-plaintext highlighter-rouge">env.list</code> file as the input directory), and be sure to set <code class="language-plaintext highlighter-rouge">"includeInputSubdirs": true</code> (the default is false if the option is not specified.) For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+ "inputFiles": {
+    "foo.csv": {...},
+    "bar*.csv": {...},
+    "*.csv": {...},
+    "data/*.csv": {...}
+  },
+  "includeInputSubdirs": true
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note: Although you don’t need to specify the names of MCF files in the <code class="language-plaintext highlighter-rouge">inputFiles</code> block, if you want to store them in subdirectories, you still need to set <code class="language-plaintext highlighter-rouge">"includeInputSubdirs": true</code> here.</p>
+</blockquote>
+
+<h4 class="no_toc" id="input-file-parameters">Input file parameters</h4>
+
+<dl>
+  <dt>entityType (implicit schema only)</dt>
+  <dd>
+    <p>Required: All entities in a given file must be of a specific type. This type should be specified as the value of the <code class="language-plaintext highlighter-rouge">entityType</code> field. The importer tries to resolve entities to DCIDs of that type. In most cases, the <code class="language-plaintext highlighter-rouge">entityType</code> will be a supported place type; see <a href="../place_types.html">Place types</a> for a list.</p>
+  </dd>
+  <dt>ignoreColumns</dt>
+  <dd>
+    <p>Optional: The list of column names to be ignored by the importer, if any.</p>
+  </dd>
+  <dt>provenance</dt>
+  <dd>
+    <p>Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, <code class="language-plaintext highlighter-rouge">WorldDevelopmentIndicators</code> provenance (or dataset) is from the <code class="language-plaintext highlighter-rouge">WorldBank</code> source.</p>
+  </dd>
+</dl>
+
+<p>You must specify the provenance details under <code class="language-plaintext highlighter-rouge">sources.provenances</code>; this field associates one of the provenances defined there to this file.</p>
+
+<dl id="observation-properties">
+  <dt>observationProperties (implicit schema only)</dt>
+  <dd>
+    <p>Optional: Additional information about each observation contained in the CSV file. Whatever setting you specify will apply to all observations in the file. (If you need different properties among observations, put them in different CSV files.)</p>
+  </dd>
+</dl>
+
+<p>Currently, the following properties are supported:</p>
+<ul>
+  <li><a href="/glossary.html#unit"><code class="language-plaintext highlighter-rouge">unit</code></a>: The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, <code class="language-plaintext highlighter-rouge">SquareFoot</code>, <code class="language-plaintext highlighter-rouge">USD</code>, <code class="language-plaintext highlighter-rouge">Barrel</code>, etc.</li>
+  <li><a href="/glossary.html#observation-period"><code class="language-plaintext highlighter-rouge">measurementPeriod</code></a>: The period of time in which the observations were recorded. This must be in ISO duration format, namely <code class="language-plaintext highlighter-rouge">P[0-9][Y|M|D|h|m|s]</code>. For example, <code class="language-plaintext highlighter-rouge">P1Y</code> is 1 year, <code class="language-plaintext highlighter-rouge">P3M</code> is 3 months, <code class="language-plaintext highlighter-rouge">P3h</code> is 3 hours.</li>
+  <li><a href="/glossary.html#measurement-method"><code class="language-plaintext highlighter-rouge">measurementMethod</code></a>: The method used to gather the observations. This can be a random string or an existing DCID of <a href="https://datacommons.org/browser/MeasurementMethodEnum" target="_blank"><code class="language-plaintext highlighter-rouge">MeasurementMethodEnum</code></a> type; for example, <code class="language-plaintext highlighter-rouge">EDA_Estimate</code> or <code class="language-plaintext highlighter-rouge">WorldBankEstimate</code>.</li>
+  <li><a href="/glossary.html#scaling-factor"><code class="language-plaintext highlighter-rouge">scalingFactor</code></a>: An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be <code class="language-plaintext highlighter-rouge">100</code>.</li>
+</ul>
+
+<p>Note that you cannot mix different property values in a single CSV file. If you have observations using different properties, you must put them in separate CSV files.</p>
+
+<dl>
+  <dt>format</dt>
+  <dd>
+    <p>Only needed to specify <code class="language-plaintext highlighter-rouge">variablePerRow</code> for explicit schemas. The assumed default is <code class="language-plaintext highlighter-rouge">variablePerColumn</code>.</p>
+  </dd>
+  <dt>columnMappings (explicit schema only)</dt>
+  <dd>
+    <p>Optional: If headings in the CSV file does not use the default names, the equivalent names for each column.</p>
+  </dd>
+</dl>
+
+<h3 class="no_toc" id="variables-implicit-schema-only">Variables (implicit schema only)</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">variables</code> section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional. If you don’t provide this section, the importer will automatically derive the variable names from the CSV file.</p>
+
+<h4 id="varparams" class="no_toc">Variable parameters</h4>
+
+<dl>
+  <dt>name</dt>
+  <dd>
+    <p>The display name of the variable, which will show up throughout the UI. If not specified, the column name is used as the display name.<br />
+The name should be concise and precise; that is, the shortest possible name that allow humans to uniquely identify a given variable. The name is used to generate NL embeddings.</p>
+  </dd>
+  <dt>description</dt>
+  <dd>
+    <p>A long-form description of the variable.</p>
+  </dd>
+  <dt>properties</dt>
+  <dd>
+    <p>Additional Data Commons properties associated with this variable. The properties are any property required or optional in the <a href="#mcf">MCF Node definition</a> of a variable. The value of the property must be a DCID.</p>
+  </dd>
+</dl>
+
+<p>Each property is specified as a key:value pair. Here are some examples:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"populationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schema:Person"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"measuredProperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"age"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"statType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medianValue"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Female"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">measuredProperty</code> property has an effect on the display: if it is not set for any variable, the importer assumes that it is different for every defined variable, so that each variable will be shown in a different chart in the UI tools. If you would like multiple variables to show up in the same chart, be sure to set this property on all of the relevant variables, to the same (DCID) value. For example, if you wanted <code class="language-plaintext highlighter-rouge">Adult_curr_cig_smokers_female</code> and <code class="language-plaintext highlighter-rouge">Adult_curr_cig_smokers_male</code> to appear on the same Timeline chart, set <code class="language-plaintext highlighter-rouge">measuredProperty</code> to a common property of the two variables, for example <a href="https://datacommons.org/browser/percent" target="_blank"><code class="language-plaintext highlighter-rouge">percent</code></a>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Adult_curr_cig_smokers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"measuredProperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"Adult_curr_cig_smokers_female"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"measuredProperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<dl>
+  <dt>group</dt>
+  <dd>
+    <p>By default, the Statistical Variables Explorer will display all custom variables as a group called “Custom Variables”. You can use this option to create one or more custom group names and assign different variables to groups. The value of the <code class="language-plaintext highlighter-rouge">group</code> option is used as the heading of the group. For example, in the sample data, the group name <code class="language-plaintext highlighter-rouge">OECD</code> is used to group together the two variables from the two CSV files:</p>
+  </dd>
+</dl>
+
+<p><img src="/assets/images/custom_dc/customdc_screenshot5.png" alt="group_screenshot" width="400" /></p>
+
+<p>You can have a multi-level group hierarchy by using <code class="language-plaintext highlighter-rouge">/</code> as a separator between each group.</p>
+
+<blockquote>
+  <p>Note: You can only assign a variable to one group. If you would like to assign the same variables to multiple groups, you will need to define the groups as nodes in MCF; see <a href="#statvar-group">Define a statistical variable group node</a> for details.</p>
+</blockquote>
+
+<dl>
+  <dt>searchDescriptions</dt>
+  <dd>
+    <p>An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable <code class="language-plaintext highlighter-rouge">name</code> is not sufficient for generating embeddings.</p>
+  </dd>
+</dl>
+
+<h3 class="no_toc" id="groupstatvarsbyproperty-explicit-schema-only">groupStatVarsByProperty (explicit schema only)</h3>
+
+<p>Optional: Causes the Statistical Variable Explorer to create a top-level category called “Custom Variables”, and groups together variables with the same population types and measured properties. For example:</p>
+
+<p><img src="/assets/images/custom_dc/customdc_screenshot10.png" alt="group_screenshot" width="400" /></p>
+
+<p>If you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.</p>
+
+<h3 class="no_toc" id="sources">Sources</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">sources</code> section encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.</p>
+
+<h4 class="no_toc" id="source-parameters">Source parameters</h4>
+
+<dl>
+  <dt>url</dt>
+  <dd>Required: The URL of the named source. For example, for named source <code class="language-plaintext highlighter-rouge">U.S. Social Security Administration</code>, it would be <code class="language-plaintext highlighter-rouge">https://www.ssa.gov</code>.</dd>
+  <dt>provenances</dt>
+  <dd>Required: A set of <em>NAME</em>:<em>URL</em> pairs. Here are some examples:</dd>
+</dl>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"USA Top Baby Names 2022"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.ssa.gov/oact/babynames/"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"USA Top Baby Names 1923-2022"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.ssa.gov/oact/babynames/decades/century.html"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="load-local-custom-data">Load local custom data</h2>
+
+<p>The following procedures show you how to load and serve your custom data locally.</p>
+
+<p>To load data in Google Cloud, see instead <a href="/custom_dc/deploy_cloud.html">Load data in Google Cloud</a> for procedures.</p>
+
+<h3 id="configure-environment-variables">Configure environment variables</h3>
+
+<p>Edit the <code class="language-plaintext highlighter-rouge">env.list</code> file you created <a href="/custom_dc/quickstart.html#env-vars">previously</a> as follows:</p>
+<ul>
+  <li>Set the <code class="language-plaintext highlighter-rouge">INPUT_DIR</code> variable to the full path to the directory where your input files are stored.</li>
+  <li>Set the <code class="language-plaintext highlighter-rouge">OUTPUT_DIR</code> variable to the full path to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a <code class="language-plaintext highlighter-rouge">datacommons</code> subdirectory under this directory.</li>
+</ul>
+
+<h3 id="docker-data">Start the Docker containers with local custom data</h3>
+
+<p>Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.</p>
+
+<h4 class="no_toc" id="step-1-start-the-data-management-container">Step 1: Start the data management container</h4>
+
+<p>In one terminal window, from the root directory, run the following command to start the data management container:</p>
+
+<pre>
+docker run \
+--env-file $PWD/custom_dc/env.list \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+gcr.io/datcom-ci/datacommons-data:stable
+
+
+{:.no_toc}
+##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
+
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
+
+To do so, add the following line to the above command:
+
+```
+docker run \
+...
+-e DATA_RUN_MODE=schemaupdate \
+...
+gcr.io/datcom-ci/datacommons-data:stable
+```
+
+Once the job has run, go to step 2 below.
+
+
+{:.no_toc}
+#### Step 2: Start the services container
+
+In another terminal window, from the root directory, run the following command to start the services container:
+
+<pre>
+docker run -it \
+-p 8080:8080 \
+-e DEBUG=true \
+--env-file $PWD/custom_dc/env.list \
+-v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+-v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+gcr.io/datcom-ci/datacommons-services:stable
+</pre>
+
+Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
+
+### Inspect the SQLite database
+
+If you need to troubleshoot custom data, it is helpful to inspect the contents of the generated SQLite database.
+
+To do so, from a terminal window, open the database:
+
+<pre>sqlite3 <var>OUTPUT_DIRECTORY</var>/datacommons/datacommons.db
+</pre>
+
+This starts the interactive SQLite shell. To view a list of tables, at the prompt type `.tables`. The relevant table is `observations`.
+
+At the prompt, enter SQL queries. For example, for the sample OECD data, this query:
+
+```shell
+sqlite&gt; select * from observations limit 10;
+```
+returns output like this:
+
+```shell
+country/BEL|average_annual_wage|2000|54577.62735|c/p/1
+country/BEL|average_annual_wage|2001|54743.96009|c/p/1
+country/BEL|average_annual_wage|2002|56157.24355|c/p/1
+country/BEL|average_annual_wage|2003|56491.99591|c/p/1
+country/BEL|average_annual_wage|2004|56195.68432|c/p/1
+country/BEL|average_annual_wage|2005|55662.21541|c/p/1
+...
+```
+
+To exit the sqlite shell, press `Ctrl-D`.
+
+</pre>
+
+          </div>
+          <div style="text-align:center" id="metadata">
+            <p>
+             Page last updated: February 24, 2025 &#8226; <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf23mC17idzIpzg6v4frCh8iWTl9dxeb4iSTVgo0WiBvnv5ZA/viewform?usp=pp_url&entry.871991796=/custom_dc/custom_data.html">
+              Send feedback about this page
+              </a>
+            </p>
+          </div>
+      </div>
+    </main>
+
+    <footer id="main-footer">
+      <div id="sub-footer">
+        <span class="brand-byline">
+          <span class="brand-text">An initiative from</span>
+          <img class="brand-logo" src="/assets/images/google-logo.svg" />
+        </span>
+        <div class="sub-footer-links">
+          <a href="https://policies.google.com/terms">Terms and Conditions</a>
+          <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script async
+    src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWSES5WXZE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KWSES5WXZE', {
+      client_storage: 'none',
+      anonymize_ip: true,
+    });
+  </script>
+  <script>
+    /**
+     * Add placeholder text for Google Custom Search Engine search box in the page header
+     */
+    window.addEventListener("load", function() {
+      const googleCustomSearchInput = document.querySelector(".gsc-search-box input[name=\"search\"]");
+      if (googleCustomSearchInput) {
+        googleCustomSearchInput.placeholder = "Search docs";
+      }
+    });
+  </script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script>
+    anchors.add();
+  </script>
+</body>
+</html>

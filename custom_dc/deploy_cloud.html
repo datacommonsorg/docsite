@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Deploy to Google Cloud - Docs - Data Commons</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  
+  
+</head>
+<body>
+  <div id="main">
+    <header id="main-header">
+      <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <div id="main-header-logo">
+                <a href="https://datacommons.org/">
+                  <img src="/assets/images/dc-logo.svg" />
+                </a>
+            </div>
+            <a href="https://datacommons.org">Data Commons</a>
+            <!-- dot separater -->
+            <span class="separator">&#8226;</span>
+            <span><a href="/">Docs</a></span>
+            </a>
+          </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#dc-main-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
+            <div class="gcse-searchbox-only"
+              data-resultsUrl="https://datacommons.org/search"></div>
+            </div>
+            </div>
+      </nav>
+    </header>
+
+    <main id="" class="container-fluid">
+      <div class="row">
+        <div id="main-side-nav" class="col-3">
+          <div id="sidebar"><details class="parent" open>
+          <summary>
+            <a href="/" class="">How to use Data Commons</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-3"><details class="child" >
+                  <summary>
+                    <a href="/what_is.html" class="">What is Data Commons?</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/data_model.html" class="">Key concepts and common tasks</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/glossary.html" class="">Glossary</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/place_types.html" class="">Place types</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/datasets/" class="">Data sources</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/api/" class="">API - Query data programmatically</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-63"><details class="child" >
+                  <summary>
+                    <a href="/api/rest/v2/" class="">REST (V2)</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-1"><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/observation.html" class="">
+                              
+                              Get statistical observations
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/node.html" class="">
+                              
+                              Get node properties
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/resolve.html" class="">
+                              
+                              Resolve entities
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/sparql.html" class="">
+                              
+                              Query with SPARQL
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/rest/v2/troubleshooting.html" class="">
+                              
+                              Troubleshooting
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/python/" class="">Python</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-2"><details class="child" >
+                          <summary>
+                            <a href="/api/python/place_in.html" class="">
+                              
+                              Get places within other places
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_value.html" class="">
+                              
+                              Get a single statistical value for a place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_series.html" class="">
+                              
+                              Get time series for a place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/stat_all.html" class="">
+                              
+                              Get statistical data for multiple places
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_label.html" class="">
+                              
+                              Get property labels of nodes
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/property_value.html" class="">
+                              
+                              Get property values of nodes
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/tutorials.html" class="">
+                              
+                              Tutorials
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/python/triple.html" class="">
+                              
+                              Get triples associated with nodes
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details><details class="child" >
+                  <summary>
+                    <a href="/api/pandas/" class="">Pandas</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-3"><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series.html" class="">
+                              
+                              Get time series for a place
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/time_series_dataframe.html" class="">
+                              
+                              Get time series DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details><details class="child" >
+                          <summary>
+                            <a href="/api/pandas/multivariate_dataframe.html" class="">
+                              
+                              Get multivariate DataFrame
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/api/sheets/" class="">Analyze data with Google Sheets</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-73"><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/tutorials/" class="">Tutorials</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_name.html" class="">Get names associated with DCIDs</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/places_in.html" class="">Get places contained in another place</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_variable.html" class="">Get statistical variable values</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_property.html" class="">Get node property values</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/sheets/get_cohort_members.html" class="">Get members of a cohort</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/api/web_components/" class="">Embed data and visualizations in your own website</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-80"><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/bar" class="">Bar chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/gauge" class="">Gauge chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/highlight" class="">Highlight tile</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/line" class="">Line chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/map" class="">Map chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/pie" class="">Pie chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/ranking" class="">Ranking chart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/scatter" class="">Scatter plot</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/api/web_components/slider" class="">Slider control</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/bigquery/" class="">Query with SQL/BigQuery</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-81"><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_places.html" class="">Query places</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_property_places.html" class="">Query observations and properties of places</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_more_complex.html" class="">More complex queries</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/bigquery/query_join_your_data.html" class="">Join with external data</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/contributing/" class="">Contribute to Data Commons</a>
+            
+          </summary>
+          </details><details class="parent" open>
+          <summary>
+            <a href="/custom_dc/" class="">Build your own Data Commons</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-83"><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/quickstart.html" class="">Quickstart</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_data.html" class="">Prepare and load your own data</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/custom_ui.html" class="">Customize the site</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/build_image.html" class="">Build and run a custom image</a>
+                    
+                  </summary>
+                  </details><details class="child" open>
+                  <summary>
+                    <a href="/custom_dc/deploy_cloud.html" class=" active">Deploy to Google Cloud</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/launch_cloud.html" class="">Launch your Data Commons</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/advanced.html" class="">Advanced setups</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/troubleshooting.html" class="">Troubleshooting</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/custom_dc/faq.html" class="">Frequently asked questions</a>
+                    
+                  </summary>
+                  </details></ul></details><details class="parent" open>
+          <summary>
+            <a href="/resources.html" class="">Additional resources</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+          </summary>
+          <ul id="node-98"><details class="child" >
+                  <summary>
+                    <a href="/papers/" class="">Papers</a>
+                    
+                  </summary>
+                  </details><details class="child" >
+                  <summary>
+                    <a href="/courseware/" class="">Educational materials</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                  </summary>
+                  <ul id="child-2"><details class="child" >
+                          <summary>
+                            <a href="/courseware/data_literacy/" class="">
+                              
+                              Data literacy with Data Commons
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"></path>
+</svg>
+                          </summary>
+                          <ul id="grandchild-1"><li class="">
+                                  <a href="/courseware/data_literacy/how_to_use.html" class="">
+                                    How to use the course materials
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/key_themes.html" class="">
+                                    Key themes
+                                  </a>
+                                </li><li class="">
+                                  <a href="/courseware/data_literacy/modules.html" class="">
+                                    Modules
+                                  </a>
+                                </li></ul></details><details class="child" >
+                          <summary>
+                            <a href="/courseware/intro_data_science.html" class="">
+                              
+                              Introduction to data science
+                            </a>
+                            
+                          </summary>
+                          </details></ul></details></ul></details></div>
+        </div>
+        <div class="col-9">
+          <div id="main-doc-content">
+            
+              
+                <nav aria-label="Breadcrumb" id="main-breadcrumb">
+                  <ol class="breadcrumb">
+                    
+                      <li class="breadcrumb-item">
+                        <a href="/custom_dc/">
+                          Build your own Data Commons
+                        </a>
+                      </li>
+                    
+                    <li class="breadcrumb-item active"><span>Deploy to Google Cloud </span></li>
+                  </ol>
+                </nav>
+              
+            
+            <h1 class="no_toc" id="deploy-your-custom-instance-to-google-cloud">Deploy your custom instance to Google Cloud</h1>
+
+<p>This page shows you how to create a development environment in Google Cloud Platform, using <a href="https://cloud.google.com/docs/terraform" target="_blank">Terraform</a>. This is step 4 of the <a href="/custom_dc/index.html#workflow">recommended workflow</a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#system-overview" id="markdown-toc-system-overview">System overview</a></li>
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#gen-creds" id="markdown-toc-gen-creds">Generate credentials for Google Cloud authentication</a></li>
+  <li><a href="#one-time-setup-create-service-accounts-and-enable-all-apis" id="markdown-toc-one-time-setup-create-service-accounts-and-enable-all-apis">One-time setup: Create service accounts and enable all APIs</a></li>
+  <li><a href="#one-time-setup-create-a-google-cloud-artifact-registry-repository-for-custom-builds" id="markdown-toc-one-time-setup-create-a-google-cloud-artifact-registry-repository-for-custom-builds">One-time setup: Create a Google Cloud Artifact Registry repository for custom builds</a></li>
+  <li><a href="#terraform" id="markdown-toc-terraform">Configure and run a Terraform deployment</a>    <ul>
+      <li><a href="#configure-the-terraform-deployment" id="markdown-toc-configure-the-terraform-deployment">Configure the Terraform deployment</a></li>
+      <li><a href="#run-terraform" id="markdown-toc-run-terraform">Run the Terraform deployment</a></li>
+    </ul>
+  </li>
+  <li><a href="#manage-your-data" id="markdown-toc-manage-your-data">Manage your data</a>    <ul>
+      <li><a href="#upload-data-files-to-google-cloud-storage" id="markdown-toc-upload-data-files-to-google-cloud-storage">Upload data files to Google Cloud Storage</a></li>
+      <li><a href="#run-job" id="markdown-toc-run-job">Run the data management container</a></li>
+      <li><a href="#inspect-sql" id="markdown-toc-inspect-sql">Inspect the Cloud SQL database</a></li>
+    </ul>
+  </li>
+  <li><a href="#manage-your-service" id="markdown-toc-manage-your-service">Manage your service</a>    <ul>
+      <li><a href="#upload" id="markdown-toc-upload">Upload a custom Docker image to the Artifact Registry</a></li>
+      <li><a href="#start-service" id="markdown-toc-start-service">Start/restart the services container</a></li>
+      <li><a href="#view-app" id="markdown-toc-view-app">View your running application</a></li>
+    </ul>
+  </li>
+  <li><a href="#update-terraform" id="markdown-toc-update-terraform">Update your Terraform deployment</a></li>
+  <li><a href="#multiple" id="markdown-toc-multiple">Manage multiple Terraform deployments</a></li>
+</ul>
+
+<h2 id="system-overview">System overview</h2>
+
+<p>Here is the Data Commons setup in Google Cloud Platform (GCP):</p>
+
+<p><img src="/assets/images/custom_dc/customdc_setup3.png" alt="GCP setup" /></p>
+
+<p>You upload your data and configuration files to <a href="https://cloud.google.com/storage" target="_blank">Google Cloud Storage</a>, and run the Data Commons data management Docker container as a <a href="https://cloud.google.com/run/" target="_blank">Cloud Run</a> job. The job will transform and store the data in a <a href="https://cloud.google.com/sql" target="_blank">Google Cloud SQL</a> database, and generate NL embeddings stored in Cloud Storage. The services Docker container runs as a Cloud Run service, using the Docker image stored in a <a href="https://cloud.google.com/artifact-registry" target="_blank">Google Cloud Artifact Registry</a> repository.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>You must have a <a href="https://cloud.google.com/docs/get-started" target="_blank">GCP</a> billing account and project.</li>
+  <li>You must have relevant API keys. If you haven’t obtained them yet, see <a href="/custom_dc/quickstart.html#setup">One-time setup steps</a> in the Quickstart.</li>
+  <li>Install <a href="https://cloud.google.com/sdk/docs/install-sdk" target="_blank">gcloud CLI</a> on your local machine. gcloud is required for authentication and management tasks.</li>
+  <li>Install <a href="https://developer.hashicorp.com/terraform/install?product_intent=terraform" target="_blank">Terraform</a> on your local machine. Terraform is used to automate the setup steps of all the components.</li>
+</ul>
+
+<h2 id="gen-creds">Generate credentials for Google Cloud authentication</h2>
+
+<p>You will need to regenerate credentials on a periodic basis whenever you run gcloud or Terraform scripts. You can also adjust the frequency with which credentials must be refreshed; see <a href="https://support.google.com/a/answer/9368756" target="_blank">https://support.google.com/a/answer/9368756</a> for details.</p>
+
+<p>From any directory, run:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud auth application-default login
+</code></pre></div></div>
+<p>This opens a browser window that prompts you to enter credentials, sign in to Google Auth Library and allow Google Auth Library to access your account. Accept the prompts. When it has completed, a credential JSON file is created in
+<code class="language-plaintext highlighter-rouge">$HOME/.config/gcloud/application_default_credentials.json</code>. Use this in the command below to authenticate from the docker container.</p>
+
+<p>The first time you run it, may be prompted to specify a quota project for billing that will be used in the credentials file. If so, run this command:</p>
+
+<pre>
+gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
+
+<h2 id="one-time-setup-create-service-accounts-and-enable-all-apis">One-time setup: Create service accounts and enable all APIs</h2>
+
+<p><code class="language-plaintext highlighter-rouge">website/deploy/terraform-custom-datacommons/setup.sh</code> is a convenience script to set up service account roles and all necessary Cloud APIs. To run it:</p>
+
+<pre>
+ cd website/deploy/terraform-custom-datacommons
+ ./setup.sh <var>PROJECT_ID</var></pre>
+
+<h2 id="one-time-setup-create-a-google-cloud-artifact-registry-repository-for-custom-builds">One-time setup: Create a Google Cloud Artifact Registry repository for custom builds</h2>
+
+<p>If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.</p>
+
+<p><code class="language-plaintext highlighter-rouge">website/deploy/terraform-custom-datacommons/create_artifact_repository.sh</code> is a convenience script to create a repository in the <a href="https://cloud.google.com/artifact-registry/docs/overview" target="_blank">Google Artifact Registry</a>. The script creates a repository called <code><var>PROJECT_ID</var>-artifacts</code>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.</p>
+
+<p>To run it:</p>
+
+<pre>cd website/deploy/terraform-custom-datacommons
+ ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
+
+<p>The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.</p>
+
+<p>To verify that the repository is created, go to <a href="https://console.cloud.google.com/artifacts">https://console.cloud.google.com/artifacts</a>{target=”_blank”} for your project. You should see the repository in the list.</p>
+
+<h2 id="terraform">Configure and run a Terraform deployment</h2>
+
+<p>We recommend using the Data Commons Terraform scripts to greatly simplify and automate the deployment of all the required GCP services. The scripts are located at <a href="https://github.com/datacommonsorg/website/edit/master/deploy/terraform-custom-datacommons/" target="_blank">website/deploy/terraform-custom-datacommons</a>.</p>
+
+<p>Terraform provisions and runs all the necessary Cloud Platform services:</p>
+
+<ul>
+  <li>Creates a Cloud Storage bucket and top-level folder, which will store your data files. You will upload your input data in the subsequent steps.</li>
+  <li>Creates a Cloud SQL MySQL instance, with basic resources, a default database user and a random password.</li>
+  <li>Creates the Data Commons data management container as a Cloud Run job, with basic resources.</li>
+  <li>Creates a single instance of the Data Commons services container as a Cloud Run service, with basic resources. By default this uses the prebuilt image provided by Data Commons team; you will change this to your custom image in subsequent steps.</li>
+  <li>Stores all secrets (API keys and database passwords) in the <a href="https://cloud.google.com/secret-manager/docs/overview" target="_blank">Cloud Secret Manager</a>.</li>
+  <li>Creates a URL for accessing your service in the browser.</li>
+</ul>
+
+<p>Follow the steps below to create and run a Terraform deployment.</p>
+
+<h3 id="configure-the-terraform-deployment">Configure the Terraform deployment</h3>
+
+<ol>
+  <li>From the root directory of the <code class="language-plaintext highlighter-rouge">website</code> repo, using your favorite editor, copy <code class="language-plaintext highlighter-rouge">deploy/terraform-custom-datacommons/modules/terraform.tfvars.sample</code> and save it as a new file <code class="language-plaintext highlighter-rouge">deploy/terraform-custom-datacommons/modules/terraform.tfvars</code>.</li>
+  <li>Edit the required variables to specify the relevant values. The <code class="language-plaintext highlighter-rouge">namespace</code> variable allows you uniquely identify the Data Commons deployment, in the case that you decide to set up <a href="#multiple">multiple instances</a>, e.g. development, staging, testing, production, etc. Since this is a development environment, you may want to have a suffix such as <code class="language-plaintext highlighter-rouge">-dev</code>.</li>
+</ol>
+
+<h4 id="optional" class="no_toc">Edit optional variables</h4>
+
+<p>All of the deployment options you can configure are listed in <a href="https://github.com/datacommonsorg/website/blob/master/deploy/terraform-custom-datacommons/modules/variables.tf" target="_blank">deploy/terraform-custom-datacommons/modules/variables.tf</a>. We recommend you keep the default settings for most options at this point. However, you may want to override the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">region</code></td>
+      <td><code class="language-plaintext highlighter-rouge">us-central1</code>, close to the base Data Commons data</td>
+      <td>Specifies where your services will be run and data will be served from. If you want to set this to a different value, for a list of supported regions, see Cloud SQL <a href="https://cloud.google.com/sql/docs/mysql/locations" target="_blank">Manage instance locations</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gcs_data_bucket_name</code></td>
+      <td><code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code></td>
+      <td>Cloud Storage bucket name. You can override the <code class="language-plaintext highlighter-rouge">datacommons-data</code> portion of the name.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gcs_data_bucket_location</code></td>
+      <td><code class="language-plaintext highlighter-rouge">US</code></td>
+      <td>Specifies where your uploaded data is stored.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gcs_data_bucket_input_folder</code></td>
+      <td><code class="language-plaintext highlighter-rouge">input</code></td>
+      <td>The GCS folder to which you will upload your data and config files. If you have subfolders, you create these manually.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gcs_data_bucket_output_folder</code></td>
+      <td><code class="language-plaintext highlighter-rouge">output</code></td>
+      <td>The GCS folder where NL embeddings will be stored.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mysql_instance_name</code></td>
+      <td><code><var>NAMESPACE</var>-datacommons-mysql-instance</code></td>
+      <td>Cloud SQL instance name. You can override the <code class="language-plaintext highlighter-rouge">datacommons-mysql-instance</code> portion of the name.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mysql_database_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">datacommons</code></td>
+      <td>The MySQL database managed by Cloud SQL.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mysql_user</code></td>
+      <td><code class="language-plaintext highlighter-rouge">datacommons</code></td>
+      <td>The default user of the MySQL database.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dc_data_job_image</code></td>
+      <td><code class="language-plaintext highlighter-rouge">gcr.io/datcom-ci/datacommons-data:stable</code></td>
+      <td>Specifies the image for the Docker data management container. You may wish to set it to <code class="language-plaintext highlighter-rouge">gcr.io/datcom-ci/datacommons-data:latest</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">dc_web_service_image</code></td>
+      <td><code class="language-plaintext highlighter-rouge">gcr.io/datcom-ci/datacommons-services:stable</code></td>
+      <td>Specifies the image for the Docker services container. You will want to change this to a custom image once you have created it in <a href="#upload">Upload a custom Docker image</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">make_dc_web_service_public</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td>If you intend to restrict access to your instance, set this to <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Other recommended settings for a production environment are provided in <a href="/custom_dc/launch_cloud.html#create-env">Launch your Data Commons</a>.</p>
+
+<p>To customize any option, <em>do not edit in place</em> in <code class="language-plaintext highlighter-rouge">variables.tf</code>. Instead, add the variable to the <code class="language-plaintext highlighter-rouge">terraform.tfvars</code> file and set it to the desired value. For example, if you wanted to set the <code class="language-plaintext highlighter-rouge">region</code> variable to <code class="language-plaintext highlighter-rouge">us-east1</code>, specify it as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>region  = "us-east1"
+</code></pre></div></div>
+
+<h3 id="run-terraform">Run the Terraform deployment</h3>
+
+<ol>
+  <li>Open a terminal and navigate to the <code class="language-plaintext highlighter-rouge">website/deploy/terraform-custom-datacommons/modules</code> directory.</li>
+  <li>
+    <p>Initialize Terraform and validate the configuration:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>terraform init
+terraform plan
+</code></pre></div>    </div>
+  </li>
+  <li>Review the plan for any possible configuration errors and fix them if needed.</li>
+  <li>
+    <p>Deploy the instance:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>terraform apply
+</code></pre></div>    </div>
+  </li>
+  <li>At the prompt asking you to confirm the actions before creating resources, type <code class="language-plaintext highlighter-rouge">yes</code> to proceed. It will take about 15 minutes to complete. You will see extensive output showing the progress of the deployment. You may want to take note of the names of the various services created.</li>
+  <li>To view the running application, which initially just serves the default “Custom Data Commons” UI with the base data, open the browser link listed in the <code class="language-plaintext highlighter-rouge">cloud_run_service_url</code> output, or see <a href="#view-app">View the running application</a> for more details. To run the application with your own data and/or custom build, continue with the rest of this page.</li>
+</ol>
+
+<h2 id="manage-your-data">Manage your data</h2>
+
+<h3 id="upload-data-files-to-google-cloud-storage">Upload data files to Google Cloud Storage</h3>
+
+<p>By default, the Terraform scripts create a Cloud Storage bucket called <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, with a top-level folder <code class="language-plaintext highlighter-rouge">input</code>. You upload your CSV, JSON, and MCF files to this folder. You can create subfolders of <code class="language-plaintext highlighter-rouge">input</code>, but remember to set <code class="language-plaintext highlighter-rouge">"includeInputSubdirs": true</code> in <code class="language-plaintext highlighter-rouge">config.json</code>.</p>
+
+<p>As you are iterating on changes to the files, you can re-upload them at any time, either overwriting existing files or creating new folders. If you want versioned snapshots, you can create new folders to store them. A simple strategy would be to move the older versions to other folders, and keep the latest versions in <code class="language-plaintext highlighter-rouge">input</code>, to avoid having to update configuration variables. If you prefer to simply incrementally update, you can simply overwrite files. Creating new versions of files is slower but safer. Overwriting files is faster but riskier.</p>
+
+<p>To upload data files:</p>
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+        <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> for your service and select the Data Commons bucket that was created by the Terraform script.</li>
+        <li>Select the <b>input</b> folder.</li>
+        <li>Click <b>Upload Files</b>, and select the CSV files, MCF files, and <code>config.json</code> from your local file system.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>Navigate to your local "input" directory where your source files are located.</li>
+         <li>Run the following command:
+             <pre>gcloud storage cp config.json [<var>PATH</var>/]*.csv  [<var>PATH</var>/]*.mcf gs://<var>BUCKET_NAME</var>/<var>input</var></pre>
+        </li>
+      </ol>
+   </div>
+  </div>
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong> Do not upload the local <code class="language-plaintext highlighter-rouge">datacommons</code> subdirectory or its files.</p>
+</blockquote>
+
+<p>Once you have uploaded the new data, you must <a href="#run-job">rerun the data management Cloud Run job</a> and <a href="#start-service">restart the services Cloud Run service</a>.</p>
+
+<h3 id="run-job">Run the data management container</h3>
+
+<p>By default, the Terraform scripts create and run a Google Run job called <code><var>NAMESPACE</var>-datacommons-data-job</code>. When you run the data management job, it converts CSV (and MCF) data into tables in the Cloud SQL database and generates embeddings in the <code class="language-plaintext highlighter-rouge">output</code> folder of the Cloud Storage bucket.</p>
+
+<p>Every time you upload new input files to Google Cloud Storage, you will need to rerun the job. You can simply run <code class="language-plaintext highlighter-rouge">terraform apply</code> again, or use any of the other methods described below.</p>
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+           <li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
+        <li>From the list of jobs, select the job created by the Terraform script. </li>
+      <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>From any local directory, run the following command:
+           <pre>gcloud run jobs execute <var>JOB_NAME</var></pre>
+         </li>
+         <li>To view the progress of the job, run the following command:
+              <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
+          </li>
+      </ol>
+      </div>
+      </div>
+</div>
+
+<p>When it completes, to verify that the data has been loaded correctly, see <a href="#inspect-sql">Inspect the Cloud SQL database</a>. Then <a href="#start-service">restart the services Cloud Run service</a>.</p>
+
+<h4 id="schema-update-mode" class="no_toc">(Optional) Run the data management Cloud Run job in schema update mode</h4>
+
+<p>If you have tried to start a container, and have received a <code class="language-plaintext highlighter-rouge">SQL check failed</code> error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, <code class="language-plaintext highlighter-rouge">DATA_RUN_MODE=schemaupdate</code>. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.</p>
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Cloud Console</li>
+    <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+           <ol>
+           <li> Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project.</li>
+             <li>From the list of jobs, select the job created by the Terraform script.</li>
+            <li>Select <b>Execute</b> &gt; <b>Execute with overrides</b> and click <b>Add variable</b> to set a new variable with name <code>DATA_RUN_MODE</code> and value <code>schemaupdate</code>.</li>
+            <li>Click <b>Execute</b>. It will take several minutes for the job to run. You can click the <b>Logs</b> tab to view the progress. </li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+         <li>From any local directory, run the following command:
+            <pre>gcloud run jobs execute <var>JOB_NAME</var> -update-env-vars DATA_RUN_MODE=schemaupdate</pre>
+         </li>
+         <li>To view the progress of the job, run the following command:
+            <pre>gcloud beta run jobs logs tail <var>JOB_NAME</var></pre>
+          </li>
+      </ol>
+   </div>
+  </div>
+</div>
+
+<h3 id="inspect-sql">Inspect the Cloud SQL database</h3>
+
+<p>By default, the Terraform scripts create a Cloud SQL instance called <code><var>PROJECT_ID</var>:us-central1:<var>NAMESPACE</var>-datacommons-mysql-instance</code>, with a database named <code class="language-plaintext highlighter-rouge">datacommons</code>, and a default user with admin permissions called <code class="language-plaintext highlighter-rouge">datacommons</code>.</p>
+
+<p>Before you can inspect the database, you need to retrieve the password created by the Terraform scripts:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/security/secret-manager" target="_blank">https://console.cloud.google.com/security/secret-manager</a> for your project and in the list of secrets, select <code><var>NAMESPACE</var>-datacommons-mysql-password</code>.</li>
+  <li>Click the <strong>Versions</strong> tab, and select <strong>Actions &gt; View secret value</strong>. Record the password.</li>
+</ol>
+
+<p>To view the tables:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/sql/instances" target="_blank">https://console.cloud.google.com/sql/instances</a> for your project.</li>
+  <li>Select the instance created by the Terraform script.</li>
+  <li>In the left panel, select <strong>Cloud SQL Studio</strong>.</li>
+  <li>In the <strong>Sign in to SQL Studio</strong> page, from the <strong>Database</strong> field, select the database created by the Terraform script.</li>
+  <li>In the <strong>User</strong> field, select the user created by the Terraform script.</li>
+  <li>In the <strong>Password</strong> field, enter the password you have retrieved from the Cloud Secret Manager</li>
+  <li>In the left Explorer pane that appears, expand the <strong>Databases</strong> icon, your database name, and <strong>Tables</strong>. The table of interest is <strong>observations</strong>. You can see column names and other metadata.</li>
+  <li>To view the actual data, in the main window, click <strong>New SQL Editor tab</strong>. This opens an environment in which you can enter and run SQL queries.</li>
+  <li>
+    <p>Enter a query and click <strong>Run</strong>. For example, for the sample OECD data, if you do <code class="language-plaintext highlighter-rouge">select * from observations limit 10;</code>, you should see output like this:</p>
+
+    <p><img src="/assets/images/custom_dc/customdc_screenshot6.png" alt="screenshot_sqlite" height="400" /></p>
+  </li>
+</ol>
+
+<p>If you don’t see any data, go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project, select
+the job you ran in the previous step, and click the <strong>Logs</strong> tab to look for errors.</p>
+
+<h2 id="manage-your-service">Manage your service</h2>
+
+<h3 id="upload">Upload a custom Docker image to the Artifact Registry</h3>
+
+<p>When you ran the “create artifact registry” script, it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.</p>
+
+<p>Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.</p>
+
+<ol>
+  <li>
+    <p>Build a local version of the Docker image, following the procedure in <a href="/custom_dc/build_image.html#build-repo">Build a local image</a>.</p>
+  </li>
+  <li>Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is <code class="language-plaintext highlighter-rouge">us-central1</code>.
+    <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre>
+  </li>
+  <li>When prompted to confirm creating the credentials file, click <code class="language-plaintext highlighter-rouge">Y</code> to accept.</li>
+  <li>
+    <p>Create a package from the source image you created in step 1:</p>
+
+    <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \
+<var>REGION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>
+</pre>
+    <p>The artifact repo is <code><var>PROJECT_ID</var>-artifacts</code>.
+The target image name and tag can be the same as the source or different.</p>
+  </li>
+  <li>
+    <p>Push the image to the registry:</p>
+
+    <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
+
+    <p>The container image URL is the full name of the package you created in the previous step, including the tag.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Tip: We suggest you name and tag your image the same for every release, and let the Artifact Registry manage versioning. This way you won’t have to continually update your Terraform configuration to a new name every time you upload a new build.</p>
+</blockquote>
+
+<p>It will take several minutes to upload. Once you have uploaded a new image, you must <a href="#start-service">restart the web services Cloud Run service</a> to pick it up, as described below.</p>
+
+<h4 class="no_toc" id="verify-the-upload">Verify the upload</h4>
+
+<p>When the push completes, verify that the container has been uploaded in the Cloud Console:</p>
+
+<ol>
+  <li>Go to <a href="https://console.cloud.google.com/artifacts" target="_blank">https://console.cloud.google.com/artifacts</a> for your project.</li>
+  <li>In the list of repositories, click on <code><var>PROJECT_ID</var>-artifacts</code>. You should see your image in the list. You can click through to view revisions and tags.</li>
+</ol>
+
+<h3 id="start-service">Start/restart the services container</h3>
+
+<p>By default, the Terraform scripts point the service at the prebuilt Data Commons services image, <code class="language-plaintext highlighter-rouge">gcr.io/datcom-ci/datacommons-services:stable</code>. If you just want to see the running default website in action with your data, run <code class="language-plaintext highlighter-rouge">terraform apply</code> again.</p>
+
+<p>If you are using a custom image, which is normally the case, you first need to repoint the service to your own image and then restart the service:</p>
+
+<ol>
+  <li>Open the file <code class="language-plaintext highlighter-rouge">website/deploy/terraform-custom-datacommons/modules/terraform.tfvars</code> and add the following line:
+    <pre>dc_web_service_image = "<var>CONTAINER_IMAGE_URL</var>"</pre>
+    <p>The container image URL is the name of the package you created in the previous step.</p>
+  </li>
+  <li>From the <code class="language-plaintext highlighter-rouge">modules</code> directory, run <code class="language-plaintext highlighter-rouge">terraform apply</code>.</li>
+  <li>To view the running application with your custom UI and data, open the browser link listed in the <code class="language-plaintext highlighter-rouge">cloud_run_service_url</code> output, or see <a href="#view-app">View the running application</a> for more details.</li>
+</ol>
+
+<p>You need to restart the services container every time you make changes to the code and release a new Docker artifact, or rerun the <a href="#run-job">data management job</a> to process new data. For future pushes and restarts, if you use a different image or tag name, re-edit the <code class="language-plaintext highlighter-rouge">terraform.tfvars</code> file. If you use the same image name or tag you can simply rerun <code class="language-plaintext highlighter-rouge">terraform apply</code> every time to restart the services. Alternatively, you can also use either of the following procedures:</p>
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+  <li class="active">Cloud Console</li>
+  <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+  <div class="active">
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
+             <li>From the list of services, click the link of the service created by the Terraform scripts</li>
+             <li>click <b>Edit &amp; Deploy Revision</b>.</li>
+           <li>Under <b>Container image URL</b>, click <b>Select</b>.</li>
+           <li>Expand the package name you created in the previous step.</li>
+           <li>Expand the image name of the container, and select the tag you created in the previous step.</li>
+           <li>Click <b>Deploy</b>. It will take several minutes for the service to start. You can click the <b>Logs</b> tab to view the progress.</li>
+        </ol>
+      </div>
+    <div>
+      <li>From any local directory, run the following command:
+        <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></li>
+        <li>To view the startup status, run the following command:
+            <pre>gcloud beta run jobs logs tail <var>SERVICE_NAME</var></pre>
+          </li>
+          The service name is <code><var>NAMESPACE</var>-datacommons-web-service</code>.
+          The container image URL is the name of the package you created in the previous step.
+      &lt;/ol&gt;
+     </div>
+   <div>
+  </div>
+  </div>
+</div>
+
+<h3 id="view-app">View your running application</h3>
+
+<p>The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:</p>
+
+<ol>
+  <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
+  <li>From the list of services, click the link the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab.</li>
+</ol>
+
+<p>If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  <strong>Logs</strong> tab and look for errors. Also check the output of your <code class="language-plaintext highlighter-rouge">terraform apply</code> run.</p>
+
+<script src="/assets/js/customdc-doc-tabs.js"></script>
+
+<h2 id="update-terraform">Update your Terraform deployment</h2>
+
+<p>If you want to continue to use Terraform to deploy changes to your service, do the following:</p>
+<ol>
+  <li>Add your updated variables in the <code class="language-plaintext highlighter-rouge">terraform.tfvars</code> file.</li>
+  <li><a href="#gen-creds">Authenticate to GCP</a>.</li>
+  <li>Run all the Terraform commands as listed in <a href="#run-terraform">Run the Terraform deployment</a>.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Note:</strong> Whenever you make future updates to your deployments, we recommend always using Terraform to do so. If you use the Cloud Console or gcloud to make updates and try to run Terraform again, it will override any changes you have made outside of Terraform. For options that are available as variables in the Data Commons <code class="language-plaintext highlighter-rouge">variables.tf</code>, you must sync your <code class="language-plaintext highlighter-rouge">terraform.tfvars</code> options to the same values you have set outside Terraform before running Terraform commands again. If you use the Cloud Console or gcloud to configure options that are not available as Data Commons variables, you <em>must not</em> run Terraform again.</p>
+</blockquote>
+
+<p>If you intend to deploy several Google Cloud instances, see the next section for a recommended way of using Terraform to do this.</p>
+
+<h2 id="multiple">Manage multiple Terraform deployments</h2>
+
+<p>If you would like to create multiple Terraform deployments, for example, development, staging, and production, you can easily do so using Terraform Workspaces and multiple <code class="language-plaintext highlighter-rouge">tfvars</code> configuration files. You can run the deployments in different projects, or run them in the same project using namespaces to keep them separate.</p>
+
+<p>To create additional deployments:</p>
+
+<ol>
+  <li>In the <code class="language-plaintext highlighter-rouge">website/deploy/terraform-custom-datacommons/modules</code> directory, make a copy of the <code class="language-plaintext highlighter-rouge">terraform.tfvars</code> and name it to something different that indicates its purpose, for example:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp terraform.tfvars terraform_prod.tfvars
+</code></pre></div>    </div>
+    <blockquote>
+      <p>Tip: You may wish to rename the original <code class="language-plaintext highlighter-rouge">terraform.tfvars</code> to something more descriptive as well.</p>
+    </blockquote>
+  </li>
+  <li>Do any of the following:
+    <ul>
+      <li>If you intend to run the new deployment in a different GCP project, edit the <code class="language-plaintext highlighter-rouge">project_id</code> variable and specify the project ID.</li>
+      <li>If you intend to run the new deployment in the same GCP project, edit the <code class="language-plaintext highlighter-rouge">namespace</code> variable to name it according to the environment you are creating, e.g. <code class="language-plaintext highlighter-rouge">-prod</code>. When you run the deployment, all created services will use the new namespace.</li>
+    </ul>
+  </li>
+  <li>Add any relevant variables you want to change to the file, as described in <a href="#optional">Edit optional variables</a>. For example, for a production environment, you may want to increase the number of service replicas, add a caching layer, and so on. (See <a href="/custom_dc/launch_cloud.html">Launch on Cloud</a> for more details.)</li>
+  <li>Add a new workspace for each environment you want:
+    <pre>terraform workspace new <var>WORKSPACE_NAME</var></pre>
+    <p>This creates an empty workspace with no configuration attached to it.</p>
+  </li>
+  <li>When you are ready to actually run the deployment, switch to the desired workspace, and attach the relevant configuration to it:
+    <pre>
+terraform workspace select <var>WORKSPACE_NAME</var>
+terraform plan -var-file=<var>FILE_NAME</var>
+</pre>
+  </li>
+  <li>When you are ready to run the deployment, specify the configuration file again:
+    <pre>terraform apply -var-file=<var>FILE_NAME</var></pre>
+  </li>
+</ol>
+
+
+          </div>
+          <div style="text-align:center" id="metadata">
+            <p>
+             Page last updated: February 24, 2025 &#8226; <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf23mC17idzIpzg6v4frCh8iWTl9dxeb4iSTVgo0WiBvnv5ZA/viewform?usp=pp_url&entry.871991796=/custom_dc/deploy_cloud.html">
+              Send feedback about this page
+              </a>
+            </p>
+          </div>
+      </div>
+    </main>
+
+    <footer id="main-footer">
+      <div id="sub-footer">
+        <span class="brand-byline">
+          <span class="brand-text">An initiative from</span>
+          <img class="brand-logo" src="/assets/images/google-logo.svg" />
+        </span>
+        <div class="sub-footer-links">
+          <a href="https://policies.google.com/terms">Terms and Conditions</a>
+          <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script async
+    src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWSES5WXZE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KWSES5WXZE', {
+      client_storage: 'none',
+      anonymize_ip: true,
+    });
+  </script>
+  <script>
+    /**
+     * Add placeholder text for Google Custom Search Engine search box in the page header
+     */
+    window.addEventListener("load", function() {
+      const googleCustomSearchInput = document.querySelector(".gsc-search-box input[name=\"search\"]");
+      if (googleCustomSearchInput) {
+        googleCustomSearchInput.placeholder = "Search docs";
+      }
+    });
+  </script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+  <script>
+    anchors.add();
+  </script>
+</body>
+</html>
