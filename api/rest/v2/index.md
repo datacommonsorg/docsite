@@ -46,8 +46,8 @@ The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
 | SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"} graph query |
 
