@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Crime
-nav_order: 3
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -10,11 +10,6 @@ parent: Data Sources
 
 * TOC
 {:toc}
-
-### [National Institution for Transforming India.](https://niti.gov.in/)
-
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
 
 ### [U.S. Bureau of Justice Statistics (BJS)](https://bjs.ojp.gov/)
 

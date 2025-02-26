@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Web Components
-parent: API
-nav_order: 30
+title: Embed data and visualizations in your own website
+nav_order: 60
 has_children: true
 published: true
 ---

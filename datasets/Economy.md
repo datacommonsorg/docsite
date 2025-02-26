@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Economy
-nav_order: 5
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -79,9 +79,6 @@ Population Census and Statistics for Mexico at Country and State levels.
 
 #### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
 India poverty statistics - percentage of people below poverty line.
-
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
 
 ### [OpenFIGI](https://www.openfigi.com/)
 

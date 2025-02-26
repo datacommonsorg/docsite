@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Place Statistics
+title: Get statistics for places
 parent: Python
-grand_parent: API
+grand_parent: API - Query data programmatically
 published: false
 ---
 
-# Get Statistics for Places
+# Get statistics for places
 
 ## `datacommons.get_stats(dcids, stats_var, obs_dates='latest')`
 

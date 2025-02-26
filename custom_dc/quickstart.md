@@ -53,8 +53,6 @@ An API key is required to authorize requests from your site to the base Data Com
 1. Go to [https://console.cloud.google.com/google/maps-apis/credentials](https://console.cloud.google.com/google/maps-apis/credentials){: target="_blank"} for your project.
 1. Click **Create Credentials** > **API Key**.
 1. Record the key and click **Close**.
-1. Click on the newly created key to open the **Edit API Key** window.
-1. Under **API restrictions**, select **Restrict key**.
 1. From the drop-down menu, enable **Places API** and **Maps Javascript API**. (Optionally enable other APIs for which you want to use this key.)
 1. Click **OK** and **Save**.
 
@@ -64,11 +62,8 @@ An API key is required to authorize requests from your site to the base Data Com
 
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
-
-  <pre>
-   git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
-  </pre>
-  If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
+    <pre>git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]</pre>
+    If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
 When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
@@ -147,12 +142,13 @@ To load the sample data:
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
 1. Open a terminal window, and from the root directory, run the following command to run the data management Docker container:
 
-  ```shell
-  docker run \
-  --env-file $PWD/custom_dc/env.list \
-  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-  gcr.io/datcom-ci/datacommons-data:stable
-  ```
+   ```shell
+   docker run \
+   --env-file $PWD/custom_dc/env.list \
+   -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
+   gcr.io/datcom-ci/datacommons-data:stable
+   ```
+> Tip: While the `env.list` file requires full paths for input and output directories, in Docker commands you can use system variables like `$PWD` as shortcuts. 
 This does the following:
 
 - The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
@@ -168,14 +164,14 @@ Once the container has executed all the functions in the scripts, it shuts down.
 1. Open a new terminal window.
 1. From the root directory, run the following command to start the services Docker container:
 
-```shell
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
---env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-services:stable
-```
+  ```shell
+  docker run -it \
+  -p 8080:8080 \
+  -e DEBUG=true \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
+  gcr.io/datcom-ci/datacommons-services:stable
+  ```
 
 > Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every `docker` invocation with `sudo`.
 
@@ -196,17 +192,12 @@ If you need to restart the services for any reason, do the following:
 Tip: If you close the terminal window in which you started the Docker services container, you can kill it as follows:
 
 1. Open another terminal window, and from the root directory, get the Docker container ID.
-
   ```shell
   docker ps
   ```
   The `CONTAINER ID` is the first column in the output.
-
 1. Run:
-
-  <pre>
-  docker kill <var>CONTAINER_ID</var>
-	</pre>
+   <pre>docker kill <var>CONTAINER_ID</var></pre>
 
 ## View the local website
 
@@ -239,3 +230,7 @@ http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=
 If you select **Prettyprint**, you should see output like this:
 
 ![screenshot_api_call](/assets/images/custom_dc/customdc_screenshot4.png){: height="400" }
+
+## Troubleshooting
+
+Having trouble? Visit our [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.

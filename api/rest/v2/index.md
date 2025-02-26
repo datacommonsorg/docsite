@@ -1,10 +1,11 @@
 ---
 layout: default
 title: REST (V2)
-nav_order: 5
-parent: API
+nav_order: 1
+parent: API - Query data programmatically
 has_children: true
 published: true
+redirect_from: /api/rest/v2/getting_started
 ---
 
 {:.no_toc}
@@ -267,4 +268,4 @@ curl -X POST \
   "nextToken": "SoME_veRy_L0ng_STrIng"
 }'
 ```
-Don't forget to URL-encode any special characters that appear in the string.
+You must [URL-encode](#url-encode) any special characters that appear in the string.

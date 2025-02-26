@@ -1,119 +1,116 @@
 ---
 layout: default
-title: Statistical Variable Values
-nav_order: 3
-parent: Google Sheets
-grand_parent: API
+title: Get statistical variable values
+nav_order: 54
+parent: Analyze data with Google Sheets
 ---
 
-# Getting the Value of a Statistical Variable at a Given Place and Time
+# Retrieve the value of a statistical variable at a given place and time
 
-The`=DCGET(dcids, variable, date)` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [Place](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
-
-> **Note**: Be sure to follow the instructions for [Installing and Enabling the Sheets Add-On](/api/sheets/) before using this formula.
+The`=DCGET` formula returns the measurements of a specified [statistical variable](/glossary.html#variable) at a given place and optional time based on a list of parent [place](https://datacommons.org/browser/Place){: target="_blank"} [DCIDs](/glossary.html#dcid). A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
 
 ## Formula
 
 ```
-=DCGET(dcids, variable, date)
+=DCGET(dcids, variable, [date])
 ```
 
-### Required Arguments
+### Required arguments
 
-* `dcids`: A list of [Place](/glossary.html#place) nodes, identified by their [DCIDs](/glossary.html#dcid).
+* `dcids`: A single [place](/glossary.html#place) node or range of cells represening place nodes, identified by their [DCIDs](/glossary.html#dcid).
 * `variable`: The [statistical variable](/glossary.html#variable) whose measurements you want to query.
 
-### Optional Arguments
+### Optional arguments
 
 `date`: The date or dates of interest. If this argument is not specified, the API returns the latest variable observation. You can specify this argument as a single value, row, or column. All dates must be in ISO 8601 format (such as 2017, “2017”, “2017-12”) or as a Google sheets [date value](https://support.google.com/docs/answer/3092969?hl=en){: target="_blank"}.
 
-## Returns
+### Returns
 
 The value of the variable at those places on the specified date or on the latest available date, if no date is specified.
 
-> **Note**: It’s best to minimize the number of function calls to `=DCGET(dcids, variable, date)` by using a single call to get the names for a column of nodes. This is because a spreadsheet will make one call to a Google server [per custom function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}. If your sheet contains thousands of separate calls to `=DCGET(dcids, variable, date)` you can expect it to be slow and return with errors.
-
 ## Examples
 
-This section contains examples of using the `=DCGET(dcids, variable, date)` formula to returns lists of [statistical variable](/glossary.html#variable) such as "Count_Person" and "Median_Income_Person". A complete list of variables can be found in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
+This section contains examples of using the `=DCGET` formula to returns the values of [statistical variable](/glossary.html#variable)s such as `Count_Person` and `Median_Income_Person`. 
 
-### Example 1: Get the Total Population of Hawaii in 2017
+> **Note**: Be sure to follow the instructions for for [enabling the Sheets add-on](/api/sheets/index.html#install) before trying these examples.
 
-The following formula returns the total population of Hawaii in 2017 using the "geoId/15" DCID and "Count_Person" variable:
+### Example 1: Get the total population of Hawaii in 2017
 
-```
-=DCGET("geoId/15", "Count_Person", 2017)
-```
+To get the total population of Hawaii in 2017:
 
-Running the preceding formula returns a value of 1425763.
+1. Place your cursor in the desired cell.
+1. Enter the formula `=DCGET("geoId/15", "Count_Person", 2017)`. The value `1425763` populates the cell.
 
-### Example 2: Get the Population of Multiple Places with a Single Call
+### Example 2: Get the population of five Hawaii counties in 2017
 
-The following sheet returns the population of the five Hawaii counties in 2017. Column A contains the Hawaii state DCID of "geoId/15" and column B contains the county DCIDs. Column C uses the `=DCGETNAME()` formula to retrieve the county names based on the values in column B. Column D uses the following formula to retrieve the 2017 population:
+To get the population of the five counties in 2017:
 
-```
-=DCGET(B2:B6, "Count_Person", 2017)
-```
+1. Place your cursor in the desired cell; in this case A2, and enter the DCID of Hawaii, namely `geoId/15`.
+1. In cell B2, enter the formula `=DCPLACESIN(A2, "County")`. The DCIDs of the Hawaii counties populate column B.
+1. (Optional) In cell C2, enter `=DCGETNAME(B2:B6)` to retrieve the names of the counties in column C.
+1. In cell D2, enter the formula `=DCGET(B2:B6, "Count_Person", 2017)`.
 
-![Getting the population of multiple places with a single call](/assets/images/sheets/sheets_get_variable_input.png)
+    ![DCGET example 2](/assets/images/sheets/sheets_get_variable_input.png)
 
-Here is the output after running the <code><b>=DCGET(B2:B6, "Count_Person", 2017)</b></code> formula:
+    The values populate column D.
 
-![Output after running the =DCGET(B2:B6, "Count_Person", 2017) formula](/assets/images/sheets/sheets_get_variable_output.png)
+    ![DCGET example 2](/assets/images/sheets/sheets_get_variable_output.png)
 
-### Example 3: Get the Median Income of a Single Place in Multiple Years
+### Example 3: Get the median income of a single place in multiple years
 
-The following sheet demonstrates how to retrieve the median income from a single place in multiple years. Cell C2 uses the DCID for Hawaii (geoId/15) from cell B2 to retrieve the data using the following formula:
+This example shows how to get the median income in Hawaii for the years 2011 - 2013, with dates as columns:
 
-```
-=DCGET(B2, "Median_Income_Person", C1:E1)
-```
+1. In a new sheet, in row 1, create cells with the headings shown in the image below.
+1. In cell A2, enter `Hawaii`, and in cell B2, `geoId/15`.
+1. Select cells C2 to E2, and enter the formula `=DCGET(B2, "Median_Income_Person", C1:E1)`.
 
-![Getting the median income of a single place in multiple years](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
+    ![DCGET example 3](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_input.png)
 
-Here is the output after running the <code><b>=DCGET(B2, "Median_Income_Person", C1:E1)</b></code> formula:
+    The values populate C2, D2 and E2.
 
-![Output after running the =DCGET(B2, "Median_Income_Person", C1:E1) formula](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
+    ![DCGET example 3](/assets/images/sheets/sheets_get_variable_one_place_multiple_years_output.png)
 
-### Example 4: Get the Median Age of Multiple Places in Multiple Years
+### Example 4: Get the median age of multiple places in multiple years
 
-The following sheet demonstrates how to retrieve the median age of multiple places in multiple years, with places as a column and dates as a row. Cell E2 uses the Hawaii county DCIDs from column C to retrieve the data using the following formula:
+The following examples demonstrate how to retrieve the median age of five counties in Hawaii for the years 2011 - 2015. 
 
-```
-=DCGET(C2:C6, "Median_Age_Person", F1:H1)
-```
+To get the results with the counties in rows and the dates in columns, do the following:
 
-![Getting the median age of multiple places in multiple years](/assets/images/sheets/sheets_get_variable_places_column_years_row_input.png)
+1. In a new sheet, in row 1, create cells with the headings shown in the image below, with columns for each year 2011 to 2015.
+1. In cell A2, enter `Hawaii`, and in cell B2, `geoId/15`.
+1. In cell C2, enter the formula `=DCPLACESIN(, "County")`. The county DCIDs populate column C.
+1. In cell D2, enter the formula `=DCGETNAME(C2:C6) `. The county names populate column D.
+1. Place your cursor in cell E2 and enter the formula `=DCGET(C2:C6, "Median_Age_Person", E1:I1)`. The ages for each county and year appear in columns E to I.  
 
-Here is the output after running the <code><b>=DCGET(C2:C6, "Median_Age_Person", F1:H1)</b></code> formula:
+![DCGET example 4](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
 
-![Output after running the =DCGET(C2:C6, "Median_Age_Person", F1:H1) formula](/assets/images/sheets/sheets_get_variable_places_column_years_row_output.png)
+To get the results with the counties in columns and the dates in rows, do the following:
 
-Here's another example, but this time with places as a row and dates as a column using the formula:
+1. In a new sheet, in column A, create cells with the headings shown in the image below.
+1. In cell B1, enter `Hawaii`, and in cell B2, `geoId/15`
+1. Manually enter the DCIDs for each county, in cells B3 to F3, as shown in the image below.
+1. Place your cursor in cell B4 and enter the formula `=DCGETNAME(B3:F3) `. The county names populate column D.
+1. Place your cursor in cell B5 and enter the formula `=DCGET(B3:F3, "Median_Age_Person", A5:A9)`. 
 
-```
-=DCGET(B3:F3, "Median_Age_Person", A5:A9)
-```
+    ![DCGET example 4](/assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
 
-![Retrieving places as a row and dates as a column using the formula =DCGET(B3:F3, "Median_Age_Person", A5:A9)](/assets/images/sheets/sheets_get_variable_places_row_years_column_input.png)
+    The ages for each county and year appear in rows 5 to 9.
 
-Here is the output after running the <code><b>=DCGET(B3:F3, "Median_Age_Person", A5:A9)</b></code> formula:
+    ![DCGET example 4](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
 
-![Output after running the =DCGET(B3:F3, "Median_Age_Person", A5:A9) formula](/assets/images/sheets/sheets_get_variable_places_row_years_column_output.png)
+## Error responses
 
-## Error Responses
+The `=DCGET` formula returns a blank value under the following circumstances:
 
-The `=DCGET(dcids)` formula returns a blank value under the following circumstances:
+* A DCID does not exist (e.g. `geoId/123123123`)
+* You provide a nonexistent statistical variable (e.g. `Count`)
+* You provide an incorrectly formatted date (e.g. `July 12, 2013`)
 
-* A DCID does not exist (e.g. "geoId/123123123")
-* You provide a nonexistent statistical variable (e.g. "Count")
-* You provide an incorrectly formatted date (e.g. "July 12, 2013")
+For example, because the `geoId/123123123` DCID does not exist, no value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")`:
 
-For example, because the “geoId/123123123” DCID does not exist, no value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")`:
+![DCGET error example](/assets/images/sheets/sheets_get_variable_nonexistent_dcid.png)
 
-![No value is returned to cell B1 in the following sheet for the formula `=DCGET(A1, "Count_Person")` because the DCID does not exist](/assets/images/sheets/sheets_get_variable_nonexistent_dcid.png)
+If you fail to provide all required arguments, you will get a response of `#ERROR!`:
 
-If you fail to provide all required arguments, you will receive an error:
-
-![Error returned if you fail to provide all required arguments](/assets/images/sheets/sheets_get_variable_incorrect_args.png)
+![DCGET error example](/assets/images/sheets/sheets_get_variable_incorrect_args.png)
 

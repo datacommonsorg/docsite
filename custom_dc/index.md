@@ -30,9 +30,10 @@ If you have the resources to develop and maintain a custom Data Commons instance
 
 For the following use cases, a custom Data Commons instance is not necessary:
 
-- You only want to make your own data available to the base public Data Commons site and don't need to test it. In this case, see the procedures in [Data imports](/import_dataset/index.html).
+- You want to share your data publicly on datacommons.org. In this case, please file a [data request](https://issuetracker.google.com/issues/new?component=1660823&template=2053232){: target="_blank"} in our issue tracker to get started.
 - You want to make the base public data or visualizations available in your own site. For this purpose, you can call the Data Commons APIs from your site; see [Data Commons web components](/api/web_components/index.html) for more details.
 
+{: #comparison }
 ## Comparison between base and custom Data Commons
 
 | Feature                                                      |  Base Data Commons | Custom Data Commons |
@@ -78,11 +79,19 @@ A custom Data Commons site runs in a Docker container on Google Cloud Platform (
 
 > **Note:** Data Commons does not support local Windows development natively. If you wish to develop Data Commons on Windows, you will need to use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){: target="_blank"}.
 
-If you already have an account with another cloud provider, we can provide a connector; please contact us if you are interested in this option.
+If you already have an account with another cloud provider, we can provide a connector; please [contact us](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?resourcekey=0-yJ9nT9ST-TfoKNtmGIws-g){: target="_blank"} if you are interested in this option.
 
 In terms of development time and effort, to launch a site with custom data in compatible format and no UI customization, you can expect it to take less than three weeks. If you need substantial UI customization it may take up to four months.
 
-The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a small dataset, we have found the cost comes out to roughly $100 per year. You can get more precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing){: target="_blank"}.
+The cost of running a site on Google Cloud Platform depends on the size of your data, the traffic you expect to receive, and the amount of geographical replication you want. For a singly-homed service with 5 GB of data serving 1 M queries per month, you can expect a cost of approximately $400 per month. 
+
+You can get precise information and cost estimation tools at [Google Cloud pricing](https://cloud.google.com/pricing){: target="_blank"}. A GCP setup must include:
+- Cloud SQL
+- Cloud Storage
+- Cloud Run: Job + Service
+- Artifact Registry (< 1 GB storage>)
+
+You may also need Cloud DNS, Networking - Cloud Loadbalancing, and Redis Memorystore + VPC networking (see [Launch your Data Commons](launch_cloud.md) for details).
 
 {: #workflow}
 ## Recommended workflow
@@ -90,16 +99,8 @@ The cost of running a site on Google Cloud Platform depends on the size of your 
 1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
 1. Prepare your real-world data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Prepare and load your own data](/custom_dc/custom_data.html) for details. 
 > Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
-1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html).
-1. When you have finished testing locally, host your data and code in Google Cloud Platform: first, upload your data to Google Cloud Storage and create a Cloud Run job to load the data into Google Cloud SQL. See [Load data in Google Cloud](/custom_dc/data_cloud.html).
-1. Build a custom image, upload it to the Google Cloud Artifact Registry and create a Cloud Run service to run the site. See [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html)
-1. Launch and productionize your site for external traffic. See [Launch your Data Commons](/custom_dc/launch_cloud.html).
+1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html) and [Build a custom image](build_images.md), 
+1. When you have finished testing locally, set up a development environment in Google Cloud Platform. See [Deploy to Google Cloud](/custom_dc/deploy_cloud.html).
+1. Productionize and launch your site for external traffic. See [Launch your Data Commons](/custom_dc/launch_cloud.html).
 1. For future updates and launches, continue to make UI and data changes locally, before deploying the changes to GCP.
 
-## Send feedback {#feedback}
-
-We use [Google Issue Tracker](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable.
-
-Before opening a new ticket, please see if an existing [feature request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} or [bug report](https://issuetracker.google.com/issues?q=componentid:1659535%20-type:feature_request){: target="_blank"} covering your issue has already been filed. If yes, upvote (click the **+1** button ) and [subscribe](https://developers.google.com/issue-tracker/guides/subscribe){: target="_blank"} to it. If not, open a new [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or [bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
-
-For any issue you file, make sure to indicate that it affects your Data Commons instance.

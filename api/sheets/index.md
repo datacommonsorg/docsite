@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Google Sheets
-nav_order: 20
-parent: API
+title: Analyze data with Google Sheets
+nav_order: 50
 has_children: true
 ---
 
@@ -12,13 +11,14 @@ The Data Commons Google Sheets add-on allows you to import data from the Data Co
 
 Read our [step-by-step guides](tutorials/) for examples on using the add-on for various analysis and visualization use cases.
 
-## Install and enable the Sheets add-on
+## Install and enable the Sheets add-on {#install}
 
 1. Go to the [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/data_commons/454343067575){: target="_blank"} page for Data Commons.
 1. Click **Install**.
-1. To enable the Sheets add-on functions, follow the next procedure below to open the **Fill place dcids** feature and fill a place DCID.
+1. Open a new spreadsheet.
+1. Select  **Extensions**  > **Data Commons** > **Fill place dcids**. 
 
-> **Note:** None of the Data Commons Sheets functions will work in a spreadsheet until you have enabled the add-on by opening the **Fill place dcids** sidebar.
+> **Note:** None of the Data Commons Sheets functions will work in a spreadsheet until you have enabled the add-on by opening the **Fill place dcids** sidebar. You need to open the sidebar every time you reopen the Sheets application or create a new sheet.
 
 ## Find a place's DCID {#find-dcid}
 
@@ -37,7 +37,7 @@ The Data Commons Sheets add-on provides the ability to look up a place’s [DCID
 
 ## Data Commons Sheets functions
 
-The Data Commons Sheets add-on includes the five formulas listed in the following table. Click the links in the table for detailed information on each formula.
+The Data Commons Sheets add-on includes the five formulas listed in the following table. Click the links in the table for detailed information on each formula. 
 
 | **Formula**                                                                                  | **Description**                           |
 |----------------------------------------------------------------------------------------------|-------------------------------------------|
@@ -45,11 +45,18 @@ The Data Commons Sheets add-on includes the five formulas listed in the followin
 | [=DCPLACESIN(dcids, place_type)](/api/sheets/places_in.html)               |  Returns places contained in other places.                      |
 | [=DCGET(dcids, variable_name, [date])](/api/sheets/get_variable.html)                 | Returns statistical observations.            |
 | [=DCPROPERTY(dcids, property)](/api/sheets/get_property.html)            | Returns node property values.             |
-| [=DCCOHORTMEMBERS(dcids)](/api/sheets/get_cohort_members.html) |  Gets the cohort members of a node.        |
+| [=DCCOHORTMEMBERS(dcids)](/api/sheets/get_cohort_members.html) |  Returns the cohort members of a node.        |
+
+You supply arguments as follows:
+- A single value can be a string literal, such as `"geoId/05"` or `"County"` and must be enclosed quotation marks.
+- Multiple values must be a range of cells (row or column), such as `A2:A5`, and are not enclosed in quotation marks..
+See below for examples.
+
+> **Note**: It’s always best to minimize the number of calls to Data Commons functions by using arguments containing a column or row of values. This is because a spreadsheet will make one call to a Google server [per function call](https://developers.google.com/apps-script/guides/sheets/functions#optimization){: target="_blank"}, so if your sheet contains thousands of separate calls to a function, it will be slow and return with errors.
 
 ## Get started with Data Commons functions
 
-Here's a quick demo on using several of the Data Commons functions to get population data for all counties in the state of California:
+Here's a quick demo on using several of the Data Commons functions to get population data for all counties in the state of California.
 
 1. Open a new sheet and create 3 column headings: `DCID`, `County name`, and `Population`.
 1. Select cell A2 and enter the following formula to get a list of the DCIDs of all counties in California, whose DCID is `geoId/06`: `=DCPLACESIN("geoId/06", "County")`. The column fills with 58 DCIDs.

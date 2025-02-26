@@ -2,10 +2,8 @@
 layout: default
 title: Sheets COVID-19 analysis
 parent: Tutorials
-parent_url: /api/sheets/tutorials
-grand_parent: Google Sheets
-grand_parent_url: /api/sheets
-show_in_nav: false
+grand_parent: Analyze data with Google Sheets
+nav_exclude: true
 ---
 
 # Analyze the COVID-19 pandemic

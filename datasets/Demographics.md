@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Demographics
-nav_order: 4
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -45,11 +45,6 @@ Israel Demographics, Health, Economy statistics for Israel at country, district 
 
 #### [Ireland Census](https://www.cso.ie/en/statistics/)
 Ireland Demographics, Health and Economy data from Central Statistics Office(CSO) by country, county and city.
-
-### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
-
-#### [Colombia Census](https://www.dane.gov.co/index.php)
-Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
 
 ### [DataMeet](https://datameet.org/)
 
@@ -128,17 +123,11 @@ India National Family Health Survey - Data on population dynamics and health ind
 #### [India Poverty Status](https://www.niti.gov.in/sites/default/files/2021-11/National_MPI_India-11242021.pdf)
 India poverty statistics - percentage of people below poverty line.
 
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
-
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)
 Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
 [Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
-
-#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
-Demographics, Health, Agriculture and Education Statistics for Nigeria.
 
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.
@@ -169,6 +158,9 @@ Japan Demographics, Economy, Health, Education data from Portal Site of Official
 
 ### [Stadt Zurich open data](https://data.stadt-zuerich.ch//)
 
+#### [Zurich GeoCoordinates](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise)
+Administrative Area divisions of Zurich.
+
 #### [Zurich population](https://data.stadt-zuerich.ch/)
 Population of Zurich city contains structure and organization of the city administration
 
@@ -176,10 +168,6 @@ Population of Zurich city contains structure and organization of the city admini
 
 #### [Canada Statistics](https://www150.statcan.gc.ca/n1/en/type/data?MM=1)
 Canada Demographics, Health, Education and Economy statistics at Canada country and subnational levels.
-
-#### [Population estimates](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710000501#tables)
-Yearly population estimates for Canada.
-
 [Terms and Conditions](https://www.statcan.gc.ca/en/reference/terms-conditions/general?MM=as).
 
 
@@ -228,6 +216,10 @@ Basic population, race demographics and housing statistics from the redistrictin
 
 
 ### [U.S. Center for Disease Control and Prevention (CDC)](https://www.cdc.gov/)
+
+#### [Agency for Toxic Substances and Disease Registry(ATSDR)](https://www.atsdr.cdc.gov/)
+ATSDR is a federal health agency that provides health information about hazardous substances and their health effects.
+
 
 #### [BRFSS-NCHS Asthma Prevalence](https://app.powerbigov.us/view?r=eyJrIjoiZmZmOWU2N2ItYzllZi00N2I4LWE1NGItYWMxNmU3MTJmYmY4IiwidCI6IjljZTcwODY5LTYwZGItNDRmZC1hYmU4LWQyNzY3MDc3ZmM4ZiJ9)
 The statistics for prevalence of asthma among adults is for counties in 50 states and prevalence of asthma among children is for counties in 27 participating states. The data source is the 2016–2018 Behavioral Risk Factor Surveillance System (BRFSS) which is merged with the 2013 National Center for Health Statistics (NCHS) Urban-Rural Classification Scheme for Counties.
@@ -305,12 +297,6 @@ Statistics on relative deprivation in small areas in England.
 
 #### [UK Open Geography Portal](https://geoportal.statistics.gov.uk/)
 The Open Geography portal from the Office for National Statistics (ONS) provides free and open access to the definitive source of geographic products, web applications, story maps, services and APIs.
-
-### [Unique Identification Authority of India](https://uidai.gov.in/)
-Unique Identification Authority of India issues Aadhaar to all residents of India.
-
-#### [India Aadhaar Dashboard](https://uidai.gov.in/aadhaar_dashboard)
-Aadhaar dashboard has the details of unique identifier (Aadhaar) enrollment, update, authentication and KYC statistics.
 
 ### [United Nations (UN)](https://www.un.org/en/)
 

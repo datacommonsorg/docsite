@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Frequently asked questions
-nav_order: 9
+nav_order: 10
 parent: Build your own Data Commons
 ---
 
@@ -13,9 +13,23 @@ parent: Build your own Data Commons
 
 ## General questions
 
-### How can I request new features or provide feedback?
+### Should I contribute my data to the base Data Commons or should I run my own instance?
 
-Please see [Send feedback](/custom_dc/index.html#feedback) for details.
+If you have determined that your data is a [good fit for Data Commons](https://datacommons.org/faq.html#fit), the main considerations for whether to host your data in the base Data Commons or in your own custom instance are as follows:
+- If you have any private data, or you want to restrict access to your data, you must use your own instance.
+- If you want to maintain governance and licensing over your data, you should use your own instance.
+- If you want to control the UI of the website hosting your data, use your own instance.
+- If you want the widest possible visibility of your data, including direct access through Google Search, add your data to base Data Commons.
+
+For detailed comparison on the differences between base and custom Data Commons, see the [Overview](/custom_dc/index.html#comparison) page.
+
+### How can I request new features or provide feedback? {#feedback}
+
+We use [Google Issue Tracker](https://issuetracker.google.com){: target="_blank"} to track bugs and feature requests. All tickets are publicly viewable.
+
+Before opening a new ticket, please see if an existing [feature request](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"} or [bug report](https://issuetracker.google.com/issues?q=componentid:1659535%20type:bug){: target="_blank"} covering your issue has already been filed. If yes, upvote (click the **+1** button ) and [subscribe](https://developers.google.com/issue-tracker/guides/subscribe){: target="_blank"} to it. If not, open a new [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or [bug report](https://issuetracker.google.com/issues/new?component=1659535&template=2053231){: target="_blank"}.
+
+For any issue you file, make sure to indicate that it affects your Data Commons instance.
 
 ## Privacy and security
 

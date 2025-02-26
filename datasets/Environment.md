@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Environment
-nav_order: 8
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -66,15 +66,6 @@ Data Commons includes relative measures of risk from the 18 natural hazards incl
 A global inventory of glaciers, including surface areas.
 
 
-### [India Central Pollution Control Board (CPCB)](https://app.cpcbccr.com)
-India's Central Pollution Control Board (CPCB) portal for Air Quality Management.
-
-#### [India Air Quality Index](https://app.cpcbccr.com/AQI_India/)
-Air Quality Index and possible health impacts reported for states, cities and stations in India.
-
-#### [India aqi pollutants](https://app.cpcbccr.com/AQI_India/)
-India Air Quality Data contains mean values of various pollutants measured once in 4 hours along with other details like station name, state, city and date for the period.
-
 ### [India Water Resources Information System](https://indiawris.gov.in/wris/#/)
 The Water Resources Information System (WRIS) is a repository of water resources and related data for India at national, state and district level.
 
@@ -83,11 +74,6 @@ Water quality data measured at ground and surface water qualiy stations across I
 
 #### [WRIS India Rainfall](https://indiawris.gov.in/wris/#/DataDownload)
 WRIS India monthly rainfall data of district level.
-
-### [National Institution for Transforming India.](https://niti.gov.in/)
-
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
 
 ### [Organisation for Economic Co-operation and Development (OECD)](https://stats.oecd.org/)
 
@@ -99,21 +85,6 @@ Population connected to the waste water treatment using different methods from t
 [License](https://www.oecd.org/termsandconditions/)
 
 ### [Resources for the Future (RFF)](https://www.rff.org/)
-
-#### [US Forecast Weather Variability - 0.25 degree resolution](https://www.rff.org/publications/data-tools/)
-This dataset includes US forecast (till 2100) weather variability at 0.25 degree resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
-
-#### [US Forecast Weather Variability - County](https://www.rff.org/publications/data-tools/)
-This dataset includes US county-level forecast (till 2100) weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 0.25 degree resolution by Data Commons.
-
-#### [US Geo Grids for RFF](https://www.rff.org/publications/data-tools/)
-This dataset includes geo grid places in US at 0.25 degree resolution and 4km resolution.
-
-#### [US Historical Weather Variability - 4km resolution](https://www.rff.org/publications/data-tools/)
-This dataset includes US historical weather variability at 4 KM resolution, expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables.
-
-#### [US Historical Weather Variability - County](https://www.rff.org/publications/data-tools/)
-This dataset includes US county-level historical weather variability expressed as standard deviation, skewness and kurtosis for daily min/max temperature and precipitation. Additionally, it includes statistics for Heavy Precipitation Index and Consecutive Dry Days variables. These were aggregated from stats at 4 KM resolution by RFF.
 
 #### [US Wildfire, Smoke and Drought statistics - County and State](https://www.rff.org/publications/data-tools/)
 This dataset incorporates statistics aggregated by RFF from the following
@@ -216,7 +187,7 @@ Annual reporting of greenhouse gases from large emission sources.
 
 
 #### [National Emissions Inventory](https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei)
-The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 OnRoad air emission sources (such as Mobile Sources Highway Vehicles Electricity and Mobile Sources Border Crossing), 248 NonRoad air emissions sources (such as Mobile Sources Off-highway Vehicle Gasoline and LPG Construction Mining Equipment), 703 NonPoint air emissions sources (such as Industrial Processes Oil Gas Exploration Production and LPG Distribution) and 5818 Point air emissions sources (such as Chemical Evaporation Organic Solvent Evaporation and External Combustion Electric Generation Boilers)at US County Level.
+The National Emissions Inventory (NEI) is a comprehensive and detailed estimate of air emissions of criteria pollutants, hazardous pollutants and greenhouse gases from 188 on-road air emission sources (mobile sources such as highway and border crossing vehicles electricity measurement), 248 non-road air emissions sources (mobile sources such as off-highway vehicle gasoline measurement), 703 non-point air emissions sources (such as industrial processes, oil and gas exploration and production) and 5818 point air emissions sources (such as chemical and organic solvent evaporation measurement) at the US county level.
 
 
 #### [Superfund Sites](https://www.epa.gov/superfund)
@@ -288,29 +259,10 @@ Information related to the wildland fire management incidents and resources.
 
 ### [United States Geological Service (USGS)](https://www.usgs.gov/)
 
-#### [Advanced National Seismic System Comprehensive Earthquake Catalog (ComCat)](https://earthquake.usgs.gov/data/comcat)
-Earthquake source parameters (e.g. hypocenters, magnitudes, phase picks and amplitudes) and other products (e.g. moment tensor solutions, macroseismic information, tectonic summaries, maps) produced by contributing seismic networks. Data Commons includes date, time, location, magnitudes, magnitude errors, depth, depth error, and review status of earthquakes of magnitude 3 onwards starting from 1900.
-
-
 #### [National Water Use Data](https://waterdata.usgs.gov/nwis/wu)
 Water use data for states and counties in the US, broken down by water source (ground water, surface water), water type (fresh water, saline water), and category of use (domestic, industrial, etc.).
 
 [USGS Copyrights and Credits Terms of Service](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits).
-
-
-### [Wildland Fire Interagency Geospatial Services](https://data-nifc.opendata.arcgis.com/)
-
-#### [WFIGS Wildland Fire Areas](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
-The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides areas for all reported wildland fires in the United States at county, state and country level.
-
-#### [WFIGS Wildland Fire Locations](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-locations-full-history/about)
-Point Locations for all reported wildland fires in the United States.
-
-
-#### [WFIGS Wildland Fire Perimeters](https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-wildland-fire-perimeters-full-history/about)
-The Wildland Fire Interagency Geospatial Services (WFIGS) Group provides authoritative geospatial data products under the interagency Wildland Fire Data Program. This dataset provides perimeters for all reported wildland fires in the United States. We simplify those parameters by using Ramer-Douglas-Peucker algorithm on geoJsonCoordinates with epsilon of 0.01.
-
-[Terms of Use](https://www.nwcg.gov/publications/pms936/nifs/public-distribution).
 
 
 ### [World Bank](https://www.worldbank.org/en/home)

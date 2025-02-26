@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Education
-nav_order: 6
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -21,11 +21,6 @@ Population Census and Statistics for Brazil.
 #### [California School Performance](https://caaspp-elpac.ets.org/elpac/)
 California schools performance data across different grade levels and sub-groups (like race, disability etc).
 [CAASPP](https://caaspp-elpac.ets.org/elpac/)
-
-### [Colombia DANE National Administrative Department of Statistics](https://www.dane.gov.co)
-
-#### [Colombia Census](https://www.dane.gov.co/index.php)
-Population Census and Statistics for Colombia at Country, Department and Municipality geo-levels.
 
 ### [European Union (EU) Eurostat](https://ec.europa.eu/eurostat)
 
@@ -54,31 +49,16 @@ Data on schools, such as dropout rate and access to computers and toilets, in In
 #### [Unified District Information System for Education (UDISE)](https://udiseplus.gov.in/#/home)
 The Unified District Information System for Education (UDISE), by the Ministry of Education, India, collects and provides data related to schools and their resources.
 
-### [India National Sample Survey](https://mospi.gov.in/web/nss)
-The India National Sample Survey (NSS) Organizes and conducts large scale all-India sample surveys on different population groups in diverse socio economic areas, such as employment, consumer expenditure, housing conditions and environment, literacy levels, health, nutrition, family welfare, etc.
-
-#### [India Literacy](https://www.mospi.gov.in/sites/default/files/publication_reports/Report_585_75th_round_Education_final_1507_0.pdf)
-Data covering the literacy status and rate for states in India.
-[Terms of Use](https://ndap.niti.gov.in/info?tab=termsandconditions)
-
 ### [Mexico National Institute of Statistics and Geography(INEGI)](https://www.inegi.org.mx/default.html)
 
 #### [Mexico Census](https://en.www.inegi.org.mx/temas/)
 Population Census and Statistics for Mexico at Country and State levels.
-
-### [National Institution for Transforming India.](https://niti.gov.in/)
-
-#### [SDG India Index](https://sdgindiaindex.niti.gov.in/#/download)
-Sustainable Development Goals India Index
 
 ### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
 
 #### [Kenya Census](https://kenya.opendataforafrica.org/)
 Kenya Demographics, Health and Education data from Kenya National Bureau Of Statistics by country, county and towns and suburbs.
 [Terms of use](https://kenya.opendataforafrica.org/gdlkmgb).
-
-#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
-Demographics, Health, Agriculture and Education Statistics for Nigeria.
 
 #### [SouthAfrica Census](https://southafrica.opendataforafrica.org/)
 South Africa Demographics, Health and Education data from South Africa Data Portal by country, province and district municipality.

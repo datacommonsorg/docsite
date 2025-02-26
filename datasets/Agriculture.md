@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Agriculture
-nav_order: 1
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -10,11 +10,6 @@ parent: Data Sources
 
 * TOC
 {:toc}
-
-### [Open Data for Africa](https://dataportal.opendataforafrica.org/)
-
-#### [Nigeria Statistics](https://nigeria.opendataforafrica.org)
-Demographics, Health, Agriculture and Education Statistics for Nigeria.
 
 ### [U.S. Department of Agriculture (USDA)](https://www.usda.gov/)
 

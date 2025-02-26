@@ -1,34 +1,39 @@
 ---
 layout: default
-title: Cohort Members
-nav_order: 5
-parent: Google Sheets
-grand_parent: API
+title: Get members of a cohort
+nav_order: 56
+parent: Analyze data with Google Sheets
 ---
 
-# Retrieve the values of a given property for a node
+# Retrieve members of a cohort
 
-Get the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort](/glossary.html) provided. Here a cohort is a general term for a group of entities, like [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
+The `DCCOHORTMEMBERS` formula returns the [members](http://browser.datacommons.org/kg?dcid=member) of each [cohort](/glossary.html#cohort) provided. Here a cohort is a general term for a group of entities, like [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City).
 
-## General information about this formula
+## Formula
 
-**Formula**: `=DCCOHORTMEMBERS(dcids)`
+```
+=DCCOHORTMEMBERS(dcids)
+```
 
-**Arguments**:
-*    `dcids` - cohort DCIDs whose members are sought. Here a DCID refers to the unique ID assigned by Data Commons to every node in the knowledge graph.
+### Required arguments
+*    `dcids` -  A single node or range of cells representing nodes, identified by their [DCIDs](/glossary.html#dcid), whose members are sought.
 
-**Returns**
+### Returns
 
 The DCIDs of the cohort members. For a single DCID, the result is a column of members of the cohort represented by that DCID. For a row of DCIDs, the result is a matrix with each column the members of the cohort whose DCID serves as the column's index. For a column of DCIDs, the result is a matrix with each row the members of the cohort whose DCID serves as the row's index.
 
-## Example
+## Example: Retrieve the list of cities that are members of the CDC 500 cohort
 
-This example uses the `DCCOHORTMEMBERS` method to retrieve the members of the [CDC500_City](https://datacommons.org/browser/CDC500_City) cohort. Before trying this method out, make sure to follow the setup directions in [the main section for Sheets docs](/api/sheets/index.html).
+> **Note**: Be sure to follow the instructions for for [enabling the Sheets add-on](/api/sheets/index.html#install) before trying this example.
 
-### Input
+To retrieve the members of the [CDC 500 cities](https://datacommons.org/browser/CDC500_City) cohort:
 
-![](/assets/images/sheets/sheets_get_cohort_members_input.png)
+1. Place your cursor in any cell, say A1, and enter `CDC500_City`.
+1. In cell B1, enter `=DCCOHORTMEMBERS(A1)`. 
 
-### Output (truncated)
+    ![DCCOHORTMEMBERS example](/assets/images/sheets/sheets_get_cohort_members_input.png)
 
-![](/assets/images/sheets/sheets_get_cohort_members_output.png)
+    The list of member DCIDs populates column B.
+
+    ![DCCOHORTMEMBERS example](/assets/images/sheets/sheets_get_cohort_members_output.png)
+1. (Optional) To get the names of the members, in cell C1, enter `DCGETNAME(B1:B500)`.

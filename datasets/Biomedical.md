@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Biomedical
-nav_order: 2
+nav_exclude: true
 parent: Data Sources
 ---
 
@@ -10,14 +10,6 @@ parent: Data Sources
 
 * TOC
 {:toc}
-
-### [Broad Institute](https://www.broadinstitute.org/resources-services-and-tools)
-
-#### [GTEx Analysis V8 eQTL](https://www.gtexportal.org/home/datasets)
-The GTEx eGene and significant variant-gene association data were generated from samples "collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. Remaining samples are available from the GTEx Biobank." The single-tissue cis-eQTL data from the v8 release was used.
-
-GTEx is an NIH human genomic data unrestricted-access data repository and the data was made available in compliance with [GTEx Data Release and Publication Policy](https://www.gtexportal.org/home/documentationPage#staticTextPublicationPolicy). GTEx outlines [how to cite](https://www.gtexportal.org/home/faq#citePortal) use of GTEx data in journal publication.
-
 
 ### [ELIXIR Core Data Resources](https://elixir-europe.org/platforms/data/core-data-resources)
 
@@ -36,10 +28,6 @@ Data made available under: [ENCODE Data Use Policy for External Users](https://w
 
 
 ### [European Molecular Biology Laboratory - European Bioinformatics Institute (EMBL-EBI)](https://www.ebi.ac.uk/)
-
-#### [ChEMBL](https://www.ebi.ac.uk/chembl/)
-"ChEMBL is a manually curated database of bioactive molecules with drug-like properties. It brings together chemical, bioactivity and genomic data to aid the translation of genomic information into effective new drugs." It includes information on drugs at all stages of drug discovery.
-
 
 #### [UniProt](https://www.uniprot.org/)
 Data Commons includes protein sequence and functional information including protein interaction with chemical compounds maintained by the UniProt Consortium. The data is made available by the [Creative Commons Attribution (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/). Further information on UniProt License and Disclaimer can be found [here](https://www.uniprot.org/help/license). The UniProt Consortium states [how to cite](https://www.uniprot.org/help/publications) UniProt data used in a journal article.
@@ -65,20 +53,18 @@ This data is made available under Creative Commons Attribution ShareAlike 4.0 In
 
 ### [Jensen Lab (University of Copenhagen)](https://jensenlab.org/resources/)
 
-#### [DISEASES](https://diseases.jensenlab.org/Search)
-DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
+#### [DISEASES: Experiment](https://diseases.jensenlab.org/Search)
+DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. All files start with the following four columns: gene identifier, gene name, disease identifier, and disease name. The knowledge files further contain the source database, the evidence type, and the confidence score. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
 
-#### [Side Effect Resource (SIDER) 4.1](http://sideeffects.embl.de/)
-SIDER is a database of adverse drug reactions. Available information includes side effect frequency, drug and side effect classifications as well as links to further information, for example drug–target relations. However, this database uses MEDRA ontology, which is under the UMLS license that is limited to non-commercial use. Therefore, only the data under zero license - mappings of PubChem Compound IDs (CIDs), and ATC Codes - are hosted. Data Commons hosts version 4.1 of SIDER released on October 21, 2015. Information about citing SIDER can be found [here](http://sideeffects.embl.de/about/).
+#### [DISEASES: Knowledge](https://diseases.jensenlab.org/Search)
+DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. All files start with the following four columns: gene identifier, gene name, disease identifier, and disease name. The experiments files instead contain the source database, the source score, and the confidence score. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
+
+
+#### [DISEASES: Textmining](https://diseases.jensenlab.org/Search)
+DISEASES is a weekly updated web resource that integrates evidence on disease-gene associations from automatic text mining, manually curated literature, cancer mutation data, and genome-wide association studies. This dataset further unifies the evidence by assigning confidence scores that facilitate comparison of the different types and sources of evidence. All files start with the following four columns: gene identifier, gene name, disease identifier, and disease name. The textmining files contain the z-score, the confidence score, and a URL to a viewer of the underlying abstracts. For further details please refer to the following Open Access articles about the database: [DISEASES: Text mining and data integration of disease-gene associations](https://www.sciencedirect.com/science/article/pii/S1046202314003831) and [DISEASES 2.0: a weekly updated database of disease–gene associations from text mining and data integration](https://academic.oup.com/database/article/doi/10.1093/database/baac019/6554833?login=false). The data is made available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license.
 
 This data is made available under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
-
-
-### [New York Botanical Garden (NYBG)](https://sweetgum.nybg.org/science/)
-
-#### [C. V. Starr Virtual Herbarium (Collaboration)](https://sweetgum.nybg.org/science/vh/learn-more/)
-C. V. Starr Virtual Herbarium is a public specimen database with photos and detailed records about millions of plants, fungi, and algae.
 
 
 ### [PharmGKB](https://www.pharmgkb.org/)
@@ -93,14 +79,6 @@ PharmGKB reports association between chemicals, diseases, genes, and genetic var
 Data made available under Creative Commons Attribution-ShareAlike 4.0 Intergovernmental Organization (CC BY-SA 4.0 IGO) licence. Explicit licensing for PharmGKB can be viewed on the [download page](https://www.pharmgkb.org/downloads).
 
 
-### [Temporary Data Commons Data](https://www.datacommons.org/)
-
-#### [Temporary Gene Mappings](https://www.datacommons.org/)
-This maps the new way of generating Gene dcids (bio/<gene_symbol>) with the old, preexisting Gene dcids(bio/<genome_assembly>_<gene_symbol>). These are temporary mappings until all data using the old method of Gene dcid generation has been updated.
-
-Data is publicly available via Data Commons.
-
-
 ### [The Human Protein Atlas](https://www.proteinatlas.org/)
 
 #### [The Tissue Atlas](https://www.proteinatlas.org/humanproteome/tissue)
@@ -109,43 +87,14 @@ The Human Protein Tissue Atlas contains information about the distribution of pr
 This [dataset](https://www.proteinatlas.org/download/normal_tissue.tsv.zip) is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Please also see their [Disclaimer](https://www.proteinatlas.org/about/disclaimer) and [Licence & Citation](https://www.proteinatlas.org/about/licence).
 
 
-### [U.S. Adopted Names (USAN) Council](https://www.ama-assn.org/about/united-states-adopted-names/usan-council)
-
-#### [USAN Stems](https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems)
- USAN stems represent common stems for which chemical and/or pharmacologic parameters have been established. These council-approved stems and their definitions are recommended for use in coining new nonproprietary drug names belonging to an established series of related agents. USAN appropriately incorporates this established class stem system. By doing so, similar compounds maintain a common "family" name that provides immediate recognition.
-
-This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
-
-
-### [U.S. Food and Drug Administration (FDA)](https://www.fda.gov/)
-
-#### [FDA-Approved Drugs](https://www.accessdata.fda.gov/scripts/cder/daf/)
-"Drugs@FDA includes information about drugs, including biological products, approved for human use in the United States." Data Commons includes the information about the FDA application for the drug as well as the drug’s strength, active ingredients, dosage forms, administration routes, FDA therapeutic equivalence code, and marketing status.
-
-This data is made available through [openFDA terms of service](https://open.fda.gov/license/).
-
-
 ### [U.S. National Institutes of Health: National Center for Biotechnology Information (NIH: NCBI)](https://www.ncbi.nlm.nih.gov/)
-
-#### [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
-"ClinVar is a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence." It contains reports of genetic "variants found in patient samples, assertions made regarding their clinical significance, information about the submitter, and other supporting data." Data Commons includes the January 6, 2020 release of the ClinVar archive supporting both hg19 and hg38 genome assemblies.
-
-
-#### [Gene](https://www.ncbi.nlm.nih.gov/gene)
-The NIH NCBI gene info datasets from NCBI Gene for a subset of species contains "gene-specific content based on NCBI's RefSeq project, information from model organism databases, and links to other resources." The NCBI RefSeq project is "a comprehensive, integrated, non-redundant, well-annotated set of reference sequences including genomic, transcript, and protein". The datasets included are from the February 19, 2020 update. The gene info files for the following species have been added:
-
-* _Caenorhabditis elegans_
-* _Danio rerio_
-* _Drosophila melanogaster_
-* _Gallus gallus_
-* _Homo sapiens_
-* _Mus musculus_
-* _Saccharomyces cerevisiae_
-* _Xenepus laevis_
-
 
 #### [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly)
 "The [NCBI Assembly database](www.ncbi.nlm.nih.gov/assembly/) provides stable accessioning and data tracking for genome assembly data. The model underlying the database can accommodate a range of assembly structures, including sets of unordered contig or scaffold sequences, bacterial genomes consisting of a single complete chromosome, or complex structures such as a human genome with modeled allelic variation. The database provides an assembly accession and version to unambiguously identify the set of sequences that make up a particular version of an assembly, and tracks changes to updated genome assemblies. The Assembly database reports metadata such as assembly names, simple statistical reports of the assembly (number of contigs and scaffolds, contiguity metrics such as contig N50, total sequence length and total gap length) as well as the assembly update history. The Assembly database also tracks the relationship between an assembly submitted to the International Nucleotide Sequence Database Consortium (INSDC) and the assembly represented in the NCBI RefSeq project" (Kitts et al. 2016). In this import we include the metadata for all genome assemblies documented in `assembly_summary_genbank.txt` and `assembly_summary_refseq.txt`. Assemblies are stored in GenomeAssembly nodes whose information is integrated from both the GenBank and RefSeq datasets.
+
+
+#### [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene)
+"[NCBI Gene](https://www.ncbi.nlm.nih.gov/gene) supplies gene-specific connections in the nexus of map, sequence, expression, structure, function, citation, and homology data. Unique identifiers are assigned to genes with defining sequences, genes with known map positions, and genes inferred from phenotypic information. These gene identifiers are used throughout NCBI's databases and tracked through updates of annotation. Gene includes genomes represented by [NCBI Reference Sequences](https://www.ncbi.nlm.nih.gov/refseq/) (or RefSeqs) and is integrated for indexing and query and retrieval from NCBI's Entrez and [E-Utilities](https://www.ncbi.nlm.nih.gov/books/NBK25501/) systems. Gene comprises sequences from thousands of distinct taxonomic identifiers, ranging from viruses to bacteria to eukaryotes. It represents chromosomes, organelles, plasmids, viruses, transcripts, and millions of proteins."
 
 
 #### [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy/)
@@ -166,49 +115,10 @@ PubChem is the world's largest collection of freely accessible chemical informat
 This data is from the National Library of Medicine (NLM) and is not subject to copyright and is freely reproducible as stated in the [NLM’s copyright policy](https://www.nlm.nih.gov/web_policies.html).
 
 
-### [UCSC Genomics Institute](https://genome.ucsc.edu/)
-
-#### [Genome Browser](https://genome.ucsc.edu/)
-The UCSC Genome Browser originated from The Human Genome Project in 2000 to share and visualize genome data. It has grown to include an agglomeration of various genome assemblies and annotations. Data Commons includes data annotating chromosomes, genes, RNA transcripts, and genetic variants from the UCSC Genome Browser. The .chrom.sizes.txt files were downloaded from the UCSC Genome Browser Downloads page on August 13, 2019. The NCBI RefSeq files were downloaded from the UCSC Table Browser on August 2, 2019 for the following genome assemblies:
-
-* ce10
-* ce11
-* danRer10
-* danRer11
-* dm3
-* dm6
-* galGal5
-* galGal6
-* hg19
-* hg38
-* mm9
-* mm10
-* sacCer3
-* xenLae2
-
-The All SNPs files were downloaded from the UCSC Table Browser on August 13, 2019 for the following genome assemblies and dbSNP builds:
-
-* gaGal5 (dbSNP Build 147)
-* hg19 (dbSNP Build 151)
-* hg38 (dbSNP Build 151)
-* mm9 (dbSNP Build 128)
-* mm10 (dbSNP Build 142)
-
-The annotation data is made freely available under the UCSC Genome Browser [terms of use](https://genome.ucsc.edu/conditions.html). The UCSC Genome Browser states [how to cite](https://genome.ucsc.edu/cite.html) use of their data in a journal article publication.
-
-
 ### [University of Maryland School of Medicine, Institute of Genome Sciences](https://www.igs.umaryland.edu/)
 
 #### [Disease Ontology](https://disease-ontology.org/)
 The Disease Ontology was developed as a project by the Institute of Genome Sciences at the University of Maryland School of Medicine. It "is a community driven, open source ontology that is designed to link disparate datasets through disease concepts". It provides a "standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts".
 
 The data is made available under [C0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://disease-ontology.org/resources/citing-do).
-
-
-### [World Health Organization (WHO)](https://www.who.int/)
-
-#### [ATC Codes](https://www.whocc.no/atc_ddd_index/)
-Anatomical Therapeutic Chemical (ATC) is a heirarchical classification system for pharmacological substances. 'In the ATC classification system, the active substances are classified in a hierarchy with five different levels. The system has fourteen main anatomical/pharmacological groups or 1st levels. Each ATC main group is divided into 2nd levels which could be either pharmacological or therapeutic groups. The 3rd and 4th levels are chemical, pharmacological or therapeutic subgroups and the 5th level is the chemical substance. The 2nd, 3rd and 4th levels are often used to identify pharmacological subgroups when that is considered more appropriate than therapeutic or chemical subgroups.'
-
-Data made available under [CC BY-NC-SA 3.0 IGO](https://www.who.int/about/policies/publishing/copyright).
 

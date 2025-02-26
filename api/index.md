@@ -1,7 +1,7 @@
 ---
 layout: default
-title: API
-nav_order: 4
+title: API - Query data programmatically
+nav_order: 10
 has_children: true
 ---
 

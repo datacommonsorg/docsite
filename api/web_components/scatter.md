@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Scatter Plot
+title: Scatter plot
 nav_order: 8
-parent: Web Components
-grand_parent: API
+parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/scatter
 ---
 
-# Data Commons Scatter Chart Web Component
+# Data Commons scatter plot chart Web Component
 
 [Data Commons Web Component](/api/web_components/) for visualizing the relationship
 between two variables.
