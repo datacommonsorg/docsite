@@ -41,7 +41,8 @@ https://api.datacommons.org/<var>VERSION</var>
 
 The current version is `v2`.
 
-To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
+To access a particular endpoint, append the URI to the base URL, e.g. `https://api.datacommons.org/v2/node`.
+
 The URIs for the V2 API are below:
 
 | API | URI path | Description |
@@ -51,13 +52,27 @@ The URIs for the V2 API are below:
 | Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
 | SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"} graph query |
 
-### Endpoints for custom instances
+### Base URL for custom instances
 
-If you are running your own Data Commons, the URL/URI endpoints are slightly different:
+If you are running your own Data Commons, the base URL is slightly different:
 
 <pre>
-<var>CUSTOM_URL</var>/core/api/v2
+<var>CUSTOM_URL</var>/core/api/v2/
 </pre>
+
+For example, for a publicly available instance:
+
+```
+https://datacommons.one.org/core/api/v2/
+```
+
+For a locally running instance:
+
+```
+https://localhost:8080/core/api/v2/
+```
+
+Endpoints are the same as above; append the URI to the base URL, e.g. `https://localhost:8080/core/api/v2/node`.
 
 ## Query parameters {#query-param}
 
@@ -91,7 +106,7 @@ curl -X POST \
 {: #authentication}
 ## Authentication
 
-All access to base Data Commons using the REST APIs must be authenticated and authorized with an API key.
+All access to the base Data Commons (datacommons.org) using the REST APIs must be authenticated and authorized with an API key.
 
 We provide a trial API key for general public use. This key will let you try the API and make single requests.
 
@@ -164,16 +179,15 @@ The following table describes symbols in the V2 API relation expressions:
 | `*` | All properties linked to this node |
 | `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
 
-### Incoming and outgoing arcs
+### Incoming and outgoing relations
 
-Arcs in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG){: target="_blank"}, the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
+Relations ("arcs") in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG){: target="_blank"}, the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-Note the directionality of the property `containedInPlace`: incoming arc represents "Argentina contains Buenos Aires", while the outgoing arc represents "Argentina is in South America".
+Note the directionality of the property `containedInPlace`: the incoming relation represents "Argentina contains Buenos Aires", while the outgoing relation represents "Argentina is in South America".
 
-Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
-arcs are represented by `<-`. To illustrate using the above example:
+Nodes for outgoing relations are represented by `->`. Nodes for incoming relations are represented by `<-`. To illustrate using the above example:
 
 - Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
 - All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
