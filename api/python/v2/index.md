@@ -25,20 +25,22 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 ## What's new in V2
 
-The latest version of Python client libraries implements the REST V2 APIs and adds many convenience methods. Here are just some of the changes from the previous version of the libraries:
+The latest version of Python client libraries implements the REST V2 APIs and adds many convenience methods. The package name is `datacommons_client`.
 
-- The client library can be used to query custom Data Commons instances
-- (TODO: Check if this is true) The Data Commons and Data Commons Pandas modules are combined into a single package; there is no need to install each one separately
-- Use of the client library requires an API key
-- The primary interface is a series of classes representing the REST V2 API endpoints
-- Each class supports a `fetch` method that takes an API [_expression_](/api/rest/v2/index.md#relation-expressions) as an argument as well as several convenience methods for commonly used operations
+Here are just some of the changes from the previous version of the libraries:
+
+- You can use this new version to query custom Data Commons instances in addition to base datacommons.org
+- The Data Commons Pandas module is included as an option in the install package; there is no need to install each one separately
+- Requests to base datacommons.org now requires an API key
+- The primary interface is a set of classes representing the REST V2 API endpoints
+- Each class provides a `fetch` method that takes an API [_relation expression_](/api/rest/v2/index.md#relation-expressions) as an argument as well as several convenience methods for commonly used operations
 - (TODO: Check if this is true) There is no SPARQL endpoint, since the Pandas dataframes provide equivalent functionality
 
 ## Install the Python Data Commons V2 API
 
 This procedure uses a Python virtual environment as recommended by Google Cloud [Setting up a Python development environment](https://cloud.google.com/python/docs/setup){: target="_blank"}.
 
-1. If not done already, install python3 and pip3. See [Installing Python](https://cloud.google.com/python/docs/setup#installing_python) for procedures.
+1. If not done already, install `python3` and `pip3`. See [Installing Python](https://cloud.google.com/python/docs/setup#installing_python) for procedures.
 1. Go to your project directory and create a virtual environment using venv, as described in [Using venv to isolate dependencies](https://cloud.google.com/python/docs/setup#installing_and_using_virtualenv){: target="_blank"}. 
 1. Install the the `datacommons_client` package:
 
@@ -116,11 +118,12 @@ For custom DC instances, do _not_ provide any API key.
 
 ## Request endpoints and responses
 
-The Python client library sends HTTP POST requests to the Data Commons [REST API endpoints](/api/rest/v2/index.md#service-endpoints). Each endpoint has a corresponding response type. The classes are below:
+The Python client library sends HTTP POST requests to the Data Commons [REST API endpoints](/api/rest/v2/index.md#service-endpoints) and receives JSON responses. Each endpoint has a corresponding response type. The classes are below:
 
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
-| Observation | [`observation`](observation.md)) | Fetches statistical observations | `ObservationResponse` |
+| Observation | [`observation`](observation.md)) | Fetches statistical observations (time series) | `ObservationResponse` |
+| Observations Pandas DataFrame | [`observations_dataframe`](observation.md#) | Same as above, except the functionality is provided by a method of the `DataCommonsClient` class directly, instead of an intermediate endpoint | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
 | Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
 
@@ -135,6 +138,12 @@ ResolveResponse(entities=[Entity(node='Caliornia', candidates=[Candidate(dcid='g
 ```
 
 See the linked pages for descriptions of the methods available for each endpoint and response type.
+
+## Pandas Dataframe functionality
+
+A single 
+
+
 
 
 ## Find available entities, variables, and their DCIDs
@@ -178,3 +187,20 @@ To get the next set of entries, repeat the request with the `next_token` paramet
 response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token="SoME_veRy_L0ng_STrIng")
 ```
 Repeat until the response contains no `next_token`.
+
+## Response formatting
+
+By default, the client converts JSON responses into Python response class objects. For example:
+
+```python
+>>> print(response)
+ResolveResponse(entities=[Entity(node='California', candidates=[Candidate(dcid='geoId/06', dominantType=None), Candidate(dcid='geoId/2412150', dominantType=None), Candidate(dcid='geoId/4210768', dominantType=None), Candidate(dcid='geoId/2910468', dominantType=None), Candidate(dcid='geoId/2111872', dominantType=None)])])
+```
+Each response class provides a property method, `json`, that converts the response back to JSON.
+
+```python
+>>> print(response.json)
+{'entities': [{'node': 'California', 'candidates': [{'dcid': 'geoId/06', 'dominantType': None}, {'dcid': 'geoId/2412150', 'dominantType': None}, {'dcid': 'geoId/4210768', 'dominantType': None}, {'dcid': 'geoId/2910468', 'dominantType': None}, {'dcid': 'geoId/2111872', 'dominantType': None}]}]}
+```
+
+
