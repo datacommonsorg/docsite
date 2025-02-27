@@ -92,7 +92,7 @@ cd website
   <tbody>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data in Data Commons. <a href="custom_data.html">This page</a> describes the model and format of this data and how you can load and view it.  </td>
+      <td>Sample supplemental data that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples" target="_blank"><code>custom_dc/examples/</code></a></td>
