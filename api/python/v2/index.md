@@ -129,17 +129,14 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
 | Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
 
-To send a request, you inject an endpoint to the client object, call one of the endpoint's methods, and assign the result to a response object of the corresponding endpoint. For example: 
+To send a request, you inject an endpoint to the client object and call one of the endpoint's methods. For example: 
 
 ```python
->>> response = client.resolve.fetch_dcids_by_name(names="Caliornia")
->>> print(response)
-ResolveResponse(entities=[Entity(node='Caliornia', candidates=[Candidate(dcid='geoId/06', dominantType=None)])])
->>> print(response.json)
-{'entities': [{'node': 'Caliornia', 'candidates': [{'dcid': 'geoId/06', 'dominantType': None}]}]}
+>>> client.resolve.fetch_dcids_by_name(names="Georgia")
+>>> {'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13', 'dominantType': None}, {'dcid': 'country/GEO', 'dominantType': None}, {'dcid': 'geoId/5027700', 'dominantType': None}]}]}
 ```
 
-See the linked pages for descriptions of the methods available for each endpoint and response type.
+See the linked pages for descriptions of the methods available for each endpoint, its methods and responses.
 
 ## Find available entities, variables, and their DCIDs
 
@@ -162,12 +159,12 @@ All endpoint methods return all data in a single response by default. To improve
 For example, this request, which returns all incoming relations for California, returns a huge number of data items and can take several seconds to complete:
 
 ```python
-response = client.node.fetch(node_dcids="geoId/06", expression="<-*")
+client.node.fetch(node_dcids="geoId/06", expression="<-*")
 ```
 To paginate the data, send the first request like this: 
 
 ```python
-response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False)
+client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False)
 ```
 The response will have the following at the end:
 
@@ -179,7 +176,7 @@ The response will have the following at the end:
 To get the next set of entries, repeat the request with the `next_token` parameter set to the value in the response. For example:
 
 ```python
-response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token="SoME_veRy_L0ng_STrIng")
+client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token="SoME_veRy_L0ng_STrIng")
 ```
 Repeat until the response contains no `next_token`.
 
@@ -188,14 +185,16 @@ Repeat until the response contains no `next_token`.
 By default, the client converts JSON responses into Python dictionary objects. For example:
 
 ```python
+>>> response = client.resolve.fetch_dcids_by_name(names="Georgia")
 >>> print(response)
-ResolveResponse(entities=[Entity(node='California', candidates=[Candidate(dcid='geoId/06', dominantType=None), Candidate(dcid='geoId/2412150', dominantType=None), Candidate(dcid='geoId/4210768', dominantType=None), Candidate(dcid='geoId/2910468', dominantType=None), Candidate(dcid='geoId/2111872', dominantType=None)])])
+>>> ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ```
-Each response class provides a property method, `json`, that converts the response back to JSON.
+
+Each response class provides a property method, `json`, that converts the Python object response back to JSON.
 
 ```python
 >>> print(response.json)
-{'entities': [{'node': 'California', 'candidates': [{'dcid': 'geoId/06', 'dominantType': None}, {'dcid': 'geoId/2412150', 'dominantType': None}, {'dcid': 'geoId/4210768', 'dominantType': None}, {'dcid': 'geoId/2910468', 'dominantType': None}, {'dcid': 'geoId/2111872', 'dominantType': None}]}]}
+>>> {'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13', 'dominantType': None}, {'dcid': 'country/GEO', 'dominantType': None}, {'dcid': 'geoId/5027700', 'dominantType': None}]}]}
 ```
 
 
