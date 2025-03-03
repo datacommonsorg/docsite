@@ -1,6 +1,6 @@
 ---
 layout: default
-title: REST (V2)
+title: Python API (V2)
 nav_order: 1
 parent: API - Query data programmatically
 has_children: true
@@ -10,6 +10,8 @@ published: true
 
 {:.no_toc}
 # Data Commons Python API V2
+
+> **Note:** The V2 version of the Python client libraries is in Beta. Documentation and tutorials have not yet been updated to V2.
 
 * TOC
 {:toc}
@@ -25,16 +27,16 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 ## What's new in V2
 
-The latest version of Python client libraries implements the REST V2 APIs and adds many convenience methods. The package name is `datacommons_client`.
+The latest version of Python client libraries implements the [REST V2 APIs](/api/rest/v2/) and adds many convenience methods. The package name is `datacommons-client`.
 
 Here are just some of the changes from the previous version of the libraries:
 
-- You can use this new version to query custom Data Commons instances in addition to base datacommons.org
-- The Data Commons Pandas module is included as an option in the install package; there is no need to install each one separately
-- Requests to base datacommons.org now requires an API key
+- You can use this new version to query custom Data Commons instances in addition to base datacommons.org.
+- The Data Commons [Pandas]((https://pandas.pydata.org/){: target="_blank"} module is included as an option in the install package; there is no need to install each library separately. Pandas APIs have also been migrated to use the REST V2 [Observation](/api/rest/v2/observation.html) API.
+- Requests to base datacommons.org require an [API key](/api/index.html#get-key).
 - The primary interface is a set of classes representing the REST V2 API endpoints
 - Each class provides a `fetch` method that takes an API [_relation expression_](/api/rest/v2/index.md#relation-expressions) as an argument as well as several convenience methods for commonly used operations
-- (TODO: Check if this is true) There is no SPARQL endpoint, since the Pandas dataframes provide equivalent functionality
+- (TODO: Check if this is true) There is no SPARQL endpoint, since the Pandas DataFrames provide equivalent functionality
 
 ## Install the Python Data Commons V2 API
 
@@ -44,13 +46,13 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 1. Go to your project directory and create a virtual environment using venv, as described in [Using venv to isolate dependencies](https://cloud.google.com/python/docs/setup#installing_and_using_virtualenv){: target="_blank"}. 
 1. Install the the `datacommons_client` package:
 
-```bash
-$ pip install datacommons_client
-```
-
-You are ready to go! You can view our [tutorials](/api/python/tutorials.html) on how to use the
-API to perform certain tasks using [Google Colab](https://colab.sandbox.google.com/){: target="_blank"}, or refer to pages in the navigation bar for detailed information about all the methods available.
-
+  ```bash
+  $ pip install datacommons-client
+  ```
+1. To get additional functionality with Pandas DataFrames, run:
+ ```bash
+  $ pip install "datacommons-client[Pandas]"
+  ```
 ## Run Python interactively
 
 The pages in this site demonstrate running Python methods interactively from the Bash shell. To use this facility, be sure to import the `datacommons_client` package:
@@ -73,6 +75,8 @@ To create a client and connect to the base Data Commons, namely datacommons.org:
 >>> from datacommons_client.client import DataCommonsClient
 >>> client = DataCommonsClient(api_key="<var>YOUR_API_KEY</var>")
 </pre>
+
+See below about [API keys](#authentication).
 
 To create a client and connect to a custom Data Commons by a publicly resolvable DNS hostname:
 
@@ -99,7 +103,7 @@ For example, to connect to a locally running DataCommons instance:
 >>> client = DataCommonsClient(url="http://localhost:8080/core/api/v2/")
 </pre>
 
-### Authentication
+### Authentication {#authentication}
 
 All access to the base Data Commons (datacommons.org) using the REST APIs must be authenticated and authorized with an API key.
 
@@ -139,13 +143,6 @@ ResolveResponse(entities=[Entity(node='Caliornia', candidates=[Candidate(dcid='g
 
 See the linked pages for descriptions of the methods available for each endpoint and response type.
 
-## Pandas Dataframe functionality
-
-A single 
-
-
-
-
 ## Find available entities, variables, and their DCIDs
 
 Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
@@ -178,7 +175,7 @@ The response will have the following at the end:
 
 ```
 ...
-  "nextToken": "SoME_veRy_L0ng_STrIng"
+"nextToken": "SoME_veRy_L0ng_STrIng"
 ```
 
 To get the next set of entries, repeat the request with the `next_token` parameter set to the value in the response: For example:

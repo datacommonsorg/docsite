@@ -14,6 +14,8 @@ redirect_from:
 Get familiar with the Data Commons knowledge graph and APIs using these analysis examples.
 You can also clone these to use as a base for your own analysis.
 
+> **Note**: All tutorials use [V1](/api/python/) of the Python/Pandas APIs. They will be updated to [V2](/api/python/v2/).
+
 Example [Google Colab
 notebooks](https://colab.research.google.com/notebooks/intro.ipynb) written in
 Python:
