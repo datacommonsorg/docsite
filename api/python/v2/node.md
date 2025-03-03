@@ -1,8 +1,13 @@
 ---
 layout: default
-title: Python API (V2)
-nav_order: 1
-parent: API - Query data programmatically
-has_children: true
+title: Get node properties
+nav_order: 3
+parent: Python API (V2)
+grand_parent: API - Query data programmatically
 published: true
 ---
+
+{: .no_toc}
+# Node 
+
+COMING SOON
