@@ -99,7 +99,7 @@ You may also need Cloud DNS, Networking - Cloud Loadbalancing, and Redis Memorys
 1. Work through the [Quickstart](/custom_dc/quickstart.html) page to learn how to run a local Data Commons instance and load some sample data.
 1. Prepare your real-world data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Prepare and load your own data](/custom_dc/custom_data.html) for details. 
 > Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
-1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html) and [Build a custom image](build_images.md).
+1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html) and [Build a custom image](build_images.md), 
 1. When you have finished testing locally, set up a development environment in Google Cloud Platform. See [Deploy to Google Cloud](/custom_dc/deploy_cloud.html).
 1. Productionize and launch your site for external traffic. See [Launch your Data Commons](/custom_dc/launch_cloud.html).
 1. For future updates and launches, continue to make UI and data changes locally, before deploying the changes to GCP.
