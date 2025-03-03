@@ -2,7 +2,7 @@
 layout: default
 title: Tutorials
 nav_order: 31
-parent: Python
+parent: Python (V1)
 grand_parent: API - Query data programmatically
 redirect_from:
     - /tutorials

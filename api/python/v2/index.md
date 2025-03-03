@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Python API (V2)
+title: Python (V2)
 nav_order: 1
 parent: API - Query data programmatically
 has_children: true
@@ -45,13 +45,15 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 1. Go to your project directory and create a virtual environment using venv, as described in [Using venv to isolate dependencies](https://cloud.google.com/python/docs/setup#installing_and_using_virtualenv){: target="_blank"}. 
 1. Install the the `datacommons_client` package:
 
-  ```bash
-  $ pip install datacommons-client
-  ```
-1. To get additional functionality with Pandas DataFrames, run:
- ```bash
-  $ pip install "datacommons-client[Pandas]"
-  ```
+   ```bash
+   $ pip install datacommons-client
+   ```
+
+To get additional functionality with Pandas DataFrames, run:
+
+```bash
+$ pip install "datacommons-client[Pandas]"
+```
 ## Run Python interactively
 
 The pages in this site demonstrate running Python methods interactively from the Bash shell. To use this facility, be sure to import the `datacommons_client` package:
@@ -61,7 +63,6 @@ From your virtual environment, run:
 ```bash
 python3
 >>> import datacommons_client
->>>
 ```
 
 ## Create a client
@@ -104,7 +105,7 @@ For example, to connect to a locally running DataCommons instance:
 
 ### Authentication {#authentication}
 
-All access to the base Data Commons (datacommons.org) using the REST APIs must be authenticated and authorized with an API key.
+All access to the base Data Commons (datacommons.org) the V2 APIs must be authenticated and authorized with an API key. The `DataCommonsClient` object manages propagating the API key to all requests, so you don't need to specify it as part of data requests.
 
 We provide a trial API key for general public use. This key will let you try the APIs and make single requests.
 
@@ -113,11 +114,9 @@ We provide a trial API key for general public use. This key will let you try the
    `AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI`
 </div>
 
-_The trial key is capped with a limited quota for requests._ If you are planning on using the APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits; please see [Obtain an API key](/api/index.html#get-key) for information.
+_The trial key is capped with a limited quota for requests._ If you are planning on using the APIs more rigorously (e.g. for personal or school projects, developing applications, etc.) please request an official key without any quota limits; see [Obtain an API key](/api/index.html#get-key) for information.
 
-The `DataCommonsClient` object manages propagating the API key to all requests, so you don't need to specify it as part of data requests.
-
-For custom DC instances, do _not_ provide any API key.
+For custom DC instances, you do _not_ need to provide any API key.
 
 ## Request endpoints and responses
 
@@ -130,7 +129,7 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
 | Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
 
-To send a request, you inject an endpoint to the client object, call one of the endpoint's methods, and assign the result to a response object of the corresponding endpoint. Each response type has some methods for formatting. For example: 
+To send a request, you inject an endpoint to the client object, call one of the endpoint's methods, and assign the result to a response object of the corresponding endpoint. For example: 
 
 ```python
 >>> response = client.resolve.fetch_dcids_by_name(names="Caliornia")
@@ -154,7 +153,7 @@ Many requests require the [DCID](/glossary.html#dcid) of the entity or variable 
 
 Each endpoint has a `fetch()` method that takes a relation expression. For complete information on the syntax and usage of relation expressions, please see the [REST V2 API relation expressions](/api/rest/v2/index.html#relation-expressions) documentation. 
 
-For common requests, each endpoint also provides convenience methods that build the expressions for you.
+For common requests, each endpoint also provides convenience methods that build the expressions for you. See the endpoint pages for details.
 
 ## Pagination
 
@@ -167,17 +166,17 @@ response = client.node.fetch(node_dcids="geoId/06", expression="<-*")
 ```
 To paginate the data, send the first request like this: 
 
-```json
+```python
 response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False)
 ```
 The response will have the following at the end:
 
-```
+```json
 ...
 "nextToken": "SoME_veRy_L0ng_STrIng"
 ```
 
-To get the next set of entries, repeat the request with the `next_token` parameter set to the value in the response: For example:
+To get the next set of entries, repeat the request with the `next_token` parameter set to the value in the response. For example:
 
 ```python
 response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token="SoME_veRy_L0ng_STrIng")
@@ -186,7 +185,7 @@ Repeat until the response contains no `next_token`.
 
 ## Response formatting
 
-By default, the client converts JSON responses into Python response class objects. For example:
+By default, the client converts JSON responses into Python dictionary objects. For example:
 
 ```python
 >>> print(response)

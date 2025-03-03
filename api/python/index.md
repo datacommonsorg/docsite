@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Python
+title: Python (V1)
 nav_order: 30
 parent: API - Query data programmatically
 has_children: true

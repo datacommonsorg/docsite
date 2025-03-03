@@ -2,7 +2,7 @@
 layout: default
 title: Get node properties
 nav_order: 3
-parent: Python API (V2)
+parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
 ---
