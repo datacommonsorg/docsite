@@ -152,33 +152,6 @@ Each endpoint has a `fetch()` method that takes a relation expression. For compl
 
 For common requests, each endpoint also provides convenience methods that build the expressions for you. See the endpoint pages for details.
 
-## Pagination
-
-All endpoint methods return all data in a single response by default. To improve the performance of requests that return a lot of data, you can "paginate" the returned payload, that is, split it over multiple requests. To do so, you can set a parameter accepted by all methods, `all_pages` to `False`. In this case, nnly a subset of the response is returned, along with a long string of characters called a _token_. To get the next set of entries, you repeat the request with `next_token` as a  method parameter, with the token as its value.
-
-For example, this request, which returns all incoming relations for California, returns a huge number of data items and can take several seconds to complete:
-
-```python
-client.node.fetch(node_dcids="geoId/06", expression="<-*")
-```
-To paginate the data, send the first request like this: 
-
-```python
-client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False)
-```
-The response will have the following at the end:
-
-```json
-...
-"nextToken": "SoME_veRy_L0ng_STrIng"
-```
-
-To get the next set of entries, repeat the request with the `next_token` parameter set to the value in the response. For example:
-
-```python
-client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token="SoME_veRy_L0ng_STrIng")
-```
-Repeat until the response contains no `next_token`.
 
 ## Response formatting
 
