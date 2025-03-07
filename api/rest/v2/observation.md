@@ -25,7 +25,7 @@ entity and variable at a particular date: for example, "population of USA in
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&select=variable&select=entity[&select=value][&select=date]
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity[&select=value][&select=date]
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -53,6 +53,18 @@ JSON data:
     ]
     "expression": "<var>ENTITY_EXPRESSION</var>"
   },
+  "filter": {
+    "facet_ids": [
+       "<var>FACET_ID_1</var>",
+       "<var>FACET_ID_2</var>",
+       ...
+    ]
+    "domains": [
+      "<var>DOMAIN_NAME_1</var>",
+      "<var>DOMAIN_NAME_2</var>",
+      ...
+    ]
+  },
   "select": ["date", "entity", "variable", "value"]
 }
 </div>
@@ -71,6 +83,8 @@ JSON data:
 | entity.expression                                     | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
 | select <br /> <required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check the existence of variable-entity pairs in the data and fetch all the variables that have data for given entities. |
 | select <br /> <optional-tag>Optional</optional-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
+| filter.facet_domains <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter.facet_ids <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
 {: #date-string}
@@ -101,7 +115,7 @@ For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://
 
 ![date time example 3](/assets/images/rest/date_time_example3.png){: width="600"}
 
-## Response
+## Response {#response}
 
 Without `select=date` and `select=value` specified, the response looks like:
 
@@ -172,9 +186,9 @@ With `select=date` and `select=value` specified, the response looks like:
 
 ## Examples
 
-### Example 1: Get the latest observation for given entities
+### Example 1: Get the latest observations for a single entity
 
-Specify `date=LATEST` to get the latest observations and values. In this example, we select the entity by its DCID using `entity.dcids`.
+In this example, we get all the latest observations for the variable [`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}, specifying `date=LATEST`, and selecting the entity, the U.S.A. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
 Parameters:
 {: .example-box-title}
@@ -212,53 +226,56 @@ Response:
 
 ```json
 {
-  "byVariable": {
-    "Count_Person": {
-      "byEntity": {
-        "country/USA": {
-          "orderedFacets": [
-           {
-              "earliestDate" : "2022",
-              "facetId" : "2176550201",
-              "latestDate" : "2022",
-              "obsCount" : 1,
-              "observations" : [
-                {
-                  "date" : "2022",
-                  "value" : 333287557
-                }
-              ]
-            },
-            {
-              "earliestDate" : "2022",
-              "facetId" : "1273233945",
-              "latestDate" : "2022",
-              "obsCount" : 1,
-              "observations" : [
-               {
-                  "date" : "2022",
-                  "value" : 334369975
-                }
-                ]
-            },
-            ...
-          ]
-        }
+{
+   "byVariable" : {
+      "Count_Person" : {
+         "byEntity" : {
+            "country/USA" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2024",
+                     "facetId" : "2176550201",
+                     "latestDate" : "2024",
+                     "obsCount" : 1,
+                     "observations" : [
+                        {
+                           "date" : "2024",
+                           "value" : 340110988
+                        }
+                     ]
+                  },
+                  {
+                     "earliestDate" : "2023",
+                     "facetId" : "2645850372",
+                     "latestDate" : "2023",
+                     "obsCount" : 1,
+                     "observations" : [
+                        {
+                           "date" : "2023",
+                           "value" : 335642425
+ }
+                     ]
+                  }
+               ]
+            }
+         }
       }
-    }
-  },
+   },
   "facets": {
+    ...
     "2176550201" : {
       "importName" : "USCensusPEP_Annual_Population",
       "measurementMethod" : "CensusPEPSurvey",
       "observationPeriod" : "P1Y",
       "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
     },
-    "1273233945": {
-      "importName": "CensusACS5YearSurvey_AggCountry",
-      "provenanceUrl": "https://www.census.gov/",
-      "measurementMethod": "CensusACS5yrSurvey"
-    },
+    ...
+   "2645850372" : {
+         "importName" : "CensusACS5YearSurvey_AggCountry",
+         "isDcAggregate" : true,
+         "measurementMethod" : "CensusACS5yrSurvey",
+         "provenanceUrl" : "https://www.census.gov/"
+      },
     ...
   }
 }
@@ -267,11 +284,7 @@ Response:
 
 ### Example 2: Get the observations at a particular date for given entities
 
-This queries for observations in 2015 for the variable
-[`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}
-for two specified entities:
-[`country/USA`](https://datacommons.org/browser/country/USA){: target="_blank"} and
-[`geoId/06`](https://datacommons.org/browser/geoId/06){: target="_blank"}.
+This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous response, with an additional entity, and a specific date. 
 
 Parameters:
 {: .example-box-title}
@@ -363,13 +376,12 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 3: Get the latest observations for all California counties
+### Example 4: Get the latest population observations for all California counties
 
 In this example, we use the [chained expression
 (`+`)](/api/rest/v2/#relation-expressions) to specify "all contained places in
 [California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
-type `County`". Then we specify the select fields to request actual observations
-with date and value for each variable
+type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
 ([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
 entity (all counties in California).
 
@@ -457,3 +469,150 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
+### Example 5: Get the latest observations for a single entity, filtering by provenance
+
+This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
+
+Parameters:
+{: .example-box-title}
+
+```bash
+date: "LATEST"
+variable.dcids: "Count_Person"
+entity.dcids: "country/USA"
+filter.domains: "www2.census.gov"
+select: "entity"
+select: "variable"
+select: "value"
+select: "date"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=entity&select=variable&select=value&select=date
+```
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \  
+https://api.datacommons.org/v2/observation  \ 
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"], "filter": {"domains": ["www2.census.gov"]}}'
+```
+
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+{
+   "byVariable" : {
+      "Count_Person" : {
+         "byEntity" : {
+            "country/USA" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2024",
+                     "facetId" : "2176550201",
+                     "latestDate" : "2024",
+                     "obsCount" : 1,
+                     "observations" : [
+                        {
+                           "date" : "2024",
+                           "value" : 340110988
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "facets" : {
+      "2176550201" : {
+         "importName" : "USCensusPEP_Annual_Population",
+         "measurementMethod" : "CensusPEPSurvey",
+         "observationPeriod" : "P1Y",
+         "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
+      }
+   }
+}
+
+```
+
+
+### Example 6: Get the latest observations for a single entity, filtering for specific dataset
+
+This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
+
+Parameters:
+{: .example-box-title}
+
+```bash
+date: "LATEST"
+variable.dcids: "Count_Person"
+entity.dcids: "country/BRA"
+filter.facet_ids: "3981252704"
+select: "entity"
+select: "variable"
+select: "value"
+select: "date"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=entity&select=variable&select=value&select=date
+```
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+https://api.datacommons.org/v2/observation  \ 
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/BRA"] }, "select": ["entity", "variable", "value", "date"], "filter": {"facet_ids": ["3981252704"]} }'
+```
+
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+{
+   "byVariable" : {
+      "Count_Person" : {
+         "byEntity" : {
+            "country/BRA" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2023",
+                     "facetId" : "3981252704",
+                     "latestDate" : "2023",
+                     "obsCount" : 1,
+                     "observations" : [
+                        {
+                           "date" : "2023",
+                           "value" : 211140729
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "facets" : {
+      "3981252704" : {
+         "importName" : "WorldDevelopmentIndicators",
+         "observationPeriod" : "P1Y",
+         "provenanceUrl" : "https://datacatalog.worldbank.org/dataset/world-development-indicators/"
+      }
+   }
+}
+```
