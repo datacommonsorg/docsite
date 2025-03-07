@@ -146,5 +146,5 @@ Start the services using the locally built repo. If you have made changes to any
 
 Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080). 
 
-If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
+If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems
 
