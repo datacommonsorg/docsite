@@ -224,7 +224,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
-```json
+```
 {
 {
    "byVariable" : {
@@ -322,7 +322,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
-```json
+```
 {
   "byVariable": {
     "Count_Person": {
@@ -420,7 +420,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
-```json
+```
 {
   "byVariable": {
     "Count_Person": {
