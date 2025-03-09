@@ -2,7 +2,7 @@
 layout: default
 title: Get triples associated with nodes
 nav_order: 32
-parent: Python
+parent: Python (V1)
 grand_parent: API - Query data programmatically
 ---
 

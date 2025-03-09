@@ -2,7 +2,7 @@
 layout: default
 title: Get multivariate DataFrame
 nav_order: 3
-parent: Pandas
+parent: Pandas (V1)
 grand_parent: API - Query data programmatically
 ---
 
