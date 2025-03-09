@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Data sources
-nav_order: 6
+title: Data Sources
+nav_order: 110
 has_children: false
 redirect_from:
     - /datasets/covid19
