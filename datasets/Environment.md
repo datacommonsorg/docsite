@@ -1,4 +1,4 @@
 ----
 layout: redirect
-redirect_to: https://datacommons.org/data
+redirect_to: https://datacommons.org/data/environment
 ---
