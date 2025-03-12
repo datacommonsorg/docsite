@@ -129,7 +129,7 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
 | Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
 
-To send a request, you inject an endpoint to the client object and call one of the endpoint's methods. For example: 
+To send a request, you use one of the endpoints available as methods of the client object. For example: 
 
 ```python
 >>> client.resolve.fetch_dcids_by_name(names="Georgia")
