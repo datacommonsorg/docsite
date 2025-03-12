@@ -155,7 +155,7 @@ For common requests, each endpoint also provides convenience methods that build 
 
 ## Response formatting
 
-By default, the client converts JSON responses into Python dictionary objects. For example:
+By default, responses are returned as Python `dataclass` objects. For example:
 
 ```python
 >>> response = client.resolve.fetch_dcids_by_name(names="Georgia")
@@ -163,7 +163,7 @@ By default, the client converts JSON responses into Python dictionary objects. F
 >>> ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ```
 
-Each response class provides a property method, `json`, that converts the Python object response back to JSON.
+Each response class provides a property method, `json`, that converts the Python object into a serializable JSON string.
 
 ```python
 >>> print(response.json)
