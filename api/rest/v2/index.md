@@ -188,7 +188,7 @@ V2 supports limited filtering. For both Node and Observation endpoints, the foll
 
 | Relation expression  | Filter expression | Description | Example |
 |----------------------|-------------------|-------------|----------|
-| <-containedInPlace   |   +{_PROPERTY_:_VALUE_}   | Return entities that that are contained in the selected place entity (or entities), that meet the specified constraints. | `<-containedInPlace+{typeOf:County}` returns just the counties that are contained in the named place entity. |
+| <-containedInPlace   |   +{typeOf:_VALUE_}   | Return entities that that are contained in the selected place entity (or entities), of the specified type. | `<-containedInPlace+{typeOf:County}` returns just the counties that are contained in the named place entity. |
 
 The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
 
