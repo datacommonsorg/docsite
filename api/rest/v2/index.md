@@ -162,7 +162,6 @@ The following table describes symbols in the V2 API relation expressions:
 | <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
-| `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
 
 ### Incoming and outgoing arcs
 
@@ -176,30 +175,30 @@ Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
 arcs are represented by `<-`. To illustrate using the above example:
 
 - Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
-- All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
-
-### Filters
-
-You can use filters to reduce results to only match nodes with a specified property and value. Use {} to specify property:value pairs to define the filter. Using the same example, `country/ARG<-containedInPlace+{typeOf:City}` only returns nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
+- All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}` (See [Filter expressions](#filters) below about this special syntax.)
 
 ### Specify multiple properties
 
 You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
 `->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
 
+### Filters
+
+V2 supports limited filtering. For the Node and Observation endpoints, the following filter is availables:
+
+| Relation expression  | Filter expression | Description | Example |
+|----------------------|-------------------|-------------|----------|
+| <-containedInPlace | +{_PROPERTY_:_VALUE_} | Return entities that that are contained in the selected place entity (or entities), that meet the specified constraints. | `<-containedInPlace+{typeOf:County}` returns just the counties that are contained in the named place entity. |
+
+The Observation endpoint supports [additional filters](observation.md) for provenances and facets. 
+
+> Note: Filter expressions are not supported for custom Data Commons instances.
+
 ### Wildcard
 
 To retrieve all properties linked to a node, use the `*` wildcard, e.g. `<-*`.
 See more in this [Node API example](/api/rest/v2/node.html#wildcard).
 
-### Chain properties
-
-Use `+` to express a chain expression. A chain expression represents requests for information about nodes
-which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.
-
-To illustrate again using the Argentina example:
-- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
-- All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
 
 {: #url-encode}
 ## URL-encoding reserved characters in GET requests
