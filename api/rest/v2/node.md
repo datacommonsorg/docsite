@@ -207,9 +207,11 @@ Response:
 ```
 {: .example-box-content .scroll
 
-### Example 3: Get values of nodes, filtered by type, with an incoming relation to a given node
+### Example 3: Get the DCIDs of all the states in the United States
 
-The following example uses a [filter expression](index.md#filters) to get the DCIDs of all the states (i.e. with `typeOf:State`) in the United States (DCID `country/USA`).
+In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
+[United States](https://datacommons.org/browser/country/USA){: target="_blank"} (DCID `country/USA`) of
+type `State`".
 
 Parameters:
 {: .example-box-title}
@@ -239,7 +241,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
-```json
+```
 {
    "data" : {
       "country/USA" : {
