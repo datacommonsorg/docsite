@@ -26,7 +26,7 @@ Before proceeding, make sure you have followed the setup instructions below.
 
 ## What's new in V2
 
-The latest version of Python client libraries implements the [REST V2 APIs](/api/rest/v2/) and adds many convenience methods. The package name is `datacommons-client`.
+The latest version of Python client libraries implements the [REST V2 APIs](/api/rest/v2/) and adds many convenience methods. The package name is `datacommons_client`.
 
 Here are just some of the changes from the previous version of the libraries:
 
@@ -46,13 +46,13 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 1. Install the the `datacommons_client` package:
 
    ```bash
-   $ pip install datacommons-client
+   $ pip install datacommons_client
    ```
 
 To get additional functionality with Pandas DataFrames, run:
 
 ```bash
-$ pip install "datacommons-client[Pandas]"
+$ pip install "datacommons_client[Pandas]"
 ```
 ## Run Python interactively
 
