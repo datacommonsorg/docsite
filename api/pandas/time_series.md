@@ -2,7 +2,7 @@
 layout: default
 title: Get time series for a place
 nav_order: 1
-parent: Pandas
+parent: Pandas (V1)
 grand_parent: API - Query data programmatically
 ---
 

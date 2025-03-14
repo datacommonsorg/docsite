@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Get property values of nodes
-nav_order: 7
-parent: Python
+nav_order: 37
+parent: Python (V1)
 grand_parent: API - Query data programmatically
 ---
 

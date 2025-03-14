@@ -2,7 +2,7 @@
 layout: default
 title: Get time series DataFrame
 nav_order: 2
-parent: Pandas
+parent: Pandas (V1)
 grand_parent: API - Query data programmatically
 ---
 

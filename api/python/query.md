@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Query using SPARQL
-nav_order: 8
-parent: Python
+nav_order: 38
+parent: Python (V1)
 grand_parent: Retrieve statistics value for a place
 ---
 
