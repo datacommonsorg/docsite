@@ -124,7 +124,7 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
-| Observation | [`observation`](observation.md)) | Fetches statistical observations (time series) | `ObservationResponse` |
+| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` |
 | Observations Pandas DataFrame | [`observations_dataframe`](observation.md#) | Same as above, except the functionality is provided by a method of the `DataCommonsClient` class directly, instead of an intermediate endpoint | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
 | Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
@@ -133,7 +133,7 @@ To send a request, you use one of the endpoints available as methods of the clie
 
 ```python
 >>> client.resolve.fetch_dcids_by_name(names="Georgia")
->>> {'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13', 'dominantType': None}, {'dcid': 'country/GEO', 'dominantType': None}, {'dcid': 'geoId/5027700', 'dominantType': None}]}]}
+ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ```
 
 See the linked pages for descriptions of the methods available for each endpoint, its methods and responses.
@@ -152,22 +152,76 @@ Each endpoint has a `fetch()` method that takes a relation expression. For compl
 
 For common requests, each endpoint also provides convenience methods that build the expressions for you. See the endpoint pages for details.
 
-
 ## Response formatting
 
-By default, responses are returned as Python `dataclass` objects. For example:
+By default, responses are returned as Python `dataclass` objects with the full structure. For example:
 
 ```python
 >>> response = client.resolve.fetch_dcids_by_name(names="Georgia")
 >>> print(response)
 >>> ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
-```
+``` 
 
-Each response class provides a property method, `json`, that converts the Python object into a serializable JSON string.
+Each response class provides some property methods that are useful for formatting the output.
+
+| Method | Description |
+|--------|-------------|
+| to_dict | Converts the dataclass to a Python dictionary. |
+| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). |
+{: .doc-table }
+
+Both methods take the following input parameter:
+
+| Parameter | Description |
+|-----------|-------------|
+| exclude_none  <br /> <optional-tag>Optional </optional-tag> | Compact response with nulls and empty lists removed. Defaults to `True`. To preserve the original structure and return all properties including null values and empty lists, set this to `False`. |
+{: .doc-table }
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Return dictionary in compact format
+
+This example removes all properties that have null values or empty lists.
 
 ```python
->>> print(response.json)
->>> {'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13', 'dominantType': None}, {'dcid': 'country/GEO', 'dominantType': None}, {'dcid': 'geoId/5027700', 'dominantType': None}]}]}
+>>> client.resolve.fetch_dcids_by_name(names="Georgia").to_dict()
+{'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13'}, {'dcid': 'country/GEO'}, {'dcid': 'geoId/5027700'}]}]}
 ```
 
+{: .no_toc}
+#### Example 2: Return dictionary with original structure 
 
+This example sets `exclude_none` to `False` to preserve all properties from the original response, including all nulls and empty lists.
+
+```python
+>>> client.resolve.fetch_dcids_by_name(names="Georgia").to_dict(exclude_none=False)
+{'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13', 'dominantType': None}, {'dcid': 'country/GEO', 'dominantType': None}, {'dcid': 'geoId/5027700', 'dominantType': None}]}]}
+```
+
+{: .no_toc}
+#### Example 3: Return compact JSON string
+
+This example converts the response to a formatted JSON string, in compact form, and prints the response for better readability.
+
+```python
+>>> print(client.resolve.fetch_dcids_by_name(names="Georgia").to_json())
+{
+  "entities": [
+    {
+      "node": "Georgia",
+      "candidates": [
+        {
+          "dcid": "geoId/13"
+        },
+        {
+          "dcid": "country/GEO"
+        },
+        {
+          "dcid": "geoId/5027700"
+        }
+      ]
+    }
+  ]
+}
+```
