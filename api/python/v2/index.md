@@ -4,7 +4,7 @@ title: Python (V2)
 nav_order: 1
 parent: API - Query data programmatically
 has_children: true
-published: false
+published: true
 ---
 
 {:.no_toc}
