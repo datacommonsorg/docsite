@@ -12,8 +12,7 @@ published: true
 
 Data Commons represents node relations as directed edges between nodes, or
 _properties_. The name of the property is a _label_, while the _value_ of
-the property may be a connected node. The Node API returns the property labels and values that are
-connected to the queried node. This is useful for finding connections between nodes of the Data Commons knowledge graph.
+the property may be a connected node. The Node API returns the property labels and values that are connected to the queried node. This is useful for finding connections between nodes of the Data Commons knowledge graph.
 
 More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
@@ -68,11 +67,10 @@ All request methods return a `NodeResponse` object. It looks like this:
 
 ### Response property methods
 
-You can call the following methods on the `NodeResponse` object:
+In addition to the [formatting methods](index.md#response-formatting) available for all reponses classes, you can call the following methods on the `NodeResponse` object:
 
 | Method | Description | 
 |--------|-------------|
-| json | Return the result as a JSON string. |
 | nextToken | Extract the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
 {: .doc-table}
 
@@ -104,9 +102,21 @@ fetch(node_dcids, expression, all_pages, next_token)
 This examples gets all incoming arc property labels, i.e. the property labels of attached nodes, for the node with DCID `geoId/06` (California) by querying with the `<-` symbol. This returns just the property labels but not the property values. 
 
 ```python
->>> client.node.fetch(node_dcids=["geoId/06"], expression="<-").json
-{'data': {'geoId/06': {'properties': ['affectedPlace', 'containedInPlace', 'location', 'member', 'overlapsWith']}}, 'nextToken': None}
+>>> print(client.node.fetch(node_dcids=["geoId/06"], expression="<-").to_json())
+{
+  "data": {
+    "geoId/06": {
+      "properties": [
+        "affectedPlace",
+        "containedInPlace",
+        "location",
+        "member",
+        "overlapsWith"
+      ]
+    }
+  }
 ```
+{: .response-signature .scroll}
 
 {: #fetch_ex2 }
 #### Example 2: Get one (outgoing) property value for a given node
@@ -114,18 +124,83 @@ This examples gets all incoming arc property labels, i.e. the property labels of
 This example gets the value of the `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 
 ```python
->>> client.node.fetch(node_dcids=["geoId/06"], expression="->name").json
-{'data': {'geoId/06': {'arcs': {'name': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': 'California'}]}}}}, 'nextToken': None}
+>>> print(client.node.fetch(node_dcids=["geoId/06"], expression="->name").to_json())
+{
+  "data": {
+    "geoId/06": {
+      "arcs": {
+        "name": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "California"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
 ```
+{: .response-signature .scroll}
 
 #### Example 3: Get a list of all statistical variables
 
 This example gets the list of all statistical variables in the knowledge graph, by fetching all nodes that are types of the class `StatisticalVariable` and using the `<-typeOf` symbol to express the incoming relationships. Also, because of the size of the response, it enables [pagination](#pagination) to split up the response data into multiple calls.
 
 ```python
->>> client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf", all_pages=False).json
-{'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [{'dcid': 'AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate1990_Max_Temperature', 'name': 'Max Temperature (Difference Relative To Base Date): Relative To 1990, Highest Value, Median Across Models', 'provenanceId': 'dc/base/HumanReadableStatVars', 'types': ['StatisticalVariable'], 'value': None}, {'dcid': 'AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP45', 'name': 'Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 4.5, Highest Value, Median Across Models', 'provenanceId': 'dc/base/HumanReadableStatVars', 'types': ['StatisticalVariable'], 'value': None}, {'dcid': 'AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP85', 'name': 'Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 8.5, Highest Value, Median Across Models', 'provenanceId': 'dc/base/HumanReadableStatVars', 'types': ['StatisticalVariable'], 'value': None}, {'dcid': 'AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP45', 'name': 'Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 4.5, Highest Value, Median Across Models', 'provenanceId': 'dc/base/HumanReadableStatVars', 'types': ['StatisticalVariable'], 'value': None},...'nextToken': 'H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA='
+>>> >>> print(client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf", all_pages=False).to_json())
+{
+  "data": {
+    "StatisticalVariable": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate1990_Max_Temperature",
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To 1990, Highest Value, Median Across Models",
+              "provenanceId": "dc/base/HumanReadableStatVars",
+              "types": [
+                "StatisticalVariable"
+              ]
+            },
+            {
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP45",
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 4.5, Highest Value, Median Across Models",
+              "provenanceId": "dc/base/HumanReadableStatVars",
+              "types": [
+                "StatisticalVariable"
+              ]
+            },
+            {
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP85",
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 8.5, Highest Value, Median Across Models",
+              "provenanceId": "dc/base/HumanReadableStatVars",
+              "types": [
+                "StatisticalVariable"
+              ]
+            },
+            {
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP45",
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 4.5, Highest Value, Median Across Models",
+              "provenanceId": "dc/base/HumanReadableStatVars",
+              "types": [
+                "StatisticalVariable"
+              ]
+            },
+            {
+              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP85",
+              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 8.5, Highest Value, Median Across Models",
+              "provenanceId": "dc/base/HumanReadableStatVars",
+              "types": [
+                "StatisticalVariable"
+              ]
+            },
+            ...
+            "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
+}
 ```
+{: .response-signature .scroll}
 
 ## fetch_property_labels
 
@@ -145,7 +220,6 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 | out <br/> <required-tag>Required</required-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
-
 {: .doc-table }
 
 ### Examples
@@ -155,9 +229,22 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 Get all incoming arc property labels, i.e. the property labels that are used in attached nodes, of the node with DCID `geoId/06` (California) by setting the `out` parameter to `False`. This is identical to [example 1](#fetch_ex1) of the `fetch` method.
 
 ```python
-client.node.fetch_property_labels(node_dcids=["geoId/06"], out=False).json
-{'data': {'geoId/06': {'properties': ['affectedPlace', 'containedInPlace', 'location', 'member', 'overlapsWith']}}, 'nextToken': None}
+print(client.node.fetch_property_labels(node_dcids=["geoId/06"], out=False).to_json())
+{
+  "data": {
+    "geoId/06": {
+      "properties": [
+        "affectedPlace",
+        "containedInPlace",
+        "location",
+        "member",
+        "overlapsWith"
+      ]
+    }
+  }
+}
 ```
+{: .response-signature .scroll}
 
 ## fetch_property_values
 
@@ -189,18 +276,109 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 This example gets the `name` property for a given node with DCID `dc/03lw9rhpendw5`. This is identical to [example 2](#fetch_ex2) of the `fetch` method.
 
 ```python
->>> client.node.fetch_property_values(node_dcids="dc/03lw9rhpendw5", properties="name").json
-{'data': {'dc/03lw9rhpendw5': {'arcs': {'name': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/EIA_860', 'types': None, 'value': '191 Peachtree Tower'}]}}}}, 'nextToken': None}
+>>> {
+  "data": {
+    "dc/03lw9rhpendw5": {
+      "arcs": {
+        "name": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/EIA_860",
+              "value": "191 Peachtree Tower"
+            }
+          ]
+        }
+      }
+    }
+  }
 ```
+{: .response-signature .scroll}
 
 #### Example 2: Get multiple (outgoing) property values for multiple nodes
 
 This example gets the `name`, `latitude`, and `longitude` values for nodes `geoId/06085` and `geoId/06087`.
 
 ```python
->>> client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], properties=["name", "latitude", "longitude"]).json
-{'data': {'geoId/06085': {'arcs': {'name': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': 'Santa Clara County'}]}, 'latitude': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '37.221614'}, {'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '37.36'}]}, 'longitude': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '-121.68954'}, {'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '-121.97'}]}}}, 'geoId/06087': {'arcs': {'name': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': 'Santa Cruz County'}]}, 'latitude': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '37.012347'}, {'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '37.03'}]}, 'longitude': {'nodes': [{'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '-122.007789'}, {'dcid': None, 'name': None, 'provenanceId': 'dc/base/WikidataOtherIdGeos', 'types': None, 'value': '-122.01'}]}}}}, 'nextToken': None}
+>>> print(client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], properties=["name", "latitude", "longitude"]).to_json())
+{
+  "data": {
+    "geoId/06085": {
+      "arcs": {
+        "name": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "Santa Clara County"
+            }
+          ]
+        },
+        "latitude": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "37.221614"
+            },
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "37.36"
+            }
+          ]
+        },
+        "longitude": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "-121.68954"
+            },
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "-121.97"
+            }
+          ]
+        }
+      }
+    },
+    "geoId/06087": {
+      "arcs": {
+        "name": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "Santa Cruz County"
+            }
+          ]
+        },
+        "latitude": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "37.012347"
+            },
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "37.03"
+            }
+          ]
+        },
+        "longitude": {
+          "nodes": [
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "-122.007789"
+            },
+            {
+              "provenanceId": "dc/base/WikidataOtherIdGeos",
+              "value": "-122.01"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+}
 ```
+{: .response-signature .scroll}
 
 > Tip: This example is equivalent to `node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
 
@@ -211,10 +389,49 @@ In this example, we use a [filter expression](/api/rest/v2/#filters) to specify 
 type `State`".
 
 ```python
->>> client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).json
-{'data': {'country/USA': {'arcs': {'containedInPlace+': {'nodes': [{'dcid': 'geoId/01', 'name': 'Alabama', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/02', 'name': 'Alaska', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/04', 'name': 'Arizona', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/05', 'name': 'Arkansas', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/06', 'name': 'California', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/08', 'name': 'Colorado', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/09', 'name': 'Connecticut', 'provenanceId': None, 'types': None, 'value': None}, {'dcid': 'geoId/10', 'name': 'Delaware', 'provenanceId': None, 'types': None, 'value': None},... 'nextToken': None}
+>>> print(client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).to_json())
+{
+  "data": {
+    "country/USA": {
+      "arcs": {
+        "containedInPlace+": {
+          "nodes": [
+            {
+              "dcid": "geoId/01",
+              "name": "Alabama"
+            },
+            {
+              "dcid": "geoId/02",
+              "name": "Alaska"
+            },
+            {
+              "dcid": "geoId/04",
+              "name": "Arizona"
+            },
+            {
+              "dcid": "geoId/05",
+              "name": "Arkansas"
+            },
+            {
+              "dcid": "geoId/06",
+              "name": "California"
+            },
+            {
+              "dcid": "geoId/08",
+              "name": "Colorado"
+            },
+            {
+              "dcid": "geoId/09",
+              "name": "Connecticut"
+            },
+            {
+              "dcid": "geoId/10",
+              "name": "Delaware"
+            },
+            ...
 ```
 > Tip: This example is equivalent to `fetch(node_dcids="country/USA", expression="<-containedInPlace+{typeOf:State}")`.
+{: .response-signature .scroll}
 
 ## fetch_all_classes
 
@@ -240,12 +457,386 @@ fetch_all_classes(all_pages, next_token)
 This example sets `all_pages` to get a [paginated response](#pagination) with a `next_token` value. 
 
 ```python
->>> client.node.fetch_all_classes(all_pages=False)
-{'data': {'Class': {'arcs': {'typeOf': {'nodes': [{'dcid': 'ACLGroup', 'name': 'ACLGroup', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'ACSEDChild', 'name': 'ACSEDChild', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'ACSEDParent', 'name': 'ACSEDParent', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'APIReference', 'name': 'APIReference', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'AboutPage', 'name': 'AboutPage', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'AcademicAssessmentEvent', 'name': 'AcademicAssessmentEvent', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'AcademicAssessmentTypeEnum', 'name': 'AcademicAssessmentTypeEnum', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'AcceptAction', 'name': 'AcceptAction', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'Accommodation', 'name': 'Accommodation', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, {'dcid': 'AccountingService', 'name': 'AccountingService', 'provenanceId': 'dc/base/BaseSchema', 'types': ['Class'], 'value': None}, ....
-'nextToken': 'H4sIAAAAAAAA/yzHMQ5EQBjF8Z23O7PPRyH/yn20EmdQUCkko3F7kSh/MUUe96XWKOd1rPP2kg/FqU9DRhbyF/mH/Lgg/5GN3CAHcovc3QAAAP//AQAA//9hM3KVTgAAAA=='}
+>>> print(client.node.fetch_all_classes(all_pages=False).to_json())
+              "name": "Arkansas"
+            },
+            {
+              "dcid": "geoId/06",
+              "name": "California"
+            },
+            {
+              "dcid": "geoId/08",
+              "name": "Colorado"
+            },
+            {
+              "dcid": "geoId/09",
+              "name": "Connecticut"
+            },
+            {
+              "dcid": "geoId/10",
+              "name": "Delaware"
+            },
+            {
+              "dcid": "geoId/11",
+              "name": "District of Columbia"
+            },
+            {
+              "dcid": "geoId/12",
+              "name": "Florida"
+            },
+            {
+              "dcid": "geoId/13",
+              "name": "Georgia"
+            },
+            {
+              "dcid": "geoId/15",
+              "name": "Hawaii"
+            },
+            {
+              "dcid": "geoId/16",
+              "name": "Idaho"
+            },
+            {
+              "dcid": "geoId/17",
+              "name": "Illinois"
+            },
+            {
+              "dcid": "geoId/18",
+              "name": "Indiana"
+            },
+            {
+              "dcid": "geoId/19",
+              "name": "Iowa"
+            },
+            {
+              "dcid": "geoId/20",
+              "name": "Kansas"
+            },
+            {
+              "dcid": "geoId/21",
+              "name": "Kentucky"
+            },
+            {
+              "dcid": "geoId/22",
+              "name": "Louisiana"
+            },
+            {
+              "dcid": "geoId/23",
+              "name": "Maine"
+            },
+            {
+              "dcid": "geoId/24",
+              "name": "Maryland"
+            },
+            {
+              "dcid": "geoId/25",
+              "name": "Massachusetts"
+            },
+            {
+              "dcid": "geoId/26",
+              "name": "Michigan"
+            },
+            {
+              "dcid": "geoId/27",
+              "name": "Minnesota"
+            },
+            {
+              "dcid": "geoId/28",
+              "name": "Mississippi"
+            },
+            {
+              "dcid": "geoId/29",
+              "name": "Missouri"
+            },
+            {
+              "dcid": "geoId/30",
+              "name": "Montana"
+            },
+            {
+              "dcid": "geoId/31",
+              "name": "Nebraska"
+            },
+            {
+              "dcid": "geoId/32",
+              "name": "Nevada"
+            },
+            {
+              "dcid": "geoId/33",
+              "name": "New Hampshire"
+            },
+            {
+              "dcid": "geoId/34",
+              "name": "New Jersey"
+            },
+            {
+              "dcid": "geoId/35",
+              "name": "New Mexico"
+            },
+            {
+              "dcid": "geoId/36",
+              "name": "New York"
+            },
+            {
+              "dcid": "geoId/37",
+              "name": "North Carolina"
+            },
+            {
+              "dcid": "geoId/38",
+              "name": "North Dakota"
+            },
+            {
+              "dcid": "geoId/39",
+              "name": "Ohio"
+            },
+            {
+              "dcid": "geoId/40",
+              "name": "Oklahoma"
+            },
+            {
+              "dcid": "geoId/41",
+              "name": "Oregon"
+            },
+            {
+              "dcid": "geoId/42",
+              "name": "Pennsylvania"
+            },
+            {
+              "dcid": "geoId/44",
+              "name": "Rhode Island"
+            },
+            {
+              "dcid": "geoId/45",
+              "name": "South Carolina"
+            },
+            {
+              "dcid": "geoId/46",
+              "name": "South Dakota"
+            },
+            {
+              "dcid": "geoId/47",
+              "name": "Tennessee"
+            },
+            {
+              "dcid": "geoId/48",
+              "name": "Texas"
+            },
+            {
+              "dcid": "geoId/49",
+              "name": "Utah"
+            },
+            {
+              "dcid": "geoId/50",
+              "name": "Vermont"
+            },
+            {
+              "dcid": "geoId/51",
+              "name": "Virginia"
+            },
+            {
+              "dcid": "geoId/53",
+              "name": "Washington"
+            },
+            {
+              "dcid": "geoId/54",
+              "name": "West Virginia"
+            },
+            {
+              "dcid": "geoId/55",
+              "name": "Wisconsin"
+            },
+            {
+              "dcid": "geoId/56",
+              "name": "Wyoming"
+            },
+            {
+              "dcid": "geoId/72",
+              "name": "Puerto Rico"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+>>> >>> print(client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).to_json())
+  File "<stdin>", line 1
+    >>> print(client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).to_json())
+    ^^
+SyntaxError: invalid syntax
+>>> {
+...   "data": {
+...     "country/USA": {
+...       "arcs": {
+...         "containedInPlace+": {
+...           "nodes": [
+...             {
+...               "dcid": "geoId/01",
+...               "name": "Alabama"
+...             },
+...             {
+...               "dcid": "geoId/02",
+...               "name": "Alaska"
+...             },
+...             {
+...               "dcid": "geoId/04",
+...               "name": "Arizona"
+...             },
+...             {
+...               "dcid": "geoId/05",
+...               "name": "Arkansas"
+...             },
+...             {
+...               "dcid": "geoId/06",
+...               "name": "California"
+...             },
+...             {
+...               "dcid": "geoId/08",
+...               "name": "Colorado"
+...             },
+...             {
+...               "dcid": "geoId/09",
+...               "name": "Connecticut"
+...             },
+...             {
+...               "dcid": "geoId/10",
+...               "name": "Delaware"
+...             },
+KeyboardInterrupt
+>>> >>> print(client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).to_json())
+  File "<stdin>", line 1
+    >>> print(client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).to_json())
+    ^^
+SyntaxError: invalid syntax
+>>> {
+...   "data": {
+...     "country/USA": {
+...       "arcs": {
+...         "containedInPlace+": {
+...           "nodes": [
+...             {
+...               "dcid": "geoId/01",
+...               "name": "Alabama"
+...             },
+...             {
+...               "dcid": "geoId/02",
+...               "name": "Alaska"
+...             },
+...             {
+...               "dcid": "geoId/04",
+...               "name": "Arizona"
+...             },
+...             {
+...               "dcid": "geoId/05",
+...               "name": "Arkansas"
+...             },
+...             {
+...               "dcid": "geoId/06",
+...               "name": "California"
+...             },
+...             {
+...               "dcid": "geoId/08",
+...               "name": "Colorado"
+...             },
+...             {
+...               "dcid": "geoId/09",
+...               "name": "Connecticut"
+...             },
+...             {
+...               "dcid": "geoId/10",
+...               "name": "Delaware"
+...             },
+KeyboardInterrupt
+>>> print(client.node.fetch_all_classes(all_pages=False).to_json())
+{
+  "data": {
+    "Class": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "dcid": "ACLGroup",
+              "name": "ACLGroup",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "ACSEDChild",
+              "name": "ACSEDChild",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "ACSEDParent",
+              "name": "ACSEDParent",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "APIReference",
+              "name": "APIReference",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AboutPage",
+              "name": "AboutPage",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AcademicAssessmentEvent",
+              "name": "AcademicAssessmentEvent",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AcademicAssessmentTypeEnum",
+              "name": "AcademicAssessmentTypeEnum",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AcceptAction",
+              "name": "AcceptAction",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "Accommodation",
+              "name": "Accommodation",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            ....
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/yzHMQ5EQBjF8Z23O7PPRyH/yn20EmdQUCkko3F7kSh/MUUe96XWKOd1rPP2kg/FqU9DRhbyF/mH/Lgg/5GN3CAHcovc3QAAAP//AQAA//9hM3KVTgAAAA=="
+}
 ```
-> Tip: This example is equivalent to `node.fetch(node_dcids="Class", expression="<-typeOf", all_pages=False)`.
+{: .response-signature .scroll}
 
+> Tip: This example is equivalent to `node.fetch(node_dcids="Class", expression="<-typeOf", all_pages=False)`.
 
 ## Pagination
 
@@ -279,5 +870,6 @@ To get the next set of entries, repeat the request with the `next_token` paramet
 while response.nextToken != None:
    response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token=response.nextToken)
 ```
-
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
 
