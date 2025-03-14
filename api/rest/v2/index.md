@@ -184,11 +184,21 @@ You can combine multiple properties together within `[]`. For example, to reques
 
 ### Filters
 
-V2 supports limited filtering. For both Node and Observation endpoints, the following filter is available:
+V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter (for non-SPARQL queries) is:
 
-| Relation expression  | Filter expression | Description | Example |
-|----------------------|-------------------|-------------|----------|
-| <-containedInPlace   |   +{typeOf:_VALUE_}   | Return entities that that are contained in the selected place entity (or entities), of the specified type. | `<-containedInPlace+{typeOf:County}` returns just the counties that are contained in the named place entity. |
+<pre>
+{typeOf:<var>VALUE</var>}
+</pre>
+
+Here are the contexts where this filter is currently supported:
+
+| API | Context  | Use |
+|-----|--------------------------------------|-------------|
+| Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
+| Resolve entity | Incoming properties `<-description` <br />`<-wikiId` <br /> `<-geoCoordinate` | Return entities of the specified type, that match a selected name, wiki ID, or geocoordinate. |
+| SPARQL | In a `WHERE` clause, for any entity being queried | Return only entities of the specified type. |
+
+See the endpoint pages for examples.
 
 The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
 
