@@ -87,6 +87,8 @@ JSON data:
 | filter.facet_ids <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
+> **Note**: Filters are not currently available for custom variables.
+
 {: #date-string}
 ### Date-time string formats 
 

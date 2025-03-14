@@ -192,8 +192,6 @@ V2 supports limited filtering. For both Node and Observation endpoints, the foll
 
 The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
 
-> Note: Filter expressions are not supported for custom Data Commons instances.
-
 ### Wildcard
 
 To retrieve all properties linked to a node, use the `*` wildcard, e.g. `<-*`.
