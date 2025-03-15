@@ -101,8 +101,18 @@ fetch(node_dcids, expression, all_pages, next_token)
 
 This examples gets all incoming arc property labels, i.e. the property labels of attached nodes, for the node with DCID `geoId/06` (California) by querying with the `<-` symbol. This returns just the property labels but not the property values. 
 
+Request:
+{: .example-box-title}
+
 ```python
->>> print(client.node.fetch(node_dcids=["geoId/06"], expression="<-").to_json())
+client.node.fetch(node_dcids=["geoId/06"], expression="<-")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
 {
   "data": {
     "geoId/06": {
@@ -115,16 +125,27 @@ This examples gets all incoming arc property labels, i.e. the property labels of
       ]
     }
   }
+}
 ```
-{: .response-signature .scroll}
+{: .example-box-content .scroll}
 
 {: #fetch_ex2 }
 #### Example 2: Get one (outgoing) property value for a given node
 
 This example gets the value of the `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> print(client.node.fetch(node_dcids=["geoId/06"], expression="->name").to_json())
+client.node.fetch(node_dcids=["geoId/06"], expression="->name")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
 {
   "data": {
     "geoId/06": {
@@ -142,14 +163,24 @@ This example gets the value of the `name` property for a given node with DCID `d
   }
 }
 ```
-{: .response-signature .scroll}
+{: .example-box-content .scroll}
 
 #### Example 3: Get a list of all statistical variables
 
 This example gets the list of all statistical variables in the knowledge graph, by fetching all nodes that are types of the class `StatisticalVariable` and using the `<-typeOf` symbol to express the incoming relationships. Also, because of the size of the response, it enables [pagination](#pagination) to split up the response data into multiple calls.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> >>> print(client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf", all_pages=False).to_json())
+client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf", all_pages=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```
 {
   "data": {
     "StatisticalVariable": {
@@ -200,7 +231,7 @@ This example gets the list of all statistical variables in the knowledge graph, 
             "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
 }
 ```
-{: .response-signature .scroll}
+{: .example-box-content .scroll}
 
 ## fetch_property_labels
 
@@ -228,8 +259,18 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 
 Get all incoming arc property labels, i.e. the property labels that are used in attached nodes, of the node with DCID `geoId/06` (California) by setting the `out` parameter to `False`. This is identical to [example 1](#fetch_ex1) of the `fetch` method.
 
+Request:
+{: .example-box-title}
+
 ```python
-print(client.node.fetch_property_labels(node_dcids=["geoId/06"], out=False).to_json())
+client.node.fetch_property_labels(node_dcids=["geoId/06"], out=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
 {
   "data": {
     "geoId/06": {
@@ -244,7 +285,7 @@ print(client.node.fetch_property_labels(node_dcids=["geoId/06"], out=False).to_j
   }
 }
 ```
-{: .response-signature .scroll}
+{: .example-box-content .scroll}
 
 ## fetch_property_values
 
@@ -275,8 +316,19 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 
 This example gets the `name` property for a given node with DCID `dc/03lw9rhpendw5`. This is identical to [example 2](#fetch_ex2) of the `fetch` method.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> {
+client.node.fetch_property_values(node_dcids=["dc/03lw9rhpendw5"], property="name")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+{
   "data": {
     "dc/03lw9rhpendw5": {
       "arcs": {
@@ -291,15 +343,28 @@ This example gets the `name` property for a given node with DCID `dc/03lw9rhpend
       }
     }
   }
+}
 ```
-{: .response-signature .scroll}
+{: .example-box-content .scroll}
 
 #### Example 2: Get multiple (outgoing) property values for multiple nodes
 
 This example gets the `name`, `latitude`, and `longitude` values for nodes `geoId/06085` and `geoId/06087`.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> print(client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], properties=["name", "latitude", "longitude"]).to_json())
+client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], properties=["name", "latitude", "longitude"])
+```
+{: .example-box-content .scroll}
+
+> Tip: This example is equivalent to `node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
+
+Response:
+{: .example-box-title}
+
+```json
 {
   "data": {
     "geoId/06085": {
@@ -376,20 +441,28 @@ This example gets the `name`, `latitude`, and `longitude` values for nodes `geoI
     }
   }
 }
-}
 ```
-{: .response-signature .scroll}
-
-> Tip: This example is equivalent to `node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
+{: .example-box-content .scroll}
 
 #### Example 3: Get DCIDs of nodes of a specific type, with an incoming relation to a node
 
 In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
-[United States](https://datacommons.org/browser/country/USA){: target="_blank"} (DCID `country/USA`) of
-type `State`".
+[United States](https://datacommons.org/browser/country/USA){: target="_blank"} (DCID `country/USA`) of type `State`".
+
+Request:
+{: .example-box-title}
 
 ```python
->>> print(client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False).to_json())
+client.node.fetch_property_values(node_dcids=["country/USA"], properties="containedInPlace+{typeOf:State}", out=False)
+```
+{: .example-box-content .scroll}
+
+> Tip: This example is equivalent to `fetch(node_dcids="country/USA", expression="<-containedInPlace+{typeOf:State}")`.
+
+Response:
+{: .example-box-title}
+
+```
 {
   "data": {
     "country/USA": {
@@ -429,9 +502,15 @@ type `State`".
               "name": "Delaware"
             },
             ...
+        }
+      }
+    }
+  }
+}
 ```
-> Tip: This example is equivalent to `fetch(node_dcids="country/USA", expression="<-containedInPlace+{typeOf:State}")`.
-{: .response-signature .scroll}
+{: .example-box-content .scroll}
+
+
 
 ## fetch_all_classes
 
@@ -456,8 +535,20 @@ fetch_all_classes(all_pages, next_token)
 
 This example sets `all_pages` to get a [paginated response](#pagination) with a `next_token` value. 
 
+Request:
+{: .example-box-title}
+
 ```python
->>> print(client.node.fetch_all_classes(all_pages=False).to_json())
+client.node.fetch_all_classes(all_pages=False)
+```
+{: .example-box-content .scroll}
+
+> Tip: This example is equivalent to `node.fetch(node_dcids="Class", expression="<-typeOf", all_pages=False)`.
+
+Response:
+{: .example-box-title}
+
+```
 {
   "data": {
     "Class": {
@@ -545,9 +636,7 @@ This example sets `all_pages` to get a [paginated response](#pagination) with a 
   "nextToken": "H4sIAAAAAAAA/yzHMQ5EQBjF8Z23O7PPRyH/yn20EmdQUCkko3F7kSh/MUUe96XWKOd1rPP2kg/FqU9DRhbyF/mH/Lgg/5GN3CAHcovc3QAAAP//AQAA//9hM3KVTgAAAA=="
 }
 ```
-{: .response-signature .scroll}
-
-> Tip: This example is equivalent to `node.fetch(node_dcids="Class", expression="<-typeOf", all_pages=False)`.
+{: .example-box-content .scroll}
 
 ## Pagination
 
