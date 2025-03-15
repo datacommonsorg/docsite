@@ -205,10 +205,87 @@ Response:
   }
 }
 ```
-{: .example-box-content .scroll}
+{: .example-box-content .scroll
+
+### Example 3: Get the DCIDs of all the states in the United States
+
+In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
+[United States](https://datacommons.org/browser/country/USA){: target="_blank"} (DCID `country/USA`) of
+type `State`".
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "country/USA"
+property: "<-containedInPlace+{typeOf:State}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=country%2FUSA&property=%3C-containedInPlace%2B%7BtypeOf%3AState%7D'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["country/USA"], "property": "<-containedInPlace+{typeOf:State}"}'
+```
+
+Response:
+{: .example-box-title}
+
+```
+{
+   "data" : {
+      "country/USA" : {
+         "arcs" : {
+            "containedInPlace+" : {
+               "nodes" : [
+                  {
+                     "dcid" : "geoId/01",
+                     "name" : "Alabama"
+                  },
+                  {
+                     "dcid" : "geoId/02",
+                     "name" : "Alaska"
+                  },
+                  {
+                     "dcid" : "geoId/04",
+                     "name" : "Arizona"
+                  },
+                  {
+                     "dcid" : "geoId/05",
+                     "name" : "Arkansas"
+                  },
+                  {
+                     "dcid" : "geoId/06",
+                     "name" : "California"
+                  },
+                  {
+                     "dcid" : "geoId/08",
+                     "name" : "Colorado"
+                  },
+                  {
+                     "dcid" : "geoId/09",
+                     "name" : "Connecticut"
+                  },
+                ...
+            }
+         }
+      }
+   }
+}             
+```
 
 {: #multiple-properties}
-### Example 3: Get multiple property values for multiple nodes
+### Example 4: Get multiple property values for multiple nodes
 
 Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
 and `geoId/06087`. Note that multiple properties for a given node must be
@@ -325,7 +402,7 @@ Response:
 
 
 {: #wildcard}
-### Example 4: Get all property values for a node
+### Example 5: Get all property values for a node
 
 Get all the property labels and values (incoming arcs) for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels. 
 
@@ -504,7 +581,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: #liststatvars}
-### Example 5: Get a list of all existing statistical variables
+### Example 6: Get a list of all existing statistical variables
 
 Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, or entity type, this effectively gets all statistical variables.
 
@@ -595,7 +672,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 6: Get a list of all existing entity types
+### Example 7: Get a list of all existing entity types
 
 Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
 
