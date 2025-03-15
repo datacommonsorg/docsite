@@ -162,6 +162,7 @@ The following table describes symbols in the V2 API relation expressions:
 | <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
+| `+` | Allows arcs from nodes several hops away. Only supported for the `containedInPlace` property |
 
 ### Incoming and outgoing arcs
 
