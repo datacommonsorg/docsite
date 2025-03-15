@@ -16,7 +16,7 @@ the property may be a connected node. The Node API returns the property labels a
 
 More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
-- Get the values of a property for individual or multiple nodes. These can also be chained for multiple hops in the graph.
+- Get the values of a property for individual or multiple nodes. 
 - Get all connected nodes that are linked with individual or multiple nodes.
 
 ## Request methods
@@ -138,7 +138,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch(node_dcids=["geoId/06"], expression="->name")
+client.node.fetch(node_dcids=["dc/03lw9rhpendw5"], expression="->name")
 ```
 {: .example-box-content .scroll}
 
@@ -148,13 +148,13 @@ Response:
 ```json
 {
   "data": {
-    "geoId/06": {
+    "dc/03lw9rhpendw5": {
       "arcs": {
         "name": {
           "nodes": [
             {
-              "provenanceId": "dc/base/WikidataOtherIdGeos",
-              "value": "California"
+              "provenanceId": "dc/base/EIA_860",
+              "value": "191 Peachtree Tower"
             }
           ]
         }
@@ -359,7 +359,7 @@ client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], pro
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to `node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
+> Tip: This example is equivalent to `client.node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
 
 Response:
 {: .example-box-title}
@@ -457,7 +457,7 @@ client.node.fetch_property_values(node_dcids=["country/USA"], properties="contai
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to `fetch(node_dcids="country/USA", expression="<-containedInPlace+{typeOf:State}")`.
+> Tip: This example is equivalent to `client.node.fetch(node_dcids="country/USA", expression="<-containedInPlace+{typeOf:State}")`.
 
 Response:
 {: .example-box-title}
@@ -543,7 +543,7 @@ client.node.fetch_all_classes(all_pages=False)
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to `node.fetch(node_dcids="Class", expression="<-typeOf", all_pages=False)`.
+> Tip: This example is equivalent to `client.node.fetch(node_dcids="Class", expression="<-typeOf", all_pages=False)`.
 
 Response:
 {: .example-box-title}
