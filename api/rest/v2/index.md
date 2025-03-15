@@ -176,7 +176,7 @@ Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
 arcs are represented by `<-`. To illustrate using the above example:
 
 - Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
-- All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}` (See [Filter expressions](#filters) below about this special syntax.)
+- All cities contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
 
 ### Specify multiple properties
 
