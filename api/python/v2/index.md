@@ -43,16 +43,16 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 
 1. If not done already, install `python3` and `pip3`. See [Installing Python](https://cloud.google.com/python/docs/setup#installing_python) for procedures.
 1. Go to your project directory and create a virtual environment using venv, as described in [Using venv to isolate dependencies](https://cloud.google.com/python/docs/setup#installing_and_using_virtualenv){: target="_blank"}. 
-1. Install the the `datacommons_client` package:
+1. Install the the `datacommons-client` package:
 
    ```bash
-   $ pip install datacommons_client
+   $ pip install datacommons-client
    ```
 
 To get additional functionality with Pandas DataFrames, run:
 
 ```bash
-$ pip install "datacommons_client[Pandas]"
+$ pip install "datacommons-client[Pandas]"
 ```
 ## Run Python interactively
 
