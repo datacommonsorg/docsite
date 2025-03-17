@@ -87,6 +87,8 @@ JSON data:
 | filter.facet_ids <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
+> **Note**: Filters are not currently available for custom variables.
+
 {: #date-string}
 ### Date-time string formats 
 
@@ -378,8 +380,7 @@ Response:
 
 ### Example 4: Get the latest population observations for all California counties
 
-In this example, we use the [chained expression
-(`+`)](/api/rest/v2/#relation-expressions) to specify "all contained places in
+In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
 [California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
 type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
 ([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
