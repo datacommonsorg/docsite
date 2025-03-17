@@ -46,13 +46,13 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 1. Install the the `datacommons-client` package:
 
    ```bash
-   $ pip install datacommons-client
+   $ pip install datacommons_client
    ```
 
 To get additional functionality with Pandas DataFrames, run:
 
 ```bash
-$ pip install "datacommons-client[Pandas]"
+$ pip install "datacommons_client[Pandas]"
 ```
 ## Run Python interactively
 
@@ -72,8 +72,8 @@ You access all Data Commons Python endpoints and methods through the [`DataCommo
 To create a client and connect to the base Data Commons, namely datacommons.org:
 
 <pre>
->>> from datacommons_client.client import DataCommonsClient
->>> client = DataCommonsClient(api_key="<var>YOUR_API_KEY</var>")
+from datacommons_client.client import DataCommonsClient
+client = DataCommonsClient(api_key="<var>YOUR_API_KEY</var>")
 </pre>
 
 See below about [API keys](#authentication).
@@ -81,8 +81,8 @@ See below about [API keys](#authentication).
 To create a client and connect to a custom Data Commons by a publicly resolvable DNS hostname:
 
 <pre>
->>> from datacommons_client.client import DataCommonsClient
->>> client = DataCommonsClient(dc_instance="<var>DNS_HOSTNAME</var>")
+from datacommons_client.client import DataCommonsClient
+client = DataCommonsClient(dc_instance="<var>DNS_HOSTNAME</var>")
 </pre>
 
 For example:
@@ -92,15 +92,15 @@ client = DataCommonsClient(dc_instance="datacommons.one.org")
 To create a client and connect to a custom Data Commons by a private/non-resolvable address, specify the full API path, including the protocol and API version:
 
 <pre>
->>> from datacommons_client.client import DataCommonsClient
->>> client = DataCommonsClient(url="http://<var>YOUR_ADDRESS</var>/core/api/v2/")
+from datacommons_client.client import DataCommonsClient
+client = DataCommonsClient(url="http://<var>YOUR_ADDRESS</var>/core/api/v2/")
 </pre>
 
 For example, to connect to a locally running DataCommons instance:
 
 <pre>
->>> from datacommons_client.client import DataCommonsClient
->>> client = DataCommonsClient(url="http://localhost:8080/core/api/v2/")
+from datacommons_client.client import DataCommonsClient
+client = DataCommonsClient(url="http://localhost:8080/core/api/v2/")
 </pre>
 
 ### Authentication {#authentication}
@@ -131,10 +131,18 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 
 To send a request, you use one of the endpoints available as methods of the client object. For example: 
 
+Request:
+{: .example-box-title}
+
 ```python
->>> client.resolve.fetch_dcids_by_name(names="Georgia")
+client.resolve.fetch_dcids_by_name(names="Georgia")
+```
+Response:
+{: .example-box-title}
+
 ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ```
+{: .example-box-content .scroll}
 
 See the linked pages for descriptions of the methods available for each endpoint, its methods and responses.
 
@@ -156,10 +164,11 @@ For common requests, each endpoint also provides convenience methods that build 
 
 By default, responses are returned as Python `dataclass` objects with the full structure. For example:
 
+
 ```python
->>> response = client.resolve.fetch_dcids_by_name(names="Georgia")
->>> print(response)
->>> ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
+response = client.resolve.fetch_dcids_by_name(names="Georgia")
+print(response)
+ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ``` 
 
 Each response class provides some property methods that are useful for formatting the output.
@@ -184,28 +193,55 @@ Both methods take the following input parameter:
 
 This example removes all properties that have null values or empty lists.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> client.resolve.fetch_dcids_by_name(names="Georgia").to_dict()
+client.resolve.fetch_dcids_by_name(names="Georgia").to_dict()
+```
+Response:
+{: .example-box-title}
+
+```python
 {'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13'}, {'dcid': 'country/GEO'}, {'dcid': 'geoId/5027700'}]}]}
 ```
+{: .example-box-content .scroll}
 
 {: .no_toc}
 #### Example 2: Return dictionary with original structure 
 
 This example sets `exclude_none` to `False` to preserve all properties from the original response, including all nulls and empty lists.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> client.resolve.fetch_dcids_by_name(names="Georgia").to_dict(exclude_none=False)
+client.resolve.fetch_dcids_by_name(names="Georgia").to_dict(exclude_none=False)
+```
+Response:
+{: .example-box-title}
+
+```
 {'entities': [{'node': 'Georgia', 'candidates': [{'dcid': 'geoId/13', 'dominantType': None}, {'dcid': 'country/GEO', 'dominantType': None}, {'dcid': 'geoId/5027700', 'dominantType': None}]}]}
 ```
+{: .example-box-content .scroll}
 
 {: .no_toc}
 #### Example 3: Return compact JSON string
 
 This example converts the response to a formatted JSON string, in compact form, and prints the response for better readability.
 
+Request:
+{: .example-box-title}
+
 ```python
->>> print(client.resolve.fetch_dcids_by_name(names="Georgia").to_json())
+print(client.resolve.fetch_dcids_by_name(names="Georgia").to_json())
+```
+
+Response:
+{: .example-box-title}
+
+```json
 {
   "entities": [
     {
@@ -225,3 +261,4 @@ This example converts the response to a formatted JSON string, in compact form, 
   ]
 }
 ```
+{: .example-box-content .scroll}
