@@ -140,6 +140,7 @@ client.resolve.fetch_dcids_by_name(names="Georgia")
 Response:
 {: .example-box-title}
 
+```python
 ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ```
 {: .example-box-content .scroll}
@@ -235,7 +236,7 @@ Request:
 {: .example-box-title}
 
 ```python
-print(client.resolve.fetch_dcids_by_name(names="Georgia").to_json())
+client.resolve.fetch_dcids_by_name(names="Georgia").to_json()
 ```
 
 Response:
@@ -262,3 +263,8 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
+> **Note:** On the endpoint reference pages we will show all responses using this format, but will leave out the response methods for succinctness.
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
