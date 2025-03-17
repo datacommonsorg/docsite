@@ -672,6 +672,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: #list-entity-types}
 ### Example 7: Get a list of all existing entity types
 
 Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
