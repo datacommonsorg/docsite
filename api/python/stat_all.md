@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Get statistical data for multiple places
-nav_order: 5
-parent: Python
+nav_order: 35
+parent: Python (V1)
 grand_parent: API - Query data programmatically
 ---
 
