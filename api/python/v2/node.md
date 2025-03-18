@@ -20,6 +20,9 @@ More specifically, this API can perform the following tasks:
 - Get the values of a property for individual or multiple nodes. These can also be chained for multiple hops in the graph.
 - Get all connected nodes that are linked with individual or multiple nodes.
 
+* TOC
+{:toc}
+
 ## Request methods
 
 The following are the methods available for this endpoint. 
