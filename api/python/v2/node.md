@@ -279,7 +279,7 @@ response.nextToken
 To get the next set of entries, repeat the request with the `next_token` parameter set to the value of the previous response, until there is no `nextToken` in the response.
 
 ```python
-while response.nextToken is not None:
+while response.nextToken != None:
    response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token=response.nextToken)
 ```
 
