@@ -93,10 +93,11 @@ JSON data:
 ### Date-time string formats 
 
 Here are the possible values for specifying dates/times:
-- `LATEST`: Fetch the latest observations only.
+- `LATEST`: Fetch the latest observations only. This returns a single observation for each entity (if more than one is queried) and provenance.
 - <var>DATE_STRING</var>: Fetch observations matching the specified date(s) and time(s). The value must be in the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see below.
 - `""`: Return observations for all dates. 
 
+{ #find-date-format}
 #### Find the date format for a statistical variable
 
 Statistical variable dates are defined as yearly, monthly, weekly, or daily. For most variables, you can find out the correct date format by searching for the variable in the
@@ -318,7 +319,6 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
   -d '{"date": "2015", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["entity", "variable", "value", "date"] }'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
@@ -378,10 +378,171 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 4: Get the latest population observations for all California counties
+### Example 3: Get all observations for entities
 
-In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
-[California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
+This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"} and DCIDs [`geoId/55`](https://datacommons.org/browser/geoId/55){: target="_blank"} and [`geoId/27`](https://datacommons.org/browser/geoId/27){: target="_blank"}, respectively. Note that we use the empty string in the `date` parameter to get all observations for this variable and entities.
+
+GET Request:
+{: .example-box-title}
+
+```
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&select=date&select=entity&select=value&select=variable'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+https://api.datacommons.org/v2/observation  \
+-d '{"date": "",  "entity": {"dcids": ["geoId/27","geoId/55"]}, "variable": { "dcids": ["Count_Person_EducationalAttainmentDoctorateDegree"] }, "select": ["entity", "variable", "value", "date"] }'
+```
+
+Response:
+{: .example-box-title}
+
+```json
+   "byVariable" : {
+      "Count_Person_EducationalAttainmentDoctorateDegree" : {
+         "byEntity" : {
+            "geoId/27" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2012",
+                     "facetId" : "1145703171",
+                     "latestDate" : "2023",
+                     "obsCount" : 12,
+                     "observations" : [
+                        {
+                           "date" : "2012",
+                           "value" : 40961
+                        },
+                        {
+                           "date" : "2013",
+                           "value" : 42511
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 44713
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 47323
+                        },
+                        {
+                           "date" : "2016",
+                           "value" : 50039
+                        },
+                        {
+                           "date" : "2017",
+                           "value" : 52737
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 54303
+                        },
+                        {
+                           "date" : "2019",
+                           "value" : 55185
+                        },
+                        {
+                           "date" : "2020",
+                           "value" : 56170
+                        },
+                        {
+                           "date" : "2021",
+                           "value" : 58452
+                        },
+                        {
+                           "date" : "2022",
+                           "value" : 60300
+                        },
+                        {
+                           "date" : "2023",
+                           "value" : 63794
+                        }
+                     ]
+                  }
+               ]
+            },
+            "geoId/55" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2012",
+                     "facetId" : "1145703171",
+                     "latestDate" : "2023",
+                     "obsCount" : 12,
+                     "observations" : [
+                        {
+                           "date" : "2012",
+                           "value" : 38052
+                        },
+                        {
+                           "date" : "2013",
+                           "value" : 38711
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 40133
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 41387
+                        },
+                        {
+                           "date" : "2016",
+                           "value" : 42590
+                        },
+                        {
+                           "date" : "2017",
+                           "value" : 43737
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 46071
+                        },
+                        {
+                           "date" : "2019",
+                           "value" : 47496
+                        },
+                        {
+                           "date" : "2020",
+                           "value" : 49385
+                        },
+                        {
+                           "date" : "2021",
+                           "value" : 52306
+                        },
+                        {
+                           "date" : "2022",
+                           "value" : 53667
+                        },
+                        {
+                           "date" : "2023",
+                           "value" : 55286
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "facets" : {
+      "1145703171" : {
+         "importName" : "CensusACS5YearSurvey",
+         "measurementMethod" : "CensusACS5yrSurvey",
+         "provenanceUrl" : "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"
+      }
+   }
+}
+```
+{: .example-box-content .scroll}
+
+
+### Example 4: Get the latest observations for entities specified by expression
+
+In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in [California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
 type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
 ([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
 entity (all counties in California).

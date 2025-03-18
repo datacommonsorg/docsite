@@ -58,7 +58,7 @@ brief description. Have one such H2 section for every request method.
 ### Signature
 
 ```python
-signature with just the parameter names, not defaults
+signature with just the parameter names, not defaults. Put the defaults in the description.
 ```
 
 ### Input parameters
