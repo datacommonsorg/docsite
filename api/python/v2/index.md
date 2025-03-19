@@ -125,7 +125,7 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
 | Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` |
-| Observations Pandas DataFrame | [`observations_dataframe`](observation_pandas.md# | Same as above, except the functionality is provided by a method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
+| Observations Pandas DataFrame | [`observations_dataframe`](observation.md#) | Same as above, except the functionality is provided by a method of the `DataCommonsClient` class directly, instead of an intermediate endpoint | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
 | Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
 
@@ -171,6 +171,7 @@ response = client.resolve.fetch_dcids_by_name(names="Georgia")
 print(response)
 ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ``` 
+
 Each response class provides some property methods that are useful for formatting the output.
 
 | Method | Description |

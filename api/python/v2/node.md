@@ -19,9 +19,6 @@ More specifically, this API can perform the following tasks:
 - Get the values of a property for individual or multiple nodes. 
 - Get all connected nodes that are linked with individual or multiple nodes.
 
-* TOC
-{:toc}
-
 ## Request methods
 
 The following are the methods available for this endpoint. 
@@ -73,8 +70,6 @@ In addition to the [formatting methods](index.md#response-formatting) available 
 
 | Method | Description | 
 |--------|-------------|
-| to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
-| to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | nextToken | Extract the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
 {: .doc-table}
 
@@ -92,7 +87,7 @@ fetch(node_dcids, expression, all_pages, next_token)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the nodes to query.  |
+| node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
 | expression <br/> <required-tag>Required</required-tag> | string  | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
@@ -676,4 +671,3 @@ while response.nextToken != None:
 ```
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
-
