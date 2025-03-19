@@ -97,18 +97,6 @@ There are additional methods you can call on the response to structure the data 
 | get_observations_as_records | Get the response data as a series of flat records. See See xxx for examples. |
 {: .doc-table}
 
->>> pretty = response.get_observations_as_records()
->>> pprint.pprint(pretty)
-[{'date': '2020',
-  'entity': 'country/AUS',
-  'facetId': '1959655984',
-  'importName': 'AustraliaStatistics',
-  'measurementMethod': None,
-  'observationPeriod': None,
-  'provenanceUrl': 'https://www.abs.gov.au/statistics',
-  'unit': 'AUD',
-  'value': 959,
-  'variable': 'Weekly_Median_Income_Household'}]
 
 
 ## fetch
@@ -146,7 +134,7 @@ Request:
 {: .example-box-title}
 
 ```python
-(client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/USA")
+client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/USA")
 ```
 
 Response:
@@ -412,4 +400,97 @@ Response:
 
 ### Example 2: Get the observations at a particular date for given entities
 
-This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous request, with an additional entity, and a specific date. 
+This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous request, with an additional entity, and a specific date. It also gets the results keyed by entity rather than by variable.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"]).get_data_by_entity()
+```
+
+Response:
+{: .example-box-title}
+
+```json
+```
+{: .example-box-content .scroll}
+
+### Example 4: Get the latest observations for entities specified by expression
+
+In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in [California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
+type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
+([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
+entity (all counties in California).
+
+Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/observation \
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable", "value", "date"] }'
+```
+
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```
+{
+  "byVariable": {
+    "Count_Person": {
+      "byEntity": {
+        "geoId/06003": {
+          "orderedFacets": [
+            {
+              "facetId": "2176550201",
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 1235
+                }
+              ]
+            },
+            ...
+          ]
+        },
+        "geoId/06009": {
+          "orderedFacets": [
+            {
+              "facetId": "2176550201",
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 46221
+                }
+              ]
+            },
+            ...
+          ]
+        },
+        ...
+      }
+    }
+  },
+  "facets": {
+    "2176550201": {
+      "importName": "USCensusPEP_Annual_Population",
+      "measurementMethod" : "CensusPEPSurvey",
+      "observationPeriod" : "P1Y",
+      "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
+    },
+    ...
+  }
+}
+```
+{: .example-box-content .scroll}
