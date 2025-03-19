@@ -138,22 +138,278 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 ### Examples
 
 {: #fetch_ex1}
-#### Example 1: Generic description of functionality
+### Example 1: Get the latest observations for a single entity
 
-More detailed description of the specific example, including what it's actually achieving, and how it's constructed. 
+In this example, we get all the latest observations for the variable [`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"} for the entity, the U.S.A., by its DCID ['country/USA](https://datacommons.org/browser/country/USA){: target="_blank"}. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
 Request:
 {: .example-box-title}
 
 ```python
-example request
+(client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/USA")
 ```
-{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 
 ```json
-example response. Use the to_json() method to get nice formatting 
+{
+  "byVariable": {
+    "Count_Person": {
+      "byEntity": {
+        "country/USA": {
+          "orderedFacets": [
+            {
+              "earliestDate": "2024",
+              "facetId": "2176550201",
+              "latestDate": "2024",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2024",
+                  "value": 340110988
+                }
+              ]
+            },
+            {
+              "earliestDate": "2023",
+              "facetId": "2645850372",
+              "latestDate": "2023",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 335642425
+                }
+              ]
+            },
+            {
+              "earliestDate": "2023",
+              "facetId": "1145703171",
+              "latestDate": "2023",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 332387540
+                }
+              ]
+            },
+            {
+              "earliestDate": "2020",
+              "facetId": "1541763368",
+              "latestDate": "2020",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2020",
+                  "value": 331449281
+                }
+              ]
+            },
+            {
+              "earliestDate": "2023",
+              "facetId": "3981252704",
+              "latestDate": "2023",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 334914895
+                }
+              ]
+            },
+            {
+              "earliestDate": "2023",
+              "facetId": "1151455814",
+              "latestDate": "2023",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 334914895
+                }
+              ]
+            },
+            {
+              "earliestDate": "2023",
+              "facetId": "4181918134",
+              "latestDate": "2023",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 334914895
+                }
+              ]
+            },
+            {
+              "earliestDate": "2022",
+              "facetId": "10983471",
+              "latestDate": "2022",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2022",
+                  "value": 331097593
+                }
+              ]
+            },
+            {
+              "earliestDate": "2021",
+              "facetId": "1964317807",
+              "latestDate": "2021",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 329725481
+                }
+              ]
+            },
+            {
+              "earliestDate": "2021",
+              "facetId": "196790193",
+              "latestDate": "2021",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 329725481
+                }
+              ]
+            },
+            {
+              "earliestDate": "2021",
+              "facetId": "217147238",
+              "latestDate": "2021",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 329725481
+                }
+              ]
+            },
+            {
+              "earliestDate": "2020",
+              "facetId": "2825511676",
+              "latestDate": "2020",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2020",
+                  "value": 329484123
+                }
+              ]
+            },
+            {
+              "earliestDate": "2019",
+              "facetId": "2517965213",
+              "latestDate": "2019",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2019",
+                  "value": 328239523
+                }
+              ]
+            },
+            {
+              "earliestDate": "2019",
+              "facetId": "1226172227",
+              "latestDate": "2019",
+              "obsCount": 1,
+              "observations": [
+                {
+                  "date": "2019",
+                  "value": 328239523
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "facets": {
+    "1151455814": {
+      "importName": "OECDRegionalDemography",
+      "measurementMethod": "OECDRegionalStatistics",
+      "observationPeriod": "P1Y",
+      "provenanceUrl": "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#"
+    },
+    "1226172227": {
+      "importName": "CensusACS1YearSurvey",
+      "measurementMethod": "CensusACS1yrSurvey",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"
+    },
+    "2645850372": {
+      "importName": "CensusACS5YearSurvey_AggCountry",
+      "measurementMethod": "CensusACS5yrSurvey",
+      "provenanceUrl": "https://www.census.gov/"
+    },
+    "4181918134": {
+      "importName": "OECDRegionalDemography_Population",
+      "measurementMethod": "OECDRegionalStatistics",
+      "observationPeriod": "P1Y",
+      "provenanceUrl": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C"
+    },
+    "2176550201": {
+      "importName": "USCensusPEP_Annual_Population",
+      "measurementMethod": "CensusPEPSurvey",
+      "observationPeriod": "P1Y",
+      "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables"
+    },
+    "10983471": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2601A",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A"
+    },
+    "2825511676": {
+      "importName": "CDC_Mortality_UnderlyingCause",
+      "provenanceUrl": "https://wonder.cdc.gov/ucd-icd10.html"
+    },
+    "2517965213": {
+      "importName": "CensusPEP",
+      "measurementMethod": "CensusPEPSurvey",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/popest.html"
+    },
+    "3981252704": {
+      "importName": "WorldDevelopmentIndicators",
+      "observationPeriod": "P1Y",
+      "provenanceUrl": "https://datacatalog.worldbank.org/dataset/world-development-indicators/"
+    },
+    "1145703171": {
+      "importName": "CensusACS5YearSurvey",
+      "measurementMethod": "CensusACS5yrSurvey",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"
+    },
+    "1541763368": {
+      "importName": "USDecennialCensus_RedistrictingRelease",
+      "measurementMethod": "USDecennialCensus",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html"
+    },
+    "1964317807": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S0101",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable",
+      "provenanceUrl": "https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101"
+    },
+    "217147238": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2603",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2603&tid=ACSST5Y2019.S2603"
+    },
+    "196790193": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2602",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602"
+    }
+  }
+}
 ```
 {: .example-box-content .scroll}
+
+### Example 2: Get the observations at a particular date for given entities
+
+This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous request, with an additional entity, and a specific date. 

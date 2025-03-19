@@ -221,14 +221,12 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
   -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"] }'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 
 ```
-{
 {
    "byVariable" : {
       "Count_Person" : {
@@ -287,7 +285,7 @@ Response:
 
 ### Example 2: Get the observations at a particular date for given entities
 
-This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous response, with an additional entity, and a specific date. 
+This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous request, with an additional entity, and a specific date. 
 
 Parameters:
 {: .example-box-title}
