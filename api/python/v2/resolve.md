@@ -1,4 +1,4 @@
-----
+---
 layout: default
 title: Resolve entities
 nav_order: 4
