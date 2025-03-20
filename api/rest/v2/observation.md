@@ -345,7 +345,7 @@ Response:
 
 ### Example 3: Get the observations at a particular date for given entities
 
-This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous request, with an additional entity, and a specific date. 
+This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous example, with an additional entity, and a specific date. 
 
 Parameters:
 {: .example-box-title}
