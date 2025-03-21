@@ -671,4 +671,3 @@ while response.nextToken is not None:
 ```
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
-

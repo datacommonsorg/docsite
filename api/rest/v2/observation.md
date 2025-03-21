@@ -7,11 +7,15 @@ grand_parent: API - Query data programmatically
 published: true
 ---
 
+{: .no_toc}
 # /v2/observation
 
 The Observation API fetches statistical observations. An observation is associated with an
 entity and variable at a particular date: for example, "population of USA in
 2020", "GDP of California in 2010", and so on.
+
+* TOC
+{:toc}
 
 ## Request
 
@@ -81,7 +85,7 @@ JSON data:
 | variable.dcids <br /> <required-tag>Required</required-tag>| list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. |
 | entity.dcids                                          | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
 | entity.expression                                     | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
-| select <br /> <required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check the existence of variable-entity pairs in the data and fetch all the variables that have data for given entities. |
+| select <br /> <required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity has data for a given variable. |
 | select <br /> <optional-tag>Optional</optional-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
 | filter.facet_domains <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
 | filter.facet_ids <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
@@ -93,10 +97,11 @@ JSON data:
 ### Date-time string formats 
 
 Here are the possible values for specifying dates/times:
-- `LATEST`: Fetch the latest observations only.
+- `LATEST`: Fetch the latest observations only. This returns a single observation for each entity (if more than one is queried) and provenance.
 - <var>DATE_STRING</var>: Fetch observations matching the specified date(s) and time(s). The value must be in the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see below.
 - `""`: Return observations for all dates. 
 
+{ #find-date-format}
 #### Find the date format for a statistical variable
 
 Statistical variable dates are defined as yearly, monthly, weekly, or daily. For most variables, you can find out the correct date format by searching for the variable in the
@@ -188,9 +193,63 @@ With `select=date` and `select=value` specified, the response looks like:
 
 ## Examples
 
-### Example 1: Get the latest observations for a single entity
+### Example 1: Look up whether a given entity (place) has data for a given variable
 
-In this example, we get all the latest observations for the variable [`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}, specifying `date=LATEST`, and selecting the entity, the U.S.A. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
+In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
+
+Parameters:
+{: .example-box-title}
+
+```
+date: "LATEST"
+variable.dcids: "Count_Person_Male", "Count_Person_Female"
+entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
+select: "entity"
+select: "variable"
+```
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
+https://api.datacommons.org/v2/observation  \
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable"] }'
+```
+
+Response:
+{: .example-box-title}
+
+```bash
+{
+   "byVariable" : {
+      "Count_Person_Female" : {
+         "byEntity" : {
+            "country/CAN" : {},
+            "country/MEX" : {}
+         }
+      },
+      "Count_Person_Male" : {
+         "byEntity" : {
+            "country/CAN" : {},
+            "country/MEX" : {}
+         }
+      }
+   }
+}
+```
+
+### Example 2: Get the latest observations for a single entity
+
+In this example, we get all the latest population observations for U.S.A. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
 Parameters:
 {: .example-box-title}
@@ -212,6 +271,8 @@ GET Request:
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date'
 ```
+{: .example-box-content .scroll}
+
 POST Request:
 {: .example-box-title}
 
@@ -220,14 +281,12 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
   -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"] }'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 
-```
-{
+```json
 {
    "byVariable" : {
       "Count_Person" : {
@@ -284,9 +343,9 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get the observations at a particular date for given entities
+### Example 3: Get the observations at a particular date for given entities
 
-This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous response, with an additional entity, and a specific date. 
+This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous example, with an additional entity, and a specific date. 
 
 Parameters:
 {: .example-box-title}
@@ -308,6 +367,7 @@ GET Request:
 ```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Count_Person&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable'
+{: .example-box-content .scroll}
 ```
 
 POST Request:
@@ -318,7 +378,6 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
   -d '{"date": "2015", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["entity", "variable", "value", "date"] }'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
@@ -378,13 +437,177 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 4: Get the latest population observations for all California counties
 
-In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
-[California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
+### Example 4: Get all observations for selected entities
+
+This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"}. Note that we use the empty string in the `date` parameter to get all observations for this variable and entities.
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&select=date&select=entity&select=value&select=variable'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+https://api.datacommons.org/v2/observation  \
+-d '{"date": "",  "entity": {"dcids": ["geoId/27","geoId/55"]}, "variable": { "dcids": ["Count_Person_EducationalAttainmentDoctorateDegree"] }, "select": ["entity", "variable", "value", "date"] }'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+   "byVariable" : {
+      "Count_Person_EducationalAttainmentDoctorateDegree" : {
+         "byEntity" : {
+            "geoId/27" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2012",
+                     "facetId" : "1145703171",
+                     "latestDate" : "2023",
+                     "obsCount" : 12,
+                     "observations" : [
+                        {
+                           "date" : "2012",
+                           "value" : 40961
+                        },
+                        {
+                           "date" : "2013",
+                           "value" : 42511
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 44713
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 47323
+                        },
+                        {
+                           "date" : "2016",
+                           "value" : 50039
+                        },
+                        {
+                           "date" : "2017",
+                           "value" : 52737
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 54303
+                        },
+                        {
+                           "date" : "2019",
+                           "value" : 55185
+                        },
+                        {
+                           "date" : "2020",
+                           "value" : 56170
+                        },
+                        {
+                           "date" : "2021",
+                           "value" : 58452
+                        },
+                        {
+                           "date" : "2022",
+                           "value" : 60300
+                        },
+                        {
+                           "date" : "2023",
+                           "value" : 63794
+                        }
+                     ]
+                  }
+               ]
+            },
+            "geoId/55" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2012",
+                     "facetId" : "1145703171",
+                     "latestDate" : "2023",
+                     "obsCount" : 12,
+                     "observations" : [
+                        {
+                           "date" : "2012",
+                           "value" : 38052
+                        },
+                        {
+                           "date" : "2013",
+                           "value" : 38711
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 40133
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 41387
+                        },
+                        {
+                           "date" : "2016",
+                           "value" : 42590
+                        },
+                        {
+                           "date" : "2017",
+                           "value" : 43737
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 46071
+                        },
+                        {
+                           "date" : "2019",
+                           "value" : 47496
+                        },
+                        {
+                           "date" : "2020",
+                           "value" : 49385
+                        },
+                        {
+                           "date" : "2021",
+                           "value" : 52306
+                        },
+                        {
+                           "date" : "2022",
+                           "value" : 53667
+                        },
+                        {
+                           "date" : "2023",
+                           "value" : 55286
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "facets" : {
+      "1145703171" : {
+         "importName" : "CensusACS5YearSurvey",
+         "measurementMethod" : "CensusACS5yrSurvey",
+         "provenanceUrl" : "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"
+      }
+   }
+}
+```
+{: .example-box-content .scroll}
+
+
+### Example 5: Get the latest observations for entities specified by expression
+
+In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of
 type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
-([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
-entity (all counties in California).
+`Count_Person` and entity (all counties in California).
 
 Parameters:
 {: .example-box-title}
@@ -406,6 +629,7 @@ GET Request:
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
 ```
+{: .example-box-content .scroll}
 
 POST Request:
 {: .example-box-title}
@@ -415,7 +639,6 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
   -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable", "value", "date"] }'
 ```
-
 {: .example-box-content .scroll}
 
 Response:
@@ -471,7 +694,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 5: Get the latest observations for a single entity, filtering by provenance
+### Example 6: Get the latest observations for a single entity, filtering by provenance
 
 This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
@@ -545,8 +768,7 @@ Response:
 
 ```
 
-
-### Example 6: Get the latest observations for a single entity, filtering for specific dataset
+### Example 7: Get the latest observations for a single entity, filtering for specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 

@@ -61,7 +61,7 @@ JSON data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-## Query parameters
+### Query parameters
 
 | Name                                                  | Type   |  Description           |
 | ----------------------------------------------------- | ------ | -----------------------|
@@ -109,7 +109,7 @@ The response looks like:
 
 ### Example 1: Get all property labels for a given node
 
-Get all (incoming arc) property labels of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels but not the property values.
+Get all (incoming arc) property labels of the node with DCID `geoId/06` (California) by querying all properties with the `<-` symbol. This returns just the property labels but not the property values.
 
 Parameters:
 {: .example-box-title}
@@ -210,8 +210,7 @@ Response:
 ### Example 3: Get the DCIDs of all the states in the United States
 
 In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
-[United States](https://datacommons.org/browser/country/USA){: target="_blank"} (DCID `country/USA`) of
-type `State`".
+United States of type `State`".
 
 Parameters:
 {: .example-box-title}
