@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get statistics for places
-parent: Python
+parent: Python (V1)
 grand_parent: API - Query data programmatically
 published: false
 ---

@@ -18,7 +18,7 @@ The Data Commons APIs allow developers to programmatically access the data in Da
 * A [REST API](/api/rest/v2) that can be used on the command line as well as in any language with an HTTP library.
 * [Python](/api/python) and [Pandas](/api/pandas) wrappers.
 
-> **Note:** The Python and Pandas APIs wrap the [V1](/api/rest/v1) version of the REST APIs and have not yet been updated to V2.
+> **Note:** A Beta version of the Python and Pandas APIs based on the V2 APIs is available. However, documentation and tutorials only currently cover the [V1](/api/rest/v1) version of the REST APIs and have not yet been updated to V2.
 
 The endpoints can be roughly grouped into four categories:
 
@@ -44,11 +44,12 @@ In addition, Data Commons provides additional tools for accessing its data that 
 
 A key is required by some APIs to authenticate and authorize requests.
 - All REST [V2](rest/v2/index.md) and [V1](rest/v1/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
+- Python and Pandas V2 APIs, also served by `api.datacommons.org`.
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
 - Data Commons NL API requests (used by the [DataGemma](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"} tool). These are served by endpoints at `nl.datacommons.org`.
 
 A key is currently not required for the following, although this may change in the future:
-- Python and Pandas client libraries other than NL APIs
+- V1 Python and Pandas client libraries other than NL APIs
 - V0 REST APIs
 - Google Sheets
 - Web Components
@@ -58,8 +59,9 @@ A key is currently not required for the following, although this may change in t
 Data Commons API keys are managed by a self-service portal. To obtain an API key, go to [https://apikeys.datacommons.org](https://apikeys.datacommons.org){: target="_blank"}  and request a key for the hostname(s) listed above. Enable each of the APIs you want; you can share a single key for all of them.
 
 To use the key in requests, see the relevant documentation:
-- For REST V2 APIs, see the section on [Authentication](/api/rest/v2/index.html#authentication).
-- For REST V1 APIs, see the section on [Authentication](/api/rest/v2/getting_started.html#authentication).
+- [REST V2 APIs](/api/rest/v2/index.html#authentication).
+- [REST V1 APIs](/api/rest/v1/getting_started.html#authentication).
+- [Python/Pandas V2 APIs](api/python/v2/index.html#authentication).
 - For NL APIs in DataGemma, see the Colab notebooks in [https://github.com/datacommonsorg/llm-tools/tree/main/notebooks](https://github.com/datacommonsorg/llm-tools/tree/main/notebooks){: target="_blank"}
 
 

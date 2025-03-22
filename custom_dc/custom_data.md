@@ -707,7 +707,7 @@ docker run \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
-
+</pre>
 
 {:.no_toc}
 ##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
