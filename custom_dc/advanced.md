@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Advanced setups
+title: Advanced (hybrid) setups
 nav_order: 8
 parent: Build your own Data Commons
 ---
@@ -9,7 +9,7 @@ parent: Build your own Data Commons
 # Advanced setups
 
 This page covers hybrid setups that are not recommended for most use cases, but may be helpful for some custom Data Commons instances:
-- [Running the data management container locally, and the service container in Google Cloud](#run-local). This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
+- [Running the data management container locally, and the service container in Google Cloud](#run-local). In this scenario, you store your input data locally, and write the output to Cloud Storage and Cloud SQL. This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
 - [Running the service container locally, and the data management container in Google Cloud](#local-services). If you have already set up a data processing pipeline to send your input data to Google Cloud, but are still iterating on the website code, this might be a useful option.
 
 ## Run the data management container locally and the service container in the cloud {#run-local}
@@ -49,13 +49,13 @@ From your project root directory, run:
 <pre>docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
 gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
-The input directory is the local path. The output directory is the Cloud Storage path.
+The input directory is the local path. You don't specify the output directory,
+as Docker doesn't manage it.
 The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](deploy_cloud.md#inspect-sql).
@@ -95,20 +95,18 @@ See the section [above](#gen-creds) for procedures.
 
 ### Step 3: Run the services Docker container
 
-From the root directory of your repo, run the following command, assuming you are using a locally built image:
+From the root directory of your repo, run the following command, assuming you are using a [custom-built local](build_repo.md) image:
 <pre>docker run -it \
 --env-file $PWD/custom_dc/env.list \
 -p 8080:8080 \
 -e DEBUG=true \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
--v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-[-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
-[-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
+-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \
+-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
-The input and output directories are Google Cloud Storage paths.
+You don't specify any directories here, as Docker does not manage them.
 The image name and image tag are the values you set when you [created the package](build_image.md#build-package). 
 
 Once the services are up and running, visit your local instance by pointing your browser to <http://localhost:8080>.
