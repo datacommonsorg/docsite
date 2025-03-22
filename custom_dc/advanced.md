@@ -55,7 +55,7 @@ gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
 </pre>
 
 The input directory is the local path. You don't specify the output directory,
-as Docker doesn't manage it.
+as you aren't mounting a local output volume.
 The version is `latest` or `stable`.
 
 To verify that the data is correctly created in your Cloud SQL database, use the procedure in [Inspect the Cloud SQL database](deploy_cloud.md#inspect-sql).
@@ -106,7 +106,7 @@ From the root directory of your repo, run the following command, assuming you ar
 -v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
 </pre>
-You don't specify any directories here, as Docker does not manage them.
+You don't specify any directories here, as you aren't mounting any local volumes.
 The image name and image tag are the values you set when you [created the package](build_image.md#build-package). 
 
 Once the services are up and running, visit your local instance by pointing your browser to <http://localhost:8080>.
