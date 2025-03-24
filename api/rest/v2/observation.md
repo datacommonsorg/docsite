@@ -593,6 +593,8 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
+(truncated)
+
 ```json
 {
    "byVariable" : {
@@ -1468,8 +1470,6 @@ Response:
                         }
                      ]
                   },
-                  ...
-
 ```
 {: .example-box-content .scroll}
 
@@ -1514,6 +1514,8 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
+(truncated)
+
 ```json
 {
   "byVariable": {
@@ -1533,7 +1535,6 @@ Response:
                 }
               ]
             },
-            ...
           ]
         },
         "geoId/06": {
@@ -1549,7 +1550,6 @@ Response:
               }
             ]
           },
-          ...
           ]
         }
       }
@@ -1562,7 +1562,6 @@ Response:
          "observationPeriod" : "P1Y",
          "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
       },
-    ...
   }
 }
 ```
@@ -1596,6 +1595,7 @@ Response:
 {: .example-box-title}
 
 ```json
+{
    "byVariable" : {
       "Count_Person_EducationalAttainmentDoctorateDegree" : {
          "byEntity" : {
@@ -1775,6 +1775,8 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 Response:
 {: .example-box-title}
 
+(truncated)
+
 ```json
 {
   "byVariable": {
@@ -1791,7 +1793,6 @@ Response:
                 }
               ]
             },
-            ...
           ]
         },
         "geoId/06009": {
@@ -1805,10 +1806,8 @@ Response:
                 }
               ]
             },
-            ...
           ]
         },
-        ...
       }
     }
   },
@@ -1819,10 +1818,8 @@ Response:
       "observationPeriod" : "P1Y",
       "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
     },
-    ...
   }
 }
-```
 {: .example-box-content .scroll}
 
 ### Example 8: Get the latest observations for a single entity, filtering by provenance
