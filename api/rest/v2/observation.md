@@ -1823,6 +1823,7 @@ Response:
     },
   }
 }
+```
 {: .example-box-content .scroll}
 
 ### Example 8: Get the latest observations for a single entity, filtering by provenance
