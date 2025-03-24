@@ -499,987 +499,265 @@ Response:
 
 ```json
 {
-   "byVariable" : {
-      "Count_Person" : {
-         "byEntity" : {
-            "country/USA" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "2024",
-                     "facetId" : "2176550201",
-                     "latestDate" : "2024",
-                     "obsCount" : 1,
-                     "observations" : [
-                        {
-                           "date" : "2024",
-                           "value" : 340110988
-                        }
-                     ]
-                  },
-                  {
-                     "earliestDate" : "2023",
-                     "facetId" : "2645850372",
-                     "latestDate" : "2023",
-                     "obsCount" : 1,
-                     "observations" : [
-                        {
-                           "date" : "2023",
-                           "value" : 335642425
-                        }
-                     ]
-                  }
-               ]
+  "byVariable": {
+    "Count_Person": {
+      "byEntity": {
+        "country/USA": {
+          "orderedFacets": [
+            {
+              "facetId": "2176550201",
+              "observations": [
+                {
+                  "date": "2024",
+                  "value": 340110988
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2024",
+              "latestDate": "2024"
+            },
+            {
+              "facetId": "2645850372",
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 335642425
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2023",
+              "latestDate": "2023"
+            },
+            {
+              "facetId": "1145703171",
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 332387540
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2023",
+              "latestDate": "2023"
+            },
+            {
+              "facetId": "1541763368",
+              "observations": [
+                {
+                  "date": "2020",
+                  "value": 331449281
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2020",
+              "latestDate": "2020"
+            },
+            {
+              "facetId": "3981252704",
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 334914895
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2023",
+              "latestDate": "2023"
+            },
+            {
+              "facetId": "1151455814",
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 334914895
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2023",
+              "latestDate": "2023"
+            },
+            {
+              "facetId": "4181918134",
+              "observations": [
+                {
+                  "date": "2023",
+                  "value": 334914895
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2023",
+              "latestDate": "2023"
+            },
+            {
+              "facetId": "10983471",
+              "observations": [
+                {
+                  "date": "2022",
+                  "value": 331097593
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2022",
+              "latestDate": "2022"
+            },
+            {
+              "facetId": "1964317807",
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 329725481
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2021",
+              "latestDate": "2021"
+            },
+            {
+              "facetId": "196790193",
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 329725481
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2021",
+              "latestDate": "2021"
+            },
+            {
+              "facetId": "217147238",
+              "observations": [
+                {
+                  "date": "2021",
+                  "value": 329725481
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2021",
+              "latestDate": "2021"
+            },
+            {
+              "facetId": "2825511676",
+              "observations": [
+                {
+                  "date": "2020",
+                  "value": 329484123
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2020",
+              "latestDate": "2020"
+            },
+            {
+              "facetId": "2517965213",
+              "observations": [
+                {
+                  "date": "2019",
+                  "value": 328239523
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2019",
+              "latestDate": "2019"
+            },
+            {
+              "facetId": "1226172227",
+              "observations": [
+                {
+                  "date": "2019",
+                  "value": 328239523
+                }
+              ],
+              "obsCount": 1,
+              "earliestDate": "2019",
+              "latestDate": "2019"
             }
-         }
+          ]
+        }
       }
-   },
+    }
+  },
   "facets": {
-    ...
-    "2176550201" : {
-      "importName" : "USCensusPEP_Annual_Population",
-      "measurementMethod" : "CensusPEPSurvey",
-      "observationPeriod" : "P1Y",
-      "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
+    "1541763368": {
+      "importName": "USDecennialCensus_RedistrictingRelease",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html",
+      "measurementMethod": "USDecennialCensus"
     },
-    ...
-   "2645850372" : {
-         "importName" : "CensusACS5YearSurvey_AggCountry",
-         "isDcAggregate" : true,
-         "measurementMethod" : "CensusACS5yrSurvey",
-         "provenanceUrl" : "https://www.census.gov/"
-      },
-    ...
+    "2645850372": {
+      "importName": "CensusACS5YearSurvey_AggCountry",
+      "provenanceUrl": "https://www.census.gov/",
+      "measurementMethod": "CensusACS5yrSurvey",
+      "isDcAggregate": true
+    },
+    "1964317807": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S0101",
+      "provenanceUrl": "https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable"
+    },
+    "217147238": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2603",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2603&tid=ACSST5Y2019.S2603",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable"
+    },
+    "10983471": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2601A",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable"
+    },
+    "4181918134": {
+      "importName": "OECDRegionalDemography_Population",
+      "provenanceUrl": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C",
+      "measurementMethod": "OECDRegionalStatistics",
+      "observationPeriod": "P1Y"
+    },
+    "196790193": {
+      "importName": "CensusACS5YearSurvey_SubjectTables_S2602",
+      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602",
+      "measurementMethod": "CensusACS5yrSurveySubjectTable"
+    },
+    "1151455814": {
+      "importName": "OECDRegionalDemography",
+      "provenanceUrl": "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#",
+      "measurementMethod": "OECDRegionalStatistics",
+      "observationPeriod": "P1Y"
+    },
+    "1226172227": {
+      "importName": "CensusACS1YearSurvey",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html",
+      "measurementMethod": "CensusACS1yrSurvey"
+    },
+    "2176550201": {
+      "importName": "USCensusPEP_Annual_Population",
+      "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables",
+      "measurementMethod": "CensusPEPSurvey",
+      "observationPeriod": "P1Y"
+    },
+    "1145703171": {
+      "importName": "CensusACS5YearSurvey",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html",
+      "measurementMethod": "CensusACS5yrSurvey"
+    },
+    "3981252704": {
+      "importName": "WorldDevelopmentIndicators",
+      "provenanceUrl": "https://datacatalog.worldbank.org/dataset/world-development-indicators/",
+      "observationPeriod": "P1Y"
+    },
+    "2517965213": {
+      "importName": "CensusPEP",
+      "provenanceUrl": "https://www.census.gov/programs-surveys/popest.html",
+      "measurementMethod": "CensusPEPSurvey"
+    },
+    "2825511676": {
+      "importName": "CDC_Mortality_UnderlyingCause",
+      "provenanceUrl": "https://wonder.cdc.gov/ucd-icd10.html"
+    }
   }
 }
 ```
 {: .example-box-content .scroll}
 
-### Example 4: Get all observations for a single entity
 
-In this example, we get all population observations for U.S.A. since the earliest date.
-
-Parameters:
-{: .example-box-title}
-
-```bash
-date: ""
-variable.dcids: "Count_Person"
-entity.dcids: "country/USA"
-select: "entity"
-select: "variable"
-select: "value"
-select: "date"
-```
-
-GET Request:
-{: .example-box-title}
-
-```bash
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person&entity.dcids=country%2FUSA&select=entity&select=variable&select=value&select=date'
-```
-{: .example-box-content .scroll}
-
-POST Request:
-{: .example-box-title}
-
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
-  https://api.datacommons.org/v2/observation \
-  -d '{"date": "", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"] }'
-```
-{: .example-box-content .scroll}
-
-Response:
-{: .example-box-title}
-
-(truncated)
-
-```json
-{
-   "byVariable" : {
-      "Count_Person" : {
-         "byEntity" : {
-            "country/USA" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "1900",
-                     "facetId" : "2176550201",
-                     "latestDate" : "2024",
-                     "obsCount" : 125,
-                     "observations" : [
-                        {
-                           "date" : "1900",
-                           "value" : 76094000
-                        },
-                        {
-                           "date" : "1901",
-                           "value" : 77584000
-                        },
-                        {
-                           "date" : "1902",
-                           "value" : 79163000
-                        },
-                        {
-                           "date" : "1903",
-                           "value" : 80632000
-                        },
-                        {
-                           "date" : "1904",
-                           "value" : 82166000
-                        },
-                        {
-                           "date" : "1905",
-                           "value" : 83822000
-                        },
-                        {
-                           "date" : "1906",
-                           "value" : 85450000
-                        },
-                        {
-                           "date" : "1907",
-                           "value" : 87008000
-                        },
-                        {
-                           "date" : "1908",
-                           "value" : 88710000
-                        },
-                        {
-                           "date" : "1909",
-                           "value" : 90490000
-                        },
-                        {
-                           "date" : "1910",
-                           "value" : 92407000
-                        },
-                        {
-                           "date" : "1911",
-                           "value" : 93863000
-                        },
-                        {
-                           "date" : "1912",
-                           "value" : 95335000
-                        },
-                        {
-                           "date" : "1913",
-                           "value" : 97225000
-                        },
-                        {
-                           "date" : "1914",
-                           "value" : 99111000
-                        },
-                        {
-                           "date" : "1915",
-                           "value" : 100546000
-                        },
-                        {
-                           "date" : "1916",
-                           "value" : 101961000
-                        },
-                        {
-                           "date" : "1917",
-                           "value" : 103268000
-                        },
-                        {
-                           "date" : "1918",
-                           "value" : 103208000
-                        },
-                        {
-                           "date" : "1919",
-                           "value" : 104514000
-                        },
-                        {
-                           "date" : "1920",
-                           "value" : 106461000
-                        },
-                        {
-                           "date" : "1921",
-                           "value" : 108538000
-                        },
-                        {
-                           "date" : "1922",
-                           "value" : 110049000
-                        },
-                        {
-                           "date" : "1923",
-                           "value" : 111947000
-                        },
-                        {
-                           "date" : "1924",
-                           "value" : 114109000
-                        },
-                        {
-                           "date" : "1925",
-                           "value" : 115829000
-                        },
-                        {
-                           "date" : "1926",
-                           "value" : 117397000
-                        },
-                        {
-                           "date" : "1927",
-                           "value" : 119035000
-                        },
-                        {
-                           "date" : "1928",
-                           "value" : 120509000
-                        },
-                        {
-                           "date" : "1929",
-                           "value" : 121767000
-                        },
-                        {
-                           "date" : "1930",
-                           "value" : 123076741
-                        },
-                        {
-                           "date" : "1931",
-                           "value" : 124039648
-                        },
-                        {
-                           "date" : "1932",
-                           "value" : 124840471
-                        },
-                        {
-                           "date" : "1933",
-                           "value" : 125578763
-                        },
-                        {
-                           "date" : "1934",
-                           "value" : 126373773
-                        },
-                        {
-                           "date" : "1935",
-                           "value" : 127250232
-                        },
-                        {
-                           "date" : "1936",
-                           "value" : 128053180
-                        },
-                        {
-                           "date" : "1937",
-                           "value" : 128824829
-                        },
-                        {
-                           "date" : "1938",
-                           "value" : 129824939
-                        },
-                        {
-                           "date" : "1939",
-                           "value" : 130879718
-                        },
-                        {
-                           "date" : "1940",
-                           "value" : 132122446
-                        },
-                        {
-                           "date" : "1941",
-                           "value" : 133402471
-                        },
-                        {
-                           "date" : "1942",
-                           "value" : 134859553
-                        },
-                        {
-                           "date" : "1943",
-                           "value" : 136739353
-                        },
-                        {
-                           "date" : "1944",
-                           "value" : 138397345
-                        },
-                        {
-                           "date" : "1945",
-                           "value" : 139928165
-                        },
-                        {
-                           "date" : "1946",
-                           "value" : 141388566
-                        },
-                        {
-                           "date" : "1947",
-                           "value" : 144126071
-                        },
-                        {
-                           "date" : "1948",
-                           "value" : 146631302
-                        },
-                        {
-                           "date" : "1949",
-                           "value" : 149188130
-                        },
-                        {
-                           "date" : "1950",
-                           "value" : 152271417
-                        },
-                        {
-                           "date" : "1951",
-                           "value" : 154877889
-                        },
-                        {
-                           "date" : "1952",
-                           "value" : 157552740
-                        },
-                        {
-                           "date" : "1953",
-                           "value" : 160184192
-                        },
-                        {
-                           "date" : "1954",
-                           "value" : 163025854
-                        },
-                        {
-                           "date" : "1955",
-                           "value" : 165931202
-                        },
-                        {
-                           "date" : "1956",
-                           "value" : 168903031
-                        },
-                        {
-                           "date" : "1957",
-                           "value" : 171984130
-                        },
-                        {
-                           "date" : "1958",
-                           "value" : 174881904
-                        },
-                        {
-                           "date" : "1959",
-                           "value" : 177829628
-                        },
-                        {
-                           "date" : "1960",
-                           "value" : 180671158
-                        },
-                        {
-                           "date" : "1961",
-                           "value" : 183691481
-                        },
-                        {
-                           "date" : "1962",
-                           "value" : 186537737
-                        },
-                        {
-                           "date" : "1963",
-                           "value" : 189241798
-                        },
-                        {
-                           "date" : "1964",
-                           "value" : 191888791
-                        },
-                        {
-                           "date" : "1965",
-                           "value" : 194302963
-                        },
-                        {
-                           "date" : "1966",
-                           "value" : 196560338
-                        },
-                        {
-                           "date" : "1967",
-                           "value" : 198712056
-                        },
-                        {
-                           "date" : "1968",
-                           "value" : 200706052
-                        },
-                        {
-                           "date" : "1969",
-                           "value" : 202676946
-                        },
-                        {
-                           "date" : "1970",
-                           "value" : 205052174
-                        },
-                        {
-                           "date" : "1971",
-                           "value" : 207660677
-                        },
-                        {
-                           "date" : "1972",
-                           "value" : 209896021
-                        },
-                        {
-                           "date" : "1973",
-                           "value" : 211908788
-                        },
-                        {
-                           "date" : "1974",
-                           "value" : 213853928
-                        },
-                        {
-                           "date" : "1975",
-                           "value" : 215973199
-                        },
-                        {
-                           "date" : "1976",
-                           "value" : 218035164
-                        },
-                        {
-                           "date" : "1977",
-                           "value" : 220239425
-                        },
-                        {
-                           "date" : "1978",
-                           "value" : 222584545
-                        },
-                        {
-                           "date" : "1979",
-                           "value" : 225055487
-                        },
-                        {
-                           "date" : "1980",
-                           "value" : 226542250
-                        },
-                        {
-                           "date" : "1981",
-                           "value" : 229465744
-                        },
-                        {
-                           "date" : "1982",
-                           "value" : 231664432
-                        },
-                        {
-                           "date" : "1983",
-                           "value" : 233792014
-                        },
-                        {
-                           "date" : "1984",
-                           "value" : 235824908
-                        },
-                        {
-                           "date" : "1985",
-                           "value" : 237923734
-                        },
-                        {
-                           "date" : "1986",
-                           "value" : 240132831
-                        },
-                        {
-                           "date" : "1987",
-                           "value" : 242288936
-                        },
-                        {
-                           "date" : "1988",
-                           "value" : 244499004
-                        },
-                        {
-                           "date" : "1989",
-                           "value" : 246819222
-                        },
-                        {
-                           "date" : "1990",
-                           "value" : 250131894
-                        },
-                        {
-                           "date" : "1991",
-                           "value" : 253492503
-                        },
-                        {
-                           "date" : "1992",
-                           "value" : 256894189
-                        },
-                        {
-                           "date" : "1993",
-                           "value" : 260255352
-                        },
-                        {
-                           "date" : "1994",
-                           "value" : 263435673
-                        },
-                        {
-                           "date" : "1995",
-                           "value" : 266557091
-                        },
-                        {
-                           "date" : "1996",
-                           "value" : 269667391
-                        },
-                        {
-                           "date" : "1997",
-                           "value" : 272911760
-                        },
-                        {
-                           "date" : "1998",
-                           "value" : 276115288
-                        },
-                        {
-                           "date" : "1999",
-                           "value" : 279294713
-                        },
-                        {
-                           "date" : "2000",
-                           "value" : 282162411
-                        },
-                        {
-                           "date" : "2001",
-                           "value" : 284968955
-                        },
-                        {
-                           "date" : "2002",
-                           "value" : 287625193
-                        },
-                        {
-                           "date" : "2003",
-                           "value" : 290107933
-                        },
-                        {
-                           "date" : "2004",
-                           "value" : 292805298
-                        },
-                        {
-                           "date" : "2005",
-                           "value" : 295516599
-                        },
-                        {
-                           "date" : "2006",
-                           "value" : 298379912
-                        },
-                        {
-                           "date" : "2007",
-                           "value" : 301231207
-                        },
-                        {
-                           "date" : "2008",
-                           "value" : 304093966
-                        },
-                        {
-                           "date" : "2009",
-                           "value" : 306771529
-                        },
-                        {
-                           "date" : "2010",
-                           "value" : 309327143
-                        },
-                        {
-                           "date" : "2011",
-                           "value" : 311583481
-                        },
-                        {
-                           "date" : "2012",
-                           "value" : 313877662
-                        },
-                        {
-                           "date" : "2013",
-                           "value" : 316059947
-                        },
-                        {
-                           "date" : "2014",
-                           "value" : 318386329
-                        },
-                        {
-                           "date" : "2015",
-                           "value" : 320738994
-                        },
-                        {
-                           "date" : "2016",
-                           "value" : 323071755
-                        },
-                        {
-                           "date" : "2017",
-                           "value" : 325122128
-                        },
-                        {
-                           "date" : "2018",
-                           "value" : 326838199
-                        },
-                        {
-                           "date" : "2019",
-                           "value" : 328329953
-                        },
-                        {
-                           "date" : "2020",
-                           "value" : 331526933
-                        },
-                        {
-                           "date" : "2021",
-                           "value" : 331893745
-                        },
-                        {
-                           "date" : "2022",
-                           "value" : 333271411
-                        },
-                        {
-                           "date" : "2023",
-                           "value" : 334914895
-                        },
-                        {
-                           "date" : "2024",
-                           "value" : 340110988
-                        }
-                     ]
-                  },
-                  {
-                     "earliestDate" : "2011",
-                     "facetId" : "2645850372",
-                     "latestDate" : "2023",
-                     "obsCount" : 13,
-                     "observations" : [
-                        {
-                           "date" : "2011",
-                           "value" : 310346358
-                        },
-                        {
-                           "date" : "2012",
-                           "value" : 312855438
-                        },
-                        {
-                           "date" : "2013",
-                           "value" : 315219560
-                        },
-                        {
-                           "date" : "2014",
-                           "value" : 317746049
-                        },
-                        {
-                           "date" : "2015",
-                           "value" : 320098094
-                        },
-                        {
-                           "date" : "2016",
-                           "value" : 322087547
-                        },
-                        {
-                           "date" : "2017",
-                           "value" : 324473370
-                        },
-                        {
-                           "date" : "2018",
-                           "value" : 326289971
-                        },
-                        {
-                           "date" : "2019",
-                           "value" : 328016242
-                        },
-                        {
-                           "date" : "2020",
-                           "value" : 329824950
-                        },
-                        {
-                           "date" : "2021",
-                           "value" : 333036755
-                        },
-                        {
-                           "date" : "2022",
-                           "value" : 334369975
-                        },
-                        {
-                           "date" : "2023",
-                           "value" : 335642425
-                        }
-                     ]
-                  },
-                  {
-                     "earliestDate" : "2022",
-                     "facetId" : "1145703171",
-                     "latestDate" : "2023",
-                     "obsCount" : 2,
-                     "observations" : [
-                        {
-                           "date" : "2022",
-                           "value" : 331097593
-                        },
-                        {
-                           "date" : "2023",
-                           "value" : 332387540
-                        }
-                     ]
-                  },
-                  {
-                     "earliestDate" : "2000",
-                     "facetId" : "1541763368",
-                     "latestDate" : "2020",
-                     "obsCount" : 3,
-                     "observations" : [
-                        {
-                           "date" : "2000",
-                           "value" : 281421906
-                        },
-                        {
-                           "date" : "2010",
-                           "value" : 308745538
-                        },
-                        {
-                           "date" : "2020",
-                           "value" : 331449281
-                        }
-                     ]
-                  },
-                  {
-                     "earliestDate" : "1960",
-                     "facetId" : "3981252704",
-                     "latestDate" : "2023",
-                     "obsCount" : 64,
-                     "observations" : [
-                        {
-                           "date" : "1960",
-                           "value" : 180671000
-                        },
-                        {
-                           "date" : "1961",
-                           "value" : 183691000
-                        },
-                        {
-                           "date" : "1962",
-                           "value" : 186538000
-                        },
-                        {
-                           "date" : "1963",
-                           "value" : 189242000
-                        },
-                        {
-                           "date" : "1964",
-                           "value" : 191889000
-                        },
-                        {
-                           "date" : "1965",
-                           "value" : 194303000
-                        },
-                        {
-                           "date" : "1966",
-                           "value" : 196560000
-                        },
-                        {
-                           "date" : "1967",
-                           "value" : 198712000
-                        },
-                        {
-                           "date" : "1968",
-                           "value" : 200706000
-                        },
-                        {
-                           "date" : "1969",
-                           "value" : 202677000
-                        },
-                        {
-                           "date" : "1970",
-                           "value" : 205052000
-                        },
-                        {
-                           "date" : "1971",
-                           "value" : 207661000
-                        },
-                        {
-                           "date" : "1972",
-                           "value" : 209896000
-                        },
-                        {
-                           "date" : "1973",
-                           "value" : 211909000
-                        },
-                        {
-                           "date" : "1974",
-                           "value" : 213854000
-                        },
-                        {
-                           "date" : "1975",
-                           "value" : 215973000
-                        },
-                        {
-                           "date" : "1976",
-                           "value" : 218035000
-                        },
-                        {
-                           "date" : "1977",
-                           "value" : 220239000
-                        },
-                        {
-                           "date" : "1978",
-                           "value" : 222585000
-                        },
-                        {
-                           "date" : "1979",
-                           "value" : 225055000
-                        },
-                        {
-                           "date" : "1980",
-                           "value" : 227225000
-                        },
-                        {
-                           "date" : "1981",
-                           "value" : 229466000
-                        },
-                        {
-                           "date" : "1982",
-                           "value" : 231664000
-                        },
-                        {
-                           "date" : "1983",
-                           "value" : 233792000
-                        },
-                        {
-                           "date" : "1984",
-                           "value" : 235825000
-                        },
-                        {
-                           "date" : "1985",
-                           "value" : 237924000
-                        },
-                        {
-                           "date" : "1986",
-                           "value" : 240133000
-                        },
-                        {
-                           "date" : "1987",
-                           "value" : 242289000
-                        },
-                        {
-                           "date" : "1988",
-                           "value" : 244499000
-                        },
-                        {
-                           "date" : "1989",
-                           "value" : 246819000
-                        },
-                        {
-                           "date" : "1990",
-                           "value" : 249623000
-                        },
-                        {
-                           "date" : "1991",
-                           "value" : 252981000
-                        },
-                        {
-                           "date" : "1992",
-                           "value" : 256514000
-                        },
-                        {
-                           "date" : "1993",
-                           "value" : 259919000
-                        },
-                        {
-                           "date" : "1994",
-                           "value" : 263126000
-                        },
-                        {
-                           "date" : "1995",
-                           "value" : 266278000
-                        },
-                        {
-                           "date" : "1996",
-                           "value" : 269394000
-                        },
-                        {
-                           "date" : "1997",
-                           "value" : 272657000
-                        },
-                        {
-                           "date" : "1998",
-                           "value" : 275854000
-                        },
-                        {
-                           "date" : "1999",
-                           "value" : 279040000
-                        },
-                        {
-                           "date" : "2000",
-                           "value" : 282162411
-                        },
-                        {
-                           "date" : "2001",
-                           "value" : 284968955
-                        },
-                        {
-                           "date" : "2002",
-                           "value" : 287625193
-                        },
-                        {
-                           "date" : "2003",
-                           "value" : 290107933
-                        },
-                        {
-                           "date" : "2004",
-                           "value" : 292805298
-                        },
-                        {
-                           "date" : "2005",
-                           "value" : 295516599
-                        },
-                        {
-                           "date" : "2006",
-                           "value" : 298379912
-                        },
-                        {
-                           "date" : "2007",
-                           "value" : 301231207
-                        },
-                        {
-                           "date" : "2008",
-                           "value" : 304093966
-                        },
-                        {
-                           "date" : "2009",
-                           "value" : 306771529
-                        },
-                        {
-                           "date" : "2010",
-                           "value" : 309327143
-                        },
-                        {
-                           "date" : "2011",
-                           "value" : 311583481
-                        },
-                        {
-                           "date" : "2012",
-                           "value" : 313877662
-                        },
-                        {
-                           "date" : "2013",
-                           "value" : 316059947
-                        },
-                        {
-                           "date" : "2014",
-                           "value" : 318386329
-                        },
-                        {
-                           "date" : "2015",
-                           "value" : 320738994
-                        },
-                        {
-                           "date" : "2016",
-                           "value" : 323071755
-                        },
-                        {
-                           "date" : "2017",
-                           "value" : 325122128
-                        },
-                        {
-                           "date" : "2018",
-                           "value" : 326838199
-                        },
-                        {
-                           "date" : "2019",
-                           "value" : 328329953
-                        },
-                        {
-                           "date" : "2020",
-                           "value" : 331526933
-                        },
-                        {
-                           "date" : "2021",
-                           "value" : 332048977
-                        },
-                        {
-                           "date" : "2022",
-                           "value" : 333271411
-                        },
-                        {
-                           "date" : "2023",
-                           "value" : 334914895
-                        }
-                     ]
-                  }
-            }
-         }
-      }
-   }
-}
-```
-{: .example-box-content .scroll}
-
-
-### Example 5: Get the observations at a particular date for given entities
+### Example 4: Get the observations at a particular date for given entities
 
 This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous example, with an additional entity, and a specific date. 
 
@@ -1571,7 +849,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 6: Get all observations for selected entities
+### Example 5: Get all observations for selected entities
 
 This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"}. Note that we use the empty string in the `date` parameter to get all observations for this variable and entities.
 
@@ -1737,7 +1015,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 7: Get the latest observations for entities specified by expression
+### Example 6: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of
 type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
@@ -1826,7 +1104,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 8: Get the latest observations for a single entity, filtering by provenance
+### Example 7: Get the latest observations for a single entity, filtering by provenance
 
 This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
@@ -1897,10 +1175,9 @@ Response:
       }
    }
 }
-
 ```
 
-### Example 9: Get the latest observations for a single entity, filtering for specific dataset
+### Example 8: Get the latest observations for a single entity, filtering for specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 
