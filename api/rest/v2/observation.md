@@ -1469,7 +1469,7 @@ Response:
                            "value" : 334914895
                         }
                      ]
-                  },
+                  }
 ```
 {: .example-box-content .scroll}
 
