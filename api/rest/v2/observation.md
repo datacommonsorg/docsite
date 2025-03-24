@@ -498,7 +498,7 @@ Response:
 {: .example-box-title}
 
 ```json
-{{
+{
   "byVariable": {
     "Count_Person": {
       "byEntity": {
