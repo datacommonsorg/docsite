@@ -261,7 +261,7 @@ https://api.datacommons.org/v2/observation  \
 Response:
 {: .example-box-title}
 
-```bash
+```json
 {
    "byVariable" : {
       "Count_Person_Female" : {
