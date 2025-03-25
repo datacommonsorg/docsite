@@ -91,9 +91,9 @@ Remove if there aren't any.
 | nextToken | Extract the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
 {: .doc-table}
 
-## method
+## fetch
 
-brief description. Have one such H2 section for every request method.
+Resolve entities to DCIDs by using a relation expression to 
 
 ### Signature
 
@@ -105,7 +105,7 @@ signature with just the parameter names, not defaults
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| name <br/> Use this for required parameters: <required-tag>Required</required-tag> |  |   |
+| node_ids <br/> <required-tag>Required</required-tag> |  |   |
 | name <br/> Use this for optional parameters <optional-tag>Optional</optional-tag> |   |   |
 {: .doc-table }
 
