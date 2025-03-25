@@ -21,7 +21,7 @@ that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia
 the US state).
 
-Note that you can only resolve entities by their terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
+Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
 > **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
@@ -75,8 +75,12 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>    | list of strings | Comma-separated list of property values of the nodes to query, e.g. the node name or description. This currently only supports place nodes.
-| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the property by which you are identifying the node to query. For example, if you are using a node name for the `nodes` parameter, the expression would be `<-name`. The property must be a terminal property, such as `name` or `description`, not a property that links to other nodes. Note that the expression must end with `->dcid` |
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | Property or property values of the nodes to query, e.g. the node name or description. This currently only supports place nodes. |
+| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the property by which you are identifying the node to query. For example, if you are using a node name for the `nodes` parameter, the expression would be `<-description`. Only three properties are currently supported:
+* `description`: Searches for nodes based on name-related properties (such as `name`, `alternateName`, etc.)
+* `wikidataId`: Searches for nodes based on their Wikidata ID.
+* `geoCoordinates`: Search for nodes based on latitude and/or longitude.
+ Note that the expression must end with `->dcid` |
 
 {: .doc-table }
 
