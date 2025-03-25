@@ -319,7 +319,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_property_values(node_dcids=["dc/03lw9rhpendw5"], property="name")
+client.node.fetch_property_values(node_dcids=["dc/03lw9rhpendw5"], properties="name")
 ```
 {: .example-box-content .scroll}
 
