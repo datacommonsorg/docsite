@@ -358,7 +358,7 @@ client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], pro
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to `client.node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
+> Tip: This example is equivalent to `client.node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->[name, latitude, longitude]")`.
 
 Response:
 {: .example-box-title}
