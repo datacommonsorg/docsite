@@ -88,7 +88,7 @@ fetch(node_dcids, expression, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
-| expression <br/> <required-tag>Required</required-tag> | string  | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
+| expression <br/> <required-tag>Required</required-tag> | string  | A [relation expressions](/api/rest/v2/#relation-expressions) that specifies the property (or properties.) By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
