@@ -72,9 +72,11 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>  | list of strings | Property or property values of the nodes to query, e.g. the node name or description. This currently only supports place nodes. |
-| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the property by which you are identifying the node to query. For example, if you are using a node name for the `nodes` parameter, the expression would be `<-description`. Only three properties are currently supported: <br />`description`: Searches for nodes based on name-related properties (such as `name`, `alternateName`, etc.)<br/>`wikidataId`: Searches for nodes based on their Wikidata ID.<br/>`geoCoordinates`: Searches for nodes based on latitude and/or longitude.<br/> Note that the expression must end with `->dcid` |
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | An identifier of the nodes to query, such as its name or description. |
+| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the identifier property you used in the `nodes` parameter. For example, if you use a name for the `nodes` parameter, the expression would be `<-description`. Only three properties are currently supported: <br />`description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.)<br/>`wikidataId`: Search for nodes based on their Wikidata ID.<br/>`geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/> Note that the expression must end with `->dcid` |
 {: .doc-table }
+
+> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties.
 
 ## Response
 
