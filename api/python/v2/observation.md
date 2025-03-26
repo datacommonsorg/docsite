@@ -97,8 +97,6 @@ There are additional methods you can call on the response to structure the data 
 | get_observations_as_records | Get the response data as a series of flat records. See See xxx for examples. |
 {: .doc-table}
 
-
-
 ## fetch
 
 Fetches observations for the specified variables, dates, and entities. Entities can be specified by DCID or by relation expression. 
