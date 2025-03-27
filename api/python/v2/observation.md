@@ -404,7 +404,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"]).get_data_by_entity()
+client.observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"])
 ```
 
 Response:
@@ -414,7 +414,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 4: Get the latest observations for entities specified by expression
+### Example 3: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in [California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
 type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
@@ -424,21 +424,10 @@ entity (all counties in California).
 Request:
 {: .example-box-title}
 
-```bash
+```python
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
 ```
-
-POST Request:
-{: .example-box-title}
-
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
-  https://api.datacommons.org/v2/observation \
-  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable", "value", "date"] }'
-```
-
-{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
