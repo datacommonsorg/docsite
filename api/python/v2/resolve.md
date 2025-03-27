@@ -36,7 +36,7 @@ The following are the methods available for the `resolve` endpoint.
 | Method | Description | 
 |--------|-------------|
 | [fetch](#fetch) | Resolve entities by using a [relation expression](/api/rest/v2/index.html#relation-expressions) for the property or properties to search on. |
-| [fetch_dcid_by_name](#fetch_dcid_by_name) | Look up DCIDs of entities by name. |
+| [fetch_dcids_by_name](#fetch_dcids_by_name) | Look up DCIDs of entities by name. |
 | [fetch_dcid_by_wikidata_id](#fetch_dcid_by_wikidata_id) | Look up DCIDs of entities by Wikidata ID. |
 | [fetch_dcid_by_coordinates](#fetch_dcid_by_coordinates) | Look up a DCID of a single entity by geographical coordinates. |
 
@@ -195,14 +195,14 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-## fetch_dcid_by_name
+## fetch_dcids_by_name
 
 Resolve entities to DCIDs by using a name.
 
 ### Signature
 
 ```python
-fetch_dcid_by_name(names, entity_type)
+fetch_dcids_by_name(names, entity_type)
 ```
 
 ### Input parameters
