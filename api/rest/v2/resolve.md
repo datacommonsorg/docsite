@@ -6,22 +6,19 @@ parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true
 ---
-
+{: .no_toc}
 # /v2/resolve
+
+* TOC
+{:toc}
 
 The Resolve API returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph.
 Each entity in Data Commons has an associated `DCID` which is used to refer to it
 in other API calls or programs. An important step for a Data Commons developer is to
 identify the DCIDs of entities they care about. This API searches for an entry in the
-Data Commons knowledge graph and returns the DCIDs of matches. You can use
-common properties or even descriptive words to find entities.
+Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
 
-For example, you could query for "San Francisco, CA" or "San Francisco" to find
-that its DCID is `geoId/0667000`. You can also provide the type of entity
-(country, city, state, etc.) to disambiguate (Georgia the country vs. Georgia
-the US state).
-
-Note that you can only resolve entities by their terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
+Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
 > **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
@@ -45,7 +42,7 @@ Note that you can only resolve entities by their terminal properties. You cannot
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&property=<var>EXPRESSION</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -58,11 +55,11 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 JSON data:
 {
   "nodes": [
-    "<var>NODE_DCID_1</var>",
-    "<var>NODE_DCID_2</var>",
+    "<var>NODE_IDENTIFIER_1</var>",
+    "<var>NODE_IDENTIFIER_2</var>",
     ...
   ],
-  "property": "<var>RELATION_EXPRESSION</var>"
+  "property": "<var>EXPRESSION</var>"
 }
 
 </div>
@@ -75,9 +72,8 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>    | list of strings | Comma-separated list of property values of the nodes to query, e.g. the node name or description. This currently only supports place nodes.
-| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the property by which you are identifying the node to query. For example, if you are using a node name for the `nodes` parameter, the expression would be `<-name`. The property must be a terminal property, such as `name` or `description`, not a property that links to other nodes. Note that the expression must end with `->dcid` |
-
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. |
+| property <br /> <required-tag>Required</required-tag> | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/>Note that these are not necessarily "properties" that appear in the knowledge graph; instead, they are "synthetic" attributes that cover searches over multiple properties. <br/>Each expression must end with `->dcid` and my optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
 {: .doc-table }
 
 ## Response
@@ -116,7 +112,7 @@ The response looks like:
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
-| candidates | list | DCIDs matching the description you provided.
+| candidates | list | DCIDs matching the description you provided. |
 | dominantType | string | Optional field which, where present, disambiguates between multiple results. |
 {: .doc-table}
 
