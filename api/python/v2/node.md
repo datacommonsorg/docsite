@@ -63,7 +63,7 @@ All request methods return a `NodeResponse` object. It looks like this:
 
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
-| data      | object | Data of the property label and value information, keyed by the queried nodes. |
+| data      | object | Data of the property label and value information, keyed by the queried nodes.  |
 | nextToken | string | A token used to query the [next page of data](#pagination), if `all_pages` is set to `False` in the query. |
 {: .doc-table}
 
@@ -73,8 +73,8 @@ You can call the following methods on the `NodeResponse` object:
 
 | Method | Description | 
 |--------|-------------|
-| to_dict | Converts the dataclass to a Python dictionary. |
-| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). |
+| to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
+| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
 | nextToken | Extracts the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
 {: .doc-table }
 
@@ -679,7 +679,7 @@ response.nextToken
 To get the next set of entries, repeat the request with the `next_token` parameter set to the value of the previous response, until there is no `nextToken` in the response.
 
 ```python
-while response.nextToken != None:
+while response.nextToken is not None:
    response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token=response.nextToken)
 ```
 <script src="/assets/js/syntax_highlighting.js"></script>
