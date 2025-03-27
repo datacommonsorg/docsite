@@ -42,7 +42,7 @@ Note that you can only resolve entities by some terminal properties. You cannot 
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>DCID_LIST</var>&property=<var>RELATION_EXPRESSION</var>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&property=<var>EXPRESSION</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -55,11 +55,11 @@ X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI
 JSON data:
 {
   "nodes": [
-    "<var>NODE_DCID_1</var>",
-    "<var>NODE_DCID_2</var>",
+    "<var>NODE_IDENTIFIER_1</var>",
+    "<var>NODE_IDENTIFIER_2</var>",
     ...
   ],
-  "property": "<var>RELATION_EXPRESSION</var>"
+  "property": "<var>EXPRESSION</var>"
 }
 
 </div>
@@ -72,8 +72,8 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>  | list of strings | An identifier of the nodes to query, such as its name or description. |
-| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the identifier property you used in the `nodes` parameter. For example, if you use a name for the `nodes` parameter, the expression would be `<-description`. Only three properties are currently supported: <br />`description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.)<br/>`wikidataId`: Search for nodes based on their Wikidata ID.<br/>`geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/> Note that the expression must end with `->dcid` |
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. |
+| property <br /> <required-tag>Required</required-tag> | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/>Note that these are not necessarily "properties" that appear in the knowledge graph; instead, they are "synthetic" attributes that cover searches over multiple properties. <br/>Each expression must end with `->dcid` and my optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
 {: .doc-table }
 
 > Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties.
@@ -114,7 +114,7 @@ The response looks like:
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
-| candidates | list | DCIDs matching the description you provided.
+| candidates | list | DCIDs matching the description you provided. |
 | dominantType | string | Optional field which, where present, disambiguates between multiple results. |
 {: .doc-table}
 

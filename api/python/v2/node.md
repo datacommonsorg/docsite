@@ -63,7 +63,7 @@ All request methods return a `NodeResponse` object. It looks like this:
 
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
-| data      | object | Data of the property label and value information, keyed by the queried nodes. |
+| data      | object | Data of the property label and value information, keyed by the queried nodes.  |
 | nextToken | string | A token used to query the [next page of data](#pagination), if `all_pages` is set to `False` in the query. |
 {: .doc-table}
 
@@ -73,10 +73,10 @@ You can call the following methods on the `NodeResponse` object:
 
 | Method | Description | 
 |--------|-------------|
-| to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
-| to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
-| nextToken | Extract the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
-{: .doc-table}
+| to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
+| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
+| nextToken | Extracts the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
+{: .doc-table }
 
 ## fetch
 

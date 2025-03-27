@@ -36,7 +36,7 @@ The following are the methods available for the `resolve` endpoint.
 | Method | Description | 
 |--------|-------------|
 | [fetch](#fetch) | Resolve entities by using a [relation expression](/api/rest/v2/index.html#relation-expressions) for the property or properties to search on. |
-| [fetch_dcid_by_name](#fetch_dcid_by_name) | Look up DCIDs of entities by name. |
+| [fetch_dcids_by_name](#fetch_dcids_by_name) | Look up DCIDs of entities by name. |
 | [fetch_dcid_by_wikidata_id](#fetch_dcid_by_wikidata_id) | Look up DCIDs of entities by Wikidata ID. |
 | [fetch_dcid_by_coordinates](#fetch_dcid_by_coordinates) | Look up a DCID of a single entity by geographical coordinates. |
 
@@ -88,8 +88,8 @@ You can call the following methods on the `ResolveResponse` object:
 
 | Method | Description | 
 |--------|-------------|
-| to_dict | Converts the dataclass to a Python dictionary. |
-| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). |
+| to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
+| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
 {: .doc-table}
 
 ## fetch
@@ -106,11 +106,9 @@ fetch(node_ids, expression)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_ids <br /> <required-tag>Required</required-tag>  | list of strings | Identifier of the node(s) to query, such as name or description. |
-| property <br /> <required-tag>Required</required-tag> | string | An expression that represents the label of the identifier property you used in the `node_ids` parameter. For example, if you use a name, the expression would be `<-description`. Only three properties are currently supported: <br />`description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.)<br/>`wikidataId`: Search for nodes based on their Wikidata ID.<br/>`geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/> Note that the expression must end with `->dcid` |
+| node_ids <br /> <required-tag>Required</required-tag>  | string or list of strings | A term or list of terms that identify each node to search for, such as their name. |
+| expression <br /> <required-tag>Required</required-tag> | string | An expression that describes the identifier used in the `node_ids` parameter. Only three are currently supported: <br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/> Note that these are not necessarily "properties" that appear in the knowledge graph; instead, they are "synthetic" attributes that cover searches over multiple properties. <br/>Each expression must end with `->dcid` and my optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
 {: .doc-table }
-
-> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties.
 
 ### Examples
 
@@ -197,14 +195,14 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-## fetch_dcid_by_name
+## fetch_dcids_by_name
 
 Resolve entities to DCIDs by using a name.
 
 ### Signature
 
 ```python
-fetch(names, entity_type)
+fetch_dcids_by_name(names, entity_type)
 ```
 
 ### Input parameters
