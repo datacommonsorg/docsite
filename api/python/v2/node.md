@@ -19,6 +19,8 @@ More specifically, this API can perform the following tasks:
 - Get the values of a property for individual or multiple nodes. 
 - Get all connected nodes that are linked with individual or multiple nodes.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/node.py){: target="_blank"}
+
 * TOC
 {:toc}
 
@@ -255,7 +257,7 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
-| out <br/> <required-tag>Required</required-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
+| out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
@@ -312,7 +314,7 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 | node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
 | properties <br/>  <required-tag>Required</required-tag> | string or list of strings | List of properties to query |
 | constraints <br/> <optional-tag>Optional</optional-tag> | string | Additional [filters](/api/rest/v2/index.html#filters), of the form `{typeof:PROPERTY}`. |
-| out <br/> <required-tag>Required</required-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
+| out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 
