@@ -46,13 +46,13 @@ This procedure uses a Python virtual environment as recommended by Google Cloud 
 1. Install the the `datacommons-client` package:
 
    ```bash
-   $ pip install datacommons_client
+   $ pip install datacommons-client
    ```
 
 To get additional functionality with Pandas DataFrames, run:
 
 ```bash
-$ pip install "datacommons_client[Pandas]"
+$ pip install "datacommons-client[Pandas]"
 ```
 ## Run Python interactively
 
