@@ -76,8 +76,7 @@ To determine if a given entity exists in base Data Commons through the API:
   ```
   https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
   ```
-
-1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. 
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See []
 
 ## Step 2: Identify your statistical variables
 

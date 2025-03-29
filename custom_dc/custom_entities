@@ -1,5 +1,14 @@
+---
+layout: default
+title: Define custom entities
+nav_order: 3
+parent: Build your own Data Commons
+---
+
+# Define custom entities
+
 {: #custom-entities}
-### Step 0: Define custom entities (if needed) 
+## Step 0: Define custom entities (if needed) 
 
 Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. Just skip to the next section on [variables and observations](#csv).
 
