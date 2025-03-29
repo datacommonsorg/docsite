@@ -6,7 +6,7 @@ parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true
 ---
-
+{: .no_toc}
 # /v2/sparql
 
 This endpoint makes it possible to query the Data Commons knowledge graph using
@@ -14,6 +14,9 @@ This endpoint makes it possible to query the Data Commons knowledge graph using
 queries to return specific information.
 
 > **Note:** Data Commons only supports a limited subset of SPARQL functionality at this time: specifically, only the keywords `WHERE`, `ORDER BY`, `DISTINCT`, and `LIMIT` are supported.
+
+* TOC
+{:toc}
 
 ## Request
 

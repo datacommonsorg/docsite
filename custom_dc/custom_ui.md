@@ -76,7 +76,7 @@ You can customize the page header and footer (by default, empty) in [base.html](
 
 Use the [overrides.css](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/overrides.css) file to customize the default Data Commons styles. The file provides a default color override. You can add all style overrides to that file.
 
-Alternatively, if you have existing existing CSS and Javascript files, put them under the [/static/custom_dc/custom](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom) folder. Then include these files in the `<head>` section of the corresponding HTML files as:
+Alternatively, if you have existing CSS and Javascript files, put them under the [/static/custom_dc/custom](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom) folder. Then include these files in the `<head>` section of the corresponding HTML files as:
 
 <pre>
 &lt;link href="/custom_dc/custom/<var>FILENAME</var>.css|js" rel="stylesheet" /&gt;

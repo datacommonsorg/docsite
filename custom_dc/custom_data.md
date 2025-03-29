@@ -28,7 +28,7 @@ At a high level, you need to provide the following:
 
 ### Files and directory structure
 
-You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories. There must only be one JSON config file, in the top-level input directory. For example:
+You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories (with an additional [configuration option](#subdirs)). There must only be one JSON config file, in the top-level input directory. For example:
 
 ```
 my_data/
@@ -534,6 +534,8 @@ You can use the `*` wildcard; matches are applied in the order in which they are
 
 The first set of parameters only applies to `foo.csv`. The second set of parameters applies to `bar.csv`, `bar1.csv`, `bar2.csv`, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely `foo.csv` and `bar*.csv`.
 
+#### Enable subdirectories {#subdirs}
+
 If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as the input directory), and be sure to set `"includeInputSubdirs": true` (the default is false if the option is not specified.) For example:
 
 ```
@@ -708,7 +710,7 @@ docker run \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
 gcr.io/datcom-ci/datacommons-data:stable
-
+</pre>
 
 {:.no_toc}
 ##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
