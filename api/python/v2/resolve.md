@@ -39,8 +39,8 @@ The following are the methods available for the `resolve` endpoint.
 |--------|-------------|
 | [fetch](#fetch) | Resolve entities by using a [relation expression](/api/rest/v2/index.html#relation-expressions) for the property or properties to search on. |
 | [fetch_dcids_by_name](#fetch_dcids_by_name) | Look up DCIDs of entities by name. |
-| [fetch_dcid_by_wikidata_id](#fetch_dcid_by_wikidata_id) | Look up DCIDs of entities by Wikidata ID. |
-| [fetch_dcids_by_coordinates](#fetch_dcids_by_coordinates) | Look up a DCID of a single entity by geographical coordinates. |
+| [fetch_dcids_by_wikidata_id](#fetch_dcids_by_wikidata_id) | Look up DCIDs of entities by Wikidata ID. |
+| [fetch_dcid_by_coordinates](#fetch_dcid_by_coordinates) | Look up a DCID of a single entity by geographical coordinates. |
 
 ## Response
 
@@ -296,14 +296,14 @@ Resolve entities to DCIDs by Wikidata ID.
 ### Signature
 
 ```python
-fetch_dcids_by_wikidata_id(wikidata_id, entity_type)
+fetch_dcids_by_wikidata_id(wikidata_ids, entity_type)
 ```
 
 ### Input parameters
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| wikidata_id <br /> <required-tag>Required</required-tag>  | string or list of strings | The Wikidata ID(s) of the entities to look up. |
+| wikidata_ids <br /> <required-tag>Required</required-tag>  | string or list of strings | The Wikidata ID(s) of the entities to look up. |
 | entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
 {: .doc-table }
 
@@ -318,7 +318,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcid_by_wikidata_id(wikidata_id="Q30")
+resolve.fetch_dcids_by_wikidata_id(wikidata_ids="Q30")
 ```
 
 Response:

@@ -80,15 +80,15 @@ JSON data:
 
 | Name                                                  | Type   |  Description                                                    |
 |-------------------------------------------------------|--------|-----------------------------------------------------------------|
-| key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
-| date <br /> <required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
-| variable.dcids <br /> <required-tag>Required</required-tag>| list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. |
-| entity.dcids                                          | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
-| entity.expression                                     | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
-| select <br /> <required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=facet` is optional. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
-| select <br /> <optional-tag>Optional</optional-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
-| filter.facet_domains <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter.facet_ids <br /> <optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+| key <br /><required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
+| date <br /><required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
+| variable.dcids <br/><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. To return actual  observations, this is required. To just get a list of variables associated with given entities, you can omit it.|
+| entity.dcids  | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
+| entity.expression | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
+| select <br /><required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=facet` is optional. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
+| select <br /><optional-tag>Optional</optional-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
+| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
 > **Note**: Filters are not currently available for custom variables.
@@ -124,7 +124,7 @@ For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://
 
 ## Response {#response}
 
-With`select=variable` and `select=entity` only, the response looks like:
+With`select=variable` and `select=entity` only, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
 
 <pre>
 {
@@ -226,7 +226,428 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
 
 ## Examples
 
-### Example 1: Look up whether a given entity (place) has data for a given variable
+### Example 1: Look up the statistical variables available for a given entity (place)
+
+In this example, we get a list of variables that are available (have observation data) for one country, Togo.
+
+Parameters:
+{: .example-box-title}
+
+```
+date: "LATEST"
+entity.dcids: "country/TGO"
+select: "entity"
+select: "variable"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country/TGO&entity.dcids=country/MLI&select=entity&select=variable'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
+https://api.datacommons.org/v2/observation  \
+-d '{"date": "LATEST", "entity": { "dcids": ["country/TGO"] }, "select": ["entity", "variable"] }'
+```
+Response:
+{: .example-box-title}
+
+(truncated)
+
+```json
+{
+  "byVariable": {
+    "AmountOutstanding_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCHE": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/SP_DYN_CBRT_IN": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MinTemp_Daily_GaussianMixture_5PctProb_LessThan_Atleast1DayAYear_CMIP6_MPI-ESM1-2-LR_SSP585": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "eia/INTL.2-12-BKWH.A": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "eia/INTL.4002-8-MMTCD.A": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "sdg/SE_AGP_CPRA.URBANISATION--R__EDUCATION_LEV--ISCED11_3__INCOME_WEALTH_QUANTILE--Q5": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/BAR_PRM_ICMP_25UP_FE_ZS": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Amount_Debt_JPY_LenderWestAfricanDevelopmentBank_AsAFractionOf_Amount_Debt_LenderWestAfricanDevelopmentBank": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Amount_Debt_SDR_LenderOPECFundforInternationalDev_AsAFractionOf_Amount_Debt_LenderOPECFundforInternationalDev": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MinTemp_Daily_GaussianMixture_1PctProb_LessThan_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/SH_FPL_SATM_ZS": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/SP_POP_3539_MA": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/UIS_REPP_1_G2_F": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "sdg/SG_PLN_RECRICTRY": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "AmountOutstanding_Debt_OfficialCreditor_Concessional_PubliclyGuaranteed_Multilateral_LongTermExternalDebt_LenderArabBankforEconomicDevinAfrica": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Annual_Consumption_Fuel_OtherManufacturingIndustry_Fuelwood": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Annual_Emissions_GreenhouseGas_FuelCombustionForRoadVehicles": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/account_t_d_8": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "AmountPrincipalRepayment_Debt_OfficialCreditor_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCAN": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Amount_Debt_WorldBankMultipleCurrency_LenderWorldBankIDA_AsAFractionOf_Amount_Debt_LenderWorldBankIDA": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/BX_GSR_TOTL_CD": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/SH_STA_AIRP_P5": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "AmountPrincipalRepayment_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryDNK": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "eia/INTL.12-1-MTOE.A": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "sdg/ER_MTN_DGRDP": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "sdg/SP_ACS_BSRVH2O": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/BAR_NOED_7074_FE_ZS": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/SP_POP_AG05_FE_IN": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/UIS_PTRHC_02_TRAINED": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/UIS_XUNIT_US_3_FSGOV": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "LocalCurrency_ExchangeRate_Currency_FromCurrency_USD_ToCurrencyUSD": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MaxTemp_Daily_Hist_95PctProb_Greater_Atleast1DayADecade_CMIP6_MPI-ESM1-2-HR_Historical": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MinTemp_Daily_GaussianMixture_50PctProb_LessThan_Atleast1DayAYear_CMIP6_Ensemble_SSP245": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/fin17b_t_d_2": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Amount_Debt_FRF_AsAFractionOf_Amount_Debt": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "sdg/SP_GNP_WNOWNS": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/NY_GDY_TOTL_KN": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/UIS_PTRHC_2T3_TRAINED": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Annual_Emissions_CarbonDioxideEquivalent100YearGlobalWarmingPotential_FluorinatedGases": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MaxTemp_Daily_GaussianMixture_50PctProb_Greater_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MinTemp_Daily_Hist_50PctProb_LessThan_Atleast1DayADecade_CMIP6_GFDL-ESM4_SSP585": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "sdg/SH_HAP_ASMORT": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/AG_LND_TOTL_K2": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/HF_UHC_NOP1_CG": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/VA_STD_ERR": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "AmountOutstanding_Debt_LongTermExternalDebt_LenderInternationalFundforAgriculturalDev": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Annual_Imports_Fuel_OtherOilProducts": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MinTemp_Daily_Hist_1PctProb_LessThan_Atleast1DayAYear_CMIP6_GFDL-ESM4_Historical": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "Annual_Emissions_NitrousOxide_WasteManagement": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "MinTemp_Daily_GaussianMixture_5PctProb_LessThan_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "eia/INTL.2-4-QBTU.A": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/BN_CAB_XOKA_GD_ZS": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "worldBank/SP_REG_BRTH_FE_ZS": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+    "AmountInterestRepayment_Debt_LongTermExternalDebt_LenderCountrySWE": {
+      "byEntity": {
+        "country/TGO": {
+
+        }
+      }
+    },
+```
+{: .example-box-content .scroll}
+
+
+### Example 2: Look up whether a given entity (place) has data for a given variable
 
 In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
 
@@ -261,6 +682,8 @@ https://api.datacommons.org/v2/observation  \
 Response:
 {: .example-box-title}
 
+The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
+
 ```json
 {
    "byVariable" : {
@@ -280,7 +703,7 @@ Response:
 }
 ```
 
-### Example 2: Look up whether a given entity (place) has data for a given variable and show the sources
+### Example 3: Look up whether a given entity (place) has data for a given variable and show the sources
 
 This example is the same as above, but we also get the facets, to see the sources of the available data.
 
@@ -458,7 +881,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 3: Get the latest observations for a single entity by DCID
+### Example 4: Get the latest observations for a single entity by DCID
 
 In this example, we get all the latest population observations for one country, Canada. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
@@ -585,7 +1008,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 4: Get the observations at a particular date for given entities by DCID
+### Example 5: Get the observations at a particular date for given entities by DCID
 
 This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same variable as the previous example, two entities, and a specific date. 
 
@@ -952,7 +1375,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 5: Get all observations for selected entities by DCID
+### Example 6: Get all observations for selected entities by DCID
 
 This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"}. Note that we use the empty string in the `date` parameter to get all observations for this variable and entities.
 
@@ -1133,7 +1556,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 6: Get the latest observations for entities specified by expression
+### Example 7: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of
 type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
@@ -1222,7 +1645,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 7: Get the latest observations for a single entity, filtering by provenance
+### Example 8: Get the latest observations for a single entity, filtering by provenance
 
 This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
@@ -1295,7 +1718,7 @@ Response:
 }
 ```
 
-### Example 8: Get the latest observations for a single entity, filtering for specific dataset
+### Example 9: Get the latest observations for a single entity, filtering for specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 
