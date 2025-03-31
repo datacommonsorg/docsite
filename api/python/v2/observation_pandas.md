@@ -24,7 +24,7 @@ Fetches observations for specified variables, dates, and entities (or all entiti
 ### Signature
 
 ```python
-fetch(variable_dcids, date, select, entity_dcids, entity_expression)
+observation_pandas(variable_dcids, date, select, entity_dcids, entity_expression)
 ```
 
 ### Input parameters
@@ -32,13 +32,18 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | variable_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| date <br/><optional-tag>Optional</optional-tag> | string | The date (and time) for which the observations are being requested.By default this is set to `LATEST`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br>
+| date <br/><optional-tag>Optional</optional-tag> | string | The date (and time) for which the observations are being requested. By default this is set to `latest`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br>
 * A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br>
-* `""` - Get all observations for the specified variables and entities  |
+* "" - Get all observations for the specified variables and entities  |
 | select <optional-tag>Optional</optional-tag> | list of strings | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`. The only other valid option is `["entity", "variable"]`, which returns no observations. This may be useful to look up the entities (places) that are associated with the selected variables. |
 | entity_dcids | string or list of strings | One ore more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | entity.expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 
+
+entity_dcids: Literal["all"] | list[str] = "all",
+      entity_type: Optional[str] = None,
+      parent_entity: Optional[str] = None,
+      property_filters: Optional[dict[str, str | list[str]]] = None,
 {: .doc-table }
 
 ### Examples
