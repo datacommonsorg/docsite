@@ -289,14 +289,14 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-## fetch_dcid_by_wikidata_ids
+## fetch_dcids_by_wikidata_id
 
 Resolve entities to DCIDs by Wikidata ID.
 
 ### Signature
 
 ```python
-fetch_dcids_by_wikidata_ids(wikidata_ids, entity_type)
+fetch_dcids_by_wikidata_id(wikidata_ids, entity_type)
 ```
 
 ### Input parameters
@@ -318,7 +318,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcid_by_wikidata_ids(wikidata_ids="Q30")
+resolve.fetch_dcids_by_wikidata_id(wikidata_ids="Q30")
 ```
 
 Response:
