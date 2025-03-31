@@ -7,16 +7,26 @@ parent: Build your own Data Commons
 
 # Define custom entities
 
-{: #custom-entities}
-## Step 0: Define custom entities (if needed) 
+This page shows you how to define custom entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in 
+[Prepare and load your own data](custom_data.md).
 
-Before creating new entities, please see [above](#entities) to determine if you can reuse existing ones from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. Just skip to the next section on [variables and observations](#csv).
+Before creating new entities, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. 
+
+## Overview
+
+Like variables, you define entities as follows:
+
+- You define entities in CSV files using the schema described below. See [Define custom entities  You can also define them in MCF if you choose. 
+- Entity types are defined in the JSON configuration file, `config.json`, or in MCF.
+
+The [directory structure](custom_data.md#dir) is the same as for variables.
+
+{: #custom-entities}
+## Define custom entities in CSV + JSON
 
 If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
 
-The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. If there is no existing entity type for your entities you can create those using the JSON config.
-
-You can choose to define custom entities in either CSV files (as described in [Define new entities](#custom-entities) above) or in MCF; in this section, we demonstrate how to do so using MCF. 
+The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. If there is no existing entity type for your entities you can create those using the JSON config. 
 
 {:.no_toc}
 #### Example 1: New entities, existing entity type

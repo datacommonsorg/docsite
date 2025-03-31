@@ -10,10 +10,8 @@ parent: Build your own Data Commons
 
 This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
 
-
 * TOC
 {:toc}
-
 
 ## Overview
 
@@ -24,8 +22,9 @@ At a high level, you need to provide the following:
 - All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
-- If you need to define new custom entities, please see xxx
+- If you need to define new custom entities, please see [Define custom entities](custom_entities.md) for details.
 
+{: #dir}
 ### Files and directory structure
 
 You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories (with an additional [configuration option](#subdirs)). There must only be one JSON config file, in the top-level input directory. For example:
@@ -76,7 +75,7 @@ To determine if a given entity exists in base Data Commons through the API:
   ```
   https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
   ```
-1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See []
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Define custom entities](custom_entities.md) for complete information.
 
 ## Step 2: Identify your statistical variables
 
