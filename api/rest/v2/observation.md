@@ -226,7 +226,7 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
 
 ## Examples
 
-### Example 1: Look up the statistical variables available for a given entitiy (place)
+### Example 1: Look up the statistical variables available for a given entity (place)
 
 In this example, we get a list of variables that are available (have observation data) for one country, Togo.
 
