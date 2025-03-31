@@ -124,7 +124,7 @@ For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://
 
 ## Response {#response}
 
-With`select=variable` and `select=entity` only, the response looks like:
+With`select=variable` and `select=entity` only, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
 
 <pre>
 {
@@ -681,6 +681,8 @@ https://api.datacommons.org/v2/observation  \
 
 Response:
 {: .example-box-title}
+
+The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
 
 ```json
 {
