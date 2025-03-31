@@ -48,455 +48,148 @@ entity_dcids: Literal["all"] | list[str] = "all",
 
 ### Examples
 
-{: #fetch_ex1}
-### Example 1: Get the latest observations for a single entity
+## Examples
 
-## Response
-
-All request methods return a `ObservationResponse` object. By default, the response looks like:
-
-<pre>
-{
-  "byVariable": {
-    "<var>VARIABLE_DCID_1</var>": {
-      "byEntity": {
-        "<var>ENTITY_DCID_1</var>": {
-          "orderedFacets": [
-            {
-              "facetId": "<var>FACET_ID</var>",
-              "earliestDate" : "<var>DATE_STRING</var>", 
-              "latestDate" : "<var>DATE_STRING</var>", 
-              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>",
-              "observations": [
-                {
-                  "date": "<var>OBSERVATION_DATE</var>",
-                  "value": "<var>OBSERVATION_VALUE</var>"
-                },
-                ...
-              ]
-            },
-            ...
-        },
-        ...
-      },
-      ...
-    }
-  "facets" {
-    "<var>FACET_ID</var>": {
-      "importName": "...",
-      "provenanceUrl": "...",
-      "measurementMethod": "...",
-      "observationPeriod": "..."
-    },
-    ...
-  }
-</pre>
-{: .response-signature .scroll}
-
-
-There are additional methods you can call on the response to structure the data differently. See [Response property methods](#response-property-methods) for details.
-
-
-### Response fields
-
-| Name        | Type   |   Description                       |
-|-------------|--------|-------------------------------------|
-| orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity, such as the date range, the number of observations included in the facet etc. |
-| observations | list of objects | Date and value pairs for the observations made in the time period |
-| facets | object | Various properties of reported facets, where available, including the provenance of the data, etc. |
-{: .doc-table}
-
-### Response property methods
-
-| Method | Description | 
-|--------|-------------|
-| to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
-| to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
-| get_data_by_entity | Key the response data by entity rather than by variable. See xxx for examples. |
-| get_observations_as_records | Get the response data as a series of flat records. See See xxx for examples. |
-{: .doc-table}
-
-## fetch
-
-Fetches observations for the specified variables, dates, and entities. Entities can be specified by DCID or by relation expression. 
-
-### Signature
+### Example 1: Retrieve the count of men in the state of California.
 
 ```python
-fetch(variable_dcids, date, select, entity_dcids, entity_expression)
+>>> datacommons_pandas.build_time_series_dataframe("geoId/05", "Count_Person_Male")
+             2010     2011     2012  ...     2017     2018     2019
+place                                ...                           
+geoId/05  1430837  1447850  1449265  ...  1479682  1476680  1474705
+
+[1 rows x 10 columns]
 ```
 
-### Input parameters
-
-| Name          | Type  |   Description  |
-|---------------|-------|----------------|
-| variable_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| date <br/><optional-tag>Optional</optional-tag> | string | The date (and time) for which the observations are being requested.By default this is set to `LATEST`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br>
-* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br>
-* `""` - Get all observations for the specified variables and entities  |
-| select <optional-tag>Optional</optional-tag> | list of strings | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`. The only other valid option is `["entity", "variable"]`, which returns no observations. This may be useful to look up the entities (places) that are associated with the selected variables. |
-| entity_dcids | string or list of strings | One ore more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-| entity.expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-
-{: .doc-table }
-
-### Examples
-
-{: #fetch_ex1}
-### Example 1: Get the latest observations for a single entity
-
-In this example, we get all the latest observations for the variable [`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"} for the entity, the U.S.A., by its DCID ['country/USA](https://datacommons.org/browser/country/USA){: target="_blank"}. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
-
-Request:
-{: .example-box-title}
+### Example 2: Compare the historic populations of Sudan and South Sudan.
 
 ```python
-client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/USA")
+>>> datacommons_pandas.build_time_series_dataframe(["country/SSD","country/SDN"], "Count_Person")
+                   2019     2019-06
+place                              
+country/SDN         NaN  41592539.0
+country/SSD  12778250.0         NaN
 ```
 
-Response:
-{: .example-box-title}
 
-```json
-{
-  "byVariable": {
-    "Count_Person": {
-      "byEntity": {
-        "country/USA": {
-          "orderedFacets": [
-            {
-              "earliestDate": "2024",
-              "facetId": "2176550201",
-              "latestDate": "2024",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2024",
-                  "value": 340110988
-                }
-              ]
-            },
-            {
-              "earliestDate": "2023",
-              "facetId": "2645850372",
-              "latestDate": "2023",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2023",
-                  "value": 335642425
-                }
-              ]
-            },
-            {
-              "earliestDate": "2023",
-              "facetId": "1145703171",
-              "latestDate": "2023",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2023",
-                  "value": 332387540
-                }
-              ]
-            },
-            {
-              "earliestDate": "2020",
-              "facetId": "1541763368",
-              "latestDate": "2020",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2020",
-                  "value": 331449281
-                }
-              ]
-            },
-            {
-              "earliestDate": "2023",
-              "facetId": "3981252704",
-              "latestDate": "2023",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2023",
-                  "value": 334914895
-                }
-              ]
-            },
-            {
-              "earliestDate": "2023",
-              "facetId": "1151455814",
-              "latestDate": "2023",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2023",
-                  "value": 334914895
-                }
-              ]
-            },
-            {
-              "earliestDate": "2023",
-              "facetId": "4181918134",
-              "latestDate": "2023",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2023",
-                  "value": 334914895
-                }
-              ]
-            },
-            {
-              "earliestDate": "2022",
-              "facetId": "10983471",
-              "latestDate": "2022",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2022",
-                  "value": 331097593
-                }
-              ]
-            },
-            {
-              "earliestDate": "2021",
-              "facetId": "1964317807",
-              "latestDate": "2021",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2021",
-                  "value": 329725481
-                }
-              ]
-            },
-            {
-              "earliestDate": "2021",
-              "facetId": "196790193",
-              "latestDate": "2021",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2021",
-                  "value": 329725481
-                }
-              ]
-            },
-            {
-              "earliestDate": "2021",
-              "facetId": "217147238",
-              "latestDate": "2021",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2021",
-                  "value": 329725481
-                }
-              ]
-            },
-            {
-              "earliestDate": "2020",
-              "facetId": "2825511676",
-              "latestDate": "2020",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2020",
-                  "value": 329484123
-                }
-              ]
-            },
-            {
-              "earliestDate": "2019",
-              "facetId": "2517965213",
-              "latestDate": "2019",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2019",
-                  "value": 328239523
-                }
-              ]
-            },
-            {
-              "earliestDate": "2019",
-              "facetId": "1226172227",
-              "latestDate": "2019",
-              "obsCount": 1,
-              "observations": [
-                {
-                  "date": "2019",
-                  "value": 328239523
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  },
-  "facets": {
-    "1151455814": {
-      "importName": "OECDRegionalDemography",
-      "measurementMethod": "OECDRegionalStatistics",
-      "observationPeriod": "P1Y",
-      "provenanceUrl": "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#"
-    },
-    "1226172227": {
-      "importName": "CensusACS1YearSurvey",
-      "measurementMethod": "CensusACS1yrSurvey",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"
-    },
-    "2645850372": {
-      "importName": "CensusACS5YearSurvey_AggCountry",
-      "measurementMethod": "CensusACS5yrSurvey",
-      "provenanceUrl": "https://www.census.gov/"
-    },
-    "4181918134": {
-      "importName": "OECDRegionalDemography_Population",
-      "measurementMethod": "OECDRegionalStatistics",
-      "observationPeriod": "P1Y",
-      "provenanceUrl": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C"
-    },
-    "2176550201": {
-      "importName": "USCensusPEP_Annual_Population",
-      "measurementMethod": "CensusPEPSurvey",
-      "observationPeriod": "P1Y",
-      "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables"
-    },
-    "10983471": {
-      "importName": "CensusACS5YearSurvey_SubjectTables_S2601A",
-      "measurementMethod": "CensusACS5yrSurveySubjectTable",
-      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A"
-    },
-    "2825511676": {
-      "importName": "CDC_Mortality_UnderlyingCause",
-      "provenanceUrl": "https://wonder.cdc.gov/ucd-icd10.html"
-    },
-    "2517965213": {
-      "importName": "CensusPEP",
-      "measurementMethod": "CensusPEPSurvey",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/popest.html"
-    },
-    "3981252704": {
-      "importName": "WorldDevelopmentIndicators",
-      "observationPeriod": "P1Y",
-      "provenanceUrl": "https://datacatalog.worldbank.org/dataset/world-development-indicators/"
-    },
-    "1145703171": {
-      "importName": "CensusACS5YearSurvey",
-      "measurementMethod": "CensusACS5yrSurvey",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"
-    },
-    "1541763368": {
-      "importName": "USDecennialCensus_RedistrictingRelease",
-      "measurementMethod": "USDecennialCensus",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html"
-    },
-    "1964317807": {
-      "importName": "CensusACS5YearSurvey_SubjectTables_S0101",
-      "measurementMethod": "CensusACS5yrSurveySubjectTable",
-      "provenanceUrl": "https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101"
-    },
-    "217147238": {
-      "importName": "CensusACS5YearSurvey_SubjectTables_S2603",
-      "measurementMethod": "CensusACS5yrSurveySubjectTable",
-      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2603&tid=ACSST5Y2019.S2603"
-    },
-    "196790193": {
-      "importName": "CensusACS5YearSurvey_SubjectTables_S2602",
-      "measurementMethod": "CensusACS5yrSurveySubjectTable",
-      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602"
-    }
-  }
-}
-```
-{: .example-box-content .scroll}
+```#
 
-### Example 2: Get the observations at a particular date for given entities
-
-This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same parameters as the previous request, with an additional entity, and a specific date. It also gets the results keyed by entity rather than by variable.
-
-Request:
-{: .example-box-title}
+## Example: Compare the historic populations, median ages, and unemployment rates of the US, California, and Santa Clara County.
 
 ```python
-client.observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"])
+>>> datacommons_pandas.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
+             Median_Age_Person  Count_Person  UnemploymentRate_Person
+place
+country/USA               37.9     328239523                      NaN
+geoId/06                  36.3      39512223                     11.6
+geoId/06085               37.0       1927852                      7.5
 ```
 
-Response:
-{: .example-box-title}
+## Examples
 
-```json
-```
-{: .example-box-content .scroll}
-
-### Example 3: Get the latest observations for entities specified by expression
-
-In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in [California](https://datacommons.org/browser/geoId/06){: target="_blank"} (dcid: `geoId/06`) of
-type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
-([`Count_Person`](https://datacommons.org/tools/statvar#sv=Count_Person){: target="_blank"}) and
-entity (all counties in California).
-
-Request:
-{: .example-box-title}
+### Example 1: Retrieve the count of men in the state of California.
 
 ```python
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
+>>> datacommons_pandas.build_time_series("geoId/05", "Count_Person_Male")
+2017    1461651
+2018    1468412
+2011    1421287
+2012    1431252
+2013    1439862
+2014    1447235
+2015    1451913
+2016    1456694
+dtype: int64
 ```
 
-Response:
-{: .example-box-title}
+### Example 2: Retrieve the number of people in Bosnia and Herzegovina as counted by the Bosnian census.
+
+```python
+>>> datacommons_pandas.build_time_series("country/BIH", "Count_Person", measurement_method="BosniaCensus")
+2013    3791622
+dtype: int64
+```
+
+### Example 3: Retrieve the death count in Miami-Dade County over a period of one year.
+
+```python
+>>> datacommons_pandas.build_time_series("geoId/12086", "Count_Death", observation_period="P1Y")
+2001    19049
+2004    18384
+2008    18012
+2011    17997
+2000    18540
+2003    18399
+2006    18261
+2013    18473
+1999    19170
+2002    18176
+2009    17806
+2014    19013
+2015    19542
+2016    20277
+2005    18400
+2007    17982
+2010    18048
+2012    18621
+2017    20703
+dtype: int64
 
 ```
-{
-  "byVariable": {
-    "Count_Person": {
-      "byEntity": {
-        "geoId/06003": {
-          "orderedFacets": [
-            {
-              "facetId": "2176550201",
-              "observations": [
-                {
-                  "date": "2021",
-                  "value": 1235
-                }
-              ]
-            },
-            ...
-          ]
-        },
-        "geoId/06009": {
-          "orderedFacets": [
-            {
-              "facetId": "2176550201",
-              "observations": [
-                {
-                  "date": "2021",
-                  "value": 46221
-                }
-              ]
-            },
-            ...
-          ]
-        },
-        ...
-      }
-    }
-  },
-  "facets": {
-    "2176550201": {
-      "importName": "USCensusPEP_Annual_Population",
-      "measurementMethod" : "CensusPEPSurvey",
-      "observationPeriod" : "P1Y",
-      "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
-    },
-    ...
-  }
-}
+
+### Example 4: Retrieve the distrubtion of naloxone in Miami-Dade County in grams.
+
+```python
+>>> datacommons_pandas.build_time_series("geoId/12086", "RetailDrugDistribution_DrugDistribution_Naloxone", unit="Grams")
+2006-10     55.21
+2007-01     59.63
+2007-04     65.98
+2007-07     80.34
+2007-10    118.79
+2006-01     44.43
+2006-04     48.28
+2006-07     54.98
+dtype: float64
 ```
-{: .example-box-content .scroll}
+
+### Example 5: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
+
+```python
+>>> datacommons_pandas.build_time_series("country/GMB", "Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal", scaling_factor="100.0000000000")
+1986    3.48473
+2008    3.52738
+2012    4.10118
+1991    3.78061
+1996    2.56628
+1999    1.56513
+2002    1.44292
+2003    1.36338
+2014    2.17849
+2006    1.20949
+2013    1.82979
+1989    2.97409
+1990    2.82584
+2001    1.15810
+2004    1.03450
+2007    1.30849
+1985    4.29515
+1992    1.16984
+1995    2.55356
+2015    2.13528
+2000    1.46587
+2005    1.13919
+2009    3.07235
+2010    4.15610
+2011    3.92511
+2016    2.05946
+2018    2.43275
+dtype: float64
+```
+
+## Error Returns
+
+If there is no value associated with the requested property, an empty `Series` object is returned:
+
+```python
+>>> datacommons_pandas.build_time_series("geoId/000", "Count_Person_Male")
+Series([], dtype: float64)
