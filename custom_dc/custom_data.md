@@ -457,10 +457,12 @@ Here is the general spec for the `config.json` file:
 {  
   "inputFiles": {  
     "<var>FILE_NAME1</var>": {  
+      # For implicit schema only
       "entityType": "<var>ENTITY_PROPERTY</var>",  
       "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
       "provenance": "<var>NAME</var>",
       "format": "variablePerColumn" | "variablePerRow",
+      # For explicit schema only
       "columnMappings": {
         "variable": "<var>NAME</var>",
         "entity": "<var>NAME</var>",
@@ -471,6 +473,7 @@ Here is the general spec for the `config.json` file:
         "measurementMethod": "<var>NAME</var>",
         "observationPeriod": "<var>NAME</var>"
       }
+      # For implicit schema only
       "observationProperties" {
         "unit": "<var>MEASUREMENT_UNIT</var>",
         "observationPeriod": "<var>OBSERVATION_PERIOD</var>",
@@ -480,7 +483,8 @@ Here is the general spec for the `config.json` file:
     },  
   ...  
   "includeInputSubdirs": true | false,
-
+   
+   # For implicit schema only
   "variables": {  
     "<var>VARIABLE1</var>": {"group": "<var>GROUP_NAME1</var>"},  
     "VARIABLE2": {"group": "<var>GROUP_NAME1</var>"},  
@@ -496,7 +500,9 @@ Here is the general spec for the `config.json` file:
            }  
     },  
   },   
+  # For explicit schema only
   "groupStatVarsByProperty": false | true,
+  
   "sources": {  
     "<var>SOURCE_NAME1</var>": {  
       "url": "<var>URL</var>",  
@@ -572,7 +578,7 @@ observationProperties (implicit schema only)
 
 Currently, the following properties are supported:
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
-- [`measurementPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
+- [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
 - [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
 - [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`. 
 
