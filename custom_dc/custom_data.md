@@ -457,11 +457,14 @@ Here is the general spec for the `config.json` file:
 {  
   "inputFiles": {  
     "<var>FILE_NAME1</var>": {  
+
       # For implicit schema only
       "entityType": "<var>ENTITY_PROPERTY</var>",  
+
       "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
       "provenance": "<var>NAME</var>",
       "format": "variablePerColumn" | "variablePerRow",
+
       # For explicit schema only
       "columnMappings": {
         "variable": "<var>NAME</var>",
@@ -473,6 +476,7 @@ Here is the general spec for the `config.json` file:
         "measurementMethod": "<var>NAME</var>",
         "observationPeriod": "<var>NAME</var>"
       }
+
       # For implicit schema only
       "observationProperties" {
         "unit": "<var>MEASUREMENT_UNIT</var>",
@@ -500,9 +504,10 @@ Here is the general spec for the `config.json` file:
            }  
     },  
   },   
+  
   # For explicit schema only
   "groupStatVarsByProperty": false | true,
-  
+
   "sources": {  
     "<var>SOURCE_NAME1</var>": {  
       "url": "<var>URL</var>",  
