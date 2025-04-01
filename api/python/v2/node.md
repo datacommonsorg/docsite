@@ -19,6 +19,11 @@ More specifically, this API can perform the following tasks:
 - Get the values of a property for individual or multiple nodes. 
 - Get all connected nodes that are linked with individual or multiple nodes.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/node.py){: target="_blank"}
+
+* TOC
+{:toc}
+
 ## Request methods
 
 The following are the methods available for this endpoint. 
@@ -60,18 +65,20 @@ All request methods return a `NodeResponse` object. It looks like this:
 
 | Name      | Type   | Description                                                                  |
 | --------- | ------ | ---------------------------------------------------------------------------- |
-| data      | object | Data of the property label and value information, keyed by the queried nodes. |
+| data      | object | Data of the property label and value information, keyed by the queried nodes.  |
 | nextToken | string | A token used to query the [next page of data](#pagination), if `all_pages` is set to `False` in the query. |
 {: .doc-table}
 
 ### Response property methods
 
-In addition to the [formatting methods](index.md#response-formatting) available for all reponses classes, you can call the following methods on the `NodeResponse` object:
+You can call the following methods on the `NodeResponse` object:
 
 | Method | Description | 
 |--------|-------------|
-| nextToken | Extract the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
-{: .doc-table}
+| to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
+| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
+| nextToken | Extracts the `nextToken` value from the response. See [Pagination](#pagination) below for more details |
+{: .doc-table }
 
 ## fetch
 
@@ -88,13 +95,14 @@ fetch(node_dcids, expression, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
-| expression <br/> <required-tag>Required</required-tag> | string  | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
+| expression <br/> <required-tag>Required</required-tag> | string  | A [relation expression](/api/rest/v2/#relation-expressions) that specifies the property (or properties.) By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
 
 ### Examples
 
+{: .no_toc}
 {: #fetch_ex1}
 #### Example 1: Get all incoming property labels for a given node
 
@@ -128,6 +136,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
 {: #fetch_ex2 }
 #### Example 2: Get one (outgoing) property value for a given node
 
@@ -164,6 +173,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
 #### Example 3: Get a list of all statistical variables
 
 This example gets the list of all statistical variables in the knowledge graph, by fetching all nodes that are types of the class `StatisticalVariable` and using the `<-typeOf` symbol to express the incoming relationships. Also, because of the size of the response, it enables [pagination](#pagination) to split up the response data into multiple calls.
@@ -247,13 +257,14 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
-| out <br/> <required-tag>Required</required-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
+| out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
 
 ### Examples
 
+{: .no_toc}
 #### Example 1: Get all incoming property labels for a given node
 
 Get all incoming arc property labels, i.e. the property labels that are used in attached nodes, of the node with DCID `geoId/06` (California) by setting the `out` parameter to `False`. This is identical to [example 1](#fetch_ex1) of the `fetch` method.
@@ -303,7 +314,7 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 | node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | List of the [DCIDs](/glossary.html#dcid) of the nodes to query.  |
 | properties <br/>  <required-tag>Required</required-tag> | string or list of strings | List of properties to query |
 | constraints <br/> <optional-tag>Optional</optional-tag> | string | Additional [filters](/api/rest/v2/index.html#filters), of the form `{typeof:PROPERTY}`. |
-| out <br/> <required-tag>Required</required-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
+| out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 
@@ -311,6 +322,7 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 
 ### Examples
 
+{: .no_toc}
 #### Example 1: Get one (outgoing) property value for a given node
 
 This example gets the `name` property for a given node with DCID `dc/03lw9rhpendw5`. This is identical to [example 2](#fetch_ex2) of the `fetch` method.
@@ -319,7 +331,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_property_values(node_dcids=["dc/03lw9rhpendw5"], property="name")
+client.node.fetch_property_values(node_dcids=["dc/03lw9rhpendw5"], properties="name")
 ```
 {: .example-box-content .scroll}
 
@@ -346,6 +358,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
 #### Example 2: Get multiple (outgoing) property values for multiple nodes
 
 This example gets the `name`, `latitude`, and `longitude` values for nodes `geoId/06085` and `geoId/06087`.
@@ -358,7 +371,7 @@ client.node.fetch_property_values(node_dcids=["geoId/06085", "geoId/06087"], pro
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to `client.node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->['name', 'latitude', 'longitude']")`.
+> Tip: This example is equivalent to `client.node.fetch(node_dcids=["geoId/06085", "geoId/06087"], expression="->[name, latitude, longitude]")`.
 
 Response:
 {: .example-box-title}
@@ -443,6 +456,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
 #### Example 3: Get DCIDs of nodes of a specific type, with an incoming relation to a node
 
 In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
@@ -509,8 +523,6 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-
-
 ## fetch_all_classes
 
 Fetches all nodes that are entity types, that is, have `Class` as their type.
@@ -530,7 +542,10 @@ fetch_all_classes(all_pages, next_token)
 
 {: .doc-table }
 
-### Example 1: Fetch all classes, with pagination
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch all classes, with pagination
 
 This example sets `all_pages` to get a [paginated response](#pagination) with a `next_token` value. 
 
