@@ -126,9 +126,9 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
 | Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` |
-| Observations Pandas DataFrame | [`observations_dataframe`](observation_pandas.md# | Same as above, except the functionality is provided by a method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
+| [Observations Pandas DataFrame](observation_pandas.md) | Similar to the `fetch_observatons_by_entity[_type]` method of the Observaton endpoint, except that the functonality is provided by a single method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
-| Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
+| Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph | `ResolveResponse` |
 
 To send a request, you use one of the endpoints available as methods of the client object. For example: 
 

@@ -26,15 +26,17 @@ The following are the methods available for this endpoint.
 | Method | Description | 
 |--------|-------------|
 | [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions) |
+| [fetch_available_statistical_variables](#fetch_available_statistical_variables) | Fetch the statistical variables available for a given entity or entities. |
 | [fetch_observations_by_entity](#fetch_observations_by_entity) | Fetch observations for specified variables, dates and entities by DCID. |
 | [fetch_observations_by_entity_type](fetch_observations_by_entity_type) | Fetch observations for specified variables and dates, by entity type and parent entity |
 | [fetch_latest_observations](#fetch_latest_observations) | Fetch latest observations for specified variables, by entity DCID or [relation expression](/api/rest/v2/index.html#relation-expressions). |
 | [fetch_latest_observations_by_entity](#fetch_latest_observations_by_entity) | Fetch latest observations for specified variables, by entity DCID. |
 
-
 ## Response
 
-All request methods return a `ObservationResponse` object. By default, the response looks like:
+## Response {#response}
+
+With no `select` parameter specified, the default response looks like this:
 
 <pre>
 {
@@ -74,17 +76,65 @@ All request methods return a `ObservationResponse` object. By default, the respo
 </pre>
 {: .response-signature .scroll}
 
+With `select=["variable", "select=entity"]`, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
+
+<pre>
+{
+  "byVariable": {
+    "<var>VARIABLE_DCID_1</var>": {
+      "byEntity": {
+        "<var>ENTITY_DCID_1</var>": {},
+        "<var>ENTITY_DCID_2</var>": {},
+        ...
+      }
+    "<var>VARIABLE_DCID_2</var>": {
+      ...
+  }
+}
+</pre>
+
+With `select=["variable", "entity", "facet"]`, the response looks like:
+
+<pre>
+{
+  "byVariable": {
+    "<var>VARIABLE_DCID_1</var>": {
+      "byEntity": {
+        "<var>ENTITY_DCID_1</var>": {
+          "orderedFacets": [
+            {
+              "facetId": "<var>FACET_ID</var>",
+              "earliestDate" : "<var>DATE_STRING</var>", 
+              "latestDate" : "<var>DATE_STRING</var>", 
+              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>"
+            },
+            ...
+        },
+        ...
+      },
+      ...
+    }
+  "facets" {
+    "<var>FACET_ID</var>": {
+      "importName": "...",
+      "provenanceUrl": "...",
+      "measurementMethod": "...",
+      "observationPeriod": "..."
+    },
+    ...
+  }
+</pre>
+{: .response-signature .scroll}
 
 There are additional methods you can call on the response to structure the data differently. See [Response property methods](#response-property-methods) for details.
-
 
 ### Response fields
 
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
-| orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity, such as the date range, the number of observations included in the facet etc. |
+| orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity. These include the date range, the number of observations included in the facet and so on. |
 | observations | list of objects | Date and value pairs for the observations made in the time period |
-| facets | object | Various properties of reported facets, where available, including the provenance of the data, etc. |
+| facets | object | Various properties of reported facets, where available, including the provenance of the data, the import name, date range of observations, etc. |
 {: .doc-table}
 
 ### Response property methods
@@ -94,7 +144,7 @@ There are additional methods you can call on the response to structure the data 
 | to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
 | to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | get_data_by_entity | Key the response data by entity rather than by variable. See xxx for examples. |
-| get_observations_as_records | Get the response data as a series of flat records. See See xxx for examples. |
+| get_observations_as_records | Get the response data as a series of flat records. See xxx for examples. |
 {: .doc-table}
 
 ## fetch
@@ -111,153 +161,244 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| variable_dcids <br/><optional-tag>Optional</optional-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. To return actual  observations, this is required. To just get a list of variables associated with given entities, you can omit it. |
-| date <br/><optional-tag>Optional</optional-tag> | string or string literal | The date (and time) for which the observations are being requested.By default this is set to `LATEST`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br>
+| variable_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
+| date <br/><optional-tag>Optional</optional-tag> | string or string literal | The date (and time) for which the observations are being requested. By default this is set to `LATEST`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br>
 * A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br>
 * "all" - Get all observations for the specified variables and entities  |
 | select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
+* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "facet"]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
 | entity_dcids | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | entity.expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
 | filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
-## fetch_observations_by_entity
+### Examples
 
-Fetches observations for the specified variables, dates, and entities.
+{: .no_toc}
+#### Example 1: Look up whether a given entity (place) has data for a given variable
 
-### Signature
+In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
 
-```python
-fetch_observations_by_entity(date, entity_dcids, variable_dcids, select, filter_facet_domains, filter_facet_ids)
-```
-
-### Input parameters
-
-| Name          | Type  |   Description  |
-|---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br> * "all" - Get all observations for the specified variables and entities  |
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One ore more [DCIDs](/glossary.html#dcid) of the entities to query. |
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
-| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
-{: .doc-table }
-
-## fetch_observations_by_entity_type
-
-Fetch observations for multiple entities (places) grouped by parent and type.
-
-### Signature
-
-```python
-fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, filter_facet_domains, filter_facet_ids)
-```
-
-### Input parameters
-
-| Name          | Type  |   Description  |
-|---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br> * "all" - Get all observations for the specified variables and entities  |
-| parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
-| entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`.
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data. |
-| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
-{: .doc-table }
-
-### Examples 
-api = API()
-            ObservationEndpoint(api).fetch_observations_by_entity_type(
-                date="all",
-                parent_entity="africa",
-                entity_type="Country",
-                variable_dcids="sdg/SI_POV_DAY1"
-
-
-## fetch_latest_observations
-
-Fetch the latest observations for the selected variables and entities, specified by DCID or expression.
-
-### Signature
-
-```python
-fetch_latest_observations(variable_dcids, entity_dcids, entity_expression, select, filter_facet_domains, filter_facet_ids)
-```
-
-### Input parameters
-
-| Name          | Type  |   Description  |
-|---------------|-------|----------------|
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| entity_dcids | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-| entity.expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
-| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
-{: .doc-table }
-
-## fetch_latest_observations_by_entity
-
-Fetch the latest observations for the selected entities and variables.
-
-### Signature
-
-```python
-fetch_latest_observationsby_entity(variable_dcids, entity_dcids, select, filter_facet_domains, filter_facet_ids)
-```
-
-### Input parameters
-
-| Name          | Type  |   Description  |
-|---------------|-------|----------------|
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| entity_dcids | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
-| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
-{: .doc-table }
-
-
-## Examples
-
-### Example 1: Look up the statistical variables available for a given entity (place)
-
-In this example, we get a list of variables that are available (have observation data) for one country, Togo.
-
-Parameters:
+Request:
 {: .example-box-title}
 
-```
-date: "LATEST"
-entity.dcids: "country/TGO"
-select: "entity"
-select: "variable"
-```
-
-GET Request:
-{: .example-box-title}
-
-```bash
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country/TGO&entity.dcids=country/MLI&select=entity&select=variable'
+```python
+client.observation.fetch(variable_dcids=["Count_Person_Female", "Count_Person_Male"], select=["entity", "variable"], entity_dcids=["country/CAN", "country/MEX", "country/SGP", "country/MYS"])
 ```
 {: .example-box-content .scroll}
 
-POST Request:
+Response:
 {: .example-box-title}
 
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
-https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "entity": { "dcids": ["country/TGO"] }, "select": ["entity", "variable"] }'
+The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
+
+```json
+{
+   "byVariable" : {
+      "Count_Person_Female" : {
+         "byEntity" : {
+            "country/CAN" : {},
+            "country/MEX" : {}
+         }
+      },
+      "Count_Person_Male" : {
+         "byEntity" : {
+            "country/CAN" : {},
+            "country/MEX" : {}
+         }
+      }
+   }
+}
 ```
+
+### Example 2: Look up whether a given entity (place) has data for a given variable and show the sources
+
+This example is the same as above, but we also get the facets, to see the sources of the available data.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observation.fetch(variable_dcids=["Count_Person_Female", "Count_Person_Male"], select=["entity", "variable", "facet"], entity_dcids=["country/CAN", "country/MEX", "country/SGP", "country/MYS"])
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+{
+   "byVariable" : {
+      "Count_Person_Female" : {
+         "byEntity" : {
+            "country/CAN" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "4181918134",
+                     "latestDate" : "2023",
+                     "obsCount" : 34
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "1151455814",
+                     "latestDate" : "2023",
+                     "obsCount" : 34
+                  },
+                  {
+                     "earliestDate" : "2021",
+                     "facetId" : "1216205004",
+                     "latestDate" : "2021",
+                     "obsCount" : 1
+                  }
+               ]
+            },
+            "country/MEX" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2021",
+                     "facetId" : "3251078590",
+                     "latestDate" : "2021",
+                     "obsCount" : 1
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "4181918134",
+                     "latestDate" : "2020",
+                     "obsCount" : 31
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "1151455814",
+                     "latestDate" : "2020",
+                     "obsCount" : 31
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "3614729857",
+                     "latestDate" : "2020",
+                     "obsCount" : 6
+                  }
+               ]
+            }
+         }
+      },
+      "Count_Person_Male" : {
+         "byEntity" : {
+            "country/CAN" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "4181918134",
+                     "latestDate" : "2023",
+                     "obsCount" : 34
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "1151455814",
+                     "latestDate" : "2023",
+                     "obsCount" : 34
+                  },
+                  {
+                     "earliestDate" : "2021",
+                     "facetId" : "1216205004",
+                     "latestDate" : "2021",
+                     "obsCount" : 1
+                  }
+               ]
+            },
+            "country/MEX" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2021",
+                     "facetId" : "3251078590",
+                     "latestDate" : "2021",
+                     "obsCount" : 1
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "4181918134",
+                     "latestDate" : "2020",
+                     "obsCount" : 31
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "1151455814",
+                     "latestDate" : "2020",
+                     "obsCount" : 31
+                  },
+                  {
+                     "earliestDate" : "1990",
+                     "facetId" : "3614729857",
+                     "latestDate" : "2020",
+                     "obsCount" : 6
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "facets" : {
+      "1151455814" : {
+         "importName" : "OECDRegionalDemography",
+         "measurementMethod" : "OECDRegionalStatistics",
+         "observationPeriod" : "P1Y",
+         "provenanceUrl" : "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#"
+      },
+      "1216205004" : {
+         "importName" : "CanadaStatistics",
+         "provenanceUrl" : "https://www150.statcan.gc.ca/n1/en/type/data?MM=1"
+      },
+      "3251078590" : {
+         "importName" : "MexicoCensus_AA2",
+         "provenanceUrl" : "https://data.humdata.org/dataset/cod-ps-mex"
+      },
+      "3614729857" : {
+         "importName" : "MexicoCensus",
+         "provenanceUrl" : "https://www.inegi.org.mx/temas/"
+      },
+      "4181918134" : {
+         "importName" : "OECDRegionalDemography_Population",
+         "measurementMethod" : "OECDRegionalStatistics",
+         "observationPeriod" : "P1Y",
+         "provenanceUrl" : "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C"
+      }
+   }
+}
+```
+{: .example-box-content .scroll}
+
+## fetch_available_statistical_variables
+
+Look up the statistical variables available for one or more entities (places).
+
+### Signature
+
+```python
+fetch_available_statistical_variables(entity_ids)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. |
+
+### Examples
+
+#### Example 1: Look up the statistical variables available for a given entity (place)
+
+In this example, we get a list of variables that are available (have observation data) for one country, Togo.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observation.fetch_available_statistical_variables(entity_dcids=["country/TGO"])
+```
+{: .example-box-content .scroll}
+
 Response:
 {: .example-box-title}
 
@@ -525,396 +666,137 @@ Response:
         }
       }
     },
-    "worldBank/UIS_PTRHC_2T3_TRAINED": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_CarbonDioxideEquivalent100YearGlobalWarmingPotential_FluorinatedGases": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MaxTemp_Daily_GaussianMixture_50PctProb_Greater_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_Hist_50PctProb_LessThan_Atleast1DayADecade_CMIP6_GFDL-ESM4_SSP585": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SH_HAP_ASMORT": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/AG_LND_TOTL_K2": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/HF_UHC_NOP1_CG": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/VA_STD_ERR": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountOutstanding_Debt_LongTermExternalDebt_LenderInternationalFundforAgriculturalDev": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Imports_Fuel_OtherOilProducts": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_Hist_1PctProb_LessThan_Atleast1DayAYear_CMIP6_GFDL-ESM4_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_NitrousOxide_WasteManagement": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_GaussianMixture_5PctProb_LessThan_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "eia/INTL.2-4-QBTU.A": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BN_CAB_XOKA_GD_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SP_REG_BRTH_FE_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountInterestRepayment_Debt_LongTermExternalDebt_LenderCountrySWE": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
 ```
 {: .example-box-content .scroll}
 
+## fetch_observations_by_entity
 
-### Example 2: Look up whether a given entity (place) has data for a given variable
+Fetches observations for the specified variables, dates, and entities.
 
-In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
+### Signature
 
-Parameters:
+```python
+fetch_observations_by_entity(date, entity_dcids, variable_dcids, select, filter_facet_domains, filter_facet_ids)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. <br/>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>* "all" - Get all observations for the specified variables and entities  |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
+* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "facet"]`: returns no observations but does return all the _facets_ as well, which show the sources of the data.
+| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+{: .doc-table }
+
+## fetch_observations_by_entity_type
+
+Fetch observations for multiple entities (places) grouped by parent and type.
+
+### Signature
+
+```python
+fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, filter_facet_domains, filter_facet_ids)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br> * "all" - Get all observations for the specified variables and entities  |
+| parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
+| entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. | 
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
+* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data. |
+| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+{: .doc-table }
+
+### Examples 
+
+#### Example 1: Get all observations for a selected variable for child entities
+
+Ths example gets all observatons for the proportion of population below the international poverty line for all countries in Africa. 
+
+Request:
 {: .example-box-title}
 
-```
-date: "LATEST"
-variable.dcids: "Count_Person_Male", "Count_Person_Female"
-entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
-```
-GET Request:
-{: .example-box-title}
-
-```bash
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable'
+```python
+client.observation.fetch_observations_by_entity_type(date="all", parent_entity="africa", entity_type="Country", variable_dcids="sdg/SI_POV_DAY1")
 ```
 {: .example-box-content .scroll}
 
-POST Request:
-{: .example-box-title}
-
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
-https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable"] }'
-```
+> Tip: This example is equivalent to `client.observation.fetch(variable_dcids="sdg/SI_POV_DAY1", date="all", entity_expression="africa<-containedInPlace+{typeOf:Country}")`
 
 Response:
 {: .example-box-title}
 
-The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
+json```
 
-```json
-{
-   "byVariable" : {
-      "Count_Person_Female" : {
-         "byEntity" : {
-            "country/CAN" : {},
-            "country/MEX" : {}
-         }
-      },
-      "Count_Person_Male" : {
-         "byEntity" : {
-            "country/CAN" : {},
-            "country/MEX" : {}
-         }
-      }
-   }
-}
-```
 
-### Example 3: Look up whether a given entity (place) has data for a given variable and show the sources
-
-This example is the same as above, but we also get the facets, to see the sources of the available data.
-
-Parameters:
-{: .example-box-title}
-
-```
-date: "LATEST"
-variable.dcids: "Count_Person_Male", "Count_Person_Female"
-entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
-select: "facet"
-```
-GET Request:
-{: .example-box-title}
-
-```bash
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable&select=facet'
 ```
 {: .example-box-content .scroll}
 
-POST Request:
-{: .example-box-title}
+## fetch_latest_observations
 
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
-https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable", "facet"] }'
+Fetch the latest observations for the selected variables and entities, specified by DCID or expression.
+
+### Signature
+
+```python
+fetch_latest_observations(variable_dcids, entity_dcids, entity_expression, select, filter_facet_domains, filter_facet_ids)
 ```
 
-Response:
-{: .example-box-title}
+### Input parameters
 
-```json
-{
-   "byVariable" : {
-      "Count_Person_Female" : {
-         "byEntity" : {
-            "country/CAN" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "1216205004",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  }
-               ]
-            },
-            "country/MEX" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "3251078590",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "3614729857",
-                     "latestDate" : "2020",
-                     "obsCount" : 6
-                  }
-               ]
-            }
-         }
-      },
-      "Count_Person_Male" : {
-         "byEntity" : {
-            "country/CAN" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "1216205004",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  }
-               ]
-            },
-            "country/MEX" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "3251078590",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "3614729857",
-                     "latestDate" : "2020",
-                     "obsCount" : 6
-                  }
-               ]
-            }
-         }
-      }
-   },
-   "facets" : {
-      "1151455814" : {
-         "importName" : "OECDRegionalDemography",
-         "measurementMethod" : "OECDRegionalStatistics",
-         "observationPeriod" : "P1Y",
-         "provenanceUrl" : "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#"
-      },
-      "1216205004" : {
-         "importName" : "CanadaStatistics",
-         "provenanceUrl" : "https://www150.statcan.gc.ca/n1/en/type/data?MM=1"
-      },
-      "3251078590" : {
-         "importName" : "MexicoCensus_AA2",
-         "provenanceUrl" : "https://data.humdata.org/dataset/cod-ps-mex"
-      },
-      "3614729857" : {
-         "importName" : "MexicoCensus",
-         "provenanceUrl" : "https://www.inegi.org.mx/temas/"
-      },
-      "4181918134" : {
-         "importName" : "OECDRegionalDemography_Population",
-         "measurementMethod" : "OECDRegionalStatistics",
-         "observationPeriod" : "P1Y",
-         "provenanceUrl" : "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C"
-      }
-   }
-}
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
+| entity_dcids | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
+| entity.expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
+* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
+| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+{: .doc-table }
+
+## fetch_latest_observations_by_entity
+
+Fetch the latest observations for the selected entities and variables.
+
+### Signature
+
+```python
+fetch_latest_observationsby_entity(variable_dcids, entity_dcids, select, filter_facet_domains, filter_facet_ids)
 ```
-{: .example-box-content .scroll}
 
-### Example 4: Get the latest observations for a single entity by DCID
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
+| entity_dcids | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
+* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
+| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+{: .doc-table }
+
+
+#### Example 4: Get the latest observations for a single entity by DCID
 
 In this example, we get all the latest population observations for one country, Canada. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
-Parameters:
-{: .example-box-title}
-
-```bash
-date: "LATEST"
-variable.dcids: "Count_Person"
-entity.dcids: "country/CAN"
-select: "entity"
-select: "variable"
-select: "value"
-select: "date"
-```
-
-GET Request:
+Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date'
-```
-{: .example-box-content .scroll}
-
-POST Request:
-{: .example-box-title}
-
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
-  https://api.datacommons.org/v2/observation \
-  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/CAN"] }, "select": ["entity", "variable", "value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -1007,6 +889,7 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
 
 
 ### Example 5: Get the observations at a particular date for given entities by DCID
@@ -1827,10 +1710,3 @@ Response:
 {'1986': 3.48473, '1996': 2.56628, '2000': 1.46587, '2010': 4.1561, '2014': 2.17849, '2012': 4.10118, '2013': 1.82979, '1999': 1.56513, '1985': 4.29515, '1992': 1.16984, '1995': 2.55356, '2002': 1.44292, '2015': 2.13528, '2005': 1.13919, '2018': 2.43275, '2008': 3.52738, '2016': 2.05946, '1989': 2.97409, '1990': 2.82584, '1991': 3.78061, '2011': 3.92511, '2004': 1.0345, '2007': 1.30849, '2009': 3.07235, '2001': 1.1581, '2003': 1.36338, '2006': 1.20949}
 ```
 
-## Error Returns
-
-If there is no series associated with the requested property, an empty list is returned:
-
-```python
->>> datacommons.get_stat_series("geoId/1001", "Count_Person_Male")
-{}
