@@ -505,7 +505,6 @@ Here is the general spec for the `config.json` file:
     },  
   },   
   
-  # For explicit schema only
   "groupStatVarsByProperty": false | true,
 
   "sources": {  
@@ -661,13 +660,13 @@ searchDescriptions
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
 {:.no_toc}
-### groupStatVarsByProperty (explicit schema only)
+### groupStatVarsByProperty
 
 Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
 
 ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
 
-If you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
+For explicit schema (which does not give you a `group` option in the `config.json`), if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
 
 {:.no_toc}
 ### Sources
