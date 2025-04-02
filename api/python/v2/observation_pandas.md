@@ -126,10 +126,27 @@ Response:
 
 (truncated)
 
+```json
+        date       entity                 variable  value  ...               measurementMethod observationPeriod                                      provenanceUrl   unit
+0     1948-01  country/USA  UnemploymentRate_Person    3.4  ...           BLSSeasonallyAdjusted               P1M                           https://www.bls.gov/cps/   None
+1     1948-02  country/USA  UnemploymentRate_Person    3.8  ...           BLSSeasonallyAdjusted               P1M                           https://www.bls.gov/cps/   None
+2     1948-03  country/USA  UnemploymentRate_Person    4.0  ...           BLSSeasonallyAdjusted               P1M                           https://www.bls.gov/cps/   None
+3     1948-04  country/USA  UnemploymentRate_Person    3.9  ...           BLSSeasonallyAdjusted               P1M                           https://www.bls.gov/cps/   None
+4     1948-05  country/USA  UnemploymentRate_Person    3.5  ...           BLSSeasonallyAdjusted               P1M                           https://www.bls.gov/cps/   None
+...       ...          ...                      ...    ...  ...                             ...               ...                                                ...    ...
+4149     2017  geoId/06085        Median_Age_Person   37.0  ...  CensusACS5yrSurveySubjectTable              None  https://data.census.gov/table?q=S0101:+Age+and...  Years
+4150     2018  geoId/06085        Median_Age_Person   37.0  ...  CensusACS5yrSurveySubjectTable              None  https://data.census.gov/table?q=S0101:+Age+and...  Years
+4151     2019  geoId/06085        Median_Age_Person   37.1  ...  CensusACS5yrSurveySubjectTable              None  https://data.census.gov/table?q=S0101:+Age+and...  Years
+4152     2020  geoId/06085        Median_Age_Person   37.2  ...  CensusACS5yrSurveySubjectTable              None  https://data.census.gov/table?q=S0101:+Age+and...  Years
+4153     2021  geoId/06085        Median_Age_Person   37.5  ...  CensusACS5yrSurveySubjectTable              None  https://data.census.gov/table?q=S0101:+Age+and...  Years
+
+[4154 rows x 10 columns]
+```
+
 
 ### Example 4: Get all observations for a single variable and entity, with a property filter
 
-This example gets all observations of the mortality rate for Miami-Dade County, filtering by observation period of one year.
+This example gets all observations of the mortality rate for Miami-Dade County, filtering for an observation period of one year.
 
 Request:
 {: .example-box-title}
@@ -142,61 +159,6 @@ Response:
 {: .example-box-title}
 
 (truncated)
-
-2001    19049
-2004    18384
-2008    18012
-2011    17997
-2000    18540
-2003    18399
-2006    18261
-2013    18473
-1999    19170
-2002    18176
-2009    17806
-2014    19013
-2015    19542
-2016    20277
-2005    18400
-2007    17982
-2010    18048
-2012    18621
-2017    20703
-dtype: int64
-
 ```
 
-### Example 5: Retrieve the percentage of nominal GDP spent by the government of the Gambia on education.
-
-```python
->>> datacommons_pandas.build_time_series("country/GMB", "Amount_EconomicActivity_ExpenditureActivity_EducationExpenditure_Government_AsFractionOf_Amount_EconomicActivity_GrossDomesticProduction_Nominal", scaling_factor="100.0000000000")
-```
-1986    3.48473
-2008    3.52738
-2012    4.10118
-1991    3.78061
-1996    2.56628
-1999    1.56513
-2002    1.44292
-2003    1.36338
-2014    2.17849
-2006    1.20949
-2013    1.82979
-1989    2.97409
-1990    2.82584
-2001    1.15810
-2004    1.03450
-2007    1.30849
-1985    4.29515
-1992    1.16984
-1995    2.55356
-2015    2.13528
-2000    1.46587
-2005    1.13919
-2009    3.07235
-2010    4.15610
-2011    3.92511
-2016    2.05946
-2018    2.43275
-dtype: float64
 ```
