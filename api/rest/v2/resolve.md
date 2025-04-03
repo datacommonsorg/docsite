@@ -6,6 +6,7 @@ parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true
 ---
+
 {: .no_toc}
 # /v2/resolve
 
@@ -18,7 +19,7 @@ in other API calls or programs. An important step for a Data Commons developer i
 identify the DCIDs of entities they care about. This API searches for an entry in the
 Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
 
-Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
+Note that you can only resolve entities by specific terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
 > **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
