@@ -90,6 +90,10 @@ cd website
     </tr>
   </thead>
   <tbody>
+      <tr>
+      <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/run_cdc_dev_docker.sh" target="_blank"><code>run_cdc_dev_docker.sh</code></a></td>
+      <td>A convenience script to simplify management of Docker commands. Throughout the pages in this guide, we reference this script as well as giving the underlying commands. Documentation for running the script is available at the top of the file or by running <code>./run_cdc_dev_docker.sh --help</code> </td>
+    </tr>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
       <td>Sample supplemental data that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
@@ -135,51 +139,28 @@ There are a few important things to note:
 
 This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. (That topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
 
-## Load sample data
+## Load sample data and start the services
 
-To load the sample data:
+To start up Data Commons:
 
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
-1. Open a terminal window, and from the root directory, run the following command to run the data management Docker container:
+
+> Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every script or `docker` invocation with `sudo`.
+
+1. Open a terminal window, and from the website root directory, run the following command to run the data management Docker container:
 
    ```shell
-   docker run \
-   --env-file $PWD/custom_dc/env.list \
-   -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-   gcr.io/datcom-ci/datacommons-data:stable
+  cd website
+  ./run_cdc_dev_docker.sh
    ```
-> Tip: While the `env.list` file requires full paths for input and output directories, in Docker commands you can use system variables like `$PWD` as shortcuts. 
-
 This does the following:
 
-- The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
+- The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, and services image, `gcr.io/datcom-ci/datacommons-services:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored images.
 - Maps the input sample data to a Docker path.
-- Starts a Docker container.
+- Starts the Docker data management container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
 - Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
-
-Once the container has executed all the functions in the scripts, it shuts down.
-
-## Start the services {#start-services}
-
-1. Open a new terminal window.
-1. From the root directory, run the following command to start the services Docker container:
-
-  ```shell
-  docker run -it \
-  -p 8080:8080 \
-  -e DEBUG=true \
-  --env-file $PWD/custom_dc/env.list \
-  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-  gcr.io/datcom-ci/datacommons-services:stable
-  ```
-
-> Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every `docker` invocation with `sudo`.
-
-This command does the following:
-
-- The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-services:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
-- Starts a services Docker container.
+- Starts the services Docker container.
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
 

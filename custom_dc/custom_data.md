@@ -703,56 +703,75 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 ### Start the Docker containers with local custom data {#docker-data}
 
-Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
+Once you have configured everything, just rerun the `custom_dc/run_cdc_dev_docker.sh` script again. For reference, we provide the Docker commands invoked by the script below.
 
+<div class="docker-tab-group">
+  <ul class="docker-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="docker-tab-content">
+      <div class="active">
+       <pre>./run_cdc_dev_docker.sh</pre>
+      </div>
+    <div>
+    <pre>
+    docker run \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-data:stable
+    </pre>
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-services:stable
+    </pre>   
+   </div>
+  </div>
+</div>
+
+> **Note:** Any time you make changes to the CSV or JSON files and want to reload the data, you need to restart both containers.
 
 {:.no_toc}
-#### Step 1: Start the data management container
+#### (Optional) Start the data management container in schema update mode {#schema-update-mode}
 
-In one terminal window, from the root directory, run the following command to start the data management container:
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
-<pre>
-docker run \
---env-file $PWD/custom_dc/env.list \
--v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-gcr.io/datcom-ci/datacommons-data:stable
-</pre>
-
-{:.no_toc}
-##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
-
-If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
-
-To do so, add the following line to the above command:
-
-```
-docker run \
-...
--e DATA_RUN_MODE=schemaupdate \
-...
-gcr.io/datcom-ci/datacommons-data:stable
-```
-
-Once the job has run, go to step 2 below.
-
-
-{:.no_toc}
-#### Step 2: Start the services container
-
-In another terminal window, from the root directory, run the following command to start the services container:
-
-<pre>
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
---env-file $PWD/custom_dc/env.list \
--v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-gcr.io/datcom-ci/datacommons-services:stable
-</pre>
-
-Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
+<div class="docker-tab-group">
+  <ul class="docker-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="docker-tab-content">
+      <div class="active">
+       <pre>./run_cdc_dev_docker.sh -s|--schema_update</pre>
+      </div>
+    <div>
+    <pre>
+    docker run \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    -e DATA_RUN_MODE=schemaupdate
+    gcr.io/datcom-ci/datacommons-data:stable
+    </pre>
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-services:stable
+    </pre>   
+   </div>
+  </div>
+</div>
 
 ### Inspect the SQLite database
 
@@ -784,3 +803,4 @@ country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 
 To exit the sqlite shell, press `Ctrl-D`.
 
+<script src="/assets/js/customdc-doc-tabs.js"></script>
