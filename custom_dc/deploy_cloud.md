@@ -279,41 +279,28 @@ Any time you make changes to the website and want to deploy your changes to the 
   <div class="gcp-tab-content">
    <div class="active">
    To upload an already built image:
-    <pre>./run_cdc_dev_docker.sh --actions upload --image <var>SOURCE)IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> [ --package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var></pre>
+    <pre>./run_cdc_dev_docker.sh --actions upload --image <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
    To build and upload the image:
-   <pre>./run_cdc_dev_docker.sh --actions build_upload --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> [ --package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var></pre>
+   <pre>./run_cdc_dev_docker.sh --actions build_upload --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
+   If you don't specify the <code>--package</code> option, the package name and tag will be the same as the source image.
    </div>
-    <div>
-      To build the image:
-      <pre>
-      docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
-      -f build/cdc_services/Dockerfile .
-      </pre>
-      
+    <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="build_image.md#build-repo">Build a local image</a>.</li>
+      <li>Generate credentials for the Docker package. 
+    <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre></li>
+   <li>Create a package from the source image you created in step 1:
+    <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \
+   <var>REGION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var></pre>
+   The artifact repo is <code><var>PROJECT_ID</var>-artifacts</code>.</li>
+   <li>Push the image to the registry:
+   <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
+    The container image URL is the full name of the package you created in the previous step, including the tag.</li>
+  </ol>
    </div>
   </div>
 </div>
 
-1. Build a local version of the Docker image, following the procedure in [Build a local image](/custom_dc/build_image.html#build-repo).
-
-1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
-    <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre>
-
-
-1. When prompted to confirm creating the credentials file, click `Y` to accept.
-1. Create a package from the source image you created in step 1:
-
-    <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \
-   <var>REGION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>
-   </pre>
-   The artifact repo is <code><var>PROJECT_ID</var>-artifacts</code>.
-   The target image name and tag can be the same as the source or different.
-
-1. Push the image to the registry:
-
-   <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
-
-    The container image URL is the full name of the package you created in the previous step, including the tag.
+- The target image name and tag can be the same as the source or different.
+- Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
 
 > Tip: We suggest you name and tag your image the same for every release, and let the Artifact Registry manage versioning. This way you won't have to continually update your Terraform configuration to a new name every time you upload a new build.
 
