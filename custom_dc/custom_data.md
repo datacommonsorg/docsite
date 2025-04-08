@@ -749,7 +749,7 @@ If you have tried to start a container, and have received a `SQL check failed` e
   </ul>
   <div class="docker-tab-content">
       <div class="active">
-       <pre>./run_cdc_dev_docker.sh -s|--schema_update</pre>
+       <pre>./run_cdc_dev_docker.sh --schema_update</pre>
       </div>
     <div>
     <pre>

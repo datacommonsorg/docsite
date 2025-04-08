@@ -11,7 +11,6 @@ parent: Build your own Data Commons
 * TOC
 {:toc}
 
-
 ## Use a prebuilt image
 
 While you are just testing out data changes, you don't need to build the website, but can just use a prebuilt Data Commons image.
@@ -28,26 +27,40 @@ If you want to pick up the latest prebuilt version, do the following:
    docker pull gcr.io/datcom-ci/datacommons-services:latest
    docker pull gcr.io/datcom-ci/datacommons-data:latest
    ```
-   
-1. Rerun the data container, specifying that repo specifying that repo as the argument to the `docker run` command:
-   <pre>docker run \
-   --env-file $PWD/custom_dc/env.list \
-   -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-   -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-   gcr.io/datcom-ci/datacommons-data:latest
-   </pre>
+2. Rerun the containers, specifying the "latest" release:
 
-1. Restart the services container:
-   <pre>docker run -it \
-   -p 8080:8080 \
-   -e DEBUG=true \
-   --env-file $PWD/custom_dc/env.list \
-   -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-   -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-   gcr.io/datcom-ci/datacommons-services:latest
-   </pre>
+<div class="docker-tab-group">
+  <ul class="docker-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="docker-tab-content">
+      <div class="active">
+       <pre>./run_cdc_dev_docker.sh --release latest</pre>
+      </div>
+    <div>
+    <pre>
+    docker run \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-data:latest
+    </pre>
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-services:latest
+    </pre>   
+   </div>
+  </div>
+</div>
 
 ## Build a local image {#build-repo}
+
 You will need to build a local image in any of the following cases:
 - You are making substantive changes to the website UI
 - You are ready to deploy your custom site to GCP
@@ -110,15 +123,31 @@ The following procedure uses Github. If you are using another version control sy
    Submodule path 'import': checked out '7d197583b6ad0dfe0568532f919482527c004a8e'
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
    ```
-
 ### Build the repo locally {#build-package}
 
 Run the following command to build the repo:
 
-<pre>
-docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
--f build/cdc_services/Dockerfile .
-</pre>
+<div class="docker-tab-group">
+  <ul class="docker-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="docker-tab-content">
+   <div class="active">
+   To build the image without running it:
+   <pre>./run_cdc_dev_docker.sh --actions build --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start both containers:
+   <pre>./run_cdc_dev_docker.sh --actions build_run --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start just the service container:
+   </div>
+    <div>
+      <pre>
+      docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
+      -f build/cdc_services/Dockerfile .
+      </pre>
+   </div>
+  </div>
+</div>
 
 - The image name is a meaningful name, such as `datacommons-services`.
 - The image tag is a meaningful description of the version you are building, such as `latest`.
@@ -148,3 +177,4 @@ Once the services are up and running, visit your local instance by pointing your
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
 
+<script src="/assets/js/customdc-doc-tabs.js"></script>
