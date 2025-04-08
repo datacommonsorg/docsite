@@ -123,7 +123,7 @@ The following procedure uses Github. If you are using another version control sy
    Submodule path 'import': checked out '7d197583b6ad0dfe0568532f919482527c004a8e'
    Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
    ```
-### Build the repo locally {#build-package}
+### Build the repo and run the services locally {#build-package}
 
 Run the following command to build the repo (and run it locally):
 
@@ -142,18 +142,20 @@ Run the following command to build the repo (and run it locally):
    <pre>./run_cdc_dev_docker.sh --actions build_run --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
    </div>
     <div>
+      Build the image:
       <pre>
       docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
       -f build/cdc_services/Dockerfile .
       </pre>
+      Restart the services container wth the custom image:
       <pre>docker run -it \
       --env-file $PWD/custom_dc/env.list \
       -p 8080:8080 \
       -e DEBUG=true \
       -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
       -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-      [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
-      [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
+      -v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \
+      -v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
       <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
       </pre>
    </div>
@@ -165,13 +167,9 @@ Run the following command to build the repo (and run it locally):
 
 It will take several minutes to build.
 
-To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
-
-## Run the services container locally {#run-local}
-
-Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
-
 Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080). 
+
+To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
 

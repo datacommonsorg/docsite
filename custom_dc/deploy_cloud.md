@@ -55,18 +55,18 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 
 ## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
 
- If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
+If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
 
 `website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to create a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"}. The script creates a repository called <code><var>PROJECT_ID</var>-artifacts</code>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
 
- To run it:
+To run it:
 
- <pre>cd website/deploy/terraform-custom-datacommons
- ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
+<pre>cd website/deploy/terraform-custom-datacommons
+     ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
 
- The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.
+The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.
 
- To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repository in the list.
+To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repository in the list.
 
 ## Configure and run a Terraform deployment {#terraform}
 
@@ -271,10 +271,47 @@ When you ran the "create artifact registry" script, it created a repository call
 
 Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
+<div class="docker-tab-group">
+  <ul class="docker-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="docker-tab-content">
+   <div class="active">
+   To build the image only:
+   <pre>./run_cdc_dev_docker.sh --actions build --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start just the service container:
+   <pre>./run_cdc_dev_docker.sh --actions build_run --container service --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start both containers:
+   <pre>./run_cdc_dev_docker.sh --actions build_run --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   </div>
+    <div>
+      Build the image:
+      <pre>
+      docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
+      -f build/cdc_services/Dockerfile .
+      </pre>
+      Restart the services container wth the custom image:
+      <pre>docker run -it \
+      --env-file $PWD/custom_dc/env.list \
+      -p 8080:8080 \
+      -e DEBUG=true \
+      -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+      -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+      -v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \
+      -v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
+      <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
+      </pre>
+   </div>
+  </div>
+</div>
+
 1. Build a local version of the Docker image, following the procedure in [Build a local image](/custom_dc/build_image.html#build-repo).
 
 1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
     <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre>
+
+
 1. When prompted to confirm creating the credentials file, click `Y` to accept.
 1. Create a package from the source image you created in step 1:
 
