@@ -12,6 +12,8 @@ published: true
 
 The Data Commons [REST API V2](index.md) is significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
 
+> Note: We will soon publish an equivalent migration guide for the Python client libraries.
+
 * TOC
 {:toc}
 
