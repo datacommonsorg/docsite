@@ -125,7 +125,7 @@ The following procedure uses Github. If you are using another version control sy
    ```
 ### Build the repo locally {#build-package}
 
-Run the following command to build the repo:
+Run the following command to build the repo (and run it locally):
 
 <div class="docker-tab-group">
   <ul class="docker-tab-headers">
@@ -136,14 +136,25 @@ Run the following command to build the repo:
    <div class="active">
    To build the image without running it:
    <pre>./run_cdc_dev_docker.sh --actions build --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start just the service container:
+   <pre>./run_cdc_dev_docker.sh --actions build_run --container service --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
    To build the image and start both containers:
    <pre>./run_cdc_dev_docker.sh --actions build_run --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-   To build the image and start just the service container:
    </div>
     <div>
       <pre>
       docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
       -f build/cdc_services/Dockerfile .
+      </pre>
+      <pre>docker run -it \
+      --env-file $PWD/custom_dc/env.list \
+      -p 8080:8080 \
+      -e DEBUG=true \
+      -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+      -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+      [-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
+      [-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
+      <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
       </pre>
    </div>
   </div>
@@ -154,24 +165,11 @@ Run the following command to build the repo:
 
 It will take several minutes to build.
 
-To run the container with the local SQLite database, start the Docker container as described below.
-
 To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
 ## Run the services container locally {#run-local}
 
 Start the services using the locally built repo. If you have made changes to any of the UI components (or directories), be sure to map the `custom` directories (or alternative directories) to the Docker `workspace` directory.
-
-<pre>docker run -it \
---env-file $PWD/custom_dc/env.list \
--p 8080:8080 \
--e DEBUG=true \
--v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-[-v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \]
-[-v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \]
-<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
-</pre>
 
 Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080). 
 
