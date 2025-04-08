@@ -705,12 +705,12 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 Once you have configured everything, just rerun the `custom_dc/run_cdc_dev_docker.sh` script again. For reference, we provide the Docker commands invoked by the script below.
 
-<div class="docker-tab-group">
-  <ul class="docker-tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Bash script</li>
     <li>Docker commands</li>
   </ul>
-  <div class="docker-tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
        <pre>./run_cdc_dev_docker.sh</pre>
       </div>
@@ -742,12 +742,12 @@ Once you have configured everything, just rerun the `custom_dc/run_cdc_dev_docke
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
-<div class="docker-tab-group">
-  <ul class="docker-tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Bash script</li>
     <li>Docker commands</li>
   </ul>
-  <div class="docker-tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
        <pre>./run_cdc_dev_docker.sh --schema_update</pre>
       </div>

@@ -62,7 +62,7 @@ If you are building your own services Docker image, this is necessary. If you ar
 To run it:
 
 <pre>cd website/deploy/terraform-custom-datacommons
-     ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
+./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
 
 The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.
 
@@ -271,37 +271,25 @@ When you ran the "create artifact registry" script, it created a repository call
 
 Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
-<div class="docker-tab-group">
-  <ul class="docker-tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Bash script</li>
     <li>Docker commands</li>
   </ul>
-  <div class="docker-tab-content">
+  <div class="gcp-tab-content">
    <div class="active">
-   To build the image only:
-   <pre>./run_cdc_dev_docker.sh --actions build --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-   To build the image and start just the service container:
-   <pre>./run_cdc_dev_docker.sh --actions build_run --container service --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-   To build the image and start both containers:
-   <pre>./run_cdc_dev_docker.sh --actions build_run --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To upload an already built image:
+    <pre>./run_cdc_dev_docker.sh --actions upload --image <var>SOURCE)IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> [ --package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var></pre>
+   To build and upload the image:
+   <pre>./run_cdc_dev_docker.sh --actions build_upload --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> [ --package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var></pre>
    </div>
     <div>
-      Build the image:
+      To build the image:
       <pre>
       docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
       -f build/cdc_services/Dockerfile .
       </pre>
-      Restart the services container wth the custom image:
-      <pre>docker run -it \
-      --env-file $PWD/custom_dc/env.list \
-      -p 8080:8080 \
-      -e DEBUG=true \
-      -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-      -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-      -v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \
-      -v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
-      <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
-      </pre>
+      
    </div>
   </div>
 </div>

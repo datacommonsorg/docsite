@@ -29,12 +29,12 @@ If you want to pick up the latest prebuilt version, do the following:
    ```
 2. Rerun the containers, specifying the "latest" release:
 
-<div class="docker-tab-group">
-  <ul class="docker-tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Bash script</li>
     <li>Docker commands</li>
   </ul>
-  <div class="docker-tab-content">
+  <div class="gcp-tab-content">
       <div class="active">
        <pre>./run_cdc_dev_docker.sh --release latest</pre>
       </div>
@@ -127,12 +127,12 @@ The following procedure uses Github. If you are using another version control sy
 
 Run the following command to build the repo (and run it locally):
 
-<div class="docker-tab-group">
-  <ul class="docker-tab-headers">
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
     <li class="active">Bash script</li>
     <li>Docker commands</li>
   </ul>
-  <div class="docker-tab-content">
+  <div class="gcp-tab-content">
    <div class="active">
    To build the image without running it:
    <pre>./run_cdc_dev_docker.sh --actions build --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
