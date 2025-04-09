@@ -156,11 +156,12 @@ Request:
 ```python
 
 ```
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 
-(truncated)
-```
+```json
 
 ```
+{: .example-box-content .scroll}
