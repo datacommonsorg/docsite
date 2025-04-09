@@ -1032,7 +1032,6 @@ GET Request:
 ```bash
 curl --request GET --url \
 'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Count_Person&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable'
-{: .example-box-content .scroll}
 ```
 {: .example-box-content .scroll}
 
