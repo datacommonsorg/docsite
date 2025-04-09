@@ -209,6 +209,7 @@ The response shows that Canada and Mexico are associated with this variable, but
    }
 }
 ```
+
 {: .no_toc}
 #### Example 2: Look up whether a given entity (place) has data for a given variable and show the sources
 
@@ -377,7 +378,7 @@ Request:
 {: .example-box-title}
 
 ```python
-observation.fetch(variable_dcids="Count_Person", entity_expression="geoId/06<-containedInPlace+{typeOf:County}")
+client.observation.fetch(variable_dcids="Count_Person", entity_expression="geoId/06<-containedInPlace+{typeOf:County}")
 ```
 {: .example-box-content .scroll}
 
@@ -767,11 +768,11 @@ Request:
 {: .example-box-title}
 
 ```python
-observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="country/CAN", variable_dcids="Count_Person")
+client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="country/CAN", variable_dcids="Count_Person")
 ```
-> Tip: This example is the equivalent of `observation.fetch(variable_dcids="Count_Person", entity_dcids="country/CAN")`.
-
 {: .example-box-content .scroll}
+
+> Tip: This example is the equivalent of `client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/CAN")`.
 
 Response:
 {: .example-box-title}
@@ -864,57 +865,60 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 3: Get the latest observations for a single entity, filtering by provenance
+#### Example 2: Get the latest observations for a single entity, filtering by provenance
 
-This example is the same as example #1, except it filters for a single data source, namely "Canada Statistics", represented by its domain name, `www.statcan.gc.ca`.
+In this example, we again get the latest observations for `Count_Person`, but this time for the U.S., filtering for a single source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
 Request:
 {: .example-box-title}
 
 ```python
-observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="country/CAN", variable_dcids="Count_Person", filter_facet_domains="www.statcan.gc.ca")
+client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="country/USA", variable_dcids="Count_Person", filter_facet_domains="www2.census.gov")
 ```
-> Tip: This example is the equivalent of `observation.fetch(variable_dcids="Count_Person", entity_dcids="country/CAN", filter_facet_domains="www.statcan.gc.ca")`.
-
 {: .example-box-content .scroll}
+
+> Tip: This example is the equivalent of `client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/USA", filter_facet_domains="www2.census.gov")`.
 
 Response:
 {: .example-box-title}
 
 ```json
 {
-  "byVariable": {
-    "Count_Person": {
-      "byEntity": {
-        "country/CAN": {
-          "orderedFacets": [
-            {
-              "facetId": "1216205004",
-              "observations": [
-                {
-                  "date": "2021",
-                  "value": 36991981
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2021",
-              "latestDate": "2021"
+   "byVariable" : {
+      "Count_Person" : {
+         "byEntity" : {
+            "country/USA" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2024",
+                     "facetId" : "2176550201",
+                     "latestDate" : "2024",
+                     "obsCount" : 1,
+                     "observations" : [
+                        {
+                           "date" : "2024",
+                           "value" : 340110988
+                        }
+                     ]
+                  }
+               ]
             }
-          ]
-        }
+         }
       }
-    },
-    "facets": {
-    "1216205004": {
-      "importName": "CanadaStatistics",
-      "provenanceUrl": "https://www150.statcan.gc.ca/n1/en/type/data?MM=1"
-    }
-  }
+   },
+   "facets" : {
+      "2176550201" : {
+         "importName" : "USCensusPEP_Annual_Population",
+         "measurementMethod" : "CensusPEPSurvey",
+         "observationPeriod" : "P1Y",
+         "provenanceUrl" : "https://www2.census.gov/programs-surveys/popest/tables"
+      }
+   }
 }
 ```
 
 {: .no_toc}
-#### Example 4: Get the observations at a particular date for given entities by DCID
+#### Example 3: Get the observations at a particular date for given entities by DCID
 
 This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same variable as the previous example, two entities, and a specific date. 
 
@@ -922,10 +926,11 @@ Request:
 {: .example-box-title}
 
 ```python
-observation.fetch_observations_by_entity_dcid(date="2015", entity_dcids=["country/USA", "geoId/06"], variable_dcids="Count_Person")
+client.observation.fetch_observations_by_entity_dcid(date="2015", entity_dcids=["country/USA", "geoId/06"], variable_dcids="Count_Person")
 ```
+{: .example-box-content .scroll}
 
-> Tip: This example is the equivalent of `observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"])`
+> Tip: This example is the equivalent of `client.observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"])`
 
 Response:
 {: .example-box-title}
@@ -1256,7 +1261,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 5: Get all observations for selected entities by DCID
+#### Example 4: Get all observations for selected entities by DCID
 
 This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"}. 
 
@@ -1264,9 +1269,11 @@ Request:
 {: .example-box-title}
 
 ```python
-observation.fetch_observations_by_entity_dcid(date="all", entity_dcids=["geoId/55", "geoId/27"],  variable_dcids="Count_Person_EducationalAttainmentDoctorateDegree")
+client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids=["geoId/55", "geoId/27"],  variable_dcids="Count_Person_EducationalAttainmentDoctorateDegree")
 ```
-> Tip: This example is the equivalent of `observation.fetch(variable_dcids="Count_Person_EducationalAttainmentDoctorateDegree", date="all", entity_dcids=["geoId/55", "geoId/27"])`
+{: .example-box-content .scroll}
+
+> Tip: This example is the equivalent of `client.observation.fetch(variable_dcids="Count_Person_EducationalAttainmentDoctorateDegree", date="all", entity_dcids=["geoId/55", "geoId/27"])`
 
 Response:
 {: .example-box-title}
@@ -1410,7 +1417,8 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 6: Get the latest observations for a single entity, filtering for specific dataset
+{: .no_toc}
+#### Example 5: Get the latest observations for a single entity, filtering for specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 
@@ -1418,11 +1426,11 @@ Request:
 {: .example-box-title}
 
 ```python
-observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="country/BRA", variable_dcids="Count_Person", filter_facet_ids="3981252704")
+client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="country/BRA", variable_dcids="Count_Person", filter_facet_ids="3981252704")
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to `observation.fetch(variable_dcids="Count_Person", entity_dcids="country/BRA", filter_facet_ids="3981252704")`
+> Tip: This example is equivalent to `client.observation.fetch(variable_dcids="Count_Person", entity_dcids="country/BRA", filter_facet_ids="3981252704")`
 
 Response:
 {: .example-box-title}
