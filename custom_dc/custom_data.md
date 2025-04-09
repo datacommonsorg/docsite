@@ -703,7 +703,7 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 ### Start the Docker containers with local custom data {#docker-data}
 
-Once you have configured everything, just rerun the `custom_dc/run_cdc_dev_docker.sh` script again. For reference, we provide the Docker commands invoked by the script below.
+Once you have configured everything, just run the `run_cdc_dev_docker.sh` script again. For reference, we provide the Docker commands invoked by the script below.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">

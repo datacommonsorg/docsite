@@ -92,7 +92,7 @@ cd website
   <tbody>
       <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/run_cdc_dev_docker.sh" target="_blank"><code>run_cdc_dev_docker.sh</code></a></td>
-      <td>A convenience script to simplify management of Docker commands. Throughout the pages in this guide, we reference this script as well as giving the underlying commands. Documentation for running the script is available at the top of the file or by running <code>./run_cdc_dev_docker.sh --help</code> </td>
+      <td>A convenience script to simplify management of Docker commands. Throughout the pages in this guide, we reference this script as well as giving the underlying commands. Documentation for running the script is available at the top of the file or by running <code>./run_cdc_dev_docker.sh --help</code> from the root website directory.</td>
     </tr>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
