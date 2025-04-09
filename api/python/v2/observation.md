@@ -11,10 +11,9 @@ published: true
 # Observation
 
 The Observation API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date: for example, "population of USA in
-2020", "GDP of California in 2010", and so on. 
+entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. 
 
-> Note: This endpoint returns standard Python objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](observation_pandas.md) which is a direct property method of the `Client` object.
+> Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](observation_pandas.md) which is a direct property method of the `Client` object.
 
 * TOC
 {:toc}
@@ -27,14 +26,12 @@ The following are the methods available for this endpoint.
 |--------|-------------|
 | [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions) |
 | [fetch_available_statistical_variables](#fetch_available_statistical_variables) | Fetch the statistical variables available for a given entity or entities. |
-| [fetch_observations_by_entity_dcid](#fetch_observations_by_entity_dcid) | Fetch observations for specified variables, dates and entities by DCID. |
+| [fetch_observations_by_entity_dcid](#fetch_observations_by_entity_dcid) | Fetch observations for specified variables, dates and entities. by DCID. |
 | [fetch_observations_by_entity_type](fetch_observations_by_entity_type) | Fetch observations for specified variables and dates, by entity type and parent entity |
-
-## Response
 
 ## Response {#response}
 
-With no `select` parameter specified, the default response looks like this:
+With `select=["date", "variable","entity", "value"]` in effect (the default), the response looks like this:
 
 <pre>
 {
@@ -74,7 +71,7 @@ With no `select` parameter specified, the default response looks like this:
 </pre>
 {: .response-signature .scroll}
 
-With `select=["variable", "select=entity"]`, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
+With `select=["variable", "entity"]`, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
 
 <pre>
 {
@@ -141,13 +138,13 @@ There are additional methods you can call on the response to structure the data 
 |--------|-------------|
 | to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
 | to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
-| get_data_by_entity | Key the response data by entity rather than by variable. See xxx for examples. |
-| to_observations_as_records | Get the response data as a series of flat records. See xxx for examples. |
+| get_data_by_entity | Key the response data by entity rather than by variable.  <!--- TODO: Add examples of these ---> |
+| to_observations_as_records | Get the response data as a series of flat records. <!--- TODO: Add examples of these ---> |
 {: .doc-table}
 
 ## fetch
 
-Fetches observations for the specified variables, dates, and entities. Entities can be specified by DCID or by relation expression. 
+Fetches observations for the specified variables, dates, and entities. You can specify entities by DCID or by relation expression. 
 
 ### Signature
 
@@ -159,13 +156,10 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| variable_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| date <br/><optional-tag>Optional</optional-tag> | string or string literal | The date (and time) for which the observations are being requested. By default this is set to `latest`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br/>
-* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br/>
-* "all" - Get all observations for the specified variables and entities  |
-| select <br/><optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "facet"]` : returns no observations but does return all the _facets_ as well, which show the sources of the data.
-| entity_dcids | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
+| variable_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
+| date <br/><optional-tag>Optional</optional-tag> | string or string literal | The date (and time) for which the observations are being requested. By default this is set to `"latest"`, which returns the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. Other allowed values are: <br/>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br/>- `"all"`: Get all observations for the specified variables and entities |
+| select <br/><optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "facet"]`: Return no observations but return all the _facets_ as well, which show the sources of the data.
+| entity_dcids | string or list of strings | One or more DCIDs of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | entity_expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
@@ -372,7 +366,7 @@ Response:
 {: .no_toc}
 #### Example 3: Get the latest observations for entities specified by expression
 
-In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of type `County`".
+In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of type county".
 
 Request:
 {: .example-box-title}
@@ -447,7 +441,7 @@ fetch_available_statistical_variables(entity_ids)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the entities to query. |
 
 ### Examples
 
@@ -748,11 +742,10 @@ fetch_observations_by_entity_dcid(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. <br/>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>* "all" - Get all observations for the specified variables and entities  |
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the entities to query. |
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "facet"]`: returns no observations but does return all the _facets_ as well, which show the sources of the data.
+| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>- `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. <br/>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>- `"all"`: Get all observations for the specified variables and entities  |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the entities to query. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "facet"]`: Return no observations but return all the _facets_ as well, which show the sources of the data.
 | filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
@@ -1483,12 +1476,11 @@ fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br> * "all" - Get all observations for the specified variables and entities  |
+| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br>- `"all"` - Get all observations for the specified variables and entities  |
 | parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
 | entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. | 
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value" ]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>* 
-* `["entity", "variable"]`: returns no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>* `["entity", "variable", "fetch]` : returns no observations but does return all the _facets_ as well, which show the sources of the data. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "fetch]`: Return no observations but return all the _facets_ as well, which show the sources of the data. |
 | filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
@@ -1513,9 +1505,334 @@ client.observation.fetch_observations_by_entity_type(date="all", parent_entity="
 Response:
 {: .example-box-title}
 
-json```
+(truncated)
 
-
+```json
+{
+   "byVariable" : {
+      "sdg/SI_POV_DAY1" : {
+         "byEntity" : {
+            "country/AGO" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2000",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2018",
+                     "obsCount" : 3,
+                     "observations" : [
+                        {
+                           "date" : "2000",
+                           "value" : 21.4
+                        },
+                        {
+                           "date" : "2008",
+                           "value" : 14.6
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 31.1
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/BDI" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1992",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2013",
+                     "obsCount" : 4,
+                     "observations" : [
+                        {
+                           "date" : "1992",
+                           "value" : 75.1
+                        },
+                        {
+                           "date" : "1998",
+                           "value" : 79.4
+                        },
+                        {
+                           "date" : "2006",
+                           "value" : 71.8
+                        },
+                        {
+                           "date" : "2013",
+                           "value" : 65.1
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/BEN" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2003",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2018",
+                     "obsCount" : 4,
+                     "observations" : [
+                        {
+                           "date" : "2003",
+                           "value" : 53.1
+                        },
+                        {
+                           "date" : "2011",
+                           "value" : 54.3
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 50.7
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 19.9
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/BFA" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1994",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2018",
+                     "obsCount" : 6,
+                     "observations" : [
+                        {
+                           "date" : "1994",
+                           "value" : 82.1
+                        },
+                        {
+                           "date" : "1998",
+                           "value" : 79.9
+                        },
+                        {
+                           "date" : "2003",
+                           "value" : 54.7
+                        },
+                        {
+                           "date" : "2009",
+                           "value" : 52.6
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 39.6
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 30.5
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/BWA" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1985",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2015",
+                     "obsCount" : 5,
+                     "observations" : [
+                        {
+                           "date" : "1985",
+                           "value" : 41.8
+                        },
+                        {
+                           "date" : "1993",
+                           "value" : 34.1
+                        },
+                        {
+                           "date" : "2002",
+                           "value" : 29.1
+                        },
+                        {
+                           "date" : "2009",
+                           "value" : 17.7
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 15.4
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/CAF" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1992",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2008",
+                     "obsCount" : 2,
+                     "observations" : [
+                        {
+                           "date" : "1992",
+                           "value" : 82.2
+                        },
+                        {
+                           "date" : "2008",
+                           "value" : 61.9
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/CIV" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1985",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2018",
+                     "obsCount" : 11,
+                     "observations" : [
+                        {
+                           "date" : "1985",
+                           "value" : 8.2
+                        },
+                        {
+                           "date" : "1986",
+                           "value" : 4.4
+                        },
+                        {
+                           "date" : "1987",
+                           "value" : 9.4
+                        },
+                        {
+                           "date" : "1988",
+                           "value" : 13.4
+                        },
+                        {
+                           "date" : "1992",
+                           "value" : 27.1
+                        },
+                        {
+                           "date" : "1995",
+                           "value" : 25.9
+                        },
+                        {
+                           "date" : "1998",
+                           "value" : 30.4
+                        },
+                        {
+                           "date" : "2002",
+                           "value" : 29.1
+                        },
+                        {
+                           "date" : "2008",
+                           "value" : 34.4
+                        },
+                        {
+                           "date" : "2015",
+                           "value" : 33.4
+                        },
+                        {
+                           "date" : "2018",
+                           "value" : 11.4
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/CMR" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "1996",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2014",
+                     "obsCount" : 4,
+                     "observations" : [
+                        {
+                           "date" : "1996",
+                           "value" : 50.4
+                        },
+                        {
+                           "date" : "2001",
+                           "value" : 25.7
+                        },
+                        {
+                           "date" : "2007",
+                           "value" : 31.4
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 25.7
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/COD" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2004",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2012",
+                     "obsCount" : 2,
+                     "observations" : [
+                        {
+                           "date" : "2004",
+                           "value" : 91.5
+                        },
+                        {
+                           "date" : "2012",
+                           "value" : 69.7
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/COG" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2005",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2011",
+                     "obsCount" : 2,
+                     "observations" : [
+                        {
+                           "date" : "2005",
+                           "value" : 49.6
+                        },
+                        {
+                           "date" : "2011",
+                           "value" : 35.4
+                        }
+                     ]
+                  }
+               ]
+            },
+            "country/COM" : {
+               "orderedFacets" : [
+                  {
+                     "earliestDate" : "2004",
+                     "facetId" : "3549866825",
+                     "latestDate" : "2014",
+                     "obsCount" : 2,
+                     "observations" : [
+                        {
+                           "date" : "2004",
+                           "value" : 14.6
+                        },
+                        {
+                           "date" : "2014",
+                           "value" : 18.6
+                        }
+                     ]
+                  }
+               ]
+            },
+   "facets" : {
+      "3549866825" : {
+         "importName" : "UN_SDG",
+         "measurementMethod" : "SDG_G_G",
+         "provenanceUrl" : "https://unstats.un.org/sdgs/dataportal",
+         "unit" : "SDG_PERCENT"
+      }
+   }
+}
 ```
 {: .example-box-content .scroll}
 

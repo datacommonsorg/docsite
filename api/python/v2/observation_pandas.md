@@ -31,9 +31,9 @@ observation_pandas(variable_dcids, date, entity_dcids, entity_type, parent_entit
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| variable_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more [DCIDs](/glossary.html#dcid) of the statistical variables to query. |
-date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>* `latest`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>* "all" - Get all observations for the specified variables and entities. |
-| entity_dcids <br/><optional-tag>Optional</optional-tag> | string or list of strings or string literal | By default this is set to `"all"`, which gets observations for all available entities for the specified variables and dates. To limit to specific entties, set this to one or more [DCIDs](/glossary.html#dcid) of the entities to query. |
+| variable_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
+date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>- `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>- `"all"`: Get all observations for the specified variables and entities. |
+| entity_dcids <br/><optional-tag>Optional</optional-tag> | string or list of strings or string literal | By default this is set to `"all"`, which gets observations for all available entities for the specified variables and dates. To limit to specific entties, set this to one or more DCIDs of the entities to query. |
 | entity_type | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. | 
 | parent_entity <br/><optional-tag>Optional</optional-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. Optional when `entity_dcids` is set to `"all"` (the default); invalid otherwise.|
 | property_filters <br/><optional-tag>Optional</optional-tag> | dict of strings or list of strings | The observation propertes by whch to filter the results, such as `measurementMethod`, `unit`, or `observationPeriod`.
@@ -129,19 +129,19 @@ Response:
 
 (truncated)
 
-```json
-      date       entity               entity_name                 variable  ... measurementMethod  observationPeriod                                      provenanceUrl  unit
-0     1900  country/USA  United States of America             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
-1     1901  country/USA  United States of America             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
-2     1902  country/USA  United States of America             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
-3     1903  country/USA  United States of America             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
-4     1904  country/USA  United States of America             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
-...    ...          ...                       ...                      ...  ...               ...                ...                                                ...   ...
-4151  2014  geoId/06085        Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
-4152  2016  geoId/06085        Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
-4153  2018  geoId/06085        Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
-4154  2020  geoId/06085        Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
-4155  2022  geoId/06085        Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
+```python
+      date       entity         entity_name                 variable  ... measurementMethod  observationPeriod                                      provenanceUrl  unit
+0     1900     geoId/06          California             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+1     1901     geoId/06          California             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+2     1902     geoId/06          California             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+3     1903     geoId/06          California             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+4     1904     geoId/06          California             Count_Person  ...   CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+...    ...          ...                 ...                      ...  ...               ...                ...                                                ...   ...
+4151  2014  geoId/06085  Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
+4152  2016  geoId/06085  Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
+4153  2018  geoId/06085  Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
+4154  2020  geoId/06085  Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
+4155  2022  geoId/06085  Santa Clara County  UnemploymentRate_Person  ...              None               None  https://www.atsdr.cdc.gov/placeandhealth/svi/d...  None
 
 [4156 rows x 12 columns]
 ```
@@ -149,19 +149,35 @@ Response:
 {: .no_toc}
 ### Example 4: Get all observations for a single variable and entity, with a property filter
 
+This example gets all observations for the populaton of the U.S., and uses a property filter to limit the results to datasets that use an observation period of `P1Y`.
 
 Request:
 {: .example-box-title}
 
 ```python
-
+client.observations_dataframe(variable_dcids=["Count_Person"], date="all", entity_dcids=["country/USA"], property_filters={"observationPeriod": ["P1Y"]})
 ```
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 
-```json
+(truncated)
 
+```python
+     date       entity               entity_name      variable  ...       measurementMethod  observationPeriod                                      provenanceUrl  unit
+0    1900  country/USA  United States of America  Count_Person  ...         CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+1    1901  country/USA  United States of America  Count_Person  ...         CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+2    1902  country/USA  United States of America  Count_Person  ...         CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+3    1903  country/USA  United States of America  Count_Person  ...         CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+4    1904  country/USA  United States of America  Count_Person  ...         CensusPEPSurvey                P1Y  https://www2.census.gov/programs-surveys/popes...  None
+..    ...          ...                       ...           ...  ...                     ...                ...                                                ...   ...
+252  2019  country/USA  United States of America  Count_Person  ...  OECDRegionalStatistics                P1Y  https://data-explorer.oecd.org/vis?fs[0]=Topic...  None
+253  2020  country/USA  United States of America  Count_Person  ...  OECDRegionalStatistics                P1Y  https://data-explorer.oecd.org/vis?fs[0]=Topic...  None
+254  2021  country/USA  United States of America  Count_Person  ...  OECDRegionalStatistics                P1Y  https://data-explorer.oecd.org/vis?fs[0]=Topic...  None
+255  2022  country/USA  United States of America  Count_Person  ...  OECDRegionalStatistics                P1Y  https://data-explorer.oecd.org/vis?fs[0]=Topic...  None
+256  2023  country/USA  United States of America  Count_Person  ...  OECDRegionalStatistics                P1Y  https://data-explorer.oecd.org/vis?fs[0]=Topic...  None
+
+[257 rows x 12 columns]
 ```
 {: .example-box-content .scroll}
