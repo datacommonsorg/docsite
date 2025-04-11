@@ -55,16 +55,9 @@ HTML and CSS customization files are provided as samples to get you started. The
 
 Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable in `custom_dc/env.list`.
 
-To enable the changes to be picked up by the Docker image, and allow you to refresh the browser for further changes, restart the Docker image with this additional flag to map the directories to the Docker workspace:
-
-```shell
--v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom
--v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom
-```
-
-<!--[Note: the second line doesn't currently do anything, but this is the way it should work IMO]-->
-
 If you have renamed the parent `custom` directory, be sure to use that name in the flag.
+
+> **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/build_image.html#build-repo). We plan to fix this in the near future.
 
 ## Customize HTML templates {#html-templates}
 
@@ -84,4 +77,4 @@ Alternatively, if you have existing CSS and Javascript files, put them under the
 
 See [`server/templates/custom_dc/custom/new.html`](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/new.html) as an example.
 
-> **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/build_image.html#build-repo). We plan to fix this in the near future.
+
