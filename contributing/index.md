@@ -10,7 +10,6 @@ has_children: false
 Data Commons has benefited greatly from our collaborations with different government organizations and academic institutions and is looking to expand the set of collaborative projects. In particular, we are looking for partners to:
 
 - [Add data](#add-data): Contribute data to Data Commons.
-- [Create new curriculum](#create-new-curriculum): Use Data Commons in data science and machine learning courses.
 - [Create tools](#creating-a-new-tool): Build new tools or applications that bring the data in Data Commons to new categories of users.
 - [Share analyses](#sharing-analysis): Use Data Commons to build models and share interesting insights.
 - [Write documentation](#updating-documentation)
@@ -23,13 +22,9 @@ Data Commons welcomes patches and contributions to this project from everyone, n
 
 We welcome contributions of public data to the Data Commons knowledge graph. Data added will be accessible via Data Commons tools and APIs. We’ve bootstrapped the knowledge graph with [these datasets](/datasets) from US Census, World Bank, CDC, NOAA, NASA, etc. However, Data Commons is meant to be for the community, by the community. We're excited to work with you to make public data accessible to everyone. If you are interested in importing your data to Data Commons, please file a [data request](https://issuetracker.google.com/issues/new?component=1660823&template=2053232){: target="_blank"} in our issue tracker. You can see a list of existing requests [here](https://issuetracker.google.com/issues?q=componentid:1660823&template=2053232){: target="_blank"}.
 
-### Create new curriculum
-
-Data Commons allows for easy acess to _real data_ that can enrich the experience of students and instructors in educational contexts. We're posting template data science assignments to assist educators with integrating _real data_ into their courses on [the courseware page](/courseware). If you use Data Commons for your classes, have courseware to share, or find any of this material helpful, we want to hear about it! Please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?resourcekey=0-yJ9nT9ST-TfoKNtmGIws-g){: target="_blank"}.
-
 ### Create a new tool
 
-Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest/v2) that can be used to power applications on top of our data. If you would like to build a new tool, contact the team [through this form](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform){: target="_blank"} or create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools){: target="_blank"}.
+Data Commons welcomes the development of new tools that make the data on Data Commons more accessible to end users. We have an extensive [REST API](/api/rest/v2) that can be used to power applications on top of our data. If you would like to build a new tool, create a PR in [the Data Commons tools repo](https://github.com/datacommonsorg/tools){: target="_blank"}.
 
 ### Share analysis
 

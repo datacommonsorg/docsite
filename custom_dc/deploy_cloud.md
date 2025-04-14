@@ -55,18 +55,18 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 
 ## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
 
- If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
+If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
 
 `website/deploy/terraform-custom-datacommons/create_artifact_repository.sh` is a convenience script to create a repository in the [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview){: target="_blank"}. The script creates a repository called <code><var>PROJECT_ID</var>-artifacts</code>, where you store uploaded Docker images you build. You will upload a custom image in the subsequent steps.
 
- To run it:
+To run it:
 
- <pre>cd website/deploy/terraform-custom-datacommons
- ./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
+<pre>cd website/deploy/terraform-custom-datacommons
+./create_artifact_repository.sh <var>PROJECT_ID</var></pre>
 
- The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.
+The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.
 
- To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repository in the list.
+To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repository in the list.
 
 ## Configure and run a Terraform deployment {#terraform}
 
@@ -271,24 +271,36 @@ When you ran the "create artifact registry" script, it created a repository call
 
 Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
-1. Build a local version of the Docker image, following the procedure in [Build a local image](/custom_dc/build_image.html#build-repo).
-
-1. Generate credentials for the Docker package you will build in the next step. Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
-    <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre>
-1. When prompted to confirm creating the credentials file, click `Y` to accept.
-1. Create a package from the source image you created in step 1:
-
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="gcp-tab-content">
+   <div class="active">
+   To upload an already built image:
+    <pre>./run_cdc_dev_docker.sh --actions upload --image <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
+   To build and upload the image:
+   <pre>./run_cdc_dev_docker.sh --actions build_upload --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
+   If you don't specify the <code>--package</code> option, the package name and tag will be the same as the source image.
+   </div>
+    <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="build_image.md#build-repo">Build a local image</a>.</li>
+      <li>Generate credentials for the Docker package. 
+    <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre></li>
+   <li>Create a package from the source image you created in step 1:
     <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \
-   <var>REGION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>
-   </pre>
-   The artifact repo is <code><var>PROJECT_ID</var>-artifacts</code>.
-   The target image name and tag can be the same as the source or different.
-
-1. Push the image to the registry:
-
+   <var>REGION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>ARTIFACT_REPO</var>/<var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var></pre>
+   The artifact repo is <code><var>PROJECT_ID</var>-artifacts</code>.</li>
+   <li>Push the image to the registry:
    <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
+    The container image URL is the full name of the package you created in the previous step, including the tag.</li>
+  </ol>
+   </div>
+  </div>
+</div>
 
-    The container image URL is the full name of the package you created in the previous step, including the tag.
+- The target image name and tag can be the same as the source or different.
+- Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
 
 > Tip: We suggest you name and tag your image the same for every release, and let the Artifact Registry manage versioning. This way you won't have to continually update your Terraform configuration to a new name every time you upload a new build.
 

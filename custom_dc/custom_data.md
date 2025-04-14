@@ -27,7 +27,7 @@ At a high level, you need to provide the following:
 
 ### Files and directory structure
 
-You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories. There must only be one JSON config file, in the top-level input directory. For example:
+You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories (with an additional [configuration option](#subdirs)). There must only be one JSON config file, in the top-level input directory. For example:
 
 ```
 my_data/
@@ -457,10 +457,15 @@ Here is the general spec for the `config.json` file:
 {  
   "inputFiles": {  
     "<var>FILE_NAME1</var>": {  
+
+      # For implicit schema only
       "entityType": "<var>ENTITY_PROPERTY</var>",  
+
       "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
       "provenance": "<var>NAME</var>",
       "format": "variablePerColumn" | "variablePerRow",
+
+      # For explicit schema only
       "columnMappings": {
         "variable": "<var>NAME</var>",
         "entity": "<var>NAME</var>",
@@ -471,6 +476,8 @@ Here is the general spec for the `config.json` file:
         "measurementMethod": "<var>NAME</var>",
         "observationPeriod": "<var>NAME</var>"
       }
+
+      # For implicit schema only
       "observationProperties" {
         "unit": "<var>MEASUREMENT_UNIT</var>",
         "observationPeriod": "<var>OBSERVATION_PERIOD</var>",
@@ -480,7 +487,8 @@ Here is the general spec for the `config.json` file:
     },  
   ...  
   "includeInputSubdirs": true | false,
-
+   
+   # For implicit schema only
   "variables": {  
     "<var>VARIABLE1</var>": {"group": "<var>GROUP_NAME1</var>"},  
     "VARIABLE2": {"group": "<var>GROUP_NAME1</var>"},  
@@ -496,7 +504,9 @@ Here is the general spec for the `config.json` file:
            }  
     },  
   },   
+  
   "groupStatVarsByProperty": false | true,
+
   "sources": {  
     "<var>SOURCE_NAME1</var>": {  
       "url": "<var>URL</var>",  
@@ -530,6 +540,8 @@ You can use the `*` wildcard; matches are applied in the order in which they are
 ```
 
 The first set of parameters only applies to `foo.csv`. The second set of parameters applies to `bar.csv`, `bar1.csv`, `bar2.csv`, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely `foo.csv` and `bar*.csv`.
+
+#### Enable subdirectories {#subdirs}
 
 If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as the input directory), and be sure to set `"includeInputSubdirs": true` (the default is false if the option is not specified.) For example:
 
@@ -570,7 +582,7 @@ observationProperties (implicit schema only)
 
 Currently, the following properties are supported:
 - [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
-- [`measurementPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
+- [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
 - [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
 - [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`. 
 
@@ -648,13 +660,13 @@ searchDescriptions
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
 {:.no_toc}
-### groupStatVarsByProperty (explicit schema only)
+### groupStatVarsByProperty
 
 Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
 
 ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
 
-If you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
+For explicit schema (which does not give you a `group` option in the `config.json`), if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
 
 {:.no_toc}
 ### Sources
@@ -691,56 +703,75 @@ Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env
 
 ### Start the Docker containers with local custom data {#docker-data}
 
-Once you have configured everything, use the following commands to run the data management container and restart the services container, mapping your input and output directories to the same paths in Docker.
+Once you have configured everything, just run the `run_cdc_dev_docker.sh` script again. For reference, we provide the Docker commands invoked by the script below.
 
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+       <pre>./run_cdc_dev_docker.sh</pre>
+      </div>
+    <div>
+    <pre>
+    docker run \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-data:stable
+    </pre>
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-services:stable
+    </pre>   
+   </div>
+  </div>
+</div>
+
+> **Note:** Any time you make changes to the CSV or JSON files and want to reload the data, you need to restart both containers.
 
 {:.no_toc}
-#### Step 1: Start the data management container
+#### (Optional) Start the data management container in schema update mode {#schema-update-mode}
 
-In one terminal window, from the root directory, run the following command to start the data management container:
+If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
 
-<pre>
-docker run \
---env-file $PWD/custom_dc/env.list \
--v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-gcr.io/datcom-ci/datacommons-data:stable
-
-
-{:.no_toc}
-##### (Optional) Start the data management container in schema update mode {#schema-update-mode}
-
-If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag, `DATA_RUN_MODE=schemaupdate`. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
-
-To do so, add the following line to the above command:
-
-```
-docker run \
-...
--e DATA_RUN_MODE=schemaupdate \
-...
-gcr.io/datcom-ci/datacommons-data:stable
-```
-
-Once the job has run, go to step 2 below.
-
-
-{:.no_toc}
-#### Step 2: Start the services container
-
-In another terminal window, from the root directory, run the following command to start the services container:
-
-<pre>
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
---env-file $PWD/custom_dc/env.list \
--v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
--v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-gcr.io/datcom-ci/datacommons-services:stable
-</pre>
-
-Any time you make changes to the CSV or JSON files and want to reload the data, you will need to rerun the data management container, and then restart the services container.
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+       <pre>./run_cdc_dev_docker.sh --schema_update</pre>
+      </div>
+    <div>
+    <pre>
+    docker run \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    -e DATA_RUN_MODE=schemaupdate
+    gcr.io/datcom-ci/datacommons-data:stable
+    </pre>
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-services:stable
+    </pre>   
+   </div>
+  </div>
+</div>
 
 ### Inspect the SQLite database
 
@@ -772,3 +803,4 @@ country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 
 To exit the sqlite shell, press `Ctrl-D`.
 
+<script src="/assets/js/customdc-doc-tabs.js"></script>
