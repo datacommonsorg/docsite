@@ -92,6 +92,8 @@ You can call the following methods on the `ResolveResponse` object:
 |--------|-------------|
 | to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
+| to_flat_dict | 
+
 {: .doc-table}
 
 ## fetch
@@ -288,6 +290,13 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
+client.resolve.fetch_dcids_by_name(
+...     ["Guatemala", "France", "Germany", "United States", "United Kingdom"],
+...     entity_type="Country",
+... ).to_flat_dict()
+{'France': ['country/FRA', 'country/FXX'], 'Germany': 'country/DEU', 'Guatemala': 'country/GTM', 'United Kingdom': 'country/GBR', 'United States': 'country/USA'}
+
 
 ## fetch_dcids_by_wikidata_id
 

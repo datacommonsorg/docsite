@@ -653,6 +653,138 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+## fetch_entity names
+
+Fetches the names corresponding to entity DCIDs, in the selected language.
+
+### Signature
+
+```python
+fetch_entity_names( entity_dcids: str | list[str],
+      language: Optional[str] = DEFAULT_NAME_LANGUAGE,
+      fallback_language: Optional[str] = None,)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of entities whose names you want to look up. |
+| language <br/><optional-tag>Optional</optional-tag> | string | The [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php){: target="_blank"} 2-letter code representing the language to be used in the response. If not specified, defaults to `en`(English). |
+| fallback_language <br/><optional-tag>Optional</optional-tag> | string | The ISO 639 2-letter code representing the language to be used in the response if the language specfied in the previous parameter is not available. |
+{: .doc-table }
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the names of several entity DCIDs in German
+
+This example gets the German names of 4 different DCID entities (places).
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_entity_names(entity_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"],
+language="de")
+```
+{: .example-box-content .scroll}
+
+> Tip: This example is equivalent to .
+
+Response:
+{: .example-box-title}
+
+```
+{
+  "data": {
+    "Class": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "dcid": "ACLGroup",
+              "name": "ACLGroup",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "ACSEDChild",
+              "name": "ACSEDChild",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "ACSEDParent",
+              "name": "ACSEDParent",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "APIReference",
+              "name": "APIReference",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AboutPage",
+              "name": "AboutPage",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AcademicAssessmentEvent",
+              "name": "AcademicAssessmentEvent",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AcademicAssessmentTypeEnum",
+              "name": "AcademicAssessmentTypeEnum",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "AcceptAction",
+              "name": "AcceptAction",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            {
+              "dcid": "Accommodation",
+              "name": "Accommodation",
+              "provenanceId": "dc/base/BaseSchema",
+              "types": [
+                "Class"
+              ]
+            },
+            ....
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/yzHMQ5EQBjF8Z23O7PPRyH/yn20EmdQUCkko3F7kSh/MUUe96XWKOd1rPP2kg/FqU9DRhbyF/mH/Lgg/5GN3CAHcovc3QAAAP//AQAA//9hM3KVTgAAAA=="
+}
+```
+{: .example-box-content .scroll}
+
 ## Pagination
 
 All endpoint methods return all data in a single response by default. For `node` requests, which can return huge responses, you can "paginate" the returned payload, that is, split it over multiple requests. To do so, you can set a parameter accepted by all `node` methods, `all_pages`, to `False`. In this case, only a subset of the response is returned, along with a long string of characters called a _token_. To get the next set of entries, you repeat the request with `next_token` as a method parameter, with the token previously returned as its value.
