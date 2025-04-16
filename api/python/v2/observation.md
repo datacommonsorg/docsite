@@ -13,7 +13,7 @@ published: true
 The Observation API fetches statistical observations. An observation is associated with an
 entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. 
 
-> Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](observation_pandas.md) which is a direct property method of the `Client` object.
+> Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
 
 * TOC
 {:toc}
