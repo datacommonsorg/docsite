@@ -26,12 +26,4 @@ Python:
 
 -   [Analyzing Income Distribution](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/analyzing_income_distribution.ipynb){:target="_blank"}
 
--   [Prevalence of Obesity in 500 US Cities](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/analyzing_obesity_prevalence.ipynb){:target="_blank"}
-
--   [Analyzing Genomic Data with Biomedical Data Commons](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/analyzing_genomic_data.ipynb){:target="_blank"}
-
--   [Drug Discovery with Biomedical Data Commons](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Drug_Discovery_With_Data_Commons.ipynb){:target="_blank"}
-
--   [Analyzing Superfund Sites with Data Commons](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Analyzing_SuperfundSites_with_Data_Commons.ipynb){:target="_blank"}
-
 -   [Estimating CMIP6 Temperature Distributions](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/Estimating_(Temperature)_Distributions_With_DataCommons_.ipynb){:target="_blank"}

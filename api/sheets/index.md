@@ -45,7 +45,6 @@ The Data Commons Sheets add-on includes the five formulas listed in the followin
 | [=DCPLACESIN(dcids, place_type)](/api/sheets/places_in.html)               |  Returns places contained in other places.                      |
 | [=DCGET(dcids, variable_name, [date])](/api/sheets/get_variable.html)                 | Returns statistical observations.            |
 | [=DCPROPERTY(dcids, property)](/api/sheets/get_property.html)            | Returns node property values.             |
-| [=DCCOHORTMEMBERS(dcids)](/api/sheets/get_cohort_members.html) |  Returns the cohort members of a node.        |
 
 You supply arguments as follows:
 - A single value can be a string literal, such as `"geoId/05"` or `"County"` and must be enclosed quotation marks.
