@@ -583,12 +583,12 @@ fetch_observations_by_entity_dcid(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>- `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. <br/>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>- `"all"`: Get all observations for the specified variables and entities  |
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the entities to query. |
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
-| select <br/><optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "facet"]`: Return no observations but return all the _facets_ as well, which show the sources of the data.
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
 {: .doc-table }
 
 ### Examples
@@ -824,80 +824,7 @@ Response:
               "earliestDate": "2015",
               "latestDate": "2015"
             },
-            {
-              "facetId": "4181918134",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320635163
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "10983471",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 316515021
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1964317807",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 316515021
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2825511676",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 321418820
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2517965213",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320742673
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1226172227",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 321418821
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            }
-          ]
-        },
+            ...
         "geoId/06": {
           "orderedFacets": [
             {
@@ -960,54 +887,7 @@ Response:
               "earliestDate": "2015",
               "latestDate": "2015"
             },
-            {
-              "facetId": "1964317807",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38421464
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2825511676",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 39144818
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2517965213",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38918045
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1226172227",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 39144818
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
+            ...
             {
               "facetId": "2458695583",
               "observations": [
@@ -1072,23 +952,7 @@ Response:
       "measurementMethod": "OECDRegionalStatistics",
       "observationPeriod": "P1Y"
     },
-    "1145703171": {
-      "importName": "CensusACS5YearSurvey",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html",
-      "measurementMethod": "CensusACS5yrSurvey"
-    },
-    "2645850372": {
-      "importName": "CensusACS5YearSurvey_AggCountry",
-      "provenanceUrl": "https://www.census.gov/",
-      "measurementMethod": "CensusACS5yrSurvey",
-      "isDcAggregate": true
-    },
-    "2176550201": {
-      "importName": "USCensusPEP_Annual_Population",
-      "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables",
-      "measurementMethod": "CensusPEPSurvey",
-      "observationPeriod": "P1Y"
-    }
+    ...
   }
 }
 ```
@@ -1317,13 +1181,13 @@ fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br>- `"all"` - Get all observations for the specified variables and entities  |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
 | parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
 | entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. | 
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "fetch]`: Return no observations but return all the _facets_ as well, which show the sources of the data. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
 {: .doc-table }
 
 ### Examples 
