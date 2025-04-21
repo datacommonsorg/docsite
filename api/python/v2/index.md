@@ -12,6 +12,8 @@ published: true
 
 > **Note:** The V2 version of the Python client libraries is in Beta. Documentation and tutorials have not yet been updated to V2.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/){: target="_blank"}
+
 * TOC
 {:toc}
 
@@ -31,29 +33,30 @@ The latest version of Python client libraries implements the [REST V2 APIs](/api
 Here are just some of the changes from the previous version of the libraries:
 
 - You can use this new version to query custom Data Commons instances in addition to base datacommons.org.
-- The Data Commons [Pandas]((https://pandas.pydata.org/){: target="_blank"} module is included as an option in the install package; there is no need to install each library separately. Pandas APIs have also been migrated to use the REST V2 [Observation](/api/rest/v2/observation.html) API.
+- The Data Commons [Pandas](https://pandas.pydata.org/){: target="_blank"} module is included as an option in the install package; there is no need to install each library separately. Pandas APIs have also been migrated to use the REST V2 [Observation](/api/rest/v2/observation.html) API.
 - Requests to base datacommons.org require an [API key](/api/index.html#get-key).
 - The primary interface is a set of classes representing the REST V2 API endpoints.
 - Each class provides a `fetch` method that takes an API [_relation expression_](/api/rest/v2/index.md#relation-expressions) as an argument as well as several convenience methods for commonly used operations.
 - There is no SPARQL endpoint.
 
+{: #install}
 ## Install the Python Data Commons V2 API
 
 This procedure uses a Python virtual environment as recommended by Google Cloud [Setting up a Python development environment](https://cloud.google.com/python/docs/setup){: target="_blank"}.
 
 1. If not done already, install `python3` and `pip3`. See [Installing Python](https://cloud.google.com/python/docs/setup#installing_python) for procedures.
 1. Go to your project directory and create a virtual environment using venv, as described in [Using venv to isolate dependencies](https://cloud.google.com/python/docs/setup#installing_and_using_virtualenv){: target="_blank"}. 
-1. Install the the `datacommons-client` package:
+1. Install the `datacommons-client` package. To install the package with the Pandas DataFrames, module, run:
 
-   ```bash
-   $ pip install datacommons-client
-   ```
+  ```bash
+  $ pip install "datacommons-client[Pandas]"
+  ```
+  To install only the core package without Pandas DataFrames, run:
 
-To get additional functionality with Pandas DataFrames, run:
+  ```bash
+  $ pip install datacommons-client
+  ```
 
-```bash
-$ pip install "datacommons-client[Pandas]"
-```
 ## Run Python interactively
 
 The pages in this site demonstrate running Python methods interactively from the Bash shell. To use this facility, be sure to import the `datacommons_client` package:
@@ -125,9 +128,9 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
 | Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` |
-| Observations Pandas DataFrame | [`observations_dataframe`](observation.md#) | Same as above, except the functionality is provided by a method of the `DataCommonsClient` class directly, instead of an intermediate endpoint | `pd.DataFrame` |
+| [Observations Pandas DataFrame](pandas.md) | Similar to the `fetch_observatons_by_entity_dcids` and `fetch_observations_by_entity_type` methods of the Observation endpoint, except that the functionality is provided by a single method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
-| Resolve entities | [`resolve`](resolve.md) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph | `ResolveResponse` |
+| Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph | `ResolveResponse` |
 
 To send a request, you use one of the endpoints available as methods of the client object. For example: 
 
@@ -171,7 +174,6 @@ response = client.resolve.fetch_dcids_by_name(names="Georgia")
 print(response)
 ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geoId/13', dominantType=None), Candidate(dcid='country/GEO', dominantType=None), Candidate(dcid='geoId/5027700', dominantType=None)])])
 ``` 
-
 Each response class provides some property methods that are useful for formatting the output.
 
 | Method | Description |
