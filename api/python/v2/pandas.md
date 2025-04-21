@@ -19,14 +19,14 @@ In addition to the [Observation endpoint](observation.md), the client provides d
 * TOC
 {:toc}
 
-## observation_dataframe
+## observations_dataframe
 
 Fetches observations for specified variables, dates, and entities, by DCID or entity type. 
 
 ### Signature
 
 ```python
-observation_dataframe(variable_dcids, date, entity_dcids, entity_type, parent_entity, property_filters)
+observations_dataframe(variable_dcids, date, entity_dcids, entity_type, parent_entity, property_filters)
 ```
 
 ### Input parameters
