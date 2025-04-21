@@ -77,6 +77,7 @@ Response:
 
 [196 rows x 12 columns]
 ```
+{: .example-box-content .scroll}
 
 {: .no_toc}
 #### Example 2: Get all observations for a single variable and multiple entities
@@ -112,6 +113,7 @@ Response:
 
 [170 rows x 12 columns]
 ```
+{: .example-box-content .scroll}
 
 {: .no_toc}
 #### Example 3: Get all observations for multiple variables and multiple entities
@@ -147,6 +149,8 @@ Response:
 
 [4156 rows x 12 columns]
 ```
+{: .example-box-content .scroll}
+
 {: .no_toc}
 #### Example 4: Get latest observations for a single variable and multiple entities, limited by type and parent
 
