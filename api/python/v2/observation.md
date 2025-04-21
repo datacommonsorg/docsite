@@ -15,6 +15,8 @@ entity and variable at a particular date: for example, "population of USA in 202
 
 > Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/observation.py){: target="_blank"}
+
 * TOC
 {:toc}
 

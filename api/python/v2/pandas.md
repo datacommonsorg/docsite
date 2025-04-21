@@ -14,6 +14,8 @@ In addition to the [Observation endpoint](observation.md), the client provides d
 
 > **Note:** To use this feature, you must have installed the `Pandas` module. See [Install the Python Data Commons V2 API](index.md#install) for details.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/client.py){: target="_blank"}
+
 * TOC
 {:toc}
 

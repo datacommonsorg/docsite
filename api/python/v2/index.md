@@ -12,6 +12,8 @@ published: true
 
 > **Note:** The V2 version of the Python client libraries is in Beta. Documentation and tutorials have not yet been updated to V2.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/){: target="_blank"}
+
 * TOC
 {:toc}
 
