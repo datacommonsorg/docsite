@@ -13,7 +13,9 @@ published: true
 The Observation API fetches statistical observations. An observation is associated with an
 entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. 
 
-> Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](observation_pandas.md) which is a direct property method of the `Client` object.
+> Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
+
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/observation.py){: target="_blank"}
 
 * TOC
 {:toc}
@@ -161,7 +163,7 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 | select <br/><optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "facet"]`: Return no observations but return all the _facets_ as well, which show the sources of the data.
 | entity_dcids | string or list of strings | One or more DCIDs of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | entity_expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. To find relevant domain names, you can look up the `provenanceUrl` field in the facet ID of a previous observation response or the `url` field of the provenance in the knowledge graph browser. |
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
@@ -170,7 +172,7 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 {: .no_toc}
 #### Example 1: Look up whether a given entity (place) has data for a given variable
 
-In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
+In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities have data for two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
 
 Request:
 {: .example-box-title}
@@ -564,167 +566,6 @@ Response:
         }
       }
     },
-    "AmountOutstanding_Debt_OfficialCreditor_Concessional_PubliclyGuaranteed_Multilateral_LongTermExternalDebt_LenderArabBankforEconomicDevinAfrica": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Consumption_Fuel_OtherManufacturingIndustry_Fuelwood": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_GreenhouseGas_FuelCombustionForRoadVehicles": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/account_t_d_8": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountPrincipalRepayment_Debt_OfficialCreditor_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCAN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Amount_Debt_WorldBankMultipleCurrency_LenderWorldBankIDA_AsAFractionOf_Amount_Debt_LenderWorldBankIDA": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BX_GSR_TOTL_CD": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SH_STA_AIRP_P5": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountPrincipalRepayment_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryDNK": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "eia/INTL.12-1-MTOE.A": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/ER_MTN_DGRDP": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SP_ACS_BSRVH2O": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BAR_NOED_7074_FE_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SP_POP_AG05_FE_IN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_PTRHC_02_TRAINED": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_XUNIT_US_3_FSGOV": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "LocalCurrency_ExchangeRate_Currency_FromCurrency_USD_ToCurrencyUSD": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MaxTemp_Daily_Hist_95PctProb_Greater_Atleast1DayADecade_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_GaussianMixture_50PctProb_LessThan_Atleast1DayAYear_CMIP6_Ensemble_SSP245": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/fin17b_t_d_2": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Amount_Debt_FRF_AsAFractionOf_Amount_Debt": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SP_GNP_WNOWNS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/NY_GDY_TOTL_KN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
 ```
 {: .example-box-content .scroll}
 
@@ -742,12 +583,12 @@ fetch_observations_by_entity_dcid(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>- `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. <br/>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>- `"all"`: Get all observations for the specified variables and entities  |
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the entities to query. |
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "facet"]`: Return no observations but return all the _facets_ as well, which show the sources of the data.
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
 {: .doc-table }
 
 ### Examples
@@ -983,80 +824,7 @@ Response:
               "earliestDate": "2015",
               "latestDate": "2015"
             },
-            {
-              "facetId": "4181918134",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320635163
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "10983471",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 316515021
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1964317807",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 316515021
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2825511676",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 321418820
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2517965213",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320742673
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1226172227",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 321418821
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            }
-          ]
-        },
+            ...
         "geoId/06": {
           "orderedFacets": [
             {
@@ -1119,54 +887,7 @@ Response:
               "earliestDate": "2015",
               "latestDate": "2015"
             },
-            {
-              "facetId": "1964317807",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38421464
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2825511676",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 39144818
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2517965213",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38918045
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1226172227",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 39144818
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
+            ...
             {
               "facetId": "2458695583",
               "observations": [
@@ -1231,23 +952,7 @@ Response:
       "measurementMethod": "OECDRegionalStatistics",
       "observationPeriod": "P1Y"
     },
-    "1145703171": {
-      "importName": "CensusACS5YearSurvey",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html",
-      "measurementMethod": "CensusACS5yrSurvey"
-    },
-    "2645850372": {
-      "importName": "CensusACS5YearSurvey_AggCountry",
-      "provenanceUrl": "https://www.census.gov/",
-      "measurementMethod": "CensusACS5yrSurvey",
-      "isDcAggregate": true
-    },
-    "2176550201": {
-      "importName": "USCensusPEP_Annual_Population",
-      "provenanceUrl": "https://www2.census.gov/programs-surveys/popest/tables",
-      "measurementMethod": "CensusPEPSurvey",
-      "observationPeriod": "P1Y"
-    }
+    ...
   }
 }
 ```
@@ -1476,13 +1181,13 @@ fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br>* `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>* A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see [Find the date format for a statistical variable](/api/rest/v2/observation.html#find-date-format).<br>- `"all"` - Get all observations for the specified variables and entities  |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
 | parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
 | entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. | 
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", and "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "fetch]`: Return no observations but return all the _facets_ as well, which show the sources of the data. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
 {: .doc-table }
 
 ### Examples 
