@@ -74,7 +74,7 @@ The `fetch_entity_*` methods return a Python dictionary. All other request metho
 
 ### Response property methods
 
-You can call the following methods on the `NodeResponse` object:
+You can call the following methods on a `NodeResponse` object:
 
 | Method | Description | 
 |--------|-------------|
@@ -665,7 +665,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-## fetch_entity names
+## fetch_entity_names
 
 Fetches the names corresponding to entity DCIDs, in the selected language.
 
@@ -685,13 +685,14 @@ fetch_entity_names(entity_dcids,language,fallback_language)
 {: .doc-table }
 
 ### Response
+Dictionary mapping each DCID to a dictionary with the mapped name and language.
 
 ### Examples
 
 {: .no_toc}
 #### Example 1: Fetch the names of several entity DCIDs in German
 
-This example gets the German names of 4 different DCID entities (places).
+This example gets the German names of 3 different DCID entities (places): USA, Guatemala and Africa.
 
 Request:
 {: .example-box-title}
@@ -702,19 +703,216 @@ language="de")
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is equivalent to .
+Response:
+{: .example-box-title}
+
+```
+{'africa': Name(value='Afrika', 
+                language='de', 
+                property='nameWithLanguage'),
+ 'country/GTM': Name(value='Guatemala',
+                     language='de',
+                     property='nameWithLanguage'),
+ 'country/USA': Name(value='Vereinigte Staaten',
+                     language='de',
+                     property='nameWithLanguage')}
+```
+{: .example-box-content .scroll}
+
+
+## fetch_entity_parents
+
+Fetches the names, DCIDs, and types of direct parent entities of the selected entities.
+
+### Signature
+
+```python
+fetch_entity_parents(entity_dcids, as_dict)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose direct parents you want to look up. |
+| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of parent objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of parent objects (when set to `False`). Defaults to `True`. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_dict` parameter. See above for details.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the direct parents of several entity DCIDs, as a dict of parent objects
+
+This example gets the immediate parents of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of parent objects.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_entity_parents(entity_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
+```
+{: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
 
 ```
+{'wikidataId/Q2608785': Node(dcid='country/GTM',
+                             name='Guatemala',
+                             provenanceId='dc/base/WikidataGeos',
+                             types=['Country'],
+                             value=None),
+ 'africa': Node(dcid='Earth',
+                name='World',
+                provenanceId='dc/base/BaseGeos',
+                types=['Place'],
+                value=None),
+ 'country/GTM': [Node(dcid='CentralAmerica',
+                      name='Central America (including Mexico)',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['UNGeoRegion'],
+                      value=None),
+                 Node(dcid='LatinAmericaAndCaribbean',
+                      name='Latin America and the Caribbean',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['UNGeoRegion'],
+                      value=None),
+                 Node(dcid='northamerica',
+                      name='North America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['Continent'],
+                      value=None),
+                 Node(dcid='undata-geo/G00134000',
+                      name='Americas',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None)],
+ 'country/USA': [Node(dcid='northamerica',
+                      name='North America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['Continent'],
+                      value=None),
+                 Node(dcid='undata-geo/G00134000',
+                      name='Americas',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None),
+                 Node(dcid='undata-geo/G00136000',
+                      name='Northern America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None),
+                 Node(dcid='undata-geo/G00406000',
+                      name='Organisation for Economic Co-operation and '
+                           'Development (OECD)',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None)]}
+```
+{: .example-box-content .scroll}
 
+## fetch_entity_ancestry
+
+Fetches the names, DCIDs, and types of all direct and indirect parent entities of the selected entities.
+
+### Signature
+
+```python
+fetch_entity_parents(entity_dcids, as_tree, max_concurrent_requests)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose complete ancestry you want to fetch. |
+| as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_tree` parameter. See above for details.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the full ancestry of a single entity DCID, as a tree
+
+This example gets the immediate parents of one entity (place): Guatemala, showing all parents in a nested tree structure.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_entity_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'wikidataId/Q2608785': {'dcid': 'wikidataId/Q2608785',
+                         'name': None,
+                         'parents': [{'dcid': 'country/GTM',
+                                      'name': 'Guatemala',
+                                      'parents': [{'dcid': 'CentralAmerica',
+                                                   'name': 'Central America '
+                                                           '(including Mexico)',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']},
+                                                               {'dcid': 'LatinAmericaAndCaribbean',
+                                                                'name': 'Latin '
+                                                                        'America '
+                                                                        'and '
+                                                                        'the '
+                                                                        'Caribbean',
+                                                                'parents': [],
+                                                                'type': ['UNGeoRegion']},
+                                                               {'dcid': 'undata-geo/G00134000',
+                                                                'name': 'Americas',
+                                                                'parents': [],
+                                                                'type': ['GeoRegion']}],
+                                                   'type': ['UNGeoRegion']},
+                                                  {'dcid': 'LatinAmericaAndCaribbean',
+                                                   'name': 'Latin America and '
+                                                           'the Caribbean',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']},
+                                                               {'dcid': 'undata-geo/G00134000',
+                                                                'name': 'Americas',
+                                                                'parents': [],
+                                                                'type': ['GeoRegion']}],
+                                                   'type': ['UNGeoRegion']},
+                                                  {'dcid': 'northamerica',
+                                                   'name': 'North America',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']}],
+                                                   'type': ['Continent']},
+                                                  {'dcid': 'undata-geo/G00134000',
+                                                   'name': 'Americas',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']}],
+                                                   'type': ['GeoRegion']}],
+                                      'type': ['Country']}],
+                         'type': None}}
 ```
 {: .example-box-content .scroll}
 
 ## Pagination
 
-All endpoint methods return all data in a single response by default. For `node` requests, which can return huge responses, you can "paginate" the returned payload, that is, split it over multiple requests. To do so, you can set a parameter accepted by all `node` methods, `all_pages`, to `False`. In this case, only a subset of the response is returned, along with a long string of characters called a _token_. To get the next set of entries, you repeat the request with `next_token` as a method parameter, with the token previously returned as its value.
+All endpoint methods return all data in a single response by default. For `node` requests, that can return huge responses, you can "paginate" the returned payload, that is, split it over multiple requests. To do so, you can set the `all_pages` parameter, accepted by the `node` methods that return `NodeResponse` objects (see [Response](#response) for details), to `False`. In this case, only a subset of the response is returned, along with a long string of characters called a _token_. To get the next set of entries, you repeat the request with `next_token` as a method parameter, with the token previously returned as its value.
 
 For example, this request, which returns all incoming relations for California, returns a very large number of data items and can take several seconds to complete:
 

@@ -10,21 +10,17 @@ published: true
 {:.no_toc}
 # Data Commons Python API V2
 
-> **Note:** The V2 version of the Python client libraries is in Beta. Documentation and tutorials have not yet been updated to V2.
-
-[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/){: target="_blank"}
-
-* TOC
-{:toc}
-
-## Overview
-
 The Data Commons Python API is a Python client library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package
 allows you to explore the structure of the graph, integrate statistics from
 the graph into data analysis workflows and much more. 
 
 Before proceeding, make sure you have followed the setup instructions below.
+
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/){: target="_blank"}
+
+* TOC
+{:toc}
 
 ## What's new in V2
 
@@ -129,7 +125,7 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 | --- | --- -----| ----------- |---------------|
 | Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` |
 | [Observations Pandas DataFrame](pandas.md) | Similar to the `fetch_observatons_by_entity_dcids` and `fetch_observations_by_entity_type` methods of the Observation endpoint, except that the functionality is provided by a single method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
-| Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` |
+| Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` and Python dictionary |
 | Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph | `ResolveResponse` |
 
 To send a request, you use one of the endpoints available as methods of the client object. For example: 
@@ -168,7 +164,6 @@ For common requests, each endpoint also provides convenience methods that build 
 
 By default, responses are returned as Python `dataclass` objects with the full structure. For example:
 
-
 ```python
 response = client.resolve.fetch_dcids_by_name(names="Georgia")
 print(response)
@@ -188,6 +183,8 @@ Both methods take the following input parameter:
 |-----------|-------------|
 | exclude_none  <br /> <optional-tag>Optional </optional-tag> | Compact response with nulls and empty lists removed. Defaults to `True`. To preserve the original structure and return all properties including null values and empty lists, set this to `False`. |
 {: .doc-table }
+
+Some endpoints include additional response formatting methods; see the individual endpoint pages for details.
 
 ### Examples
 
