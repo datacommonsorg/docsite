@@ -41,10 +41,10 @@ date <br/><required-tag>Required</required-tag> | string or string literal | The
 | property_filters <br/><optional-tag>Optional</optional-tag> | dict mapping a string to a string or list of strings | The observation properties by which to filter the results, where the key is the observation property, such as `measurementMethod`, `unit`, or `observationPeriod`, and the value is the list of values to filter by. |
 {: .doc-table }
 
-## Examples
+### Examples
 
 {: .no_toc}
-### Example 1: Get all observations for a single variable and entity
+#### Example 1: Get all observations for a single variable and entity
 
 This example retrieves the count of men in the state of Arkansas over all data history.
 
@@ -77,9 +77,10 @@ Response:
 
 [196 rows x 12 columns]
 ```
+{: .example-box-content .scroll}
 
 {: .no_toc}
-### Example 2: Get all observations for a single variable and multiple entities
+#### Example 2: Get all observations for a single variable and multiple entities
 
 This example compares the historic populations of Sudan and South Sudan.
 
@@ -112,9 +113,10 @@ Response:
 
 [170 rows x 12 columns]
 ```
+{: .example-box-content .scroll}
 
 {: .no_toc}
-### Example 3: Get all observations for multiple variables and multiple entities
+#### Example 3: Get all observations for multiple variables and multiple entities
 
 This example compares the historic populations, median ages, and unemployment rates of the US, California, and Santa Clara County.
 
@@ -147,8 +149,10 @@ Response:
 
 [4156 rows x 12 columns]
 ```
+{: .example-box-content .scroll}
+
 {: .no_toc}
-### Example 4: Get latest observations for a single variable and multiple entities, limited by type and parent
+#### Example 4: Get latest observations for a single variable and multiple entities, limited by type and parent
 
 Ths example gets all observatons for the proportion of population below the international poverty line for all countries in Africa. 
 
@@ -191,7 +195,7 @@ date       entity               entity_name         variable  ... measurementMet
 {: .example-box-content .scroll}
 
 {: .no_toc}
-### Example 5: Get all observations for a single variable and entity, with a property filter
+#### Example 5: Get all observations for a single variable and entity, with a property filter
 
 This example gets all observations for the populaton of the U.S., and uses a property filter to limit the results to datasets that use an observation period of `P1Y`.
 
