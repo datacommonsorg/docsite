@@ -187,7 +187,7 @@ Response:
 
 The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person_Female" : {
@@ -222,7 +222,7 @@ client.observation.fetch(variable_dcids=["Count_Person_Female", "Count_Person_Ma
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person_Female" : {
@@ -383,7 +383,7 @@ Response:
 
 (truncated)
 
-```json
+```python
 {
   "byVariable": {
     "Count_Person": {
@@ -465,7 +465,7 @@ Response:
 
 (truncated)
 
-```json
+```python
 {
   "byVariable": {
     "AmountOutstanding_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCHE": {
@@ -611,7 +611,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
   "byVariable": {
     "Count_Person": {
@@ -716,7 +716,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person" : {
@@ -769,7 +769,7 @@ client.observation.fetch_observations_by_entity_dcid(date="2015", entity_dcids=[
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
   "byVariable": {
     "Count_Person": {
@@ -976,7 +976,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids=["
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person_EducationalAttainmentDoctorateDegree" : {
@@ -1133,7 +1133,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person" : {
@@ -1212,7 +1212,7 @@ Response:
 
 (truncated)
 
-```json
+```python
 {
    "byVariable" : {
       "sdg/SI_POV_DAY1" : {
