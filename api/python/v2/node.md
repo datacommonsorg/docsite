@@ -38,7 +38,6 @@ The following are the methods available for this endpoint.
 | [fetch_entity_parents](#fetch_entity_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
 | [fetch_entity_parents](#fetch_entity_parents) | Fetch the full ancestry graph (direct and indirect parents) of entities, based on their DCIDs. |
 
-
 ## Response
 
 The `fetch_entity_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
@@ -103,6 +102,9 @@ fetch(node_dcids, expression, all_pages, next_token)
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object
 
 ### Examples
 
@@ -260,11 +262,14 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | DCIDs of the nodes to query.  |
+| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | See [fetch](#fetch) for description.  |
 | out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
-| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
-| next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
+| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | See [fetch](#fetch) for description. |
+| next_token <br/> <optional-tag>Optional</optional-tag> | string | See [fetch](#fetch) for description. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object
 
 ### Examples
 
@@ -315,14 +320,16 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | DCIDs of the nodes to query.  |
+| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | See [fetch](#fetch) for description.   |
 | properties <br/>  <required-tag>Required</required-tag> | string or list of strings | List of properties to query |
 | constraints <br/> <optional-tag>Optional</optional-tag> | string | Additional [filters](/api/rest/v2/index.html#filters), of the form `{typeof:PROPERTY}`. |
-| out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
-| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
-| next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
-
+| out <br/> <optional-tag>Optional</optional-tag> | bool |  See [fetch_property_labels](#fetch_property_labels) for description. |
+| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | See [fetch](#fetch) for description. |
+| next_token <br/> <optional-tag>Optional</optional-tag> | string | See [fetch](#fetch) for description. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object
 
 ### Examples
 
@@ -541,10 +548,12 @@ fetch_all_classes(all_pages, next_token)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
-| next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
-
+| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | See [fetch](#fetch) for description. |
+| next_token <br/> <optional-tag>Optional</optional-tag> | string | See [fetch](#fetch) for description. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object.
 
 ### Examples
 
@@ -663,9 +672,7 @@ Fetches the names corresponding to entity DCIDs, in the selected language.
 ### Signature
 
 ```python
-fetch_entity_names( entity_dcids: str | list[str],
-      language: Optional[str] = DEFAULT_NAME_LANGUAGE,
-      fallback_language: Optional[str] = None,)
+fetch_entity_names(entity_dcids,language,fallback_language)
 ```
 
 ### Input parameters
@@ -676,6 +683,8 @@ fetch_entity_names( entity_dcids: str | list[str],
 | language <br/><optional-tag>Optional</optional-tag> | string | The [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php){: target="_blank"} 2-letter code representing the language to be used in the response. If not specified, defaults to `en`(English). |
 | fallback_language <br/><optional-tag>Optional</optional-tag> | string | The ISO 639 2-letter code representing the language to be used in the response if the language specfied in the previous parameter is not available. |
 {: .doc-table }
+
+### Response
 
 ### Examples
 
@@ -699,92 +708,7 @@ Response:
 {: .example-box-title}
 
 ```
-{
-  "data": {
-    "Class": {
-      "arcs": {
-        "typeOf": {
-          "nodes": [
-            {
-              "dcid": "ACLGroup",
-              "name": "ACLGroup",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "ACSEDChild",
-              "name": "ACSEDChild",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "ACSEDParent",
-              "name": "ACSEDParent",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "APIReference",
-              "name": "APIReference",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "AboutPage",
-              "name": "AboutPage",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "AcademicAssessmentEvent",
-              "name": "AcademicAssessmentEvent",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "AcademicAssessmentTypeEnum",
-              "name": "AcademicAssessmentTypeEnum",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "AcceptAction",
-              "name": "AcceptAction",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            {
-              "dcid": "Accommodation",
-              "name": "Accommodation",
-              "provenanceId": "dc/base/BaseSchema",
-              "types": [
-                "Class"
-              ]
-            },
-            ....
-          ]
-        }
-      }
-    }
-  },
-  "nextToken": "H4sIAAAAAAAA/yzHMQ5EQBjF8Z23O7PPRyH/yn20EmdQUCkko3F7kSh/MUUe96XWKOd1rPP2kg/FqU9DRhbyF/mH/Lgg/5GN3CAHcovc3QAAAP//AQAA//9hM3KVTgAAAA=="
-}
+
 ```
 {: .example-box-content .scroll}
 

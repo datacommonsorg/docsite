@@ -291,13 +291,6 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-client.resolve.fetch_dcids_by_name(
-...     ["Guatemala", "France", "Germany", "United States", "United Kingdom"],
-...     entity_type="Country",
-... ).to_flat_dict()
-{'France': ['country/FRA', 'country/FXX'], 'Germany': 'country/DEU', 'Guatemala': 'country/GTM', 'United Kingdom': 'country/GBR', 'United States': 'country/USA'}
-
-
 ## fetch_dcids_by_wikidata_id
 
 Resolve entities to DCIDs by Wikidata ID.
@@ -313,7 +306,7 @@ fetch_dcids_by_wikidata_id(wikidata_ids, entity_type)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | wikidata_ids <br /> <required-tag>Required</required-tag>  | string or list of strings | The Wikidata ID(s) of the entities to look up. |
-| entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
+| entity_type <br /> <optional-tag>Optional</optional-tag> | string | See [fetch_dcids_by_name](#fetch_dcids_by_name) for description. |
 {: .doc-table }
 
 ### Examples
@@ -365,7 +358,7 @@ fetch_dcid_by_coordinates(latitude, longitude, entity_type)
 |---------------|-------|----------------|
 | latitude <br /> <required-tag>Required</required-tag>  | string | The latitude of the entity to look up. It should be expressed in decimal format e.g., `37.42` |
 | longitude <br /> <required-tag>Required</required-tag>  | string | The longitude of the entity to look up. It should be expressed in decimal format e.g, `-122.08` |
-| entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
+| entity_type <br /> <optional-tag>Optional</optional-tag> | string | See [fetch_dcids_by_name](#fetch_dcids_by_name) for description. |
 {: .doc-table }
 
 ### Examples

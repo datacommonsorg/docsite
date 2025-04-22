@@ -443,7 +443,7 @@ fetch_available_statistical_variables(entity_ids)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the entities to query. |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [fetch](#fetch) for description. |
 
 ### Examples
 
@@ -583,12 +583,12 @@ fetch_observations_by_entity_dcid(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [fetch](#fetch) for description.  |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [fetch](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
 {: .doc-table }
 
 ### Examples
@@ -1181,13 +1181,13 @@ fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [fetch](#fetch) for description.  |
 | parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
 | entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. | 
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| select <optional-tag>Optional</optional-tag> | list of string literals | See [fetch](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
 {: .doc-table }
 
 ### Examples 
