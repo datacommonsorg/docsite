@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get statistical observations as Pandas DataFrames
-nav_order: 3
+nav_order: 4
 parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
@@ -34,7 +34,7 @@ observations_dataframe(variable_dcids, date, entity_dcids, entity_type, parent_e
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | variable_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the statistical variables to query. |
-date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>- `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. </br>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>- `"all"`: Get all observations for the specified variables and entities. |
+date <br/><required-tag>Required</required-tag> | string or string literal | The date (and time) for which the observations are being requested. Allowed values are: <br/>- `"latest"`: return the latest observations. One observation is returned for each specified entity and variable, for each provenance of the data. <br/>- A string in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format that specifies the date and time used by the target variable; for example, `2020` or `2010-12`.<br/>- `"all"`: Get all observations for the specified variables and entities. |
 | entity_dcids <br/><optional-tag>Optional</optional-tag> | string or list of strings or string literal | By default this is set to `"all"`, in which case you must use the `entity_type` parameter, to limit the results to a given type.  To limit to specific entities, set this to one or more DCIDs of the entities to query. |
 | entity_type | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. | 
 | parent_entity | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. |

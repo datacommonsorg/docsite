@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get node properties
-nav_order: 4
+nav_order: 5
 parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
@@ -36,7 +36,7 @@ The following are the methods available for this endpoint.
 | [fetch_all_classes](#fetch_all_classes) | Fetch the DCIDs and other properties of all nodes of `Class` type. This is useful for listing out all the entity types in the graph. |
 | [fetch_entity_names](#fetch_entity_names) | Look up the names of entities, in one or two languages, based on their DCIDs. |
 | [fetch_entity_parents](#fetch_entity_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
-| [fetch_entity_parents](#fetch_entity_parents) | Fetch the full ancestry graph (direct and indirect parents) of entities, based on their DCIDs. |
+| [fetch_entity_ancestry](#fetch_entity_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of entities, based on their DCIDs. |
 
 ## Response
 
@@ -706,7 +706,7 @@ language="de")
 Response:
 {: .example-box-title}
 
-```
+```python
 {'africa': Name(value='Afrika', 
                 language='de', 
                 property='nameWithLanguage'),
@@ -759,7 +759,7 @@ client.node.fetch_entity_parents(entity_dcids=["africa", "country/GTM", "country
 Response:
 {: .example-box-title}
 
-```
+```python
 {'wikidataId/Q2608785': Node(dcid='country/GTM',
                              name='Guatemala',
                              provenanceId='dc/base/WikidataGeos',
@@ -830,7 +830,7 @@ fetch_entity_parents(entity_dcids, as_tree, max_concurrent_requests)
 |---------------|-------|----------------|
 | entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose complete ancestry you want to fetch. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
-| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
 {: .doc-table }
 
 ### Response

@@ -18,8 +18,6 @@ Example [Google Colab
 notebooks](https://colab.research.google.com/notebooks/intro.ipynb) written in
 Python:
 
--   [Getting Started: Analyzing Census Data](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/analyzing_census_data.ipynb){:target="_blank"}
-
--   [Analyzing Income Distribution](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/analyzing_income_distribution.ipynb){:target="_blank"}
+-  [Predicting Obesity Prevalence in U.S. Counties](https://github.com/datacommonsorg/api-python/blob/master/notebooks/v2/analyzing_obesity_prevalence.ipynb){: target="_blank"}
 
 -   [Data_Commons_For_Data_Science](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/Data_Commons_For_Data_Science_Tutorial.ipynb)
