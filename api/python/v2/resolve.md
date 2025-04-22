@@ -92,7 +92,7 @@ You can call the following methods on the `ResolveResponse` object:
 |--------|-------------|
 | to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
-| to_flat_dict | Flattens resolved candidate data into a dictionary where each node maps to a list of candidates. If a node has only one candidate, it maps directly to the candidate instead of a list. <!--- TODO: Add examples of these ---> |
+| to_flat_dict | Flattens resolved candidate data into a dictionary where each node maps to a list of candidates. If a node has only one candidate, it maps directly to the candidate instead of a list. <!--- TODO: Add examples of this ---> |
 
 {: .doc-table}
 
