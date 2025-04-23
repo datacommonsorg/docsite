@@ -101,7 +101,7 @@ Here are the possible values for specifying dates/times:
 - <var>DATE_STRING</var>: Fetch observations matching the specified date(s) and time(s). The value must be in the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601){: target="_blank"} format used by the target variable; for example, `2020` or `2010-12`. To look up the format of a statistical variable, see below.
 - `""`: Return observations for all dates. 
 
-{ #find-date-format}
+{: #find-date-format}
 #### Find the date format for a statistical variable
 
 Statistical variable dates are defined as yearly, monthly, weekly, or daily. For most variables, you can find out the correct date format by searching for the variable in the
