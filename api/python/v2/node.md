@@ -821,7 +821,7 @@ Fetches the names, DCIDs, and types of all direct and indirect parent entities o
 ### Signature
 
 ```python
-fetch_entity_parents(entity_dcids, as_tree, max_concurrent_requests)
+fetch_place_parents(place_dcids, as_tree, max_concurrent_requests)
 ```
 
 ### Input parameters
