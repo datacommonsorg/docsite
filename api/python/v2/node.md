@@ -36,7 +36,7 @@ The following are the methods available for this endpoint.
 | [fetch_all_classes](#fetch_all_classes) | Fetch the DCIDs and other properties of all nodes of `Class` type. This is useful for listing out all the entity types in the graph. |
 | [fetch_entity_names](#fetch_entity_names) | Look up the names of entities, in one or two languages, based on their DCIDs. |
 | [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
-| [fetch_entity_ancestry](#fetch_entity_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of entities, based on their DCIDs. |
+| [fetch_place_ancestry](#fetch_place_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of places, based on their DCIDs. |
 
 ## Response
 
