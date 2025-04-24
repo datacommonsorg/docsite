@@ -734,7 +734,7 @@ fetch_entity_parents(entity_dcids, as_dict)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose direct parents you want to look up. |
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
 | as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of parent objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of parent objects (when set to `False`). Defaults to `True`. |
 {: .doc-table }
 
