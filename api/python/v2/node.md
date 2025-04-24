@@ -35,12 +35,12 @@ The following are the methods available for this endpoint.
 | [fetch_property_values](#fetch_property_values) | Fetch values of specified nodes and properties |
 | [fetch_all_classes](#fetch_all_classes) | Fetch the DCIDs and other properties of all nodes of `Class` type. This is useful for listing out all the entity types in the graph. |
 | [fetch_entity_names](#fetch_entity_names) | Look up the names of entities, in one or two languages, based on their DCIDs. |
-| [fetch_entity_parents](#fetch_entity_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
-| [fetch_entity_ancestry](#fetch_entity_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of entities, based on their DCIDs. |
+| [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
+| [fetch_place_ancestry](#fetch_place_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of places, based on their DCIDs. |
 
 ## Response
 
-The `fetch_entity_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
+The `fetch_entity_*` and `fetch_place_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
 
 <pre>
 {
@@ -720,21 +720,21 @@ Response:
 {: .example-box-content .scroll}
 
 
-## fetch_entity_parents
+## fetch_place_parents
 
-Fetches the names, DCIDs, and types of direct parent entities of the selected entities.
+Fetches the names, DCIDs, and types of direct parent places of the selected place entities.
 
 ### Signature
 
 ```python
-fetch_entity_parents(entity_dcids, as_dict)
+fetch_place_parents(place_dcids, as_dict)
 ```
 
 ### Input parameters
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose direct parents you want to look up. |
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
 | as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of parent objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of parent objects (when set to `False`). Defaults to `True`. |
 {: .doc-table }
 
@@ -821,14 +821,14 @@ Fetches the names, DCIDs, and types of all direct and indirect parent entities o
 ### Signature
 
 ```python
-fetch_entity_parents(entity_dcids, as_tree, max_concurrent_requests)
+fetch_place_parents(place_dcids, as_tree, max_concurrent_requests)
 ```
 
 ### Input parameters
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose complete ancestry you want to fetch. |
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete ancestry you want to fetch. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
 | max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
 {: .doc-table }
@@ -847,7 +847,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_entity_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
+client.node.fetch_place_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
 ```
 {: .example-box-content .scroll}
 
