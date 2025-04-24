@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get node properties
-nav_order: 4
+nav_order: 5
 parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
@@ -34,10 +34,13 @@ The following are the methods available for this endpoint.
 | [fetch_property_labels](#fetch_property_labels) | Fetch property labels of specified nodes |
 | [fetch_property_values](#fetch_property_values) | Fetch values of specified nodes and properties |
 | [fetch_all_classes](#fetch_all_classes) | Fetch the DCIDs and other properties of all nodes of `Class` type. This is useful for listing out all the entity types in the graph. |
+| [fetch_entity_names](#fetch_entity_names) | Look up the names of entities, in one or two languages, based on their DCIDs. |
+| [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
+| [fetch_place_ancestry](#fetch_place_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of places, based on their DCIDs. |
 
 ## Response
 
-All request methods return a `NodeResponse` object. It looks like this:
+The `fetch_entity_*` and `fetch_place_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
 
 <pre>
 {
@@ -71,7 +74,7 @@ All request methods return a `NodeResponse` object. It looks like this:
 
 ### Response property methods
 
-You can call the following methods on the `NodeResponse` object:
+You can call the following methods on a `NodeResponse` object:
 
 | Method | Description | 
 |--------|-------------|
@@ -99,6 +102,9 @@ fetch(node_dcids, expression, all_pages, next_token)
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object
 
 ### Examples
 
@@ -256,11 +262,14 @@ fetch_property_labels(node_dcids, out, all_pages, next_token)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | DCIDs of the nodes to query.  |
+| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | See [fetch](#fetch) for description.  |
 | out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
-| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
-| next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
+| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | See [fetch](#fetch) for description. |
+| next_token <br/> <optional-tag>Optional</optional-tag> | string | See [fetch](#fetch) for description. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object
 
 ### Examples
 
@@ -311,14 +320,16 @@ fetch_property_values(node_dcids, properties, constraints, out, all_pages, next_
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | DCIDs of the nodes to query.  |
+| node_dcids <br/>  <required-tag>Required</required-tag> | string or list of strings   | See [fetch](#fetch) for description.   |
 | properties <br/>  <required-tag>Required</required-tag> | string or list of strings | List of properties to query |
 | constraints <br/> <optional-tag>Optional</optional-tag> | string | Additional [filters](/api/rest/v2/index.html#filters), of the form `{typeof:PROPERTY}`. |
-| out <br/> <optional-tag>Optional</optional-tag> | bool |  Whether the edge is an outgoing (`True`) or incoming (`False`) arc. Defaults to outgoing (`True`). |
-| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
-| next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
-
+| out <br/> <optional-tag>Optional</optional-tag> | bool |  See [fetch_property_labels](#fetch_property_labels) for description. |
+| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | See [fetch](#fetch) for description. |
+| next_token <br/> <optional-tag>Optional</optional-tag> | string | See [fetch](#fetch) for description. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object
 
 ### Examples
 
@@ -537,10 +548,12 @@ fetch_all_classes(all_pages, next_token)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
-| next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
-
+| all_pages <br/> <optional-tag>Optional</optional-tag> | bool | See [fetch](#fetch) for description. |
+| next_token <br/> <optional-tag>Optional</optional-tag> | string | See [fetch](#fetch) for description. |
 {: .doc-table }
+
+### Response
+`NodeResponse` dataclass object.
 
 ### Examples
 
@@ -652,9 +665,254 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+## fetch_entity_names
+
+Fetches the names corresponding to entity DCIDs, in the selected language.
+
+### Signature
+
+```python
+fetch_entity_names(entity_dcids,language,fallback_language)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of entities whose names you want to look up. |
+| language <br/><optional-tag>Optional</optional-tag> | string | The [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php){: target="_blank"} 2-letter code representing the language to be used in the response. If not specified, defaults to `en`(English). |
+| fallback_language <br/><optional-tag>Optional</optional-tag> | string | The ISO 639 2-letter code representing the language to be used in the response if the language specfied in the previous parameter is not available. |
+{: .doc-table }
+
+### Response
+Dictionary mapping each DCID to a dictionary with the mapped name and language.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the names of several entity DCIDs in German
+
+This example gets the German names of 3 different DCID entities (places): USA, Guatemala and Africa.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_entity_names(entity_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"],
+language="de")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'africa': Name(value='Afrika', 
+                language='de', 
+                property='nameWithLanguage'),
+ 'country/GTM': Name(value='Guatemala',
+                     language='de',
+                     property='nameWithLanguage'),
+ 'country/USA': Name(value='Vereinigte Staaten',
+                     language='de',
+                     property='nameWithLanguage')}
+```
+{: .example-box-content .scroll}
+
+
+## fetch_place_parents
+
+Fetches the names, DCIDs, and types of direct parent places of the selected place entities.
+
+### Signature
+
+```python
+fetch_place_parents(place_dcids, as_dict)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
+| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of parent objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of parent objects (when set to `False`). Defaults to `True`. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_dict` parameter. See above for details.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the direct parents of several entity DCIDs, as a dict of parent objects
+
+This example gets the immediate parents of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of parent objects.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_entity_parents(entity_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'wikidataId/Q2608785': Node(dcid='country/GTM',
+                             name='Guatemala',
+                             provenanceId='dc/base/WikidataGeos',
+                             types=['Country'],
+                             value=None),
+ 'africa': Node(dcid='Earth',
+                name='World',
+                provenanceId='dc/base/BaseGeos',
+                types=['Place'],
+                value=None),
+ 'country/GTM': [Node(dcid='CentralAmerica',
+                      name='Central America (including Mexico)',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['UNGeoRegion'],
+                      value=None),
+                 Node(dcid='LatinAmericaAndCaribbean',
+                      name='Latin America and the Caribbean',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['UNGeoRegion'],
+                      value=None),
+                 Node(dcid='northamerica',
+                      name='North America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['Continent'],
+                      value=None),
+                 Node(dcid='undata-geo/G00134000',
+                      name='Americas',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None)],
+ 'country/USA': [Node(dcid='northamerica',
+                      name='North America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['Continent'],
+                      value=None),
+                 Node(dcid='undata-geo/G00134000',
+                      name='Americas',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None),
+                 Node(dcid='undata-geo/G00136000',
+                      name='Northern America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None),
+                 Node(dcid='undata-geo/G00406000',
+                      name='Organisation for Economic Co-operation and '
+                           'Development (OECD)',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None)]}
+```
+{: .example-box-content .scroll}
+
+## fetch_entity_ancestry
+
+Fetches the names, DCIDs, and types of all direct and indirect parent entities of the selected entities.
+
+### Signature
+
+```python
+fetch_place_parents(place_dcids, as_tree, max_concurrent_requests)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete ancestry you want to fetch. |
+| as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_tree` parameter. See above for details.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the full ancestry of a single entity DCID, as a tree
+
+This example gets the immediate parents of one entity (place): Guatemala, showing all parents in a nested tree structure.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_place_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'wikidataId/Q2608785': {'dcid': 'wikidataId/Q2608785',
+                         'name': None,
+                         'parents': [{'dcid': 'country/GTM',
+                                      'name': 'Guatemala',
+                                      'parents': [{'dcid': 'CentralAmerica',
+                                                   'name': 'Central America '
+                                                           '(including Mexico)',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']},
+                                                               {'dcid': 'LatinAmericaAndCaribbean',
+                                                                'name': 'Latin '
+                                                                        'America '
+                                                                        'and '
+                                                                        'the '
+                                                                        'Caribbean',
+                                                                'parents': [],
+                                                                'type': ['UNGeoRegion']},
+                                                               {'dcid': 'undata-geo/G00134000',
+                                                                'name': 'Americas',
+                                                                'parents': [],
+                                                                'type': ['GeoRegion']}],
+                                                   'type': ['UNGeoRegion']},
+                                                  {'dcid': 'LatinAmericaAndCaribbean',
+                                                   'name': 'Latin America and '
+                                                           'the Caribbean',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']},
+                                                               {'dcid': 'undata-geo/G00134000',
+                                                                'name': 'Americas',
+                                                                'parents': [],
+                                                                'type': ['GeoRegion']}],
+                                                   'type': ['UNGeoRegion']},
+                                                  {'dcid': 'northamerica',
+                                                   'name': 'North America',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']}],
+                                                   'type': ['Continent']},
+                                                  {'dcid': 'undata-geo/G00134000',
+                                                   'name': 'Americas',
+                                                   'parents': [{'dcid': 'Earth',
+                                                                'name': 'World',
+                                                                'parents': [],
+                                                                'type': ['Place']}],
+                                                   'type': ['GeoRegion']}],
+                                      'type': ['Country']}],
+                         'type': None}}
+```
+{: .example-box-content .scroll}
+
 ## Pagination
 
-All endpoint methods return all data in a single response by default. For `node` requests, which can return huge responses, you can "paginate" the returned payload, that is, split it over multiple requests. To do so, you can set a parameter accepted by all `node` methods, `all_pages`, to `False`. In this case, only a subset of the response is returned, along with a long string of characters called a _token_. To get the next set of entries, you repeat the request with `next_token` as a method parameter, with the token previously returned as its value.
+All endpoint methods return all data in a single response by default. For `node` requests, that can return huge responses, you can "paginate" the returned payload, that is, split it over multiple requests. To do so, you can set the `all_pages` parameter, accepted by the `node` methods that return `NodeResponse` objects (see [Response](#response) for details), to `False`. In this case, only a subset of the response is returned, along with a long string of characters called a _token_. To get the next set of entries, you repeat the request with `next_token` as a method parameter, with the token previously returned as its value.
 
 For example, this request, which returns all incoming relations for California, returns a very large number of data items and can take several seconds to complete:
 

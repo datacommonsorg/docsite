@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get statistical observations
-nav_order: 2
+nav_order: 3
 parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
@@ -187,7 +187,7 @@ Response:
 
 The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person_Female" : {
@@ -222,7 +222,7 @@ client.observation.fetch(variable_dcids=["Count_Person_Female", "Count_Person_Ma
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person_Female" : {
@@ -383,7 +383,7 @@ Response:
 
 (truncated)
 
-```json
+```python
 {
   "byVariable": {
     "Count_Person": {
@@ -443,7 +443,7 @@ fetch_available_statistical_variables(entity_ids)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the entities to query. |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [fetch](#fetch) for description. |
 
 ### Examples
 
@@ -465,7 +465,7 @@ Response:
 
 (truncated)
 
-```json
+```python
 {
   "byVariable": {
     "AmountOutstanding_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCHE": {
@@ -583,12 +583,12 @@ fetch_observations_by_entity_dcid(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [fetch](#fetch) for description.  |
+| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [fetch](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
 {: .doc-table }
 
 ### Examples
@@ -611,7 +611,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
   "byVariable": {
     "Count_Person": {
@@ -716,7 +716,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person" : {
@@ -769,7 +769,7 @@ client.observation.fetch_observations_by_entity_dcid(date="2015", entity_dcids=[
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
   "byVariable": {
     "Count_Person": {
@@ -976,7 +976,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids=["
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person_EducationalAttainmentDoctorateDegree" : {
@@ -1133,7 +1133,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 Response:
 {: .example-box-title}
 
-```json
+```python
 {
    "byVariable" : {
       "Count_Person" : {
@@ -1181,13 +1181,13 @@ fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, fi
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| date <br/><required-tag>Required</required-tag> | string or string literal | See [`fetch`](#fetch) for description.  |
+| date <br/><required-tag>Required</required-tag> | string or string literal | See [fetch](#fetch) for description.  |
 | parent_entity <br/><required-tag>Required</required-tag> | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. |
 | entity_type <br/><required-tag>Required</required-tag> | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. | 
-| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| select <optional-tag>Optional</optional-tag> | list of string literals | See [`fetch`](#fetch) for description. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
-| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [`fetch`](#fetch) for description. |
+| variable_dcids <br/><required-tag>Required<required-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| select <br/><optional-tag>Optional</optional-tag> | list of string literals | See [fetch](#fetch) for description. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
+| filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | See [fetch](#fetch) for description. |
 {: .doc-table }
 
 ### Examples 
@@ -1212,7 +1212,7 @@ Response:
 
 (truncated)
 
-```json
+```python
 {
    "byVariable" : {
       "sdg/SI_POV_DAY1" : {
