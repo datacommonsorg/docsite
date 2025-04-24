@@ -828,7 +828,7 @@ fetch_entity_parents(entity_dcids, as_tree, max_concurrent_requests)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| entity_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more entities whose complete ancestry you want to fetch. |
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete ancestry you want to fetch. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
 | max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
 {: .doc-table }
