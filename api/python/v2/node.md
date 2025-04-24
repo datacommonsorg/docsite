@@ -720,7 +720,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-## fetch_entity_parents
+## fetch_place_parents
 
 Fetches the names, DCIDs, and types of direct parent entities of the selected entities.
 
