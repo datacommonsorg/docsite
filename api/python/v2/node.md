@@ -40,7 +40,7 @@ The following are the methods available for this endpoint.
 
 ## Response
 
-The `fetch_entity_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
+The `fetch_entity_*` and `fetch_place_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
 
 <pre>
 {
