@@ -727,7 +727,7 @@ Fetches the names, DCIDs, and types of direct parent places of the selected plac
 ### Signature
 
 ```python
-fetch_entity_parents(entity_dcids, as_dict)
+fetch_place_parents(place_dcids, as_dict)
 ```
 
 ### Input parameters
