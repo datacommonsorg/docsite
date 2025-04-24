@@ -722,7 +722,7 @@ Response:
 
 ## fetch_place_parents
 
-Fetches the names, DCIDs, and types of direct parent entities of the selected entities.
+Fetches the names, DCIDs, and types of direct parent places of the selected place entities.
 
 ### Signature
 
