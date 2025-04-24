@@ -847,7 +847,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_entity_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
+client.node.fetch_place_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
 ```
 {: .example-box-content .scroll}
 
