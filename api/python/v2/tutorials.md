@@ -20,4 +20,4 @@ Python:
 
 -  [Predicting Obesity Prevalence in U.S. Counties](https://github.com/datacommonsorg/api-python/blob/master/notebooks/v2/analyzing_obesity_prevalence.ipynb){: target="_blank"}
 
--   [Data_Commons_For_Data_Science](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/Data_Commons_For_Data_Science_Tutorial.ipynb)
+-   [Data_Commons_For_Data_Science](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb)
