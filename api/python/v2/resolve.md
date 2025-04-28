@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Resolve entities
-nav_order: 4
+nav_order: 6
 parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
@@ -92,6 +92,8 @@ You can call the following methods on the `ResolveResponse` object:
 |--------|-------------|
 | to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
+| to_flat_dict | Flattens resolved candidate data into a dictionary where each node maps to a list of candidates. If a node has only one candidate, it maps directly to the candidate instead of a list. <!--- TODO: Add examples of this ---> |
+
 {: .doc-table}
 
 ## fetch
@@ -304,7 +306,7 @@ fetch_dcids_by_wikidata_id(wikidata_ids, entity_type)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | wikidata_ids <br /> <required-tag>Required</required-tag>  | string or list of strings | The Wikidata ID(s) of the entities to look up. |
-| entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
+| entity_type <br /> <optional-tag>Optional</optional-tag> | string | See [fetch_dcids_by_name](#fetch_dcids_by_name) for description. |
 {: .doc-table }
 
 ### Examples
@@ -356,7 +358,7 @@ fetch_dcid_by_coordinates(latitude, longitude, entity_type)
 |---------------|-------|----------------|
 | latitude <br /> <required-tag>Required</required-tag>  | string | The latitude of the entity to look up. It should be expressed in decimal format e.g., `37.42` |
 | longitude <br /> <required-tag>Required</required-tag>  | string | The longitude of the entity to look up. It should be expressed in decimal format e.g, `-122.08` |
-| entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
+| entity_type <br /> <optional-tag>Optional</optional-tag> | string | See [fetch_dcids_by_name](#fetch_dcids_by_name) for description. |
 {: .doc-table }
 
 ### Examples
