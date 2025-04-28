@@ -35,12 +35,14 @@ The following are the methods available for this endpoint.
 | [fetch_property_values](#fetch_property_values) | Fetch values of specified nodes and properties |
 | [fetch_all_classes](#fetch_all_classes) | Fetch the DCIDs and other properties of all nodes of `Class` type. This is useful for listing out all the entity types in the graph. |
 | [fetch_entity_names](#fetch_entity_names) | Look up the names of entities, in one or two languages, based on their DCIDs. |
-| [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property, based on entity DCIDs. |
-| [fetch_place_ancestry](#fetch_place_ancestry) | Fetch the full ancestry graph (direct and indirect parents) of places, based on their DCIDs. |
+| [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property), based on entity DCIDs. |
+| [fetch_place_children](#fetch_place_children) | Look up the names of direct child place entities (related by the `containedInPlace` property), based on entity DCIDs. |
+| [fetch_place_ancestors](#fetch_place_ancestors) | Fetch the full graph of direct and indirect parents of places (related by the `containedInPlace` property), based on their DCIDs. |
+| [fetch_place_descendants](#fetch_place_descendants) | Fetch the full graph of direct and indirect children of places (related by the `containedInPlace` property), based on their DCIDs. |
 
 ## Response
 
-The `fetch_entity_*` and `fetch_place_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
+The `fetch_entity_names` and `fetch_place_*` methods return a Python dictionary. All other request methods return a `NodeResponse` dataclass object. It looks like this:
 
 <pre>
 {
@@ -744,7 +746,7 @@ Dependent on the setting of the `as_dict` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: Fetch the direct parents of several entity DCIDs, as a dict of parent objects
+#### Example 1: Fetch the direct parents of several place DCIDs, as a dict of parent objects
 
 This example gets the immediate parents of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of parent objects.
 
@@ -752,7 +754,7 @@ Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_entity_parents(entity_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
+client.node.fetch_place_parents(place_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
 ```
 {: .example-box-content .scroll}
 
@@ -814,23 +816,138 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-## fetch_entity_ancestry
+## fetch_place_children
 
-Fetches the names, DCIDs, and types of all direct and indirect parent entities of the selected entities.
+Fetches the names, DCIDs, and types of direct child places of the selected place entities.
 
 ### Signature
 
 ```python
-fetch_place_parents(place_dcids, as_tree, max_concurrent_requests)
+fetch_place_children(place_dcids, as_dict)
 ```
 
 ### Input parameters
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete ancestry you want to fetch. |
-| as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
-| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests. Defaults to 10. |
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
+| children_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `Country`, `State', `IPCCPlace_50`. If not specified, fetches all child types. |
+| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of child objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of child objects (when set to `False`). Defaults to `True`. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_dict` parameter. See above for details.
+
+### Examples
+{: .no_toc}
+#### Example 1: Fetch the direct children of a single DCID by type, as a list of child objects
+This example gets the DCIDs of all the states in the United States, as a list.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_place_children(place_dcids=["country/USA"], children_type="State")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+```
+{: .example-box-content .scroll}
+
+{: .no_toc}
+#### Example 2: Fetch the direct children of several place DCIDs, as a dict of child objects
+
+This example gets the immediate children of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of child objects.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_place_children(place_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'wikidataId/Q2608785': Node(dcid='country/GTM',
+                             name='Guatemala',
+                             provenanceId='dc/base/WikidataGeos',
+                             types=['Country'],
+                             value=None),
+ 'africa': Node(dcid='Earth',
+                name='World',
+                provenanceId='dc/base/BaseGeos',
+                types=['Place'],
+                value=None),
+ 'country/GTM': [Node(dcid='CentralAmerica',
+                      name='Central America (including Mexico)',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['UNGeoRegion'],
+                      value=None),
+                 Node(dcid='LatinAmericaAndCaribbean',
+                      name='Latin America and the Caribbean',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['UNGeoRegion'],
+                      value=None),
+                 Node(dcid='northamerica',
+                      name='North America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['Continent'],
+                      value=None),
+                 Node(dcid='undata-geo/G00134000',
+                      name='Americas',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None)],
+ 'country/USA': [Node(dcid='northamerica',
+                      name='North America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['Continent'],
+                      value=None),
+                 Node(dcid='undata-geo/G00134000',
+                      name='Americas',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None),
+                 Node(dcid='undata-geo/G00136000',
+                      name='Northern America',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None),
+                 Node(dcid='undata-geo/G00406000',
+                      name='Organisation for Economic Co-operation and '
+                           'Development (OECD)',
+                      provenanceId='dc/base/WikidataOtherIdGeos',
+                      types=['GeoRegion'],
+                      value=None)]}
+```
+{: .example-box-content .scroll}
+
+
+## fetch_place_descendants
+
+Fetches the names, DCIDs, and types of all direct and indirect child places of the selected places.
+
+### Signature
+
+```python
+fetch_place_place_descendants(place_dcids, descendants_type, as_tree, max_concurrent_requests)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete child lineage you want to fetch. |
+| descendants_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `State', `County`, `City`. If not specified, fetches all child types. |
+| as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all child objects (when set to `True`). Defaults to `False`. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the descendants graph by parallelizing requests. Defaults to 10. |
 {: .doc-table }
 
 ### Response
@@ -839,9 +956,9 @@ Dependent on the setting of the `as_tree` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: Fetch the full ancestry of a single entity DCID, as a tree
+#### Example 1: Fetch 2 descendant types of a single place, as a dict
 
-This example gets the immediate parents of one entity (place): Guatemala, showing all parents in a nested tree structure.
+This example gets the counties and cities of the state of California, and 
 
 Request:
 {: .example-box-title}
@@ -855,60 +972,10 @@ Response:
 {: .example-box-title}
 
 ```python
-{'wikidataId/Q2608785': {'dcid': 'wikidataId/Q2608785',
-                         'name': None,
-                         'parents': [{'dcid': 'country/GTM',
-                                      'name': 'Guatemala',
-                                      'parents': [{'dcid': 'CentralAmerica',
-                                                   'name': 'Central America '
-                                                           '(including Mexico)',
-                                                   'parents': [{'dcid': 'Earth',
-                                                                'name': 'World',
-                                                                'parents': [],
-                                                                'type': ['Place']},
-                                                               {'dcid': 'LatinAmericaAndCaribbean',
-                                                                'name': 'Latin '
-                                                                        'America '
-                                                                        'and '
-                                                                        'the '
-                                                                        'Caribbean',
-                                                                'parents': [],
-                                                                'type': ['UNGeoRegion']},
-                                                               {'dcid': 'undata-geo/G00134000',
-                                                                'name': 'Americas',
-                                                                'parents': [],
-                                                                'type': ['GeoRegion']}],
-                                                   'type': ['UNGeoRegion']},
-                                                  {'dcid': 'LatinAmericaAndCaribbean',
-                                                   'name': 'Latin America and '
-                                                           'the Caribbean',
-                                                   'parents': [{'dcid': 'Earth',
-                                                                'name': 'World',
-                                                                'parents': [],
-                                                                'type': ['Place']},
-                                                               {'dcid': 'undata-geo/G00134000',
-                                                                'name': 'Americas',
-                                                                'parents': [],
-                                                                'type': ['GeoRegion']}],
-                                                   'type': ['UNGeoRegion']},
-                                                  {'dcid': 'northamerica',
-                                                   'name': 'North America',
-                                                   'parents': [{'dcid': 'Earth',
-                                                                'name': 'World',
-                                                                'parents': [],
-                                                                'type': ['Place']}],
-                                                   'type': ['Continent']},
-                                                  {'dcid': 'undata-geo/G00134000',
-                                                   'name': 'Americas',
-                                                   'parents': [{'dcid': 'Earth',
-                                                                'name': 'World',
-                                                                'parents': [],
-                                                                'type': ['Place']}],
-                                                   'type': ['GeoRegion']}],
-                                      'type': ['Country']}],
-                         'type': None}}
 ```
 {: .example-box-content .scroll}
+
+
 
 ## Pagination
 
