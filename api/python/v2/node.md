@@ -721,7 +721,6 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-
 ## fetch_place_parents
 
 Fetches the names, DCIDs, and types of direct parent places of the selected place entities.
@@ -737,7 +736,7 @@ fetch_place_parents(place_dcids, as_dict)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
-| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of parent objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of parent objects (when set to `False`). Defaults to `True`. |
+| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a dict of parent entities (when set to `True`), or a dictionary mapping each input DCID to a list of parent `NodeResponse` objects (when set to `False`). Defaults to `True`. |
 {: .doc-table }
 
 ### Response
@@ -746,9 +745,69 @@ Dependent on the setting of the `as_dict` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: Fetch the direct parents of several place DCIDs, as a dict of parent objects
-
+#### Example 1: Fetch the direct parents of several place DCIDs, as a dict
 This example gets the immediate parents of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of parent objects.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_place_parents(place_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"])
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'africa': [{'dcid': 'Earth',
+             'name': 'World',
+             'provenanceId': 'dc/base/BaseGeos',
+             'types': ['Place']}],
+ 'country/GTM': [{'dcid': 'CentralAmerica',
+                  'name': 'Central America (including Mexico)',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['UNGeoRegion']},
+                 {'dcid': 'LatinAmericaAndCaribbean',
+                  'name': 'Latin America and the Caribbean',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['UNGeoRegion']},
+                 {'dcid': 'northamerica',
+                  'name': 'North America',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['Continent']},
+                 {'dcid': 'undata-geo/G00134000',
+                  'name': 'Americas',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['GeoRegion']}],
+ 'country/USA': [{'dcid': 'northamerica',
+                  'name': 'North America',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['Continent']},
+                 {'dcid': 'undata-geo/G00134000',
+                  'name': 'Americas',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['GeoRegion']},
+                 {'dcid': 'undata-geo/G00136000',
+                  'name': 'Northern America',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['GeoRegion']},
+                 {'dcid': 'undata-geo/G00406000',
+                  'name': 'Organisation for Economic Co-operation and '
+                          'Development (OECD)',
+                  'provenanceId': 'dc/base/WikidataOtherIdGeos',
+                  'types': ['GeoRegion']}],
+ 'wikidataId/Q2608785': [{'dcid': 'country/GTM',
+                          'name': 'Guatemala',
+                          'provenanceId': 'dc/base/WikidataGeos',
+                          'types': ['Country']}]}
+```
+{: .example-box-content .scroll}
+
+{: .no_toc}
+#### Example 2: Fetch the direct parents of several place DCIDs, as a list
+
+This example is the same as the previous one, but returns the results as a list of parent objects.
 
 Request:
 {: .example-box-title}
@@ -762,16 +821,11 @@ Response:
 {: .example-box-title}
 
 ```python
-{'wikidataId/Q2608785': Node(dcid='country/GTM',
-                             name='Guatemala',
-                             provenanceId='dc/base/WikidataGeos',
-                             types=['Country'],
-                             value=None),
- 'africa': Node(dcid='Earth',
-                name='World',
-                provenanceId='dc/base/BaseGeos',
-                types=['Place'],
-                value=None),
+{'africa': [Node(dcid='Earth',
+                 name='World',
+                 provenanceId='dc/base/BaseGeos',
+                 types=['Place'],
+                 value=None)],
  'country/GTM': [Node(dcid='CentralAmerica',
                       name='Central America (including Mexico)',
                       provenanceId='dc/base/WikidataOtherIdGeos',
@@ -812,7 +866,12 @@ Response:
                            'Development (OECD)',
                       provenanceId='dc/base/WikidataOtherIdGeos',
                       types=['GeoRegion'],
-                      value=None)]}
+                      value=None)],
+ 'wikidataId/Q2608785': [Node(dcid='country/GTM',
+                              name='Guatemala',
+                              provenanceId='dc/base/WikidataGeos',
+                              types=['Country'],
+                              value=None)]}
 ```
 {: .example-box-content .scroll}
 
@@ -832,7 +891,7 @@ fetch_place_children(place_dcids, as_dict)
 |---------------|-------|----------------|
 | place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
 | children_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `Country`, `State', `IPCCPlace_50`. If not specified, fetches all child types. |
-| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a list of child objects (when set to `True`), or a dictionary mapping each input DCID to a dictionary of child objects (when set to `False`). Defaults to `True`. |
+| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a dict of child entities (when set to `True`), or a dictionary mapping each input DCID to a list of child `NodeResponse` objects (when set to `False`). Defaults to `True`. |
 {: .doc-table }
 
 ### Response
@@ -840,7 +899,7 @@ Dependent on the setting of the `as_dict` parameter. See above for details.
 
 ### Examples
 {: .no_toc}
-#### Example 1: Fetch the direct children of a single DCID by type, as a list of child objects
+#### Example 1: Fetch the direct children of a single DCID by type, as a list
 This example gets the DCIDs of all the states in the United States, as a list.
 
 Request:
@@ -853,82 +912,37 @@ client.node.fetch_place_children(place_dcids=["country/USA"], children_type="Sta
 
 Response:
 {: .example-box-title}
+(truncated)
 
 ```python
+{'country/USA': [{'dcid': 'geoId/01', 'name': 'Alabama'},
+                 {'dcid': 'geoId/02', 'name': 'Alaska'},
+                 {'dcid': 'geoId/04', 'name': 'Arizona'},
+                 {'dcid': 'geoId/05', 'name': 'Arkansas'},
+                 {'dcid': 'geoId/06', 'name': 'California'},
+                 {'dcid': 'geoId/08', 'name': 'Colorado'},
+                 {'dcid': 'geoId/09', 'name': 'Connecticut'},
+                 {'dcid': 'geoId/10', 'name': 'Delaware'},
+                 {'dcid': 'geoId/11', 'name': 'District of Columbia'},
+                 {'dcid': 'geoId/12', 'name': 'Florida'},
+                 {'dcid': 'geoId/13', 'name': 'Georgia'},
+                 {'dcid': 'geoId/15', 'name': 'Hawaii'},
+                 {'dcid': 'geoId/16', 'name': 'Idaho'},
+                 {'dcid': 'geoId/17', 'name': 'Illinois'},
+                 {'dcid': 'geoId/18', 'name': 'Indiana'},
+                 {'dcid': 'geoId/19', 'name': 'Iowa'},
+                 {'dcid': 'geoId/20', 'name': 'Kansas'},
+                 {'dcid': 'geoId/21', 'name': 'Kentucky'},
+                 {'dcid': 'geoId/22', 'name': 'Louisiana'},
+                 {'dcid': 'geoId/23', 'name': 'Maine'},
+                 {'dcid': 'geoId/24', 'name': 'Maryland'},
+                 {'dcid': 'geoId/25', 'name': 'Massachusetts'},
+                 {'dcid': 'geoId/26', 'name': 'Michigan'},
+                 {'dcid': 'geoId/27', 'name': 'Minnesota'},
+                 {'dcid': 'geoId/28', 'name': 'Mississippi'},
+...
 ```
 {: .example-box-content .scroll}
-
-{: .no_toc}
-#### Example 2: Fetch the direct children of several place DCIDs, as a dict of child objects
-
-This example gets the immediate children of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of child objects.
-
-Request:
-{: .example-box-title}
-
-```python
-client.node.fetch_place_children(place_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
-```
-{: .example-box-content .scroll}
-
-Response:
-{: .example-box-title}
-
-```python
-{'wikidataId/Q2608785': Node(dcid='country/GTM',
-                             name='Guatemala',
-                             provenanceId='dc/base/WikidataGeos',
-                             types=['Country'],
-                             value=None),
- 'africa': Node(dcid='Earth',
-                name='World',
-                provenanceId='dc/base/BaseGeos',
-                types=['Place'],
-                value=None),
- 'country/GTM': [Node(dcid='CentralAmerica',
-                      name='Central America (including Mexico)',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['UNGeoRegion'],
-                      value=None),
-                 Node(dcid='LatinAmericaAndCaribbean',
-                      name='Latin America and the Caribbean',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['UNGeoRegion'],
-                      value=None),
-                 Node(dcid='northamerica',
-                      name='North America',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['Continent'],
-                      value=None),
-                 Node(dcid='undata-geo/G00134000',
-                      name='Americas',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None)],
- 'country/USA': [Node(dcid='northamerica',
-                      name='North America',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['Continent'],
-                      value=None),
-                 Node(dcid='undata-geo/G00134000',
-                      name='Americas',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None),
-                 Node(dcid='undata-geo/G00136000',
-                      name='Northern America',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None),
-                 Node(dcid='undata-geo/G00406000',
-                      name='Organisation for Economic Co-operation and '
-                           'Development (OECD)',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None)]}
-```
-{: .example-box-content .scroll}
-
 
 ## fetch_place_descendants
 
@@ -947,7 +961,7 @@ fetch_place_place_descendants(place_dcids, descendants_type, as_tree, max_concur
 | place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete child lineage you want to fetch. |
 | descendants_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `State', `County`, `City`. If not specified, fetches all child types. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all child objects (when set to `True`). Defaults to `False`. |
-| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the descendants graph by parallelizing requests. Defaults to 10. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the descendants graph by parallelizing requests. Defaults to 10. For queries that take overly long to return results, you may want to bump this up. |
 {: .doc-table }
 
 ### Response
@@ -956,15 +970,13 @@ Dependent on the setting of the `as_tree` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: Fetch 2 descendant types of a single place, as a dict
-
-This example gets the counties and cities of the state of California, and 
+#### Example 1: 
 
 Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_place_parents(entity_dcids=["wikidataId/Q2608785"], as tree=True)
+client.node.fetch_place_descendants(place_dcids=["geoId/07"], descendants_type=["County", "City"])
 ```
 {: .example-box-content .scroll}
 
