@@ -939,6 +939,8 @@ Response:
 
 Fetches the names, DCIDs, and types of all direct and indirect child places of the selected places.
 
+> Note: Because this method uses graph traversal, it may take several minutes to get a response.
+
 ### Signature
 
 ```python
@@ -952,7 +954,7 @@ fetch_place_place_descendants(place_dcids, descendants_type, as_tree, max_concur
 | place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete child lineage you want to fetch. |
 | descendants_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `State', `County`, `City`. If not specified, fetches all child types. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all child objects (when set to `True`). Defaults to `False`. |
-| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the descendants graph by parallelizing requests. Defaults to 10. For queries that take overly long to return results, you may want to bump this up. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the descendants graph by parallelizing requests for each input place entity. Defaults to 10. For queries that include multiple input place entities and that take overly long to return results, you may want to bump this up. For a single input entity, it has no effect. |
 {: .doc-table }
 
 ### Response
@@ -961,7 +963,7 @@ Dependent on the setting of the `as_tree` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: Fetch all descendants of a single place, as a dict
+#### Example 1: Fetch all descendants of a single place, as a tree
 
 This example fetches all the descendants of the U.S. state of Hawaii, as a dict
 
@@ -978,39 +980,37 @@ Response:
 (truncated)
 
 ```python
-{'geoId/24': [{'dcid': 'geoId/2400125', 'name': 'Aberdeen'},
-              {'dcid': 'geoId/2400175', 'name': 'Aberdeen Proving Ground'},
-              {'dcid': 'geoId/2400200', 'name': 'Abingdon'},
-              {'dcid': 'geoId/2400225', 'name': 'Accident'},
-              {'dcid': 'geoId/2400250', 'name': 'Accokeek'},
-              {'dcid': 'geoId/2400350', 'name': 'Adamstown'},
-              {'dcid': 'geoId/2400400', 'name': 'Adelphi'},
-              {'dcid': 'geoId/2400712', 'name': 'Algonquin'},
-              {'dcid': 'geoId/2400800', 'name': 'Allen'},
-              {'dcid': 'geoId/2401450', 'name': 'Andrews AFB'},
-              {'dcid': 'geoId/2401600', 'name': 'Annapolis'},
-              {'dcid': 'geoId/2401635', 'name': 'Annapolis Neck'},
-              {'dcid': 'geoId/2401750', 'name': 'Antietam'},
-              {'dcid': 'geoId/2401925', 'name': 'Aquasco'},
-              {'dcid': 'geoId/2401975', 'name': 'Arbutus'},
-              {'dcid': 'geoId/2402025', 'name': 'Arden on the Severn'},
-              {'dcid': 'geoId/2402275', 'name': 'Arnold'},
-              {'dcid': 'geoId/2402762', 'name': 'Ashton-Sandy Spring'},
-              {'dcid': 'geoId/2402825', 'name': 'Aspen Hill'},
-              {'dcid': 'geoId/2403500', 'name': 'Baden'},
-              {'dcid': 'geoId/2403514', 'name': 'Bagtown'},
-              {'dcid': 'geoId/2403575', 'name': 'Bakersville'},
-              {'dcid': 'geoId/2403800', 'name': 'Ballenger Creek'},
-              {'dcid': 'geoId/2404000', 'name': 'Baltimore'},
-              {'dcid': 'geoId/2404050', 'name': 'Baltimore Highlands'},
-              {'dcid': 'geoId/2404250', 'name': 'Barclay'},
-              {'dcid': 'geoId/2404475', 'name': 'Barnesville'},
-              {'dcid': 'geoId/2404525', 'name': 'Barrelville'},
-              {'dcid': 'geoId/2404625', 'name': 'Barton'},
-              {'dcid': 'geoId/2404650', 'name': 'Bartonsville'},
+
 ```
 {: .example-box-content .scroll}
 
+#### Example 2: Fetch the descendants of a single type of a single place, as a dict
+
+### fetch_place_ancestors
+Fetches the names, DCIDs, and types of all direct and indirect parent places of the selected places.
+
+### Signature
+
+```python
+fetch_place_place_ancestors(place_dcids, as_tree, max_concurrent_requests)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete parent lineage you want to fetch. |
+| as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests for each input place entity. Defaults to 10. For queries that include multiple input place entities and that take overly long to return results, you may want to bump this up. For a single input entity, it has no effect. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_tree` parameter. See above for details.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch all ancestors of a single place, as a tree
 
 
 ## Pagination
