@@ -954,7 +954,7 @@ fetch_place_place_descendants(place_dcids, descendants_type, as_tree, max_concur
 | place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete child lineage you want to fetch. |
 | descendants_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `State', `County`, `City`. If not specified, fetches all child types. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all child objects (when set to `True`). Defaults to `False`. |
-| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the descendants graph by parallelizing requests for each input place entity. Defaults to 10. For queries that include multiple input place entities and that take overly long to return results, you may want to bump this up. For a single input entity, it has no effect. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the graph by parallelizing requests for each input place entity. Defaults to 10. For queries that include multiple input place entities and that take overly long to return results, you may want to bump this up. For a single input entity, it has no effect. Don't set it to more than 100 as it may affect server memory. |
 {: .doc-table }
 
 ### Response
@@ -1001,11 +1001,11 @@ fetch_place_place_ancestors(place_dcids, as_tree, max_concurrent_requests)
 |---------------|-------|----------------|
 | place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose complete parent lineage you want to fetch. |
 | as_tree <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a flat list of node objects (when set to `False`) or a nested tree structure showing the relationship between all parent objects (when set to `True`). Defaults to `False`. |
-| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | The maximum number of concurrent requests to make: the method fetches the ancestry graph by parallelizing requests for each input place entity. Defaults to 10. For queries that include multiple input place entities and that take overly long to return results, you may want to bump this up. For a single input entity, it has no effect. |
+| max_concurrent_requests <br/><optional-tag>Optional</optional-tag> | int | See [fetch_place_descendants](#fetch_place_descendants) for description. |
 {: .doc-table }
 
 ### Response
-Dependent on the setting of the `as_tree` parameter. See above for details.
+Dependent on the setting of the `as_tree` parameter. See [fetch_place_descendants](#fetch_place_descendants) for details.
 
 ### Examples
 
