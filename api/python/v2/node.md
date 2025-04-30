@@ -721,6 +721,136 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+## fetch_place_children
+
+Fetches the names, DCIDs, and types of direct child places of the selected place entities.
+
+### Signature
+
+```python
+fetch_place_children(place_dcids, as_dict)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
+| children_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `Country`, `State', `IPCCPlace_50`. If not specified, fetches all child types. |
+| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a dict of child entities (when set to `True`), or a dictionary mapping each input DCID to a list of child `NodeResponse` objects (when set to `False`). Defaults to `True`. |
+{: .doc-table }
+
+### Response
+Dependent on the setting of the `as_dict` parameter. See above for details.
+
+### Examples
+
+{: .no_toc}
+#### Example 1: Fetch the direct children of a single DCID by type, as a dict
+This example gets the DCIDs of all the states in the United States, as a dict.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_place_children(place_dcids=["country/USA"], children_type="State")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```python
+{'country/USA': [{'dcid': 'geoId/01', 'name': 'Alabama'},
+                 {'dcid': 'geoId/02', 'name': 'Alaska'},
+                 {'dcid': 'geoId/04', 'name': 'Arizona'},
+                 {'dcid': 'geoId/05', 'name': 'Arkansas'},
+                 {'dcid': 'geoId/06', 'name': 'California'},
+                 {'dcid': 'geoId/08', 'name': 'Colorado'},
+                 {'dcid': 'geoId/09', 'name': 'Connecticut'},
+                 {'dcid': 'geoId/10', 'name': 'Delaware'},
+                 {'dcid': 'geoId/11', 'name': 'District of Columbia'},
+                 {'dcid': 'geoId/12', 'name': 'Florida'},
+                 {'dcid': 'geoId/13', 'name': 'Georgia'},
+                 {'dcid': 'geoId/15', 'name': 'Hawaii'},
+                 {'dcid': 'geoId/16', 'name': 'Idaho'},
+                 {'dcid': 'geoId/17', 'name': 'Illinois'},
+                 {'dcid': 'geoId/18', 'name': 'Indiana'},
+                 {'dcid': 'geoId/19', 'name': 'Iowa'},
+                 {'dcid': 'geoId/20', 'name': 'Kansas'},
+                 {'dcid': 'geoId/21', 'name': 'Kentucky'},
+                 {'dcid': 'geoId/22', 'name': 'Louisiana'},
+                 {'dcid': 'geoId/23', 'name': 'Maine'},
+                 {'dcid': 'geoId/24', 'name': 'Maryland'},
+                 {'dcid': 'geoId/25', 'name': 'Massachusetts'},
+                 {'dcid': 'geoId/26', 'name': 'Michigan'},
+                 {'dcid': 'geoId/27', 'name': 'Minnesota'},
+                 {'dcid': 'geoId/28', 'name': 'Mississippi'},
+...
+```
+{: .example-box-content .scroll}
+
+#### Example 1: Fetch the direct children of a single DCID by type, as a list of objects
+This example gets the DCIDs of all the states in the United States, as a list nof `NodeResponse` objects.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_place_children(place_dcids=["country/USA"], children_type="State", as_dict=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```python
+{'country/USA': [Node(dcid='geoId/01',
+                      name='Alabama',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/02',
+                      name='Alaska',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/04',
+                      name='Arizona',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/05',
+                      name='Arkansas',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/06',
+                      name='California',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/08',
+                      name='Colorado',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/09',
+                      name='Connecticut',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+                 Node(dcid='geoId/10',
+                      name='Delaware',
+                      provenanceId=None,
+                      types=None,
+                      value=None),
+...
+```
+{: .example-box-content .scroll}
+
 ## fetch_place_parents
 
 Fetches the names, DCIDs, and types of direct parent places of the selected place entities.
@@ -746,7 +876,7 @@ Dependent on the setting of the `as_dict` parameter. See above for details.
 
 {: .no_toc}
 #### Example 1: Fetch the direct parents of several place DCIDs, as a dict
-This example gets the immediate parents of 3 different DCID entities (places): USA, Guatemala and Africa, with `as_dict` set to `False`, to get a dictionary of parent objects.
+This example gets the immediate parents of 3 different DCID entities (places): USA, Guatemala and Africa.
 
 Request:
 {: .example-box-title}
@@ -804,145 +934,6 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-{: .no_toc}
-#### Example 2: Fetch the direct parents of several place DCIDs, as a list
-
-This example is the same as the previous one, but returns the results as a list of parent objects.
-
-Request:
-{: .example-box-title}
-
-```python
-client.node.fetch_place_parents(place_dcids=["africa", "country/GTM", "country/USA", "wikidataId/Q2608785"], as_dict=False)
-```
-{: .example-box-content .scroll}
-
-Response:
-{: .example-box-title}
-
-```python
-{'africa': [Node(dcid='Earth',
-                 name='World',
-                 provenanceId='dc/base/BaseGeos',
-                 types=['Place'],
-                 value=None)],
- 'country/GTM': [Node(dcid='CentralAmerica',
-                      name='Central America (including Mexico)',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['UNGeoRegion'],
-                      value=None),
-                 Node(dcid='LatinAmericaAndCaribbean',
-                      name='Latin America and the Caribbean',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['UNGeoRegion'],
-                      value=None),
-                 Node(dcid='northamerica',
-                      name='North America',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['Continent'],
-                      value=None),
-                 Node(dcid='undata-geo/G00134000',
-                      name='Americas',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None)],
- 'country/USA': [Node(dcid='northamerica',
-                      name='North America',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['Continent'],
-                      value=None),
-                 Node(dcid='undata-geo/G00134000',
-                      name='Americas',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None),
-                 Node(dcid='undata-geo/G00136000',
-                      name='Northern America',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None),
-                 Node(dcid='undata-geo/G00406000',
-                      name='Organisation for Economic Co-operation and '
-                           'Development (OECD)',
-                      provenanceId='dc/base/WikidataOtherIdGeos',
-                      types=['GeoRegion'],
-                      value=None)],
- 'wikidataId/Q2608785': [Node(dcid='country/GTM',
-                              name='Guatemala',
-                              provenanceId='dc/base/WikidataGeos',
-                              types=['Country'],
-                              value=None)]}
-```
-{: .example-box-content .scroll}
-
-## fetch_place_children
-
-Fetches the names, DCIDs, and types of direct child places of the selected place entities.
-
-### Signature
-
-```python
-fetch_place_children(place_dcids, as_dict)
-```
-
-### Input parameters
-
-| Name          | Type  |   Description  |
-|---------------|-------|----------------|
-| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
-| children_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `Country`, `State', `IPCCPlace_50`. If not specified, fetches all child types. |
-| as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a dict of child entities (when set to `True`), or a dictionary mapping each input DCID to a list of child `NodeResponse` objects (when set to `False`). Defaults to `True`. |
-{: .doc-table }
-
-### Response
-Dependent on the setting of the `as_dict` parameter. See above for details.
-
-### Examples
-{: .no_toc}
-#### Example 1: Fetch the direct children of a single DCID by type, as a list
-This example gets the DCIDs of all the states in the United States, as a list.
-
-Request:
-{: .example-box-title}
-
-```python
-client.node.fetch_place_children(place_dcids=["country/USA"], children_type="State")
-```
-{: .example-box-content .scroll}
-
-Response:
-{: .example-box-title}
-(truncated)
-
-```python
-{'country/USA': [{'dcid': 'geoId/01', 'name': 'Alabama'},
-                 {'dcid': 'geoId/02', 'name': 'Alaska'},
-                 {'dcid': 'geoId/04', 'name': 'Arizona'},
-                 {'dcid': 'geoId/05', 'name': 'Arkansas'},
-                 {'dcid': 'geoId/06', 'name': 'California'},
-                 {'dcid': 'geoId/08', 'name': 'Colorado'},
-                 {'dcid': 'geoId/09', 'name': 'Connecticut'},
-                 {'dcid': 'geoId/10', 'name': 'Delaware'},
-                 {'dcid': 'geoId/11', 'name': 'District of Columbia'},
-                 {'dcid': 'geoId/12', 'name': 'Florida'},
-                 {'dcid': 'geoId/13', 'name': 'Georgia'},
-                 {'dcid': 'geoId/15', 'name': 'Hawaii'},
-                 {'dcid': 'geoId/16', 'name': 'Idaho'},
-                 {'dcid': 'geoId/17', 'name': 'Illinois'},
-                 {'dcid': 'geoId/18', 'name': 'Indiana'},
-                 {'dcid': 'geoId/19', 'name': 'Iowa'},
-                 {'dcid': 'geoId/20', 'name': 'Kansas'},
-                 {'dcid': 'geoId/21', 'name': 'Kentucky'},
-                 {'dcid': 'geoId/22', 'name': 'Louisiana'},
-                 {'dcid': 'geoId/23', 'name': 'Maine'},
-                 {'dcid': 'geoId/24', 'name': 'Maryland'},
-                 {'dcid': 'geoId/25', 'name': 'Massachusetts'},
-                 {'dcid': 'geoId/26', 'name': 'Michigan'},
-                 {'dcid': 'geoId/27', 'name': 'Minnesota'},
-                 {'dcid': 'geoId/28', 'name': 'Mississippi'},
-...
-```
-{: .example-box-content .scroll}
 
 ## fetch_place_descendants
 
@@ -970,20 +961,53 @@ Dependent on the setting of the `as_tree` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: 
+#### Example 1: Fetch all descendants of a single place, as a dict
+
+This example fetches all the descendants of the U.S. state of Hawaii, as a dict
 
 Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch_place_descendants(place_dcids=["geoId/07"], descendants_type=["County", "City"])
+client.node.fetch_place_descendants(place_dcids=["geoId/15"])
 ```
 {: .example-box-content .scroll}
 
 Response:
 {: .example-box-title}
+(truncated)
 
 ```python
+{'geoId/24': [{'dcid': 'geoId/2400125', 'name': 'Aberdeen'},
+              {'dcid': 'geoId/2400175', 'name': 'Aberdeen Proving Ground'},
+              {'dcid': 'geoId/2400200', 'name': 'Abingdon'},
+              {'dcid': 'geoId/2400225', 'name': 'Accident'},
+              {'dcid': 'geoId/2400250', 'name': 'Accokeek'},
+              {'dcid': 'geoId/2400350', 'name': 'Adamstown'},
+              {'dcid': 'geoId/2400400', 'name': 'Adelphi'},
+              {'dcid': 'geoId/2400712', 'name': 'Algonquin'},
+              {'dcid': 'geoId/2400800', 'name': 'Allen'},
+              {'dcid': 'geoId/2401450', 'name': 'Andrews AFB'},
+              {'dcid': 'geoId/2401600', 'name': 'Annapolis'},
+              {'dcid': 'geoId/2401635', 'name': 'Annapolis Neck'},
+              {'dcid': 'geoId/2401750', 'name': 'Antietam'},
+              {'dcid': 'geoId/2401925', 'name': 'Aquasco'},
+              {'dcid': 'geoId/2401975', 'name': 'Arbutus'},
+              {'dcid': 'geoId/2402025', 'name': 'Arden on the Severn'},
+              {'dcid': 'geoId/2402275', 'name': 'Arnold'},
+              {'dcid': 'geoId/2402762', 'name': 'Ashton-Sandy Spring'},
+              {'dcid': 'geoId/2402825', 'name': 'Aspen Hill'},
+              {'dcid': 'geoId/2403500', 'name': 'Baden'},
+              {'dcid': 'geoId/2403514', 'name': 'Bagtown'},
+              {'dcid': 'geoId/2403575', 'name': 'Bakersville'},
+              {'dcid': 'geoId/2403800', 'name': 'Ballenger Creek'},
+              {'dcid': 'geoId/2404000', 'name': 'Baltimore'},
+              {'dcid': 'geoId/2404050', 'name': 'Baltimore Highlands'},
+              {'dcid': 'geoId/2404250', 'name': 'Barclay'},
+              {'dcid': 'geoId/2404475', 'name': 'Barnesville'},
+              {'dcid': 'geoId/2404525', 'name': 'Barrelville'},
+              {'dcid': 'geoId/2404625', 'name': 'Barton'},
+              {'dcid': 'geoId/2404650', 'name': 'Bartonsville'},
 ```
 {: .example-box-content .scroll}
 
