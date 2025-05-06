@@ -164,6 +164,8 @@ This does the following:
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
 
+You can see the actual Docker commands that the script runs at the [end of this page](#docker).
+
 ### Stop and restart the services
 
 If you need to restart the services for any reason, do the following:
@@ -212,6 +214,27 @@ http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=
 If you select **Prettyprint**, you should see output like this:
 
 ![screenshot_api_call](/assets/images/custom_dc/customdc_screenshot4.png){: height="400" }
+
+{: #docker}
+## Docker commands
+
+The Bash script used on this page runs the following commands:
+
+```bash
+docker run \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  gcr.io/datcom-ci/datacommons-data:stable
+
+docker run -i \
+  -p 8080:8080 \
+  -e DEBUG=true \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  gcr.io/datcom-ci/datacommons-services:stable
+```
 
 ## Troubleshooting
 

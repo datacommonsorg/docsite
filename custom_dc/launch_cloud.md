@@ -6,11 +6,10 @@ parent: Build your own Data Commons
 ---
 
 {: .no_toc}
-
 # Launch your Data Commons
 
-- TOC
-  {:toc}
+* TOC
+{: toc}
 
 ## Overview
 
