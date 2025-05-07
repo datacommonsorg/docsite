@@ -46,8 +46,6 @@ The following are the methods available for the `resolve` endpoint.
 
 All request methods return a `ResolveResponse` object. It looks like this:
 
-The response looks like:
-
 <pre>
 {
   "entities": [
@@ -92,8 +90,7 @@ You can call the following methods on the `ResolveResponse` object:
 |--------|-------------|
 | to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
-| to_flat_dict | Flattens resolved candidate data into a dictionary where each node maps to a list of candidates. If a node has only one candidate, it maps directly to the candidate instead of a list. <!--- TODO: Add examples of this ---> |
-
+| to_flat_dict | Flattens resolved candidate data into a dictionary where each node maps to a list of candidates. If a node has only one candidate, it maps directly to the candidate instead of a list. See [Example 3](#ex3) below for details. |
 {: .doc-table}
 
 ## fetch
@@ -126,7 +123,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch(node_ids="Q30", expression="<-wikidataId->dcid")
+client.resolve.fetch(node_ids="Q30", expression="<-wikidataId->dcid")
 ```
 
 Response:
@@ -149,7 +146,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 2: Find the DCID of places by name, with a type filter
+#### Example 2: Find the DCIDs of places by name, with a type filter
 
 This queries for the DCIDs of "Mountain View" and "California" (cities) using their names, and filters for only cities to be returned in the results. Notice that there are 4 cities named "California"!
 
@@ -157,7 +154,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch(node_ids = ["Mountain View, CA", "California"], expression="<-description{typeOf:City}->dcid")
+client.resolve.fetch(node_ids = ["Mountain View, CA", "California"], expression="<-description{typeOf:City}->dcid")
 ```
 
 Response:
@@ -199,6 +196,31 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
+{: #ex3}
+#### Example 3: Return candidate results as a flat dictionary
+
+This is the same example as above, but the response is returned as a concise, flattened dict.
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = ["Mountain View, CA", "California"], expression="<-description{typeOf:City}->dcid").to_flat_dict()
+```
+
+Response:
+{: .example-box-title}
+
+```python
+{'California': ['geoId/2412150',
+                'geoId/4210768',
+                'geoId/2910468',
+                'geoId/2111872'],
+ 'Mountain View, CA': ['geoId/0649670', 'geoId/0649651']}
+```
+{: .example-box-content .scroll}
+
 ## fetch_dcids_by_name
 
 Resolve entities to DCIDs by using a name.
@@ -228,7 +250,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcids_by_name(names="Georgia")
+client.resolve.fetch_dcids_by_name(names="Georgia")
 ```
 
 > Tip: This example is equivalent to `resolve.fetch(node_ids="Georgia", expression="<-description->dcid")`.
@@ -268,7 +290,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcids_by_name(names="Georgia", entity_type="State")
+client.resolve.fetch_dcids_by_name(names="Georgia", entity_type="State")
 ```
 > Tip: This example is equivalent to `resolve.fetch(node_ids="Georgia", expression="<-description{typeOf:State}->dcid")`.
 
@@ -320,7 +342,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcids_by_wikidata_id(wikidata_ids="Q30")
+client.resolve.fetch_dcids_by_wikidata_id(wikidata_ids="Q30")
 ```
 
 Response:
@@ -372,7 +394,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcid_by_coordinates(latitude = "37.42", longitude = "-122.08")
+client.resolve.fetch_dcid_by_coordinates(latitude = "37.42", longitude = "-122.08")
 ```
 
 > Tip: This is equivalent to `client.resolve.fetch(node_ids=["37.42#-122.08"], expression= "<-geoCoordinate->dcid")`
