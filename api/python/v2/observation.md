@@ -33,7 +33,7 @@ The following are the methods available for this endpoint.
 
 ## Response {#response}
 
-With `select=["date", entity", "variable", "value"]` in effect (the default), the response looks like this:
+With `select=["date", "entity", "variable", "value"]` in effect (the default), the response looks like this:
 
 <pre>
 {
