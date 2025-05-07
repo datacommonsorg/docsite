@@ -1283,7 +1283,7 @@ Dependent on the setting of the `as_dict` parameter. See above for details.
 ### Examples
 
 {: .no_toc}
-#### Example 1: Fetch the direct parents of several place DCIDs, as a dict
+#### Example 1: Fetch the direct parents of several places, as a dict
 This example gets the immediate parents of 3 different places: USA, Guatemala and Africa.
 
 Request:
