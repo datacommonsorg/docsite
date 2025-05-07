@@ -35,10 +35,11 @@ The following are the methods available for this endpoint.
 | [fetch_property_values](#fetch_property_values) | Fetch values of specified nodes and properties |
 | [fetch_all_classes](#fetch_all_classes) | Fetch the DCIDs and other properties of all nodes of `Class` type. This is useful for listing out all the entity types in the graph. |
 | [fetch_entity_names](#fetch_entity_names) | Look up the names of entities, in one or two languages, based on their DCIDs. |
-| [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property), based on entity DCIDs. |
 | [fetch_place_children](#fetch_place_children) | Look up the names of direct child place entities (related by the `containedInPlace` property), based on entity DCIDs. |
-| [fetch_place_ancestors](#fetch_place_ancestors) | Fetch the full graph of direct and indirect parents of places (related by the `containedInPlace` property), based on their DCIDs. |
 | [fetch_place_descendants](#fetch_place_descendants) | Fetch the full graph of direct and indirect children of places (related by the `containedInPlace` property), based on their DCIDs. |
+| [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property), based on entity DCIDs. |
+| [fetch_place_ancestors](#fetch_place_ancestors) | Fetch the full graph of direct and indirect parents of places (related by the `containedInPlace` property), based on their DCIDs. |
+
 
 ## Response
 
