@@ -28,12 +28,12 @@ The following are the methods available for this endpoint.
 |--------|-------------|
 | [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions) |
 | [fetch_available_statistical_variables](#fetch_available_statistical_variables) | Fetch the statistical variables available for a given entity or entities. |
-| [fetch_observations_by_entity_dcid](#fetch_observations_by_entity_dcid) | Fetch observations for specified variables, dates and entities. by DCID. |
-| [fetch_observations_by_entity_type](fetch_observations_by_entity_type) | Fetch observations for specified variables and dates, by entity type and parent entity |
+| [fetch_observations_by_entity_dcid](#fetch_observations_by_entity_dcid) | Fetch observations for specified variables, dates and entities, by entity DCID. |
+| [fetch_observations_by_entity_type](fetch_observations_by_entity_type) | Fetch observations for specified variables and dates, by entity type and parent entity. |
 
 ## Response {#response}
 
-With `select=["date", "variable","entity", "value"]` in effect (the default), the response looks like this:
+With `select=["date", entity", "variable", "value"]` in effect (the default), the response looks like this:
 
 <pre>
 {
@@ -130,18 +130,20 @@ There are additional methods you can call on the response to structure the data 
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity. These include the date range, the number of observations included in the facet and so on. |
-| observations | list of objects | Date and value pairs for the observations made in the time period |
+| observations | list of objects | Date and value pairs for the observations made in the time period. |
 | facets | object | Various properties of reported facets, where available, including the provenance of the data, the import name, date range of observations, etc. |
 {: .doc-table}
 
 ### Response property methods
 
+The following methods are available for responses that return `NodeResponse` objects.
+
 | Method | Description | 
 |--------|-------------|
 | to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
 | to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
-| get_data_by_entity | Key the response data by entity rather than by variable.  <!--- TODO: Add examples of these ---> |
-| to_observations_as_records | Get the response data as a series of flat records. <!--- TODO: Add examples of these ---> |
+| get_data_by_entity | Key the response data by entity rather than by variable. This is useful for queries that involve multiple entities. |
+| to_observations_as_records | Get the response data as a series of flat records. See [Example 3](#ex3) below for details. |
 {: .doc-table}
 
 ## fetch
@@ -364,9 +366,129 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
+{: #ex3}
+#### Example 3: Get all observations for multiple entities specified by DCID, and return the results as flat records
+
+In this example, we get all the observations for the 2 countries, Mexico and Canada, that have data for[`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}. Each observation is returned as a single record.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observation.fetch(variable_dcids=["Count_Person_Female", "Count_Person_Male"], date="", select=["entity", "variable", "date", "value"], entity_dcids=["country/CAN", "country/MEX"])
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+[{'date': '2023',
+  'entity': 'country/CAN',
+  'variable': 'Count_Person_Female',
+  'value': 20084054,
+  'facetId': '4181918134',
+  'importName': 'OECDRegionalDemography_Population',
+  'measurementMethod': 'OECDRegionalStatistics',
+  'observationPeriod': 'P1Y',
+  'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C',
+  'unit': None},
+ {'date': '2021',
+  'entity': 'country/CAN',
+  'variable': 'Count_Person_Female',
+  'value': 15839460,
+  'facetId': '1216205004',
+  'importName': 'CanadaStatistics',
+  'measurementMethod': None,
+  'observationPeriod': None,
+  'provenanceUrl': 'https://www150.statcan.gc.ca/n1/en/type/data?MM=1',
+  'unit': None},
+ {'date': '2021',
+  'entity': 'country/MEX',
+  'variable': 'Count_Person_Female',
+  'value': 65833180,
+  'facetId': '3251078590',
+  'importName': 'MexicoCensus_AA2',
+  'measurementMethod': None,
+  'observationPeriod': None,
+  'provenanceUrl': 'https://data.humdata.org/dataset/cod-ps-mex',
+  'unit': None},
+ {'date': '2020',
+  'entity': 'country/MEX',
+  'variable': 'Count_Person_Female',
+  'value': 64540634,
+  'facetId': '4181918134',
+  'importName': 'OECDRegionalDemography_Population',
+  'measurementMethod': 'OECDRegionalStatistics',
+  'observationPeriod': 'P1Y',
+  'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C',
+  'unit': None},
+ {'date': '2020',
+  'entity': 'country/MEX',
+  'variable': 'Count_Person_Female',
+  'value': 64540634,
+  'facetId': '3614729857',
+  'importName': 'MexicoCensus',
+  'measurementMethod': None,
+  'observationPeriod': None,
+  'provenanceUrl': 'https://www.inegi.org.mx/temas/',
+  'unit': None},
+ {'date': '2023',
+  'entity': 'country/CAN',
+  'variable': 'Count_Person_Male',
+  'value': 20013707,
+  'facetId': '4181918134',
+  'importName': 'OECDRegionalDemography_Population',
+  'measurementMethod': 'OECDRegionalStatistics',
+  'observationPeriod': 'P1Y',
+  'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C',
+  'unit': None},
+ {'date': '2021',
+  'entity': 'country/CAN',
+  'variable': 'Count_Person_Male',
+  'value': 15139730,
+  'facetId': '1216205004',
+  'importName': 'CanadaStatistics',
+  'measurementMethod': None,
+  'observationPeriod': None,
+  'provenanceUrl': 'https://www150.statcan.gc.ca/n1/en/type/data?MM=1',
+  'unit': None},
+ {'date': '2021',
+  'entity': 'country/MEX',
+  'variable': 'Count_Person_Male',
+  'value': 63139259,
+  'facetId': '3251078590',
+  'importName': 'MexicoCensus_AA2',
+  'measurementMethod': None,
+  'observationPeriod': None,
+  'provenanceUrl': 'https://data.humdata.org/dataset/cod-ps-mex',
+  'unit': None},
+ {'date': '2020',
+  'entity': 'country/MEX',
+  'variable': 'Count_Person_Male',
+  'value': 61473390,
+  'facetId': '4181918134',
+  'importName': 'OECDRegionalDemography_Population',
+  'measurementMethod': 'OECDRegionalStatistics',
+  'observationPeriod': 'P1Y',
+  'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C',
+  'unit': None},
+ {'date': '2020',
+  'entity': 'country/MEX',
+  'variable': 'Count_Person_Male',
+  'value': 61473390,
+  'facetId': '3614729857',
+  'importName': 'MexicoCensus',
+  'measurementMethod': None,
+  'observationPeriod': None,
+  'provenanceUrl': 'https://www.inegi.org.mx/temas/',
+  'unit': None}]
+```
+{: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 3: Get the latest observations for entities specified by expression
+#### Example 4: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of type county".
 
@@ -426,6 +548,7 @@ Response:
     },
   }
 }
+...
 ```
 {: .example-box-content .scroll}
 
@@ -436,7 +559,7 @@ Look up the statistical variables available for one or more entities (places).
 ### Signature
 
 ```python
-fetch_available_statistical_variables(entity_ids)
+fetch_available_statistical_variables(entity_dcids)
 ```
 
 ### Input parameters
@@ -1193,7 +1316,7 @@ fetch_observations_by_entity_type(date, entity_dcids, variable_dcids, select, fi
 ### Examples 
 
 {: .no_toc}
-#### Example 1: Get all observations for a selected variable for child entities
+#### Example 1: Get all observations for a selected variable, for child entities of a selected entity
 
 Ths example gets all observatons for the proportion of population below the international poverty line for all countries in Africa. 
 
