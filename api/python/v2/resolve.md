@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Resolve entities
-nav_order: 4
+nav_order: 6
 parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
@@ -26,6 +26,8 @@ Note that you can only resolve entities by some terminal properties. You cannot 
 
 > **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
+[Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/resolve.py){: target="_blank"}
+
 * TOC
 {:toc}
 
@@ -37,14 +39,12 @@ The following are the methods available for the `resolve` endpoint.
 |--------|-------------|
 | [fetch](#fetch) | Resolve entities by using a [relation expression](/api/rest/v2/index.html#relation-expressions) for the property or properties to search on. |
 | [fetch_dcids_by_name](#fetch_dcids_by_name) | Look up DCIDs of entities by name. |
-| [fetch_dcid_by_wikidata_id](#fetch_dcid_by_wikidata_id) | Look up DCIDs of entities by Wikidata ID. |
+| [fetch_dcids_by_wikidata_id](#fetch_dcids_by_wikidata_id) | Look up DCIDs of entities by Wikidata ID. |
 | [fetch_dcid_by_coordinates](#fetch_dcid_by_coordinates) | Look up a DCID of a single entity by geographical coordinates. |
 
 ## Response
 
 All request methods return a `ResolveResponse` object. It looks like this:
-
-The response looks like:
 
 <pre>
 {
@@ -90,6 +90,7 @@ You can call the following methods on the `ResolveResponse` object:
 |--------|-------------|
 | to_dict | Converts the dataclass to a Python dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). See [Response formatting](index.md#response-formatting) for details. |
+| to_flat_dict | Flattens resolved candidate data into a dictionary where each node maps to a list of candidates. If a node has only one candidate, it maps directly to the candidate instead of a list. See [Example 3](#ex3) below for details. |
 {: .doc-table}
 
 ## fetch
@@ -122,7 +123,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch(node_ids="Q30", expression="<-wikidataId->dcid")
+client.resolve.fetch(node_ids="Q30", expression="<-wikidataId->dcid")
 ```
 
 Response:
@@ -145,7 +146,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 2: Find the DCID of places by name, with a type filter
+#### Example 2: Find the DCIDs of places by name, with a type filter
 
 This queries for the DCIDs of "Mountain View" and "California" (cities) using their names, and filters for only cities to be returned in the results. Notice that there are 4 cities named "California"!
 
@@ -153,7 +154,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch(node_ids = ["Mountain View, CA", "California"], expression="<-description{typeOf:City}->dcid")
+client.resolve.fetch(node_ids = ["Mountain View, CA", "California"], expression="<-description{typeOf:City}->dcid")
 ```
 
 Response:
@@ -195,6 +196,31 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
+{: #ex3}
+#### Example 3: Return candidate results as a flat dictionary
+
+This is the same example as above, but the response is returned as a concise, flattened dict.
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = ["Mountain View, CA", "California"], expression="<-description{typeOf:City}->dcid").to_flat_dict()
+```
+
+Response:
+{: .example-box-title}
+
+```python
+{'California': ['geoId/2412150',
+                'geoId/4210768',
+                'geoId/2910468',
+                'geoId/2111872'],
+ 'Mountain View, CA': ['geoId/0649670', 'geoId/0649651']}
+```
+{: .example-box-content .scroll}
+
 ## fetch_dcids_by_name
 
 Resolve entities to DCIDs by using a name.
@@ -224,7 +250,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcids_by_name(names="Georgia")
+client.resolve.fetch_dcids_by_name(names="Georgia")
 ```
 
 > Tip: This example is equivalent to `resolve.fetch(node_ids="Georgia", expression="<-description->dcid")`.
@@ -264,7 +290,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcids_by_name(names="Georgia", entity_type="State")
+client.resolve.fetch_dcids_by_name(names="Georgia", entity_type="State")
 ```
 > Tip: This example is equivalent to `resolve.fetch(node_ids="Georgia", expression="<-description{typeOf:State}->dcid")`.
 
@@ -287,22 +313,22 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-## fetch_dcid_by_wikidata_id
+## fetch_dcids_by_wikidata_id
 
-Resolve entities to DCIDs by a Wikidata ID.
+Resolve entities to DCIDs by Wikidata ID.
 
 ### Signature
 
 ```python
-fetch_dcid_by_wikidata_id(wikidata_id, entity_type)
+fetch_dcids_by_wikidata_id(wikidata_ids, entity_type)
 ```
 
 ### Input parameters
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| wikidata_id <br /> <required-tag>Required</required-tag>  | string or list of strings | The Wikidata ID(s) of the entities to look up. |
-| entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
+| wikidata_ids <br /> <required-tag>Required</required-tag>  | string or list of strings | The Wikidata ID(s) of the entities to look up. |
+| entity_type <br /> <optional-tag>Optional</optional-tag> | string | See [fetch_dcids_by_name](#fetch_dcids_by_name) for description. |
 {: .doc-table }
 
 ### Examples
@@ -316,7 +342,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcid_by_wikidata_id(wikidata_id="Q30")
+client.resolve.fetch_dcids_by_wikidata_id(wikidata_ids="Q30")
 ```
 
 Response:
@@ -354,7 +380,7 @@ fetch_dcid_by_coordinates(latitude, longitude, entity_type)
 |---------------|-------|----------------|
 | latitude <br /> <required-tag>Required</required-tag>  | string | The latitude of the entity to look up. It should be expressed in decimal format e.g., `37.42` |
 | longitude <br /> <required-tag>Required</required-tag>  | string | The longitude of the entity to look up. It should be expressed in decimal format e.g, `-122.08` |
-| entity_type <br /> <optional-tag>Optional</optional-tag> | string | The type of the entities to be returned. This acts as a filter, by limiting the number of result candidates limit the number of possible candidates (like using the `typeof` parameter in the `fetch` method).|
+| entity_type <br /> <optional-tag>Optional</optional-tag> | string | See [fetch_dcids_by_name](#fetch_dcids_by_name) for description. |
 {: .doc-table }
 
 ### Examples
@@ -368,7 +394,7 @@ Request:
 {: .example-box-title}
 
 ```python
-resolve.fetch_dcid_by_coordinates(latitude = "37.42", longitude = "-122.08")
+client.resolve.fetch_dcid_by_coordinates(latitude = "37.42", longitude = "-122.08")
 ```
 
 > Tip: This is equivalent to `client.resolve.fetch(node_ids=["37.42#-122.08"], expression= "<-geoCoordinate->dcid")`

@@ -6,6 +6,7 @@ parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true
 ---
+
 {: .no_toc}
 # /v2/resolve
 
@@ -18,7 +19,7 @@ in other API calls or programs. An important step for a Data Commons developer i
 identify the DCIDs of entities they care about. This API searches for an entry in the
 Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
 
-Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
+Note that you can only resolve entities by specific terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
 > **Note**: Currently, this endpoint only supports [place](/glossary.html#place) entities.
 
@@ -75,6 +76,8 @@ JSON data:
 | nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. |
 | property <br /> <required-tag>Required</required-tag> | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude.<br/>Note that these are not necessarily "properties" that appear in the knowledge graph; instead, they are "synthetic" attributes that cover searches over multiple properties. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
 {: .doc-table }
+
+> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties.
 
 ## Response
 
