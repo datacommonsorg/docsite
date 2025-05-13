@@ -24,49 +24,41 @@ These materials were designed to:
 
 * **_Easy to adapt_.** The notebook format and Data Commons Python API makes everything modular and easy to edit.
 
-
 ## Who is this for?
 
 Teachers, professors, instructors, teaching assistants, and anyone else developing and teaching data science curriculum. We also believe early practitioners can benefit greatly from the exercises.
 
 As an example, MIT's large [Introduction to Machine Learning](https://introml.odl.mit.edu/) course has adapted several of the examples covered in these notebooks to suit their pedagogical needs. From using the same datasets to dive deeper into the material, to modifying the data/variables to illustrate a similar effect, the adaptations span a wide spectrum. 
 
-
 ## How can these be used?
 
 We strongly encourage you to change and adapt these notebooks to fit your needs! You can download any notebook in either .ipynb or .py format by clicking on its link and **File > Download**.
 
-Datasets can be changed by editing the list of variables queried (see the [Data Commons for Data Science](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) tutorial for more on this); editing framing and questions is as easy as editing text cells.
+Datasets can be changed by editing the list of variables queried (see the [Data Commons for Data Science](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) tutorial for more on this); editing framing and questions is as easy as editing text cells.
 
 Some ideas:
 * Add additional cells for any additional topics you want covered.
 * For students with stronger programming skills, ask to implement the methods covered on their own.
 * Some of the questions posed to students in the notebooks are open ended – these can be adapted to discussion sessions with students.
 
-
 ## Python notebooks
 
-* [**Data Commons for Data Science Tutorial**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) \\
+> **Note**: The notebooks are currently in the process of being upgraded to V2 of the Data Commons APIs. Where available, links are given below to the latest versions. The V1 APIs are slated for deprecation.
+
+*  **Data Commons for Data Science Tutorial** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) \\
 A quick tutorial introducing the key concepts of working with the Data Commons Python API. Great for familiarizing yourself with how to adapt datasets to your particular needs.
 
-
-* [**Feature Engineering**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Feature_Engineering.ipynb) \\
+* **Feature Engineering** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Feature_Engineering.ipynb) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Feature_Engineering.ipynb) \\
 Explores the first steps of any data science pipeline: feature selection, data visualization, preprocessing and standardization. Pairs well with “Classification and Model Evaluation”.
 
-
-* [**Classification and Model Evaluation**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Classification_and_Model_Evaluation.ipynb) \\
+* **Classification and Model Evaluation** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Classification_and_Model_Evaluation.ipynb) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Classification_and_Model_Evaluation.ipynb)  \\
 Explores the second half of a data science pipeline: training and test splits, cross validation, metrics for model evaluation. Focus is on classification models. Pairs well with “Feature Engineering”.
 
-
-* [**Regression: Basics and Prediction**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Regression_Basics_and_Prediction.ipynb) \\
+* **Regression: Basics and Prediction** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Regression_Basics_and_Prediction.ipynb) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Regression_Basics_and_Prediction.ipynb) \\
 An introduction to linear regression as a tool for prediction, from a modern machine learning perspective.
 
-
-* [**Regression: Evaluation and Interpretation**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Regression_Evaluation_and_Interpretation.ipynb) \\
+* **Regression: Evaluation and Interpretation** [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Regression_Evaluation_and_Interpretation.ipynb) \\
 A more in-depth look at linear regression, with an emphasis on interpreting model parameters and evaluation metrics beyond simple accuracy. Provides a more statistical perspective.
 
-
-* [**Clustering**](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Introduction_to_Clustering.ipynb) \\
+* **Clustering** [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Introduction_to_Clustering.ipynb) \\
 An introduction to clustering analysis for unsupervised learning. Explores the mechanics of K-means clustering and cluster interpretation.
-
-
