@@ -62,5 +62,3 @@ A more in-depth look at linear regression, with an emphasis on interpreting mode
 
 * **Clustering** [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Introduction_to_Clustering.ipynb) \\
 An introduction to clustering analysis for unsupervised learning. Explores the mechanics of K-means clustering and cluster interpretation.
-
-
