@@ -45,7 +45,7 @@ Some ideas:
 
 > **Note**: The notebooks are currently in the process of being upgraded to V2 of the Data Commons APIs. Where available, links are given below to the latest versions. The V1 APIs are slated for deprecation.
 
-*  **Data Commons for Data Science Tutorial** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb)) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) \\
+*  **Data Commons for Data Science Tutorial** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Data_Commons_For_Data_Science_Tutorial.ipynb) \\
 A quick tutorial introducing the key concepts of working with the Data Commons Python API. Great for familiarizing yourself with how to adapt datasets to your particular needs.
 
 * **Feature Engineering** [V2](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/v2/intro_data_science/Feature_Engineering.ipynb) [V1](https://colab.research.google.com/github/datacommonsorg/api-python/blob/master/notebooks/intro_data_science/Feature_Engineering.ipynb) \\
