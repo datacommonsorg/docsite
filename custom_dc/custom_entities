@@ -1,35 +1,50 @@
 ---
 layout: default
 title: Define custom entities
-nav_order: 3
+nav_order: 4
 parent: Build your own Data Commons
 ---
 
+{:.no_toc}
 # Define custom entities
 
-This page shows you how to define custom entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in 
-[Prepare and load your own data](custom_data.md).
+This page shows you how to define custom entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Prepare and load your own data](custom_data.md).
 
 Before creating new entities, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons. It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or an entity that already exists in base. 
 
+* TOC
+{:toc}
+
 ## Overview
 
-Like variables, you define entities as follows:
+Like variables, you can define entities using "implicit" or "explicit" schema:
 
-- You define entities in CSV files using the schema described below. See [Define custom entities  You can also define them in MCF if you choose. 
-- Entity types are defined in the JSON configuration file, `config.json`, or in MCF.
+- With implicit schema, you define _entities_ in CSV files using the schema described below, and define any new _entity types_ (if needed) in the `config.json` file. If you don't need any new entity types, this approach is strongly recommended as it is much simpler to set up.
+- With explicit schema, you define entities and entity types in MCF. If you need new entity types, you may want the additional flexibility allowed by MCF.
+
+> **Tip:** You can actually combine both of these options and get the best of both worlds: define entities in CSV files and entity types in MCF. 
+
+You any case, you need to configure the new entities in the `config.json` file. You only need a single `config.json` for both entities and variables.
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
+In the following sections, we'll describe both setting up the custom entities, as well as how to use them with custom statistical variables.
+
 {: #custom-entities}
-## Define custom entities in CSV + JSON
+## Define custom entities using implicit schema
 
-If you do need to define new custom entities, you need to create one or more CSV files to list them. These should be separate from the CSV files used to contain observations.
+In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. 
 
-The columns can be in any order, with any heading, and there can be as many as you need to define various properties of the entity. You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. If there is no existing entity type for your entities you can create those using the JSON config. 
+### Step 1: Prepare the CSV files
+
+You must use separate CSV files for defining entities, from those used for observations. If you are defining more than one type of entity (for example, a `Hospital` and a `School`), use a separate CSV file for each.
+
+Each CSV file can contain as many columns as you need to define various properties of the entity. The columns can be in any order, with any heading. 
+
+You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. In the following examples, we'll assume that you will define the DCIDs yourself. 
 
 {:.no_toc}
-#### Example 1: New entities, existing entity type
+#### New entities, existing entity type
 
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
@@ -44,16 +59,14 @@ ccn,name,address,city_name,City,zipCode,hospitalSubtype
 21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,Kodiak,geoId/02150,99615,Critical Access Hospitals
 21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02280,99833,Critical Access Hospitals
 ```
-The CCN is a certification number that uniquely identifies U.S. hospitals. You could use it as the DCID, or you could have Data Commons automatically assign a DCID. In both cases, you would do that in the JSON config. Note that the "city" column uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; later we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, the zip code won't be linked to the existing entity type [`CensusZipCodeTabulationArea`]. 
+The CCN is a certification number that uniquely identifies U.S. hospitals. (We'll use it as the DCID.) Note that the "city" column uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; later we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, it won't be used to link to any existing entities. 
 
-> Note: Whenever you want to new entity properties to be linked to an existing entity, you must use its DCID in the column heading. 
-
-If you are defining more than one type of entity (for example a `Hospital` and a `School`), use a separate CSV for each.
+> **Important:** Whenever you want to new entity properties to be linked to an existing entity, you _must_ use its DCID in the column heading. 
 
 {:.no_toc}
-#### Example 2: New entities, new entity type 
+#### New entities, new entity type 
 
-Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, this concept is defined as a new entity type, `NameStem`, in [`config.json`](#new-entity-json), while the following CSV file identifies some actual stems (entities):
+Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, you would define the entity type `Stem` in the `config.json` file (see below), while the following CSV file identifies some actual stems (entities):
 
 ```csv
 Stem,Definition,Examples
@@ -65,7 +78,7 @@ adol,analgesics,tazadolene
 adox,antibacterials,carbadox
 ```
 
-#### Example 2: Observations with new (custom) entities 
+#### Statistical variables and new (custom) entities 
 
 If you are providing observations for custom entities, the observations should be in a separate file. Using our original example, here are some metrics and observations for indnividual hospitals. Note that the first column must contain the DCIDs that you have defined, and its heading must be `dcid`. In this particular case, the dataset uses a negative number, rather than a null value, to indicate that the data is not available for that observation.
 
@@ -80,9 +93,13 @@ dcid,week,total_num_staffed_beds,num_staffed_adult_beds,num_staffed_inpatient_ic
 ```
 
 {:.no_toc}
-#### Example 2: New entities, existing entity type
+### Step 2: Write the config.json file
 
-Here's an example of how a `config.json` file could look for our hospital data:
+The next step is to create the config.json file to configure your new entities. Note that this is the same config.json file you use for variables. 
+
+#### New entities, existing entity type
+
+Here's an example of how a `config.json` file could look for our hospital data, in which case the `Hospital` entity type already exists. In this case, you only provide the entity type name, since all other properties of the type are already defined in the base knowledge graph.
 
 ```json
 {
@@ -99,7 +116,6 @@ Here's an example of how a `config.json` file could look for our hospital data:
   },
   "entities": {
     "Hospital": {
-      "name": "Hospital"
     }
   },
   "sources": {
@@ -121,15 +137,15 @@ Note the presence of the `entities` section and these important fields:
   - `entityColumns`: This is also optional: if you want your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. 
     Note that the heading of the column and its reference here must use the DCID of the entity. If you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
 - `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. 
-  - `name`: This is optional and only relevant if you are creating a new entity type (see below).
-  - `description`: This is optional and only relevant if you are creating a new entity type (see below).
   
-The other fields are explained in the [Data config file specification reference](#json-ref).
+The other fields are explained in the [Data config file specification reference](config.md).
 
 {:.no_toc}
-#### Example 3: New entities, new entity type {#new-entity-json}
+#### New entities, new entity type {#new-entity-json}
 
 Here's an example of defining new entities _and_ a new entity type in the JSON file, building on the earlier "stem" example. In this example, `NameStem` is a new entity type, used for the `rowEntityType`. By identifying the `Stem` column from the CSV, DCIDs will be created for all the entity values in the column.
+
+The configuration is mostly identical to the previous example, with a notable exception: since we are actually defining a new entity type, `NameStem`, we need to give it a name and description.
 
 ```json
 {
@@ -142,7 +158,7 @@ Here's an example of defining new entities _and_ a new entity type in the JSON f
     }
   },
   "entities": {
-    "Stem": {
+    "NameStem": {
       "name": "USAN Stem",
       "description": "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
     }
@@ -158,7 +174,7 @@ Here's an example of defining new entities _and_ a new entity type in the JSON f
 ```
 
 {:.no_toc}
-#### Example 4: Observations with new entities
+#### Observations with new entities
 
 Here's an example of the previous hospital data, covering both the entities and the observations:
 
@@ -215,8 +231,12 @@ Here's an example of the previous hospital data, covering both the entities and 
 }
 ```
 
+## Define custom entities using explicit schema
+
+In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. 
+
 {: #custom-entities}
-### Step 0: Define custom entities (if needed) in MCF
+### Step 1: Define custom entities (if needed) in MCF
 
 Defining a custom entity type in MCF gives you more control of the fields you want to include as properties of the entity type than in `config.json` (which only allows for `name` and `description`). Essentially you define new nodes with DCIDs, and you can use any random key-value pair as properties of the node. You can even attach new properties to existing entity types and define enums for entity types.
 
@@ -309,3 +329,5 @@ description: "Weekly sum of all staffed inpatient beds in the ICU per hospital"
 
 ...
 ```
+
+
