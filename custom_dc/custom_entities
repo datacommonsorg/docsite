@@ -387,7 +387,7 @@ With MCF, since your entities are already defined, you don't need to define them
 {: #extend}
 ## Extend existing base non-place entities or entity types
 
-It may be the case that entities exist already in base Data Commons, but that you want to add more properties to them. To do, you can simply 
+It may be the case that entities exist already in base Data Commons, but you want to add more properties to them. To do, you can simply create an MCF file, and list out the additional properties. For example, let's say you 
 
 
 

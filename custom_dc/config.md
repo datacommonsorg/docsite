@@ -72,7 +72,6 @@ Here is the general spec for the `config.json` file.
       }  
     },  
   },   
-  
 
   "groupStatVarsByProperty": false | true,
 
@@ -146,7 +145,6 @@ ignoreColumns (implicit schema only)
 
 : Optional: The list of column names to be ignored by the importer, if any.
 
-
 {: #observation-properties} 
 observationProperties (implicit schema only)
 
@@ -166,8 +164,15 @@ columnMappings (explicit schema only)
 
 ## Entities (implicit schema only)
 
-### Entity parameters
+### Entity parameters 
 
+name
+
+: If you are creating a new entity type, provide a human-readable name for it. If you are referencing an existing entity type, omit this parameter.
+
+description
+
+: If you are creating a new entity type, provide a longer description for it. If you are referencing an existing entity type, omit this parameter.
 
 ## Variables (implicit schema only)
 
