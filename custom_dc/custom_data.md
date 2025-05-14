@@ -46,12 +46,11 @@ The following sections walk you through the process of setting up your data.
 
 The following sections describe the high-level conceptual work you need to do before starting to write your data and config files.
 
-{: #entities}
 ### Step 0.1: Determine whether you need new entities or entity types
 
-Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is very rare that you would need to create a new entity type, unless you are working in a highly specialized domain, such as biomedical data.
+Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
 
-An _entity_ is an instance of an entity type. For example, for public schools, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
+An _entity_ is an instance of an entity type. For example, for `PublicSchool`, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
 
 > **Note:** You should always reuse existing entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
 
@@ -59,16 +58,36 @@ Currently it is not possible to search the knowledge graph, so you need to drill
 
 To determine if a given entity exists in base Data Commons through the UI:
 
-1. Find a relevant entity type: Go to <https://datacommons.org/browser/Class>{: target="_blank"} and scroll to the **Subject type: Class** section.
+Find a relevant entity type: Go to <https://datacommons.org/browser/Class>{: target="_blank"} and scroll to the **Subject type: Class** section.
 
-  ![Class types](/assets/images/custom_dc/customdc_screenshot11.png)
+![Class types](/assets/images/custom_dc/customdc_screenshot11.png)
 
-  If you don't find anything in this list, you'll need to use the API, as described next.
+If you don't find anything in this list, you'll need to use the API, as described next.
 
-To determine if a given entity exists in base Data Commons through the API:
+#### Search for an existing entity / entity type
 
-1. Use the REST Node API through your browser to get a complete list of entity types: See [Get a list of all existing entity types](/api/rest/v2/node.md#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to create one; see xxx for details.
-1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `Drug`.
+Currently, the surest way to find whether an entity or entity type exist is by using the REST or Python APIs. If you are comfortable with Python interactive environments, this is the simplest approach.
+
+To search using the Python APIs:
+
+1. Start your Python interactive environment and [create a client for the base Data Commons](/api/python/v2/index.html).
+1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.)
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant`. If you don't find an entity type that matches your needs (very rare), you will need to create one.
+1. Use the `fetch_property_values` method to find all the instances of the type:
+
+  <pre>
+  client.node.fetch_property_values(node_dcids="<var>ENTITY_TYPE</var>", properties="typeOf", out=False)
+  </pre>
+  ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
+  ```
+  client.node.fetch_property_values(node_dcids="PowerPlant", properties="typeOf", out=False)
+  ```
+1. If your entity is listed, note its DCID. If your entity is missing some fields you want to add, see [Extend existing base non-place entities or entity types](custom_entities.md#extend) If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
+
+To search using the REST APIs:
+
+1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to create one.
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant`.
 1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
 
   <pre>
@@ -79,7 +98,8 @@ To determine if a given entity exists in base Data Commons through the API:
   ```
   https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
   ```
-1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Define custom entities](custom_entities.md) for complete information.
+1. If your entity is listed, note its DCID. If your entity is missing some fields you want to add, see [Extend existing base non-place entities or entity types](custom_entities.md#extend) If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
+
 
 ### Step 0.2: Identify your statistical variables
 
@@ -301,7 +321,7 @@ The following fields are specific to the variable-per-column format:
 
 The other fields are explained in the [Data config file specification reference](config.md).
 
-
+{: #explicit}
 ## Prepare your data using explicit schema
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables as new _nodes_ using MCF. When you define any variable in MCF, you must explicitly assign them DCIDs. 
@@ -364,6 +384,7 @@ Additionally, you can specify any number of property-value pairs representing th
 
 ![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
 
+{: #exp_csv}
 ### Step 2: Prepare the CSV observation files
 
 CSV files using explicit schema contain the following columns using the following headings:
