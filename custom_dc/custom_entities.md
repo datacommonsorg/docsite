@@ -137,11 +137,8 @@ The other fields are explained in the [Data config file specification reference]
 
 To define a new entity type, the configuration is mostly identical to the previous example, with a notable exception: in the `entities` section, you need to give the entity a name and description.
 
-For example, let's say you needed to define a new top-level entity for "wellness center", which does not exist in the base graph. Assuming that you define all the new wellness center entities in 
+For example, 
 
-
-
-```
 
 {: #ex23}
 #### Put it all together: statistical variables with new entities
@@ -247,36 +244,11 @@ Here are the important things to note:
 - The `City` field (named for the DCID) ensures that the node (hospital) is associated with the existing `City` node. This is useful if, say, you wanted to aggregate data from multiple hospitals in the same city.
 - Any fields that reference other existing nodes in the base graph must be prefixed by `dcid:` or `dcs:` or `schema:`, which are interchangeable. 
 
+{:.no_toc}
 #### Example 2: New entities, new entity type
 
-Here is an example of the aforementioned [`NameStem` entity type](). This MCF block serves the same function as the `config.json` `entities` section, but it adds a few other properties.
+Here is an example of the aforementioned `WellnessCenter` example. This MCF block serves the same function as the `config.json` `entities` section, but it adds a few other properties.
 
-```
-Node: dcid:NameStem
-name: "US Adopted Name Stem"
-typeOf: schema:Class
-subClassOf: dcs:ChemicalSubstance
-shortDisplayName: "USAN Stem"
-description: "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
-descriptionUrl: "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
-```
-
-Once the entity type is defined here, it can then be referenced by entities in the MCF (or even in CSV). For example, here are a few of the `NameStem` entities we defined in CSV earlier, as they would be defined in MCF:
-
-```
-Node: dcid:ac
-name: "ac"
-typeOf: NameStem
-definition: "anti-inflammatory agents"
-examples: "bromfenac"
-
-Node: dcid:adenant
-name: "adenant"
-typeOf: NameStem
-definition: "adensosine receptor antagonists"
-examples: "preladenant"
-...
-```
 
 #### Example 3: Statistical variables with new entities
 

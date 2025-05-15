@@ -48,6 +48,10 @@ The following sections describe the high-level conceptual work you need to do be
 
 ### Step 0.1: Determine whether you need new entities or entity types
 
+Data Commons is optimized to support aggregations of data at geographical levels, such as city, county, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. You don't need new entities and can skip this step.
+
+If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.
+
 Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
 
 An _entity_ is an instance of an entity type. For example, for `PublicSchool`, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
@@ -56,23 +60,31 @@ An _entity_ is an instance of an entity type. For example, for `PublicSchool`, b
 
 Currently it is not possible to search the knowledge graph, so you need to drill down from higher-level nodes to find an entity you are looking for.
 
-To determine if a given entity exists in base Data Commons through the UI:
-
-Find a relevant entity type: Go to <https://datacommons.org/browser/Class>{: target="_blank"} and scroll to the **Subject type: Class** section.
-
-![Class types](/assets/images/custom_dc/customdc_screenshot11.png)
-
-If you don't find anything in this list, you'll need to use the API, as described next.
-
 #### Search for an existing entity / entity type
 
-Currently, the surest way to find whether an entity or entity type exist is by using the REST or Python APIs. If you are comfortable with Python interactive environments, this is the simplest approach.
+Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs. 
+
+To search using the REST APIs:
+
+1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to [create one](). 
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
+1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
+
+  <pre>
+  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf
+  </pre>
+  _ENTITY_TYPE_ is the DCID you've obtained in the previous step, such as `Hospital` or `PublicSchool`. For example:
+
+  ```
+  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
+  ```
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
 
 To search using the Python APIs:
 
 1. Start your Python interactive environment and [create a client for the base Data Commons](/api/python/v2/index.html).
 1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.)
-1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant`. If you don't find an entity type that matches your needs (very rare), you will need to create one.
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`. If you don't find an entity type that matches your needs (very rare), you will need to create one.
 1. Use the `fetch_property_values` method to find all the instances of the type:
 
   <pre>
@@ -80,26 +92,9 @@ To search using the Python APIs:
   </pre>
   ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
   ```
-  client.node.fetch_property_values(node_dcids="PowerPlant", properties="typeOf", out=False)
+  client.node.fetch_property_values(node_dcids="PublicSchool", properties="typeOf", out=False)
   ```
-1. If your entity is listed, note its DCID. If your entity is missing some fields you want to add, see [Extend existing base non-place entities or entity types](custom_entities.md#extend) If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
-
-To search using the REST APIs:
-
-1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to create one.
-1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant`.
-1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
-
-  <pre>
-  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf
-  </pre>
-  _ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
-
-  ```
-  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
-  ```
-1. If your entity is listed, note its DCID. If your entity is missing some fields you want to add, see [Extend existing base non-place entities or entity types](custom_entities.md#extend) If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
-
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
 
 ### Step 0.2: Identify your statistical variables
 
@@ -378,7 +373,7 @@ Note that all fields that reference another node in the graph must be prefixed b
 The following fields are optional:
 - `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
 - `measurementQualifier`: This is similar to the `observationPeriod` field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is `Count_Person`.
+- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
 Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:
 

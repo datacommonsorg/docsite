@@ -243,7 +243,6 @@ Optional: Causes the Statistical Variable Explorer to create a top-level categor
 
 For explicit schema (which does not give you a `group` option in the `config.json`), if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
 
-
 ## Sources
 
 The `sources` section encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
