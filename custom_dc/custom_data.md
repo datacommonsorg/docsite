@@ -131,14 +131,13 @@ If you wanted totals or subtotals of combinations, you would need to create addi
 ### Step 0.3: Choose between "implicit" and "explicit" schema definitions
 
 Custom Data Commons supports two ways of importing your data:
+
 - **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format (although you may); but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations based on a predictable column order or for entities based on the column you identify. This method is _simpler and recommended_ for most datasets.
+
 - **Explicit** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables (and entity types if needed) as nodes in MCF files. All variables in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format and to specify additional properties of variables or entities, offering greater flexibility. There are a few cases for which this option might be a better choice:
   - You have hundreds of variables, which may be unmanageable as separate columns or files.
   - You want to be able to specify additional properties, for example, unit of measurement, of the observations at a more granular level than per-file. As an example, let's say you have a variable that measures financial expenses, across multiple countries; you may want to be able to specify the country-specific currency of each observation.
   - In the case that you are missing observations for specific entities (e.g. places) or time periods for specific variables, and you don't want to have lots of null values in columns (sparse tables).
-  - You need to create an entity type, and need to define more fields than allowed by the implicit method (name and description).
-
-> Note: You can actually mix and match these two methods for variable versus entity definitions. However, you may find it much simpler to stick to one schema specification scheme.
 
 #### Variable schemas
 
@@ -190,9 +189,7 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
 The _ENTITY_ is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
-If the entity is not a place, it must be the DCID of the entity of interest. For example, if the entity type for which you are tracking observations is `PublicSchool`, all rows must contain DCIDs of the public schools rather than their names; for example, rather than `Andalusia Elementary School`, you would need to specify `nces/010006001467`.
-
-> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one. In addition, if you are using custom-defined entities, keep your entity definition files and variable/observation files separate.
+> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one. 
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
@@ -250,9 +247,6 @@ You must define a `config.json` in the top-level directory where your CSV files 
 - The input files location and entity type
 - The sources and provenances of the data
 - Optionally, additional properties of the statistical variables you've used in the CSV files
-- If needed, some information about custom entities
-
-If you are using custom entities, you include the specifications for them in the same `config.json` file as observations.
 
 Here is an example of how the config file would look for the WHO CSV file we defined earlier. More details are below.
 
@@ -321,7 +315,7 @@ The other fields are explained in the [Data config file specification reference]
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables as new _nodes_ using MCF. When you define any variable in MCF, you must explicitly assign them DCIDs. 
 
-You can define your statistical variables (and entities and entity types, if desired) in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
+You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
 
 In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
@@ -379,6 +373,68 @@ Additionally, you can specify any number of property-value pairs representing th
 
 ![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
 
+### (Optional) Define a statistical variable group {#statvar-group}
+
+If you would like to display variables in specific named groups, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
+
+> Tip: If you are using implicit schema, where your variables are defined in the .csv files only (and optionally in `config.json`), and you want to assign variables to multiple groups, you can simply create an MCF file like the one below, and just specify the `Node` and `memberOf` fields for each variable.
+
+Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
+
+```
+Node: dcid:Adult_curr_cig_smokers
+...
+memberOf: dcid:who/g/WHO
+
+Node: dcid:Adult_curr_cig_smokers_female
+...
+memberOf:dcid:who/g/WHO
+
+Node: dcid:Adult_curr_cig_smokers_male
+...
+memberOf: dcid:who/g/WHO
+
+Node: dcid:who/g/WHO
+typeOf: dcid:StatVarGroup
+name: "WHO"
+specializationOf: dcid:dc/g/Root
+
+```
+You can define as many statistical variable group nodes as you like. Each must include the following fields:
+
+- `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
+- `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`. 
+- `name`: This is the name of the heading that will appear in the Statistical Variable Explorer. 
+- `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
+
+```
+Node: dcid:who/g/WHO
+typeOf: dcs:StatVarGroup
+name: "WHO"
+specializationOf: dcid:dc/g/Root
+
+Node: dcid:who/g/Smoking
+typeOf: dcs:StatVarGroup
+name: "Smoking"
+specializationOf: dcid:who/g/WHO
+```
+
+You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
+
+```
+Node: dcid:Adult_curr_cig_smokers
+...
+memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
+
+Node: dcid:Adult_curr_cig_smokers_female
+...
+memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
+
+Node: dcid:Adult_curr_cig_smokers_male
+...
+memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
+```
+
 {: #exp_csv}
 ### Step 2: Prepare the CSV observation files
 
@@ -390,7 +446,7 @@ entity, variable, date, value [, unit] [, scalingFactor] [, measurementMethod] [
 The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
 These columns are required:
-- `entity`: The DCID of an existing or custom entity in the Data Commons knowledge graph, typically a place. 
+- `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place. 
 - `variable`: The DCID of the node you have defined in the MCF. 
 - `date`: The date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
 - `value`: The value of the observation and must be numeric. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
