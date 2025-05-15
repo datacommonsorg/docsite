@@ -1,12 +1,12 @@
 ---
 layout: default
-title:  Work with non-place entities
+title:  Define custom entities
 nav_order: 4
 parent: Build your own Data Commons
 ---
 
-{:.no_toc}
-# Work with non-place entities
+{: .no_toc}
+# Define custom (non-place) entities
 
 This page shows you how to define custom entities or extend non-place base entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Prepare and load your own data](custom_data.md).
 
@@ -46,10 +46,6 @@ Each CSV file can contain as many columns as you need to define various properti
 
 You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. In the following examples, we'll assume that you will define the DCIDs yourself. 
 
-{:.no_toc}
-{: #ex11}
-#### Example 1: New entities, existing entity type
-
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska:
 
 ```csv
@@ -63,32 +59,23 @@ ccn,name,address,city_name,City,zipCode,hospitalSubtype
 21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,Kodiak,geoId/02150,99615,Critical Access Hospitals
 21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02280,99833,Critical Access Hospitals
 ```
-The CCN is a certification number that uniquely identifies U.S. hospitals. (We'll use it as the DCID.) Note that the "city" column uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; later we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, it won't be used to link to any existing entities. 
+The CCN is a certification number that uniquely identifies U.S. hospitals. (We'll use it as the DCID.) 
 
-> **Important:** Whenever you want to new entity properties to be linked to an existing entity, you _must_ use its DCID in the column heading. 
+Here are a few things to note:
+- The order of columns does not matter. Even the column defining DCIDs does not need to be first; you will specify the column to use for DCIDs in `config.json`.
+- Similarly, if you are also defining a new entity type, _you_ will define it in `config.json`. This file looks exactly the same even if you're defining a new entity (for example, if `Hospital` didn't already exist and we wanted to create it.) It doesn't matter what heading you use for the entity column here either.
+- In this example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; later we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, it won't be used to link to any existing entities. 
 
-{:.no_toc}
+> **Important:** Whenever you want to new entity properties to be linked to an existing entity, you _must_ use its DCID in the column heading. If you don't want it to be linked to an existing entity, name your column something else.
+
 {: #ex12}
-#### Example 2: New entities, new entity type 
-
-Here is a real-world example from the biomedical domain. In the U.S., pharmaceutical compounds are identified by "stems" (letter sequences) that can be combined together to define new non-proprietary drug names. But the pharmaceutical "stem" is not a concept that exists in schema.org. Therefore, you would define the entity type `Stem` in the `config.json` file (see below), while the following CSV file identifies some actual stems (entities):
-
-```csv
-Stem,Definition,Examples
-ac,anti-inflammatory agents,bromfenac
-zolac,anti-inflammatory;  pyrazole acetic acid derivatives,rovazolac
-actant,pulmonary surfactants,"beractant, lucinactant, calfactant"
-adenant,adensosine receptor antagonists,preladenant
-adol,analgesics,tazadolene
-adox,antibacterials,carbadox
-```
-{:.no_toc}
-{: #ex13}
-#### Example 3: Statistical variables, observations, and new entities 
+#### Add statistical variables and observations for new entities
 
 If you are providing observations for custom entities, the observations should be in a separate file. 
 
-Let's look at an example of statistical variables and observations with custom entities. Using the first example of hospital entities, here is how a CSV containing metrics for the hospitals might look. (In this particular case, the dataset uses a negative number, rather than a null value, to indicate that the data is not available for that observation.)
+The structure of the CSV file is exactly the same as for place entities: the first column must be the new entity, the second column must be a date, and remaining columns must all be statistical variables. 
+
+The only difference from a place-based CSV is that The first column, namely the entity, _must_ be named `dcid`, and must contain the DCIDs of the entities you have defined elsewhere. Here's an example, using our hospital entities:
 
 ```csv
 dcid,week,total_num_staffed_beds,num_staffed_adult_beds,num_staffed_inpatient_icu_beds,num_staffed_adult_inpatient_icu_beds,num_staffed_inpatient_icu_beds_occupied,num_staffed_adult_icu_beds_occupied
@@ -99,16 +86,10 @@ dcid,week,total_num_staffed_beds,num_staffed_adult_beds,num_staffed_inpatient_ic
 21306,2023-01-27,0,0,9,9,8,8
 21304,2023-01-27,6,6,0,0,0,0
 ```
-Here are the important things to note:
-- The first column, namely the entity, _must_ be named `dcid`, and must contain the DCIDs of the entities you have defined elsewhere.
 
 ### Step 2: Write the config.json file
 
 The next step is to create the `config.json` file to configure your new entities. Note that this is the same `config.json` file you use for variables. 
-
-{:.no_toc}
-{: #ex21}
-#### Example 1: New entities, existing entity type
 
 Here's an example of how a `config.json` file could look for our hospital data, in which case the `Hospital` entity type already exists. In this case, you only provide the entity type name, since all other properties of the type are already defined in the base knowledge graph.
 
@@ -151,43 +132,19 @@ Note the presence of the `entities` section and these important fields:
   
 The other fields are explained in the [Data config file specification reference](config.md).
 
-{:.no_toc}
 {: #ex22}
-#### Example 2: New entities, new entity type {#new-entity-json}
+#### Define a new entity type in `config.json`
 
-Here's an example of defining new entities _and_ a new entity type in the JSON file, building on the earlier "stem" example. In this example, `NameStem` is a new entity type, used for the `rowEntityType`. The `idColumn` field refers to the `Stem` column from the CSV to indicate that the DCIDs for the new entities are to be found n that column.
+To define a new entity type, the configuration is mostly identical to the previous example, with a notable exception: in the `entities` section, you need to give the entity a name and description.
 
-The configuration is mostly identical to the previous example, with a notable exception: since we are actually defining a new entity type, `NameStem`, we need to give it a name and description.
+For example, let's say you needed to define a new top-level entity for "wellness center", which does not exist in the base graph. Assuming that you define all the new wellness center entities in 
 
-```json
-{
-  "inputFiles": {
-    "usan.csv": {
-      "importType": "entities",
-      "rowEntityType": "NameStem",
-      "idColumn": "Stem",
-      "provenance": "United States Adopted Names approved stems"
-    }
-  },
-  "entities": {
-    "NameStem": {
-      "name": "USAN Stem",
-      "description": "A common stem for which chemical and/or pharmacologic parameters have been established. This is designated by the United States Adopted Names (USAN) Council."
-    }
-  },
-  "sources": {
-    "AMA": {
-      "url": "https://www.ama-assn.org/",
-      "provenances": {
-        "United States Adopted Names approved stems": "https://www.ama-assn.org/about/united-states-adopted-names/united-states-adopted-names-approved-stems"
-    }
-  }
-}
+
+
 ```
 
-{:.no_toc}
 {: #ex23}
-#### Example 3: Statistical variables with new entities
+#### Put it all together: statistical variables with new entities
 
 Here's an example of the previous hospital data, covering both the entities and the statistical variables (we've left out the remaining 7 variables for brevity):
 
