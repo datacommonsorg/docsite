@@ -19,16 +19,12 @@ Before creating new entities, please see [Determine if you need to create new en
 
 ## Overview
 
-If you only need to extend an entity that already exists in base Data Commons, you use MCF to do so; skip to [Extend non-place base entities]()
-
 Like variables, you can define entities using "implicit" or "explicit" schema:
 
 - With implicit schema, you define _entities_ in CSV files using the schema described below, and define any new _entity types_ (if needed) in the `config.json` file. If you don't need any new entity types, this approach is strongly recommended as it is much simpler to set up.
-- With explicit schema, you define entities and entity types in MCF. If you need new entity types, you may want the additional flexibility allowed by MCF.
+- With explicit schema, you define entities and entity types in MCF. If you need new entity types, you most likely want to define these in MCF, which gives you the ability to define more fields and to link the type to other existing types. 
 
-> **Tip:** You can actually combine both of these options and get the best of both worlds: define entities in CSV files and entity types in MCF. 
-
-You any case, you need to configure the new entities in the `config.json` file. You only need a single `config.json` for both entities and variables.
+In fact, a reasonable approach is to define any entity types (if needed) in MCF, and then the entities (the instances of the types) in CSV.
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
@@ -137,7 +133,7 @@ The other fields are explained in the [Data config file specification reference]
 
 To define a new entity type, the configuration is mostly identical to the previous example, with a notable exception: in the `entities` section, you need to give the entity a name and description.
 
-For example, 
+For example, let's say you wanted to track performance of different parts of an organization. 
 
 
 {: #ex23}
