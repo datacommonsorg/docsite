@@ -376,13 +376,3 @@ If you've associated statistical variables with an entity, you will see them at 
 ![](/assets/images/custom_dc/customdc_screenshot14.png){: width="600"}
 
 See [Verify your data](custom_data.md#verify) for more details on checking variables and observational data.
-
-
-
-
-
-
-
-
-
-
