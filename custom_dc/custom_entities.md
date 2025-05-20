@@ -43,7 +43,7 @@ Each CSV file can contain as many columns as you need to define various properti
 
 You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. In the following examples, we'll assume that you will define the DCIDs yourself. 
 
-For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska, where the CCN is a certification number that uniquely identifies U.S. hospitals, that We'll use as the DCIDs:
+For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska, where the CCN is a certification countber that uniquely identifies U.S. hospitals, that We'll use as the DCIDs:
 
 ```csv
 ccn,name,address,city_name,City,zipCode,hospitalSubtype
@@ -76,7 +76,7 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 The only difference from a place-based CSV is that the first column, the entity, _must_ be named `dcid`, and must contain the DCIDs of the entities you have defined elsewhere. Here's an example, using our hospital entities:
 
 ```csv
-dcid,week,total_num_staffed_beds,num_staffed_adult_beds,num_staffed_inpatient_icu_beds,num_staffed_adult_inpatient_icu_beds,num_staffed_inpatient_icu_beds_occupied,num_staffed_adult_icu_beds_occupied
+dcid,week,total_count_staffed_beds,count_staffed_adult_beds,count_staffed_inpatient_icu_beds,count_staffed_adult_inpatient_icu_beds,count_staffed_inpatient_icu_beds_occupied,count_staffed_adult_icu_beds_occupied
 22001,2023-01-27,79,79,12,12,-999999,-999999
 20001,2023-01-27,1262,1048,264,146,264,146
 20017,2023-01-27,0,0,-999999,-999999,0,0
@@ -186,23 +186,29 @@ Here's an example of the previous hospital data, covering both the entities and 
     }
   },
   "variables": {
-    "total_num_staffed_beds": {
+    "total_count_staffed_beds": {
       "name": "All beds",
       "description": "Weekly sum of all staffed beds per hospital",
       "searchDescriptions": [
-        "Total number of beds in Alaska hospitals each week",
-        "Total number of staffed beds in Alaska hospitals each week"
+        "Total countber of beds in Alaska hospitals each week",
+        "Total countber of staffed beds in Alaska hospitals each week"
       ],
-      "group": "Alaska Hospitals"
+      "group": "Alaska Hospitals",
+      "properties": {
+        "populationType": "Bed"
+      }
     },
-    "num_staffed_adult_beds": {
+    "count_staffed_adult_beds": {
       "name": "Beds for adults",
       "description": "Weekly sum of all staffed beds reserved for adults per hospital",
       "searchDescriptions": [
-        "Number of beds for adults in Alaska hospitals each week",
-        "Number of staffed beds for adults in Alaska hospitals each week"
+        "countber of beds for adults in Alaska hospitals each week",
+        "countber of staffed beds for adults in Alaska hospitals each week"
       ],
-      "group": "Alaska Hospitals"
+      "group": "Alaska Hospitals",
+      "properties": {
+        "populationType": "Bed"
+      }
     },
     ...
   },
@@ -216,6 +222,8 @@ Here's an example of the previous hospital data, covering both the entities and 
   }
 }
 ```
+Note the presence of the `populationType` property: the thing we are actually measuring in this variable is beds. So we use the existing entity type, with the DCID of `Bed'. 
+
 ## Define custom entities using explicit schema
 
 In this section, we will walk you through concrete examples of how you can define new entities and variables in MCF, and set up the `config.json` file. For observations, you would still need to provide them in CSV files, as described in [Prepare the CSV observation files](custom_data.md#exp_csv).
@@ -232,7 +240,7 @@ For entities and entity types, an MCF block definition must include the followin
 - `typeOf`: For an entity type, this must be `Class`. For an entity, this must be the DCID of the entity type of which your entity is an instance (e.g. `Hospital`).
 - `name`: This is the readable name that will be displayed in various parts ot the UI.
 
-You can additionally define any number of key:value pairs.
+You can additionally define any countber of key:value pairs.
 
 #### New entities, existing entity type
 
@@ -279,9 +287,9 @@ descriptionUrl:
 You can now define the agency entities can now be defined in either CSV or MCF files. In MCF, they can all be in the same file, or separate files.
 
 {: no_toc}
-##### Note about enumerations
+##### Note about ecounterations
 
-Data Commons relies fairly heavily on [enumerations](https://datacommons.org/browser/Enumeration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S. `Agency` would likely actually be defined as an enum with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use enums to break down classes into multiple sub-types.
+Data Commons relies fairly heavily on [ecounterations](https://datacommons.org/browser/Ecounteration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S. `Agency` would likely actually be defined as an ecount with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use ecounts to break down classes into multiple sub-types.
 
 #### Statistical variables with new entities
 
@@ -308,16 +316,16 @@ hospitalSubType: "Short Term"
 
 ...
 
-Node: dcid:ccn/num_staffed_adult_beds
+Node: dcid:count_staffed_adult_beds
 name: "Beds for adults"
 typeOf: dcid:StatisticalVariable
-populationType: dcid:Hospital
+populationType: dcid:Bed
 description: "Weekly sum of all staffed beds reserved for adults per hospital"
  
-Node: dcid:num_staffed_inpatient_icu_beds
+Node: dcid:count_staffed_inpatient_icu_beds
 name: "Inpatient ICU beds"
 typeOf: dcid:StatisticalVariable
-populationType: dcid:Hospital
+populationType: dcid:Bed
 description: "Weekly sum of all staffed inpatient beds in the ICU per hospital"
 ...
 ```

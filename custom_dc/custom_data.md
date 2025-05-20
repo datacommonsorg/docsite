@@ -58,6 +58,7 @@ An _entity_ is an instance of an entity type. For example, for `PublicSchool`, b
 
 > **Note:** You should always reuse existing entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
 
+{: #search}
 #### Search for an existing entity / entity type
 
 Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs. 
@@ -261,7 +262,10 @@ Here is an example of how the config file would look for the WHO CSV file we def
       "searchDescriptions": [
         "Prevalence of smoking among adults in world countries in the years 2016 - 2019."
       ],
-      "group": "WHO"
+      "group": "WHO",
+      "properties": {
+        "populationType": "Person"
+      }
     },
     "Adult_curr_cig_smokers_female": {
       "name": "Adult Current Cigarette Smokers Female",
@@ -269,7 +273,10 @@ Here is an example of how the config file would look for the WHO CSV file we def
       "searchDescriptions": [
         "Prevalence of smoking among adult women in world countries in the years 2016 - 2019."
       ],
-      "group": "WHO"
+      "group": "WHO",
+      "properties": {
+        "populationType": "Person"
+      }
     },
       "Adult_curr_cig_smokers_male": {
       "name": "Adult Current Cigarette Smokers Male",
@@ -277,7 +284,10 @@ Here is an example of how the config file would look for the WHO CSV file we def
       "searchDescriptions": [
         "Prevalence of smoking among adult men in world countries in the years 2016 - 2019."
       ],
-      "group": "WHO"
+       "group": "WHO",
+      "properties": {
+        "populationType": "Person"
+      }
     }
   },
  "sources": {
@@ -300,6 +310,7 @@ The following fields are specific to the variable-per-column format:
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
   - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. It's a good idea to set this or you will find it almost impossible to locate your varables in the Explorer.
     > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
+  - `properties`: This is a set of standard properties for defining statistical variables in MCF. All are optional in the `config.json` file. (The full list of properties is provided in the [config.json reference](config.md#varprops).) Here we only use the `populationType` field to specify the thing being measured by the variable, namely `Person`. The value must be an existing entity of `Class` type. To get a full list of existing entity types, see the section on [searching](#search) above. Properties are also used to group together variables in the Statistical Variable Explorer.
 
 The other fields are explained in the [Data config file specification reference](config.md).
 
@@ -345,7 +356,7 @@ The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. 
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
+- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
 

@@ -210,6 +210,7 @@ description
 
 : A long-form description of the variable.
 
+{: #varprops}
 properties
 
 : Additional Data Commons properties associated with this variable. The properties are any property required or optional in the [MCF Node definition](#mcf) of a variable. The value of the property must be a DCID.
