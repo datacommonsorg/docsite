@@ -42,7 +42,7 @@ my_data/
 ```
 The following sections walk you through the process of setting up your data.
 
-## Prequisite steps
+## Prerequisite steps
 
 The following sections describe the high-level conceptual work you need to do before starting to write your data and config files.
 
@@ -58,42 +58,35 @@ An _entity_ is an instance of an entity type. For example, for `PublicSchool`, b
 
 > **Note:** You should always reuse existing entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
 
-Currently it is not possible to search the knowledge graph, so you need to drill down from higher-level nodes to find an entity you are looking for.
-
 #### Search for an existing entity / entity type
 
 Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs. 
 
 To search using the REST APIs:
 
-1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to [create one](). 
+1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md). 
 1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
 1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
 
-  <pre>
-  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf
-  </pre>
-  _ENTITY_TYPE_ is the DCID you've obtained in the previous step, such as `Hospital` or `PublicSchool`. For example:
-
-  ```
-  https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
-  ```
+    <pre>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf</pre>
+    _ENTITY_TYPE_ is the DCID you've obtained in the previous step, such as `Hospital` or `PublicSchool`. For example:
+    ```
+    https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
+    ```
 1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
 
 To search using the Python APIs:
 
 1. Start your Python interactive environment and [create a client for the base Data Commons](/api/python/v2/index.html).
-1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.)
-1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`. If you don't find an entity type that matches your needs (very rare), you will need to create one.
+1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.) If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md). 
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
 1. Use the `fetch_property_values` method to find all the instances of the type:
 
-  <pre>
-  client.node.fetch_property_values(node_dcids="<var>ENTITY_TYPE</var>", properties="typeOf", out=False)
-  </pre>
-  ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
-  ```
-  client.node.fetch_property_values(node_dcids="PublicSchool", properties="typeOf", out=False)
-  ```
+    <pre>client.node.fetch_property_values(node_dcids="<var>ENTITY_TYPE</var>", properties="typeOf", out=False)</pre>
+    _ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
+    ```
+    client.node.fetch_property_values(node_dcids="PublicSchool", properties="typeOf", out=False)
+    ```
 1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
 
 ### Step 0.2: Identify your statistical variables
@@ -323,8 +316,6 @@ In this section, we will walk you through a concrete example of how to go about 
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-#### Define statistical variables
-
 Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
 
 ```
@@ -373,7 +364,7 @@ Additionally, you can specify any number of property-value pairs representing th
 
 ![Stat Var Explorer](/assets/images/custom_dc/customdc_screenshot10.png){: width="600"}
 
-### (Optional) Define a statistical variable group {#statvar-group}
+#### (Optional) Define a statistical variable group {#statvar-group}
 
 If you would like to display variables in specific named groups, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
 
