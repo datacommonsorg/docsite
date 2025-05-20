@@ -298,7 +298,7 @@ The following fields are specific to the variable-per-column format:
   - `name`: A human-friendly readable name that will be shown throughout the UI.
   - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
-  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. 
+  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. It's a good idea to set this or you will find it almost impossible to locate your varables in the Explorer.
     > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
 
 The other fields are explained in the [Data config file specification reference](config.md).
@@ -509,6 +509,7 @@ Note that you don't specify your MCF files as input files; the Data Commons impo
 
 The other fields are explained in the [Data config file specification reference](config.md).
 
+{: #loadlocal}
 ## Load local custom data
 
 The following procedures show you how to load and serve your custom data locally.
@@ -592,6 +593,18 @@ If you have tried to start a container, and have received a `SQL check failed` e
    </div>
   </div>
 </div>
+
+{: #verify}
+### Verify your data
+
+If the servers have started up without errors, check to ensure that your data is showing up as expected.
+
+1. Verify statistical variables: go to the [Statistical Variable Explorer](https://localhost:8080/tools/statvar){: target="_blank"} to verify that your statistical variables are showing up correctly. You should see something like this:
+
+    ![](/assets/images/custom_dc/customdc_screenshot11.png){: width="400"}
+1. Click on a variable name to get more information on the right panel.
+1. Verify that your observations are loaded: Click on an **Example Place** link to open the detailed page for that place. Scroll to the bottom, where you should see a timeline graph of observations for the selected place.
+1. Verify natural-language querying: go to the [Search page](https://localhost:8080/tools/explore){: target="_blank"} and enter a query related to your data. You should get relevant graphs using your data.
 
 ### Inspect the SQLite database
 

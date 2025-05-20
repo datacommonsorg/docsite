@@ -343,8 +343,46 @@ With MCF, since your entity types and entity types are already defined in MCF, y
   }
 }
 ```
-
 <!-- TODO: Consider adding a section for "extending" existing entities or entity types -->
+
+## Load your entities data
+
+To load and serve your data locally, see the procedures in [Load local custom data](custom_data.md#loadlocal).
+
+To load data in Google Cloud, see [Load data in Google Cloud](/custom_dc/deploy_cloud.html).
+
+### Verify your entities data
+
+If the servers have started up without errors, check to ensure that your data is showing up as expected.
+
+Custom entities without observational data are only displayed in the knowledge graph browser. To view your entities in a local server, enter the following in the browser address bar:
+
+<pre>
+https://localhost:8080/browser/<var>ENTITY_DCID</var>
+</pre>
+
+(If you're using a Cloud Run service, replace `localhost:8080` with the app name.)
+
+The _ENTITY_DCID_ is any DCID you have created previously. Using our previous hospitals example, we could enter https://localhost:8080/browser/A20017 and would see this:
+
+![](/assets/images/custom_dc/customdc_screenshot12.png){: width="800"}
+
+If it is an entity type, you will see all the entities you've created as instances of that type listed in the **In Arcs** section, with clickable links. For example:
+
+![](/assets/images/custom_dc/customdc_screenshot13.png){: width="800"}
+
+If you've associated statistical variables with an entity, you will see them at the bottom of the page, with timeline graphs. For example:
+
+![](/assets/images/custom_dc/customdc_screenshot14.png){: width="600"}
+
+See [Verify your data](custom_data.md#verify) for more details on checking variables and observational data.
+
+
+
+
+
+
+
 
 
 
