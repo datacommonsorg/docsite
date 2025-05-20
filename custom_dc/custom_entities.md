@@ -37,13 +37,13 @@ In this section, we will walk you through concrete examples of how to go about s
 {: #ex11}
 ### Step 1: Prepare the CSV files
 
-You must use separate CSV files for defining entities, from those used for observations. If you are defining more than one type of entity (for example, a `Hospital` and a `School`), use a separate CSV file for each.
+You must use separate CSV files for defining entities, from those used for observations. If you are defining more than one type of entity (for example, hospitals and schools), use a separate CSV file for each.
 
 Each CSV file can contain as many columns as you need to define various properties of the entity. The columns can be in any order, with any heading. 
 
 You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. In the following examples, we'll assume that you will define the DCIDs yourself. 
 
-For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska, where the CCN is a certification countber that uniquely identifies U.S. hospitals, that We'll use as the DCIDs:
+For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska. The CCN is a certification number that uniquely identifies U.S. hospitals, that we'll use as the DCIDs:
 
 ```csv
 ccn,name,address,city_name,City,zipCode,hospitalSubtype
@@ -222,7 +222,7 @@ Here's an example of the previous hospital data, covering both the entities and 
   }
 }
 ```
-Note the presence of the `populationType` property: the thing we are actually measuring in this variable is beds. So we use the existing entity type, with the DCID of `Bed'. 
+Note the presence of the `populationType` property: the thing we are actually measuring in these variables is beds. So we use the existing entity type, with the DCID of `Bed`. 
 
 ## Define custom entities using explicit schema
 
@@ -282,14 +282,14 @@ name: "Government agency"
 typeOf: schema:Class
 subClassOf: dcs:Government
 description: "Agency of a government, such as legal, legislative, insurance, taxes, etc."
-descriptionUrl: 
+descriptionUrl: "https://www.example.com/government/agencies"
 ```
-You can now define the agency entities can now be defined in either CSV or MCF files. In MCF, they can all be in the same file, or separate files.
+You can now define the agency entities in either CSV or MCF files. In MCF, they can all be in the same file, or separate files.
 
 {: no_toc}
-##### Note about ecounterations
+##### Note about enumerations
 
-Data Commons relies fairly heavily on [ecounterations](https://datacommons.org/browser/Ecounteration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S. `Agency` would likely actually be defined as an ecount with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use ecounts to break down classes into multiple sub-types.
+Data Commons relies fairly heavily on [enumerations](https://datacommons.org/browser/Enumeration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S. `Agency` would likely actually be defined as an enum with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use enums to break down classes into multiple sub-types.
 
 #### Statistical variables with new entities
 
