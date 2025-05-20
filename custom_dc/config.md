@@ -64,13 +64,8 @@ Here is the general spec for the `config.json` file.
     ...
   },
    
-   # For implicit schema only
-  "variables": {  
-    "<var>VARIABLE1_DCID</var>": {"group": "<var>GROUP_NAME1</var>"},  
-    "VARIABLE2_DCID": {"group": "<var>GROUP_NAME1</var>"},  
-    "<var>VARIABLE3_DCID</var>": {  
-      "name": "<var>DISPLAY_NAME</var>",  
-      "description": "<var>DESCRIPTION</var>",  
+   # For implicit schena only
+   <var>DESCRIPTION</var>",  
       "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],  
       "group": "<var>GROUP_NAME2</var>",  
       "properties": {  
