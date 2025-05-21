@@ -48,15 +48,17 @@ The following sections describe the high-level conceptual work you need to do be
 
 ### Step 0.1: Determine whether you need new entities or entity types
 
-Data Commons is optimized to support aggregations of data at geographical levels, such as city, county, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. You don't need new entities and can skip this step.
+Data Commons is optimized to support aggregations of data at geographical levels, such as city, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.
 
-If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.
+In addition, even if you aggregate by geographical area, you may want to measure things (known as a "population type" in the graph) that are not already in the graph. In that case, you might want to to define a new entity type, so that you can join with other data sets that measure the same thing. For example, let's say you have a metric that counts the number of beds in hospitals. The existence of the `Bed` entity type allows you to join your data with other sources with a similar metric. 
+
+#### Entities and entity types
 
 Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
 
 An _entity_ is an instance of an entity type. For example, for `PublicSchool`, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
 
-> **Note:** You should always reuse existing entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
+> **Note:** You should always reuse existing entity types and entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
 
 {: #search}
 #### Search for an existing entity / entity type
