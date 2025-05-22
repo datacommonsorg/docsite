@@ -62,7 +62,7 @@ Here are a few things to note:
 - If you are also defining a new entity type (say, for `Hospital`), you will define it in `config.json`.
 - In this example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, it won't be used to link to any existing entities. 
 
-> **Important:** Whenever you want to link properties of entities you are defining to existing entities, the column headings _must_ use the DCIDs of those properties. If you don't want a property to be linked to an existing entity, name the heading something else.
+> **Important:** Whenever you want to link properties of entities you are defining to existing entity types, the column headings _must_ use the DCIDs of the entity type(s), and the cells must specify the DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity type](custom_data.md#search). If you don't want a property to be linked to an existing entity type, name the heading something else.
 
 {: #ex12}
 #### Add statistical variables and observations for new entities
