@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Build and run a custom image
-nav_order: 5
+nav_order: 7
 parent: Build your own Data Commons
 ---
 
