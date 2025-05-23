@@ -46,6 +46,7 @@ The following sections walk you through the process of setting up your data.
 
 The following sections describe the high-level conceptual work you need to do before starting to write your data and config files.
 
+{: entities}
 ### Step 0.1: Determine whether you need new entities or entity types
 
 Data Commons is optimized to support aggregations of data at geographical levels, such as city, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.

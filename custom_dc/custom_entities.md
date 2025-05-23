@@ -37,9 +37,9 @@ In this section, we will walk you through concrete examples of how to go about s
 {: #ex11}
 ### Step 1: Prepare the entity CSV file(s)
 
-You must use separate CSV files for defining entities, from those used for observations. If you are defining more than one type of entity (for example, hospitals and schools), use a separate CSV file for each.
+CSV files can only contain one entity type, so if you are defining entities of more than one type (e.g. schools and hospitals), use separate a separate file for each. If you're adding observations as well, put them in separate files from the entity definitions. 
 
-Each CSV file can contain as many columns as you need to define various properties of the entity. The columns can be in any order, with any heading. 
+Each entity CSV file can contain as many columns as you need to define various properties of the entity. The columns can be in any order, with any heading. 
 
 You can choose to specify a column that defines DCIDs for the entities, or you can just have the importer generate them for you. In the following examples, we'll assume that you will define the DCIDs yourself. 
 
@@ -67,13 +67,13 @@ Here are a few things to note:
 {: #ex12}
 #### Add statistical variables and observations for new entities
 
-If you are providing observations for custom entities, the observations should be in a separate file. You'll need a different observations CSV file for each different entity you are defining.
+If you are providing observations for custom entities, the observations should be in a separate file. You'll need a different observations CSV file for each entity type for which you are providing observations.
 
 The structure of the CSV file is exactly the same as for place entities, namely:
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-The only difference from a place-based CSV is that the first column, the entity, _must_ be have the heading `dcid`, and must contain the DCIDs of the entities you have defined elsewhere. Here's an example, using our hospital entities:
+The only difference from a place-based CSV is that the first column, the entity, _must_ have the heading `dcid`, and must contain the DCIDs of the entities you have defined elsewhere. Here's an example, using our hospital entities:
 
 ```csv
 dcid,week,total_count_staffed_beds,count_staffed_adult_beds,count_staffed_inpatient_icu_beds,count_staffed_adult_inpatient_icu_beds,count_staffed_inpatient_icu_beds_occupied,count_staffed_adult_icu_beds_occupied
@@ -124,10 +124,9 @@ Note the presence of the `entities` section and these important fields:
 - `input_files`:
   - `importType`: By default this is `variables`; to tell the importer that you are adding entities in that CSV file, you must specify `entities`.
   - `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID. It must also match the identifier in the `entities` section. 
-  - `idColumn`: This is optional, and tells the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities. If you don't specify this field, Data Commons will just create DCIDs automatically.
-  - `entityColumns`: This is also optional: if you want properties of your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. 
-    Note that the heading of the column and its reference here must use the DCID of the entity. If you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
-- `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. 
+  - `idColumn`: This is optional, and tells the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities. If you don't specify this field, Data Commons will just create DCIDs automatically. Although it's optional, we recommend that you use this to create your own DCIDs, or it will be difficult to find them later.
+  - `entityColumns`: This is also optional: if you want properties of your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. Note that the heading of the column and its reference here must use the DCID of the entity. If you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
+- `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. The section is empty because we don't need to add any fields to the existing `Hospital` entity type.
   
 The other fields are explained in the [Data config file specification reference](config.md).
 
@@ -238,8 +237,8 @@ You can have a single MCF file or as many as you like.
 For entities and entity types, an MCF block definition must include the following fields:
 
 - `Node`: This is the DCID of the entity or entity type you are defining.
-- `typeOf`: For an entity type, this must be `Class`. For an entity, this must be the DCID of the entity type of which your entity is an instance (e.g. `Hospital`).
 - `name`: This is the readable name that will be displayed in various parts ot the UI.
+- `typeOf`: For an entity type, this must be `Class`. For an entity, this must be the DCID of the entity type (`Class`) of which your entity is an instance (e.g. `Hospital`).
 
 You can additionally define any number of key:value pairs.
 
