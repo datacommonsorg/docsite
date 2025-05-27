@@ -24,11 +24,11 @@ Like variables, you can define entities using "implicit" or "explicit" schema:
 - With implicit schema, you define _entities_ in CSV files using the schema described below, and define any new _entity types_ (if needed) in the `config.json` file. If you don't need any new entity types, this approach is strongly recommended as it is much simpler to set up.
 - With explicit schema, you define entities and entity types in MCF. If you need new entity types, you most likely want to define these in MCF, which gives you the ability to define more fields and to link the type to other existing types. 
 
-In fact, a reasonable approach is to define any entity types (if needed) in MCF, and then the entities (the instances of the types) in CSV. That is the setup that is described in this page.
+In fact, a reasonable approach is to define any entity types (if needed) in MCF, and then the entities (the instances of the types) in CSV. This is the setup that is described in this page.
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
-In the following sections, we'll describe both setting up the custom entities, as well as how to use them with custom statistical variables.
+In the following sections, we'll describe setting up the custom entities, as well as how to use them with custom statistical variables.
 
 ## Step 1: Define custom entity types (if needed) using explicit schema
 
@@ -40,7 +40,7 @@ For entity types (and entities), an MCF block definition must include the follow
 
 - `Node`: This is the DCID of the entity or entity type you are defining.
 - `name`: This is the readable name that will be displayed in various parts ot the UI.
-- `typeOf`: For an entity type, this must be `Class`. For an entity, this must be the DCID of the entity type (`Class`) of which your entity is an instance (e.g. `Hospital`).
+- `typeOf`: For an entity type, this must be `Class`.
 
 You can additionally define any number of key:value pairs.
 
@@ -155,7 +155,7 @@ Note the presence of the `entities` section and these important fields:
   - `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID. It must also match the identifier in the `entities` section. 
   - `idColumn`: This is optional, and tells the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities. If you don't specify this field, Data Commons will just create DCIDs automatically. Although it's optional, we strongly recommend that you use this to create your own DCIDs, or it will be difficult to find them later.
   - `entityColumns`: This is also optional: if you want properties of your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. For example, if you wanted to be able to aggregate your hospital data at the city level, you could specify [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. Note that the heading of the column and its reference here must use the DCID of the entity. If you additionally wanted to aggregate at the zip code level, you would need to specify [`CensusZipCodeTabulationArea`](http://localhost:8080/browser/CensusZipCodeTabulationArea){: target="_blank"}, the existing DCID for "zip code", as the column heading here and in the CSV file.
-- `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. The section is empty because we don't need to add any fields to the existing `Hospital` entity type.
+- `entities`: You use this section to identify an existing entity type(s) or define an entirely new one. To link to an existing entity type, use its DCID as the entry ID. In our example this is `Hospital`. The section is empty because we don't need to add any fields to the existing `Hospital` entity type. If you were adding a new entity type in the JSON file, you would specify it here, along with a `name` and `description` field. If you've added new entity types in MCF, you don't need to specify anything here; the importer will take care of it automatically.
   
 The other fields are explained in the [Data config file specification reference](config.md).
 
@@ -222,9 +222,8 @@ Here's an example of the previous hospital data, covering both the entities and 
   }
 }
 ```
-Note the presence of the `populationType` property: the thing we are actually measuring in these variables is beds. So we use the existing entity type, with the DCID of `Bed`. 
+Note the presence of the `populationType` property: the thing we are actually measuring in these variables is beds. So we use the existing entity type, with the DCID of [`Bed`](https://datacommons.org/browser/Bed){: target="_blank"}. 
 
-```
 <!-- TODO: Consider adding a section for "extending" existing entities or entity types -->
 
 ## Load your entities data

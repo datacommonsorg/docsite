@@ -22,7 +22,7 @@ Here is the general spec for the `config.json` file.
     
       # For implicit schema only
       "importType": "variables" | "entities",
-       ignoreColumns": ["<var>COLUMN_HEADING1</var>", "<var>COLUMN_HEADING2</var>", ...],
+      "ignoreColumns": ["<var>COLUMN_HEADING1</var>", "<var>COLUMN_HEADING2</var>", ...],
       # Variables only
       "entityType": "<var>ENTITY_TYPE_DCID</var>",
 
