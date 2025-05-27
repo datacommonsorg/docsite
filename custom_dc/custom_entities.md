@@ -8,9 +8,9 @@ parent: Build your own Data Commons
 {: .no_toc}
 # Define custom (non-place) entities
 
-This page shows you how to define <!--or extend--> custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md).
+This page shows you how to define <!--or extend--> custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md). It is especially important to understand the relationship between "nodes" and "properties".
 
-Before creating new entities, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons (datacommons.org). It is especially important to understand the relationship between "nodes" and "properties".
+Before creating new entities, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons (datacommons.org). 
 
 > **Note**: It is not necessary to create new entities for your Data Commons instance if your data is aggregated by a place type, or your data includes entities that already exist in the base. 
 
