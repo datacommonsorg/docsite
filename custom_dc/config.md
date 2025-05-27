@@ -19,11 +19,12 @@ Here is the general spec for the `config.json` file.
 
       "format": "variablePerColumn" | "variablePerRow",
       "provenance": "<var>NAME</var>",
-      "entityType": "<var>ENTITY_TYPE_DCID</var>",
-      "ignoreColumns": ["<var>COLUMN_HEADING1</var>", "<var>COLUMN_HEADING2</var>", ...],
-
+    
       # For implicit schema only
       "importType": "variables" | "entities",
+       ignoreColumns": ["<var>COLUMN_HEADING1</var>", "<var>COLUMN_HEADING2</var>", ...],
+      # Variables only
+      "entityType": "<var>ENTITY_TYPE_DCID</var>",
 
       # For implicit schema only, custom entities only
       "rowEntityType": "<var>ENTITY_TYPE_DCID</var>",
@@ -140,11 +141,7 @@ provenance
 
 You must specify the provenance details under `sources.provenances`; this field associates one of the provenances defined there to this file.
 
-entityType
-
-: Required for CSV files containing observations: All entities in a given file must be of a specific type. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](../place_types.html) for a list.
-
-ignoreColumns
+ignoreColumns (implicit schema only)
 
 : Optional: A list of headings representing columns that should be ignored by the importer, if any.
 
@@ -152,21 +149,31 @@ importType (implicit schema only)
 
 : Only needed to specify `entities` for custom entity imports. The assumed default is `variables`.
 
-rowEntityType (implicit schema only)
+entityType (implicit schema only, variables only)
 
-: Required for CSV files containing custom entities: The DCID(s) of the entity type(s) (new or existing) of the custom entities you are importing. It must match the DCID specified in the `entities` section(s).
+: Required for CSV files containing observations: All entities in a given file must be of a specific type. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](../place_types.html) for a list. For CSV files containing custom entities, use the `rowEntityType` option instead.
 
-idColumn (implicit schema only)
+rowEntityType (implicit schema only, entities only)
 
-: Optional: The heading of the column representing DCIDs of custom entities that the importer should create. If you don't specify this, the importer will auto-generate DCIDs for each row in the file.
+: Required for CSV files containing custom entities: The DCID of the entity type (new or existing) of the custom entities you are importing. It must match the DCID specified in the `entities` section(s). For example, if you are importing a set of hospital entities, the entity type could be the existing entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}.
 
-entityColumns (implicit schema only)
+idColumn (implicit schema only, entities only)
+
+: Optional: The heading of the column representing DCIDs of custom entities that the importer should create. If you don't specify this, the importer will auto-generate DCIDs for each row in the file. It is strongly recommended that you use specify this to define your own DCIDs.
+
+entityColumns (implicit schema only, entities only)
 
 : Optional: A list of headings of columns that represent existing DCIDs in the knowledge graph. The heading must be the DCID of the entity type of the column (e.g. `City`, `Country`) and each row must be the DCID of the entity (e.g. `country/CAN`, `country/PAN`).
 
 columnMappings (explicit schema only)
 
-: Optional: If headings in the CSV file do not use the required names for these columns (`variable`, `entity`, etc.), provide the equivalent names for each column.
+: Optional: If headings in the observations CSV file do not use the required names for these columns (`variable`, `entity`, etc.), provide the equivalent names for each column. For example, if your headings are `SERIES`, `GEOGRAPHY`, `TIME_PERIOD`, `OBS_VALUE`, you would specify:
+```
+"variable": "SERIES",
+"entity": "GEOGRAPHY",
+"date": "TIME_PERIOD",
+"value": "OBS_VALUE"
+```
 
 {: #observation-properties} 
 observationProperties (implicit schema only)
@@ -197,7 +204,7 @@ description
 
 ## Variables (implicit schema only)
 
-The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional. If you don't provide this section, the importer will automatically derive the variable names from the CSV file.
+The `variables` section is optional. You can use it to define names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional. If you don't provide this section, the importer will automatically derive the variable names from the CSV file headings.
 
 ### Variable parameters {#varparams}
 
