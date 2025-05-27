@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Advanced (hybrid) setups
-nav_order: 8
+nav_order: 10
 parent: Build your own Data Commons
 ---
 
