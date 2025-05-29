@@ -29,7 +29,7 @@ entity and variable at a particular date: for example, "population of USA in
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity[&select=value][&select=date]
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity[&select=value][&select=date][&select=facet]
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -69,7 +69,7 @@ JSON data:
       ...
     ]
   },
-  "select": ["date", "entity", "variable", "value"]
+  "select": ["date", "entity", "variable", "value", "facet"]
 }
 </div>
 
@@ -85,8 +85,7 @@ JSON data:
 | variable.dcids <br/><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. To return actual  observations, this is required. To just get a list of variables associated with given entities, you can omit it.|
 | entity.dcids  | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
 | entity.expression | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
-| select <br /><required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=facet` is optional. If specifed without `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
-| select <br /><optional-tag>Optional</optional-tag> | string literal | If used, you must specify both `select=date` and `select=value`. Returns actual observations, with the date and value for each variable and entity queried. |
+| select <br /><required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=date`, `select=value` and `select=facet` are optional: if you omit `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
 | filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
 | filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
