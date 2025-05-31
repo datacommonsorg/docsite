@@ -245,7 +245,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country/TGO&entity.dcids=country/MLI&select=entity&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country/TGO&select=entity&select=variable'
 ```
 {: .example-box-content .scroll}
 

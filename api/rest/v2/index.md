@@ -5,7 +5,19 @@ nav_order: 1
 parent: API - Query data programmatically
 has_children: true
 published: true
-redirect_from: /api/rest/v2/getting_started
+redirect_from: 
+   /api/rest/v2/getting_started
+   /api/rest/index
+   /api/rest/place_in
+   /apl/rest/place_stat_vars
+   /api/rest/property_label
+   /api/rest/property_value
+   /api/rest/query
+   /api/rest/stat_all
+   /api/rest/stat_series
+   /api/rest/stat_value
+   /api/rest/stats
+   /api/rest/triple
 ---
 
 {:.no_toc}
