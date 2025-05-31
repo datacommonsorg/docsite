@@ -24,6 +24,7 @@ You upload your data and configuration files to [Google Cloud Storage](https://c
 ## Prerequisites
 
 - You must have a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} billing account and project.
+- You must have installed [git](https://git-scm.com/){: target="blank"} and cloned the <https://github.com/datacommonsorg/website>{: target="_blank"} repo (or, if you don't want to install git, downloaded the code from the repo). For cloning procedures, see [One-time setup steps](/custom_dc/quickstart.html#clone) in the Quickstart.
 - You must have relevant API keys. If you haven't obtained them yet, see [One-time setup steps](/custom_dc/quickstart.html#setup) in the Quickstart.
 - Install [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"} on your local machine. gcloud is required for authentication and management tasks.
 - Install [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform){: target="_blank"} on your local machine. Terraform is used to automate the setup steps of all the components.

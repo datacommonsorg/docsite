@@ -56,9 +56,9 @@ An API key is required to authorize requests from your site to the base Data Com
 1. From the drop-down menu, enable **Places API** and **Maps Javascript API**. (Optionally enable other APIs for which you want to use this key.)
 1. Click **OK** and **Save**.
 
-### Clone the Data Commons repository
+### Clone the Data Commons repository {#clone}
 
-  **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
+> **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
 
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
