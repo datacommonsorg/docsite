@@ -10,6 +10,8 @@ parent: Build your own Data Commons
 
 This page shows you how to create a development environment in Google Cloud Platform, using [Terraform](https://cloud.google.com/docs/terraform){: target="_blank"}. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
+> **Note**: It's recommended that you go through the [Quickstart](quickstart.md) to start up a local instance before attempting to set up a Google Cloud instance. This will ensure you have all the necessary prerequisites, and give you a chance to test out your own data to make sure everything is working.
+
 * TOC
 {:toc}
 
@@ -137,6 +139,8 @@ region  = "us-east1"
 ## Manage your data
 
 ### Upload data files to Google Cloud Storage
+
+> **Note**: Before proceeding, make sure your data is in the correct format required by Data Commons, and you've written an accompanying config file. Please see [Prepare and load your own data](custom_data.md) for complete details.
 
 By default, the Terraform scripts create a Cloud Storage bucket called <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, with a top-level folder `input`. You upload your CSV, JSON, and MCF files to this folder. You can create subfolders of `input`, but remember to set `"includeInputSubdirs": true` in `config.json`.
 
