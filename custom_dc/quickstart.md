@@ -56,9 +56,9 @@ An API key is required to authorize requests from your site to the base Data Com
 1. From the drop-down menu, enable **Places API** and **Maps Javascript API**. (Optionally enable other APIs for which you want to use this key.)
 1. Click **OK** and **Save**.
 
-### Clone the Data Commons repository
+### Clone the Data Commons repository {#clone}
 
-  **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
+> **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
 
 1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
@@ -92,15 +92,15 @@ cd website
   <tbody>
       <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/run_cdc_dev_docker.sh" target="_blank"><code>run_cdc_dev_docker.sh</code></a></td>
-      <td>A convenience script to simplify management of Docker commands. Throughout the pages in this guide, we reference this script as well as giving the underlying commands. Documentation for running the script is available at the top of the file or by running <code>./run_cdc_dev_docker.sh --help</code> from the root website directory.</td>
+      <td>A convenience shell script to simplify management of Docker commands. Throughout the pages in this guide, we reference this script as well as giving the underlying commands. Documentation for running the script is available at the top of the file or by running <code>./run_cdc_dev_docker.sh --help</code> from the root website directory.</td>
     </tr>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
+      <td>Sample supplemental data and config file (`config.json`) that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples" target="_blank"><code>custom_dc/examples/</code></a></td>
-      <td>More examples of custom data in CSV format and config.json. To configure your own custom data, see <a href="custom_data.html">Work with custom data</a>.</td>
+      <td>More examples of custom data in CSV format and `config.json`. To configure your own custom data, see <a href="custom_data.html">Work with custom data</a>.</td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom" target="_blank"><code>server/templates/custom_dc/custom/</code></a></td>
@@ -109,6 +109,10 @@ cd website
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/deploy/terraform-custom-datacommons" target="_blank"><code>deploy/terraform-custom-datacommons</code></a></td>
+      <td>Contains <a href="https://developer.hashicorp.com/terraform"  target="_blank">Terraform</a> and convenience shell scripts for setting up your instance on Google Cloud Platform. See <a href="deploy_cloud.md">Deploy your custom instance to Google Cloud</a> for complete details.</td>
     </tr>
   </tbody>
 </table>
@@ -137,7 +141,7 @@ There are a few important things to note:
 - There are only 3 columns: one representing a place (`countryAlpha3Code`, a [special Data Commons place type](/custom_dc/custom_data.html#special-names)); one representing a date (`date`); and one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept for a metric: `average_annual_wage` and `gender_wage_gap`. (Actually, there can be any number of statistical variable columns -- but no other types of additional columns -- and these two CSV files could be combined into one.)
 - Every row is a separate [_observation_](/glossary.html#observation), or a value of the variable for a given place and time. In the case of multiple statistical variable columns in the same file, each row would, of course, consist of multiple observations.
 
-This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. (That topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
+This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. You also need to write a `config.json` file to tell the importer which CSV files to import, where the data comes from, and additional options. (Those topics are discussed in detail in [Preparing and loading your data](custom_data.md).)
 
 ## Load sample data and start the services
 
@@ -147,7 +151,7 @@ To start up Data Commons:
 
 > Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every script or `docker` invocation with `sudo`.
 
-1. Open a terminal window, and from the website root directory, run the following command to run the data management Docker container:
+1. Open a terminal window, and from the website root directory, run the following command to run the Docker containers:
 
    ```shell
   cd website
