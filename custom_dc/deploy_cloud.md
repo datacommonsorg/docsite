@@ -10,6 +10,8 @@ parent: Build your own Data Commons
 
 This page shows you how to create a development environment in Google Cloud Platform, using [Terraform](https://cloud.google.com/docs/terraform){: target="_blank"}. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
+> **Note**: It's recommended that you go through the [Quickstart](quickstart.md) to start up a local instance before attempting to set up a Google Cloud instance. This will ensure you have all the necessary prerequisites, and give you a chance to test out your own data to make sure everything is working.
+
 * TOC
 {:toc}
 
@@ -24,6 +26,7 @@ You upload your data and configuration files to [Google Cloud Storage](https://c
 ## Prerequisites
 
 - You must have a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} billing account and project.
+- You must have installed [git](https://git-scm.com/){: target="blank"} and cloned the <https://github.com/datacommonsorg/website>{: target="_blank"} repo. For cloning procedures, see [One-time setup steps](/custom_dc/quickstart.html#clone) in the Quickstart. If you don't want to install git, and don't plan to test the site locally or make any local code changes, you can download a zip file from the repo.
 - You must have relevant API keys. If you haven't obtained them yet, see [One-time setup steps](/custom_dc/quickstart.html#setup) in the Quickstart.
 - Install [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"} on your local machine. gcloud is required for authentication and management tasks.
 - Install [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform){: target="_blank"} on your local machine. Terraform is used to automate the setup steps of all the components.
@@ -136,6 +139,8 @@ region  = "us-east1"
 ## Manage your data
 
 ### Upload data files to Google Cloud Storage
+
+> **Note**: Before proceeding, make sure your data is in the correct format required by Data Commons, and you've written an accompanying config file. Please see [Prepare and load your own data](custom_data.md) for complete details.
 
 By default, the Terraform scripts create a Cloud Storage bucket called <code><var>NAMESPACE</var>-datacommons-data-<var>PROJECT_ID</var></code>, with a top-level folder `input`. You upload your CSV, JSON, and MCF files to this folder. You can create subfolders of `input`, but remember to set `"includeInputSubdirs": true` in `config.json`.
 
