@@ -65,15 +65,22 @@ Here is the general spec for the `config.json` file.
     ...
   },
    
-   # For implicit schena only
-   <var>DESCRIPTION</var>",  
-      "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],  
-      "group": "<var>GROUP_NAME2</var>",  
+   # For implicit schema only
+  "variables": { 
+    "<var>VARIABLE1</var>": {
+      "group": "<var>GROUP_NAME1</var>"},  
+      "name": "<var>DISPLAY_NAME</var>",  
+      "description": "<var>DESCRIPTION</var>",  
+      "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],
       "properties": {  
         "<var>PROPERTY_NAME1</var>":"<var>VALUE</var>",  
         "<var>PROPERTY_NAME2</var>":"<var>VALUE</var>",  
          …  
-      }  
+      },  
+    }, 
+    "<var>VARIABLE2</var>": {"group": "<var>GROUP_NAME1</var>", ...},  
+    "<var>VARIABLE3</var>": {"group": "<var>GROUP_NAME2</var>", ...},  
+     ... 
     },  
   },   
 
@@ -220,7 +227,7 @@ description
 {: #varprops}
 properties
 
-: Additional Data Commons properties associated with this variable. The properties are any property required or optional in the [MCF Node definition](#mcf) of a variable. The value of the property must be a DCID.
+: Additional Data Commons properties associated with this variable. The properties are any property required or optional in the [MCF Node definition](custom_data.md#mcf) of a variable. The value of the property must be a DCID.
 
 Each property is specified as a key:value pair. Here are some examples:
 
