@@ -184,11 +184,19 @@ As mentioned above, CSV files using implicit schema must contain these columns -
 
 _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
-The _ENTITY_ is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
+#### Entity
+
+The _ENTITY_ is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. For a place entity, the column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one. 
 
+> **Note:** If you specify the name of a place that is ambiguous, i.e. present in different geographical areas, you can qualify it with a containing place. Otherwise the importer may resolve it to the wrong place. For example, to disambiguate between Santiago, Chile and Santiago, Cuba, you could specify `Santiago, Chile`. If you want to be absolutely sure, use the DCID of the place and use `dcid` as the column heading. If you need to look up a DCID, see 
+
+#### Date
+
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
+
+#### Variable
 
 The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. 
 
@@ -196,7 +204,15 @@ The heading for a variable can be anything, but you should encode the relevant a
 
 It is also recommended that you use a prefix to create a namespace for your own variables. The prefix must be separated from the main variable name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom variables from variables in the base DC. (See examples below.)
 
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+#### Observations {#obs}
+
+Here are the rules for observation values:
+- Variable values must be numeric. Do not include any special characters such as `*` or `#`.
+- Zeros are accepted and recorded.
+- For null or not-a-number values, you can use a blank space, or any of strings `NaN`, `NA`, `N/A`. These values will be ignored and not displayed in any charts or tables.
+- Do not use negative numbers or inordinately large numbers to represent NaNs or nulls.
+
+#### Example
 
 Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format (using the prefx `who`):
 
@@ -207,7 +223,7 @@ Angola,2016,,1.8,14.3
 Albania,2018,,4.5,35.7
 United Arab Emirates,2018,6.3,1.6,11.1
 ```
-Note that the data is missing values for the total population percentage for Angola and Albania.
+Note that the data is missing values for the total population percentage for Angola and Albania; the null values are represented by blanks.
 
 {:.no_toc}
 #### Special place names {#special-names}
@@ -241,7 +257,6 @@ dcId,observationYear,statVar1,statVar2
 geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
-
 ### Step 2: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide the following specifications:
@@ -458,7 +473,7 @@ These columns are required:
 - `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place. 
 - `variable`: The DCID of the node you have defined in the MCF. 
 - `date`: The date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
-- `value`: The value of the observation and must be numeric. The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+- `value`: See [Observation](#obs) for valid values of this column. 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
