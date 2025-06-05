@@ -190,14 +190,18 @@ The _ENTITY_ is an existing entity, most commonly a place. The best way to think
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable node for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. 
+
+The heading for a variable can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable node for you, using the name you specify as its DCID. 
+
+It is also recommended that you use a prefix to create a namespace for your own variables. The prefix must be separated from the main variable name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom variables from variables in the base DC. (See examples below.)
 
 The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
 
-Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
+Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format (using the prefx `who`):
 
 ```csv
-country,year,Adult_curr_cig_smokers,Adult_curr_cig_smokers_female,Adult_curr_cig_smokers_male
+country,year,who/Adult_curr_cig_smokers,who/Adult_curr_cig_smokers_female,who/Adult_curr_cig_smokers_male
 Afghanistan,2019,7.5,1.2,13.4
 Angola,2016,,1.8,14.3
 Albania,2018,,4.5,35.7
@@ -218,7 +222,7 @@ In addition to the place names listed in [Place types](/place_types.html), you c
 
 You can also simply use the heading `name` or `place` and the importer will resolve it automatically.
 
-The following are all valid examples of headers:
+The following are all valid examples of headings:
 
 ```csv
 geoId,observationYear,statVar1,statVar2
@@ -259,7 +263,7 @@ Here is an example of how the config file would look for the WHO CSV file we def
     }
   },
   "variables": {
-    "Adult_curr_cig_smokers": {
+    "who/Adult_curr_cig_smokers": {
       "name": "Adult Current Cigarette Smokers",
       "description": "Percentage of smokers in the total adult population",
       "searchDescriptions": [
@@ -270,7 +274,7 @@ Here is an example of how the config file would look for the WHO CSV file we def
         "populationType": "Person"
       }
     },
-    "Adult_curr_cig_smokers_female": {
+    "who/Adult_curr_cig_smokers_female": {
       "name": "Adult Current Cigarette Smokers Female",
       "description": "Percentage of smokers in the female adult population",
       "searchDescriptions": [
@@ -281,7 +285,7 @@ Here is an example of how the config file would look for the WHO CSV file we def
         "populationType": "Person"
       }
     },
-      "Adult_curr_cig_smokers_male": {
+      "who/Adult_curr_cig_smokers_male": {
       "name": "Adult Current Cigarette Smokers Male",
       "description": "Percentage of smokers in the male adult population",
       "searchDescriptions": [
@@ -307,7 +311,7 @@ The following fields are specific to the variable-per-column format:
 
 - `input_files`:
   - `entityType`: This must be an existing entity class in the Data Commons knowledge graph; it's most commonly a [place type](/place_types.html).
-- `variables`: This section is optional but recommended. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional.
+- `variables`: This section is optional but recommended. You can use it to associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional. You can also use it to override DCIDs: if the variable identifiers don't match those in the CSV headings, the importer will prefer the ones specfied here as the DCIDs.
   - `name`: A human-friendly readable name that will be shown throughout the UI.
   - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
@@ -333,20 +337,20 @@ Nodes in the Data Commons knowledge graph are defined in Metadata Content Format
 Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
 
 ```
-Node: dcid:Adult_curr_cig_smokers
+Node: dcid:who/Adult_curr_cig_smokers
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%)"
 populationType: dcid:Person
 measuredProperty: dcid:percent
 
-Node: dcid:Adult_curr_cig_smokers_female
+Node: dcid:who/Adult_curr_cig_smokers_female
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
 populationType: dcid:Person
 measuredProperty: dcid:percent
 gender: dcid:Female
 
-Node: dcid:Adult_curr_cig_smokers_male
+Node: dcid:who/Adult_curr_cig_smokers_male
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcid:Person
@@ -356,9 +360,9 @@ gender: dcid:Male
 The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
-- `Node`: This is the DCID of the entity you are defining. 
+- `Node`: This is the DCID of the entity you are defining. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namspace, and should represent your organization, dataset, project, or whatever makes sense for you.  
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
-- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
+- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
 - `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
@@ -367,7 +371,7 @@ The following fields are always required:
 
   - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
 
-Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`. All fields that do not reference another node must be in quotation marks.
+Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 - `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
@@ -387,15 +391,15 @@ If you would like to display variables in specific named groups, you can create 
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
 ```
-Node: dcid:Adult_curr_cig_smokers
+Node: dcid:who/Adult_curr_cig_smokers
 ...
 memberOf: dcid:who/g/WHO
 
-Node: dcid:Adult_curr_cig_smokers_female
+Node: dcid:who/Adult_curr_cig_smokers_female
 ...
 memberOf:dcid:who/g/WHO
 
-Node: dcid:Adult_curr_cig_smokers_male
+Node: dcid:who/Adult_curr_cig_smokers_male
 ...
 memberOf: dcid:who/g/WHO
 
@@ -427,15 +431,15 @@ specializationOf: dcid:who/g/WHO
 You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
 
 ```
-Node: dcid:Adult_curr_cig_smokers
+Node: dcid:who/Adult_curr_cig_smokers
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:Adult_curr_cig_smokers_female
+Node: dcid:who/Adult_curr_cig_smokers_female
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:Adult_curr_cig_smokers_male
+Node: dcid:who/Adult_curr_cig_smokers_male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
