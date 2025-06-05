@@ -190,7 +190,7 @@ The _ENTITY_ is an existing entity, most commonly a place. The best way to think
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one. 
 
-> **Note:** If you specify the name of a place that is ambiguous, i.e. present in different geographical areas, you can qualify it with a containing place. Otherwise the importer may resolve it to the wrong place. For example, to disambiguate between Santiago, Chile and Santiago, Cuba, you could specify `Santiago, Chile`. If you want to be absolutely sure, use the DCID of the place and use `dcid` as the column heading. If you need to look up a DCID, see 
+> **Note:** If you specify the name of a place that is ambiguous, i.e. present in different geographical areas, you can qualify it with a containing place. Otherwise the importer may resolve it to the wrong place. For example, to disambiguate between Santiago, Chile and Santiago, Cuba, you could specify `Santiago, Chile`. If you want to be absolutely sure, use the DCID of the place and use `dcid` as the column heading. If you need to look up a DCID, see [Find the DCID for an entity or variable](/data_model.html#find-dcid).
 
 #### Date
 
