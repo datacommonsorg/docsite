@@ -10,10 +10,8 @@ parent: Build your own Data Commons
 
 This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
 
-
 * TOC
 {:toc}
-
 
 ## Overview
 
@@ -21,10 +19,12 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 
 At a high level, you need to provide the following:
 
-- All data must be in CSV format, using the schema described below. 
+- All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 - Depending on how you define your statistical variables (metrics), you may need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
+- If you need to define new custom entities, please see [Define custom entities](custom_entities.md) for details.
 
+{: #dir}
 ### Files and directory structure
 
 You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories (with an additional [configuration option](#subdirs)). There must only be one JSON config file, in the top-level input directory. For example:
@@ -42,7 +42,58 @@ my_data/
 ```
 The following sections walk you through the process of setting up your data.
 
-## Step 1: Identify your statistical variables
+## Prerequisite steps
+
+The following sections describe the high-level conceptual work you need to do before starting to write your data and config files.
+
+{: entities}
+### Step 0.1: Determine whether you need new entities or entity types
+
+Data Commons is optimized to support aggregations of data at geographical levels, such as city, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.
+
+In addition, even if you aggregate by geographical area, you may want to measure things (known as a "population type" in the graph) that are not already in the graph. In that case, you might want to to define a new entity type, so that you can join with other data sets that measure the same thing. For example, let's say you have a metric that counts the number of beds in hospitals. The existence of the `Bed` entity type allows you to join your data with other sources with a similar metric. 
+
+#### Entities and entity types
+
+Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. The most common entity types in Data Commons are place types, such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
+
+An _entity_ is an instance of an entity type. For example, for `PublicSchool`, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
+
+> **Note:** You should always reuse existing entity types and entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
+
+{: #search}
+#### Search for an existing entity / entity type
+
+Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs. 
+
+To search using the REST APIs:
+
+1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md). 
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
+1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
+
+    <pre>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf</pre>
+    _ENTITY_TYPE_ is the DCID you've obtained in the previous step, such as `Hospital` or `PublicSchool`. For example:
+    ```
+    https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
+    ```
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
+
+To search using the Python APIs:
+
+1. Start your Python interactive environment and [create a client for the base Data Commons](/api/python/v2/index.html).
+1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.) If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md). 
+1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
+1. Use the `fetch_property_values` method to find all the instances of the type:
+
+    <pre>client.node.fetch_property_values(node_dcids="<var>ENTITY_TYPE</var>", properties="typeOf", out=False)</pre>
+    _ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
+    ```
+    client.node.fetch_property_values(node_dcids="PublicSchool", properties="typeOf", out=False)
+    ```
+1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
+
+### Step 0.2: Identify your statistical variables
 
 Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
@@ -73,14 +124,19 @@ The measure here is a simple count; the set of things is "schools"; and the cons
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
-## Step 2: Choose between "implicit" and "explicit" schema definition
+{: #schema}
+### Step 0.3: Choose between "implicit" and "explicit" schema definitions
 
 Custom Data Commons supports two ways of importing your data:
-- **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format, but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations, based on a predictable column order. This method is _simpler and recommended_ for most datasets.
-- **Explicit** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables as nodes in MCF files. All variables and entities in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format, which is a bit more flexible. There are a number of cases for which this option might be a better choice:
+
+- **Implicit** schema definition. This method is simplest, and does not require that you write MCF files, but it is more constraining on the structure of your data. You don't need to provide variables and entities in DCID format (although you may); but you must follow a strict column ordering, and variables must be in _variable-per-column_ format, described below. Naming conventions are loose, and the Data Commons importer will generate DCIDs for your variables and observations based on a predictable column order or for entities based on the column you identify. This method is _simpler and recommended_ for most datasets.
+
+- **Explicit** schema definition. This method is a bit more involved, as you must explicitly define DCIDs for all your variables (and entity types if needed) as nodes in MCF files. All variables in the CSVs must reference DCIDs. Using this method allows you to specify variables in _variable-per-row_ format and to specify additional properties of variables or entities, offering greater flexibility. There are a few cases for which this option might be a better choice:
   - You have hundreds of variables, which may be unmanageable as separate columns or files.
   - You want to be able to specify additional properties, for example, unit of measurement, of the observations at a more granular level than per-file. As an example, let's say you have a variable that measures financial expenses, across multiple countries; you may want to be able to specify the country-specific currency of each observation.
   - In the case that you are missing observations for specific entities (e.g. places) or time periods for specific variables, and you don't want to have lots of null values in columns (sparse tables).
+
+#### Variable schemas
 
 To illustrate the difference between variable-per-column and variable-per-row schemas, let's use the schools example data again. In variable-per-column, you would represent the dataset as follows:
 
@@ -116,11 +172,13 @@ In variable-per-row, the same dataset would be provided as follows:
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
-## Prepare your data using implicit schema
+> **Tip:** In both types of schemas, if your raw data does not conform to either of these structures (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel. 
 
-In this section, we will walk you through a concrete example of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
+## Prepare your data using implicit schema 
 
-### Prepare the CSV data files {#prepare-csv}
+In this section, we will walk you through concrete examples of how to go about setting up your CSV and JSON files. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
+
+### Step 1: Provide variables and observations in CSV {#csv}
 
 As mentioned above, CSV files using implicit schema must contain these columns -- and _only_ these columns, no others -- in the following order:
 
@@ -128,13 +186,15 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 
 The _ENTITY_ is an existing entity, most commonly a place. The best way to think of the entity is as a key that could be used to join to other data sets. The column heading can be expressed as any existing place-related property; see [Place types](/place_types.html) for a full list. It may also be any of the special DCID prefixes listed in [Special place names](#special-names). 
 
-> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
+> **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one. 
 
 The _DATE_ is the date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. The heading can be anything, although as a best practice, we recommend using a corresponding identifier, such as `year`, `month` or `date`.
 
-The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable for you.
+The _VARIABLE_ should contain a metric [observation](/glossary.html#observation) at a particular time. It could be an existing variable in the knowledge graph, to which you will add a different provenance, or it can be a new one. The heading can be anything, but you should encode the relevant attributes being measured, so that the importer can correctly create a new variable node for you.
 
-The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
+The variable values must be numeric. Zeros and null values are accepted: zeros will be recorded and null values ignored. 
+
+Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
 ```csv
 country,year,Adult_curr_cig_smokers,Adult_curr_cig_smokers_female,Adult_curr_cig_smokers_male
@@ -144,8 +204,6 @@ Albania,2018,,4.5,35.7
 United Arab Emirates,2018,6.3,1.6,11.1
 ```
 Note that the data is missing values for the total population percentage for Angola and Albania.
-
-You can have as many CSV files as you like, and they can be stored in a single directory, or one directory and multiple subdirectories.
 
 {:.no_toc}
 #### Special place names {#special-names}
@@ -180,14 +238,14 @@ geoId/06,2021,555,666
 geoId/08,2021,10,10
 ```
 
-### Write the JSON config file
+### Step 2: Write the JSON config file
 
-You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide 3 specifications:
+You must define a `config.json` in the top-level directory where your CSV files are located. With the implicit schema method, you need to provide the following specifications:
 - The input files location and entity type
 - The sources and provenances of the data
 - Optionally, additional properties of the statistical variables you've used in the CSV files
 
-Here is an example of how the config file would look for WHO CSV file we defined earlier. More details are below.
+Here is an example of how the config file would look for the WHO CSV file we defined earlier. More details are below.
 
 ```json
 {
@@ -207,7 +265,10 @@ Here is an example of how the config file would look for WHO CSV file we defined
       "searchDescriptions": [
         "Prevalence of smoking among adults in world countries in the years 2016 - 2019."
       ],
-      "group": "WHO"
+      "group": "WHO",
+      "properties": {
+        "populationType": "Person"
+      }
     },
     "Adult_curr_cig_smokers_female": {
       "name": "Adult Current Cigarette Smokers Female",
@@ -215,7 +276,10 @@ Here is an example of how the config file would look for WHO CSV file we defined
       "searchDescriptions": [
         "Prevalence of smoking among adult women in world countries in the years 2016 - 2019."
       ],
-      "group": "WHO"
+      "group": "WHO",
+      "properties": {
+        "populationType": "Person"
+      }
     },
       "Adult_curr_cig_smokers_male": {
       "name": "Adult Current Cigarette Smokers Male",
@@ -223,7 +287,10 @@ Here is an example of how the config file would look for WHO CSV file we defined
       "searchDescriptions": [
         "Prevalence of smoking among adult men in world countries in the years 2016 - 2019."
       ],
-      "group": "WHO"
+       "group": "WHO",
+      "properties": {
+        "populationType": "Person"
+      }
     }
   },
  "sources": {
@@ -244,20 +311,24 @@ The following fields are specific to the variable-per-column format:
   - `name`: A human-friendly readable name that will be shown throughout the UI.
   - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
-  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. 
+  - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. It's a good idea to set this or you will find it almost impossible to locate your varables in the Explorer.
     > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
+  - `properties`: This is a set of standard properties for defining statistical variables in MCF. All are optional in the `config.json` file. (The full list of properties is provided in the [config.json reference](config.md#varprops).) Here we only use the `populationType` field to specify the thing being measured by the variable, namely `Person`. The value must be an existing entity of `Class` type. To get a full list of existing entity types, see the section on [searching](#search) above. Properties are also used to group together variables in the Statistical Variable Explorer.
 
-The other fields are explained in the [Data config file specification reference](#json-ref).
+The other fields are explained in the [Data config file specification reference](config.md).
 
+{: #explicit}
 ## Prepare your data using explicit schema
 
-In this section, we will walk you through a concrete example of how to go about setting up your CSV, MCF and JSON files.
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables as new _nodes_ using MCF. When you define any variable in MCF, you must explicitly assign them DCIDs. 
 
-### Write the MCF file {#mcf}
+You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
+
+In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
+
+### Step 1: Define statistical variables in MCF
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
-
-#### Define statistical variables
 
 Here's an example of defining the same statistical variables in the WHO data in MCF. It defines 3 statistical variable nodes. 
 
@@ -286,9 +357,9 @@ The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. 
-- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. For a group of 
+- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. For a full list of supported classes, you will have to send an API request, as described in [Get a list of all existing statistical variables](/api/rest/v2/node.html#liststatvars).
+- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
 
@@ -296,12 +367,12 @@ The following fields are always required:
 
   - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
 
-Note that all non-quoted field values must be prefixed with `dcid:` or `dcs:`, which are interchangeable. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`.
+Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. You may wish to add an optional namespace, separated by a slash (/); for example, `who/Adult_curr_cig_smokers`. All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 - `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
 - `measurementQualifier`: This is similar to the `observationPeriod` field for CSV observations (see below) but applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the measurementDenominator is `Count_Person`.
+- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
 Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. These will become additional sub-categories of the population type and displayed as such in the Statistical Variable Explorer. Using our example:
 
@@ -369,7 +440,8 @@ Node: dcid:Adult_curr_cig_smokers_male
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
 
-### Prepare the CSV data files
+{: #exp_csv}
+### Step 2: Prepare the CSV observation files
 
 CSV files using explicit schema contain the following columns using the following headings:
 
@@ -386,7 +458,7 @@ These columns are required:
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
-The remaining columns are optional, and allow you to specify additional per-observation properties; see the descriptions of these in the [JSON config file reference](#observation-properties).
+The remaining columns are optional, and allow you to specify additional per-observation properties; see the descriptions of these in the [JSON config file reference](config.md).
 
 Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
 
@@ -406,7 +478,7 @@ dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
 
 In this case, the columns need to be mapped to the expected columns listed above; see below for details.
 
-### Write the JSON config file
+### Step 3: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. With the explicit schema method, you need to provide these specifications:
 - The input files location and entity type
@@ -447,248 +519,11 @@ The following fields are specific to the variable-per-row format:
   - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
 - `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
 
-The other fields are explained in the [Data config file specification reference](#json-ref)
+Note that you don't specify your MCF files as input files; the Data Commons importer will identify them automatically.
 
-## Data config file specification reference {#json-ref}
+The other fields are explained in the [Data config file specification reference](config.md).
 
-Here is the general spec for the `config.json` file:
-
-<pre>
-{  
-  "inputFiles": {  
-    "<var>FILE_NAME1</var>": {  
-
-      # For implicit schema only
-      "entityType": "<var>ENTITY_PROPERTY</var>",  
-
-      "ignoreColumns": ["<var>COLUMN1</var>", "<var>COLUMN2</var>", ...],  
-      "provenance": "<var>NAME</var>",
-      "format": "variablePerColumn" | "variablePerRow",
-
-      # For explicit schema only
-      "columnMappings": {
-        "variable": "<var>NAME</var>",
-        "entity": "<var>NAME</var>",
-        "date": "<var>NAME</var>",
-        "value": "<var>NAME</var>",
-        "unit": "<var>NAME</var>",
-        "scalingFactor": "<var>NAME</var>",
-        "measurementMethod": "<var>NAME</var>",
-        "observationPeriod": "<var>NAME</var>"
-      }
-
-      # For implicit schema only
-      "observationProperties" {
-        "unit": "<var>MEASUREMENT_UNIT</var>",
-        "observationPeriod": "<var>OBSERVATION_PERIOD</var>",
-        "scalingFactor": "<var>DENOMINATOR_VALUE</var>",
-        "measurementMethod": "<var>METHOD</var>"
-      }
-    },  
-  ...  
-  "includeInputSubdirs": true | false,
-   
-   # For implicit schema only
-  "variables": {  
-    "<var>VARIABLE1</var>": {"group": "<var>GROUP_NAME1</var>"},  
-    "VARIABLE2": {"group": "<var>GROUP_NAME1</var>"},  
-    "<var>VARIABLE3</var>": {  
-      "name": "<var>DISPLAY_NAME</var>",  
-      "description": "<var>DESCRIPTION</var>",  
-      "searchDescriptions": ["<var>SENTENCE1</var>", "<var>SENTENCE2</var>", ...],  
-      "group": "<var>GROUP_NAME2</var>",  
-      "properties": {  
-        "<var>PROPERTY_NAME1</var>":"<var>VALUE</var>",  
-        "<var>PROPERTY_NAME2</var>":"<var>VALUE</var>",  
-         …  
-           }  
-    },  
-  },   
-  
-  "groupStatVarsByProperty": false | true,
-
-  "sources": {  
-    "<var>SOURCE_NAME1</var>": {  
-      "url": "<var>URL</var>",  
-      "provenances": {  
-        "<var>PROVENANCE_NAME1</var>": "<var>URL</var>",  
-        "<var>PROVENANCE_NAME2</var>": "<var>URL</var>",  
-        ...  
-      }  
-    }  
-  }  
-}  
-</pre>
-
-Each section contains some required and optional fields, which are described in detail below.
-
-{:.no_toc}
-### Input files
-
-The top-level `inputFiles` field should encode a map from the CSV input file name to parameters specific to that file. Keys can be individual file names or wildcard patterns if the same configuration applies to multiple files.
-
-You can use the `*` wildcard; matches are applied in the order in which they are specified in the config. For example, in the following:
-
-```
-{
- "inputFiles": {
-    "foo.csv": {...},
-    "bar*.csv": {...},
-    "*.csv": {...}
-  }
-}
-```
-
-The first set of parameters only applies to `foo.csv`. The second set of parameters applies to `bar.csv`, `bar1.csv`, `bar2.csv`, etc. The third set of parameters applies to all CSVs except the previously specified ones, namely `foo.csv` and `bar*.csv`.
-
-#### Enable subdirectories {#subdirs}
-
-If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as the input directory), and be sure to set `"includeInputSubdirs": true` (the default is false if the option is not specified.) For example:
-
-```
-{
- "inputFiles": {
-    "foo.csv": {...},
-    "bar*.csv": {...},
-    "*.csv": {...},
-    "data/*.csv": {...}
-  },
-  "includeInputSubdirs": true
-```
-
-> Note: Although you don't need to specify the names of MCF files in the `inputFiles` block, if you want to store them in subdirectories, you still need to set `"includeInputSubdirs": true` here.
-
-{:.no_toc}
-#### Input file parameters
-
-entityType (implicit schema only)
-
-: Required: All entities in a given file must be of a specific type. This type should be specified as the value of the `entityType` field. The importer tries to resolve entities to DCIDs of that type. In most cases, the `entityType` will be a supported place type; see [Place types](../place_types.html) for a list.
-
-ignoreColumns
-
-: Optional: The list of column names to be ignored by the importer, if any.
-
-provenance
-
-: Required: The provenance (name) of this input file. Provenances typically map to a dataset from a source. For example, `WorldDevelopmentIndicators` provenance (or dataset) is from the `WorldBank` source.
-
-You must specify the provenance details under `sources.provenances`; this field associates one of the provenances defined there to this file.
-
-{: #observation-properties} 
-observationProperties (implicit schema only)
-
-: Optional: Additional information about each observation contained in the CSV file. Whatever setting you specify will apply to all observations in the file. (If you need different properties among observations, put them in different CSV files.)
-
-Currently, the following properties are supported:
-- [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
-- [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
-- [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
-- [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`. 
-
-Note that you cannot mix different property values in a single CSV file. If you have observations using different properties, you must put them in separate CSV files.
-
-format
-
-: Only needed to specify `variablePerRow` for explicit schemas. The assumed default is `variablePerColumn`.
-
-columnMappings (explicit schema only)
-
-: Optional: If headings in the CSV file does not use the default names, the equivalent names for each column.
-
-{:.no_toc}
-### Variables (implicit schema only)
-
-The `variables` section is optional. You can use it to override names and associate additional properties with the statistical variables in the files, using the parameters described below. All parameters are optional. If you don't provide this section, the importer will automatically derive the variable names from the CSV file.
-
-{:.no_toc}
-#### Variable parameters {#varparams}
-
-name
-
-: The display name of the variable, which will show up throughout the UI. If not specified, the column name is used as the display name.  
-The name should be concise and precise; that is, the shortest possible name that allow humans to uniquely identify a given variable. The name is used to generate NL embeddings.
-
-description
-
-: A long-form description of the variable.
-
-properties
-
-: Additional Data Commons properties associated with this variable. The properties are any property required or optional in the [MCF Node definition](#mcf) of a variable. The value of the property must be a DCID.
-
-Each property is specified as a key:value pair. Here are some examples:
-
-```json
-{
-  "populationType": "schema:Person",
-  "measuredProperty": "age",
-  "statType": "medianValue",
-  "gender": "Female"
-}
-```
-
-Note that the `measuredProperty` property has an effect on the display: if it is not set for any variable, the importer assumes that it is different for every defined variable, so that each variable will be shown in a different chart in the UI tools. If you would like multiple variables to show up in the same chart, be sure to set this property on all of the relevant variables, to the same (DCID) value. For example, if you wanted `Adult_curr_cig_smokers_female` and `Adult_curr_cig_smokers_male` to appear on the same Timeline chart, set `measuredProperty` to a common property of the two variables, for example [`percent`](https://datacommons.org/browser/percent){: target="_blank"}. 
-
-```json
-"variables": {
-    "Adult_curr_cig_smokers": {
-      "properties": {
-        "measuredProperty": "percent"
-      }
-    },
-    "Adult_curr_cig_smokers_female": {
-       "properties": {
-         "measuredProperty": "percent"
-      }
-    }
-  }
-```
-
-group
-
-: By default, the Statistical Variables Explorer will display all custom variables as a group called "Custom Variables". You can use this option to create one or more custom group names and assign different variables to groups. The value of the `group` option is used as the heading of the group. For example, in the sample data, the group name `OECD` is used to group together the two variables from the two CSV files:
-
-![group_screenshot](/assets/images/custom_dc/customdc_screenshot5.png){: width="400"}
-
-You can have a multi-level group hierarchy by using `/` as a separator between each group.
-
-> Note: You can only assign a variable to one group. If you would like to assign the same variables to multiple groups, you will need to define the groups as nodes in MCF; see [Define a statistical variable group node](#statvar-group) for details.
-
-searchDescriptions
-
-: An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
-
-{:.no_toc}
-### groupStatVarsByProperty
-
-Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
-
-![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
-
-For explicit schema (which does not give you a `group` option in the `config.json`), if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
-
-{:.no_toc}
-### Sources
-
-The `sources` section encodes the sources and provenances associated with the input dataset. Each named source is a mapping of provenances to URLs.
-
-{:.no_toc}
-#### Source parameters
-
-url
-: Required: The URL of the named source. For example, for named source `U.S. Social Security Administration`, it would be `https://www.ssa.gov`.
-
-provenances
-: Required: A set of _NAME_:_URL_ pairs. Here are some examples:
-
-```json
-{
-  "USA Top Baby Names 2022": "https://www.ssa.gov/oact/babynames/",
-  "USA Top Baby Names 1923-2022": "https://www.ssa.gov/oact/babynames/decades/century.html"
-}
-```
-
+{: #loadlocal}
 ## Load local custom data
 
 The following procedures show you how to load and serve your custom data locally.
@@ -772,6 +607,18 @@ If you have tried to start a container, and have received a `SQL check failed` e
    </div>
   </div>
 </div>
+
+{: #verify}
+### Verify your data
+
+If the servers have started up without errors, check to ensure that your data is showing up as expected.
+
+1. Verify statistical variables: go to the [Statistical Variable Explorer](https://localhost:8080/tools/statvar){: target="_blank"} to verify that your statistical variables are showing up correctly. You should see something like this:
+
+    ![](/assets/images/custom_dc/customdc_screenshot11.png){: width="400"}
+1. Click on a variable name to get more information on the right panel.
+1. Verify that your observations are loaded: Click on an **Example Place** link to open the detailed page for that place. Scroll to the bottom, where you should see a timeline graph of observations for the selected place.
+1. Verify natural-language querying: go to the [Search page](https://localhost:8080/tools/explore){: target="_blank"} and enter a query related to your data. You should get relevant graphs using your data.
 
 ### Inspect the SQLite database
 
