@@ -109,9 +109,9 @@ The only difference from a place-based CSV is that the first column, the entity,
 
 ```csv
 dcid,week,AKgov/total_count_staffed_beds,AKgov/count_staffed_adult_beds,AKgov/count_staffed_inpatient_icu_beds,AKgov/count_staffed_adult_inpatient_icu_beds,AKgov/count_staffed_inpatient_icu_beds_occupied,AKgov/count_staffed_adult_icu_beds_occupied
-AKgov/22001,2023-01-27,79,79,12,12,-999999,-999999
+AKgov/22001,2023-01-27,79,79,12,12,,,
 AKgov/20001,2023-01-27,1262,1048,264,146,264,146
-AKgov/20017,2023-01-27,0,0,-999999,-999999,0,0
+AKgov/20017,2023-01-27,0,0,,,0,0
 AKgov/21301,2023-01-27,836,780,101,62,66,62
 AKgov/21306,2023-01-27,0,0,9,9,8,8
 AKgov/21304,2023-01-27,6,6,0,0,0,0
