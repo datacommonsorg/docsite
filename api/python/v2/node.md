@@ -736,7 +736,7 @@ fetch_place_children(place_dcids, children_type, as_dict)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct parents you want to look up. |
+| place_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more place entities whose direct children you want to look up. |
 | children_type <br/><optional-tag>Optional</optional-tag> | string | The type of the child entities to fetch, for example, `Country`, `State`, `IPCCPlace_50`. If not specified, fetches all child types. This option is useful for cases where the input place may have direct links from various entities, and you only want a specific entity type. For example, in the case of the United States, states, counties, and some cities are directly linked to the `country/USA` entity, while others or not; if you only want states, set this option to `State`. |
 | as_dict <br/><optional-tag>Optional</optional-tag> | bool | Whether to return the response as a dictionary mapping each input DCID to a dict of child entities (when set to `True`), or a dictionary mapping each input DCID to a list of child `NodeResponse` objects (when set to `False`). Defaults to `True`. |
 {: .doc-table }
