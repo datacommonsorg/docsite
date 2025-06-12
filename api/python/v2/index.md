@@ -123,7 +123,7 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
-| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` |
+| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` and Python dictionary |
 | [Observations Pandas DataFrame](pandas.md) | Similar to the `fetch_observatons_by_entity_dcids` and `fetch_observations_by_entity_type` methods of the Observation endpoint, except that the functionality is provided by a single method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` and Python dictionary |
 | Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph | `ResolveResponse` |
@@ -162,7 +162,7 @@ For common requests, each endpoint also provides convenience methods that build 
 
 ## Response formatting
 
-By default, responses are returned as Python `dataclass` objects with the full structure. For example:
+By default, most methods return responses as Python objects with the full structure. For example:
 
 ```python
 response = client.resolve.fetch_dcids_by_name(names="Georgia")
@@ -173,8 +173,8 @@ Each response class provides some property methods that are useful for formattin
 
 | Method | Description |
 |--------|-------------|
-| to_dict | Converts the dataclass to a Python dictionary. |
-| to_json | Serializes the dataclass to a JSON string (using `json.dumps()`). |
+| to_dict | Converts the object to a Python dictionary. |
+| to_json | Serializes the object to a JSON string (using `json.dumps()`). |
 {: .doc-table }
 
 Both methods take the following input parameter:
