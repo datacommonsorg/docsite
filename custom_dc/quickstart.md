@@ -33,10 +33,13 @@ The "services" Docker container consists of the following Data Commons component
 
 ## Prerequisites
 
-- Obtain a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} billing account and project.
+- Obtain a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} account and project. 
 - If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install){: target="_blank"} (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/){: target="_blank"}. 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/){: target="_blank"}.
 - Install [Git](https://git-scm.com/){: target="_blank"}.
+
+> **Tip:** If you use [Google Cloud Shell](https://cloud.google.com/shell/docs){: target="_blank"} as your development environment, Git and Docker come pre-installed.
+
 - Optional: Get a [Github](http://github.com){: target="_blank"} account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps {#setup}
@@ -60,7 +63,7 @@ An API key is required to authorize requests from your site to the base Data Com
 
 > **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
 
-1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
+1. Open a terminal or Cloud Shell window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
     <pre>git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]</pre>
     If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
@@ -75,8 +78,10 @@ cd website
 
 1. Using your favorite editor, copy `custom_dc/env.list.sample` and save it as a new file `custom_dc/env.list`. It provides a template for getting started.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
-1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
-1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
+1. Set `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
+1. For `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
+1. If you are using Google Cloud Shell as your environment, set `GOOGLE_CLOUD_PROJECT` to your project ID.
+1. For now, leave all the other defaults.
 
 **Warning:** Do not use any quotes (single or double) or spaces when specifying the values.
 
@@ -175,9 +180,13 @@ You can see the actual Docker commands that the script runs at the [end of this 
 If you need to restart the services for any reason, do the following:
 
 1. In the terminal window where the container is running, press Ctrl-c to kill the Docker container.
-1. Rerun the `docker run` command as described in [Start the services](#start-services).
+1. Run the script with the option to restart only the services container:
 
-Tip: If you close the terminal window in which you started the Docker services container, you can kill it as follows:
+  ```shell
+  ./run_cdc_dev_docker.sh -c service
+  ```
+
+Tip: If you closed the terminal window in which you started the Docker services container, you can kill it as follows:
 
 1. Open another terminal window, and from the root directory, get the Docker container ID.
   ```shell
