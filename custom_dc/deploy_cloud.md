@@ -26,10 +26,13 @@ You upload your data and configuration files to [Google Cloud Storage](https://c
 ## Prerequisites
 
 - You must have a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} billing account and project.
-- You must have installed [git](https://git-scm.com/){: target="blank"} and cloned the <https://github.com/datacommonsorg/website>{: target="_blank"} repo. For cloning procedures, see [One-time setup steps](/custom_dc/quickstart.html#clone) in the Quickstart. If you don't want to install git, and don't plan to test the site locally or make any local code changes, you can download a zip file from the repo.
 - You must have relevant API keys. If you haven't obtained them yet, see [One-time setup steps](/custom_dc/quickstart.html#setup) in the Quickstart.
+- You must have installed git (if you are running in a local environment) and cloned the <https://github.com/datacommonsorg/website>{: target="_blank"} repo. For cloning procedures, see [One-time setup steps](/custom_dc/quickstart.html#clone) in the Quickstart. 
+
 - Install [gcloud CLI](https://cloud.google.com/sdk/docs/install-sdk){: target="_blank"} on your local machine. gcloud is required for authentication and management tasks.
 - Install [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform){: target="_blank"} on your local machine. Terraform is used to automate the setup steps of all the components.
+
+> **Tip:** If you use [Google Cloud Shell](https://cloud.google.com/shell/docs){: target="_blank"} as your development environment, gcloud and Terraform come pre-installed.
 
 ## Generate credentials for Google Cloud authentication {#gen-creds}
 

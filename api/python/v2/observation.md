@@ -13,7 +13,7 @@ published: true
 The Observation API fetches statistical observations. An observation is associated with an
 entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. 
 
-> Note: This endpoint returns Python dataclass objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
+> Note: This endpoint returns Python objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
 
 [Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/observation.py){: target="_blank"}
 
@@ -33,7 +33,9 @@ The following are the methods available for this endpoint.
 
 ## Response {#response}
 
-With `select=["date", "entity", "variable", "value"]` in effect (the default), the response looks like this:
+The `fetch_available_statistical_variables` returns a Python dictionary. All other methods return a `ObservationResponse` object.
+
+With `select=["date", "entity", "variable", "value"]` in effect (the default), the `ObservationResponse` looks like this:
 
 <pre>
 {
