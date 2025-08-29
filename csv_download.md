@@ -1,4 +1,4 @@
 ---
 layout: redirect
-redirect: https://datacommons.org/tools/download
+redirect_to: https://datacommons.org/tools/download
 ---

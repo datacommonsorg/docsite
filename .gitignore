@@ -10,3 +10,4 @@ vendor/
 .vscode/
 .jekyll-cache
 .jekyll-metadata
+.gitallowed

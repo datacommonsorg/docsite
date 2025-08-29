@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Pandas
-nav_order: 50
-parent: API
+title: Pandas (V1)
+nav_order: 40
+parent: API - Query data programmatically
 has_children: true
 ---
 
@@ -15,7 +15,7 @@ the Pandas API, and supplemental functions help with directly creating
 objects using data from the Data Commons knowledge graph for common
 use cases. 
 
-> **Note:** The Pandas API only supports [V1](/api/rest/v1/index.html) of the REST APIs. 
+> **Note:** This and related pages cover [V1](/api/rest/v1) of the Pandas APIs. For V2 APIs, see [Data Commons Python API V2](/api/python/v2/)
 
 Before proceeding, make sure you have followed the setup instructions below.
 

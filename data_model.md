@@ -2,6 +2,10 @@
 layout: default
 title: Key concepts and common tasks
 nav_order: 3
+parent: How to use Data Commons
+redirect_from: 
+  - /bigquery/data_in_bq
+  - /bigquery/unique_identifiers
 ---
 
 {: .no_toc}
@@ -112,6 +116,7 @@ To find the DCID for a place using other methods:
 
 - Use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
 - Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
+- Use the Python v2 [`resolve.fetch_dcids_by_name`](/api/python/v2/resolve.html#fetch_dcids_by_name) API method, either interactively or programmatically.
 
 To find the DCID for a statistical variable:
 

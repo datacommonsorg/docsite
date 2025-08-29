@@ -33,10 +33,13 @@ The "services" Docker container consists of the following Data Commons component
 
 ## Prerequisites
 
-- Obtain a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} billing account and project.
+- Obtain a [GCP](https://cloud.google.com/docs/get-started){: target="_blank"} account and project. 
 - If you are developing on Windows, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install){: target="_blank"} (any distribution will do, but we recommend the default, Ubuntu), and enable [WSL 2 integration with Docker](https://docs.docker.com/desktop/wsl/){: target="_blank"}. 
 - Install [Docker Desktop/Engine](https://docs.docker.com/engine/install/){: target="_blank"}.
 - Install [Git](https://git-scm.com/){: target="_blank"}.
+
+> **Tip:** If you use [Google Cloud Shell](https://cloud.google.com/shell/docs){: target="_blank"} as your development environment, Git and Docker come pre-installed.
+
 - Optional: Get a [Github](http://github.com){: target="_blank"} account, if you would like to browse the Data Commons source repos using your browser.
 
 ## One-time setup steps {#setup}
@@ -53,22 +56,17 @@ An API key is required to authorize requests from your site to the base Data Com
 1. Go to [https://console.cloud.google.com/google/maps-apis/credentials](https://console.cloud.google.com/google/maps-apis/credentials){: target="_blank"} for your project.
 1. Click **Create Credentials** > **API Key**.
 1. Record the key and click **Close**.
-1. Click on the newly created key to open the **Edit API Key** window.
-1. Under **API restrictions**, select **Restrict key**.
 1. From the drop-down menu, enable **Places API** and **Maps Javascript API**. (Optionally enable other APIs for which you want to use this key.)
 1. Click **OK** and **Save**.
 
-### Clone the Data Commons repository
+### Clone the Data Commons repository {#clone}
 
-  **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
+> **Note:** If you are using WSL on Windows, open the Linux distribution app as your command shell. You must use the Linux-style file structure for Data Commons to work correctly.
 
-1. Open a terminal window, and go to a directory to which you would like to download the Data Commons repository.
+1. Open a terminal or Cloud Shell window, and go to a directory to which you would like to download the Data Commons repository.
 1. Clone the website Data Commons repository:
-
-  <pre>
-   git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]
-  </pre>
-  If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
+    <pre>git clone https://github.com/datacommonsorg/website.git [<var>DIRECTORY</var>]</pre>
+    If you don't specify a directory name, this creates a local `website` subdirectory. If you specify a directory name, all files are created under that directory, without a `website` subdirectory.
 
 When the downloads are complete, navigate to the root directory of the repo (e.g. `website`). References to various files and commands in these procedures are relative to this root.
 
@@ -80,8 +78,10 @@ cd website
 
 1. Using your favorite editor, copy `custom_dc/env.list.sample` and save it as a new file `custom_dc/env.list`. It provides a template for getting started.
 1. Enter the relevant values for `DC_API_KEY` and `MAPS_API_KEY`.
-1. Set the `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
-1. For the `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
+1. Set `INPUT_DIR` to the full path to the `website/custom_dc/sample/` directory. For example if you have cloned the repo directly to your home directory, this might be <code>/home/<var>USERNAME</var>/website/custom_dc/sample/</code>. (If you're not sure, type `pwd` to get the working directory.)
+1. For `OUTPUT_DIR`, set it to the same path as the `INPUT_DIR`.
+1. If you are using Google Cloud Shell as your environment, set `GOOGLE_CLOUD_PROJECT` to your project ID.
+1. For now, leave all the other defaults.
 
 **Warning:** Do not use any quotes (single or double) or spaces when specifying the values.
 
@@ -95,13 +95,17 @@ cd website
     </tr>
   </thead>
   <tbody>
+      <tr>
+      <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/run_cdc_dev_docker.sh" target="_blank"><code>run_cdc_dev_docker.sh</code></a></td>
+      <td>A convenience shell script to simplify management of Docker commands. Throughout the pages in this guide, we reference this script as well as giving the underlying commands. Documentation for running the script is available at the top of the file or by running <code>./run_cdc_dev_docker.sh --help</code> from the root website directory.</td>
+    </tr>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
+      <td>Sample supplemental data and config file (`config.json`) that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples" target="_blank"><code>custom_dc/examples/</code></a></td>
-      <td>More examples of custom data in CSV format and config.json. To configure your own custom data, see <a href="custom_data.html">Work with custom data</a>.</td>
+      <td>More examples of custom data in CSV format and `config.json`. To configure your own custom data, see <a href="custom_data.html">Work with custom data</a>.</td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom" target="_blank"><code>server/templates/custom_dc/custom/</code></a></td>
@@ -110,6 +114,10 @@ cd website
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/datacommonsorg/website/tree/master/deploy/terraform-custom-datacommons" target="_blank"><code>deploy/terraform-custom-datacommons</code></a></td>
+      <td>Contains <a href="https://developer.hashicorp.com/terraform"  target="_blank">Terraform</a> and convenience shell scripts for setting up your instance on Google Cloud Platform. See <a href="deploy_cloud.md">Deploy your custom instance to Google Cloud</a> for complete details.</td>
     </tr>
   </tbody>
 </table>
@@ -138,75 +146,55 @@ There are a few important things to note:
 - There are only 3 columns: one representing a place (`countryAlpha3Code`, a [special Data Commons place type](/custom_dc/custom_data.html#special-names)); one representing a date (`date`); and one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept for a metric: `average_annual_wage` and `gender_wage_gap`. (Actually, there can be any number of statistical variable columns -- but no other types of additional columns -- and these two CSV files could be combined into one.)
 - Every row is a separate [_observation_](/glossary.html#observation), or a value of the variable for a given place and time. In the case of multiple statistical variable columns in the same file, each row would, of course, consist of multiple observations.
 
-This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. (That topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
+This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. You also need to write a `config.json` file to tell the importer which CSV files to import, where the data comes from, and additional options. (Those topics are discussed in detail in [Preparing and loading your data](custom_data.md).)
 
-## Load sample data
+## Load sample data and start the services
 
-To load the sample data:
+To start up Data Commons:
 
 1. If you are running on Windows or Mac, start Docker Desktop and ensure that the Docker Engine is running.
-1. Open a terminal window, and from the root directory, run the following command to run the data management Docker container:
 
-  ```shell
-  docker run \
-  --env-file $PWD/custom_dc/env.list \
-  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-  gcr.io/datcom-ci/datacommons-data:stable
-  ```
+> Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every script or `docker` invocation with `sudo`.
+
+1. Open a terminal window, and from the website root directory, run the following command to run the Docker containers:
+
+   ```shell
+  cd website
+  ./run_cdc_dev_docker.sh
+   ```
 This does the following:
 
-- The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
+- The first time you run it, downloads the latest stable Data Commons data image, `gcr.io/datcom-ci/datacommons-data:stable`, and services image, `gcr.io/datcom-ci/datacommons-services:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored images.
 - Maps the input sample data to a Docker path.
-- Starts a Docker container.
+- Starts the Docker data management container.
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
 - Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
-
-Once the container has executed all the functions in the scripts, it shuts down.
-
-## Start the services {#start-services}
-
-1. Open a new terminal window.
-1. From the root directory, run the following command to start the services Docker container:
-
-```shell
-docker run -it \
--p 8080:8080 \
--e DEBUG=true \
---env-file $PWD/custom_dc/env.list \
--v $PWD/custom_dc/sample:$PWD/custom_dc/sample  \
-gcr.io/datcom-ci/datacommons-services:stable
-```
-
-> Note: If you are running on Linux, depending on whether you have created a ["sudoless" Docker group](https://docs.docker.com/engine/install/linux-postinstall/){: target="_blank"}, you may need to preface every `docker` invocation with `sudo`.
-
-This command does the following:
-
-- The first time you run it, downloads the latest stable Data Commons image, `gcr.io/datcom-ci/datacommons-services:stable`, from the Google Cloud Artifact Registry, which may take a few minutes. Subsequent runs use the locally stored image.
-- Starts a services Docker container.
+- Starts the services Docker container.
 - Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
+
+You can see the actual Docker commands that the script runs at the [end of this page](#docker).
 
 ### Stop and restart the services
 
 If you need to restart the services for any reason, do the following:
 
 1. In the terminal window where the container is running, press Ctrl-c to kill the Docker container.
-1. Rerun the `docker run` command as described in [Start the services](#start-services).
+1. Run the script with the option to restart only the services container:
 
-Tip: If you close the terminal window in which you started the Docker services container, you can kill it as follows:
+  ```shell
+  ./run_cdc_dev_docker.sh -c service
+  ```
+
+Tip: If you closed the terminal window in which you started the Docker services container, you can kill it as follows:
 
 1. Open another terminal window, and from the root directory, get the Docker container ID.
-
   ```shell
   docker ps
   ```
   The `CONTAINER ID` is the first column in the output.
-
 1. Run:
-
-  <pre>
-  docker kill <var>CONTAINER_ID</var>
-	</pre>
+   <pre>docker kill <var>CONTAINER_ID</var></pre>
 
 ## View the local website
 
@@ -239,3 +227,28 @@ http://localhost:8080/core/api/v2/observation?entity.dcids=country%2FCAN&select=
 If you select **Prettyprint**, you should see output like this:
 
 ![screenshot_api_call](/assets/images/custom_dc/customdc_screenshot4.png){: height="400" }
+
+{: #docker}
+## Docker commands
+
+The Bash script used on this page runs the following commands:
+
+```bash
+docker run \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  gcr.io/datcom-ci/datacommons-data:stable
+
+docker run -i \
+  -p 8080:8080 \
+  -e DEBUG=true \
+  --env-file $PWD/custom_dc/env.list \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  -v $PWD/custom_dc/sample:$PWD/custom_dc/sample \
+  gcr.io/datcom-ci/datacommons-services:stable
+```
+
+## Troubleshooting
+
+Having trouble? Visit our [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.

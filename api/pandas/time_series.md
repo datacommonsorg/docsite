@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Time Series as pd.Series
+title: Get time series for a place
 nav_order: 1
-parent: Pandas
-grand_parent: API
+parent: Pandas (V1)
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve time series for a place

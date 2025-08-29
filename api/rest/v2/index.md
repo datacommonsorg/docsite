@@ -1,10 +1,23 @@
 ---
 layout: default
 title: REST (V2)
-nav_order: 5
-parent: API
+nav_order: 1
+parent: API - Query data programmatically
 has_children: true
 published: true
+redirect_from: 
+   /api/rest/v2/getting_started
+   /api/rest/index
+   /api/rest/place_in
+   /apl/rest/place_stat_vars
+   /api/rest/property_label
+   /api/rest/property_value
+   /api/rest/query
+   /api/rest/stat_all
+   /api/rest/stat_series
+   /api/rest/stat_value
+   /api/rest/stats
+   /api/rest/triple
 ---
 
 {:.no_toc}
@@ -40,23 +53,38 @@ https://api.datacommons.org/<var>VERSION</var>
 
 The current version is `v2`.
 
-To access a particular endpoint, append the URI to the base URL (e.g. `https://api.datacommons.org/v2/node` ).
+To access a particular endpoint, append the URI to the base URL, e.g. `https://api.datacommons.org/v2/node`.
+
 The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
 | SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"} graph query |
 
-### Endpoints for custom instances
+### Base URL for custom instances
 
-If you are running your own Data Commons, the URL/URI endpoints are slightly different:
+If you are running your own Data Commons, the base URL is slightly different:
 
 <pre>
-<var>CUSTOM_URL</var>/core/api/v2
+<var>CUSTOM_URL</var>/core/api/v2/
 </pre>
+
+For example, for a publicly available instance:
+
+```
+https://datacommons.one.org/core/api/v2/
+```
+
+For a locally running instance:
+
+```
+https://localhost:8080/core/api/v2/
+```
+
+Endpoints are the same as above; append the URI to the base URL, e.g. `https://localhost:8080/core/api/v2/node`.
 
 ## Query parameters {#query-param}
 
@@ -90,7 +118,7 @@ curl -X POST \
 {: #authentication}
 ## Authentication
 
-All access to base Data Commons using the REST APIs must be authenticated and authorized with an API key.
+All access to the base Data Commons (datacommons.org) using the REST APIs must be authenticated and authorized with an API key.
 
 We provide a trial API key for general public use. This key will let you try the API and make single requests.
 
@@ -161,44 +189,51 @@ The following table describes symbols in the V2 API relation expressions:
 | <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
-| `+` | One or more expressions chained together for indirect relationships, like `containedInPlace+{typeOf:City}` |
+| `+` | Allows arcs from nodes not directly connected, i.e. can be several hops away. Only supported for the `containedInPlace` property. |
 
-### Incoming and outgoing arcs
+### Incoming and outgoing relations
 
-Arcs in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG){: target="_blank"}, the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
+Relations ("arcs") in the Data Commons Graph have directions. In the example below, for the node [Argentina](https://datacommons.org/browser/country/ARG){: target="_blank"}, the property `containedInPlace` exists in both in and out directions, illustrated in the following figure:
 
 ![](/assets/images/rest/property_value_direction_example.png)
 
-Note the directionality of the property `containedInPlace`: incoming arc represents "Argentina contains Buenos Aires", while the outgoing arc represents "Argentina is in South America".
+Note the directionality of the property `containedInPlace`: the incoming relation represents "Argentina contains Buenos Aires", while the outgoing relation represents "Argentina is in South America".
 
-Nodes for outgoing arcs are represented by `->`, while nodes for incoming arcs
-arcs are represented by `<-`. To illustrate using the above example:
+Nodes for outgoing relations are represented by `->`. Nodes for incoming relations are represented by `<-`. To illustrate using the above example:
 
 - Regions that include Argentina (DCID: `country/ARG`): `country/ARG->containedInPlace`
-- All cities directly contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
-
-### Filters
-
-You can use filters to reduce results to only match nodes with a specified property and value. Use {} to specify property:value pairs to define the filter. Using the same example, `country/ARG<-containedInPlace+{typeOf:City}` only returns nodes with the `typeOf:City`, filtering out `typeOf:AdministrativeArea1` and so on.
+- All cities contained in Argentina (DCID: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
 
 ### Specify multiple properties
 
 You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
 `->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
 
+### Filters
+
+V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter (for non-SPARQL queries) is:
+
+<pre>
+{typeOf:<var>VALUE</var>}
+</pre>
+
+Here are the contexts where this filter is currently supported:
+
+| API | Context  | Use |
+|-----|--------------------------------------|-------------|
+| Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
+| Resolve entity | Incoming properties `<-description` <br />`<-wikiId` <br /> `<-geoCoordinate` | Return entities of the specified type, that match a selected name, wiki ID, or geocoordinate. |
+| SPARQL | In a `WHERE` clause, for any entity being queried | Return only entities of the specified type. |
+
+See the endpoint pages for examples.
+
+The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
+
 ### Wildcard
 
 To retrieve all properties linked to a node, use the `*` wildcard, e.g. `<-*`.
 See more in this [Node API example](/api/rest/v2/node.html#wildcard).
 
-### Chain properties
-
-Use `+` to express a chain expression. A chain expression represents requests for information about nodes
-which are connected by the same property, but are a few hops away. This is supported only for the `containedInPlace` property.
-
-To illustrate again using the Argentina example:
-- All cities directly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace{typeOf:City}`
-- All cities indirectly contained in Argentina (dcid: `country/ARG`): `country/ARG<-containedInPlace+{typeOf:City}`
 
 {: #url-encode}
 ## URL-encoding reserved characters in GET requests
@@ -267,4 +302,4 @@ curl -X POST \
   "nextToken": "SoME_veRy_L0ng_STrIng"
 }'
 ```
-Don't forget to URL-encode any special characters that appear in the string.
+You must [URL-encode](#url-encode) any special characters that appear in the string.

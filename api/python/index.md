@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Python
-nav_order: 40
-parent: API
+title: Python (V1)
+nav_order: 30
+parent: API - Query data programmatically
 has_children: true
 ---
 
@@ -13,7 +13,7 @@ programmatically access nodes in the Data Commons knowledge graph. This package
 allows users to explore the structure of the graph, integrate statistics from
 the graph into data analysis workflows and much more. 
 
-> **Note:** The Python API only supports [V1](/api/rest/v1) of the REST APIs. 
+> **Note:** This and related pages cover [V1](/api/rest/v1) of the Python APIs. For V2 APIs, see [Data Commons Python API V2](/api/python/v2/)
 
 Before proceeding, make sure you have followed the setup instructions below.
 

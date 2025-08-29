@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Place Statistics - All
-nav_order: 9
-parent: Python
-grand_parent: API
+title: Get statistical data for multiple places
+nav_order: 35
+parent: Python (V1)
+grand_parent: API - Query data programmatically
 ---
 
 # Retrieve a collection of statistical data for multiple places

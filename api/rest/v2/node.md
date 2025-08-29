@@ -1,19 +1,22 @@
 ---
 layout: default
 title: Get node properties
-nav_order: 7
+nav_order: 3
 parent: REST (V2)
-grand_parent: API
+grand_parent: API - Query data programmatically
 published: true
 ---
 
+{: .no_toc}
 # /v2/node
 
+* TOC
+{:toc}
+
 Data Commons represents node relations as directed edges between nodes, or
-_properties_. The name of the property is a _label_, while the target node is the _value_ of
-the property. The Node API returns the property labels and values that are
-connected to the queried node. This is useful for
-finding local connections between nodes of the Data Commons knowledge graph.
+_properties_. The name of the property is a _label_, while the _value_ of
+the property may be a connected node. The Node API returns the property labels and values that are
+connected to the queried node. This is useful for finding local connections between nodes of the Data Commons knowledge graph.
 
 More specifically, this API can perform the following tasks:
 - Get all property labels associated with individual or multiple nodes.
@@ -58,7 +61,7 @@ JSON data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-## Query parameters
+### Query parameters
 
 | Name                                                  | Type   |  Description           |
 | ----------------------------------------------------- | ------ | -----------------------|
@@ -104,9 +107,9 @@ The response looks like:
 
 ## Examples
 
-### Example 1: Get all incoming arc labels for a given node
+### Example 1: Get all property labels for a given node
 
-Get all incoming arc property labels of the node with DCID `geoId/06` by querying all properties with the `<-` symbol. This returns just the property labels but not the property values.
+Get all (incoming arc) property labels of the node with DCID `geoId/06` (California) by querying all properties with the `<-` symbol. This returns just the property labels but not the property values.
 
 Parameters:
 {: .example-box-title}
@@ -152,7 +155,7 @@ Response:
 }
 ```
 
-### Example 2: Get one property for a given node
+### Example 2: Get one property value for a given node
 
 Get a `name` property for a given node with DCID `dc/03lw9rhpendw5` by querying the `->name` symbol.
 
@@ -202,10 +205,86 @@ Response:
   }
 }
 ```
-{: .example-box-content .scroll}
+{: .example-box-content .scroll
+
+### Example 3: Get the DCIDs of all the states in the United States
+
+In this example, we use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in
+United States of type `State`".
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "country/USA"
+property: "<-containedInPlace+{typeOf:State}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=country%2FUSA&property=%3C-containedInPlace%2B%7BtypeOf%3AState%7D'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["country/USA"], "property": "<-containedInPlace+{typeOf:State}"}'
+```
+
+Response:
+{: .example-box-title}
+
+```
+{
+   "data" : {
+      "country/USA" : {
+         "arcs" : {
+            "containedInPlace+" : {
+               "nodes" : [
+                  {
+                     "dcid" : "geoId/01",
+                     "name" : "Alabama"
+                  },
+                  {
+                     "dcid" : "geoId/02",
+                     "name" : "Alaska"
+                  },
+                  {
+                     "dcid" : "geoId/04",
+                     "name" : "Arizona"
+                  },
+                  {
+                     "dcid" : "geoId/05",
+                     "name" : "Arkansas"
+                  },
+                  {
+                     "dcid" : "geoId/06",
+                     "name" : "California"
+                  },
+                  {
+                     "dcid" : "geoId/08",
+                     "name" : "Colorado"
+                  },
+                  {
+                     "dcid" : "geoId/09",
+                     "name" : "Connecticut"
+                  },
+                ...
+            }
+         }
+      }
+   }
+}             
+```
 
 {: #multiple-properties}
-### Example 3: Get multiple property values for multiple nodes
+### Example 4: Get multiple property values for multiple nodes
 
 Get `name`, `latitude`, and `longitude` values for several nodes: `geoId/06085`
 and `geoId/06087`. Note that multiple properties for a given node must be
@@ -322,11 +401,11 @@ Response:
 
 
 {: #wildcard}
-### Example 4: Get all incoming arc values for a node
+### Example 5: Get all property values for a node
 
-Get all the incoming linked nodes for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels. 
+Get all the property labels and values (incoming arcs) for node `PowerPlant`, using `<-*`. Note that, unlike example 1, this query returns the actual property values, not just their labels. 
 
-Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+Also note that the response contains a `nextToken`, so to get all the data, you need to send additional requests with [continuation tokens](/api/rest/v2/index.html#pagination), until no `nextToken` is returned.
 
 Parameters:
 {: .example-box-title}
@@ -500,11 +579,12 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 5: Get a list of all existing statistical variables
+{: #liststatvars}
+### Example 6: Get a list of all existing statistical variables
 
 Get all incoming linked nodes of node `StatisticalVariable`, with the `typeof` property. Since `StatisticalVariable` is a top-level entity, or entity type, this effectively gets all statistical variables.
 
-Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+Also note that the response contains a `nextToken`, so to get all the data, you need to send additional requests with [continuation tokens](/api/rest/v2/index.html#pagination), until no `nextToken` is returned.
 
 Parameters:
 {: .example-box-title}
@@ -591,7 +671,8 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 6: Get a list of all existing entity types
+{: #list-entity-types}
+### Example 7: Get a list of all existing entity types
 
 Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
 
