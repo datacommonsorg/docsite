@@ -28,7 +28,7 @@ In fact, a reasonable approach is to define any entity types (if needed) in MCF,
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
-In the following sections, we'll describe setting up the custom entities, as well as how to use them with custom statistical variables.
+In the following sections, we'll describe setting up the custom entities, as well as how to use them with custom statistical variables. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities){: target="_blank"}.
 
 ## Step 1: Define custom entity types (if needed) using explicit schema
 
@@ -66,7 +66,7 @@ Data Commons relies fairly heavily on [enumerations](https://datacommons.org/bro
 
 ## Step 2: Define custom entities using implicit schema
 
-In this section, we will walk you through concrete examples of how you can define new entities and variables in CSV files, and set up the `config.json` file.
+In this section, we will walk you through concrete examples of how you can define new entities and variables in CSV files, and set up the `config.json` file. 
 
 CSV files can only contain one entity type, so if you are defining entities of more than one type (e.g. schools and hospitals), use separate a separate file for each. If you're adding observations as well, put them in separate files from the entity definitions. 
 
