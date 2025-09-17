@@ -27,7 +27,3 @@ A general audience course focused on the basics of data comprehension, interpret
 **[Intro to Data Science](/courseware/intro_data_science.html)**
 
 An introduction to key data science concepts, targeted at an undergraduate audience. Assumes basic python programming skills.
-
-## Feedback
-
-If you use any of this material, we would love to hear from you! Please [share feedback with this form](https://docs.google.com/forms/d/e/1FAIpQLSdo_IpV4rlQzDcSZOBOnXLlJDSFv_lFU7j8m2_i1ctRCP3HGw/viewform).
