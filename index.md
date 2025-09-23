@@ -40,8 +40,6 @@ There are several options for directly querying the data, without accessing the 
 
 - **LLMs**: Data Commons provides a [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) server. This allows you to use any MCP-enabled agent, powered by a Large Language Model (LLM) such as Google Gemini, to [interactively query](/mcp/index.html) Data Commons data.
 
-Data Commons has recently launched a Model Context Protocol server. This allows you to use any MCP-enabled agent, powered by a Large Language Model (LLM) like Google Gemini, to interactively query Data Commons data.
-
 - **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
 
 ## Embed Data Commons visualizations in your website {#embed}
