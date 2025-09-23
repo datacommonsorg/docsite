@@ -35,6 +35,8 @@ In addition, Data Commons provides additional tools for accessing its data that 
 - [Google Sheets](sheets/index.md): provides several custom functions that populate spreadsheets with data from the Data Commons knowledge graph
 - [Web Components](web_components/index.md): provides JavaScript APIs and HTML templates that allow you to embed Data Commons data and visualizations into web pages
 
+Finally, an R client library is available from a third-party provider, [Tidy Intelligence](https://www.tidy-intelligence.com/). Learn more at https://github.com/tidy-intelligence/r-datacommons/.
+
 {: #get-key}
 ## API keys
 
