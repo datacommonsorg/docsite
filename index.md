@@ -55,7 +55,7 @@ Data Commons provides tools for downloading its data in CSV format. To preview a
 
 ## Contribute data to datacommons.org {#contribute-data}
 
-We are always looking to expand the data available from the base Data Commons site, datacommons.org. If you are interested in contributing data, please [fill out this form](https://docs.google.com/forms/d/e/1FAIpQLSf_kZ13bmzXvgEbim0OXeAVsTQYsIhN8_o9ekdbjKoeFjfvRA/viewform){: target="_blank"}.
+We are always looking to expand the data available from the base Data Commons site, datacommons.org. If you are interested in contributing data, please file a ticket in our [IssueTracker](https://issuetracker.google.com/issues/new?component=1660823&template=2053232&pli=1){: target="_blank"}.
 
 ## Develop and host a Data Commons site with your own data {#custom}
 
