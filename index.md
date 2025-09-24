@@ -38,6 +38,8 @@ There are several options for directly querying the data, without accessing the 
 
     Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring the Python APIs and data, currently in use at MIT.
 
+- **LLMs**: Data Commons provides a [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) server. This allows you to use any MCP-enabled agent, powered by a Large Language Model (LLM) such as Google Gemini, to [interactively query](/mcp/index.html) Data Commons data.
+
 - **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
 
 ## Embed Data Commons visualizations in your website {#embed}
