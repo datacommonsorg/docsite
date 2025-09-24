@@ -94,7 +94,7 @@ Use this procedure if you are not using Github, or if you are using Github and w
 
 The following procedure uses Github. If you are using another version control system, use the appropriate methods for updating submodules and syncing.
 
-1. Switch to the directory where you have cloned the Data Commons doe:
+1. Switch to the directory where you have cloned the Data Commons code:
    <pre>
    cd website | cd <var>DIRECTORY</var>
    </pre>
