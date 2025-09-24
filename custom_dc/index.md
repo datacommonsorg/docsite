@@ -40,14 +40,14 @@ For the following use cases, a custom Data Commons instance is not necessary:
 |--------------------------------------------------------------|--------------------|---------------------|
 | Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
 | Natural language query interface                            | yes, using Google AI technologies and models  |  yes, using open-source models only<sup>1</sup>  |
-| REST APIs                                                   |  yes | yes, no additional setup needed |
-| Python and Pandas API wrappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
-| Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
+| REST APIs                                                   |  yes | yes |
+| Python and Pandas API wrappers                               |  yes  | yes |
+| Google Spreadsheets                                         |  yes |  no<sup>2</sup> |
 | Site access controls | n/a | yes, using any supported Cloud Run mechanisms<sup>3</sup> |
-| Fine-grained data access controls<sup>4</sup> |  no | n/a |
+| Fine-grained data access controls<sup>4</sup> |  no | n/a | 
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers){: target="_blank"}.
-1. If you would like to support these facilities, please file a [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or upvote an [existing one](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"}.
+1. If you would like to support this facility, please file a [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"}.
 1. For example, Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress){: target="_blank"} for more information on these options. 
 1. You cannot set access controls on specific data, only the entire custom site.
 
