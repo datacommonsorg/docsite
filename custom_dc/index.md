@@ -87,7 +87,7 @@ You can get precise information and cost estimation tools at [Google Cloud prici
 - Cloud SQL
 - Cloud Storage
 - Cloud Run: Job + Service
-- Artifact Registry (< 1 GB storage>)
+- Artifact Registry (< 1 GB storage)
 
 You may also need Cloud DNS, Networking - Cloud Loadbalancing, and Redis Memorystore + VPC networking (see [Launch your Data Commons](launch_cloud.md) for details).
 
