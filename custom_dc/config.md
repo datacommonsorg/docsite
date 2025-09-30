@@ -84,6 +84,7 @@ Here is the general spec for the `config.json` file.
     },  
   },   
 
+  # For explicit schema only
   "groupStatVarsByProperty": false | true,
 
   "sources": {  
@@ -265,19 +266,19 @@ group
 
 You can have a multi-level group hierarchy by using `/` as a separator between each group.
 
-> Note: You can only assign a variable to one group. If you would like to assign the same variables to multiple groups, you will need to define the groups as nodes in MCF; see [Define a statistical variable group node](#statvar-group) for details.
+> Note: You can only assign a variable to one group. If you would like to assign the same variable to multiple groups, you will need to define the groups as nodes in MCF; see [Define a statistical variable group node](custom_data.md#statvar-group) for details.
 
 searchDescriptions
 
 : An array of descriptions to be used for creating more NL embeddings for the variable. This is only needed if the variable `name` is not sufficient for generating embeddings.
 
-## groupStatVarsByProperty
+## groupStatVarsByProperty (explicit schema only)
 
 Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
 
 ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
 
-For explicit schema (which does not give you a `group` option in the `config.json`), if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
+For explicit schema, if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
 
 ## Sources
 
