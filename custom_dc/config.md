@@ -274,11 +274,9 @@ searchDescriptions
 
 ## groupStatVarsByProperty (explicit schema only)
 
-Optional: Causes the Statistical Variable Explorer to create a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
+Optional: When set to `true`, causes the Statistical Variable Explorer to display a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
 
 ![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
-
-For explicit schema, if you would like your custom variables to be displayed together, rather than spread among existing categories, this option is recommended.
 
 ## Sources
 
