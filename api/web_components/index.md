@@ -108,7 +108,8 @@ Custom styles are supported through
 | `series-variable-<dcid>`              | Series data for a variable. Example: `series-place-variable-Count_Person`                                   | `bar`, `line`. `pie`       |
 | `header`                              | Chart title                                                                                                 | All                        |
 | `subheader`                           | Chart subtitle (if provided in `slot="subheader"`)                                                          | All                        |
-| `footer`                              | Chart footer (if provided in `slot="footer"`)                                                               | All                        |
+| `tools-footer`                        | Chart footer with `Download`, `API Code`, and `Explore in...` buttons | All                        |
+| `footer`                              | Custom chart footer (if provided in `slot="footer"`)                                                               | All                        |
 | `x-axis`                              | X-axis line                                                                                                 | `bar`, `line`              |
 | `x-axis-text`                         | X-axis label text                                                                                           | `bar`, `line`              |
 | `x-axis-tick`                         | X-axis tick mark                                                                                            | `bar`, `line`              |
