@@ -8,7 +8,7 @@ parent: Build your own Data Commons
 {: .no_toc}
 # Define custom (non-place) entities
 
-This page shows you how to define <!--or extend--> custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md). It is especially important to understand the relationship between "nodes" and "properties".
+This page shows you how to define <!--or extend--> custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md).
 
 Before creating new entities, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons (datacommons.org). 
 
@@ -28,7 +28,7 @@ In fact, a reasonable approach is to define any entity types (if needed) in MCF,
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
-In the following sections, we'll describe setting up the custom entities, as well as how to use them with custom statistical variables.
+In the following sections, we'll describe setting up the custom entities, as well as how to use them with custom statistical variables. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities){: target="_blank"}.
 
 ## Step 1: Define custom entity types (if needed) using explicit schema
 
@@ -38,8 +38,8 @@ You can have a single MCF file or as many as you like.
 
 For entity types (and entities), an MCF block definition must include the following fields:
 
-- `Node`: This is the DCID of the entity or entity type you are defining.
-- `name`: This is the readable name that will be displayed in various parts ot the UI.
+- `Node`: This is the DCID of the entity or entity type you are defining. It is also recommended that you use a prefix to create a namespace for your own entity types. The prefix must be separated from the main entity type name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom entity types from entity types in the base DC. (See example below.)
+- `name`: This is the readable name that will be displayed in various parts ot the UI. 
 - `typeOf`: For an entity type, this must be `Class`.
 
 You can additionally define any number of key:value pairs.
@@ -47,7 +47,7 @@ You can additionally define any number of key:value pairs.
 For example, let's say a state government wanted to track the finances of its agencies. There is no "agency" type node in the Data Commons graph, so they could create one like this:
 
 ```
-Node: dcid:Agency
+Node: dcid:mystategov/Agency
 name: "Government agency"
 typeOf: schema:Class
 subClassOf: dcs:Government
@@ -55,6 +55,8 @@ description: "Agency of a government, such as legal, legislative, insurance, tax
 ```
 
 Note especially the `subClassOf` field, which inserts it into a class hierarchy with the direct parent of `Government`. You could add other properties, such as schema.org meta properties, and so on.
+
+It is also recommended that you use a prefix to create a namespace for your own data. It must be separated from the main variable name by a slash (`/`). For example, if your organization or project name is foo.com, you could use a namespace `foo/`. This way it is easy to distinguish your custom variables from variables in the base DC.
 
 The next step is to define entities of type `Agency` in a CSV file, as described below. 
 
@@ -64,7 +66,7 @@ Data Commons relies fairly heavily on [enumerations](https://datacommons.org/bro
 
 ## Step 2: Define custom entities using implicit schema
 
-In this section, we will walk you through concrete examples of how you can define new entities and variables in CSV files, and set up the `config.json` file.
+In this section, we will walk you through concrete examples of how you can define new entities and variables in CSV files, and set up the `config.json` file. 
 
 CSV files can only contain one entity type, so if you are defining entities of more than one type (e.g. schools and hospitals), use separate a separate file for each. If you're adding observations as well, put them in separate files from the entity definitions. 
 
@@ -76,18 +78,19 @@ For example, let's say you wanted to track the performance of individual hospita
 
 ```csv
 ccn,name,address,city_name,City,zipCode,hospitalSubtype
-22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,geoId/02020,99503,Long Term
-20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,geoId/02020,Short Term
-20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,geoId/02110,99801,Short Term
-21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,geoId/02150,99901,Critical Access Hospitals
-20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,geoId/02020,99508,Short Term
-21301,Providence Valdez Medical Center,Po Box 550,Valdez,geoId/02261,99686,Critical Access Hospitals
-21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,Kodiak,geoId/02150,99615,Critical Access Hospitals
-21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02280,99833,Critical Access Hospitals
+AKgov/22001,St Elias Specialty Hospital,4800 Cordova Street,Anchorage,geoId/02020,99503,Long Term
+AKgov/20001,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,geoId/02020,Short Term
+AKgov/20008,Bartlett Regional Hospital,3260 Hospital Dr,Juneau,geoId/02110,99801,Short Term
+AKgov/21311,Ketchikan Medical Center,3100 Tongass Avenue,Ketchikan,geoId/02150,99901,Critical Access Hospitals
+AKgov/20017,Alaska Regional Hospital,2801 Debarr Road,Anchorage,geoId/02020,99508,Short Term
+AKgov/21301,Providence Valdez Medical Center,Po Box 550,Valdez,geoId/02261,99686,Critical Access Hospitals
+AKgov/21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,Kodiak,geoId/02150,99615,Critical Access Hospitals
+AKgov/21304,Petersburg Medical Center,Po Box 589,Petersburg,geoId/02280,99833,Critical Access Hospitals
 ```
 
 Here are a few things to note:
 - The order of columns does not matter. Even the column defining DCIDs does not need to be first; you will specify the column to use for DCIDs in `config.json`.
+- We recommended that you use a prefix to create a namespace for your own entities. It must be separated from the main variable name by a slash (`/`). For example, if your organization or project name is foo.com, you could use a namespace `foo/`. This way it is easy to distinguish your custom variables from variables in the base DC.
 - If you are also defining a new entity type (say, for `Hospital`), you will define it in `config.json`.
 - In this example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCID; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, since `zipCode` is not a DCID, it won't be used to link to any existing entities. 
 
@@ -105,13 +108,13 @@ _ENTITY, OBSERVATION_DATE, STATISTICAL_VARIABLE1, STATISTICAL_VARIABLE2, …_
 The only difference from a place-based CSV is that the first column, the entity, _must_ have the heading `dcid`, and must contain the DCIDs of the entities you have defined elsewhere. Here's an example, using our hospital entities:
 
 ```csv
-dcid,week,total_count_staffed_beds,count_staffed_adult_beds,count_staffed_inpatient_icu_beds,count_staffed_adult_inpatient_icu_beds,count_staffed_inpatient_icu_beds_occupied,count_staffed_adult_icu_beds_occupied
-22001,2023-01-27,79,79,12,12,-999999,-999999
-20001,2023-01-27,1262,1048,264,146,264,146
-20017,2023-01-27,0,0,-999999,-999999,0,0
-21301,2023-01-27,836,780,101,62,66,62
-21306,2023-01-27,0,0,9,9,8,8
-21304,2023-01-27,6,6,0,0,0,0
+dcid,week,AKgov/total_count_staffed_beds,AKgov/count_staffed_adult_beds,AKgov/count_staffed_inpatient_icu_beds,AKgov/count_staffed_adult_inpatient_icu_beds,AKgov/count_staffed_inpatient_icu_beds_occupied,AKgov/count_staffed_adult_icu_beds_occupied
+AKgov/22001,2023-01-27,79,79,12,12,,,
+AKgov/20001,2023-01-27,1262,1048,264,146,264,146
+AKgov/20017,2023-01-27,0,0,,,0,0
+AKgov/21301,2023-01-27,836,780,101,62,66,62
+AKgov/21306,2023-01-27,0,0,9,9,8,8
+AKgov/21304,2023-01-27,6,6,0,0,0,0
 ```
 The `dcid` column consists of the CCN numbers we previously used as the DCIDs for each hospital entity.
 
@@ -186,24 +189,24 @@ Here's an example of the previous hospital data, covering both the entities and 
     }
   },
   "variables": {
-    "total_count_staffed_beds": {
+    "AKgov/total_count_staffed_beds": {
       "name": "All beds",
       "description": "Weekly sum of all staffed beds per hospital",
       "searchDescriptions": [
-        "Total countber of beds in Alaska hospitals each week",
-        "Total countber of staffed beds in Alaska hospitals each week"
+        "Count of total beds in Alaska hospitals each week",
+        "Count of staffed beds in Alaska hospitals each week"
       ],
       "group": "Alaska Hospitals",
       "properties": {
         "populationType": "Bed"
       }
     },
-    "count_staffed_adult_beds": {
+    "AKgov/count_staffed_adult_beds": {
       "name": "Beds for adults",
       "description": "Weekly sum of all staffed beds reserved for adults per hospital",
       "searchDescriptions": [
-        "countber of beds for adults in Alaska hospitals each week",
-        "countber of staffed beds for adults in Alaska hospitals each week"
+        "Count of beds for adults in Alaska hospitals each week",
+        "Count of staffed beds for adults in Alaska hospitals each week"
       ],
       "group": "Alaska Hospitals",
       "properties": {
@@ -244,7 +247,7 @@ https://localhost:8080/browser/<var>ENTITY_DCID</var>
 
 (If you're using a Cloud Run service, replace `localhost:8080` with the app name.)
 
-The _ENTITY_DCID_ is any DCID you have created previously. Using our previous hospitals example, we could enter `https://localhost:8080/browser/A20017` and would see this:
+The _ENTITY_DCID_ is any DCID you have created previously. Using our previous hospitals example, we could enter `https://localhost:8080/browser/AKgov/20017` and would see this:
 
 ![](/assets/images/custom_dc/customdc_screenshot12.png){: width="800"}
 

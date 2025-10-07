@@ -40,14 +40,14 @@ For the following use cases, a custom Data Commons instance is not necessary:
 |--------------------------------------------------------------|--------------------|---------------------|
 | Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
 | Natural language query interface                            | yes, using Google AI technologies and models  |  yes, using open-source models only<sup>1</sup>  |
-| REST APIs                                                   |  yes | yes, no additional setup needed |
-| Python and Pandas API wrappers                               |  yes  | yes, but requires additional setup<sup>2</sup> |
-| Google Spreadsheets                                         |  yes |  yes, but requires additional setup<sup>2</sup> |
+| REST APIs                                                   |  yes | yes |
+| Python and Pandas API wrappers                               |  yes  | yes |
+| Google Spreadsheets                                         |  yes |  no<sup>2</sup> |
 | Site access controls | n/a | yes, using any supported Cloud Run mechanisms<sup>3</sup> |
-| Fine-grained data access controls<sup>4</sup> |  no | n/a |
+| Fine-grained data access controls<sup>4</sup> |  no | n/a | 
 
 1. Open-source Python ML library, Sentence Transformers model, from [https://huggingface.co/sentence-transformers](https://huggingface.co/sentence-transformers){: target="_blank"}.
-1. If you would like to support these facilities, please file a [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"} or upvote an [existing one](https://issuetracker.google.com/issues?q=componentid:1659535%2B%20type:feature_request){: target="_blank"}.
+1. If you would like to support this facility, please file a [feature request](https://issuetracker.google.com/issues/new?component=1659535&template=2053233){: target="_blank"}.
 1. For example, Virtual Private Cloud, Cloud IAM, and so on. Please see the GCP [Restricting ingress for Cloud Run](https://cloud.google.com/run/docs/securing/ingress){: target="_blank"} for more information on these options. 
 1. You cannot set access controls on specific data, only the entire custom site.
 
@@ -77,9 +77,7 @@ A custom Data Commons site runs in a Docker container on Google Cloud Platform (
 - A [Docker](http://docker.com) account
 - If you will be customizing the site's UI, familiarity with the Python [Flask](https://flask.palletsprojects.com/en/3.0.x/#){: target="_blank"} web framework and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/templates/){: target="_blank"} HTML templating
 
-> **Note:** Data Commons does not support local Windows development natively. If you wish to develop Data Commons on Windows, you will need to use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){: target="_blank"}.
-
-If you already have an account with another cloud provider, we can provide a connector; please [contact us](https://docs.google.com/forms/d/e/1FAIpQLSeVCR95YOZ56ABsPwdH1tPAjjIeVDtisLF-8oDYlOxYmNZ7LQ/viewform?resourcekey=0-yJ9nT9ST-TfoKNtmGIws-g){: target="_blank"} if you are interested in this option.
+> **Note:** Data Commons does not support local Windows development natively. If you wish to develop Data Commons on local Windows, you will need to use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){: target="_blank"}. Otherwise, you can use the free [Google Cloud Shell](https://cloud.google.com/shell/docs){: target="_blank"} as a (remote) development environment.
 
 In terms of development time and effort, to launch a site with custom data in compatible format and no UI customization, you can expect it to take less than three weeks. If you need substantial UI customization it may take up to four months.
 
@@ -89,7 +87,7 @@ You can get precise information and cost estimation tools at [Google Cloud prici
 - Cloud SQL
 - Cloud Storage
 - Cloud Run: Job + Service
-- Artifact Registry (< 1 GB storage>)
+- Artifact Registry (< 1 GB storage)
 
 You may also need Cloud DNS, Networking - Cloud Loadbalancing, and Redis Memorystore + VPC networking (see [Launch your Data Commons](launch_cloud.md) for details).
 
