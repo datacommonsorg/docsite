@@ -332,7 +332,7 @@ The following fields are specific to the variable-per-column format:
   - `description`: A more detailed name that will be shown in the Statistical Variable Explorer.
   - `searchDescriptions`: This is a comma-separated list of natural-language text descriptions of the variable; these descriptions will be used to generate embeddings for the NL query interface.
   - `group`: This will display the variables as a group in the Statistical Variable Explorer, using the name you provide as the heading. You can have multiple groups, but you can only assign a variable to one at a time. It's a good idea to set this or you will find it almost impossible to locate your varables in the Explorer.
-    > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](#statvar-group) for details.
+    > Tip: If you would like to assign the same variable to multiple groups, you can do so using MCF. See [Define a statistical variable group node](custom.md#statvar-group) for details.
   - `properties`: This is a set of standard properties for defining statistical variables in MCF. All are optional in the `config.json` file. (The full list of properties is provided in the [config.json reference](config.md#varprops).) Here we only use the `populationType` field to specify the thing being measured by the variable, namely `Person`. The value must be an existing entity of `Class` type. To get a full list of existing entity types, see the section on [searching](#search) above. Properties are also used to group together variables in the Statistical Variable Explorer.
 
 The other fields are explained in the [Data config file specification reference](config.md).
