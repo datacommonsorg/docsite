@@ -719,7 +719,7 @@ $ curl --request GET --url \
                      "dcid" : "wikidataId/Q1195",
                      "name" : "Meghalaya"
                   },
-                  //-- truncated -->
+                  //-- truncated --
                   {
                      "dcid" : "wikidataId/Q677037",
                      "name" : "Telangana"
