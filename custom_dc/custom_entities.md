@@ -167,7 +167,7 @@ The other fields are explained in the [Data config file specification reference]
 
 Here's an example of the previous hospital data, covering both the entities and the statistical variables (we've left out the remaining 7 variables for brevity):
 
-```json
+```jsonc
 {
   "inputFiles": {
     "hospital_entities.csv": {
@@ -213,7 +213,7 @@ Here's an example of the previous hospital data, covering both the entities and 
         "populationType": "Bed"
       }
     },
-    ...
+    //...
   },
   "sources": {
     "HHS Protect Public Data Hub": {

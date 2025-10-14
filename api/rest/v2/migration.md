@@ -570,7 +570,7 @@ $ curl --request GET --url \
 
 {% tab response V1 response %}
 
-```json
+```jsonc
 {
    "values" : [
       {
@@ -637,7 +637,7 @@ $ curl --request GET --url \
          "dcid" : "wikidataId/Q1195",
          "name" : "Meghalaya"
       },
-      <-- truncated -->
+      // -- truncated --
       {
          "dcid" : "wikidataId/Q677037",
          "name" : "Telangana"
@@ -648,7 +648,7 @@ $ curl --request GET --url \
 {% endtab %}
 {% tab response V2 response %}
 
-```json
+```jsonc
 {
    "data" : {
       "country/IND" : {
@@ -719,7 +719,7 @@ $ curl --request GET --url \
                      "dcid" : "wikidataId/Q1195",
                      "name" : "Meghalaya"
                   },
-                  <-- truncated -->
+                  //-- truncated -->
                   {
                      "dcid" : "wikidataId/Q677037",
                      "name" : "Telangana"
