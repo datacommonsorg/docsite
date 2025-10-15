@@ -52,9 +52,9 @@ For all instances:
 ### Base Data Commons (datacommons.org)
 
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
-```bash
-export DC_API_KEY=<your API key>
-```
+<pre>
+export DC_API_KEY=<var>YOUR API KEY</var>
+</pre>
 
 ### Custom Data Commons
 
@@ -81,7 +81,7 @@ To set variables using a `.env` file:
 1. Install Gemini CLI: see instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
 2. To configure Gemini CLI to recognize the Data Commons server, edit your `~/.gemini/settings.json` file to add the following:
 
-```jsonc
+<pre>
 {
 // ...
     "mcpServers": {
@@ -93,14 +93,14 @@ To set variables using a `.env` file:
                 "stdio"
             ],
             "env": {
-                "DC_API_KEY": "<your Data Commons API key>"
+                "DC_API_KEY": "<var>YOUR DATA COMMONS API KEY</var>"
             },
             "trust": true
         }
     }
 // ...
 }
-```
+</pre>
 1. From any directory, run `gemini`. 
 1. To see the Data Commons tools, use `/mcp tools`.
 1. Start sending [natural-language queries](#sample-queries).
@@ -117,10 +117,10 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
    git clone https://github.com/datacommonsorg/agent-toolkit.git
    ```
 1. Set the following environment variables in your shell or startup script:
-   ```bash
-   export DC_API_KEY=<your Data Commons API key>
-   export GEMINI_API_KEY=<your Google AI API key>
-   ```
+  <pre>
+   export DC_API_KEY=<var>YOUR DATA COMMONS API KEY</var>
+   export GEMINI_API_KEY=<var>YOUR GOOGLE AI API KEY</var>
+   </pre>
 1. Go to the root directory of the repo:
    ```bash
    cd agent-toolkit
@@ -158,9 +158,9 @@ The Data Commons MCP tools excel at natural-language queries that involve compar
 
 1. Ensure you've set up the relevant server [environment variables](#environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
-   ```bash
-   uvx datacommons-mcp serve http [--port <port>]
-   ```
+   <pre>
+   uvx datacommons-mcp serve http [--port <var>PORT</var>]
+   </pre>
 By default, the port is 8080 if you don't set it explicitly.
 
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
@@ -173,17 +173,18 @@ Below we provide instructions for Gemini CLI and a sample ADK agent. If you're u
 
 To configure Gemini CLI to connect to a remote Data Commons server over HTTP, replace the `mcpServers` section in `~/.gemini/settings.json` (or other `settings.json` file) with the following:
 
-```jsonc
+<pre>
 {
 // ... (additional configuration)
 "mcpServers": {
     "datacommons-mcp": {
-      "httpUrl": "http://<host>:<port>/mcp"
+      "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp"
     }
     // ... (other mcpServers entries)
   }
 }
-```
+</pre>
+
 #### Sample agent
 
 To configure the sample agent to connect to a remote Data Commons MCP server over HTTP, you need to modify the code in [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py).  Set import modules and agent initialization parameters as follows:
