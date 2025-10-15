@@ -7,22 +7,25 @@ parent: MCP - Query data interactively with an AI agent
 
 # Run MCP tools
 
-This page shows you how to run a local agent that kicks off the server in a subprocess.
+This page shows you how to run a local agent and connect to a server running locally or remotely.
 
 We provide specific instructions for the following agents:
-<!--[Gemini CLI extension](https://blog.google/technology/developers/gemini-cli-extensions/)
-   - Best for querying datacommons.org
-   - Requires minimal setup 
-   See the [Quickstart](quickstart.md) for this option. -->
+<!--[Gemini CLI extension](https://blog.google/technology/developers/gemini-cli-extensions/) -- Best for querying datacommons.org, requires minimal setup.See the [Quickstart](quickstart.md) for this option. -->
 - [Gemini CLI](https://github.com/google-gemini/gemini-cli) 
    - Can be used for datacommons.org or a Custom Data Commons instance
    - Requires minimal setup 
-  See [Use Gemini CLI](#use-gemini-cli) for this option.
+   - Uses [Gemini Flash 2.5](https://deepmind.google/models/gemini/flash/) 
+
+   See [Use Gemini CLI](#use-gemini-cli) for this option.
 - A sample basic agent based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) and [Gemini Flash 2.5](https://deepmind.google/models/gemini/flash/) 
-   - Best for interacting with a sample ADK-based web agent
+   - Best for interacting with a Web UI
    - Can be used for datacommons.org or a Custom Data Commons instance
+   - Can be customized to run other LLMs
    - Requires some additional setup
+
    See [Use the sample agent](#use-the-sample-agent) for this option
+
+For an end-to-end tutorial using a server and agent over HTTP in the cloud, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb).
 
 For other clients/agents, see the relevant documentation; you should be able to reuse the commands and arguments detailed below.
 
@@ -36,7 +39,6 @@ For all instances:
 - For running the sample agent locally, install [Git](https://git-scm.com/).
 
 > **Important**: Additionally, for custom Data Commons instances:
-
 > If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
 
 
@@ -55,7 +57,7 @@ If you're running a against a custom Data Commons instance, we recommend using a
 
 To set variables using a `.env` file:
 
-1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Or, if you plan to run the sample agent, clone the repo https://github.com/datacommonsorg/agent-toolkit/.
+1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Or, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>.
 
 1. From the directory where you saved the sample file, copy it to a new file called `.env`. For example:
    ```bash
@@ -71,7 +73,7 @@ To set variables using a `.env` file:
 
 ## Use Gemini CLI
 
-1. Install Gemini CLI: see instructions at https://github.com/google-gemini/gemini-cli#quick-install. 
+1. Install Gemini CLI: see instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
 2. To configure Gemini CLI to recognize the Data Commons server, edit your `~/.gemini/settings.json` file to add the following:
 
 ```jsonc
@@ -94,6 +96,11 @@ To set variables using a `.env` file:
 // ...
 }
 ```
+1. From any directory, run `gemini`. 
+1. To see the Data Commons tools, use `/mcp tools`.
+1. Start sending [natural-language queries](#sample-data-commons-queries).
+
+> **Tip**: To ensure that Gemini CLI uses the Data Commons MCP tools, and not its own `GoogleSearch` tool, include a prompt to use Data Commons in your query. For example, use a query like "Use Data Commons tools to answer the following: ..."  You can also add such a prompt to a [`GEMINI.md` file](https://codelabs.developers.google.com/gemini-cli-hands-on#9) so that it's persisted across sessions.
 
 ## Use the sample agent
 
@@ -122,7 +129,7 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
    uvx --from google-adk adk web ./packages/datacommons-mcp/examples/sample_agents/
    ```
 1. Point your browser to the address and port displayed on the screen (e.g. `http://127.0.0.1:8000/`). The Agent Development Kit Dev UI is displayed. 
-1. From the **Type a message** box, type your query for Data Commons or select another action.
+1. From the **Type a message** box, type your [query for Data Commons](#sample-data-commons-queries) or select another action.
 
 ### Command line interface
 
@@ -130,7 +137,15 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
    ```bash
    uvx --from google-adk adk run ./packages/datacommons-mcp/examples/sample_agents/basic_agent
    ```
-1. Enter your queries at the `User` prompt in the terminal.
+1. Enter your [queries](#sample-data-commons-queries) at the `User` prompt in the terminal.
+
+## Sample Data Commons queries
+
+The MCP tools excel at natural-language queries that involve comparisons between two or more entities, such as countries or metrics. Here are some examples of such queries:
+
+- "What health data do you have for Africa?"
+- "Compare the life expectancy, economic inequality, and GDP growth for BRICS nations."
+- "Generate a concise report on income vs diabetes in US counties."
 
 ## Use a remote server/client
 

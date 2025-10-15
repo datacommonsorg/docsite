@@ -5,7 +5,11 @@ nav_order: 20
 has_children: true
 ---
 
+{:.no_toc}
 # Query data interactively with an AI agent
+
+* TOC
+{:toc}
 
 ## Overview
 
@@ -17,7 +21,7 @@ The server is a Python binary based on the [FastMCP 2.0 framework](https://gofas
 
 At this time, there is no centrally deployed server; you run your own server, and any client you want to connect to it.
 
-![alt text](mcp.png)
+![alt text](/assets/images/mcp.png)
 
 ## Tools
 
@@ -35,10 +39,6 @@ To connect to the Data Commons MCP Server, you can use any available AI applicat
 The server supports both standard MCP [transport protocols](https://modelcontextprotocol.io/docs/learn/architecture#transport-layer):
 - Stdio: For clients that connect directly using local processes
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
-
-See [Run MCP tools](run_tools.md) for how to use the server with Google-based clients over Stdio.
-
-For an end-to-end tutorial using a server and agent over HTTP in the cloud, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb).
 
 ## Unsupported features
 

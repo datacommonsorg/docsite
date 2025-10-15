@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Develop an ADK agent
-nav_order: 2
+nav_order: 3
 parent: MCP - Query data interactively with an AI agent
 ---
 
