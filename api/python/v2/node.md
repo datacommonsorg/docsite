@@ -489,7 +489,7 @@ client.node.fetch_property_values(node_dcids=["country/USA"], properties="contai
 Response:
 {: .example-box-title}
 
-```
+```jsonc
 {
   "data": {
     "country/USA": {
@@ -528,7 +528,7 @@ Response:
               "dcid": "geoId/10",
               "name": "Delaware"
             },
-            ...
+            //...
         }
       }
     }
@@ -578,7 +578,7 @@ client.node.fetch_all_classes(all_pages=False)
 Response:
 {: .example-box-title}
 
-```
+```jsonc
 {
   "data": {
     "Class": {
@@ -657,7 +657,7 @@ Response:
                 "Class"
               ]
             },
-            ....
+            //...
           ]
         }
       }
