@@ -5,9 +5,14 @@ nav_order: 2
 parent: MCP - Query data interactively with an AI agent
 ---
 
+{:.no_toc}
 # Run MCP tools
 
 This page shows you how to run a local agent and connect to a server running locally or remotely.
+
+* TOC
+{:toc}
+
 
 We provide specific instructions for the following agents:
 <!--[Gemini CLI extension](https://blog.google/technology/developers/gemini-cli-extensions/) -- Best for querying datacommons.org, requires minimal setup.See the [Quickstart](quickstart.md) for this option. -->
@@ -98,7 +103,7 @@ To set variables using a `.env` file:
 ```
 1. From any directory, run `gemini`. 
 1. To see the Data Commons tools, use `/mcp tools`.
-1. Start sending [natural-language queries](#sample-data-commons-queries).
+1. Start sending [natural-language queries](#sample-queries).
 
 > **Tip**: To ensure that Gemini CLI uses the Data Commons MCP tools, and not its own `GoogleSearch` tool, include a prompt to use Data Commons in your query. For example, use a query like "Use Data Commons tools to answer the following: ..."  You can also add such a prompt to a [`GEMINI.md` file](https://codelabs.developers.google.com/gemini-cli-hands-on#9) so that it's persisted across sessions.
 
@@ -122,14 +127,14 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
    ```
 1. Run the agent using one of the following methods.
 
-### Web UI (recommended):
+### Web UI (recommended)
 
 1. Run the following command:
    ```bash
    uvx --from google-adk adk web ./packages/datacommons-mcp/examples/sample_agents/
    ```
 1. Point your browser to the address and port displayed on the screen (e.g. `http://127.0.0.1:8000/`). The Agent Development Kit Dev UI is displayed. 
-1. From the **Type a message** box, type your [query for Data Commons](#sample-data-commons-queries) or select another action.
+1. From the **Type a message** box, type your [query for Data Commons](#sample-queries) or select another action.
 
 ### Command line interface
 
@@ -137,11 +142,11 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
    ```bash
    uvx --from google-adk adk run ./packages/datacommons-mcp/examples/sample_agents/basic_agent
    ```
-1. Enter your [queries](#sample-data-commons-queries) at the `User` prompt in the terminal.
+1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
-## Sample Data Commons queries
+## Sample queries
 
-The MCP tools excel at natural-language queries that involve comparisons between two or more entities, such as countries or metrics. Here are some examples of such queries:
+The Data Commons MCP tools excel at natural-language queries that involve comparisons between two or more entities, such as countries or metrics. Here are some examples of such queries:
 
 - "What health data do you have for Africa?"
 - "Compare the life expectancy, economic inequality, and GDP growth for BRICS nations."
