@@ -119,9 +119,6 @@ The response looks like:
 | dominantType | string | Optional field which, where present, disambiguates between multiple results. |
 {: .doc-table}
 
-> **Note:**
-  There is a deprecated field `resolvedIds` that is currently returned by the API. It will be removed soon. Examples below omit this redundant field.
-
 ## Examples
 
 ### Example 1: Find the DCID of a place by another known ID
