@@ -6,7 +6,7 @@ parent: MCP - Query data interactively with an AI agent
 ---
 
 {:.no_toc}
-# Run MCP tools
+# Run and connect to the server
 
 This page shows you how to run a local agent and connect to a server running locally or remotely.
 
