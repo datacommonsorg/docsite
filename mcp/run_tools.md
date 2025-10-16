@@ -19,7 +19,6 @@ We provide specific instructions for the following agents:
 - [Gemini CLI](https://github.com/google-gemini/gemini-cli) 
    - Can be used for datacommons.org or a Custom Data Commons instance
    - Requires minimal setup 
-   - Uses [Gemini Flash 2.5](https://deepmind.google/models/gemini/flash/) 
 
    See [Use Gemini CLI](#use-gemini-cli) for this option.
 - A sample basic agent based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) and [Gemini Flash 2.5](https://deepmind.google/models/gemini/flash/) 
@@ -28,7 +27,7 @@ We provide specific instructions for the following agents:
    - Can be customized to run other LLMs
    - Requires some additional setup
 
-   See [Use the sample agent](#use-the-sample-agent) for this option
+   See [Use the sample agent](#use-the-sample-agent) for this option.
 
 For an end-to-end tutorial using a server and agent over HTTP in the cloud, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb).
 
