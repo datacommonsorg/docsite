@@ -15,7 +15,7 @@ This page shows you how to run a local agent and connect to a server running loc
 
 
 We provide specific instructions for the following agents:
-<!--[Gemini CLI extension](https://blog.google/technology/developers/gemini-cli-extensions/) -- Best for querying datacommons.org, requires minimal setup.See the [Quickstart](quickstart.md) for this option. -->
+
 - [Gemini CLI](https://github.com/google-gemini/gemini-cli) 
    - Can be used for datacommons.org or a Custom Data Commons instance
    - Requires minimal setup 
