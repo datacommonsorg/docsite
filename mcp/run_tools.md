@@ -29,7 +29,7 @@ We provide specific instructions for the following agents:
 
    See [Use the sample agent](#use-the-sample-agent) for this option.
 
-For an end-to-end tutorial using a server and agent over HTTP in the cloud, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb).
+For an end-to-end tutorial using a server and agent over HTTP, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb).
 
 For other clients/agents, see the relevant documentation; you should be able to reuse the commands and arguments detailed below.
 
@@ -38,8 +38,8 @@ For other clients/agents, see the relevant documentation; you should be able to 
 For all instances:
 
 - A (free) Data Commons API key. To obtain an API key, go to <https://apikeys.datacommons.org> and request a key for the `api.datacommons.org` domain.
+- Install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>. 
 - For running the sample agent or the Colab notebook, a GCP project and a Google AI API key. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>.
-- For running the sample agent locally, or running the server locally in standalone mode, install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>. 
 - For running the sample agent locally, install [Git](https://git-scm.com/).
 
 > **Important**: Additionally, for custom Data Commons instances:
@@ -155,7 +155,7 @@ The Data Commons MCP tools excel at natural-language queries that involve compar
 
 ### Run a standalone server
 
-1. Ensure you've set up the relevant server [environment variables](#environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
+1. Ensure you've set up the relevant server [environment variables](#configure-environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    <pre>
    uvx datacommons-mcp serve http [--port <var>PORT</var>]
