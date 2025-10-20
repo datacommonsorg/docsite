@@ -13,7 +13,7 @@ We provide two sample Google Agent Development Kit-based agents you can use as i
 - The sample [basic agent](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent) is a simple Python ADK agent you can use to develop locally. At the most basic level, you can modify its configuration, including:
    - The [AGENT_INSTRUCTIONS](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py)
    - The [AGENT_MODEL](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23)
-   - The transport layer protocol: see [Connect to a remote server](/mcp/run_tools.html#connect-to-an-already-running-server) for details.
+   - The transport layer protocol: see [Connect to a remote server](/mcp/run_tools.html#connect-to-an-already-running-server-from-a-remote-client) for details.
 
    To run the custom code, see [Use the sample agent](/mcp/run_tools.html#use-the-sample-agent).
 
@@ -23,7 +23,7 @@ If you're interested in getting a deeper understanding of Data Commons tools and
 
 To use it:
 
-1. If not already installed on your system, install [`node.js`](https://nodejs.org/en/download) and [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
+1. If not already installed on your system, install [`Node.js`](https://nodejs.org/en/download) and [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
 1. Ensure you've set up the relevant server [environment variables](/mcp/run_tools.html#environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    ```

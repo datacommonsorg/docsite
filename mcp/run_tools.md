@@ -8,7 +8,7 @@ parent: MCP - Query data interactively with an AI agent
 {:.no_toc}
 # Run and connect to the server
 
-This page shows you how to run a local agent and connect to a server running locally or remotely.
+This page shows you how to run a local agent and connect to a Data Commons MCP server running locally or remotely.
 
 * TOC
 {:toc}
@@ -173,12 +173,12 @@ To configure Gemini CLI to connect to a remote Data Commons server over HTTP, re
 <pre>
 {
 // ... (additional configuration)
-"mcpServers": {
-    "datacommons-mcp": {
-      "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp"
-    }
+  "mcpServers": {
+     "datacommons-mcp": {
+       "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp"
+      }
     // ... (other mcpServers entries)
-  }
+   }
 }
 </pre>
 
