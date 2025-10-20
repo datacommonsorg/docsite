@@ -24,7 +24,7 @@ If you're interested in getting a deeper understanding of Data Commons tools and
 To use it:
 
 1. If not already installed on your system, install [`Node.js`](https://nodejs.org/en/download) and [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
-1. Ensure you've set up the relevant server [environment variables](/mcp/run_tools.html#environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
+1. Ensure you've set up the relevant server [environment variables](/mcp/run_tools.html#configure-environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    ```
    npx @modelcontextprotocol/inspector uvx datacommons-mcp serve stdio
