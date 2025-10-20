@@ -1438,15 +1438,17 @@ fetch_statvar_constraints(variable_dcids)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| variable_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more statistical variable whose constraint properties you want to fetch. |
+| variable_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more statistical variable(s) whose constraint properties you want to fetch. |
 {: .doc-table }
 
 ### Response
-A Python `StatVarConstraints` object, which consists of a dictionary mapping each DCID to a list `StatVarConstraint` objects. Each  `StatVarConstraint` object is a dictionary of constraint property-value pairs.
+
+A Python `StatVarConstraints` object, which consists of a dictionary mapping each variable DCID to a list of `StatVarConstraint` objects. Each  `StatVarConstraint` object is a dictionary of constraint property-value pairs.
 
 ### Examples
 
 {: .no_toc}
+#### Example 1: Fetch the constraint properties of a single variable
 
 This example gets the constraint properties of the statistical variable `Income Inequality Between Men and Women of Working Age`.
 
@@ -1462,14 +1464,17 @@ Response:
 {: .example-box-title}
 
 ```json
-{'GenderIncomeInequality_Person_15OrMoreYears_WithIncome': [{'constraintId': 'age',
+{'GenderIncomeInequality_Person_15OrMoreYears_WithIncome': [
+  {'constraintId': 'age',
    'constraintName': 'age',
    'valueId': 'Years15Onwards',
    'valueName': 'Years 15 Onwards'},
   {'constraintId': 'incomeStatus',
    'constraintName': 'incomeStatus',
    'valueId': 'WithIncome',
-   'valueName': 'WithIncome'}]}
+   'valueName': 'WithIncome'}
+  ]
+}
 ```
 {: .example-box-content .scroll}
 
@@ -1477,7 +1482,7 @@ Response:
 {: .no_toc}
 #### Example 2: Fetch constraint properties of a multiple statistical variables
 
-This example gets the constraint properties of the statistical variables `Income Inequality Between Men and Women of Working Age`and `Population: 15 - 39 Years, Employed, Widowed`.
+This example gets the constraint properties of the statistical variables `Income Inequality Between Men and Women of Working Age` and `Population: 15 - 39 Years, Employed, Widowed`.
 
 Request:
 {: .example-box-title}
@@ -1491,15 +1496,18 @@ Response:
 {: .example-box-title}
 
 ```json
-{'GenderIncomeInequality_Person_15OrMoreYears_WithIncome': [{'constraintId': 'age',
+{'GenderIncomeInequality_Person_15OrMoreYears_WithIncome': [
+  {'constraintId': 'age',
    'constraintName': 'age',
    'valueId': 'Years15Onwards',
    'valueName': 'Years 15 Onwards'},
   {'constraintId': 'incomeStatus',
    'constraintName': 'incomeStatus',
    'valueId': 'WithIncome',
-   'valueName': 'WithIncome'}],
- 'Count_Person_15To39Years_Employed_Widowed': [{'constraintId': 'age',
+   'valueName': 'WithIncome'}
+  ],
+ 'Count_Person_15To39Years_Employed_Widowed': [
+  {'constraintId': 'age',
    'constraintName': 'age',
    'valueId': 'Years15To39',
    'valueName': 'Years 15 To 39'},
@@ -1510,7 +1518,9 @@ Response:
   {'constraintId': 'maritalStatus',
    'constraintName': 'maritalStatus',
    'valueId': 'Widowed',
-   'valueName': 'Widowed'}]}
+   'valueName': 'Widowed'}
+  ]
+}
 ```
 {: .example-box-content .scroll}
 
