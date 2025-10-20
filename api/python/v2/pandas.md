@@ -26,7 +26,7 @@ Fetches observations for specified variables, dates, and entities, by DCID or en
 ### Signature
 
 ```python
-observations_dataframe(variable_dcids, date, entity_dcids, entity_type, parent_entity, property_filters)
+observations_dataframe(variable_dcids, date, entity_dcids, entity_type, parent_entity, property_filters, include_constraints_metadata)
 ```
 
 ### Input parameters
@@ -39,12 +39,13 @@ date <br/><required-tag>Required</required-tag> | string or string literal | The
 | entity_type | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. | 
 | parent_entity | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. |
 | property_filters <br/><optional-tag>Optional</optional-tag> | dict mapping a string to a string or list of strings | The observation properties by which to filter the results, where the key is the observation property, such as `measurementMethod`, `unit`, or `observationPeriod`, and the value is the list of values to filter by. |
+| include_constraints_metadata <br/><optional-tag>Optional</optional-tag> | bool | When set to `True` the returned DataFrame includes the ID(s) and names of any constraint properties associated with the selected variable(s) (based on the `constraintProperties` property). Defaults to `False`. |
 {: .doc-table }
 
 ### Examples
 
 {: .no_toc}
-#### Example 1: Get all observations for a single variable and entity
+#### Example 1: Get all observations for a single entity and variable
 
 This example retrieves the count of men in the state of Arkansas over all data history.
 
@@ -80,7 +81,31 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 2: Get all observations for a single variable and multiple entities
+#### Example 1: Get all observations for a single entity and variable, with its metadata
+
+This example is the same as above, but also shows the metadata (property constraints) defined for the variable, namely `gender`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observations_dataframe(variable_dcids="Count_Person_Male", date="all", entity_dcids="geoId/05", include_constraints_metadata=True)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+(truncated)
+
+```python
+
+```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+#### Example 3: Get all observations for a single variable and multiple entities
 
 This example compares the historic populations of Sudan and South Sudan.
 
@@ -116,7 +141,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 3: Get all observations for multiple variables and multiple entities
+#### Example 4: Get all observations for multiple variables and multiple entities
 
 This example compares the historic populations, median ages, and unemployment rates of the US, California, and Santa Clara County.
 
@@ -152,7 +177,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 4: Get latest observations for a single variable and multiple entities, limited by type and parent
+#### Example 5: Get latest observations for a single variable and multiple entities, limited by type and parent
 
 Ths example gets all observatons for the proportion of population below the international poverty line for all countries in Africa. 
 
@@ -195,7 +220,7 @@ date       entity               entity_name         variable  ... measurementMet
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 5: Get all observations for a single variable and entity, with a property filter
+#### Example 6: Get all observations for a single entity and variable, with a property filter
 
 This example gets all observations for the populaton of the U.S., and uses a property filter to limit the results to datasets that use an observation period of `P1Y`.
 

@@ -39,11 +39,11 @@ The following are the methods available for this endpoint.
 | [fetch_place_descendants](#fetch_place_descendants) | Fetch the full graph of direct and indirect children of places (related by the `containedInPlace` property), based on their DCIDs. |
 | [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property), based on entity DCIDs. |
 | [fetch_place_ancestors](#fetch_place_ancestors) | Fetch the full graph of direct and indirect parents of places (related by the `containedInPlace` property), based on their DCIDs. |
-
+| [fetch_statvar_constraints](#fetch_statvar_constraints) | Fetch constraint properties defined for statistical variables. | 
 
 ## Response
 
-The `fetch_entity_names` and `fetch_place_*` methods return a Python dictionary. All other request methods return a `NodeResponse` object. It looks like this:
+The `fetch_entity_names`, `fetch_place_*` and `fetch_statvar_constraints` methods return a Python dictionary. All other request methods return a `NodeResponse` object. It looks like this:
 
 <pre>
 {
@@ -1424,6 +1424,95 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+## fetch_statvar_constraints
+
+Fetches property-value pairs defined as `constraintProperties` for selected statistical variables. 
+
+### Signature
+
+```python
+fetch_statvar_constraints(variable_dcids)
+```
+
+### Input parameters
+
+| Name          | Type  |   Description  |
+|---------------|-------|----------------|
+| variable_dcids <br/><required-tag>Required</required-tag> | string or list of strings | One or more statistical variable whose constraint properties you want to fetch. |
+{: .doc-table }
+
+### Response
+A Python `StatVarConstraints` object, which consists of a dictionary mapping each DCID to a list `StatVarConstraint` objects. Each  `StatVarConstraint` object is a dictionary of constraint property-value pairs.
+
+### Examples
+
+{: .no_toc}
+
+This example gets the constraint properties of the statistical variable `Income Inequality Between Men and Women of Working Age`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_statvar_constraints("GenderIncomeInequality_Person_15OrMoreYears_WithIncome")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+{'GenderIncomeInequality_Person_15OrMoreYears_WithIncome': [{'constraintId': 'age',
+   'constraintName': 'age',
+   'valueId': 'Years15Onwards',
+   'valueName': 'Years 15 Onwards'},
+  {'constraintId': 'incomeStatus',
+   'constraintName': 'incomeStatus',
+   'valueId': 'WithIncome',
+   'valueName': 'WithIncome'}]}
+```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+#### Example 2: Fetch constraint properties of a multiple statistical variables
+
+This example gets the constraint properties of the statistical variables `Income Inequality Between Men and Women of Working Age`and `Population: 15 - 39 Years, Employed, Widowed`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch_statvar_constraints(["GenderIncomeInequality_Person_15OrMoreYears_WithIncome", "Count_Person_15To39Years_Employed_Widowed"])
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```json
+{'GenderIncomeInequality_Person_15OrMoreYears_WithIncome': [{'constraintId': 'age',
+   'constraintName': 'age',
+   'valueId': 'Years15Onwards',
+   'valueName': 'Years 15 Onwards'},
+  {'constraintId': 'incomeStatus',
+   'constraintName': 'incomeStatus',
+   'valueId': 'WithIncome',
+   'valueName': 'WithIncome'}],
+ 'Count_Person_15To39Years_Employed_Widowed': [{'constraintId': 'age',
+   'constraintName': 'age',
+   'valueId': 'Years15To39',
+   'valueName': 'Years 15 To 39'},
+  {'constraintId': 'employmentStatus',
+   'constraintName': 'employmentStatus',
+   'valueId': 'Employed',
+   'valueName': 'Employed'},
+  {'constraintId': 'maritalStatus',
+   'constraintName': 'maritalStatus',
+   'valueId': 'Widowed',
+   'valueName': 'Widowed'}]}
+```
+{: .example-box-content .scroll}
 
 ## Pagination
 
