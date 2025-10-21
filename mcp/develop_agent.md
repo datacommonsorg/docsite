@@ -20,11 +20,11 @@ You can make changes directly to the Python files in <https://github.com/datacom
 
 ### Customize the model
 
-To change to a different LLM, edit the [`AGENT_MODEL`] constant in [/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){target="_blank"}.
+To change to a different LLM, edit the `AGENT_MODEL` constant in [packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){: target="_blank"}.
 
 ### Customize agent behavior
 
-The agent's behavior is determined by prompts provided in the [`AGENT_INSTRUCTIONS`] in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py).
+The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTIONS` in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py){: target="_blank"}.
 
-You can add your own prompts to modify how the agent handles tool results. For example, you might want to give a prompt to "build a report for every response" or "always save tabular results to a CSV file". See the Google ADK page on [LLM agent instructions]https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction) for tips on how to write good prompts.
+You can add your own prompts to modify how the agent handles tool results. For example, you might want to give a prompt to "build a report for every response" or "always save tabular results to a CSV file". See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
 
