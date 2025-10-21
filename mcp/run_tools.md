@@ -143,9 +143,14 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
 
 ## Sample queries
 
-The Data Commons MCP tools excel at natural-language queries that involve comparisons between two or more entities, such as countries or metrics. Here are some examples of such queries:
+The Data Commons MCP tools excel at natural-language queries that involve:
+- Comparisons between two or more entities, such as countries or metrics
+- Exploring data available for a given topic
+
+Here are some examples of such queries:
 
 - "What health data do you have for Africa?"
+- "What data do you have on water quality in Zimbabwe?"
 - "Compare the life expectancy, economic inequality, and GDP growth for BRICS nations."
 - "Generate a concise report on income vs diabetes in US counties."
 
