@@ -39,7 +39,7 @@ date <br/><required-tag>Required</required-tag> | string or string literal | The
 | entity_type | string | The DCID of the type of the entities to query; for example, `Country` or `Region`. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. | 
 | parent_entity | string | The DCID of the parent entities to query; for example, `africa` for African countries, or `Earth` for all countries. Required when `entity_dcids` is set to `"all"` (the default); invalid otherwise. |
 | property_filters <br/><optional-tag>Optional</optional-tag> | dict mapping a string to a string or list of strings | The observation properties by which to filter the results, where the key is the observation property, such as `measurementMethod`, `unit`, or `observationPeriod`, and the value is the list of values to filter by. |
-| include_constraints_metadata <br/><optional-tag>Optional</optional-tag> | bool | When set to `True`, the returned DataFrame includes the ID(s) and name(s) of any constraint properties associated with the selected variable(s) (based on the `constraintProperties` property). Defaults to `False`. |
+| include_constraints_metadata <br/><optional-tag>Optional</optional-tag> | bool | When set to `True`, the returned DataFrame includes the ID(s) and name(s) of any constraint properties associated with the selected variable(s) (based on the [`constraintProperties`](https://datacommons.org/browser/constraintProperties){: target="_blank"} property). Defaults to `False`. |
 {: .doc-table }
 
 ### Examples

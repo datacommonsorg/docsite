@@ -39,7 +39,7 @@ The following are the methods available for this endpoint.
 | [fetch_place_descendants](#fetch_place_descendants) | Fetch the full graph of direct and indirect children of places (related by the `containedInPlace` property), based on their DCIDs. |
 | [fetch_place_parents](#fetch_place_parents) | Look up the names of direct parent place entities (related by the `containedInPlace` property), based on entity DCIDs. |
 | [fetch_place_ancestors](#fetch_place_ancestors) | Fetch the full graph of direct and indirect parents of places (related by the `containedInPlace` property), based on their DCIDs. |
-| [fetch_statvar_constraints](#fetch_statvar_constraints) | Fetch constraint properties defined for statistical variables. | 
+| [fetch_statvar_constraints](#fetch_statvar_constraints) | Fetch [constraint properties](https://datacommons.org/browser/constraintProperties){: target="_blank"} defined for statistical variables. | 
 
 ## Response
 
@@ -1450,7 +1450,7 @@ A Python `StatVarConstraints` object, which consists of a dictionary mapping eac
 {: .no_toc}
 #### Example 1: Fetch the constraint properties of a single variable
 
-This example gets the constraint properties of the statistical variable `Income Inequality Between Men and Women of Working Age`.
+This example gets the constraint properties defined for the statistical variable `Income Inequality Between Men and Women of Working Age`, namely age and income status.
 
 Request:
 {: .example-box-title}
@@ -1482,7 +1482,7 @@ Response:
 {: .no_toc}
 #### Example 2: Fetch constraint properties of a multiple statistical variables
 
-This example gets the constraint properties of the statistical variables `Income Inequality Between Men and Women of Working Age` and `Population: 15 - 39 Years, Employed, Widowed`.
+This example gets the constraint properties defined for two statistical variables, `Income Inequality Between Men and Women of Working Age` and `Population: 15 - 39 Years, Employed, Widowed`.
 
 Request:
 {: .example-box-title}
