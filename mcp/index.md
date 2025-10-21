@@ -30,8 +30,6 @@ The server currently supports the following tools:
 - `search_indicators`: Searches for available variables and/or topics (a hierarchy of sub-topics and member variables) for a given place or metric. Topics are only relevant for Custom Data Commons instances that have implemented them.
 - `get_observations`: Fetches statistical data for a given variable and place.
 
-> Tip: If you want a deeper understanding of the tools' inputs and outputs, follow [Test with MCP Inspector](/mcp/develop_agent.html#test-with-mcp-inspector) to try out some manual tool calls.
-
 ## Clients
 
 To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. 
