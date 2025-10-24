@@ -50,4 +50,3 @@ At the current time, the following are not supported:
 ## Disclaimer
 
 AI applications using the MCP server can make mistakes, so please double-check responses.
-
