@@ -346,6 +346,7 @@ You can define your statistical variables in a single MCF file, or split them in
 
 In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
+{: #mcf}
 ### Step 1: Define statistical variables in MCF
 
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
