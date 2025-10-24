@@ -16,7 +16,7 @@ We provide two sample Google Agent Development Kit-based agents you can use as i
 
 You can make changes directly to the Python files in <https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/>. You'll need to [restart the agent](/mcp/run_tools.html#use-the-sample-agent) any time you make changes.
 
-> Tip: Because the agent is configured to download the ADK dependencies at run time, you do not need to install the Google ADK.
+> Tip: You do not need to install the Google ADK; when you use the [command we provide](run_tools.md#use-the-sample-agent) to start the agent, it downloads the ADK dependencies at run time.
 
 ### Customize the model
 
