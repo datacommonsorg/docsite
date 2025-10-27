@@ -72,7 +72,7 @@ To run it:
 
 The project ID may be the same project you are using for all other resources, or it may be a separate one you use for pushing releases.
 
-To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){target="_blank"} for your project. You should see the repository in the list.
+To verify that the repository is created, go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project. You should see the repository in the list.
 
 ## Configure and run a Terraform deployment {#terraform}
 
@@ -112,6 +112,7 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 | `dc_data_job_image` | `gcr.io/datcom-ci/datacommons-data:stable` | Specifies the image for the Docker data management container. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`. |
 | `dc_web_service_image` | `gcr.io/datcom-ci/datacommons-services:stable` | Specifies the image for the Docker services container. You will want to change this to a custom image once you have created it in [Upload a custom Docker image](#upload). |
 | `make_dc_web_service_public` | `true` | If you intend to restrict access to your instance, set this to `false`. |
+| `disable_google_maps` | `false` | If you want to disable showing Google Maps in the website, set this to `true`. |
 
 Other recommended settings for a production environment are provided in [Launch your Data Commons](launch_cloud.md#create-env).
 
@@ -288,11 +289,11 @@ Any time you make changes to the website and want to deploy your changes to the 
    <div class="active">
    To upload an already built image:
     <pre>./run_cdc_dev_docker.sh --actions upload --image <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
-   To build and upload the image:
+   To build a new image and and upload it:
    <pre>./run_cdc_dev_docker.sh --actions build_upload --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
    If you don't specify the <code>--package</code> option, the package name and tag will be the same as the source image.
    </div>
-    <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="build_image.md#build-repo">Build a local image</a>.</li>
+    <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="/custom_dc/build_image.html#build-repo">Build a local image</a>.</li>
       <li>Generate credentials for the Docker package. 
     <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre></li>
    <li>Create a package from the source image you created in step 1:

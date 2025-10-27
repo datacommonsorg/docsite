@@ -267,7 +267,6 @@ Response:
     "AmountOutstanding_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCHE": {
       "byEntity": {
         "country/TGO": {
-
         }
       }
     },
