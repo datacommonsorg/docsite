@@ -112,6 +112,7 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 | `dc_data_job_image` | `gcr.io/datcom-ci/datacommons-data:stable` | Specifies the image for the Docker data management container. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`. |
 | `dc_web_service_image` | `gcr.io/datcom-ci/datacommons-services:stable` | Specifies the image for the Docker services container. You will want to change this to a custom image once you have created it in [Upload a custom Docker image](#upload). |
 | `make_dc_web_service_public` | `true` | If you intend to restrict access to your instance, set this to `false`. |
+| `disable_google_maps` | `false` | If you want to disable showing Google Maps in the website, set this to `true`. |
 
 Other recommended settings for a production environment are provided in [Launch your Data Commons](launch_cloud.md#create-env).
 
