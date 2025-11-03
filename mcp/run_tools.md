@@ -70,7 +70,7 @@ export DC_API_KEY=<var>YOUR API KEY</var>
 
 ### Custom Data Commons
 
-If you're running a against a custom Data Commons instance, we recommend using a `.env` file, which the server locates automatically, to keep all the settings in one place. All supported options are documented in <https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample>. 
+If you're running a against a custom Data Commons instance, we recommend using a `.env` file, which the server locates automatically, to keep all the settings in one place. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample). 
 
 To set variables using a `.env` file:
 
@@ -92,23 +92,23 @@ To set variables using a `.env` file:
 
 **Additional prerequisite**: In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
 - [Git](https://git-scm.com/)
-- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli#quick-install).
+- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli#quick-install)
 
 When you install the extension, it clones the [Data Commons extension Github repo](https://github.com/gemini-cli-extensions/datacommons) to your local system.
 
 ### Install
  
-1. Open a new terminal and install the extension directly from GitHub:
-   ```sh
-   gemini extensions install https://github.com/gemini-cli-extensions/datacommons
-   ```
+Open a new terminal and install the extension directly from GitHub:
+```sh
+gemini extensions install https://github.com/gemini-cli-extensions/datacommons
+```
 > Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
 
 ### Run
 
 1. From any directory, run `gemini`. 
-1. To verify that the Data commons tools are running, enter `/mcp list`. You should see `datacommons-mcp` as connected. 
-1. To verify that the extension is running, enter `/extensions list`. You should see `datacommons` as an active extension. 
+1. To verify that the Data commons tools are running, enter `/mcp list`. You should see `datacommons-mcp` listed as `Ready`. If you don't, see the [Troubleshoot](#troubleshoot) section.
+1. To verify that the extension is running, enter `/extensions list`. You should see `datacommons` listed as `active`. 
 1. Start sending [natural-language queries](#sample-queries).
 
 ### Update
@@ -139,7 +139,7 @@ Here are solutions to some commonly experienced problems.
 {:.no_toc}
 #### datacommons-mcp is disconnected
 
-This is usually due to a missing [Data Commons API key](#prerequisites). Be sure to obtain a key and export it on the command line or in a startup script (e.g. `.bashrc`).
+This is usually due to a missing [Data Commons API key](#prerequisites). Be sure to obtain a key and export it on the command line or in a startup script (e.g. `.bashrc`). If you've exported it in a startup script, be sure to start a new terminal.
 
 {:.no_toc}
 #### Failed to clone Git repository
@@ -157,7 +157,7 @@ gemini extensions uninstall datacommons
 
 ### Install
 
-1. Install Gemini CLI: see instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
+To install Gemini CLI, see the instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
 
 ### Configure to run a local server
 
@@ -219,7 +219,7 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
 
 ### Set the API key environment variable
 
-Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.bashrc`).
+Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.bashrc`):
 <pre>
 export GEMINI_API_KEY=<var>YOUR API KEY</var>
 </pre>
@@ -233,13 +233,13 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
 
 ### Run
 
+By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in [Connect to a remote server](#remote) before using this procedure.
+
 1. Go to the root directory of the repo:
    ```bash
    cd agent-toolkit
    ```
 1. Run the agent using one of the following methods.
-
-By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in [Connect to a remote server](#remote) before using this procedure.
 
 {:.no_toc}
 #### Web UI (recommended)
