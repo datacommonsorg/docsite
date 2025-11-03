@@ -121,9 +121,9 @@ gemini extensions install https://github.com/gemini-cli-extensions/datacommons [
 
 After starting up Gemini CLI, you may see the message `You have one extension with an update available`.
 
-In this case, run `/extensions list`. If `datacommons` is displayed with `update available`, run the following command:
+In this case, run `/extensions list`. If `datacommons` is displayed with `update available`, enter the following in the Gemini input field:
 ```
-gemini extensions update datacommons
+/extensions update datacommons
 ```
 
 {:.no_toc}
