@@ -33,8 +33,8 @@ We provide specific instructions for the following agents:
 
    See [Use Gemini CLI](#use-gemini-cli) for this option.
 
-- A sample basic agent based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) and [Gemini Flash 2.5](https://deepmind.google/models/gemini/flash/) 
-   - Best for interacting with a Web UI
+- A sample basic agent based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) 
+   - Best for interacting with a Web GUI
    - Can be used for datacommons.org or a Custom Data Commons instance
    - Can be customized to run other LLMs and prompts
    - Downloads agent code locally
@@ -56,7 +56,7 @@ These are required for all agents:
 
 Other requirements for specific agents are given in their respective sections.
 
-> **Important**: Additionally, for custom Data Commons instances:
+> **Important**: Additionally, for Custom Data Commons instances:
 > If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
 
 ## Configure environment variables
@@ -90,7 +90,8 @@ To set variables using a `.env` file:
 
 ## Use the Gemini CLI extension
 
-**Additional prerequisite**: In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
+**Additional prerequisites** 
+In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
 - [Git](https://git-scm.com/)
 - [Google Gemini CLI](https://github.com/google-gemini/gemini-cli#quick-install)
 
@@ -213,7 +214,8 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 
 We provide a basic agent for interacting with the MCP Server in [packages/datacommons-mcp/examples/sample_agents/basic_agent](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent). 
 
-**Additional prerequisites**: In addition to the [standard prerequisites](#prerequisites), you will need:
+**Additional prerequisites** 
+In addition to the [standard prerequisites](#prerequisites), you will need:
 - A GCP project and a Google AI API key. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>.
 - [Git](https://git-scm.com/) installed.
 
