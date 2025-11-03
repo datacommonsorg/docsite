@@ -17,7 +17,7 @@ We provide specific instructions for the following agents:
 
 - [Gemini CLI extension](https://geminicli.com/extensions/) 
    - Best for querying datacommons.org
-   - Provides a built-in Data Commons "agent" and prompts
+   - Provides a built-in "agent" and prompts for Data Commons
    - Downloads extension files locally
    - Minimal setup
 
@@ -90,16 +90,19 @@ To set variables using a `.env` file:
 
 ## Use the Gemini CLI extension
 
-**Additional prerequisite**: In addition to the [standard prerequisites](#prerequisites), you must have [Git](https://git-scm.com/) installed. 
+**Additional prerequisite**: In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
+- [Git](https://git-scm.com/)
+- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli#quick-install).
+
+When you install the extension, it clones the [Data Commons extension Github repo](https://github.com/gemini-cli-extensions/datacommons) to your local system.
 
 ### Install
-
-1. Install Gemini CLI: see instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
-1. In a new terminal, install the extension directly from GitHub:
+ 
+1. Open a new terminal and install the extension directly from GitHub:
    ```sh
    gemini extensions install https://github.com/gemini-cli-extensions/datacommons
    ```
-> Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. ~/.gemini/settings.json`).
+> Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
 
 ### Run
 
@@ -127,15 +130,18 @@ You can also use the `Ctrl-o` option from inside the Gemini input field.
 
 Here are solutions to some commonly experienced problems.
 
+{:.no_toc}
 #### Install/update/uninstall hangs and does not complete
 
 1. Check that you are not running the `gemini extensions` command from inside the Gemini input field. Start a new terminal and run it from the command line.
 1. Check that you've spelled commands correctly, e.g. `extensions` and not `extension`.
 
+{:.no_toc}
 #### datacommons-mcp is disconnected
 
 This is usually due to a missing [Data Commons API key](#prerequisites). Be sure to obtain a key and export it on the command line or in a startup script (e.g. `.bashrc`).
 
+{:.no_toc}
 #### Failed to clone Git repository
 
 Make sure you have installed [Git](https://git-scm.com/) on your system.
@@ -233,8 +239,9 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
    ```
 1. Run the agent using one of the following methods.
 
-By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in before using this procedure.
+By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in [Connect to a remote server](#remote) before using this procedure.
 
+{:.no_toc}
 #### Web UI (recommended)
 
 1. Run the following command:
@@ -244,6 +251,7 @@ By default, the agent will spawn a local server and connect to it over Stdio. If
 1. Point your browser to the address and port displayed on the screen (e.g. `http://127.0.0.1:8000/`). The Agent Development Kit Dev UI is displayed. 
 1. From the **Type a message** box, type your [query for Data Commons](#sample-queries) or select another action.
 
+{:.no_toc}
 #### Command line interface
 
 1. Run the following command:
@@ -252,7 +260,8 @@ By default, the agent will spawn a local server and connect to it over Stdio. If
    ```
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
-### Connect to a remote server (optional)
+{: #remote}
+### Configure to connect to a remote server
 
 If you want to connect to a remote MCP server, follow this procedure before starting the agent:
 
@@ -300,9 +309,3 @@ By default, the host is `localhost` and the port is `8080` if you don't set thes
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
 
 You can connect to the server using [Gemini CLI](#use-gemini-cli) or the [sample ADK agent](#use-the-sample-agent).  If you're using a different client from the ones documented on this page, consult its documentation to determine how to specify an HTTP URL.
-
-
-
-
-
-
