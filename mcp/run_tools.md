@@ -6,7 +6,7 @@ parent: MCP - Query data interactively with an AI agent
 ---
 
 {:.no_toc}
-# Run and connect to the server
+# Run MCP tools
 
 This page shows you how to run a local agent and connect to a Data Commons MCP server running locally or remotely.
 
@@ -95,7 +95,7 @@ To set variables using a `.env` file:
 ### Install
 
 1. Install Gemini CLI: see instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
-1. Install the extension directly from GitHub:
+1. In a new terminal, install the extension directly from GitHub:
    ```sh
    gemini extensions install https://github.com/gemini-cli-extensions/datacommons
    ```
@@ -104,12 +104,15 @@ To set variables using a `.env` file:
 ### Run
 
 1. From any directory, run `gemini`. 
+1. To verify that the Data commons tools are running, enter `/mcp list`. You should see `datacommons-mcp` as connected. 
 1. To verify that the extension is running, enter `/extensions list`. You should see `datacommons` as an active extension. 
 1. Start sending [natural-language queries](#sample-queries).
 
 ### Update
 
-After starting up Gemini CLI, if you see a message that a newer version of the extension is available, run the following command:
+After starting up Gemini CLI, you may see the message `You have one extension with an update available`.
+
+In this case, run `/extensions list`. If `datacommons` is displayed with `update available`, run the following command:
 ```
 gemini extensions update datacommons
 ```
@@ -120,12 +123,28 @@ You can diagnose common errors, such as invalid API keys, by using the debug fla
 ```
 gemini -d
 ```
+You can also use the `Ctrl-o` option from inside the Gemini input field.
+
+Here are solutions to some commonly experienced problems.
+
+#### Install/update/uninstall hangs and does not complete
+
+1. Check that you are not running the `gemini extensions` command from inside the Gemini input field. Start a new terminal and run it from the command line.
+1. Check that you've spelled commands correctly, e.g. `extensions` and not `extension`.
+
+#### datacommons-mcp is disconnected
+
+This is usually due to a missing [Data Commons API key](#prerequisites). Be sure to obtain a key and export it on the command line or in a startup script (e.g. `.bashrc`).
+
+#### Failed to clone Git repository
+
+Make sure you have installed [Git](https://git-scm.com/) on your system.
 
 ### Uninstall
 
 To uninstall the extension, run:
 ```
-gemini extension uninstall datacommons
+gemini extensions uninstall datacommons
 ```
 
 ## Use Gemini CLI
@@ -176,7 +195,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
    }
    </pre>
 
-### Usage
+### Send queries
 
 1. From any directory, run `gemini`. 
 1. To see the Data Commons tools, use `/mcp tools`.
@@ -199,12 +218,39 @@ Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.
 export GEMINI_API_KEY=<var>YOUR API KEY</var>
 </pre>
 
-### Installation
+### Install
 
 From the desired directory, clone the `agent-toolkit` repo:
 ```bash
 git clone https://github.com/datacommonsorg/agent-toolkit.git
 ```
+
+### Run
+
+1. Go to the root directory of the repo:
+   ```bash
+   cd agent-toolkit
+   ```
+1. Run the agent using one of the following methods.
+
+By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in before using this procedure.
+
+#### Web UI (recommended)
+
+1. Run the following command:
+   ```bash
+   uvx --from google-adk adk web ./packages/datacommons-mcp/examples/sample_agents/
+   ```
+1. Point your browser to the address and port displayed on the screen (e.g. `http://127.0.0.1:8000/`). The Agent Development Kit Dev UI is displayed. 
+1. From the **Type a message** box, type your [query for Data Commons](#sample-queries) or select another action.
+
+#### Command line interface
+
+1. Run the following command:
+   ```bash
+   uvx --from google-adk adk run ./packages/datacommons-mcp/examples/sample_agents/basic_agent
+   ```
+1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
 ### Connect to a remote server (optional)
 
@@ -228,34 +274,6 @@ root_agent = LlmAgent(
       )],
    )
 ```
-
-### Usage
-
-1. Go to the root directory of the repo:
-   ```bash
-   cd agent-toolkit
-   ```
-1. Run the agent using one of the following methods.
-
-By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in 
-
-#### Web UI (recommended)
-
-1. Run the following command:
-   ```bash
-   uvx --from google-adk adk web ./packages/datacommons-mcp/examples/sample_agents/
-   ```
-1. Point your browser to the address and port displayed on the screen (e.g. `http://127.0.0.1:8000/`). The Agent Development Kit Dev UI is displayed. 
-1. From the **Type a message** box, type your [query for Data Commons](#sample-queries) or select another action.
-
-#### Command line interface
-
-1. Run the following command:
-   ```bash
-   uvx --from google-adk adk run ./packages/datacommons-mcp/examples/sample_agents/basic_agent
-   ```
-1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
-
 
 ## Sample queries
 
@@ -281,9 +299,8 @@ By default, the host is `localhost` and the port is `8080` if you don't set thes
 
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
 
-Above we provide instructions for connecting to the server over HTTP with [Gemini CLI]() and a [sample ADK agent](). If you're using a different client, consult its documentation to determine how to specify an HTTP URL.
+You can connect to the server using [Gemini CLI](#use-gemini-cli) or the [sample ADK agent](#use-the-sample-agent).  If you're using a different client from the ones documented on this page, consult its documentation to determine how to specify an HTTP URL.
 
-### Connect to an already-running server from a remote client
 
 
 
