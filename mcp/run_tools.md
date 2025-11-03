@@ -23,7 +23,7 @@ We provide specific instructions for the following agents:
 
    See [Use the Gemini CLI extension](#use-the-gemini-cli-extension) for this option.
 
-   > Tip: If you would like to use this option with a Custom Data Commons instance, we recommend that you develop your own extension. See xxx for details.
+<!-- TODO: write this Tip: If you would like to use this option with a Custom Data Commons instance, we recommend that you develop your own extension. See xxx for details. -->
 
 - [Gemini CLI](https://geminicli.com/) 
    - Can be used for datacommons.org or a Custom Data Commons instance
@@ -97,14 +97,16 @@ In addition to the [standard prerequisites](#prerequisites), you must have the f
 
 When you install the extension, it clones the [Data Commons extension Github repo](https://github.com/gemini-cli-extensions/datacommons) to your local system.
 
+{:.no_toc}
 ### Install
  
 Open a new terminal and install the extension directly from GitHub:
 ```sh
-gemini extensions install https://github.com/gemini-cli-extensions/datacommons
+gemini extensions install https://github.com/gemini-cli-extensions/datacommons [--auto-update]
 ```
 > Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
 
+{:.no_toc}
 ### Run
 
 1. From any directory, run `gemini`. 
@@ -112,6 +114,7 @@ gemini extensions install https://github.com/gemini-cli-extensions/datacommons
 1. To verify that the extension is running, enter `/extensions list`. You should see `datacommons` listed as `active`. 
 1. Start sending [natural-language queries](#sample-queries).
 
+{:.no_toc}
 ### Update
 
 After starting up Gemini CLI, you may see the message `You have one extension with an update available`.
@@ -121,6 +124,7 @@ In this case, run `/extensions list`. If `datacommons` is displayed with `update
 gemini extensions update datacommons
 ```
 
+{:.no_toc}
 ### Troubleshoot
 
 You can diagnose common errors, such as invalid API keys, by using the debug flag:
@@ -147,6 +151,7 @@ This is usually due to a missing [Data Commons API key](#prerequisites). Be sure
 
 Make sure you have installed [Git](https://git-scm.com/) on your system.
 
+{:.no_toc}
 ### Uninstall
 
 To uninstall the extension, run:
@@ -156,10 +161,14 @@ gemini extensions uninstall datacommons
 
 ## Use Gemini CLI
 
+Before installing, be sure to check the [Prerequisites](#prerequisites) above.
+
+{:.no_toc}
 ### Install
 
 To install Gemini CLI, see the instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
 
+{:.no_toc}
 ### Configure to run a local server
 
 To configure Gemini CLI to recognize the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
@@ -187,6 +196,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 }
 </pre>
 
+{:.no_toc}
 ### Configure to connect to a remote server
 
 1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
@@ -202,6 +212,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
    }
    </pre>
 
+{:.no_toc}
 ### Send queries
 
 1. From any directory, run `gemini`. 
@@ -219,6 +230,7 @@ In addition to the [standard prerequisites](#prerequisites), you will need:
 - A GCP project and a Google AI API key. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>.
 - [Git](https://git-scm.com/) installed.
 
+{:.no_toc}
 ### Set the API key environment variable
 
 Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.bashrc`):
@@ -226,6 +238,7 @@ Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.
 export GEMINI_API_KEY=<var>YOUR API KEY</var>
 </pre>
 
+{:.no_toc}
 ### Install
 
 From the desired directory, clone the `agent-toolkit` repo:
@@ -233,6 +246,7 @@ From the desired directory, clone the `agent-toolkit` repo:
 git clone https://github.com/datacommonsorg/agent-toolkit.git
 ```
 
+{:.no_toc}
 ### Run
 
 By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in [Connect to a remote server](#remote) before using this procedure.
@@ -263,6 +277,7 @@ By default, the agent will spawn a local server and connect to it over Stdio. If
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
 {: #remote}
+{:.no_toc}
 ### Configure to connect to a remote server
 
 If you want to connect to a remote MCP server, follow this procedure before starting the agent:
