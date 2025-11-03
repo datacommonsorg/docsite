@@ -17,8 +17,9 @@ We provide specific instructions for the following agents:
 
 - [Gemini CLI extension](https://geminicli.com/extensions/) 
    - Best for querying datacommons.org
-   - Provides a built-in "agent" and prompts for Data Commons
+   - Provides a built-in "agent" and prompt file for Data Commons
    - Downloads extension files locally
+   - Uses `uv` to run the MCP server locally
    - Minimal setup
 
    See [Use the Gemini CLI extension](#use-the-gemini-cli-extension) for this option.
@@ -28,7 +29,8 @@ We provide specific instructions for the following agents:
 - [Gemini CLI](https://geminicli.com/) 
    - Can be used for datacommons.org or a Custom Data Commons instance
    - No additional downloads
-   - Server may be run remotely
+   - MCP server can be run locally or remotely
+   - You can create your own prompt file 
    - Minimal setup
 
    See [Use Gemini CLI](#use-gemini-cli) for this option.
