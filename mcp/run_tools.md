@@ -93,7 +93,7 @@ To set variables using a `.env` file:
 **Additional prerequisites** 
 In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
 - [Git](https://git-scm.com/)
-- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli#quick-install)
+- [Google Gemini CLI](https://geminicli.com/docs/get-started/)
 
 When you install the extension, it clones the [Data Commons extension Github repo](https://github.com/gemini-cli-extensions/datacommons) to your local system.
 
