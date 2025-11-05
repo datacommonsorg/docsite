@@ -15,7 +15,7 @@ has_children: true
 
 The Data Commons [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) service gives AI agents access to the Data Commons knowledge graph and returns data related to statistical variables, topics, and observations. It allows end users to formulate complex natural-language queries interactively, get data in textual, structured or unstructured formats, and download the data as desired. For example, depending on the agent, a user can answer high-level questions such as "give me the economic indicators of the BRICS countries", view simple tables, and download a CSV file of the data in tabular format.
 
-The MCP server returns data from datacommons.org by default or can be configured for a Custom Data Commons instance. 
+The MCP server returns data from datacommons.org by default or can be configured to query a Custom Data Commons instance. 
 
 The server is a Python binary based on the [FastMCP 2.0 framework](https://gofastmcp.com). A prebuilt package is available at <https://pypi.org/project/datacommons-mcp/>.
 
@@ -38,7 +38,7 @@ The server supports both standard MCP [transport protocols](https://modelcontext
 - Stdio: For clients that connect directly using local processes
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
 
-See [Run and connect to the server](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli).
+See [Run MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons Extension](https://geminicli.com/extensions/).
 
 ## Unsupported features
 
@@ -46,6 +46,7 @@ At the current time, the following are not supported:
 - Non-geographical ("custom") entities
 - Events
 - Exploring nodes and relationships in the graph
+- Returning data formatted for graphic visualizations
 
 ## Disclaimer
 
