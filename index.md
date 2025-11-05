@@ -22,7 +22,7 @@ There are also several options for providing new data to Data Commons:
 
 ## Interact with the datacommons.org website {#interact}
 
-For quick analysis, use the search query bar on the [home page](https://datacommons.org/){: target="_blank"} or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/visualization#visType=timeline){: target="_blank"}, [Scatter](https://datacommons.org/tools/visualization#visType%3Dscatter){: target="_blank"}, and [Map](https://datacommons.org/tools/visualization#visType%3Dmap){: target="_blank"} explorers.
+For quick analysis, use the search query bar on the [home page](https://datacommons.org/){: target="_blank"} or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/timeline){: target="_blank"}, [Scatter](https://datacommons.org/tools/scatter){: target="_blank"}, and [Map](https://datacommons.org/tools/map){: target="_blank"} explorers.
 
 ## Learn about the data in Data Commons {#learn}
 

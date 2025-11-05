@@ -64,7 +64,7 @@ permalink: /api/web_components/ranking
 | --------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | apiRoot         | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`.                       |
 | hideFooter      | boolean | Include to hide footer with download link.<br /><br />Default: `false`.                                                                                          |
-| showExploreMore | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/visualization){: target="_blank"}. |
+| showExploreMore | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/map){: target="_blank"}. |
 {: .doc-table }
 
 ## Examples

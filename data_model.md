@@ -144,7 +144,7 @@ An _observation_ is a single measured value for a statistical variable, at or du
 
 For example, the value of the statistical variable [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"} for the city of San Antonio, Texas in 2014 could have an observation `Observation_Median_Age_Person_Female_SanAntonio_TX_2014`. The type of an observation is always the special sub-class [`StatVarObservation`](https://datacommons.org/browser/StatVarObservation){: target="_blank"}.
 
-Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/visualization#visType=timeline){: target="_blank"} and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/visualization#visType%3Dtimeline%26place%3DgeoId%2F0606000%26placeType%3DCensusZipCodeTabulationArea%26sv%3D%7B%22dcid%22%3A%22Median_Income_Person%22%7D){: target="_blank"}, according to the US Census Bureau:
+Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/timeline){: target="_blank"} and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/timeline#place=geoId%2F0606000&statsVar=Median_Income_Person){: target="_blank"}, according to the US Census Bureau:
 
 ![Timeline Explorer]({{site.url}}/assets/images/dc/concept11.png){: width="900"}
 
