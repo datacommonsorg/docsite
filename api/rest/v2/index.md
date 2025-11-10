@@ -272,11 +272,11 @@ curl --request GET \
 
 will return something like:
 
-```json
+```jsonc
 {
   "data": {
     "geoId/06": {
-      "arcs": < ... output truncated for brevity ...>
+      "arcs": // ... output truncated for brevity ...
     },
   },
   "nextToken": "SoME_veRy_L0ng_STrIng"
