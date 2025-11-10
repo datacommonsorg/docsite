@@ -76,7 +76,7 @@ JSON data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
-> **Note**: An entity and a variable may be associated with multiple [_facets_](/glossary.html#facet), representing different data sources and their attendant metadata. By default, all available facets are returned for a given query. If you want to restrict your query so that it only returns observations from a specific data source (or metadata), you must use a facet filter, as described below.
+> **Note**: An entity and a variable may be associated with multiple [_facets_](/glossary.html#facet). By default, all available facets are returned for a given query. If you want to restrict your query so that it only returns observations from a specific data source or facet, you must use a facet filter, as described below.
 
 ### Query parameters
 
@@ -740,7 +740,7 @@ The response shows that Canada and Mexico are associated with this variable, but
 
 ### Example 3: Look up whether a given entity (place) has data for a given variable and show all the available sources
 
-This example is the same as above, but we also get the facets, to see the sources of the available data. This query shows all the metadata for the available sources, but it doesn't show any observations.
+This example is the same as above, but we also get the facets, to see the sources of the available data. This query shows all the facets for the available sources, but it doesn't show any observations.
 
 Parameters:
 {: .example-box-title}
