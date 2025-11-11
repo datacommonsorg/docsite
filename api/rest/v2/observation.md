@@ -11,8 +11,8 @@ published: true
 # /v2/observation
 
 The Observation API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date: for example, "population of USA in
-2020", "GDP of California in 2010", and so on.
+entity and a variable at a particular date: for example, "population of USA in
+2020", "GDP of California in 2010", and so on. 
 
 * TOC
 {:toc}
@@ -76,6 +76,8 @@ JSON data:
 <script src="/assets/js/syntax_highlighting.js"></script>
 <script src="/assets/js/api-doc-tabs.js"></script>
 
+> **Note**: A single entity or variable may be associated with multiple [_facets_](/glossary.html#facet). By default, a query returns all available facets. This means that your results may be a mixed set of observations, potentially combining data from various sources or using different measurement methods. To ensure consistency and restrict your query to a specific facet, you must use a facet filter, as described below.
+
 ### Query parameters
 
 | Name                                                  | Type   |  Description                                                    |
@@ -86,8 +88,8 @@ JSON data:
 | entity.dcids  | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
 | entity.expression | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
 | select <br /><required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=date`, `select=value` and `select=facet` are optional: if you omit `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
-| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. |
-| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
+| filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance URL. See [Response](#response) below for more details. |
+| filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing _facet IDs_ that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. See [Response](#response) below for more details. |
 {: .doc-table }
 
 > **Note**: Filters are not currently available for custom variables.
@@ -123,25 +125,7 @@ For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://
 
 ## Response {#response}
 
-With`select=variable` and `select=entity` only, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
-
-<pre>
-{
-  "byVariable": {
-    "<var>VARIABLE_DCID_1</var>": {
-      "byEntity": {
-        "<var>ENTITY_DCID_1</var>": {},
-        "<var>ENTITY_DCID_2</var>": {},
-        ...
-      }
-    "<var>VARIABLE_DCID_2</var>": {
-      ...
-  }
-}
-</pre>
-{: .response-signature .scroll}
-
-With`select=variable`, `select=entity` and `select=facet`, the response looks like:
+With `select=variable`, `select=entity`, `select=date` and `select=value` specified (and no filters), all observations and available facets are returned. The response looks like this:
 
 <pre>
 {
@@ -151,40 +135,20 @@ With`select=variable`, `select=entity` and `select=facet`, the response looks li
         "<var>ENTITY_DCID_1</var>": {
           "orderedFacets": [
             {
-              "facetId": "<var>FACET_ID</var>",
+              "facetId": "<var>FACET_ID_1</var>",
               "earliestDate" : "<var>DATE_STRING</var>", 
               "latestDate" : "<var>DATE_STRING</var>", 
-              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>"
+              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>",
+              "observations": [
+                {
+                  "date": "<var>OBSERVATION_DATE</var>",
+                  "value": "<var>OBSERVATION_VALUE</var>"
+                },
+                ...
+              ]
             },
-            ...
-        },
-        ...
-      },
-      ...
-    }
-  "facets" {
-    "<var>FACET_ID</var>": {
-      "importName": "...",
-      "provenanceUrl": "...",
-      "measurementMethod": "...",
-      "observationPeriod": "..."
-    },
-    ...
-  }
-</pre>
-{: .response-signature .scroll}
-
-With `select=variable`, `select=entity`, `select=date` and `select=value` specified, the response looks like:
-
-<pre>
-{
-  "byVariable": {
-    "<var>VARIABLE_DCID_1</var>": {
-      "byEntity": {
-        "<var>ENTITY_DCID_1</var>": {
-          "orderedFacets": [
             {
-              "facetId": "<var>FACET_ID</var>",
+              "facetId": "<var>FACET_ID_2</var>",
               "earliestDate" : "<var>DATE_STRING</var>", 
               "latestDate" : "<var>DATE_STRING</var>", 
               "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>",
@@ -203,7 +167,13 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
       ...
     }
   "facets" {
-    "<var>FACET_ID</var>": {
+    "<var>FACET_ID_1</var>": {
+      "importName": "...",
+      "provenanceUrl": "...",
+      "measurementMethod": "...",
+      "observationPeriod": "..."
+    },
+    "<var>FACET_ID_2</var>": {
       "importName": "...",
       "provenanceUrl": "...",
       "measurementMethod": "...",
@@ -213,6 +183,73 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
   }
 </pre>
 {: .response-signature .scroll}
+
+With`select=variable`, `select=entity` and `select=facet`, only the details about the available facets are returned, including the number of observations available for each facet. But no actual observations are returned. The response looks like:
+
+<pre>
+{
+  "byVariable": {
+    "<var>VARIABLE_DCID_1</var>": {
+      "byEntity": {
+        "<var>ENTITY_DCID_1</var>": {
+          "orderedFacets": [
+            {
+              "facetId": "<var>FACET_ID_1</var>",
+              "earliestDate" : "<var>DATE_STRING</var>", 
+              "latestDate" : "<var>DATE_STRING</var>", 
+              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>"
+            },
+             {
+              "facetId": "<var>FACET_ID_2</var>",
+              "earliestDate" : "<var>DATE_STRING</var>", 
+              "latestDate" : "<var>DATE_STRING</var>", 
+              "obsCount" : "<var>NUMBER_OF_OBSERVATIONS</var>"
+            },
+            ...
+        },
+        ...
+      },
+      ...
+    }
+  "facets" {
+    "<var>FACET_ID_1</var>": {
+      "importName": "...",
+      "provenanceUrl": "...",
+      "measurementMethod": "...",
+      "observationPeriod": "..."
+    },
+    "<var>FACET_ID_2</var>": {
+      "importName": "...",
+      "provenanceUrl": "...",
+      "measurementMethod": "...",
+      "observationPeriod": "..."
+    },
+    ...
+  }
+</pre>
+{: .response-signature .scroll}
+
+With`select=variable` and `select=entity` only, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
+
+<pre>
+{
+  "byVariable": {
+    "<var>VARIABLE_DCID_1</var>": {
+      "byEntity": {
+        "<var>ENTITY_DCID_1</var>": {},
+        "<var>ENTITY_DCID_2</var>": {},
+        ...
+      }
+    "<var>VARIABLE_DCID_2</var>": {
+      ...
+  }
+}
+</pre>
+{: .response-signature .scroll}
+
+
+
+
 
 ### Response fields
 
@@ -701,9 +738,9 @@ The response shows that Canada and Mexico are associated with this variable, but
 }
 ```
 
-### Example 3: Look up whether a given entity (place) has data for a given variable and show the sources
+### Example 3: Look up whether a given entity (place) has data for a given variable and show all the available sources
 
-This example is the same as above, but we also get the facets, to see the sources of the available data.
+This example is the same as above, but we also get the facets, to see the sources of the available data. This query shows all the facets for the available sources, but it doesn't show any observations.
 
 Parameters:
 {: .example-box-title}
@@ -1642,7 +1679,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 8: Get the latest observations for a single entity, filtering by provenance
+### Example 8: Get the latest observations for a single entity, filtering by facet provenance (domain)
 
 This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
@@ -1715,7 +1752,7 @@ Response:
 }
 ```
 
-### Example 9: Get the latest observations for a single entity, filtering for specific dataset
+### Example 9: Get the latest observations for a single entity, filtering by facet for a specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 
