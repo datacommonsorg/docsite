@@ -44,7 +44,7 @@ An entity represented by a node in the Data Commons knowledge graph. These can r
 ### Facet
 {: #facet}
 
-Metadata on properties of the data and its provenance. For example, multiple sources might provide data on the same variable, but use different measurement methods, cover data spanning different time spans, or use different underlying predictive models. Data Commons uses "facet" to refer to a data's source and its associated metadata.
+Metadata on properties of the data and its provenance. For example, multiple sources might provide data on the same variable, but use different measurement methods, cover data spanning different time spans, use different units of measurement. Data Commons uses "facet" to refer to a dataset's source and its associated metadata.
 
 ### [Measurement Denominator](https://datacommons.org/browser/measurementDenominator){: target="_blank"}
 {: #measurement-denominator}
