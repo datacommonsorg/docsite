@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Migrate to REST API V2
+title: Migrate to Python API V2
 nav_order: 7
-parent: REST (V2)
+parent: Python (V2)
 grand_parent: API - Query data programmatically
 published: true
 ---
@@ -10,7 +10,7 @@ published: true
 {: .no_toc}
 # Migrate from API V1 to V2
 
-The Data Commons [REST API V2](index.md) is significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
+The Data Commons [Python API V2](index.md) is significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
 
 * TOC
 {:toc}
@@ -19,166 +19,43 @@ The Data Commons [REST API V2](index.md) is significantly different from V1. Thi
 
 | Feature | V1 | V2 |
 |---------|----|----|
-| API key | Not required | Required; get from <apikeys.datacommons.com> |
+| API key | Not required | Required; get from <https://apikeys.datacommons.com> |
 | Custom Data Commons supported | No | Yes |
+| Pandas support | Separate package | Module in the same package |
 | Base URL | https://api.datacommons.org/v1/ | https://api.datacommons.org/v2/ |
-| Service endpoints | 12 endpoints + 12 bulk versions of each | 4 endpoints |
-| Parameters | Path and query parameters used; order of parameters matters for path parameters | Only query parameters used; order of parameters does not matter |
-| Simple vs. bulk query | Every endpoint has an equivalent "bulk" version | No separate endpoints for bulk requests |
-| APIs for graph exploration | Multiple endpoints: `triples`, `properties`, `property/values`, `property/values/in/linked` and corresponding `bulk` versions | Single endpoint `node` with `property` parameter and [relation expressions](/api/rest/v2/index.md#relation-expressions) |
-| APIs for node information |  Multiple endpoints: `find/entities`, `info/place`, `info/variable`, `info/variable-group` and `bulk` versions |  Endpoint `node` with `property` parameter and `resolve` endpoint for place DCIDs |
-| APIs for statistical observations | Endpoints `observations/series` and `observations/point` and `bulk` versions | Single endpoint `observation` | 
-| APIs for statistical variables | Endpoint `variables` and `bulk` equivalent | Endpoint `node` with `property` parameter and relation expressions |
-| SPARQL API | Endpoint `query` | Endpoint `sparql` |
-| HTTP requests | POST requests supported for some bulk endpoints | POST requests supported for all endpoints | 
+| Classes/methods | 7 global methods | 3 classes representing REST endpoints `node`, `observation` and `resolve`; several member functions for each endpoint class. Variations of functions in V1 are represented as function parameters in V2. |
+| Pandas classes/methods | 3 methods, all members of `datacommons_pandas` class | 1 method, member of `datacommons_client` class. Variations of the Pandas functions in V1 are represented as parameters in V2. |
+| Pagination | Required for queries resulting in large data volumes | Optional |
+| DCID lookup | No | Yes |
+
+## V2 client object
+
+
+## V1 function equivalences in V2
+
+This section shows you how to translate from a given V1 function to the equivalent code in V2. Examples of both are given in the following section.
+
+| `datacommmons` V1 function |  V2 equivalent |
+|-------------|------------------|
+| `get_triples` | No direct equivalent; triples are not returned. Instead you indicate the directionality of the relationship in the triple, i.e. incoming or outgoing edges, using `node.fetch` and a relation expression |
+| `get_places_in` | `node.fetch_place_descendants` |
+| `get_stat_value` | `observation.fetch_observations_by_entity_dcid` with a single place and variable, and the `date` parameter set to a specific date |
+| `get_stat_series` | `observation.fetch_observations_by_entity_id` with a single place and variable, and the `date` parameter set to `all` |
+| `get_stat_all` | `observation.fetch_observations_by_entity_id` with an array of places and/or variables and `date` parameter set to `all`  |
+| `get_property_labels` |  `node.fetch_property_labels` |
+| `get_property_values` | `node.fetch_property_values` |
+
+| `datacommons_pandas` V1 function | V2 equivalent |
+|----------------------------------|------------------|
+| `build_time_series` | `observations_dataframe` with a single place and variable and the `date` parameter set to `all` |
+| `build_time_series_dataframe` | `observations_dataframe` with an array of places, a single variable and the `date` parameter set to `all` |
+| `build_multivariate_dataframe` | `observations_dataframe` with an array of places and/or variables and the `date` parameter set to `latest` |
 
 ## Examples
 
-The following examples show equivalent API queries and responses using V1 and V2, using GET requests. (POST requests are also supported in V2 for all queries.)
+The following examples show equivalent API queries and responses using V1 and V2.
 
-### Example 1: Find the DCID of a place
-
-This queries for the DCID of "Georgia". Here the `find/entities` endpoint is replaced by the `resolve` endpoint. Note the use of the required `->dcid` expression at the end of the `resolve` request. Also note the different structure of the response.
-
-<div>
-
-{% tabs request %}
-
-{% tab request V1 GET request %}
-
-```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v1/find/entities?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&description=Georgia'
-```
-{% endtab %}
-{% tab request V2 GET request %}
-
-```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=%3C-description-%3Edcid'
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-<div>
-
-{% tabs response %}
-
-{% tab response V1 response %}
-
-```json
-{
-  "dcids": [
-    "geoId/13",
-    "country/GEO",
-    "geoId/5027700"
-  ]
-}
-```
-{% endtab %}
-{% tab response V2 response %}
-
-```json
-{
-  "entities": [
-    {
-      "node": "Georgia",
-      "resolvedIds": [
-        "geoId/13",
-        "country/GEO",
-        "geoId/5027700"
-      ],
-      "candidates": [
-        {
-          "dcid": "geoId/13"
-        },
-        {
-          "dcid": "country/GEO"
-        },
-        {
-          "dcid": "geoId/5027700"
-        }
-      ]
-    }
-  ]
-}
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-### Example 2: Find the DCID of a place, with a type
-
-This queries for the DCIDs of "Georgia", specifying that we want the country. In V2, we use the `{typeOf:Country}` expression to limit results to a specified type, in this case, `Country`.
-
-<div>
-
-{% tabs request %}
-
-{% tab request V1 GET request %}
-
-```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v1/find/entities?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&description=Georgia&type=Country'
-```
-{% endtab %}
-{% tab request V2 GET request %}
-
-```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=<-description{typeOf:Country}->dcid'
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-<div>
-
-{% tabs response %}
-
-{% tab response V1 response %}
-
-```json
-{
-  "dcids": [
-    "country/GEO"
-  ]
-}
-```
-{% endtab %}
-{% tab response V2 response %}
-
-```json
-{
-  "entities": [
-    {
-      "node": "Georgia",
-      "resolvedIds": [
-        "country/GEO"
-      ],
-      "candidates": [
-        {
-          "dcid": "country/GEO"
-        }
-      ]
-    }
-  ]
-}
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-### Example 3: Get information on a single place
+### Example 1: Get information on a single place
 
 Get basic information about New York City (DCID: `geoId/3651000`). In this example, the `info/place` endpoint is replaced by the `node` endpoint. In V2 all properties are considered "outgoing" nodes of a given node; the direction is indicated by an arrow symbol (`->`). Multiple properties are specified in the `node` endpoint using a bracketed array.
 
