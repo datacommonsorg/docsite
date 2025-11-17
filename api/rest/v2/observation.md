@@ -248,9 +248,6 @@ With`select=variable` and `select=entity` only, the response looks like the foll
 {: .response-signature .scroll}
 
 
-
-
-
 ### Response fields
 
 | Name        | Type   |   Description                       |

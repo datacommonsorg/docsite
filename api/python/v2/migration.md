@@ -20,15 +20,15 @@ The Data Commons [Python API V2](index.md) is significantly different from V1. T
 | Feature | V1 | V2 |
 |---------|----|----|
 | API key | Not required | Required; get from <https://apikeys.datacommons.com> |
-| Custom Data Commons supported | No | Yes |
-| Pandas support | Separate package | Module in the same package |
+| Custom Data Commons supported | No | Yes: see details in [Create a client](index.md#create-a-client) |
+| Pandas support | Separate package | Module in the same package : see details in [Install](index.md#install) |
 | Base URL | https://api.datacommons.org/v1/ | https://api.datacommons.org/v2/ |
-| Classes/methods | 7 global methods | 3 classes representing REST endpoints `node`, `observation` and `resolve`; several member functions for each endpoint class. Variations of functions in V1 are represented as function parameters in V2. |
-| Pandas classes/methods | 3 methods, all members of `datacommons_pandas` class | 1 method, member of `datacommons_client` class. Variations of the Pandas functions in V1 are represented as parameters in V2. |
-| Pagination | Required for queries resulting in large data volumes | Optional |
-| DCID lookup | No | Yes |
-
-## V2 client object
+| Sessions | Managed by the `datacommons` package object | Managed by a `datacommons_client` object: see details in [Create a client](index.md#create-a-client) |
+| Classes/methods | 7 methods, members of `datacommons` class | 3 classes representing REST endpoints `node`, `observation` and `resolve`; several member functions for each endpoint class. Variations of methods in V1 are represented as function parameters in V2. See [Request endpoints and responses](index.md#request-endpoints-and-responses) |
+| Pandas classes/methods | 3 methods, all members of `datacommons_pandas` class | 1 method, member of `datacommons_client` class. Variations of the Pandas methods in V1 are represented as parameters in V2. See [Observations DataFrame](pandas.md) |
+| Pagination | Required for queries resulting in large data volumes | Optional: see [Pagination](node.md#pagination)  |
+| DCID lookup method | No | Yes: [`resolve`](resolve.md) endpoint methods |
+| Statistics | With the `get_stat_value` and `get_stat_series` methods, Data Commons chooses the most "relevant" data source to answer the query; typically this is based on the data source providing the most recent data | Data from all available data sources is returned by default for all observation endpoint methods (if you don't apply a filter); for details, see [Observation response](/observation.html#response) |
 
 
 ## V1 function equivalences in V2
@@ -55,29 +55,109 @@ This section shows you how to translate from a given V1 function to the equivale
 
 The following examples show equivalent API queries and responses using V1 and V2.
 
-### Example 1: Get information on a single place
+### Example 1: Get triples associated with a single place
 
-Get basic information about New York City (DCID: `geoId/3651000`). In this example, the `info/place` endpoint is replaced by the `node` endpoint. In V2 all properties are considered "outgoing" nodes of a given node; the direction is indicated by an arrow symbol (`->`). Multiple properties are specified in the `node` endpoint using a bracketed array.
-
-The V2 query does not exactly match the V1 query, and this is reflected in the different response fields.
+This example retrieves triples associated with zip code 94043. In V2, this is expressed as "incoming relationships".
 
 <div>
 
 {% tabs request %}
 
-{% tab request V1 GET request %}
+{% tab request V1 request %}
 
-```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v1/info/place/geoId/3651000?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI'
+```python
+datacommons.get_triples(['zip/94043'])
 ```
 {% endtab %}
 
-{% tab request V2 GET request %}
+{% tab request V2 request %}
 
-```bash
-$ curl --request GET --url \
-'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/3651000&property=->[dcid,name,property,typeOf,containedInPlace]'
+```python
+client.node.fetch(node_dcids=["zip/94043"], expression="<-*")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```jsonc
+{{'zip/94043': [('zip/94043', 'containedInPlace', 'country/USA'),
+  ('zip/94043', 'containedInPlace', 'geoId/06085'),
+  ('zip/94043', 'containedInPlace', 'geoId/0608592830'),
+  ('zip/94043', 'containedInPlace', 'geoId/0616'),
+  ('zip/94043', 'geoId', 'zip/94043'),
+  //...
+}}
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```jsonc
+
+{'data': {'zip/94043': {'arcs': {'locatedIn': {'nodes': [{'dcid': 'EpaParentCompany/AlphabetInc',
+      'name': 'AlphabetInc',
+      'provenanceId': 'dc/base/EPA_ParentCompanies',
+      'types': ['EpaParentCompany']},
+      {'dcid': 'EpaParentCompany/Google',
+      'name': 'Google',
+      'provenanceId': 'dc/base/EPA_ParentCompanies',
+      'types': ['EpaParentCompany']}]},
+   'containedInPlace': {'nodes': [{'dcid': 'epaGhgrpFacilityId/1005910',
+       'name': 'City Of Mountain View (Shoreline Landfill)',
+       'provenanceId': 'dc/base/EPA_GHGRPFacilities',
+       'types': ['EpaReportingFacility']},
+      {'dcid': 'epaSuperfundSiteId/CA2170090078',
+       'name': 'Moffett Naval Air Station',
+       'provenanceId': 'dc/base/EPA_Superfund_Sites',
+       'types': ['SuperfundSite']},
+      {'dcid': 'epaSuperfundSiteId/CAD009111444',
+       'name': 'Teledyne Semiconductor',
+       'provenanceId': 'dc/base/EPA_Superfund_Sites',
+       'types': ['SuperfundSite']},
+      {'dcid': 'epaSuperfundSiteId/CAD009138488',
+       'name': 'Spectra-Physics Inc.',
+       'provenanceId': 'dc/base/EPA_Superfund_Sites',
+       'types': ['SuperfundSite']},
+      //...
+      }
+   }
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 2: Get a list of places in another place
+
+This example retrieves a list of counties in the U.S. state of Delaware.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons.get_places_in(["geoId/10"], "County")
+```
+
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.node.fetch_place_children(place_dcids="geoId/10", children_type="County")
 ```
 {% endtab %}
 
@@ -92,172 +172,1132 @@ $ curl --request GET --url \
 {% tab response V1 response %}
 
 ```json
-{
-  "entity": "geoId/3651000",
-  "info":
-  {
-    "self":
-    {
-      "dcid": "geoId/3651000",
-      "name": "New York",
-      "type": "City"
-    },
-    "parents":
-    [
-      {
-        "dcid": "geoId/36085",
-        "name": "Richmond County",
-        "type": "County"
-      },
-      {
-        "dcid": "geoId/36081",
-        "name": "Queens",
-        "type": "County"
-      },
-      {
-        "dcid": "geoId/36061",
-        "name": "Manhattan",
-        "type": "County"
-      },
-      {
-        "dcid": "geoId/36047",
-        "name": "Brooklyn",
-        "type": "County"
-      },
-      {
-        "dcid": "geoId/36005",
-        "name": "Bronx County",
-        "type": "County"
-      },
-      {
-        "dcid": "geoId/36",
-        "name": "New York",
-        "type": "State"
-      },
-      {
-        "dcid": "geoId/3651000",
-        "name": "New York",
-        "type": "City"
-      },
-      {
-        "dcid": "usc/MiddleAtlanticDivision",
-        "name": "Middle Atlantic Division",
-        "type": "CensusDivision"
-      },
-      {
-        "dcid": "country/USA",
-        "name": "United States",
-        "type": "Country"
-      },
-      {
-        "dcid": "usc/NortheastRegion",
-        "name": "Northeast Region"
-      },
-      {
-        "dcid": "northamerica",
-        "name": "North America",
-        "type": "Continent"
-      },
-      {
-        "dcid": "Earth",
-        "name": "Earth",
-        "type": "Place"
-      }
-    ]
-  }
-}
+{'geoId/10': ['geoId/10001', 'geoId/10003', 'geoId/10005']}
 ```
 {% endtab %}
 
 {% tab response V2 response %}
 
 ```json
-{
-   "data" : {
-      "geoId/3651000" : {
-         "arcs" : {
-            "containedInPlace" : {
-               "nodes" : [
-                  {
-                     "dcid" : "geoId/36",
-                     "name" : "New York",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "AdministrativeArea1",
-                        "State"
-                     ]
-                  },
-                  {
-                     "dcid" : "geoId/36005",
-                     "name" : "Bronx County",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "County"
-                     ]
-                  },
-                  {
-                     "dcid" : "geoId/36047",
-                     "name" : "Brooklyn",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "County"
-                     ]
-                  },
-                  {
-                     "dcid" : "geoId/36061",
-                     "name" : "Manhattan",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "County"
-                     ]
-                  },
-                  {
-                     "dcid" : "geoId/36081",
-                     "name" : "Queens",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "County"
-                     ]
-                  },
-                  {
-                     "dcid" : "geoId/36085",
-                     "name" : "Richmond County",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "County"
-                     ]
-                  }
-               ]
-            },
-            "name" : {
-               "nodes" : [
-                  {
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "value" : "New York City"
-                  },
-                  {
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "value" : "New York"
-                  }
-               ]
-            },
-            "typeOf" : {
-               "nodes" : [
-                  {
-                     "dcid" : "City",
-                     "name" : "City",
-                     "provenanceId" : "dc/base/WikidataOtherIdGeos",
-                     "types" : [
-                        "Class",
-                        "LocationClassificationEnum"
-                     ]
-                  }
-               ]
-            }
-         }
-      }
-   }
-}
+{'geoId/10': [{'dcid': 'geoId/10001', 'name': 'Kent County'},
+  {'dcid': 'geoId/10003', 'name': 'New Castle County'},
+  {'dcid': 'geoId/10005', 'name': 'Sussex County'}]}
+```
+
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 3: Get a list of places in multiple other places
+
+This example retrieves a list of congressional districts in the U.S. states of Alaska and Hawaii.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons.get_places_in(["geoId/15","geoId/02"], "CongressionalDistrict")
+```
+
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.node.fetch_place_children(place_dcids=["geoId/15","geoId/02"], children_type="CongressionalDistrict")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```json
+{{'geoId/15': ['geoId/1501', 'geoId/1502'], 'geoId/02': ['geoId/0200']}
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```json
+{'geoId/15': [{'dcid': 'geoId/1501',
+   'name': 'Congressional District 1 (113th Congress), Hawaii'},
+  {'dcid': 'geoId/1502',
+   'name': 'Congressional District 2 (113th Congress), Hawaii'}],
+ 'geoId/02': [{'dcid': 'geoId/0200',
+   'name': 'Congressional District (at Large) (113th Congress), Alaska'}]}
+```
+
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 4: Get the latest value of a single statistical variable for a single place
+
+This example gets the latest count of men in the state of California.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons.get_stat_value("geoId/05", "Count_Person_Male")
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids="geoId/05", variable_dcids="Count_Person_Male")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```json
+1524533
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```json
+{'byVariable': {'Count_Person_Male': {'byEntity': {'geoId/05': {'orderedFacets': [{'earliestDate': '2023',
+       'facetId': '1145703171',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495958.0}]},
+      {'earliestDate': '2024',
+       'facetId': '3999249536',
+       'latestDate': '2024',
+       'obsCount': 1,
+       'observations': [{'date': '2024', 'value': 1524533.0}]},
+      {'earliestDate': '2023',
+       'facetId': '1964317807',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495958.0}]},
+      {'earliestDate': '2023',
+       'facetId': '10983471',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495096.943}]},
+      {'earliestDate': '2023',
+       'facetId': '196790193',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495096.943}]},
+      {'earliestDate': '2021',
+       'facetId': '4181918134',
+       'latestDate': '2021',
+       'obsCount': 1,
+       'observations': [{'date': '2021', 'value': 1493178.0}]},
+      {'earliestDate': '2020',
+       'facetId': '2825511676',
+       'latestDate': '2020',
+       'obsCount': 1,
+       'observations': [{'date': '2020', 'value': 1486856.0}]},
+      {'earliestDate': '2019',
+       'facetId': '1226172227',
+       'latestDate': '2019',
+       'obsCount': 1,
+       'observations': [{'date': '2019', 'value': 1474705.0}]}]}}}},
+ 'facets': {'2825511676': {'importName': 'CDC_Mortality_UnderlyingCause',
+   'provenanceUrl': 'https://wonder.cdc.gov/ucd-icd10.html'},
+  '1226172227': {'importName': 'CensusACS1YearSurvey',
+   'measurementMethod': 'CensusACS1yrSurvey',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+  '1145703171': {'importName': 'CensusACS5YearSurvey',
+   'measurementMethod': 'CensusACS5yrSurvey',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+  '3999249536': {'importName': 'USCensusPEP_Sex',
+   'measurementMethod': 'CensusPEPSurvey_PartialAggregate',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/popest.html'},
+  '1964317807': {'importName': 'CensusACS5YearSurvey_SubjectTables_S0101',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101'},
+  '10983471': {'importName': 'CensusACS5YearSurvey_SubjectTables_S2601A',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A'},
+  '196790193': {'importName': 'CensusACS5YearSurvey_SubjectTables_S2602',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602'},
+  '4181918134': {'importName': 'OECDRegionalDemography_Population',
+   'measurementMethod': 'OECDRegionalStatistics',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C'}}}
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 5: Get the latest value of a single statistical variable for a single place, selecting the facet to return
+
+
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```json
+
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```json
+
+```
+{% endtab %}
+
+{% endtabs %}
+
+
+### Example 6: Get all values of a single statistical variable for a single place
+
+This example retrieve the count of men in the state of California for all years available.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons.get_stat_series("geoId/05", "Count_Person_Male")
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="geoId/05", variable_dcids="Count_Person_Male")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```json
+{'2023': 1495958,
+ '2017': 1461651,
+ '2022': 1491622,
+ '2015': 1451913,
+ '2021': 1483520,
+ '2018': 1468412,
+ '2011': 1421287,
+ '2016': 1456694,
+ '2012': 1431252,
+ '2019': 1471760,
+ '2013': 1439862,
+ '2014': 1447235,
+ '2020': 1478511}
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```json
+{'byVariable': {'Count_Person_Male': {'byEntity': {'geoId/05': {'orderedFacets': [{'earliestDate': '2023',
+       'facetId': '1145703171',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495958.0}]},
+      {'earliestDate': '2024',
+       'facetId': '3999249536',
+       'latestDate': '2024',
+       'obsCount': 1,
+       'observations': [{'date': '2024', 'value': 1524533.0}]},
+      {'earliestDate': '2023',
+       'facetId': '1964317807',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495958.0}]},
+      {'earliestDate': '2023',
+       'facetId': '10983471',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495096.943}]},
+      {'earliestDate': '2023',
+       'facetId': '196790193',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495096.943}]},
+      {'earliestDate': '2021',
+       'facetId': '4181918134',
+       'latestDate': '2021',
+       'obsCount': 1,
+       'observations': [{'date': '2021', 'value': 1493178.0}]},
+      {'earliestDate': '2020',
+       'facetId': '2825511676',
+       'latestDate': '2020',
+       'obsCount': 1,
+       'observations': [{'date': '2020', 'value': 1486856.0}]},
+      {'earliestDate': '2019',
+       'facetId': '1226172227',
+       'latestDate': '2019',
+       'obsCount': 1,
+       'observations': [{'date': '2019', 'value': 1474705.0}]}]}}}},
+ 'facets': {'10983471': {'importName': 'CensusACS5YearSurvey_SubjectTables_S2601A',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A'},
+  '196790193': {'importName': 'CensusACS5YearSurvey_SubjectTables_S2602',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602'},
+  '4181918134': {'importName': 'OECDRegionalDemography_Population',
+   'measurementMethod': 'OECDRegionalStatistics',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C'},
+  '2825511676': {'importName': 'CDC_Mortality_UnderlyingCause',
+   'provenanceUrl': 'https://wonder.cdc.gov/ucd-icd10.html'},
+  '1226172227': {'importName': 'CensusACS1YearSurvey',
+   'measurementMethod': 'CensusACS1yrSurvey',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+  '1145703171': {'importName': 'CensusACS5YearSurvey',
+   'measurementMethod': 'CensusACS5yrSurvey',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+  '3999249536': {'importName': 'USCensusPEP_Sex',
+   'measurementMethod': 'CensusPEPSurvey_PartialAggregate',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/popest.html'},
+  '1964317807': {'importName': 'CensusACS5YearSurvey_SubjectTables_S0101',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101'}}}
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 7: Get all values of a multiple statistical variables for a single place
+
+This example retrieves the total population as well as the male population of the state of Arkansas for all available years.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons.get_stat_all(["geoId/05"], ["Count_Person", "Count_Person_Male"])
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="geoId/05", variable_dcids="Count_Person_Male")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```json
+{'geoId/05': {'Count_Person': {'sourceSeries': [{'val': {'1961': 1806000,
+      '1902': 1360000,
+      '1978': 2243127,
+      '2010': 2921998,
+      '2006': 2821761,
+      '1988': 2342656,
+      '2021': 3025891,
+      '1987': 2342355,
+      '1926': 1826000,
+      '1992': 2394098,
+      '1904': 1419000,
+      '2018': 3012161,
+      '1990': 2354343,
+      '2012': 2952876,
+      '1995': 2480121,
+      '1950': 1908000,
+      '1972': 2018638,
+      '1932': 1836000,
+      '1948': 1825000,
+      '1973': 2059256,
+      '2013': 2960459,
+      '1989': 2346358,
+      '1977': 2209010,
+      '1931': 1848000,
+      '1918': 1749000,
+      '1968': 1902000,
+      '1975': 2159526,
+      '2001': 2691571,
+      '2014': 2968759,
+      '1921': 1769000,
+      '1909': 1545000,
+      '2016': 2991815,
+      '1905': 1447000,
+      '2002': 2705927,
+      '2022': 3047704,
+      '1981': 2293201,
+      '1999': 2551373,
+      '2003': 2724816,
+      '1908': 1513000,
+      '1933': 1854000,
+      '1928': 1847000,
+      '1997': 2524007,
+      '1955': 1725000,
+      '1994': 2450605,
+      '2019': 3020985,
+      '1954': 1734000,
+      '1949': 1844000,
+      '1970': 1923322,
+      '1934': 1878000,
+      '1985': 2327046,
+      '1929': 1852000,
+      '1922': 1772000,
+      '1911': 1610000,
+      '1974': 2101403,
+      '1914': 1688000,
+      '1916': 1719000,
+      '1942': 1977000,
+      '1953': 1780000,
+      '1917': 1737000,
+      '1996': 2504858,
+      '1945': 1762000,
+      '1952': 1838000,
+      '2008': 2874554,
+      '1903': 1384000,
+      '1980': 2286435,
+      '1959': 1756000,
+      '1900': 1314000,
+      '1907': 1484000,
+      '2011': 2941038,
+      '1944': 1768000,
+      '2024': 3088354,
+      '2004': 2749686,
+      '2000': 2678588,
+      '1936': 1892000,
+      '1965': 1894000,
+      '1924': 1800000,
+      '1967': 1901000,
+      '1998': 2538202,
+      '2023': 3069463,
+      '2015': 2979732,
+      '2005': 2781097,
+      '1951': 1901000,
+      '1963': 1875000,
+      '1946': 1797000,
+      '1941': 1969000,
+      '1930': 1859000,
+      '1940': 1955000,
+      '1910': 1583000,
+      '1966': 1899000,
+      '1993': 2423743,
+      '1979': 2271333,
+      '1983': 2305761,
+      '1943': 1843000,
+      '1976': 2170161,
+      '1982': 2294257,
+      '1920': 1756000,
+      '1925': 1812000,
+      '1927': 1840000,
+      '1947': 1836000,
+      '2009': 2896843,
+      '1937': 1903000,
+      '1919': 1742000,
+      '1957': 1733000,
+      '1938': 1928000,
+      '1913': 1664000,
+      '1915': 1702000,
+      '2020': 3030522,
+      '1958': 1726000,
+      '2017': 3003855,
+      '1984': 2319768,
+      '1912': 1636000,
+      '1923': 1784000,
+      '1956': 1704000,
+      '1971': 1972312,
+      '1939': 1948000,
+      '2007': 2848650,
+      '1986': 2331984,
+      '1962': 1853000,
+      '1969': 1913000,
+      '1935': 1890000,
+      '1906': 1465000,
+      '1991': 2370666,
+      '1901': 1341000,
+      '1964': 1897000,
+      '1960': 1789000},
+     'measurementMethod': 'CensusPEPSurvey',
+     'observationPeriod': 'P1Y',
+     'importName': 'USCensusPEP_Annual_Population',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/popest.html'},
+    {'val': {'2013': 2933369,
+      '2017': 2977944,
+      '2021': 3006309,
+      '2011': 2895928,
+      '2016': 2968472,
+      '2014': 2947036,
+      '2012': 2916372,
+      '2022': 3018669,
+      '2018': 2990671,
+      '2020': 3011873,
+      '2023': 3032651,
+      '2019': 2999370,
+      '2015': 2958208},
+     'measurementMethod': 'CensusACS5yrSurvey',
+     'importName': 'CensusACS5YearSurvey',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+    {'val': {'2000': 2673400, '2020': 3011524, '2010': 2915918},
+     'measurementMethod': 'USDecennialCensus',
+     'importName': 'USDecennialCensus_RedistrictingRelease',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html'},
+    {'val': {'2019': 3017804,
+      '2016': 2989918,
+      '2010': 2921964,
+      '1995': 2535399,
+      '2001': 2691571,
+      '2003': 2724816,
+      '2014': 2967392,
+      '2004': 2749686,
+      '1996': 2572109,
+      '1994': 2494019,
+      '2018': 3009733,
+      '2006': 2821761,
+      '2002': 2705927,
+      '1999': 2651860,
+      '1993': 2456303,
+      '2007': 2848650,
+      '2017': 3001345,
+      '2020': 3014348,
+      '2009': 2896843,
+      '2022': 3046404,
+      '2005': 2781097,
+      '1998': 2626289,
+      '1997': 2601090,
+      '2011': 2940667,
+      '1992': 2415984,
+      '2021': 3028443,
+      '1991': 2383144,
+      '2023': 3067732,
+      '2008': 2874554,
+      '2015': 2978048,
+      '2000': 2678588,
+      '1990': 2356586,
+      '2013': 2959400,
+      '2012': 2952164},
+     'measurementMethod': 'OECDRegionalStatistics',
+     'observationPeriod': 'P1Y',
+     'importName': 'OECDRegionalDemography_Population',
+     'provenanceDomain': 'oecd.org',
+     'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C'},
+    {'val': {'2011': 2895928,
+      '2022': 3018669,
+      '2015': 2958208,
+      '2013': 2933369,
+      '2010': 2872684,
+      '2018': 2990671,
+      '2023': 3032651,
+      '2019': 2999370,
+      '2021': 3006309,
+      '2020': 3011873,
+      '2016': 2968472,
+      '2014': 2947036,
+      '2017': 2977944,
+      '2012': 2916372},
+     'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+     'importName': 'CensusACS5YearSurvey_SubjectTables_S0101',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101'},
+    {'val': {'2015': 2958208,
+      '2012': 2916372,
+      '2020': 3011873,
+      '2021': 3006309,
+      '2023': 3032651,
+      '2022': 3018669,
+      '2014': 2947036,
+      '2016': 2968472,
+      '2010': 2872684,
+      '2018': 2990671,
+      '2017': 2977944,
+      '2019': 2999370,
+      '2011': 2895928,
+      '2013': 2933369},
+     'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+     'importName': 'CensusACS5YearSurvey_SubjectTables_S2601A',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A'},
+    {'val': {'2018': 2990671,
+      '2021': 3006309,
+      '2022': 3018669,
+      '2023': 3032651,
+      '2020': 3011873,
+      '2017': 2977944,
+      '2019': 2999370},
+     'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+     'importName': 'CensusACS5YearSurvey_SubjectTables_S2602',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602'},
+    {'val': {'2016': 2988248,
+      '1999': 2651860,
+      '2020': 3030522,
+      '2006': 2821761,
+      '2008': 2874554,
+      '2009': 2896843,
+      '2004': 2749686,
+      '2014': 2966369,
+      '2013': 2959373,
+      '2007': 2848650,
+      '2000': 2673400,
+      '2002': 2705927,
+      '2015': 2978204,
+      '2010': 2915918,
+      '2019': 3017804,
+      '2012': 2949131,
+      '2001': 2691571,
+      '2017': 3004279,
+      '2018': 3013825,
+      '2011': 2937979,
+      '2003': 2724816,
+      '2005': 2781097},
+     'importName': 'CDC_Mortality_UnderlyingCause',
+     'provenanceDomain': 'cdc.gov',
+     'provenanceUrl': 'https://wonder.cdc.gov/ucd-icd10.html'},
+    {'val': {'1991': 2370666,
+      '1976': 2170161,
+      '1983': 2319774,
+      '1904': 1419000,
+      '1942': 1977000,
+      '1906': 1465000,
+      '1998': 2538202,
+      '1959': 1756000,
+      '1915': 1702000,
+      '1908': 1513000,
+      '1967': 1901000,
+      '1920': 1756000,
+      '1971': 1972312,
+      '1944': 1768000,
+      '1922': 1772000,
+      '1954': 1734000,
+      '1935': 1890000,
+      '1928': 1847000,
+      '1987': 2342638,
+      '2007': 2841595,
+      '1984': 2327044,
+      '1968': 1902000,
+      '1953': 1780000,
+      '1996': 2504858,
+      '2009': 2887331,
+      '1931': 1848000,
+      '1943': 1843000,
+      '1937': 1903000,
+      '1941': 1969000,
+      '1997': 2524007,
+      '1940': 1955000,
+      '1918': 1749000,
+      '1917': 1737000,
+      '1979': 2271333,
+      '2018': 3009733,
+      '1980': 2293195,
+      '1962': 1853000,
+      '1929': 1852000,
+      '2000': 2576476,
+      '1914': 1688000,
+      '1934': 1878000,
+      '1932': 1836000,
+      '1973': 2059256,
+      '1964': 1897000,
+      '1961': 1806000,
+      '1995': 2480121,
+      '1974': 2101403,
+      '1923': 1784000,
+      '1950': 1908000,
+      '2011': 2940667,
+      '1913': 1664000,
+      '1952': 1838000,
+      '1990': 2354343,
+      '1956': 1704000,
+      '1910': 1583000,
+      '1957': 1733000,
+      '1978': 2243127,
+      '1972': 2018638,
+      '1975': 2159526,
+      '1945': 1762000,
+      '1911': 1610000,
+      '1924': 1800000,
+      '2002': 2704471,
+      '1955': 1725000,
+      '2010': 2910236,
+      '1963': 1875000,
+      '1938': 1928000,
+      '1912': 1636000,
+      '1902': 1360000,
+      '2015': 2978048,
+      '1927': 1840000,
+      '2008': 2867099,
+      '1985': 2331990,
+      '2001': 2690743,
+      '2017': 3001345,
+      '1969': 1913000,
+      '2003': 2722804,
+      '1921': 1769000,
+      '1901': 1341000,
+      '1925': 1812000,
+      '1986': 2342359,
+      '2019': 3017804,
+      '1977': 2209010,
+      '1951': 1901000,
+      '1981': 2294262,
+      '1989': 2350725,
+      '1970': 1923322,
+      '1965': 1894000,
+      '1930': 1859000,
+      '1982': 2305754,
+      '1936': 1892000,
+      '2006': 2814910,
+      '1992': 2394098,
+      '1994': 2450605,
+      '2016': 2989918,
+      '1905': 1447000,
+      '1966': 1899000,
+      '2013': 2959400,
+      '1939': 1948000,
+      '1933': 1854000,
+      '1903': 1384000,
+      '1993': 2423743,
+      '1900': 1314000,
+      '1960': 1789000,
+      '1907': 1484000,
+      '2014': 2967392,
+      '1999': 2551373,
+      '2004': 2746215,
+      '1909': 1545000,
+      '2012': 2952164,
+      '2005': 2776257,
+      '1988': 2346387,
+      '1919': 1742000,
+      '1926': 1826000,
+      '1958': 1726000,
+      '1916': 1719000},
+     'measurementMethod': 'CensusPEPSurvey',
+     'importName': 'CensusPEP',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/popest.html'},
+    {'val': {'2011': 2937979,
+      '2019': 3017804,
+      '2012': 2949131,
+      '2015': 2978204,
+      '2010': 2921606,
+      '2016': 2988248,
+      '2017': 3004279,
+      '2014': 2966369,
+      '2013': 2959373,
+      '2018': 3013825},
+     'measurementMethod': 'CensusACS1yrSurvey',
+     'importName': 'CensusACS1YearSurvey',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+    {'val': {'1910': 1574449,
+      '1940': 1949387,
+      '1920': 1752204,
+      '2000': 2673400,
+      '1970': 1923295,
+      '1960': 1786272,
+      '1950': 1909511,
+      '2015': 2978204,
+      '2010-04-01': 2915918,
+      '1990': 2350725,
+      '1980': 2286435,
+      '2020-04-01': 3011524,
+      '1930': 1854482},
+     'measurementMethod': 'WikidataPopulation',
+     'importName': 'WikidataPopulation',
+     'provenanceDomain': 'wikimediafoundation.org',
+     'provenanceUrl': 'https://www.wikidata.org/wiki/Wikidata:Main_Page'}]},
+  'Count_Person_Male': {'sourceSeries': [{'val': {'2017': 1461651,
+      '2022': 1491622,
+      '2019': 1471760,
+      '2018': 1468412,
+      '2020': 1478511,
+      '2023': 1495958,
+      '2011': 1421287,
+      '2016': 1456694,
+      '2012': 1431252,
+      '2015': 1451913,
+      '2021': 1483520,
+      '2013': 1439862,
+      '2014': 1447235},
+     'measurementMethod': 'CensusACS5yrSurvey',
+     'importName': 'CensusACS5YearSurvey',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+    {'val': {'1972': 979822,
+      '1983': 1112460,
+      '1976': 1051166,
+      '2008': 1410334,
+      '2004': 1346638,
+      '1978': 1084374,
+      '1975': 1047112,
+      '1982': 1107142,
+      '2019': 1482909,
+      '1984': 1119061,
+      '1995': 1228626,
+      '2018': 1479090,
+      '1991': 1150369,
+      '2003': 1333293,
+      '1988': 1129014,
+      '2015': 1463916,
+      '1980': 1105739,
+      '2007': 1397292,
+      '1974': 1019259,
+      '2021': 1495032,
+      '2005': 1362802,
+      '1997': 1263936,
+      '1973': 999264,
+      '2014': 1457950,
+      '1989': 1130916,
+      '2006': 1383333,
+      '1981': 1107249,
+      '1994': 1207014,
+      '2009': 1421830,
+      '2020': 1488756,
+      '1986': 1124357,
+      '1998': 1277869,
+      '1979': 1097123,
+      '2012': 1450467,
+      '2011': 1444411,
+      '2016': 1469966,
+      '2023': 1513837,
+      '2001': 1314726,
+      '2002': 1322688,
+      '1990': 1136163,
+      '1987': 1129353,
+      '2024': 1524533,
+      '1977': 1069003,
+      '1985': 1122425,
+      '2022': 1503494,
+      '2017': 1475907,
+      '1992': 1167203,
+      '1993': 1187503,
+      '1970': 937034,
+      '1971': 956802,
+      '2000': 1307573,
+      '2010': 1434725,
+      '1996': 1248406,
+      '1999': 1292415,
+      '2013': 1453888},
+     'measurementMethod': 'CensusPEPSurvey_PartialAggregate',
+     'observationPeriod': 'P1Y',
+     'importName': 'USCensusPEP_Sex',
+     'provenanceDomain': 'census.gov',
+     'isDcAggregate': True,
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/popest.html'},
+    {'val': {'2019': 1471760,
+      '2013': 1439862,
+      '2017': 1461651,
+      '2016': 1456694,
+      '2012': 1431252,
+      '2022': 1491622,
+      '2020': 1478511,
+      '2018': 1468412,
+      '2014': 1447235,
+      '2023': 1495958,
+      '2015': 1451913,
+      '2010': 1408945,
+      '2011': 1421287,
+      '2021': 1483520},
+     'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+     'importName': 'CensusACS5YearSurvey_SubjectTables_S0101',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101'},
+    {'val': {'2010': 1407615.16,
+      '2023': 1495096.943,
+      '2014': 1446994.676,
+      '2018': 1468419.461,
+      '2022': 1491222.486,
+      '2020': 1478829.643,
+      '2017': 1462170.504,
+      '2019': 1472690.67,
+      '2012': 1431938.652,
+      '2013': 1440284.179,
+      '2011': 1421900.648,
+      '2021': 1482110.337,
+      '2016': 1457519.752,
+      '2015': 1452480.128},
+     'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+     'importName': 'CensusACS5YearSurvey_SubjectTables_S2601A',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A'},
+    {'val': {'2017': 1462170.504,
+      '2022': 1491222.486,
+      '2019': 1472690.67,
+      '2023': 1495096.943,
+      '2018': 1468419.461,
+      '2021': 1482110.337,
+      '2020': 1478829.643},
+     'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+     'importName': 'CensusACS5YearSurvey_SubjectTables_S2602',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602'},
+    {'val': {'2007': 1398338,
+      '2005': 1362878,
+      '1993': 1187503,
+      '2002': 1323841,
+      '2017': 1475417,
+      '2020': 1486839,
+      '2013': 1453470,
+      '1997': 1263936,
+      '2000': 1307629,
+      '2009': 1422521,
+      '1999': 1292415,
+      '2021': 1493178,
+      '2008': 1410042,
+      '2018': 1480143,
+      '2003': 1332910,
+      '2010': 1434720,
+      '2012': 1450131,
+      '1990': 1136163,
+      '2019': 1471760,
+      '1996': 1248406,
+      '2011': 1444156,
+      '1991': 1150369,
+      '1998': 1277869,
+      '1992': 1167203,
+      '1994': 1207014,
+      '2001': 1315211,
+      '2016': 1469237,
+      '1995': 1228626,
+      '2006': 1383070,
+      '2004': 1346274,
+      '2015': 1463307,
+      '2014': 1457487},
+     'measurementMethod': 'OECDRegionalStatistics',
+     'observationPeriod': 'P1Y',
+     'importName': 'OECDRegionalDemography_Population',
+     'provenanceDomain': 'oecd.org',
+     'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C'},
+    {'val': {'2014': 1457316,
+      '2011': 1442779,
+      '2017': 1476064,
+      '2002': 1322688,
+      '1999': 1292415,
+      '2007': 1397292,
+      '2016': 1467873,
+      '2005': 1362802,
+      '2008': 1410334,
+      '2003': 1333293,
+      '2004': 1346638,
+      '2013': 1453591,
+      '2015': 1462856,
+      '2010': 1431637,
+      '2019': 1481616,
+      '2001': 1314726,
+      '2012': 1448490,
+      '2006': 1383333,
+      '2018': 1480143,
+      '2000': 1304693,
+      '2009': 1421830,
+      '2020': 1486856},
+     'importName': 'CDC_Mortality_UnderlyingCause',
+     'provenanceDomain': 'cdc.gov',
+     'provenanceUrl': 'https://wonder.cdc.gov/ucd-icd10.html'},
+    {'val': {'2018': 1476680,
+      '2012': 1449265,
+      '2015': 1463576,
+      '2017': 1479682,
+      '2019': 1474705,
+      '2014': 1456778,
+      '2010': 1430837,
+      '2016': 1468782,
+      '2013': 1461544,
+      '2011': 1447850},
+     'measurementMethod': 'CensusACS1yrSurvey',
+     'importName': 'CensusACS1YearSurvey',
+     'provenanceDomain': 'census.gov',
+     'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'}]}}}
+
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```json
+{'byVariable': {'Count_Person_Male': {'byEntity': {'geoId/05': {'orderedFacets': [{'earliestDate': '2023',
+       'facetId': '1145703171',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495958.0}]},
+      {'earliestDate': '2024',
+       'facetId': '3999249536',
+       'latestDate': '2024',
+       'obsCount': 1,
+       'observations': [{'date': '2024', 'value': 1524533.0}]},
+      {'earliestDate': '2023',
+       'facetId': '1964317807',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495958.0}]},
+      {'earliestDate': '2023',
+       'facetId': '10983471',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495096.943}]},
+      {'earliestDate': '2023',
+       'facetId': '196790193',
+       'latestDate': '2023',
+       'obsCount': 1,
+       'observations': [{'date': '2023', 'value': 1495096.943}]},
+      {'earliestDate': '2021',
+       'facetId': '4181918134',
+       'latestDate': '2021',
+       'obsCount': 1,
+       'observations': [{'date': '2021', 'value': 1493178.0}]},
+      {'earliestDate': '2020',
+       'facetId': '2825511676',
+       'latestDate': '2020',
+       'obsCount': 1,
+       'observations': [{'date': '2020', 'value': 1486856.0}]},
+      {'earliestDate': '2019',
+       'facetId': '1226172227',
+       'latestDate': '2019',
+       'obsCount': 1,
+       'observations': [{'date': '2019', 'value': 1474705.0}]}]}}}},
+ 'facets': {'10983471': {'importName': 'CensusACS5YearSurvey_SubjectTables_S2601A',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A'},
+  '196790193': {'importName': 'CensusACS5YearSurvey_SubjectTables_S2602',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602'},
+  '4181918134': {'importName': 'OECDRegionalDemography_Population',
+   'measurementMethod': 'OECDRegionalStatistics',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C'},
+  '2825511676': {'importName': 'CDC_Mortality_UnderlyingCause',
+   'provenanceUrl': 'https://wonder.cdc.gov/ucd-icd10.html'},
+  '1226172227': {'importName': 'CensusACS1YearSurvey',
+   'measurementMethod': 'CensusACS1yrSurvey',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+  '1145703171': {'importName': 'CensusACS5YearSurvey',
+   'measurementMethod': 'CensusACS5yrSurvey',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html'},
+  '3999249536': {'importName': 'USCensusPEP_Sex',
+   'measurementMethod': 'CensusPEPSurvey_PartialAggregate',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://www.census.gov/programs-surveys/popest.html'},
+  '1964317807': {'importName': 'CensusACS5YearSurvey_SubjectTables_S0101',
+   'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+   'provenanceUrl': 'https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101'}}}
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 1: Get information on a single place
+
+Get basic information about New York City (DCID: `geoId/3651000`). In this example, the `property_value` method is replaced by the `node.fetch_entity` endpoint. In V2 all properties are considered "outgoing" nodes of a given node; the direction is indicated by an arrow symbol (`->`). Multiple properties are specified in the `node` endpoint using a bracketed array.
+
+The V2 query does not exactly match the V1 query, and this is reflected in the different response fields.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```
+
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```json
+
 ```
 {% endtab %}
 
