@@ -63,14 +63,21 @@ Other requirements for specific agents are given in their respective sections.
 
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
 <pre>
-export DC_API_KEY=<var>YOUR API KEY</var>
+export DC_API_KEY="<var>YOUR API KEY</var>"
 </pre>
 
 ### Custom Data Commons
 
-If you're running a against a custom Data Commons instance, we recommend using a `.env` file, which the server locates automatically, to keep all the settings in one place. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample). 
+To run against a Custom Data Commons instance, you must set additional variables. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample). 
 
-To set variables using a `.env` file:
+The following variables are required:
+- <code>export DC_API_KEY="<var>YOUR API KEY</var>"</code>
+- `export DC_TYPE="custom"`
+- <code>export CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
+
+If you're using the Gemini CLI extension, just set these in your shell/startup script. 
+
+If you're not using the extension, you may wish to use a `.env` file, which the server locates automatically, to keep all the settings in one place. To set all variables using a `.env` file:
 
 1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>.
 
@@ -79,7 +86,7 @@ To set variables using a `.env` file:
    cd ~/agent-toolkit/packages/datacommons-mcp
    cp .env.sample .env
    ```
-1. Set the following variables: 
+1. Set the following variables, without quotes: 
    - `DC_API_KEY`: Set to your Data Commons API key
    - `DC_TYPE`: Set to `custom`.
    - `CUSTOM_DC_URL`: Uncomment and set to the URL of your instance. 
