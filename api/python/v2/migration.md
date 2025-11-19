@@ -8,7 +8,7 @@ published: true
 ---
 
 {: .no_toc}
-# Migrate from API V1 to V2
+# Migrate from Python API V1 to V2
 
 The Data Commons [Python API V2](index.md) is significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
 
@@ -27,8 +27,9 @@ The Data Commons [Python API V2](index.md) is significantly different from V1. T
 | Pandas classes/methods | 3 methods, all members of `datacommons_pandas` class | 1 method, member of `datacommons_client` class. Variations of the Pandas methods in V1 are represented as parameters in V2. See [Observations DataFrame](pandas.md) |
 | Pagination | Required for queries resulting in large data volumes | Optional: see [Pagination](node.md#pagination)  |
 | DCID lookup method | No | Yes: [`resolve`](resolve.md) endpoint methods |
-| Statistical queries | With the `get_stat_value` and `get_stat_series` methods, Data Commons chooses the most "relevant" data source to answer the query; typically this is based on the data source providing the most recent data | Data from all available data sources is returned by default for all observation endpoint methods (if you don"t apply a filter); for details, see [Observation response](/observation.html#response) |
-| Statistical query filtering | The `get_stat_*` methods allow you to filter results by specific facet fields, such as measurement method, unit, observation period, etc. | You can only filter results by the facet domain or ID; for details, see [Node fetch](node.md#fetch). |
+| Statistical facets | With the `get_stat_value` and `get_stat_series` methods, Data Commons chooses the most "relevant" facet to answer the query; typically this is based on the data source providing the most recent data | Data from all available facets is returned by default for all observation endpoint methods (if you don"t apply a filter); for details, see [Observation response](/observation.html#response) |
+| Statistical facet filtering | The `get_stat_*` methods allow you to filter results by specific facet fields, such as measurement method, unit, observation period, etc. | You can only filter results by the facet domain or ID; for details, see [Node fetch](node.md#fetch). |
+| Different response formats | No | Yes; for details, see [Response formatting](index.md#response-formatting). |
 
 ## V1 function equivalences in V2
 
@@ -36,19 +37,19 @@ This section shows you how to translate from a given V1 function to the equivale
 
 | `datacommmons` V1 function |  V2 equivalent |
 |-------------|------------------|
-| `get_triples` | No direct equivalent; triples are not returned. Instead you indicate the directionality of the relationship in the triple, i.e. incoming or outgoing edges, using `node.fetch` and a relation expression |
-| `get_places_in` | `node.fetch_place_descendants` |
-| `get_stat_value` | `observation.fetch_observations_by_entity_dcid` with a single place and variable |
-| `get_stat_series` | `observation.fetch_observations_by_entity_id` with a single place and variable, and the `date` parameter set to `all` |
-| `get_stat_all` | `observation.fetch_observations_by_entity_id` with an array of places and/or variables and `date` parameter set to `all`  |
-| `get_property_labels` |  `node.fetch_property_labels` |
-| `get_property_values` | `node.fetch_property_values` |
+| `get_triples` | No direct equivalent; triples are not returned. Instead you indicate the directionality of the relationship in the triple, i.e. incoming or outgoing edges, using [`node.fetch`](node.md#fetch) and a [relation expression](/api/rest/v2/index.html#relation-expressions) |
+| `get_places_in` | [`node.fetch_place_descendants`](node.md#fetch_place_descendants) |
+| `get_stat_value` | [`observation.fetch_observations_by_entity_dcid`](observation.md#fetch_observations_by_entity_dcid) with a single place and variable |
+| `get_stat_series` | [`observation.fetch_observations_by_entity_dcid`](observation.md#fetch_observations_by_entity_dcid) with a single place and variable, and the `date` parameter set to `all` |
+| `get_stat_all` | [`observation.fetch_observations_by_entity_dcid`](observation.md#fetch_observations_by_entity_dcid) with an array of places and/or variables and `date` parameter set to `all`  |
+| `get_property_labels` | [`node.fetch_property_labels`](node.md#fetch_property_labels) |
+| `get_property_values` | [`node.fetch_property_values`](node.md#fetch_property_values) |
 
 | `datacommons_pandas` V1 function | V2 equivalent |
 |----------------------------------|------------------|
-| `build_time_series` | `observations_dataframe` with a single place and variable and the `date` parameter set to `all` |
-| `build_time_series_dataframe` | `observations_dataframe` with an array of places, a single variable and the `date` parameter set to `all` |
-| `build_multivariate_dataframe` | `observations_dataframe` with an array of places and/or variables and the `date` parameter set to `latest` |
+| `build_time_series` | [`observations_dataframe`](pandas.md) with a single place and variable and the `date` parameter set to `all` |
+| `build_time_series_dataframe` | [`observations_dataframe`](pandas.md) with an array of places, a single variable and the `date` parameter set to `all` |
+| `build_multivariate_dataframe` | [`observations_dataframe`](pandas.md) with an array of places and/or variables and the `date` parameter set to `latest` |
 
 ## Examples
 
@@ -92,6 +93,7 @@ client.node.fetch(node_dcids=["zip/94043"], expression="<-*")
 
 ```python
 { "zip/94043": [
+  // Outgoing relations
   ("zip/94043", "containedInPlace", "country/USA"),
   ("zip/94043", "containedInPlace", "geoId/06085"),
   ("zip/94043", "containedInPlace", "geoId/0608592830"),
@@ -106,6 +108,7 @@ client.node.fetch(node_dcids=["zip/94043"], expression="<-*")
   ("zip/94043", "typeOf", "CensusZipCodeTabulationArea"),
   ("zip/94043", "usCensusGeoId", "860Z200US94043"),
   ("zip/94043", "waterArea", "SquareMeter0"),
+  // Incoming relations
   ("EpaParentCompany/AlphabetInc", "locatedIn", "zip/94043"),
   ("EpaParentCompany/Google", "locatedIn", "zip/94043"),
   ("epaGhgrpFacilityId/1005910", "containedInPlace", "zip/94043"),
@@ -123,7 +126,7 @@ client.node.fetch(node_dcids=["zip/94043"], expression="<-*")
 {% endtab %}
 
 {% tab response V2 response %}
-Response 1:
+Response 1 (outgoing relations):
 ```python
 {"data": {"zip/94043": {"arcs": {
    "longitude": {"nodes": [{"provenanceId": "dc/base/BaseGeos",
@@ -152,7 +155,7 @@ Response 1:
        "name": "Congressional District 16 (113th Congress), California",
        "provenanceId": "dc/base/BaseGeos",
        "types": ["CongressionalDistrict"]}]},
-      //...
+       //...
       "geoOverlaps": {"nodes": [{"dcid": "geoId/06085504601",
        "name": "Census Tract 5046.01, Santa Clara County, California",
        "provenanceId": "dc/base/BaseGeos",
@@ -177,7 +180,7 @@ Response 1:
        "provenanceId": "dc/base/BaseGeos",
        "types": ["Provenance"]}]}}}}}
 ```
-Response 2:
+Response 2 (incoming relations):
 
 ```python
 {"data": {"zip/94043": {"arcs":  {
@@ -190,7 +193,7 @@ Response 2:
       "name": "Google",
       "provenanceId": "dc/base/EPA_ParentCompanies",
       "types": ["EpaParentCompany"]}]},
-   "containedInPlace": {"nodes": [
+    "containedInPlace": {"nodes": [
       {"dcid": "epaGhgrpFacilityId/1005910",
        "name": "City Of Mountain View (Shoreline Landfill)",
        "provenanceId": "dc/base/EPA_GHGRPFacilities",
@@ -260,7 +263,8 @@ client.node.fetch_place_children(place_dcids="geoId/10", children_type="County")
 {% tab response V2 response %}
 
 ```python
-{"geoId/10": [{"dcid": "geoId/10001", "name": "Kent County"},
+{"geoId/10": [
+  {"dcid": "geoId/10001", "name": "Kent County"},
   {"dcid": "geoId/10003", "name": "New Castle County"},
   {"dcid": "geoId/10005", "name": "Sussex County"}]}
 ```
@@ -542,7 +546,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
        "facetId": "1145703171",
        "latestDate": "2023",
        "obsCount": 13,
-       "observations": [{"date": "2011", "value": 1421287.0},
+       "observations": [
+        {"date": "2011", "value": 1421287.0},
         {"date": "2012", "value": 1431252.0},
         {"date": "2013", "value": 1439862.0},
         {"date": "2014", "value": 1447235.0},
@@ -559,7 +564,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
        "facetId": "3999249536",
        "latestDate": "2024",
        "obsCount": 55,
-       "observations": [{"date": "1970", "value": 937034.0},
+       "observations": [
+        {"date": "1970", "value": 937034.0},
         {"date": "1971", "value": 956802.0},
         {"date": "1972", "value": 979822.0},
         {"date": "1973", "value": 999264.0},
@@ -633,7 +639,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", variable_dcids=
 
 ```python
 {"geoId/27": {"Count_Person_EducationalAttainmentDoctorateDegree": {"sourceSeries": [
-   {"val": {"2016": 50039,
+   {"val": 
+     {"2016": 50039,
       "2017": 52737,
       "2015": 47323,
       "2013": 42511,
@@ -650,7 +657,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", variable_dcids=
      "provenanceDomain": "census.gov",
      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"}]}},
  "geoId/55": {"Count_Person_EducationalAttainmentDoctorateDegree": {"sourceSeries": [
-   {"val": {"2020": 49385,
+   {"val": 
+     {"2020": 49385,
       "2017": 43737,
       "2022": 53667,
       "2014": 40133,
@@ -677,7 +685,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", variable_dcids=
        "facetId": "1145703171",
        "latestDate": "2023",
        "obsCount": 12,
-       "observations": [{"date": "2012", "value": 38052.0},
+       "observations": [
+        {"date": "2012", "value": 38052.0},
         {"date": "2013", "value": 38711.0},
         {"date": "2014", "value": 40133.0},
         {"date": "2015", "value": 41387.0},
@@ -693,7 +702,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", variable_dcids=
        "facetId": "1145703171",
        "latestDate": "2023",
        "obsCount": 12,
-       "observations": [{"date": "2012", "value": 40961.0},
+       "observations": [
+        {"date": "2012", "value": 40961.0},
         {"date": "2013", "value": 42511.0},
         {"date": "2014", "value": 44713.0},
         {"date": "2015", "value": 47323.0},
@@ -777,7 +787,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
      "importName": "USCensusPEP_Annual_Population",
      "provenanceDomain": "census.gov",
      "provenanceUrl": "https://www.census.gov/programs-surveys/popest.html"},
-    {"val": {"2022": 3018669,
+    {"val": {
+      "2022": 3018669,
       "2018": 2990671,
       "2020": 3011873,
       "2016": 2968472,
@@ -800,7 +811,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
      "provenanceDomain": "census.gov",
      "provenanceUrl": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/summary-files.html"},
     //...
-  "Count_Person_Male": {"sourceSeries": [{"val": {"2015": 1451913,
+  "Count_Person_Male": {"sourceSeries": [{"val": {
+      "2015": 1451913,
       "2021": 1483520,
       "2020": 1478511,
       "2023": 1495958,
@@ -817,7 +829,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
      "importName": "CensusACS5YearSurvey",
      "provenanceDomain": "census.gov",
      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"},
-    {"val": {"1975": 1047112,
+    {"val": {
+      "1975": 1047112,
       "1995": 1228626,
       "2023": 1513837,
       "1991": 1150369,

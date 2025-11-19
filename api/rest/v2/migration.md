@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Migrate to REST API V2
+title: Migrate from V1 to V2
 nav_order: 7
 parent: REST (V2)
 grand_parent: API - Query data programmatically
@@ -8,7 +8,7 @@ published: true
 ---
 
 {: .no_toc}
-# Migrate from API V1 to V2
+# Migrate from REST API V1 to V2
 
 The Data Commons [REST API V2](index.md) is significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
 
