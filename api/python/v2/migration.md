@@ -54,7 +54,7 @@ This section shows you how to translate from a given V1 function to the equivale
 
 ## datacommons package examples
 
-The following examples show equivalent API queries and responses using V1 and V2.
+The following examples show equivalent API requests and responses using the V1 `datacommons` package and V2.
 
 ### Example 1: Get triples associated with a single place
 
@@ -1273,6 +1273,8 @@ client.node.fetch_property_values(node_dcids=["nces/360007702877","nces/06296100
 
 ## datacommons_pandas examples
 
+The following examples show equivalent API requests and responses using the V1 `datacommons_pandas` package and V2.
+
 ### Example 1: Get all values of a single statistical variable for a single place
 
 This example is the same as [example 4](#example-4) above, but returns a Pandas DataFrame object. Note that V1 selects a single facet, while V2 returns all facets. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
@@ -1348,7 +1350,7 @@ dtype: int64
 
 </div>
 
-### Example 2: Get the all values of a single statistical variable for a single place, selecting the facet to return, as a Pandas DataFrame
+### Example 2: Get the all values of a single statistical variable for a single place, selecting the facet to return
 
 This example is the same as [example 5](#example-5) above, but returns a Pandas DataFrame object.
 
