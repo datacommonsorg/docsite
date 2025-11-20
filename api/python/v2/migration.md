@@ -28,7 +28,8 @@ The Data Commons [Python API V2](index.md) is significantly different from V1. T
 | Pagination | Required for queries resulting in large data volumes | Optional: see [Pagination](node.md#pagination)  |
 | DCID lookup method | No | Yes: [`resolve`](resolve.md) endpoint methods |
 | Statistical facets | With the `get_stat_value` and `get_stat_series` methods, Data Commons chooses the most "relevant" facet to answer the query; typically this is based on the data source providing the most recent data | Data from all available facets is returned by default for all observation endpoint methods (if you don"t apply a filter); for details, see [Observation response](/observation.html#response) |
-| Statistical facet filtering | The `get_stat_*` methods allow you to filter results by specific facet fields, such as measurement method, unit, observation period, etc. | You can only filter results by the facet domain or ID; for details, see [Node fetch](node.md#fetch). |
+| Statistical facet filtering | The `get_stat_value`, `get_stat_series` and Pandas `build_time_series` methods allow you to filter results by specific facet fields, such as measurement method, unit, observation period, etc. | The `observations_dataframe` method allows you to filter results by specific facet fields. Observation methods only allow filtering results by the facet domain or ID; for details, see [Observation fetch](observation.md#fetch). |
+| Response contents | Simple structures mostly containing values only | Nested structures containing values and additional properties and metadata | 
 | Different response formats | No | Yes; for details, see [Response formatting](index.md#response-formatting). |
 
 ## V1 function equivalences in V2
@@ -51,7 +52,7 @@ This section shows you how to translate from a given V1 function to the equivale
 | `build_time_series_dataframe` | [`observations_dataframe`](pandas.md) with an array of places, a single variable and the `date` parameter set to `all` |
 | `build_multivariate_dataframe` | [`observations_dataframe`](pandas.md) with an array of places and/or variables and the `date` parameter set to `latest` |
 
-## Examples
+## datacommons package examples
 
 The following examples show equivalent API queries and responses using V1 and V2.
 
@@ -443,53 +444,8 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 
 </div>
 
-### Example 5: Get the latest value of a single statistical variable for a single place, selecting the facet to return
-
-<div>
-
-{% tabs request %}
-
-{% tab request V1 request %}
-
-```python
-
-```
-{% endtab %}
-
-{% tab request V2 request %}
-
-```python
-
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-<div>
-
-{% tabs response %}
-
-{% tab response V1 response %}
-
-```python
-
-```
-{% endtab %}
-
-{% tab response V2 response %}
-
-```python
-
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-### Example 6: Get all values of a single statistical variable for a single place
+{: #example-5}
+### Example 5: Get all values of a single statistical variable for a single place
 
 This example retrieves the number of men in the state of California for all years available. As in example 4, V1 returns data from a single facet (which appears to be 1145703171, the U.S. Census ACS 5-year survey). V2 returns data for all available facets.
 
@@ -605,6 +561,96 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
 
 </div>
 
+{: #example-5}
+### Example 5: Get the all values of a single statistical variable for a single place, selecting the facet to return
+
+This example gets the nominal GDP for Italy, filtering for facets that show the results in U.S. dollars. In V1, this is done directly with the `unit` parameter. In V2, we use the domain to specify the same facet.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons.get_stat_series("country/ITA", "Amount_EconomicActivity_GrossDomesticProduction_Nominal", unit="USDollar")
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="country/ITA",variable_dcids="Amount_EconomicActivity_GrossDomesticProduction_Nominal", filter_facet_domains="worldbank.org")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```python
+{'2003': 1582930016538.82,
+ '2002': 1281746271196.04,
+ '1961': 46649487320.4225,
+ '1986': 641862313287.44,
+ '1974': 200024444775.231,
+ '2000': 1149661363439.38,
+ '2015': 1845428048839.1,
+ '2001': 1172041488805.87,
+ '1966': 76622444787.3696,
+ '1971': 124959712858.92598,
+ '1999': 1255004736463.98,
+ //...
+ '1979': 394584507107.9,
+ '2016': 1887111188176.93,
+ '1981': 431695533980.583,
+ '2024': 2372774547793.12,
+ '1985': 453259761687.456,
+ '1975': 228220643534.994,
+ '1960': 42012422612.3955,
+ '1991': 1249092439519.28}
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```python
+{'byVariable': {'Amount_EconomicActivity_GrossDomesticProduction_Nominal': {'byEntity': {'country/ITA': {'orderedFacets': [{'earliestDate': '1960',
+       'facetId': '3496587042',
+       'latestDate': '2024',
+       'obsCount': 65,
+       'observations': [{'date': '1960', 'value': 42012422612.3955},
+        {'date': '1961', 'value': 46649487320.4225},
+        {'date': '1962', 'value': 52413872628.0045},
+        {'date': '1963', 'value': 60035924617.9277},
+        {'date': '1964', 'value': 65720771779.4768},
+        {'date': '1965', 'value': 70717012186.1774},
+        {'date': '1966', 'value': 76622444787.3696},
+        {'date': '1967', 'value': 84401995573.2456},
+        {'date': '1968', 'value': 91485448147.84},
+        {'date': '1969', 'value': 100996667239.335},
+        ..//
+        {'date': '2022', 'value': 2104067630319.46},
+        {'date': '2023', 'value': 2304605139862.79},
+        {'date': '2024', 'value': 2372774547793.12}]}]}}}},
+ 'facets': {'3496587042': {'importName': 'WorldDevelopmentIndicators',
+   'observationPeriod': 'P1Y',
+   'provenanceUrl': 'https://datacatalog.worldbank.org/dataset/world-development-indicators/',
+   'unit': 'USDollar'}}}
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+{: #example-7}
 ### Example 7: Get all values of a single statistical variables for multiple places
 
 This example retrieves the number of people with doctoral degrees in the states of Minnesota and Wisconsin for all years available. Note that the `get_stat_all` method behaves more like V2 and returns data for all facets (in this case, there is only one), as well as metadata for all facets.
@@ -725,6 +771,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", variable_dcids=
 
 </div>
 
+{: #example-8}
 ### Example 8: Get all values of multiple statistical variables for a single place
 
 This example retrieves the total population as well as the male population of the state of Arkansas for all available years. 
@@ -1217,6 +1264,326 @@ client.node.fetch_property_values(node_dcids=["nces/360007702877","nces/06296100
        "value": "345 Chambers St New York NY 10282-1099"}]}}},
   "nces/062961004587": {"arcs": {"address": {"nodes": [{"provenanceId": "dc/base/NCES_PublicSchool",
        "value": "780 Arastradero Rd. Palo Alto 94306-3827"}]}}}}}
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+## datacommons_pandas examples
+
+### Example 1: Get all values of a single statistical variable for a single place
+
+This example is the same as [example 4](#example-4) above, but returns a Pandas DataFrame object. Note that V1 selects a single facet, while V2 returns all facets. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons_pandas.build_time_series("geoId/05", "Count_Person_Male")
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observations_dataframe(variable_dcids="Count_Person_Male", date="all", entity_dcids="geoId/05")
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```python
+	0
+2023	1495958
+2012	1431252
+2022	1491622
+2018	1468412
+2014	1447235
+2020	1478511
+2011	1421287
+2016	1456694
+2017	1461651
+2015	1451913
+2019	1471760
+2021	1483520
+2013	1439862
+
+dtype: int64
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```python
+	date	entity	entity_name	variable	variable_name	facetId	importName	measurementMethod	observationPeriod	provenanceUrl	unit	value
+0	2011	geoId/05	Arkansas	Count_Person_Male	Male population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1421287.0
+1	2012	geoId/05	Arkansas	Count_Person_Male	Male population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1431252.0
+2	2013	geoId/05	Arkansas	Count_Person_Male	Male population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1439862.0
+3	2014	geoId/05	Arkansas	Count_Person_Male	Male population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1447235.0
+4	2015	geoId/05	Arkansas	Count_Person_Male	Male population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1451913.0
+...	...	...	...	...	...	...	...	...	...	...	...	...
+162	2015	geoId/05	Arkansas	Count_Person_Male	Male population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1463576.0
+163	2016	geoId/05	Arkansas	Count_Person_Male	Male population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1468782.0
+164	2017	geoId/05	Arkansas	Count_Person_Male	Male population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1479682.0
+165	2018	geoId/05	Arkansas	Count_Person_Male	Male population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1476680.0
+166	2019	geoId/05	Arkansas	Count_Person_Male	Male population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1474705.0
+167 rows × 12 columns
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 2: Get the all values of a single statistical variable for a single place, selecting the facet to return, as a Pandas DataFrame
+
+This example is the same as [example 5](#example-5) above, but returns a Pandas DataFrame object.
+
+<div>
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons_pandas.build_time_series("country/ITA", "Amount_EconomicActivity_GrossDomesticProduction_Nominal", unit="USDollar")
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observations_dataframe(variable_dcids="Amount_EconomicActivity_GrossDomesticProduction_Nominal", date="all", entity_dcids="country/ITA",  property_filters={"unit": ["USDollar"]})
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```python
+	0
+1988	8.936639e+11
+1990	1.183945e+12
+1970	1.136567e+11
+1966	7.662244e+10
+1992	1.323204e+12
+...	...
+2007	2.222524e+12
+2022	2.104068e+12
+2021	2.179208e+12
+1977	2.581900e+11
+2020	1.907481e+12
+65 rows × 1 columns
+
+
+dtype: float64
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```python
+	date	entity	entity_name	variable	variable_name	facetId	importName	measurementMethod	observationPeriod	provenanceUrl	unit	value
+0	1960	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	4.201242e+10
+1	1961	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	4.664949e+10
+2	1962	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	5.241387e+10
+3	1963	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	6.003592e+10
+4	1964	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	6.572077e+10
+...	...	...	...	...	...	...	...	...	...	...	...	...
+60	2020	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	1.907481e+12
+61	2021	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	2.179208e+12
+62	2022	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	2.104068e+12
+63	2023	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	2.304605e+12
+64	2024	country/ITA	Italy	Amount_EconomicActivity_GrossDomesticProductio...	Nominal gross domestic product	3496587042	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	USDollar	2.372775e+12
+65 rows × 12 columns
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 3: Get all values of a single statistical variable for multiple places
+
+This example compares the historic populations of Sudan and South Sudan. Note that V1 selects a single facet, while V2 returns all facets. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons_pandas.build_time_series_dataframe(["country/SSD","country/SDN"], "Count_Person")
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observations_dataframe(variable_dcids="Count_Person", date="all", entity_dcids=["country/SSD", "country/SDN"])
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```python
+	1960	1961	1962	1963	1964	1965	1966	1967	1968	1969	...	2015	2016	2017	2018	2019	2020	2021	2022	2023	2024
+place																					
+country/SDN	8364489	8634941	8919028	9218077	9531109	9858030	10197578	10550597	10917999	11298936	...	40024431	41259892	42714306	44230596	45548175	46789231	48066924	49383346	50042791	50448963
+country/SSD	2931559	2976724	3024308	3072669	3129918	3189835	3236423	3277648	3321528	3365533	...	11107561	10830102	10259154	10122977	10423384	10698467	10865780	11021177	11483374	11943408
+2 rows × 65 columns
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```python
+	date	entity	entity_name	variable	variable_name	facetId	importName	measurementMethod	observationPeriod	provenanceUrl	unit	value
+0	1960	country/SDN	Sudan	Count_Person	Total population	3981252704	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	None	8364489.0
+1	1961	country/SDN	Sudan	Count_Person	Total population	3981252704	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	None	8634941.0
+2	1962	country/SDN	Sudan	Count_Person	Total population	3981252704	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	None	8919028.0
+3	1963	country/SDN	Sudan	Count_Person	Total population	3981252704	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	None	9218077.0
+4	1964	country/SDN	Sudan	Count_Person	Total population	3981252704	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	None	9531109.0
+...	...	...	...	...	...	...	...	...	...	...	...	...
+167	2016	country/SSD	South Sudan	Count_Person	Total population	473499523	Subnational_Demographics_Stats	WorldBankSubnationalPopulationEstimate	P1Y	https://databank.worldbank.org/source/subnatio...	None	12231000.0
+168	2024	country/SSD	South Sudan	Count_Person	Total population	1456184638	WikipediaStatsData	Wikipedia	None	https://www.wikipedia.org	None	12703714.0
+169	2008	country/SSD	South Sudan	Count_Person	Total population	2458695583	WikidataPopulation	WikidataPopulation	None	https://www.wikidata.org/wiki/Wikidata:Main_Page	None	8260490.0
+170	2015	country/SSD	South Sudan	Count_Person	Total population	2458695583	WikidataPopulation	WikidataPopulation	None	https://www.wikidata.org/wiki/Wikidata:Main_Page	None	12340000.0
+171	2017	country/SSD	South Sudan	Count_Person	Total population	2458695583	WikidataPopulation	WikidataPopulation	None	https://www.wikidata.org/wiki/Wikidata:Main_Page	None	12575714.0
+172 rows × 12 columns
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+### Example 4: Get all values of multiple statistical variables for multiple places
+
+This example compares the current populations, median ages, and unemployment rates of the US, California, and Santa Clara County. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
+
+<div>
+
+{% tabs request %}
+
+{% tab request V1 request %}
+
+```python
+datacommons_pandas.build_multivariate_dataframe(["country/USA", "geoId/06", "geoId/06085"],["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"])
+```
+{% endtab %}
+
+{% tab request V2 request %}
+
+```python
+client.observations_dataframe(variable_dcids=["Count_Person", "Median_Age_Person", "UnemploymentRate_Person"], date="latest", entity_dcids=["country/USA", "geoId/06", "geoId/06085"])
+```
+{% endtab %}
+
+{% endtabs %}
+
+</div>
+
+<div>
+
+{% tabs response %}
+
+{% tab response V1 response %}
+
+```python
+	Median_Age_Person	Count_Person	UnemploymentRate_Person
+place			
+country/USA	38.7	332387540	4.3
+geoId/06	37.6	39242785	5.5
+geoId/06085	37.9	1903297	NaN
+
+```
+{% endtab %}
+
+{% tab response V2 response %}
+
+```python
+	date	entity	entity_name	variable	variable_name	facetId	importName	measurementMethod	observationPeriod	provenanceUrl	unit	value
+0	2024	geoId/06085	Santa Clara County	Count_Person	Total population	2176550201	USCensusPEP_Annual_Population	CensusPEPSurvey	P1Y	https://www.census.gov/programs-surveys/popest...	None	1926325.0
+1	2023	geoId/06085	Santa Clara County	Count_Person	Total population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1903297.0
+2	2020	geoId/06085	Santa Clara County	Count_Person	Total population	1541763368	USDecennialCensus_RedistrictingRelease	USDecennialCensus	None	https://www.census.gov/programs-surveys/decenn...	None	1936259.0
+3	2024	geoId/06085	Santa Clara County	Count_Person	Total population	2390551605	USCensusPEP_AgeSexRaceHispanicOrigin	CensusPEPSurvey_Race2000Onwards	P1Y	https://www2.census.gov/programs-surveys/popes...	None	1926325.0
+4	2023	geoId/06085	Santa Clara County	Count_Person	Total population	1964317807	CensusACS5YearSurvey_SubjectTables_S0101	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/table?q=S0101:+Age+and...	None	1903297.0
+5	2022	geoId/06085	Santa Clara County	Count_Person	Total population	2564251937	CDC_Social_Vulnerability_Index	None	None	https://www.atsdr.cdc.gov/place-health/php/svi...	None	1916831.0
+6	2020	geoId/06085	Santa Clara County	Count_Person	Total population	2825511676	CDC_Mortality_UnderlyingCause	None	None	https://wonder.cdc.gov/ucd-icd10.html	None	1907105.0
+7	2019	geoId/06085	Santa Clara County	Count_Person	Total population	2517965213	CensusPEP	CensusPEPSurvey	None	https://www.census.gov/programs-surveys/popest...	None	1927852.0
+8	2019	geoId/06085	Santa Clara County	Count_Person	Total population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	1927852.0
+9	2024	country/USA	United States of America	Count_Person	Total population	2176550201	USCensusPEP_Annual_Population	CensusPEPSurvey	P1Y	https://www.census.gov/programs-surveys/popest...	None	340110988.0
+10	2023	country/USA	United States of America	Count_Person	Total population	2645850372	CensusACS5YearSurvey_AggCountry	CensusACS5yrSurvey	None	https://www.census.gov/	None	335642425.0
+11	2023	country/USA	United States of America	Count_Person	Total population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	332387540.0
+12	2020	country/USA	United States of America	Count_Person	Total population	1541763368	USDecennialCensus_RedistrictingRelease	USDecennialCensus	None	https://www.census.gov/programs-surveys/decenn...	None	331449281.0
+13	2024	country/USA	United States of America	Count_Person	Total population	3981252704	WorldDevelopmentIndicators	None	P1Y	https://datacatalog.worldbank.org/dataset/worl...	None	340110988.0
+14	2024	country/USA	United States of America	Count_Person	Total population	2390551605	USCensusPEP_AgeSexRaceHispanicOrigin	CensusPEPSurvey_Race2000Onwards	P1Y	https://www2.census.gov/programs-surveys/popes...	None	340110988.0
+15	2023	country/USA	United States of America	Count_Person	Total population	4181918134	OECDRegionalDemography_Population	OECDRegionalStatistics	P1Y	https://data-explorer.oecd.org/vis?fs[0]=Topic...	None	334914895.0
+16	2023	country/USA	United States of America	Count_Person	Total population	1964317807	CensusACS5YearSurvey_SubjectTables_S0101	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/table?q=S0101:+Age+and...	None	332387540.0
+17	2023	country/USA	United States of America	Count_Person	Total population	10983471	CensusACS5YearSurvey_SubjectTables_S2601A	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2601A&...	None	332387540.0
+18	2023	country/USA	United States of America	Count_Person	Total population	196790193	CensusACS5YearSurvey_SubjectTables_S2602	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2602&t...	None	332387540.0
+19	2023	country/USA	United States of America	Count_Person	Total population	217147238	CensusACS5YearSurvey_SubjectTables_S2603	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2603&t...	None	332387540.0
+20	2020	country/USA	United States of America	Count_Person	Total population	2825511676	CDC_Mortality_UnderlyingCause	None	None	https://wonder.cdc.gov/ucd-icd10.html	None	329484123.0
+21	2019	country/USA	United States of America	Count_Person	Total population	2517965213	CensusPEP	CensusPEPSurvey	None	https://www.census.gov/programs-surveys/popest...	None	328239523.0
+22	2019	country/USA	United States of America	Count_Person	Total population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	328239523.0
+23	2024	geoId/06	California	Count_Person	Total population	2176550201	USCensusPEP_Annual_Population	CensusPEPSurvey	P1Y	https://www.census.gov/programs-surveys/popest...	None	39431263.0
+24	2023	geoId/06	California	Count_Person	Total population	1145703171	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	39242785.0
+25	2020	geoId/06	California	Count_Person	Total population	1541763368	USDecennialCensus_RedistrictingRelease	USDecennialCensus	None	https://www.census.gov/programs-surveys/decenn...	None	39538223.0
+26	2023	geoId/06	California	Count_Person	Total population	4181918134	OECDRegionalDemography_Population	OECDRegionalStatistics	P1Y	https://data-explorer.oecd.org/vis?fs[0]=Topic...	None	38965193.0
+27	2023	geoId/06	California	Count_Person	Total population	1964317807	CensusACS5YearSurvey_SubjectTables_S0101	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/table?q=S0101:+Age+and...	None	39242785.0
+28	2023	geoId/06	California	Count_Person	Total population	10983471	CensusACS5YearSurvey_SubjectTables_S2601A	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2601A&...	None	39242785.0
+29	2023	geoId/06	California	Count_Person	Total population	196790193	CensusACS5YearSurvey_SubjectTables_S2602	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2602&t...	None	39242785.0
+30	2020	geoId/06	California	Count_Person	Total population	2825511676	CDC_Mortality_UnderlyingCause	None	None	https://wonder.cdc.gov/ucd-icd10.html	None	39368078.0
+31	2019	geoId/06	California	Count_Person	Total population	2517965213	CensusPEP	CensusPEPSurvey	None	https://www.census.gov/programs-surveys/popest...	None	39512223.0
+32	2019	geoId/06	California	Count_Person	Total population	1226172227	CensusACS1YearSurvey	CensusACS1yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	None	39512223.0
+33	2023	geoId/06085	Santa Clara County	Median_Age_Person	Median age of population	3795540742	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	Year	37.9
+34	2023	geoId/06085	Santa Clara County	Median_Age_Person	Median age of population	815809675	CensusACS5YearSurvey_SubjectTables_S0101	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/table?q=S0101:+Age+and...	Years	37.9
+35	2023	country/USA	United States of America	Median_Age_Person	Median age of population	3795540742	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	Year	38.7
+36	2023	country/USA	United States of America	Median_Age_Person	Median age of population	815809675	CensusACS5YearSurvey_SubjectTables_S0101	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/table?q=S0101:+Age+and...	Years	38.7
+37	2023	country/USA	United States of America	Median_Age_Person	Median age of population	2763329611	CensusACS5YearSurvey_SubjectTables_S2601A	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2601A&...	Years	38.7
+38	2023	country/USA	United States of America	Median_Age_Person	Median age of population	3690003977	CensusACS5YearSurvey_SubjectTables_S2602	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2602&t...	Years	38.7
+39	2023	country/USA	United States of America	Median_Age_Person	Median age of population	4219092424	CensusACS5YearSurvey_SubjectTables_S2603	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2603&t...	Years	38.7
+40	2023	geoId/06	California	Median_Age_Person	Median age of population	3795540742	CensusACS5YearSurvey	CensusACS5yrSurvey	None	https://www.census.gov/programs-surveys/acs/da...	Year	37.6
+41	2023	geoId/06	California	Median_Age_Person	Median age of population	815809675	CensusACS5YearSurvey_SubjectTables_S0101	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/table?q=S0101:+Age+and...	Years	37.6
+42	2023	geoId/06	California	Median_Age_Person	Median age of population	2763329611	CensusACS5YearSurvey_SubjectTables_S2601A	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2601A&...	Years	37.6
+43	2023	geoId/06	California	Median_Age_Person	Median age of population	3690003977	CensusACS5YearSurvey_SubjectTables_S2602	CensusACS5yrSurveySubjectTable	None	https://data.census.gov/cedsci/table?q=S2602&t...	Years	37.6
+44	2025-08	country/USA	United States of America	UnemploymentRate_Person	Unemployment rate	3707913853	BLS_CPS	BLSSeasonallyAdjusted	P1M	https://www.bls.gov/cps/	None	4.3
+45	2025-06	country/USA	United States of America	UnemploymentRate_Person	Unemployment rate	1714978719	BLS_CPS	BLSSeasonallyAdjusted	P3M	https://www.bls.gov/cps/	None	4.2
+46	2025-08	geoId/06	California	UnemploymentRate_Person	Unemployment rate	324358135	BLS_LAUS	BLSSeasonallyUnadjusted	P1M	https://www.bls.gov/lau/	None	5.8
+47	2024	geoId/06	California	UnemploymentRate_Person	Unemployment rate	2978659163	BLS_LAUS	BLSSeasonallyUnadjusted	P1Y	https://www.bls.gov/lau/	None	5.3
+48	2025-08	geoId/06	California	UnemploymentRate_Person	Unemployment rate	1249140336	BLS_LAUS	BLSSeasonallyAdjusted	P1M	https://www.bls.gov/lau/	None	5.5
+49	2025-08	geoId/06085	Santa Clara County	UnemploymentRate_Person	Unemployment rate	324358135	BLS_LAUS	BLSSeasonallyUnadjusted	P1M	https://www.bls.gov/lau/	None	4.6
+50	2024	geoId/06085	Santa Clara County	UnemploymentRate_Person	Unemployment rate	2978659163	BLS_LAUS	BLSSeasonallyUnadjusted	P1Y	https://www.bls.gov/lau/	None	4.1
+51	2022	geoId/06085	Santa Clara County	UnemploymentRate_Person	Unemployment rate	2564251937	CDC_Social_Vulnerability_Index	None	None	https://www.atsdr.cdc.gov/place-health/php/svi...	None	4.4
 ```
 {% endtab %}
 
