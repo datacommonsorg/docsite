@@ -110,19 +110,6 @@ Statistical variable dates are defined as yearly, monthly, weekly, or daily. For
 
 ![date time example 1](/assets/images/rest/date_time_example1.png){: width="900"}
 
-For other cases, you may need to drill down further to a timeline graph to view specific observations. For example, [Mean Wind Direction](https://datacommons.org/tools/statvar#sv=Mean_WindDirection){: target="_blank"}, is measured at the sub-daily level, but the frequency is not clear (hourly or every two hours, etc.)
-
-![date time example 2](/assets/images/rest/date_time_example2.png){: width="900"}
-
-In these cases, do the following:
-
-1. In the Statistical Variable Explorer, click on an example place to link to the variable's page in the Knowledge Graph Browser. 
-1. Scroll to the **Observations** section and click **Show Table** to get a list of observations.
-
-For example, in the case of Mean Wind Direction for [Ibrahimpur, India](https://datacommons.org/browser/cpcbAq/636_Ibrahimpur_Vijayapura?statVar=Mean_WindDirection){: target="_blank"}, the observations table shows that the variable is measured every four hours, starting at midnight.
-
-![date time example 3](/assets/images/rest/date_time_example3.png){: width="600"}
-
 ## Response {#response}
 
 With `select=variable`, `select=entity`, `select=date` and `select=value` specified (and no filters), all observations and available facets are returned. The response looks like this:
