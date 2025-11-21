@@ -13,7 +13,7 @@ This page shows you how to run a local agent and connect to a Data Commons MCP s
 * TOC
 {:toc}
 
-We provide specific instructions for the following agents:
+We provide specific instructions for the following agents. All may be used to query datacommons.org or a Custom Data Commons instance.
 
 - [Gemini CLI extension](https://geminicli.com/extensions/) 
    - Best for querying datacommons.org
@@ -24,10 +24,7 @@ We provide specific instructions for the following agents:
 
    See [Use the Gemini CLI extension](#use-the-gemini-cli-extension) for this option.
 
-<!-- TODO: write this Tip: If you would like to use this option with a Custom Data Commons instance, we recommend that you develop your own extension. See xxx for details. -->
-
 - [Gemini CLI](https://geminicli.com/) 
-   - Can be used for datacommons.org or a Custom Data Commons instance
    - No additional downloads
    - MCP server can be run locally or remotely
    - You can create your own context file 
@@ -37,7 +34,6 @@ We provide specific instructions for the following agents:
 
 - A sample basic agent based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) 
    - Best for interacting with a Web GUI
-   - Can be used for datacommons.org or a Custom Data Commons instance
    - Can be customized to run other LLMs and prompts
    - Downloads agent code locally
    - Server may be run remotely
@@ -67,23 +63,30 @@ Other requirements for specific agents are given in their respective sections.
 
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
 <pre>
-export DC_API_KEY=<var>YOUR API KEY</var>
+export DC_API_KEY="<var>YOUR API KEY</var>"
 </pre>
 
 ### Custom Data Commons
 
-If you're running a against a custom Data Commons instance, we recommend using a `.env` file, which the server locates automatically, to keep all the settings in one place. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample). 
+To run against a Custom Data Commons instance, you must set additional variables. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample). 
 
-To set variables using a `.env` file:
+The following variables are required:
+- <code>export DC_API_KEY="<var>YOUR API KEY</var>"</code>
+- `export DC_TYPE="custom"`
+- <code>export CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
 
-1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Or, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>.
+If you're using the Gemini CLI extension, just set these in your shell/startup script. 
+
+If you're not using the extension, you may wish to use a `.env` file, which the server locates automatically, to keep all the settings in one place. To set all variables using a `.env` file:
+
+1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>.
 
 1. From the directory where you saved the sample file, copy it to a new file called `.env`. For example:
    ```bash
    cd ~/agent-toolkit/packages/datacommons-mcp
    cp .env.sample .env
    ```
-1. Set the following variables: 
+1. Set the following variables, without quotes: 
    - `DC_API_KEY`: Set to your Data Commons API key
    - `DC_TYPE`: Set to `custom`.
    - `CUSTOM_DC_URL`: Uncomment and set to the URL of your instance. 
@@ -106,12 +109,14 @@ Open a new terminal and install the extension directly from GitHub:
 ```sh
 gemini extensions install https://github.com/gemini-cli-extensions/datacommons [--auto-update]
 ```
+The installation creates a local `.gemini/extensions/datacommons` directory with the required files.
+
 > Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
 
 {:.no_toc}
 ### Run
 
-1. From any directory, run `gemini`. 
+1. Run `gemini` from any directory. 
 1. To verify that the Data commons tools are running, enter `/mcp list`. You should see `datacommons-mcp` listed as `Ready`. If you don't, see the [Troubleshoot](#troubleshoot) section.
 1. To verify that the extension is running, enter `/extensions list`. You should see `datacommons` listed as `active`. 
 1. Start sending [natural-language queries](#sample-queries).
