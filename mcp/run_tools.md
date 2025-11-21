@@ -116,12 +116,7 @@ The installation creates a local `.gemini/extensions/datacommons` directory with
 {:.no_toc}
 ### Run
 
-1. If you are using a `.env` file, switch to the extensions directory:
-   ```
-   cd ./gemini/extensions/datacommons
-   ```
-   Copy your `.env` file to this directory, and run `gemini` from here.
-1. If you're not using a `.env` file, run `gemini` from any directory. 
+1. Run `gemini` from any directory. 
 1. To verify that the Data commons tools are running, enter `/mcp list`. You should see `datacommons-mcp` listed as `Ready`. If you don't, see the [Troubleshoot](#troubleshoot) section.
 1. To verify that the extension is running, enter `/extensions list`. You should see `datacommons` listed as `active`. 
 1. Start sending [natural-language queries](#sample-queries).
