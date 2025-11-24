@@ -11,7 +11,7 @@ published: true
 # Migrate from Python API V1 to V2
 
 
-The Data Commons Python API V1 will be deprecated in early 2026. The [V2](index.md) APIs are significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
+Version V1 of the Data Commons Python API will be deprecated in early 2026. The [V2](index.md) APIs are significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
 
 * TOC
 {:toc}
