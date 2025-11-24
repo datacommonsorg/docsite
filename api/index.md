@@ -28,7 +28,7 @@ The endpoints can be roughly grouped into four categories:
 
 -   **Graph query/SPARQL**: Given a subgraph where some of the nodes are
     variables, retrieve possible matches. This corresponds to a subset of the
-    graph query language [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"}. This is useful for complex node connections which would require multiple API calls; for example, "hate crimes motivated by disability status in Californian cities".
+    graph query language [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"}. This is useful for complex node connections which would require multiple API calls; for example, "hate crimes motivated by disability status in Californian cities". 
 
 In addition, Data Commons provides additional tools for accessing its data that call the REST APIs under the hood:
 
