@@ -75,9 +75,9 @@ The following variables are required:
 - `export DC_TYPE="custom"`
 - <code>export CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
 
-If you're using the Gemini CLI extension, just set these in your shell/startup script. 
+You can set these in your shell/startup script, or use an `.env` file, which the server locates automatically, to keep all the settings in one place. (If you are using Gemini CLI, you can also set the `env` option in the [`settings.json` file](#gemini).
 
-If you're not using the extension, you may wish to use a `.env` file, which the server locates automatically, to keep all the settings in one place. To set all variables using a `.env` file:
+To set all variables using a `.env` file:
 
 1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>.
 
@@ -93,6 +93,7 @@ If you're not using the extension, you may wish to use a `.env` file, which the 
 1. Optionally, set other variables.
 1. Save the file.
 
+{: #extension}
 ## Use the Gemini CLI extension
 
 **Additional prerequisites** 
@@ -176,6 +177,7 @@ Before installing, be sure to check the [Prerequisites](#prerequisites) above.
 To install Gemini CLI, see the instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
 
 {:.no_toc}
+{: #gemini}
 ### Configure to run a local server
 
 To configure Gemini CLI to recognize the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:

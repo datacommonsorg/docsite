@@ -38,7 +38,7 @@ The server supports both standard MCP [transport protocols](https://modelcontext
 - Stdio: For clients that connect directly using local processes
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
 
-See [Run MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons Extension](https://geminicli.com/extensions/).
+See [Run MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/).
 
 ## Unsupported features
 
