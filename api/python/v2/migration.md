@@ -398,7 +398,7 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 {: .no_toc}
 #### Example 4: Get all values of a single statistical variable for a single place
 
-This example retrieves the number of men in the state of California for all years available. As in example 4, V1 returns data from a single facet (which appears to be 1145703171, the U.S. Census ACS 5-year survey). V2 returns data for all available facets.
+This example retrieves the number of men in the state of California for all years available. As in example 3 above, V1 returns data from a single facet (which appears to be 1145703171, the U.S. Census ACS 5-year survey). V2 returns data for all available facets.
 
 <div>
 
@@ -894,15 +894,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
         {"date": "1905", "value": 1447000.0},
         {"date": "1906", "value": 1465000.0},
         {"date": "1907", "value": 1484000.0},
-        {"date": "1908", "value": 1513000.0},
-        {"date": "1909", "value": 1545000.0},
-        {"date": "1910", "value": 1583000.0},
-        {"date": "1911", "value": 1610000.0},
-        {"date": "1912", "value": 1636000.0},
-        {"date": "1913", "value": 1664000.0},
-        {"date": "1914", "value": 1688000.0},
-        {"date": "1915", "value": 1702000.0},
-      //...
+        //...
       {"earliestDate": "2011",
        "facetId": "1145703171",
        "latestDate": "2023",
@@ -961,16 +953,6 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
         {"date": "1978", "value": 1084374.0},
         {"date": "1979", "value": 1097123.0},
         {"date": "1980", "value": 1105739.0},
-        {"date": "1981", "value": 1107249.0},
-        {"date": "1982", "value": 1107142.0},
-        {"date": "1983", "value": 1112460.0},
-        {"date": "1984", "value": 1119061.0},
-        {"date": "1985", "value": 1122425.0},
-        {"date": "1986", "value": 1124357.0},
-        {"date": "1987", "value": 1129353.0},
-        {"date": "1988", "value": 1129014.0},
-        {"date": "1989", "value": 1130916.0},
-        {"date": "1990", "value": 1136163.0},
        //...
       {"earliestDate": "2010",
        "facetId": "1964317807",
@@ -984,12 +966,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
         {"date": "2015", "value": 1451913.0},
         {"date": "2016", "value": 1456694.0},
         {"date": "2017", "value": 1461651.0},
-        {"date": "2018", "value": 1468412.0},
-        {"date": "2019", "value": 1471760.0},
-        {"date": "2020", "value": 1478511.0},
-        {"date": "2021", "value": 1483520.0},
-        {"date": "2022", "value": 1491622.0},
-        {"date": "2023", "value": 1495958.0}]},
+        //...
       {"earliestDate": "2010",
        "facetId": "10983471",
        "latestDate": "2023",
@@ -1002,12 +979,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
         {"date": "2015", "value": 1452480.128},
         {"date": "2016", "value": 1457519.752},
         {"date": "2017", "value": 1462170.504},
-        {"date": "2018", "value": 1468419.461},
-        {"date": "2019", "value": 1472690.67},
-        {"date": "2020", "value": 1478829.643},
-        {"date": "2021", "value": 1482110.337},
-        {"date": "2022", "value": 1491222.486},
-        {"date": "2023", "value": 1495096.943}]},
+        //...
       {"earliestDate": "2017",
        "facetId": "196790193",
        "latestDate": "2023",
@@ -1030,14 +1002,6 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
   "196790193": {"importName": "CensusACS5YearSurvey_SubjectTables_S2602",
    "measurementMethod": "CensusACS5yrSurveySubjectTable",
    "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2602&tid=ACSST5Y2019.S2602"},
-  "1226172227": {"importName": "CensusACS1YearSurvey",
-   "measurementMethod": "CensusACS1yrSurvey",
-   "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html"},
-  "2825511676": {"importName": "CDC_Mortality_UnderlyingCause",
-   "provenanceUrl": "https://wonder.cdc.gov/ucd-icd10.html"},
-  "2458695583": {"importName": "WikidataPopulation",
-   "measurementMethod": "WikidataPopulation",
-   "provenanceUrl": "https://www.wikidata.org/wiki/Wikidata:Main_Page"},
   //...
 }}
 ```
@@ -1232,6 +1196,7 @@ client.node.fetch_property_values(node_dcids=["nces/360007702877","nces/06296100
 
 The following examples show equivalent API requests and responses using the V1 `datacommons_pandas` package and V2.
 
+{: .no_toc}
 #### Example 1: Get all values of a single statistical variable for a single place
 
 This example is the same as [example 4](#example-4) above, but returns a Pandas DataFrame object. Note that V1 selects a single facet, while V2 returns all facets. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
