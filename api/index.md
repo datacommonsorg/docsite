@@ -47,7 +47,6 @@ A key is required by some APIs to authenticate and authorize requests.
 - Data Commons NL API requests (used by the [DataGemma](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"} tool). These are served by endpoints at `nl.datacommons.org`.
 
 A key is currently not required for the following, although this may change in the future:
-- V1 Python and Pandas client libraries
 - Google Sheets
 - Web Components
 
@@ -57,7 +56,6 @@ Data Commons API keys are managed by a self-service portal. To obtain an API key
 
 To use the key in requests, see the relevant documentation:
 - [REST V2 APIs](/api/rest/v2/index.html#authentication).
-- [REST V1 APIs](/api/rest/v1/getting_started.html#authentication).
 - [Python/Pandas V2 APIs](api/python/v2/index.html#authentication).
 - For NL APIs in DataGemma, see the Colab notebooks in [https://github.com/datacommonsorg/llm-tools/tree/main/notebooks](https://github.com/datacommonsorg/llm-tools/tree/main/notebooks){: target="_blank"}
 
