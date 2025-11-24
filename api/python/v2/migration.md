@@ -19,22 +19,22 @@ The Data Commons [Python API V2](index.md) is significantly different from V1. T
 
 | Feature | V1 | V2 |
 |---------|----|----|
-| API key | Not required | Required; get from <https://apikeys.datacommons.com> |
+| API key | Not required | Required: get from <https://apikeys.datacommons.com> |
 | Custom Data Commons supported | No | Yes: see details in [Create a client](index.md#create-a-client) |
-| Pandas support | Separate package | Module in the same package : see details in [Install](index.md#install) |
+| Pandas support | Separate package | Module in the same package: see details in [Install](index.md#install) |
 | Sessions | Managed by the `datacommons` package object | Managed by a `datacommons_client` object that you must create: see details in [Create a client](index.md#create-a-client) |
-| Classes/methods | 7 methods, members of `datacommons` class | 3 classes representing REST endpoints `node`, `observation` and `resolve`; several member functions for each endpoint class. Variations of methods in V1 are represented as function parameters in V2. See [Request endpoints and responses](index.md#request-endpoints-and-responses)/ |
+| Classes/methods | 7 methods, members of `datacommons` class | 3 classes representing REST endpoints `node`, `observation` and `resolve`; several member functions for each endpoint class. Variations of methods in V1 are represented as function parameters in V2. See [Request endpoints and responses](index.md#request-endpoints-and-responses) |
 | Pandas classes/methods | 3 methods, all members of `datacommons_pandas` class | 1 method, member of `datacommons_client` class. Variations of the Pandas methods in V1 are represented as parameters in V2. See [Observations DataFrame](pandas.md) |
 | Pagination | Required for queries resulting in large data volumes | Optional: see [Pagination](node.md#pagination)  |
 | DCID lookup method | No | Yes: [`resolve`](resolve.md) endpoint methods |
-| Statistical facets | With the `get_stat_value` and `get_stat_series` methods, Data Commons chooses the most "relevant" facet to answer the query; typically this is based on the data source providing the most recent data | Data from all available facets is returned by default for all observation endpoint methods (if you don"t apply a filter); for details, see [Observation response](/observation.html#response) |
+| Statistical facets | With the `get_stat_value` and `get_stat_series` methods, Data Commons chooses the most "relevant" facet to answer the query; typically this is the facet that has the most recent data. | For all Observation methods, results from all available facets are returned by default (if you don"t apply a filter); for details, see [Observation response](/observation.html#response) |
 | Statistical facet filtering | The `get_stat_value`, `get_stat_series` and Pandas `build_time_series` methods allow you to filter results by specific facet fields, such as measurement method, unit, observation period, etc. | The `observations_dataframe` method allows you to filter results by specific facet fields. Observation methods only allow filtering results by the facet domain or ID; for details, see [Observation fetch](observation.md#fetch). |
 | Response contents | Simple structures mostly containing values only | Nested structures containing values and additional properties and metadata | 
-| Different response formats | No | Yes; for details, see [Response formatting](index.md#response-formatting). |
+| Different response formats | No | Yes: for details, see [Response formatting](index.md#response-formatting). |
 
 ## V1 function equivalences in V2
 
-This section shows you how to translate from a given V1 function to the equivalent code in V2. Examples of both are given in the following section.
+This section shows you how to translate from a given V1 function to the equivalent code in V2. Examples of both versions are given in the [Examples](#examples) section.
 
 | `datacommmons` V1 function |  V2 equivalent |
 |-------------|------------------|
@@ -52,11 +52,14 @@ This section shows you how to translate from a given V1 function to the equivale
 | `build_time_series_dataframe` | [`observations_dataframe`](pandas.md) with an array of places, a single variable and the `date` parameter set to `all` |
 | `build_multivariate_dataframe` | [`observations_dataframe`](pandas.md) with an array of places and/or variables and the `date` parameter set to `latest` |
 
-## datacommons package examples
+## Examples
+
+### datacommons package examples
 
 The following examples show equivalent API requests and responses using the V1 `datacommons` package and V2.
 
-### Example 1: Get triples associated with a single place
+{: .no_toc}
+#### Example 1: Get triples associated with a single place
 
 This example retrieves triples associated with zip code 94043. In V1, the `get_triples` method returns all triples, in which the zip code is the subject or the object. In V2, you cannot get both directions in a single request; you must send one request for the outgoing relationships and one for the incoming relationships.
 
@@ -223,7 +226,8 @@ Response 2 (incoming relations):
 
 </div>
 
-### Example 2: Get a list of places in another place
+{: .no_toc}
+#### Example 2: Get a list of places in another place
 
 This example retrieves a list of counties in the U.S. state of Delaware.
 
@@ -276,62 +280,8 @@ client.node.fetch_place_children(place_dcids="geoId/10", children_type="County")
 
 </div>
 
-### Example 3: Get a list of places in multiple other places
-
-This example retrieves a list of congressional districts in the U.S. states of Alaska and Hawaii.
-
-<div>
-
-{% tabs request %}
-
-{% tab request V1 request %}
-
-```python
-datacommons.get_places_in(["geoId/15","geoId/02"], "CongressionalDistrict")
-```
-
-{% endtab %}
-
-{% tab request V2 request %}
-
-```python
-client.node.fetch_place_children(place_dcids=["geoId/15","geoId/02"], children_type="CongressionalDistrict")
-```
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-<div>
-
-{% tabs response %}
-
-{% tab response V1 response %}
-
-```python
-{"geoId/15": ["geoId/1501", "geoId/1502"], "geoId/02": ["geoId/0200"]}
-```
-{% endtab %}
-
-{% tab response V2 response %}
-
-```python
-{"geoId/15": [{"dcid": "geoId/1501",
-   "name": "Congressional District 1 (113th Congress), Hawaii"},
-  {"dcid": "geoId/1502",
-   "name": "Congressional District 2 (113th Congress), Hawaii"}],
- "geoId/02": [{"dcid": "geoId/0200",
-   "name": "Congressional District (at Large) (113th Congress), Alaska"}]}
-```
-
-{% endtab %}
-
-{% endtabs %}
-
-</div>
-
-### Example 4: Get the latest value of a single statistical variable for a single place
+{: .no_toc}
+#### Example 3: Get the latest value of a single statistical variable for a single place
 
 This example gets the latest count of men in the state of California. Note that the V1 method `get_stat_value` returns a single value, automatically selecting the most "relevant" data source, while the V2 method returns all data sources ("facets"), i.e. multiple values for the same variable, as well as metadata for all the sources. Comparing the results, you can see that the V1 method has selected facet 3999249536, which has the most recent date, and comes from the U.S. Census PEP survey.
 
@@ -444,8 +394,9 @@ client.observation.fetch_observations_by_entity_dcid(date="latest", entity_dcids
 
 </div>
 
-{: #example-5}
-### Example 5: Get all values of a single statistical variable for a single place
+{: #example-4}
+{: .no_toc}
+#### Example 4: Get all values of a single statistical variable for a single place
 
 This example retrieves the number of men in the state of California for all years available. As in example 4, V1 returns data from a single facet (which appears to be 1145703171, the U.S. Census ACS 5-year survey). V2 returns data for all available facets.
 
@@ -562,7 +513,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
 </div>
 
 {: #example-5}
-### Example 5: Get the all values of a single statistical variable for a single place, selecting the facet to return
+{: .no_toc}
+#### Example 5: Get the all values of a single statistical variable for a single place, selecting the facet to return
 
 This example gets the nominal GDP for Italy, filtering for facets that show the results in U.S. dollars. In V1, this is done directly with the `unit` parameter. In V2, we use the domain to specify the same facet.
 
@@ -650,8 +602,9 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="c
 
 </div>
 
-{: #example-7}
-### Example 7: Get all values of a single statistical variables for multiple places
+{: #example-6}
+{: .no_toc}
+#### Example 6: Get all values of a single statistical variables for multiple places
 
 This example retrieves the number of people with doctoral degrees in the states of Minnesota and Wisconsin for all years available. Note that the `get_stat_all` method behaves more like V2 and returns data for all facets (in this case, there is only one), as well as metadata for all facets.
 
@@ -771,8 +724,9 @@ client.observation.fetch_observations_by_entity_dcid(date="all", variable_dcids=
 
 </div>
 
-{: #example-8}
-### Example 8: Get all values of multiple statistical variables for a single place
+{: #example-7}
+{: .no_toc}
+#### Example 7: Get all values of multiple statistical variables for a single place
 
 This example retrieves the total population as well as the male population of the state of Arkansas for all available years. 
 
@@ -1093,7 +1047,8 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
 
 </div>
 
-### Example 9: Get all outgoing property labels for a single node
+{: .no_toc}
+#### Example 8: Get all outgoing property labels for a single node
 
 This example retrieves the outwardly directed property labels (but not the values) of Wisconsin"s eighth congressional district.
 
@@ -1167,7 +1122,8 @@ client.node.fetch_property_labels(node_dcids="geoId/5508")
 
 </div>
 
-### Example 10: Get the value(s) of a single outgoing property of a node (place) 
+{: .no_toc}
+#### Example 9: Get the value(s) of a single outgoing property of a node (place) 
 
 This example retrieves the common names of the country of Côte d"Ivoire.
 
@@ -1219,7 +1175,8 @@ client.node.fetch_property_values(node_dcids="country/CIV", properties="name")
 
 </div>
 
-### Example 11: Retrieve the values of a single outgoing property for multiple nodes (places)
+{: .no_toc}
+#### Example 10: Retrieve the values of a single outgoing property for multiple nodes (places)
 
 This example gets the the addresses of Stuyvesant High School in New York and Gunn High School in California.
 
@@ -1271,11 +1228,11 @@ client.node.fetch_property_values(node_dcids=["nces/360007702877","nces/06296100
 
 </div>
 
-## datacommons_pandas examples
+### datacommons_pandas package examples
 
 The following examples show equivalent API requests and responses using the V1 `datacommons_pandas` package and V2.
 
-### Example 1: Get all values of a single statistical variable for a single place
+#### Example 1: Get all values of a single statistical variable for a single place
 
 This example is the same as [example 4](#example-4) above, but returns a Pandas DataFrame object. Note that V1 selects a single facet, while V2 returns all facets. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
 
@@ -1350,7 +1307,8 @@ dtype: int64
 
 </div>
 
-### Example 2: Get the all values of a single statistical variable for a single place, selecting the facet to return
+{: .no_toc}
+#### Example 2: Get the all values of a single statistical variable for a single place, selecting the facet to return
 
 This example is the same as [example 5](#example-5) above, but returns a Pandas DataFrame object.
 
@@ -1424,7 +1382,8 @@ dtype: float64
 
 </div>
 
-### Example 3: Get all values of a single statistical variable for multiple places
+{: .no_toc}
+#### Example 3: Get all values of a single statistical variable for multiple places
 
 This example compares the historic populations of Sudan and South Sudan. Note that V1 selects a single facet, while V2 returns all facets. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
 
@@ -1488,7 +1447,8 @@ country/SSD	2931559	2976724	3024308	3072669	3129918	3189835	3236423	3277648	3321
 
 </div>
 
-### Example 4: Get all values of multiple statistical variables for multiple places
+{: .no_toc}
+#### Example 4: Get all values of multiple statistical variables for multiple places
 
 This example compares the current populations, median ages, and unemployment rates of the US, California, and Santa Clara County. To restrict the V2 method to a single facet, you could use the `property_filters` parameter.
 
