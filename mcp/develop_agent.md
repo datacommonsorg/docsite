@@ -21,7 +21,7 @@ This page shows you how to develop a custom Data Commons agent, using two approa
 
 ## Create a custom Gemini CLI extension
 
-Before sure you have installed the [required prerequisites](/mcp/run_tools.html#extension).
+Before you start, be sure you have installed the [required prerequisites](/mcp/run_tools.html#extension).
 
 ### Create the extension
 
@@ -36,14 +36,16 @@ To create your own Data Commons Gemini CLI extension:
    <pre>
    cd <var>EXTENSION_NAME</var>
    </pre>
-1. Create a new Markdown file `GEMINI.md`.
-1. Add prompts to specify how Gemini should handle user queries and tool results. See <https://github.com/gemini-cli-extensions/datacommons/blob/main/DATACOMMONS.md> for a good example to get you started.
+1. Create a new Markdown file (with a `.md` suffix). You can name it however you want, or just use the default, `GEMINI.md`.
+1. Write natural-language prompts to specify how Gemini should handle user queries and tool results. See <https://github.com/gemini-cli-extensions/datacommons/blob/main/DATACOMMONS.md> for a good example to get you started. Also see the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
 1. Modify `gemini-extension.json` to add the following configuration:
    <pre>
     {
         "name": "<var>EXTENSION_NAME</var>",
         "version": "1.0.0",
         "description": "<var>EXTENSION_DESCRIPTION</var>",
+        // Only needed if the file name is not GEMINI.md
+        "contextFileName": "<var>MARKDOWN_FILE_NAME</var>"
         "mcpServers": {
             "datacommons-mcp": {
                 "command": "uvx",
@@ -64,7 +66,7 @@ To create your own Data Commons Gemini CLI extension:
     }
     </pre>
     The extension name is the one you created in step 1. In the `description` field, provide a brief description of your extension. If you release the extension publicly, this description will show up on <https://geminicli.com/extensions/>. 
-    For additional options, see <https://geminicli.com/docs/extensions/#how-it-works>.
+    For additional options, see the [Gemini CLI extension documentation](https://geminicli.com/docs/extensions/#how-it-works){: target="_blank"}.
 1.  Run the following command to install your new extension locally:
     ```
     gemini extensions link .
@@ -83,7 +85,7 @@ To create your own Data Commons Gemini CLI extension:
 
 ### Make your extension public
 
-If you would like to release your extension publicly for others to use, see <https://geminicli.com/docs/extensions/extension-releasing/> for full details.
+If you would like to release your extension publicly for others to use, we recommend using a Github repository. See the [Gemini CLI extension release documentation](https://geminicli.com/docs/extensions/extension-releasing/){: target="_blank"} for full details.
 
 
 ## Customize the sample agent
@@ -103,5 +105,5 @@ To change to a different LLM, edit the `AGENT_MODEL` constant in [packages/datac
 
 The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTIONS` in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py){: target="_blank"}.
 
-You can add your own prompts to modify how the agent handles tool results. For example, you might want to give a prompt to "build a report for every response" or "always save tabular results to a CSV file". See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
+You can add your own prompts to modify how the agent handles tool results. See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
 
