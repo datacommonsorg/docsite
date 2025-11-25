@@ -8,14 +8,14 @@ has_children: true
 
 # Data Commons Pandas API
 
+> **Note:** This version of the Data Commons Python API will be deprecated in early 2026. Please migrate your applications to [V2](/api/python/v2). For help on translating your requests, see the [Migration guide](/api/python/v2/migration.html).
+
 The **Data Commons Pandas API** is a superset of the Data Commons Python API:
 all functions from the Python API are also accessible from
 the Pandas API, and supplemental functions help with directly creating
 [pandas](https://pandas.pydata.org/){: target="_blank"}
 objects using data from the Data Commons knowledge graph for common
 use cases. 
-
-> **Note:** This and related pages cover [V1](/api/rest/v1) of the Pandas APIs. For V2 APIs, see [Data Commons Python API V2](/api/python/v2/)
 
 Before proceeding, make sure you have followed the setup instructions below.
 

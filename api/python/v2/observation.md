@@ -125,6 +125,8 @@ With `select=["variable", "entity", "facet"]`, the response looks like:
 </pre>
 {: .response-signature .scroll}
 
+> **Note**: A single entity or variable may be associated with multiple [_facets_](/glossary.html#facet). By default, a query returns all available facets. This means that your results may consist of timeseries from multiple facets. To ensure restrict your query to a specific facet, you must use a facet filter, as described in [fetch](#fetch).
+
 There are additional methods you can call on the response to structure the data differently. See [Response property methods](#response-property-methods) for details.
 
 ### Response fields
@@ -167,7 +169,7 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 | select <br/><optional-tag>Optional</optional-tag> | list of string literals | The fields to be returned in the results. By default this is set to `["date", "entity", "variable", "value"]`, which returns actual observations, with the date and value for each variable and entity queried. One observation is returned for every facet (dataset) in which the variable appears. Other valid options are:<br/>- `["entity", "variable"]`: Return no observations.  You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations.<br/>- `["entity", "variable", "facet"]`: Return no observations but return all the _facets_ as well, which show the sources of the data.
 | entity_dcids | string or list of strings | One or more DCIDs of the entities to query. One of `entity_dcids` or `entity_expression` is required. |
 | entity_expression  | string | A [relation expression](/api/rest/v2/index.html#relation-expressions) that represents the entities to query. One of `entity_dcids` or `entity_expression` is required. |
-| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. To find relevant domain names, you can look up the `provenanceUrl` field in the facet ID of a previous observation response or the `url` field of the provenance in the knowledge graph browser. |
+| filter_facet_domains <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of domain names. You can use this to filter results by provenance. The domain name must consist only of the top-level domain and host name, e.g. `worldbank.org` or `statcan.gc.ca`. |
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
