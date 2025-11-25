@@ -72,7 +72,7 @@ To create your own Data Commons Gemini CLI extension:
     ```
     gemini extensions link .
     ```
-    
+
 ### Run the extension locally
 
 1. From any directory, run `gemini`.
@@ -101,7 +101,7 @@ We provide two sample Google Agent Development Kit-based agents you can use as i
 
 ### Customize the model
 
-To change to a different LLM, edit the `AGENT_MODEL` constant in [packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){: target="_blank"}.
+To change to a different LLM or model version, edit the `AGENT_MODEL` constant in [packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){: target="_blank"}.
 
 ### Customize agent behavior
 
