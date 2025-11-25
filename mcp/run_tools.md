@@ -246,12 +246,6 @@ In addition to the [standard prerequisites](#prerequisites), you will need:
 
 {:.no_toc}
 ### Set the API key environment variable
-
-Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.bashrc`):
-<pre>
-export GEMINI_API_KEY=<var>YOUR API KEY</var>
-</pre>
-
 {:.no_toc}
 ### Install
 
