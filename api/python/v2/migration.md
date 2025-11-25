@@ -517,7 +517,7 @@ client.observation.fetch_observations_by_entity_dcid(date="all", entity_dcids="g
 {: .no_toc}
 #### Example 5: Get the all values of a single statistical variable for a single place, selecting the facet to return
 
-This example gets the nominal GDP for Italy, filtering for facets that show the results in U.S. dollars. In V1, this is done directly with the `unit` parameter. In V2, we use the domain to specify the same facet.
+This example gets the nominal GDP for Italy, filtering for facets that show the results in U.S. dollars. In V1, this is done directly with the `unit` parameter. In V2, using the Observation endpoint, we use the domain representing the facet whose unit is U.S. dollars. Note that you may need to make two requests with the Observation APIs before applying a filter: one to get the IDs and attributes of all the facets and identify the one you want, and a second one to apply the appropriate filter to get the desired facet.
 
 <div>
 
