@@ -45,7 +45,7 @@ To create your own Data Commons Gemini CLI extension:
         "version": "1.0.0",
         "description": "<var>EXTENSION_DESCRIPTION</var>",
         // Only needed if the file name is not GEMINI.md
-        "contextFileName": "<var>MARKDOWN_FILE_NAME</var>"
+        "contextFileName": "<var>MARKDOWN_FILE_NAME</var>",
         "mcpServers": {
             "datacommons-mcp": {
                 "command": "uvx",
@@ -59,18 +59,20 @@ To create your own Data Commons Gemini CLI extension:
                     "DC_API_KEY": "<var>YOUR_DATA_COMMONS_API_KEY</var>"
                     // Set these if you are running against a Custom Data Commons instance
                     "DC_TYPE="custom",
-	                "CUSTOM_DC_URL"="<VAR>INSTANCE_URL"
+	                "CUSTOM_DC_URL"="<VAR>INSTANCE_URL</var>"
                }
             }
         }
     }
     </pre>
     The extension name is the one you created in step 1. In the `description` field, provide a brief description of your extension. If you release the extension publicly, this description will show up on <https://geminicli.com/extensions/>. 
+    
     For additional options, see the [Gemini CLI extension documentation](https://geminicli.com/docs/extensions/#how-it-works){: target="_blank"}.
 1.  Run the following command to install your new extension locally:
     ```
     gemini extensions link .
     ```
+    
 ### Run the extension locally
 
 1. From any directory, run `gemini`.
