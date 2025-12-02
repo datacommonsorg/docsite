@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Migrate to REST API V2
+title: Migrate from V1 to V2
 nav_order: 7
 parent: REST (V2)
 grand_parent: API - Query data programmatically
@@ -8,11 +8,9 @@ published: true
 ---
 
 {: .no_toc}
-# Migrate from API V1 to V2
+# Migrate from REST API V1 to V2
 
 The Data Commons [REST API V2](index.md) is significantly different from V1. This document summarizes the important differences that you should be aware of and provides examples of translating queries from V1 to V2.
-
-> Note: We will soon publish an equivalent migration guide for the Python client libraries.
 
 * TOC
 {:toc}
@@ -21,6 +19,8 @@ The Data Commons [REST API V2](index.md) is significantly different from V1. Thi
 
 | Feature | V1 | V2 |
 |---------|----|----|
+| API key | Not required | Required; get from <apikeys.datacommons.com> |
+| Custom Data Commons supported | No | Yes |
 | Base URL | https://api.datacommons.org/v1/ | https://api.datacommons.org/v2/ |
 | Service endpoints | 12 endpoints + 12 bulk versions of each | 4 endpoints |
 | Parameters | Path and query parameters used; order of parameters matters for path parameters | Only query parameters used; order of parameters does not matter |
