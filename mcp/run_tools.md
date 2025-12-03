@@ -15,31 +15,25 @@ This page shows you how to run a local agent and connect to a Data Commons MCP s
 
 We provide specific instructions for the following agents. All may be used to query datacommons.org or a Custom Data Commons instance.
 
-- [Gemini CLI extension](https://geminicli.com/extensions/) 
+- [Gemini CLI extension](#use-the-gemini-cli-extension) 
    - Best for querying datacommons.org
    - Provides a built-in "agent" and context file for Data Commons
    - Downloads extension files locally
    - Uses `uv` to run the MCP server locally
    - Minimal setup
 
-   See [Use the Gemini CLI extension](#use-the-gemini-cli-extension) for this option.
-
-- [Gemini CLI](https://geminicli.com/) 
+- [Gemini CLI](#use-gemini-cli) 
    - No additional downloads
    - MCP server can be run locally or remotely
-   - You can create your own context file 
+   - You can create your own LLM context file 
    - Minimal setup
 
-   See [Use Gemini CLI](#use-gemini-cli) for this option.
-
-- A sample basic agent based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) 
+- A [sample basic agent](#use-the-sample-agent) based on the Google [Agent Development Kit](https://google.github.io/adk-docs/) 
    - Best for interacting with a Web GUI
-   - Can be customized to run other LLMs and prompts
+   - Can be used to run other LLMs and prompts
    - Downloads agent code locally
    - Server may be run remotely
    - Some additional setup
-
-   See [Use the sample agent](#use-the-sample-agent) for this option.
 
 For an end-to-end tutorial using a server and agent over HTTP, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb).
 
@@ -59,6 +53,11 @@ Other requirements for specific agents are given in their respective sections.
 
 ## Configure environment variables
 
+You can set these in the following ways:
+1. In your shell/startup script (e.g. `.bashrc`). This is the recommended option for most use cases.
+1. [Use an `.env` file](#env), which the server locates automatically. This is useful for Custom Data Commons with multiple options, to keep all settings in one place.
+1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
+
 ### Base Data Commons (datacommons.org)
 
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
@@ -75,9 +74,9 @@ The following variables are required:
 - `export DC_TYPE="custom"`
 - <code>export CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
 
-If you're using the Gemini CLI extension, just set these in your shell/startup script. 
-
-If you're not using the extension, you may wish to use a `.env` file, which the server locates automatically, to keep all the settings in one place. To set all variables using a `.env` file:
+{: #env}
+{: .no_toc}
+#### Set variables with an `.env` file:
 
 1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample) to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>.
 
@@ -93,9 +92,11 @@ If you're not using the extension, you may wish to use a `.env` file, which the 
 1. Optionally, set other variables.
 1. Save the file.
 
+{: #extension}
 ## Use the Gemini CLI extension
 
 **Additional prerequisites** 
+
 In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
 - [Git](https://git-scm.com/)
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/)
@@ -176,6 +177,7 @@ Before installing, be sure to check the [Prerequisites](#prerequisites) above.
 To install Gemini CLI, see the instructions at <https://github.com/google-gemini/gemini-cli#quick-install>. 
 
 {:.no_toc}
+{: #gemini}
 ### Configure to run a local server
 
 To configure Gemini CLI to recognize the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
@@ -194,7 +196,11 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
             "env": {
                 "DC_API_KEY": "<var>YOUR_DATA_COMMONS_API_KEY</var>"
                 // If you are using a Google API key
-                "GEMINI_API_KEY": "<var>YOUR_GOOGLE_API_KEY</var>"
+                "GEMINI_API_KEY": "<var>YOUR_GOOGLE_API_KEY</var>",
+
+                // Only use these to run against a Custom Data Commons instance
+                "DC_TYPE": "custom",
+                "CUSTOM_DC_URL": "<var>INSTANCE_URL</var>"
             },
             "trust": true
         }
@@ -220,7 +226,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
    </pre>
 
 {:.no_toc}
-### Send queries
+### Run
 
 1. From any directory, run `gemini`. 
 1. To see the Data Commons tools, use `/mcp tools`.
@@ -233,18 +239,13 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 We provide a basic agent for interacting with the MCP Server in [packages/datacommons-mcp/examples/sample_agents/basic_agent](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent). 
 
 **Additional prerequisites** 
+
 In addition to the [standard prerequisites](#prerequisites), you will need:
 - A GCP project and a Google AI API key. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>.
 - [Git](https://git-scm.com/) installed.
 
 {:.no_toc}
 ### Set the API key environment variable
-
-Set `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) in your shell/startup script (e.g. `.bashrc`):
-<pre>
-export GEMINI_API_KEY=<var>YOUR API KEY</var>
-</pre>
-
 {:.no_toc}
 ### Install
 
