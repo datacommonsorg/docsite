@@ -15,7 +15,7 @@ parent: Build your own Data Commons
 
 When you are ready to launch your site to external traffic, there are many tasks you will need to perform, including:
 
-- Configure your Cloud Service to serve external traffic, over SSL. GCP offers many options for this; see [Mapping a domain using a global external Application Load Balancer](https://cloud.google.com/run/docs/mapping-custom-domains#https-load-balancer){: target="\_blank"}.
+- Configure your Cloud Service to serve external traffic, over SSL. Follow the procedures in [Serve traffic from your service](#serve).
 - Optionally, restrict access to your service; see [Restrict public access to your service](#access).
 - Optionally, increase the number of Docker service container instances. See [Increase the services container replication](#replication) for procedures.
 - Optionally, add a caching layer to improve performance. This is recommended for all production Data Commons instances. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
@@ -25,6 +25,16 @@ When you are ready to launch your site to external traffic, there are many tasks
 Throughout these procedures, we recommend using Terraform to create a production deployment.
 
 > **Note:** If you make future updates to this deployment, we recommend always using Terraform to do so. If you use the Cloud Console or gcloud to make updates and try to run Terraform again, it will override any changes you have made outside of Terraform. For options that are available as variables in the Data Commons `variables.tf`, you must sync your production `terraform.tfvars` options to the same values you have set outside Terraform before running Terraform commands again. If you use the Cloud Console or gcloud to configure options that are not available as Data Commons variables, you _must not_ run Terraform again.
+
+{: #serve}
+## Serve traffic from your service
+
+For Cloud Run services, you use a global external load balancer, even if you're only running in a single region. Follow the procedures in [Set up a global external Application Load Balancer](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless){: target="_blank"} as follows:
+
+1. [Reserve an external IP address](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#ip-address). 
+1. [Create SSL certificates](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#ssl_certificate_resource).
+1. [Add the load balancer](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#creating_the_load_balancer).
+1. [Add or modify DNS records](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#update_dns) to map your domain name to the new IP address.
 
 ## Restrict public access to your service {#access}
 
