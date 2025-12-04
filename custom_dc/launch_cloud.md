@@ -15,7 +15,8 @@ parent: Build your own Data Commons
 
 When you are ready to launch your site to external traffic, there are many tasks you will need to perform, including:
 
-- Configure your Cloud Service to serve external traffic, over SSL. Follow the procedures in [Serve traffic from your service](#serve).
+- Configure your Cloud Run Service to serve external traffic, over SSL. Follow the procedures in [Serve traffic from your service](#serve).
+- Optionally, configure [Google Cloud Armor](https://cloud.google.com/security/products/armor){: track="_blank"} to detect and block unwanted traffic. This is recommended for large services. Follow the procedures in [Detect and prevent bot traffic](#bot).
 - Optionally, restrict access to your service; see [Restrict public access to your service](#access).
 - Optionally, increase the number of Docker service container instances. See [Increase the services container replication](#replication) for procedures.
 - Optionally, add a caching layer to improve performance. This is recommended for all production Data Commons instances. We have provided specific procedures to set up a Redis Memorystore in [Improve database performance](#redis).
@@ -35,6 +36,63 @@ For Cloud Run services, you use a global external load balancer, even if you're 
 1. [Create SSL certificates](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#ssl_certificate_resource).
 1. [Add the load balancer](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#creating_the_load_balancer).
 1. [Add or modify DNS records](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#update_dns) to map your domain name to the new IP address.
+
+{: #bot}
+## Detect and prevent bot traffic 
+
+Once your website reaches wide adoption, it will likely be hit by unwanted bot traffic. This can cause major spikes in your resource usage. You should set up Google Cloud Armor, with Adaptive Protection, before such attacks happen, if you are sensitive to sudden increases in your project's billing.
+
+There are two tiers you can choose from:
+- Subscribe to Cloud Armor Enterprise. This is a paid subscription (see [Cloud Armor Pricing](https://cloud.google.com/armor/pricing){: target="_blank"} for details) that includes all charges for resource usage. We highly recommend the "Paygo" option, as the Adaptive Protection feature provides out-of-the-box, automatic anomaly detection and prevention with minimal setup.
+- Use Cloud Armor Standard. This service has no subscription fee, but does charge for resource usage. However, the Adaptive Protection service will only detect and alert you about anomalies without further action or information. You are responsible for defining and applying policy rules to block undesired traffic. 
+Both options allow you to block by IP address range or other "advanced" attributes, and provide a set of actions you can choose for dealing with unwanted traffic: deny, rate-limit, and display captcha. etc. 
+
+For more details comparing the two options, see the [Cloud Armor Enterprise Overview](https://docs.cloud.google.com/armor/docs/armor-enterprise-overview){: target="_blank"}.
+
+### Configure a Cloud Armor security policy
+
+#### Create a policy
+
+Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To do so:
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+  <li class="active">Cloud Console</li>
+  <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+  <div class="active">
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/https://pantheon.corp.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
+             <li>click <b>Create policy</b>.</li>
+           <li>Under <b>Configure policy</b>, add a name for the policy and optionally a description.</li>
+           <li>Change the <b>Default rule action</b> to <b>Allow</b>.</li>
+           <li>Keep all the other default settings.</li>
+           <li>Click <b>Apply to targets</b>.
+           <li>From the <b>Backend service</b> drop-down, select the backend service you created when when creating the [load balancer](#serve).
+           <li>Under <b>Advanced configurations</b>, select <b>Enable Adaptive Protection</b>.
+           <li>Under <b>Threshold configurations</b>, add a name for the default threshold configuration.</li>
+           <li>Click <b>Done</b>.</li>
+           <li>Click <b>Create policy</b>. It may take a few minutes to complete. When it is created, your new policy will be listed in the <b>Cloud Armor policies</b> page.</li>
+        </ol>
+      </div>
+    <div>
+      <li>Create the policy and enable Adaptive Protection:
+        <pre>gcloud compute security-policies create <var>POLICY_NAME</var> --type=CLOUD_ARMOR \
+        --description=<var>DESCRIPTION</var> --enable-layer7-ddos-defense/pre></li>
+        <li>Apply the policy to the backend you created when when creating the [load balancer](#serve):
+            <pre>gcloud compute backend-services update <var>BACKEND_NAME</var> \
+                 --security-policy <var>POLICY_NAME</var</pre>
+          </li>
+          
+      </ol>
+     </div>
+   <div>
+  </div>
+  </div>
+</div>
+
+
 
 ## Restrict public access to your service {#access}
 
