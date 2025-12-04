@@ -47,13 +47,11 @@ There are two tiers you can choose from:
 - Use Cloud Armor Standard. This service has no subscription fee, but does charge for resource usage. However, the Adaptive Protection service will only detect and alert you about anomalies without further action or information. You are responsible for defining and applying policy rules to block undesired traffic. 
 Both options allow you to block by IP address range or other "advanced" attributes, and provide a set of actions you can choose for dealing with unwanted traffic: deny, rate-limit, and display captcha. etc. 
 
-For more details comparing the two options, see the [Cloud Armor Enterprise Overview](https://docs.cloud.google.com/armor/docs/armor-enterprise-overview){: target="_blank"}.
+For more details comparing the two options, see the [Cloud Armor Enterprise Overview](https://docs.cloud.google.com/armor/docs/armor-enterprise-overview){: target="_blank"}. If you decide to subscribe to Enterprise, see [Use Cloud Armor Enterprise](https://docs.cloud.google.com/armor/docs/armor-enterprise-using){: target="_blank"} for instructions on enrolling.
 
-### Configure a Cloud Armor security policy
+### Create a Cloud Armor security policy
 
-#### Create a policy
-
-Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To do so:
+Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To set up a basic policy that simply allows all traffic:
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -62,37 +60,42 @@ Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor s
   </ul>
   <div class="gcp-tab-content">
   <div class="active">
-           <ol>
+   <ol>
            <li>Go to the <a href="https://console.cloud.google.com/https://pantheon.corp.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
              <li>click <b>Create policy</b>.</li>
            <li>Under <b>Configure policy</b>, add a name for the policy and optionally a description.</li>
            <li>Change the <b>Default rule action</b> to <b>Allow</b>.</li>
            <li>Keep all the other default settings.</li>
-           <li>Click <b>Apply to targets</b>.
-           <li>From the <b>Backend service</b> drop-down, select the backend service you created when when creating the [load balancer](#serve).
-           <li>Under <b>Advanced configurations</b>, select <b>Enable Adaptive Protection</b>.
-           <li>Under <b>Threshold configurations</b>, add a name for the default threshold configuration.</li>
+           <li>Click <b>Apply to targets</b>.</li>
+           <li>From the <b>Backend service</b> drop-down, select the backend service you created when when you created the <a href="#serve">load balancer</a>.</li>
+           <li>Under <b>Advanced configurations</b>, select <b>Enable Adaptive Protection</b>.</li>
            <li>Click <b>Done</b>.</li>
            <li>Click <b>Create policy</b>. It may take a few minutes to complete. When it is created, your new policy will be listed in the <b>Cloud Armor policies</b> page.</li>
         </ol>
       </div>
     <div>
+    <ol>
       <li>Create the policy and enable Adaptive Protection:
-        <pre>gcloud compute security-policies create <var>POLICY_NAME</var> --type=CLOUD_ARMOR \
-        --description=<var>DESCRIPTION</var> --enable-layer7-ddos-defense/pre></li>
-        <li>Apply the policy to the backend you created when when creating the [load balancer](#serve):
-            <pre>gcloud compute backend-services update <var>BACKEND_NAME</var> \
-                 --security-policy <var>POLICY_NAME</var</pre>
-          </li>
-          
+
+        <pre>gcloud compute security-policies create <var>POLICY_NAME</var> \
+        --type CLOUD_ARMOR --description "<var>DESCRIPTION</var>" \
+        --enable-layer7-ddos-defense</pre></li>
+        <li>Apply the policy to the backend you created when you created the <a href="#serve">load balancer</a>:
+        <pre>gcloud compute backend-services update <var>BACKEND_NAME</var> \
+        --security-policy <var>POLICY_NAME</var></pre></li>
+         <li>Set the default rule to allow all traffic:
+         <pre>gcloud compute security-policies rules create 2,147,483,647 \ 
+         --security-policy <var>POLICY_NAME</var> --description "Default rule" \
+         --expression "*" --action allow</pre>
+         </li>
       </ol>
-     </div>
-   <div>
-  </div>
+   </div>
   </div>
 </div>
 
+### Add rules to your policy
 
+If you are subscribed to the Enterprise tier, you can simply add a default action for how you want traffic to be handled. You don't need to define any conditions that trigger the handling, as the feature will 
 
 ## Restrict public access to your service {#access}
 
