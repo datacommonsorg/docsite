@@ -38,9 +38,11 @@ For Cloud Run services, you use a global external load balancer, even if you're 
 1. [Add or modify DNS records](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#update_dns) to map your domain name to the new IP address.
 
 {: #bot}
-## Detect and prevent bot traffic 
+## Detect and prevent bot traffic with Google Cloud Armor
 
 Once your website reaches wide adoption, it will likely be hit by unwanted bot traffic. This can cause major spikes in your resource usage. You should set up Google Cloud Armor, with Adaptive Protection, before such attacks happen, if you are sensitive to sudden increases in your project's billing.
+
+> **Tip:** If you are unsure about whether you will need Cloud Armor, you can use Google Analytics to monitor and notify you of traffic anomalies. To configure these notifications, you create "custom insights". There are several predefined, "recommended" insights related to traffic spikes, which you only need to enable. See the [Analytics Insights page](https://support.google.com/analytics/answer/9443595){: target="_blank"} for procedures.
 
 There are two tiers you can choose from:
 - Subscribe to Cloud Armor Enterprise. This is a paid subscription (see [Cloud Armor Pricing](https://cloud.google.com/armor/pricing){: target="_blank"} for details) that includes all charges for resource usage. We highly recommend the "Paygo" option, as the Adaptive Protection feature provides out-of-the-box, automatic anomaly detection and prevention with minimal setup.
@@ -49,9 +51,26 @@ Both options allow you to block by IP address range or other "advanced" attribut
 
 For more details comparing the two options, see the [Cloud Armor Enterprise Overview](https://docs.cloud.google.com/armor/docs/armor-enterprise-overview){: target="_blank"}. If you decide to subscribe to Enterprise, see [Use Cloud Armor Enterprise](https://docs.cloud.google.com/armor/docs/armor-enterprise-using){: target="_blank"} for instructions on enrolling.
 
+### Recommended workflows
+
+If you subscribe to the Enterprise tier, use the following workflow:
+1. Create a security policy and enable Adaptive Protection.
+1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a detailed alert will appear on the **Adaptive Protection** dashboard, including the source of the traffic, and suggested rules for handling.
+1. Optionally, update your policy to enable Auto Deploy.
+1. If you enable Auto Deploy, create a rule that defines the action to be taken automatically when an attack is detected. 
+1. Optionally, create additional manual rules.
+
+If you only use the Standard tier, use the following workflow:
+1. Create a security policy and enable Adaptive Protection.
+1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a basic alert will appear on the **Adaptive Protection** dashboard.
+1. Use the **Logs Analytics** facility to analyze the logs for the time in which the attack occurred, to try to 
+1. Optionally, create additional IP address-based rules.
+
 ### Create a Cloud Armor security policy
 
-Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To set up a basic policy that simply allows all traffic:
+Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To set up a basic policy that simply allows all traffic. 
+
+> Tip: There is an unofficial wizard tool that guides you through the process of configuring a security policy: <https://cabuilder.cloudnetdemo.com/>{: target="_blank"} It also generates Terraform output that you can add to your Terraform scripts. However, it may not be completely up to date with features available in the Cloud Console or gcloud CLI, so use with caution.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -61,8 +80,8 @@ Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor s
   <div class="gcp-tab-content">
   <div class="active">
    <ol>
-           <li>Go to the <a href="https://console.cloud.google.com/https://pantheon.corp.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
-             <li>click <b>Create policy</b>.</li>
+           <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
+             <li>Click <b>Create policy</b>.</li>
            <li>Under <b>Configure policy</b>, add a name for the policy and optionally a description.</li>
            <li>Change the <b>Default rule action</b> to <b>Allow</b>.</li>
            <li>Keep all the other default settings.</li>
@@ -95,7 +114,64 @@ Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor s
 
 ### Add rules to your policy
 
-If you are subscribed to the Enterprise tier, you can simply add a default action for how you want traffic to be handled. You don't need to define any conditions that trigger the handling, as the feature will 
+If you are subscribed to the Enterprise tier, you can simply add a default action for how you want "attacks" reported by Adaptive Protection to be handled. You don't need to define any conditions that trigger the handling; you can simply [enable the Auto Deploy feature], and Cloud Armor will take care of the rest. You can also create additional rules as needed.
+
+If you are not subscribed to Enterprise, you will need to use your Cloud Run's Service [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} to find the source of the unwanted traffic, and then configure a rule in your Cloud Armor security policy. We recommend that you use the simplest approach, which is to determine the IP addresses or ranges that are sending the traffic, and define a rule to [rate-limit traffic from these addresses](#block).
+
+{: #autodeploy}
+#### Enable Auto-Deploy for Adaptive Protection (Enterprise only)
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+  <li class="active">Cloud Console</li>
+  <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+  <div class="active">
+  First, enable Auto-Deploy and add a threshold configuation:
+   <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
+            <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
+           <li>Expand the <b>Adaptive Protection configuration</b> section.</li>
+           <li>Click <b>Add a threshold configuration</b>.
+           <li>For now, keep all the default settings and give the threshold a name.</li>
+           <li>Click <b>Update</b>. It will take a few minutes to update.</li>
+   
+   Now, add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
+           <li>In the <b>Policy details</b> page, click <b>Add rule</b>.</li>
+           <li>Add a description of the rule.</li>
+           <li>Enable <b>Advanced mode</b>.</li>
+           <li>In the <b>Match</b> field, enter `evaluateAdaptiveProtectionAutoDeploy()`. This means that Adaptive Protection will define the sources to be blocked, whether IP addresses, HTTP headers, or other attributes of the traffic.</li>
+           <li>From the <b>Action</b> drop-down, 
+           <li>Click <b>Create policy</b>. It may take a few minutes to complete. When it is created, your new policy will be listed in the <b>Cloud Armor policies</b> page.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+      <li>Create the policy and enable Adaptive Protection:
+
+        <pre>gcloud compute security-policies create <var>POLICY_NAME</var> \
+        --type CLOUD_ARMOR --description "<var>DESCRIPTION</var>" \
+        --enable-layer7-ddos-defense</pre></li>
+        <li>Apply the policy to the backend you created when you created the <a href="#serve">load balancer</a>:
+        <pre>gcloud compute backend-services update <var>BACKEND_NAME</var> \
+        --security-policy <var>POLICY_NAME</var></pre></li>
+         <li>Set the default rule to allow all traffic:
+         <pre>gcloud compute security-policies rules create 2,147,483,647 \ 
+         --security-policy <var>POLICY_NAME</var> --description "Default rule" \
+         --expression "*" --action allow</pre>
+         </li>
+      </ol>
+   </div>
+  </div>
+</div>
+
+
+
+{: #block}
+#### Create a simple IP address-based rate-limiting rule
+
+
 
 ## Restrict public access to your service {#access}
 
