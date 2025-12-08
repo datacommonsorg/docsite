@@ -54,18 +54,20 @@ For more details comparing the two options, see the [Cloud Armor Enterprise Over
 ### Recommended workflows
 
 If you subscribe to the Enterprise tier, use the following workflow:
-1. Create a security policy and enable Adaptive Protection.
+1. Create a [security policy and enable Adaptive Protection](#create).
 1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a detailed alert will appear on the **Adaptive Protection** dashboard, including the source of the traffic, and suggested rules for handling.
-1. Optionally, update your policy to enable Auto Deploy.
-1. If you enable Auto Deploy, create a rule that defines the action to be taken automatically when an attack is detected. 
-1. Optionally, create additional manual rules.
+1. Update your policy to enable Auto Deploy.
+1. Create a rule that defines the action to be taken automatically when an attack is detected. 
+1. Optionally, create additional manual IP-based rules.
 
 If you only use the Standard tier, use the following workflow:
-1. Create a security policy and enable Adaptive Protection.
+1. Create a [security policy and enable Adaptive Protection](#create).
 1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a basic alert will appear on the **Adaptive Protection** dashboard.
-1. Use the **Logs Analytics** facility to analyze the logs for the time in which the attack occurred, to try to 
-1. Optionally, create additional IP address-based rules.
+1. Use the Cloud Run [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} facility to analyze the logs for the time in which the attack occurred and find the IP adddresses from which the unwanted traffic originated.
+1. Create manual IP-based rules.
+1. Preview and then enable the rules.
 
+{: #create}
 ### Create a Cloud Armor security policy
 
 Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To set up a basic policy that simply allows all traffic. 
@@ -195,7 +197,7 @@ Also see [Cloud Armor bot management overview](https://docs.cloud.google.com/arm
 {: #block}
 #### Create a simple IP address-based rate-limiting rule
 
-Before creating a rate-limiting rule, you will need to do some monitoring to determine the clients that are sending unwanted traffic. When you receive an alert, note the date and time at which the attack was detected, or check the [Adaptive Protection dashboard](https://docs.cloud.google.com/armor/docs/adaptive-protection-overview){: target="_blank"}. Then, use Cloud [Log Analytics](https://docs.cloud.google.com/logging/docs/log-analytics){: target="_blank"} to help diagnose the source of the traffic. You can 
+Before creating a rate-limiting rule, you will need to do some monitoring to determine the clients that are sending unwanted traffic. When you receive an alert, note the date and time at which the attack was detected, or check the [Adaptive Protection dashboard](https://docs.cloud.google.com/armor/docs/adaptive-protection-overview){: target="_blank"}. Then, use Cloud [Log Analytics](https://docs.cloud.google.com/logging/docs/log-analytics){: target="_blank"} to help diagnose the source of the traffic. We recommend that you try to find the IP addresses that are sending the traffic, and block by IP. Once you have determined a set or range of IP addresses, set up a rule as follows. 
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -204,21 +206,12 @@ Before creating a rate-limiting rule, you will need to do some monitoring to det
   </ul>
   <div class="gcp-tab-content">
   <div class="active">
-  First, enable Auto-Deploy and add a default threshold configuation:
    <ol>
            <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
             <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
-           <li>Expand the <b>Adaptive Protection configuration</b> section.</li>
-           <li>Click <b>Add a threshold configuration</b>.</li>
-           <li>For now, keep all the default settings and give the configuration a name.</li>
-           <li>Click <b>Update</b>. It will take a few minutes to update.</li>
-      </ol>
-      Now, add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
-      <ol>
            <li>In the <b>Policy details</b> page, click <b>Add rule</b>.</li>
            <li>Add a description of the rule.</li>
-           <li>Enable <b>Advanced mode</b>.</li>
-           <li>In the <b>Match</b> field, enter `evaluateAdaptiveProtectionAutoDeploy()`. This means that Adaptive Protection will define the sources to be blocked, based on IP addresses, HTTP headers, or other attributes of the traffic.</li>
+           <li>In the <b>Match</b> field, enter the range or list of IP addresses.
            <li>From the <b>Action</b> drop-down, select <b>Rate based ban</b>.</li>
            <li>In the <b>Threshold setting</b> section, specify the request rate and time interval at which the rule is triggered. Any client that sends more requests in the time period will be limited to the threshold you set for the duration of the ban interval.</li>
            <li>Set <b>Enforce on key configuration</b> to <b>IP</b>.</li>
@@ -229,16 +222,8 @@ Before creating a rate-limiting rule, you will need to do some monitoring to det
         </ol>
       </div>
     <div>
-    <ol>
-      <li>Enable Auto-Deploy and add a default threshold configuation:
-      <pre>gcloud compute security-policies add-layer7-ddos-defense-threshold-config <var>POLICY_NAME</var> \ 
-      --threshold-config-name=<var>CONFIGURATION_NAME</var>
-      </pre>
-      </li>
-      <li>Add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
       <pre>gcloud compute security-policies rules create <var>PRIORITY</var> \
     --security-policy <var>POLICY_NAME</var> \
-    --expression "evaluateAdaptiveProtectionAutoDeploy()" \
     --action rate-based-ban \
     --rate-limit-threshold-count=<var>RATE_LIMIT_THRESHOLD_COUNT</var> \
     --rate-limit-threshold-interval-sec=<var>RATE_LIMIT_THRESHOLD_INTERVAL_SEC</var> \
