@@ -70,7 +70,7 @@ If you only use the Standard tier, use the following workflow:
 
 Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To set up a basic policy that simply allows all traffic. 
 
-> Tip: There is an unofficial wizard tool that guides you through the process of configuring a security policy: <https://cabuilder.cloudnetdemo.com/>{: target="_blank"} It also generates Terraform output that you can add to your Terraform scripts. However, it may not be completely up to date with features available in the Cloud Console or gcloud CLI, so use with caution.
+> Tip: There is an unofficial wizard tool that guides you through the process of configuring a security policy: <https://cabuilder.cloudnetdemo.com/>{: target="_blank"}. It also generates Terraform output that you can add to your Terraform scripts. However, it may not be completely up to date with features available in the Cloud Console or gcloud CLI, and cannot be used to update an existing policy. So use with caution.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -95,7 +95,6 @@ Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor s
     <div>
     <ol>
       <li>Create the policy and enable Adaptive Protection:
-
         <pre>gcloud compute security-policies create <var>POLICY_NAME</var> \
         --type CLOUD_ARMOR --description "<var>DESCRIPTION</var>" \
         --enable-layer7-ddos-defense</pre></li>
@@ -118,6 +117,15 @@ If you are subscribed to the Enterprise tier, you can simply add a default actio
 
 If you are not subscribed to Enterprise, you will need to use your Cloud Run's Service [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} to find the source of the unwanted traffic, and then configure a rule in your Cloud Armor security policy. We recommend that you use the simplest approach, which is to determine the IP addresses or ranges that are sending the traffic, and define a rule to [rate-limit traffic from these addresses](#block).
 
+For handling bot traffic, we recommend that you use a "rate-based ban" as the action to be taken when a rule is triggered. There are two important rule-triggering criteria:
+
+- The "threshold" setting: this defines a threshold beyond which requests from a given client that exceed the threshold are blocked. For example, if you define this to be 1000 requests over a 1-minute period, if a client sends 2500 requests, that client will be limited to 1000 for the configured ban duration. This can be used to limit your traffic to a predefined level.
+- The "ban threshold" setting: This defines a threshold beyond which _all_ requests from a given client are blocked. For example, if you define a threshold of 1000 over a 1-minute period, if a client sends 2500 requests, all requests from that client will be blocked for the configured ban duration. This can be used to entirely block unwanted traffic.
+
+You can set either or both of these. The values you set are based on your expected traffic levels. See [Banning clients based on request rates](https://docs.cloud.google.com/armor/docs/rate-limiting-overview#ban-clients){: target="_blank"}. 
+
+Also see [Cloud Armor bot management overview](https://docs.cloud.google.com/armor/docs/bot-management){: target="_blank"} for additional options on serving captchas.
+
 {: #autodeploy}
 #### Enable Auto-Deploy for Adaptive Protection (Enterprise only)
 
@@ -128,48 +136,129 @@ If you are not subscribed to Enterprise, you will need to use your Cloud Run's S
   </ul>
   <div class="gcp-tab-content">
   <div class="active">
-  First, enable Auto-Deploy and add a threshold configuation:
+  First, enable Auto-Deploy and add a default threshold configuation:
    <ol>
            <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
             <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
            <li>Expand the <b>Adaptive Protection configuration</b> section.</li>
-           <li>Click <b>Add a threshold configuration</b>.
-           <li>For now, keep all the default settings and give the threshold a name.</li>
+           <li>Click <b>Add a threshold configuration</b>.</li>
+           <li>For now, keep all the default settings and give the configuration a name.</li>
            <li>Click <b>Update</b>. It will take a few minutes to update.</li>
-   
-   Now, add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
+      </ol>
+      Now, add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
+      <ol>
            <li>In the <b>Policy details</b> page, click <b>Add rule</b>.</li>
            <li>Add a description of the rule.</li>
            <li>Enable <b>Advanced mode</b>.</li>
-           <li>In the <b>Match</b> field, enter `evaluateAdaptiveProtectionAutoDeploy()`. This means that Adaptive Protection will define the sources to be blocked, whether IP addresses, HTTP headers, or other attributes of the traffic.</li>
-           <li>From the <b>Action</b> drop-down, 
+           <li>In the <b>Match</b> field, enter `evaluateAdaptiveProtectionAutoDeploy()`. This means that Adaptive Protection will define the sources to be blocked, based on IP addresses, HTTP headers, or other attributes of the traffic.</li>
+           <li>From the <b>Action</b> drop-down, select <b>Rate based ban</b>.</li>
+           <li>In the <b>Threshold setting</b> section, specify the request rate and time interval at which the rule is triggered. Any client that sends more requests in the time period will be limited to the threshold you set for the duration of the ban interval.</li>
+           <li>Set <b>Enforce on key configuration</b> to <b>IP</b>.</li>
+           <li>Keep the default action of <b>Deny (429)</b>.</li>
+           <li>Optionally, under <b>Exceed configuration</b>, specify the request rate and time interval at which offending IP addresses should be blocked. Any client that sends more requests in the time period will be prevented from sending any requests for the duration of the ban interval.</li>
+           <li>In the <b>Priority</b> field, enter a value lower than 2,147,483,647.</li>
            <li>Click <b>Create policy</b>. It may take a few minutes to complete. When it is created, your new policy will be listed in the <b>Cloud Armor policies</b> page.</li>
         </ol>
       </div>
     <div>
     <ol>
-      <li>Create the policy and enable Adaptive Protection:
-
-        <pre>gcloud compute security-policies create <var>POLICY_NAME</var> \
-        --type CLOUD_ARMOR --description "<var>DESCRIPTION</var>" \
-        --enable-layer7-ddos-defense</pre></li>
-        <li>Apply the policy to the backend you created when you created the <a href="#serve">load balancer</a>:
-        <pre>gcloud compute backend-services update <var>BACKEND_NAME</var> \
-        --security-policy <var>POLICY_NAME</var></pre></li>
-         <li>Set the default rule to allow all traffic:
-         <pre>gcloud compute security-policies rules create 2,147,483,647 \ 
-         --security-policy <var>POLICY_NAME</var> --description "Default rule" \
-         --expression "*" --action allow</pre>
-         </li>
-      </ol>
+      <li>Enable Auto-Deploy and add a default threshold configuation:
+      <pre>gcloud compute security-policies add-layer7-ddos-defense-threshold-config <var>POLICY_NAME</var> \ 
+      --threshold-config-name=<var>CONFIGURATION_NAME</var>
+      </pre>
+      </li>
+      <li>Add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
+      <pre>gcloud compute security-policies rules create <var>PRIORITY</var> \
+    --security-policy <var>POLICY_NAME</var> \
+    --expression "evaluateAdaptiveProtectionAutoDeploy()" \
+    --action rate-based-ban \
+    --rate-limit-threshold-count=<var>RATE_LIMIT_THRESHOLD_COUNT</var> \
+    --rate-limit-threshold-interval-sec=<var>RATE_LIMIT_THRESHOLD_INTERVAL_SEC</var> \
+    --ban-duration-sec=<var>BAN_DURATION_SEC</var> \
+    --ban-threshold-count=<var>BAN_THRESHOLD_COUNT</var> \
+    --ban-threshold-interval-sec=<var>BAN_THRESHOLD_INTERVAL_SEC</var> \
+    --exceed-action deny-429 \
+    --enforce-on-key ip
+      </pre>
+      </li>
+  
+      <ul><li>Set the priority to a value lower than 2,147,483,647.</li>
+      <li>Set the rate limit threshold count and interval to define the condition which triggers the rule. Any client that sends more requests in the time period will be limited to the threshold you set for the ban duration.</li>
+      <li>Set the ban threshold count and interval to define the condition that bans traffic from offending clients. Any client that sends more requests in the time period will be prevented from sending any requests for the ban duration.</li>
+      <li>Set the ban duration to the desired length of the ban.</li>
+      </ul>
+          </ol>
    </div>
   </div>
 </div>
 
-
-
 {: #block}
 #### Create a simple IP address-based rate-limiting rule
+
+Before creating a rate-limiting rule, you will need to do some monitoring to determine the clients that are sending unwanted traffic. When you receive an alert, note the date and time at which the attack was detected, or check the [Adaptive Protection dashboard](https://docs.cloud.google.com/armor/docs/adaptive-protection-overview){: target="_blank"}. Then, use Cloud [Log Analytics](https://docs.cloud.google.com/logging/docs/log-analytics){: target="_blank"} to help diagnose the source of the traffic. You can 
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+  <li class="active">Cloud Console</li>
+  <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+  <div class="active">
+  First, enable Auto-Deploy and add a default threshold configuation:
+   <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
+            <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
+           <li>Expand the <b>Adaptive Protection configuration</b> section.</li>
+           <li>Click <b>Add a threshold configuration</b>.</li>
+           <li>For now, keep all the default settings and give the configuration a name.</li>
+           <li>Click <b>Update</b>. It will take a few minutes to update.</li>
+      </ol>
+      Now, add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
+      <ol>
+           <li>In the <b>Policy details</b> page, click <b>Add rule</b>.</li>
+           <li>Add a description of the rule.</li>
+           <li>Enable <b>Advanced mode</b>.</li>
+           <li>In the <b>Match</b> field, enter `evaluateAdaptiveProtectionAutoDeploy()`. This means that Adaptive Protection will define the sources to be blocked, based on IP addresses, HTTP headers, or other attributes of the traffic.</li>
+           <li>From the <b>Action</b> drop-down, select <b>Rate based ban</b>.</li>
+           <li>In the <b>Threshold setting</b> section, specify the request rate and time interval at which the rule is triggered. Any client that sends more requests in the time period will be limited to the threshold you set for the duration of the ban interval.</li>
+           <li>Set <b>Enforce on key configuration</b> to <b>IP</b>.</li>
+           <li>Keep the default action of <b>Deny (429)</b>.</li>
+           <li>Optionally, under <b>Exceed configuration</b>, specify the request rate and time interval at which offending IP addresses should be blocked. Any client that sends more requests in the time period will be prevented from sending any requests for the duration of the ban interval.</li>
+           <li>In the <b>Priority</b> field, enter a value lower than 2,147,483,647.</li>
+           <li>Click <b>Create policy</b>. It may take a few minutes to complete. When it is created, your new policy will be listed in the <b>Cloud Armor policies</b> page.</li>
+        </ol>
+      </div>
+    <div>
+    <ol>
+      <li>Enable Auto-Deploy and add a default threshold configuation:
+      <pre>gcloud compute security-policies add-layer7-ddos-defense-threshold-config <var>POLICY_NAME</var> \ 
+      --threshold-config-name=<var>CONFIGURATION_NAME</var>
+      </pre>
+      </li>
+      <li>Add a rule for the action Adaptive Protection should take when it determines that an "attack" has occurred:
+      <pre>gcloud compute security-policies rules create <var>PRIORITY</var> \
+    --security-policy <var>POLICY_NAME</var> \
+    --expression "evaluateAdaptiveProtectionAutoDeploy()" \
+    --action rate-based-ban \
+    --rate-limit-threshold-count=<var>RATE_LIMIT_THRESHOLD_COUNT</var> \
+    --rate-limit-threshold-interval-sec=<var>RATE_LIMIT_THRESHOLD_INTERVAL_SEC</var> \
+    --ban-duration-sec=<var>BAN_DURATION_SEC</var> \
+    --ban-threshold-count=<var>BAN_THRESHOLD_COUNT</var> \
+    --ban-threshold-interval-sec=<var>BAN_THRESHOLD_INTERVAL_SEC</var> \
+    --exceed-action deny-429 \
+    --enforce-on-key ip
+      </pre>
+      </li>
+  
+      <ul><li>Set the priority to a value lower than 2,147,483,647.</li>
+      <li>Set the rate limit threshold count and interval to define the condition which triggers the rule. Any client that sends more requests in the time period will be limited to the threshold you set for the ban duration.</li>
+      <li>Set the ban threshold count and interval to define the condition that bans traffic from offending clients. Any client that sends more requests in the time period will be prevented from sending any requests for the ban duration.</li>
+      <li>Set the ban duration to the desired length of the ban.</li>
+      </ul>
+          </ol>
+   </div>
+  </div>
+</div>
 
 
 
