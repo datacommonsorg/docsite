@@ -135,7 +135,7 @@ You can use either or both settings. The values you set should be based on your 
   </ul>
   <div class="gcp-tab-content">
   <div class="active">
-  First, enable Auto-Deploy and add a default threshold configuation:
+  First, enable Auto-Deploy and add a default threshold configuration:
    <ol>
            <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
             <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
