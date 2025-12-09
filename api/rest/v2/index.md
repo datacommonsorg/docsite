@@ -37,10 +37,6 @@ much more.
 
 Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org){: target="_blank"} format. You can use the REST API with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/){: target="_blank"}), by scripting HTTP requests in another language like Javascript, or even by entering an endpoint into your web browser!
 
-## What's new in V2
-
-The V2 API collapses functionality from the [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, described below. Each API endpoint can also handle both single and bulk requests.
-
 ## Service endpoints
 
 You make requests through [API endpoints](https://en.wikipedia.org/wiki/Web_API#Endpoints){: target="_blank"}. You access each endpoint using its unique URL, which is a combination of a base URL and the endpoint's [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier){: target="_blank"}.
