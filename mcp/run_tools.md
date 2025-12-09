@@ -118,6 +118,8 @@ In addition to the [standard prerequisites](#prerequisites), you must have the f
 - [Node.js](https://nodejs.org/en/download){: target="_blank"}
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}
 
+> Note: You may need administrator privileges, or may need to override security settings, to install Gemini, using `nvm`, installed with Node.js. 
+
 When you install the extension, it clones the [Data Commons extension Github repo](https://github.com/gemini-cli-extensions/datacommons){: target="_blank"} to your local system.
 
 {:.no_toc}
