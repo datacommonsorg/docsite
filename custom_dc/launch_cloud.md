@@ -56,21 +56,19 @@ For more details comparing the two options, see the [Cloud Armor Enterprise Over
 If you subscribe to the Enterprise tier, use the following workflow:
 1. Create a [security policy and enable Adaptive Protection](#create).
 1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a detailed alert will appear on the **Adaptive Protection** dashboard, including the source of the traffic, and suggested rules for handling.
-1. Update your policy to enable Auto Deploy.
-1. Create a rule that defines the action to be taken automatically when an attack is detected. 
-1. Optionally, create additional manual IP-based rules.
+1. Update your policy to [enable Auto Deploy](#autodeploy) and create a rule that defines the action to be taken automatically when an attack is detected. 
+1. Optionally, [create additional manual IP-based rules](#block).
 
 If you only use the Standard tier, use the following workflow:
 1. Create a [security policy and enable Adaptive Protection](#create).
 1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a basic alert will appear on the **Adaptive Protection** dashboard.
-1. Use the Cloud Run [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} facility to analyze the logs for the time in which the attack occurred and find the IP adddresses from which the unwanted traffic originated.
-1. Create manual IP-based rules.
-1. Preview and then enable the rules.
+1. Use the Cloud Run [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} facility to analyze the logs for the time in which the attack occurred. Continue to analyze the logs until you identify the IP adddresses from which the unwanted traffic originated.
+1. [Create manual IP-based rules](#block).
 
 {: #create}
 ### Create a Cloud Armor security policy
 
-Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To set up a basic policy that simply allows all traffic. 
+Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor security policy. To start, you set up a basic policy that simply allows all traffic. 
 
 > Tip: There is an unofficial wizard tool that guides you through the process of configuring a security policy: <https://cabuilder.cloudnetdemo.com/>{: target="_blank"}. It also generates Terraform output that you can add to your Terraform scripts. However, it may not be completely up to date with features available in the Cloud Console or gcloud CLI, and cannot be used to update an existing policy. So use with caution.
 
@@ -113,7 +111,7 @@ Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor s
   </div>
 </div>
 
-### Add rules to your policy
+### Add blocking rules to your policy
 
 If you are subscribed to the Enterprise tier, you can simply add a default action for how you want "attacks" reported by Adaptive Protection to be handled. You don't need to define any conditions that trigger the handling; you can simply [enable the Auto Deploy feature], and Cloud Armor will take care of the rest. You can also create additional rules as needed.
 
