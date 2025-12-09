@@ -115,7 +115,6 @@ You can also set additional variables as described in the `.env.sample` file.
 
 In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
 - [Git](https://git-scm.com/){: target="_blank"}
-- [Node.js](https://nodejs.org/en/download){: target="_blank"}
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"} 
 
 When you install the extension, it clones the [Data Commons extension Github repo](https://github.com/gemini-cli-extensions/datacommons){: target="_blank"} to your local system.
@@ -187,7 +186,6 @@ gemini extensions uninstall datacommons
 ## Use Gemini CLI
 
 In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
-- [Node.js](https://nodejs.org/en/download){: target="_blank"}
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}
 
 {:.no_toc}
