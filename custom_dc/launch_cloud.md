@@ -87,7 +87,7 @@ Regardless of which Cloud Armor tier you choose, you must set up a Cloud Armor s
            <li>Change the <b>Default rule action</b> to <b>Allow</b>.</li>
            <li>Keep all the other default settings.</li>
            <li>Click <b>Apply to targets</b>.</li>
-           <li>From the <b>Backend service</b> drop-down, select the backend service you created when when you created the <a href="#serve">load balancer</a>.</li>
+           <li>From the <b>Backend service</b> drop-down, select the backend service you created when you created the <a href="#serve">load balancer</a>.</li>
            <li>Under <b>Advanced configurations</b>, select <b>Enable Adaptive Protection</b>.</li>
            <li>Click <b>Done</b>.</li>
            <li>Click <b>Create policy</b>. It may take a few minutes to complete. When it is created, your new policy will be listed in the <b>Cloud Armor policies</b> page.</li>
@@ -135,7 +135,7 @@ You can use either or both settings. The values you set should be based on your 
   </ul>
   <div class="gcp-tab-content">
   <div class="active">
-  First, enable Auto-Deploy and add a default threshold configuation:
+  First, enable Auto-Deploy and add a default threshold configuration:
    <ol>
            <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
             <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
