@@ -40,19 +40,19 @@ For Cloud Run services, you use a global external load balancer, even if you're 
 {: #bot}
 ## Detect and prevent bot traffic with Google Cloud Armor
 
-Once your website reaches wide adoption, it will likely be hit by unwanted bot traffic. This can cause major spikes in your resource usage. If you are sensitive to sudden increases in your project's billingYou should set up Google Cloud Armor, with Adaptive Protection, before such attacks happen.
+Once your website reaches wide adoption, it will likely be hit by unwanted bot traffic. This can cause major spikes in your resource usage. If your project is sensitive to sudden increases in resource charges, you should set up Google Cloud Armor, with Adaptive Protection, before such attacks happen.
 
-> **Tip:** If you are unsure about whether you will need Cloud Armor, you can use Google Analytics to monitor and notify you of traffic anomalies. To configure these notifications, you create "custom insights". There are several predefined, "recommended" insights related to traffic spikes, which you only need to enable. See the [Analytics Insights page](https://support.google.com/analytics/answer/9443595){: target="_blank"} for procedures.
+> **Tip:** If you are unsure about whether you will need Cloud Armor, you can use [Google Analytics](#analytics) to easily monitor and notify you of traffic anomalies. (This is a free service.) To configure these notifications, you create "custom insights". There are several predefined, "recommended" insights related to traffic spikes, which you only need to enable. See the [Analytics Insights page](https://support.google.com/analytics/answer/9443595){: target="_blank"} for procedures.
 
-There are two tiers you can choose from:
+With Cloud Armor, you can choose from two tiers:
 - Enterprise: This is a paid subscription (see [Cloud Armor Pricing](https://cloud.google.com/armor/pricing){: target="_blank"} for details) that includes all charges for resource usage. We highly recommend the "Paygo" option, as the Adaptive Protection feature provides out-of-the-box, automatic anomaly detection and prevention with minimal setup.
 - Standard: This service has no subscription fee, but does charge for resource usage. However, the Adaptive Protection service will only detect and alert you about anomalies without further action or information. You are responsible for defining and applying policy rules to block undesired traffic. 
 
-Both options allow you to block by IP address range or other "advanced" attributes, and provide a set of actions you can choose for dealing with unwanted traffic: deny, rate-limit, and display captcha. etc. 
+Both options allow you to block by IP address range or other "advanced" attributes, and provide a set of actions you can choose for dealing with unwanted traffic: deny, rate-limit, redirect and display a captcha, etc. 
 
 For more details comparing the two options, see the [Cloud Armor Enterprise Overview](https://docs.cloud.google.com/armor/docs/armor-enterprise-overview){: target="_blank"}. If you decide to subscribe to Enterprise, see [Use Cloud Armor Enterprise](https://docs.cloud.google.com/armor/docs/armor-enterprise-using){: target="_blank"} for instructions on enrolling.
 
-### Recommended workflows
+**Recommended workflows**
 
 If you subscribe to the Enterprise tier, use the following workflow:
 1. Create a [security policy and enable Adaptive Protection](#create).
@@ -63,7 +63,7 @@ If you subscribe to the Enterprise tier, use the following workflow:
 If you only use the Standard tier, use the following workflow:
 1. Create a [security policy and enable Adaptive Protection](#create).
 1. Allow several hours for Adaptive Protection to get trained to recognize anomalies according to your traffic patterns. If an attack is detected, a basic alert will appear on the **Adaptive Protection** dashboard.
-1. Use the Cloud Run [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} facility to analyze the logs for the time in which the attack occurred. Continue to analyze the logs until you identify the IP adddresses from which the unwanted traffic originated.
+1. Use Google Analytics Insights to get some high-level information on the origin of the spiky traffic, such as country, surface, etc. Then use the Cloud Run [Logs Analytics](https://docs.cloud.google.com/logging/docs/analyze/query-and-view){: target="_blank"} facility to analyze the logs for the time in which the attack occurred. Continue to analyze the logs until you identify the IP addresses from which the unwanted traffic originated.
 1. [Create manual IP-based rules](#block).
 
 {: #create}
@@ -121,9 +121,9 @@ If you are not subscribed to Enterprise, you will need to use your Cloud Run's S
 For handling bot traffic, we recommend that you use a "rate-based ban" as the action to be taken when a rule is triggered. There are two important rule-triggering criteria, which can be somewhat confusing, so we explain them here:
 
 - The "threshold" setting: This defines a threshold beyond which requests from a given client that exceed the threshold are blocked. For example, let's say you define the threshold to be 1000 requests over a 1-minute period. If a client sends 2500 requests, that client will be limited to 1000 for the configured ban duration. You can use this setting to maintain your traffic at a predefined level.
-- The "ban threshold" setting: This defines a threshold beyond which _all_ requests from a given client are blocked. For example, let's say you define the threshold to be 2500 requests over a 2-minute period. If a client sends 3000 request during that period, all requests from that client will be blocked for the configured ban duration. You can use this setting to minimize your resource usage.
+- The "ban threshold" setting: This defines a threshold beyond which _all_ requests from a given client are blocked. For example, let's say you define the threshold to be 2500 requests over a 2-minute period. If a client sends 3000 requests during that period, all requests from that client will be blocked for the configured ban duration. You can use this setting to minimize your resource usage.
 
-You can use either or both settings. The values you set should be based on your expected traffic levels according to your resource capacity (including buffers). See [Banning clients based on request rates](https://docs.cloud.google.com/armor/docs/rate-limiting-overview#ban-clients){: target="_blank"} for more information. 
+You can use either or both settings. The values you set should be based on your expected traffic levels and resource capacity. See [Banning clients based on request rates](https://docs.cloud.google.com/armor/docs/rate-limiting-overview#ban-clients){: target="_blank"} for more information. 
 
 {: #autodeploy}
 #### Enable Auto-Deploy for Adaptive Protection (Enterprise only)
@@ -149,7 +149,7 @@ You can use either or both settings. The values you set should be based on your 
            <li>In the <b>Policy details</b> page, click <b>Add rule</b>.</li>
            <li>Add a description of the rule.</li>
            <li>Enable <b>Advanced mode</b>.</li>
-           <li>In the <b>Match</b> field, enter `evaluateAdaptiveProtectionAutoDeploy()`. This means that Adaptive Protection will define the sources to be blocked, based on IP addresses, HTTP headers, or other attributes of the traffic.</li>
+           <li>In the <b>Match</b> field, enter <code>evaluateAdaptiveProtectionAutoDeploy()</code>. This means that Adaptive Protection will define the sources to be blocked, based on IP addresses, HTTP headers, or other attributes of the traffic.</li>
            <li>From the <b>Action</b> drop-down, select <b>Rate based ban</b>.</li>
            <li>In the <b>Threshold setting</b> section, specify the request rate and time interval at which the rule is triggered. Any client that sends more requests in the time period will be limited to the threshold you set for the duration of the ban interval.</li>
            <li>Set <b>Enforce on key configuration</b> to <b>IP</b>.</li>
