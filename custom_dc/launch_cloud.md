@@ -170,7 +170,7 @@ The following defines a rule for handling traffic when Adaptive Protection detec
     </div>
     <div>
       <ol>
-        <li>Enable Auto-Deploy and add a default threshold configuation:
+        <li>Enable Auto-Deploy and add a default threshold configuration:
         <pre>gcloud compute security-policies add-layer7-ddos-defense-threshold-config <var>POLICY_NAME</var> \ 
         --threshold-config-name=<var>CONFIGURATION_NAME</var>
         </pre>
