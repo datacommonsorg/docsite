@@ -161,7 +161,7 @@ You can use either or both settings. The values you set should be based on your 
       </div>
     <div>
     <ol>
-      <li>Enable Auto-Deploy and add a default threshold configuation:
+      <li>Enable Auto-Deploy and add a default threshold configuration:
       <pre>gcloud compute security-policies add-layer7-ddos-defense-threshold-config <var>POLICY_NAME</var> \ 
       --threshold-config-name=<var>CONFIGURATION_NAME</var>
       </pre>
