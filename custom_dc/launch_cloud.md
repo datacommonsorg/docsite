@@ -205,7 +205,7 @@ Before creating a rate-limiting rule, you will need to do some monitoring to det
   <div class="active">
    <ol>
            <li>Go to the <a href="https://console.cloud.google.com/net-security/securitypolicies/list" target="_blank">https://console.cloud.google.com/net-security/securitypolicies/list</a> page for your project.</li>
-            <li>In the <b>Policy details</b> page, click <b>Edit</b>.</li>
+           <li>Click the link for the policy you created above.</li>
            <li>In the <b>Policy details</b> page, click <b>Add rule</b>.</li>
            <li>Add a description of the rule.</li>
            <li>In the <b>Match</b> field, enter the range or list of IP addresses.</li>
