@@ -8,7 +8,7 @@ has_children: true
 
 # Data Commons Python API
 
-> **Note:** This version of the Data Commons Python API will be deprecated in early 2026. Please migrate your applications to [V2](/api/python/v2). For help on translating your requests, see the [Migration guide](/api/python/v2/migration.html).
+> **Warning:** This version of the Data Commons Python API will be deprecated in early 2026. Please migrate your applications to [V2](/api/python/v2). For help on translating your requests, see the [Migration guide](/api/python/v2/migration.html).
 
 The Data Commons Python API is a Python library that enables developers to
 programmatically access nodes in the Data Commons knowledge graph. This package

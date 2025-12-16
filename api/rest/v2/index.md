@@ -6,18 +6,9 @@ parent: API - Query data programmatically
 has_children: true
 published: true
 redirect_from: 
-   /api/rest/v2/getting_started
+   /api/rest/v1/getting_started
    /api/rest/index
-   /api/rest/place_in
-   /apl/rest/place_stat_vars
-   /api/rest/property_label
-   /api/rest/property_value
-   /api/rest/query
-   /api/rest/stat_all
-   /api/rest/stat_series
-   /api/rest/stat_value
-   /api/rest/stats
-   /api/rest/triple
+   /api/rest/v1/index
 ---
 
 {:.no_toc}
@@ -36,10 +27,6 @@ graph, integrate statistics from the graph into data analysis applications and
 much more.
 
 Following HTTP, a REST API call consists of a _request_ that you provide, and a _response_ from the Data Commons servers with the data you requested, in [JSON](https://json.org){: target="_blank"} format. You can use the REST API with any tool or language that supports HTTP. You can make queries on the command line (e.g. using [cURL](https://curl.se/){: target="_blank"}), by scripting HTTP requests in another language like Javascript, or even by entering an endpoint into your web browser!
-
-## What's new in V2
-
-The V2 API collapses functionality from the [V1 API](/api/rest/v1) into a smaller number of endpoints, by introducing a syntax for _relation expressions_, described below. Each API endpoint can also handle both single and bulk requests.
 
 ## Service endpoints
 
