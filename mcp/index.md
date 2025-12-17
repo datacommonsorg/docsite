@@ -23,6 +23,8 @@ At this time, there is no centrally deployed server; you run your own server, an
 
 ![alt text](/assets/images/mcp.png)
 
+You can run the server and client locally, or you can run the server and client on different machines.
+
 ## Tools
 
 The server currently supports the following tools:
