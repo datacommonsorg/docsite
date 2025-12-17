@@ -232,6 +232,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
         "datacommons-mcp": {
             "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
             "headers": {
+               "Content-Type": "application/json",
                "Accept": "application/json, text/event-stream"
             },
             // other settings as above
@@ -317,10 +318,14 @@ root_agent = LlmAgent(
       tools=[McpToolset(
          connection_params=StreamableHTTPConnectionParams(
             url=f"http://<host>:<port>/mcp",
-            headers={"Accept": "application/json, text/event-stream"}
-         )
-      )],
-   )
+            headers={
+               "Content-Type": "application/json",
+               "Accept": "application/json, text/event-stream"
+            },
+         ),
+      )
+   ],
+)
 ```
 
 ## Sample queries
