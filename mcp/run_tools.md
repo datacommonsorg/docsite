@@ -317,7 +317,7 @@ root_agent = LlmAgent(
       tools=[McpToolset(
          connection_params=StreamableHTTPConnectionParams(
             url=f"http://<host>:<port>/mcp",
-            headers={"Accept": "text/event-stream"}
+            headers={"Accept": "application/json, text/event-stream"}
          )
       )],
    )
