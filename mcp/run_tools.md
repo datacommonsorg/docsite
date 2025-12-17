@@ -319,7 +319,8 @@ root_agent = LlmAgent(
          connection_params=StreamableHTTPConnectionParams(
             url=f"http://<host>:<port>/mcp"
          ),
-      )],
+      )
+   ],
 )
 ```
 
