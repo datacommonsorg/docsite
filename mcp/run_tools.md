@@ -324,7 +324,7 @@ root_agent = LlmAgent(
             },
          ),
       )
-   ],
+      ],
 )
 ```
 
