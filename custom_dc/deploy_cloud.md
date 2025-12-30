@@ -294,7 +294,7 @@ Any time you make changes to the website and want to deploy your changes to the 
    If you don't specify the <code>--package</code> option, the package name and tag will be the same as the source image.
    </div>
     <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="/custom_dc/build_image.html#build-repo">Build a local image</a>.</li>
-      <li>Generate credentials for the Docker package. 
+      <li>Generate credentials for the Docker package: 
     <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre></li>
    <li>Create a package from the source image you created in step 1:
     <pre>docker tag <var>SOURCE_IMAGE_NAME</var>:<var>SOURCE_IMAGE_TAG</var> \
@@ -302,12 +302,11 @@ Any time you make changes to the website and want to deploy your changes to the 
    The artifact repo is <code><var>PROJECT_ID</var>-artifacts</code>.</li>
    <li>Push the image to the registry:
    <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
-    The container image URL is the full name of the package you created in the previous step, including the tag.</li>
+    The container image URL is the full name of the package you created in the previous step, including the tag. For example: `us-central1-docker-pkg.dev/myproject/myrepo/datacommons:latest`.</li>
   </ol>
    </div>
   </div>
 </div>
-
 - The target image name and tag can be the same as the source or different.
 - Docker package names must be in the format <code><var>REGION</var>-docker-pkg.dev</code>. The default region in the Terraform scripts is `us-central1`.
 
@@ -346,8 +345,8 @@ You need to restart the services container every time you make changes to the co
   <div class="active">
            <ol>
            <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
-             <li>From the list of services, click the link of the service created by the Terraform scripts</li>
-             <li>click <b>Edit & Deploy Revision</b>.</li>
+             <li>From the list of services, click the link of the service created by the Terraform scripts.</li>
+             <li>Click <b>Edit & Deploy Revision</b>.</li>
            <li>Under <b>Container image URL</b>, click <b>Select</b>.</li>
            <li>Expand the package name you created in the previous step.</li>
            <li>Expand the image name of the container, and select the tag you created in the previous step.</li>
