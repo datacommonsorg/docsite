@@ -196,9 +196,6 @@ The following fields are always required:
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
 - `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. 
-
-<!--TODO: Find out how this affects display -->
-
   You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
 
@@ -285,7 +282,7 @@ memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 CSV files contain the following columns using the following headings:
 
 ```csv
-entity, variable, date, value [, unit] [, scalingFactor] [, measurementMethod] [, observationPeriod]
+`entity, variable, date, value` [`, unit`] [`, scalingFactor`] [`, measurementMethod`] [`, observationPeriod`]
 ```
 The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
