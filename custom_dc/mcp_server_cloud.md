@@ -7,70 +7,30 @@ parent: Build your own Data Commons
 
 If you have built a custom agent or Gemini CLI extension which you want to make publicly available, this page describes how to run the [Data Commons MCP server](https://pypi.org/project/datacommons-mcp/) in the cloud, using Google Cloud Run. 
 
-Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. You configure a Docker container and instruct Google Cloud Built to build and deploy the image.
+Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. Data Commons provides a prebuilt Docker image in the Artifact Registry, so you only need to set up a new Cloud Run service to point to it. There are several versions of the image available:
 
-The following procedure assumes that you have set up all the necessary Google Cloud Platform services:
-- An Artifact Registry repository
+- `gcr.io/datcom-ci/datacommons-mcp-server:latest`. This is the latest versions built from head.
+- <pre>gcr.io/datcom-ci/datacommons-mcp-server:<var>VERSION</var></pre>: These are specific versions. You will probably want to use one of these versions for production, so that any changes made by Data Commons team don't break your application.
+
+You can see all versions at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>.
+
+## Before you start: Decide on a hosting model
+
+There are several ways you can host the MCP server in Cloud Run, namely:
+
+- As a standalone service. In this case, any client simply connects to it over HTTP, including your own MCP agent running as a separate Cloud Run service or locally. You can choose whether to make the internal Cloud Run app URL publicly available, or whether to put a load balancer in front of the service and map a domain name. 
+- As a ["sidecar"](https://docs.cloud.google.com/run/docs/deploying#sidecars) to an MCP client. If you are hosting your own MCP client in Cloud Run as well, this may be a useful option. In this case, the MCP server is not directly addressable. 
+
+In this page, we provide a procedure for running the Data Commons MCP server as a standalone container. If you would go with the sidecar option, please see (Deploying multiple containers to a service (sidecars))[https://docs.cloud.google.com/run/docs/deploying#sidecars]{: target="_blank"} for additional requirements (e.g. health-checks) and steps.
+
+## Prequisites
+
+The following procedures assume that you have set up the following Google Cloud Platform services:
+- Service accounts
 - A Secret Manager secret for storying your Data Commons API key
 - 
 
-## Step 1: Create a Dockerfile
-
-In a local project directory, create a file `Dockerfile`. Add the following configuration:
-
-<pre>
-ROM python:3.12-slim
-
-WORKDIR /workspace
-
-RUN python -m venv ./venv
-ENV PATH="/workspace/venv/bin:$PATH"
-RUN pip3 install --upgrade pip
-RUN pip install --no-cache-dir datacommons-mcp@<var>VERSION_NUMBER</var>
-
-ENV PORT=8080
-
-CMD ["datacommons-mcp", "serve", "http", "--host", "0.0.0.0", "--port", "8080"]
-</pre>
-
-You should pin the package to a particular version number (which you can find on the [PyPi page](https://pypi.org/project/datacommons-mcp/)), so that any future changes that are released by the Data Commons do not break your application.
-
-## Step 2: Create a container image and upload it to the Artifact Registry
-
-In this step, you build a Docker image from the `datacommons-mcp` package hosted at <https://pypi.org/project/datacommons-mcp/> and upload it to your Artifact Registry repository. You can perform this step in two ways:
-- Build a local image using Docker and then upload it to the Artifact Registry. This method is useful if you want to test out that the package runs correctly before deploying it.
-- Use Cloud Build to build an image remotely and automatically store it in the Artifact Registry. This method combines the build and upload steps in a single step.
-
-Before starting, be sure to refresh your [GCP credentials](deploy_cloud.md#gen-creds):
-
-```shell
-gcloud auth application-default login
-```
-
-### Build locally with Docker and upload
-
-1. From the directory where your `Dockerfile` is stored, run the following command:
-   <pre>
-    docker build --tag <var>LOCATION</var>-docker.pkg.dev/<var>PROJECT_ID</var>/<var>REPO_NAME</var>/<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>  .
-    </pre>
-    - The location is the region where you want the package to be stored. Typically this is `us-central1`.
-    - The repo must have previously been created in the Artifact Registry
-    - The image name is a meaningful name, such as `datacommons-mcp-server`.
-    - The image tag is a meaningful description of the version you are using.
-1. Push the image to the registry:
-   <pre>docker push <var>CONTAINER_IMAGE_URL</var></pre>
-    The container image URL is the full name of the package you created in the previous step, including the tag. For example: `us-central1-docker-pkg.dev/myproject/myrepo/datacommons:latest`.</li>
-
-### Build remotely with Cloud Build
-
-gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/mcp-prod .
-
-## Step 3: Verify that the image is created in the repository
-
-1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project.
-1. In the list of repositories, click on <code><var>PROJECT_ID</var>-artifacts</code>. You should see your image in the list. You can click through to view revisions and tags.
-
-## Step 4: Create a Cloud Run Service
+## Create a Cloud Run Service for the MCP server
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -79,40 +39,55 @@ gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/mcp-prod .
   </ul>
   <div class="gcp-tab-content">
   <div class="active">
-    <ol>
-    <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
-    <li>Click <b>Deploy container</b>.</li>
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
+           <li>Click <b>Deploy container</b>.</li>
     <li>In the <b>Container image URL</b> field, click <b>Select</b>.</li>
-    <li>From the list of Artifact Registry repositories that appears, expand your repo, expand the image you created in step 1, and select the version.</li>
-    <li>Under <b>Configure</b>, provide a name for the new service and select the region you used when creating the image, e.g. `us-central1`.</li>
-    <li>Under <b>Authentication</b>, select <b>Allow public access</b>.</li>
-    <li>Under <b>Service scaling</b>, enter `10` for the maximum number of instances.</li>
-    <li>Click <b>Add health check</b>.</li>
+    <li>In the Artifact Registry panel that appears in the right side of the window, that appears, click <b>Change </b>.
+    <li>In the project search bar enter <code>datcom-ci</code> and click on the link that appears.</li>
+    <li>Expand <b>gcr.io/datcom-ci<b> and expand <b>datacommons-mcp=server</b>.</li>
+    <li>From the list of images, select the one you want.</li>
+    <li>Under <b>Configure</b>, select the desired region for the service, e.g. <pre>us-central1</pre>.</li> 
+    <li>Under <b>Service scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
+    <li>Expand <b>Containers, Networking, Security</b>.</li>
+    <li>Under <b>Settings</b>, click <b>Add health check</b>.</li>
     <li>From the <b>Select health check type</b> drop-down, select <b>Startup check</b> and from <b>Select probe type</b> drop-down, select <b>TCP</b>.</li>
-    <li>Enter the following parameters:
-    <ul><li>
-    <li>Click <b>Deploy</b>. It will take several minutes for the service to start. You can click the <b>Logs</b> tab to view the progress.</li>
-    </ol>
+    <li>Modify the following parameters:
+    <ul><li><b>Period</b>: set to <code>240</code>.</li>
+    <li><b>Failure threshold</b>: set to <code>1</code>.</li>
+    <li><b>Timeout</b>: set to 240.</li></ul>
+    <li>Click <b>Add</b> and then click <b>Done</b>.
+    <li>Under <b>Requests</b>, increase the request timeout to <code>600</code>.
+    <li>Under <b>Revision scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
+    <li>Click the <b>Variables & secrets</b> tab.
+    <li>Under <b>Environment variables</b>, click <b>Add variable</b> and set the following variables:
+    <ul><li>name: <code>DC_TYPE</code>, value: <code>custom</code></li>
+    <li>name: <code>CUSTOM_DC_URL</code>, value: <code><var>YOUR_INSTANCE_URL</var></code></li></ul>
+    <li>Under <b>Secrets exposed as environment variables</b>, click <b>Reference a secret</b>, and <code>DC_API_KEY</code> to the Secret Manager [secret previously created by Terraform](deploy_cloud.md#terraform).</li> 
+    <li>Click <b>Create</b>. If correctly configured, the service will deploy automatically.</li></ol>
     </div>
-    <div>
+    <div><li>If you haven't recently refreshed your Google Cloud credentials, run <pre>gcloud auth application-default login</pre> and authenticate.</li>
+    <pre>
       <li>From any local directory, run the following command:
-        <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></li>
+        <pre>gcloud run deploy datacommons-mcp-server --image <var>CONTAINER_IMAGE_URL</var> \
+        --region <var>REGION</var>--platform managed --allow-unauthenticated \
+        --timeout=10m --set-secrets="DC_API_KEY=<var>SECRET_NAME</var>:latest"
+        --set-env-vars="DC_TYPE=custom" --set-env-vars="CUSTOM_DC_URL=<var>INSTANCE_URL</var>" \
+        --min-instances=0 
+        </li>
+                 <ul>
+          <li>The container image URL is <pre>gcr.io/datcom-ci/datacommons-mcp-server:<var>TAG</var></pre>. The tag is the tag or version number of the image you want to select from the Artifact Registry.</li>
+          <li>The region is the Cloud region where you want to run the service, e.g. <code>us-central1</code>.</li>
+          <li>The secret name is the one created when you ran the Terraform script, in the form <var>NAMESPACE</var>-datacommons-dc-api-key-<var>FINGERPRINT</var>. If you're not sure about the name or fingerprint, go to to <https://console.cloud.google.com/security/secret-manager>{: target="_blank"} for your project and look it up.</li>
+          </ul>
         <li>To view the startup status, run the following command:
             <pre>gcloud beta run jobs logs tail <var>SERVICE_NAME</var></pre>
           </li>
-          The service name is <code><var>NAMESPACE</var>-datacommons-web-service</code>.
-          The container image URL is the name of the package you created in the previous step.
-gcloud run deploy mcp-server-prod \
-  --image gcr.io/YOUR_PROJECT_ID/mcp-prod \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated \
-  --timeout=10m \
-  --set-secrets="DC_API_KEY=dc-api-key:latest"
-
       </ol>
      </div>
    <div>
   </div>
   </div>
 </div>
+
+

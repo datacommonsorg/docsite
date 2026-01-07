@@ -262,7 +262,7 @@ To view the tables:
 1. In the left panel, select **Cloud SQL Studio**.
 1. In the **Sign in to SQL Studio** page, from the **Database** field, select the database created by the Terraform script.
 1. In the **User** field, select the user created by the Terraform script.
-1. In the **Password** field, enter the password you have retrieved from the Cloud Secret Manager
+1. In the **Password** field, enter the password you have retrieved from the Cloud Secret Manager.
 1. In the left Explorer pane that appears, expand the **Databases** icon, your database name, and **Tables**. The table of interest is **observations**. You can see column names and other metadata.
 1. To view the actual data, in the main window, click **New SQL Editor tab**. This opens an environment in which you can enter and run SQL queries.
 1. Enter a query and click **Run**. For example, for the sample OECD data, if you do `select * from observations limit 10;`, you should see output like this:
