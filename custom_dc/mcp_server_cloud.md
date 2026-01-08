@@ -7,19 +7,18 @@ parent: Build your own Data Commons
 
 If you have built a custom agent or Gemini CLI extension which you want to make publicly available, this page describes how to run the [Data Commons MCP server](https://pypi.org/project/datacommons-mcp/) in the cloud, using Google Cloud Run. 
 
-Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. Data Commons provides a prebuilt Docker image in the Artifact Registry, so you only need to set up a new Cloud Run service to point to it. There are several versions of the image available:
+Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. Data Commons provides a prebuilt Docker image in the Artifact Registry, so you only need to set up a new Cloud Run service to point to it. 
 
-- `gcr.io/datcom-ci/datacommons-mcp-server:latest`. This is the latest versions built from head.
-- <pre>gcr.io/datcom-ci/datacommons-mcp-server:<var>VERSION</var></pre>: These are specific versions. You will probably want to use one of these versions for production, so that any changes made by Data Commons team don't break your application.
+## Prebuilt images
 
-You can see all versions at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>.
+There are several versions of the image available, viewable at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>. Most likely you will want to pick a specific version (rather than using the "latest" one) to ensure that changes introduced by the Data Commons team don't break your application.
 
-## Before you start: Decide on a hosting model
+## Before you start: decide on a hosting model
 
 There are several ways you can host the MCP server in Cloud Run, namely:
 
 - As a standalone service. In this case, any client simply connects to it over HTTP, including your own MCP agent running as a separate Cloud Run service or locally. You can choose whether to make the internal Cloud Run app URL publicly available, or whether to put a load balancer in front of the service and map a domain name. 
-- As a ["sidecar"](https://docs.cloud.google.com/run/docs/deploying#sidecars) to an MCP client. If you are hosting your own MCP client in Cloud Run as well, this may be a useful option. In this case, the MCP server is not directly addressable. 
+- As a ["sidecar"](https://docs.cloud.google.com/run/docs/deploying#sidecars) to an MCP client. If you are hosting your own MCP client in Cloud Run as well, this may be a useful option. In this case, the MCP server is not directly addressable; all external connections are managed by the client.
 
 In this page, we provide a procedure for running the Data Commons MCP server as a standalone container. If you would go with the sidecar option, please see (Deploying multiple containers to a service (sidecars))[https://docs.cloud.google.com/run/docs/deploying#sidecars]{: target="_blank"} for additional requirements (e.g. health-checks) and steps.
 
