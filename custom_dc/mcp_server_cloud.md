@@ -33,6 +33,8 @@ The following procedures assume that you have set up the following Google Cloud 
 
 ## Create a Cloud Run Service for the MCP server
 
+The following procedure sets up a bare-bones container service. To set additional options, such as request timeouts, instance replication, etc., please see [Configure Cloud Run services](https://docs.cloud.google.com/run/docs/configuring){: target="_blank"} for details.
+
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
   <li class="active">Cloud Console</li>
@@ -49,8 +51,6 @@ The following procedures assume that you have set up the following Google Cloud 
       <li>Expand <b>gcr.io/datcom-ci</b> and expand <b>datacommons-mcp-server</b>.</li>
       <li>From the list of images, select a production image, e.g. <code>production-v1.1.4</code>.</li>
       <li>Under <b>Configure</b>, select the desired region for the service, e.g. <code>us-central1</code>.</li> 
-      <li>Under <b>Service scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
-      <li>Under <b>Requests</b>, increase the request timeout to <code>600</code>.</li>
       <li>Expand <b>Containers, Networking, Security</b>.</li>
       <li>Click the <b>Variables & secrets</b> tab.</li>
       <li>Under <b>Environment variables</b>, click <b>Add variable</b> and set the following variables:
@@ -71,10 +71,9 @@ The following procedures assume that you have set up the following Google Cloud 
         <li>From any local directory, run the following command:
         <pre>gcloud run deploy datacommons-mcp-server --image <var>CONTAINER_IMAGE_URL</var> \
         --service-account <var>SERVICE_ACCOUNT</var> --region <var>REGION</var> \
-        --allow-unauthenticated --timeout=10m \
+        --allow-unauthenticated \
         --set-secrets="DC_API_KEY=<var>SECRET_NAME</var>:latest" \
-        --set-env-vars="DC_TYPE=custom" --set-env-vars="CUSTOM_DC_URL=<var>INSTANCE_URL</var>" \
-        --min-instances=0</pre></li>
+        --set-env-vars="DC_TYPE=custom" --set-env-vars="CUSTOM_DC_URL=<var>INSTANCE_URL</var>"</pre></li>
         </ol>
         <ul>
           <li>The container image URL is <code>gcr.io/datcom-ci/datacommons-mcp-server:<var>TAG</var></code>. The tag should be a production image with a version number, e.g. <code>production-v1.1.4</code>.</li>

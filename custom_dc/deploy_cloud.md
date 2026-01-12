@@ -51,8 +51,7 @@ The first time you run it, may be prompted to specify a quota project for billin
 <pre>
 gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 
-{: #accounts}
-## One-time setup: Create service accounts and enable all APIs
+## One-time setup: Enable APIs
 
 `website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up all necessary Cloud APIs. To run it:
 
