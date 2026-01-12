@@ -29,7 +29,7 @@ In this page, we provide steps for running the Data Commons MCP server as a stan
 
 The following procedures assume that you have set up the following Google Cloud Platform services, using the [Terraform scripts](deploy_cloud.md#terraform):
 - A service account and roles. 
-- A Google Cloud Secret Manager secret for storying your Data Commons API key. 
+- A Google Cloud Secret Manager secret for storing your Data Commons API key. 
 
 ## Create a Cloud Run Service for the MCP server
 
