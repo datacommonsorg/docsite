@@ -62,7 +62,7 @@ The following procedures assume that you have set up the following Google Cloud 
       <li>In the <b>Name</b> field, enter <code>DC_API_KEY</code>, and from the <b>Secret</b> field, select  the secret previously created by the Terraform scripts. It is in the form <code><var>NAMESPACE</var>-datacommons-dc-api-key-<var>FINGERPRINT</var></code>.</li> 
       <li>In the <b>Version</b> field, select the desired version, e.g. <b>latest</b>.</li>
       <li>Click <b>Done</b>.</li>
-      <li>Click the <b>Security</b> tab. From the <b>Service account</b> field, select the service account for your namespace and project, previously created by the Terraform scripts. It is in the form</li>
+      <li>Click the <b>Security</b> tab. From the <b>Service account</b> field, select the service account for your namespace and project, previously created by the Terraform scripts.</li>
       <li>Click <b>Create</b>. If correctly configured, the service will deploy automatically. It may take several minutes to start up.</li></ol>
     </div>
     <div>
