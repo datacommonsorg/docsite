@@ -84,7 +84,7 @@ The following procedures assume that you have set up the following Google Cloud 
           <li>The secret name is the one created when you ran the Terraform scripts, in the form <code><var>NAMESPACE</var>-datacommons-dc-api-key-<var>FINGERPRINT</var></code>. If you're not sure about the name or fingerprint, go to <a href="https://console.cloud.google.com/security/secret-manager" target="_blank">https://console.cloud.google.com/security/secret-manager</a> for your project and look it up.</li>
         </ul>
     To view the startup status, run the following command:
-    <pre>gcloud beta run jobs logs tail datacommons-mcp-server</pre>
+    <pre>gcloud run services logs tail datacommons-mcp-server --region <var>REGION</var></pre>
     </div>
   </div>
 </div>
