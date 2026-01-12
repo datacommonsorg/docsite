@@ -51,7 +51,6 @@ The following procedures assume that you have set up the following Google Cloud 
       <li>Under <b>Configure</b>, select the desired region for the service, e.g. <code>us-central1</code>.</li> 
       <li>Under <b>Service scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
       <li>Under <b>Requests</b>, increase the request timeout to <code>600</code>.</li>
-      <li>Under <b>Revision scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
       <li>Expand <b>Containers, Networking, Security</b>.</li>
       <li>Click the <b>Variables & secrets</b> tab.</li>
       <li>Under <b>Environment variables</b>, click <b>Add variable</b> and set the following variables:
