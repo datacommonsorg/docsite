@@ -342,6 +342,8 @@ Here are some examples of such queries:
 
 ## Run a standalone server
 
+The following procedure starts the MCP server in a local environment. To run the server in Google Cloud against a Custom Data Commons instance, see [Run an MCP server in Google Cloud](/custom_dc/mcp_server_cloud.html)
+
 1. Ensure you've set up the relevant server [environment variables](#configure-environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    <pre>
