@@ -355,17 +355,13 @@ You need to restart the services container every time you make changes to the co
            <li>Click <b>Deploy</b>. It will take several minutes for the service to start. You can click the <b>Logs</b> tab to view the progress.</li>
         </ol>
       </div>
-    <div>
-      <li>From any local directory, run the following command:
-        <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></li>
-        <li>To view the startup status, run the following command:
+    <div><p>From any local directory, run the following command:
+      <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></p>
+      <p> To view the startup status, run the following command:
             <pre>gcloud beta run jobs logs tail <var>SERVICE_NAME</var></pre>
-          </li>
-          The service name is <code><var>NAMESPACE</var>-datacommons-web-service</code>.
-          The container image URL is the name of the package you created in the previous step.
-      </ol>
+    </p>
      </div>
-   <div>
+   </div>
   </div>
 
 ### View your running application {#view-app}
