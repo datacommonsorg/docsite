@@ -222,7 +222,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 </pre>
 
 {:.no_toc}
-### Configure to connect to a remote server
+### Configure to connect to a remote server {#gemini-cli-remote}
 
 1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
 1. In the `settings.json` file, replace the `datacommons-mcp` specification as follows:
@@ -298,9 +298,8 @@ By default, the agent will spawn a local server and connect to it over Stdio. If
    ```
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
-{: #remote}
 {:.no_toc}
-### Configure to connect to a remote server
+### Configure to connect to a remote server {#remote}
 
 If you want to connect to a remote MCP server, follow this procedure before starting the agent:
 

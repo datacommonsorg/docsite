@@ -51,9 +51,10 @@ The first time you run it, may be prompted to specify a quota project for billin
 <pre>
 gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
 
+{: #accounts}
 ## One-time setup: Create service accounts and enable all APIs
 
-`website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up service account roles and all necessary Cloud APIs. To run it:
+`website/deploy/terraform-custom-datacommons/setup.sh` is a convenience script to set up all necessary Cloud APIs. To run it:
 
 <pre>
  cd website/deploy/terraform-custom-datacommons
@@ -80,6 +81,7 @@ We recommend using the Data Commons Terraform scripts to greatly simplify and au
 
 Terraform provisions and runs all the necessary Cloud Platform services:
 
+- Creates a service account for your project and namespace and assigns it various permissions ([IAM roles](https://docs.cloud.google.com/iam/docs/roles-overview){: target="_blank}).
 - Creates a Cloud Storage bucket and top-level folder, which will store your data files. You will upload your input data in the subsequent steps.
 - Creates a Cloud SQL MySQL instance, with basic resources, a default database user and a random password.
 - Creates the Data Commons data management container as a Cloud Run job, with basic resources.

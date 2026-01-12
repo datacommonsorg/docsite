@@ -11,7 +11,7 @@ Since setting up an MCP server is a simple, one-time setup, there's no need to u
 
 ## Prebuilt images
 
-There are several versions of the image available, viewable at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>. Most likely you will want to pick a specific version (rather than using the "latest" one) to ensure that changes introduced by the Data Commons team don't break your application.
+There are several versions of the image available, viewable at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>. Most likely you will want to pick a specific version (identified by a version tag) to ensure that changes introduced by the Data Commons team don't break your application.
 
 ## Before you start: decide on a hosting model
 
@@ -22,12 +22,11 @@ There are several ways you can host the MCP server in Cloud Run, namely:
 
 In this page, we provide a procedure for running the Data Commons MCP server as a standalone container. If you would go with the sidecar option, please see (Deploying multiple containers to a service (sidecars))[https://docs.cloud.google.com/run/docs/deploying#sidecars]{: target="_blank"} for additional requirements (e.g. health-checks) and steps.
 
-## Prequisites
+## Prerequisites
 
 The following procedures assume that you have set up the following Google Cloud Platform services:
-- Service accounts
-- A Secret Manager secret for storying your Data Commons API key
-- 
+- Service accounts. These are created when you run the [`website/deploy/terraform-custom-datacommons/setup.sh`](deploy_cloud.md#accounts) script
+- A Google Cloud Secret Manager secret for storying your Data Commons API key. This is created the first time you [run Terraform](deploy_cloud#terraform).
 
 ## Create a Cloud Run Service for the MCP server
 
@@ -42,40 +41,36 @@ The following procedures assume that you have set up the following Google Cloud 
            <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
            <li>Click <b>Deploy container</b>.</li>
     <li>In the <b>Container image URL</b> field, click <b>Select</b>.</li>
-    <li>In the Artifact Registry panel that appears in the right side of the window, that appears, click <b>Change </b>.
+    <li>In the Artifact Registry panel that appears in the right side of the window, that appears, click <b>Change</b>.
     <li>In the project search bar enter <code>datcom-ci</code> and click on the link that appears.</li>
     <li>Expand <b>gcr.io/datcom-ci<b> and expand <b>datacommons-mcp=server</b>.</li>
-    <li>From the list of images, select the one you want.</li>
+    <li>From the list of images, select an image with a version number tag of a production image.</li>
     <li>Under <b>Configure</b>, select the desired region for the service, e.g. <pre>us-central1</pre>.</li> 
     <li>Under <b>Service scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
-    <li>Expand <b>Containers, Networking, Security</b>.</li>
-    <li>Under <b>Settings</b>, click <b>Add health check</b>.</li>
-    <li>From the <b>Select health check type</b> drop-down, select <b>Startup check</b> and from <b>Select probe type</b> drop-down, select <b>TCP</b>.</li>
-    <li>Modify the following parameters:
-    <ul><li><b>Period</b>: set to <code>240</code>.</li>
-    <li><b>Failure threshold</b>: set to <code>1</code>.</li>
-    <li><b>Timeout</b>: set to 240.</li></ul>
-    <li>Click <b>Add</b> and then click <b>Done</b>.
     <li>Under <b>Requests</b>, increase the request timeout to <code>600</code>.
     <li>Under <b>Revision scaling</b>, enter <code>10</code> for the maximum number of instances.</li>
+    <li>Expand <b>Containers, Networking, Security</b>.</li>
     <li>Click the <b>Variables & secrets</b> tab.
     <li>Under <b>Environment variables</b>, click <b>Add variable</b> and set the following variables:
     <ul><li>name: <code>DC_TYPE</code>, value: <code>custom</code></li>
     <li>name: <code>CUSTOM_DC_URL</code>, value: <code><var>YOUR_INSTANCE_URL</var></code></li></ul>
-    <li>Under <b>Secrets exposed as environment variables</b>, click <b>Reference a secret</b>, and <code>DC_API_KEY</code> to the Secret Manager [secret previously created by Terraform](deploy_cloud.md#terraform).</li> 
+    <li>Under <b>Secrets exposed as environment variables</b>, click <b>Reference a secret</b>, and <code>DC_API_KEY</code> to the Secret Manager [secret previously created by Terraform](deploy_cloud.md#terraform), in the form <var>NAMESPACE</var>-datacommons-dc-api-key-<var>FINGERPRINT</var>.</li> 
+    <li>Click <b>Done</b>.
+    <li>Click the <b>Security</b> tab. From the <b>Service account</b> field, select the service account for your namespace and project.</li>
     <li>Click <b>Create</b>. If correctly configured, the service will deploy automatically.</li></ol>
     </div>
     <div><li>If you haven't recently refreshed your Google Cloud credentials, run <pre>gcloud auth application-default login</pre> and authenticate.</li>
     <pre>
       <li>From any local directory, run the following command:
         <pre>gcloud run deploy datacommons-mcp-server --image <var>CONTAINER_IMAGE_URL</var> \
-        --region <var>REGION</var>--platform managed --allow-unauthenticated \
-        --timeout=10m --set-secrets="DC_API_KEY=<var>SECRET_NAME</var>:latest"
+        --service-account=<var>SERVICE_ACCOUNT</var> --region <var>REGION</var> --platform managed --allow-unauthenticated --timeout=10m \
+        --set-secrets="DC_API_KEY=<var>SECRET_NAME</var>:latest" \
         --set-env-vars="DC_TYPE=custom" --set-env-vars="CUSTOM_DC_URL=<var>INSTANCE_URL</var>" \
         --min-instances=0 
         </li>
                  <ul>
-          <li>The container image URL is <pre>gcr.io/datcom-ci/datacommons-mcp-server:<var>TAG</var></pre>. The tag is the tag or version number of the image you want to select from the Artifact Registry.</li>
+          <li>The container image URL is <pre>gcr.io/datcom-ci/datacommons-mcp-server:<var>TAG</var></pre>. The tag is the tag should be a version number of a production image, e.g. <code>v1.3.3</code>.</li>
+          <li>The service account was created when you ran Terraform. It is in the form <pre><var>NAMESPACE</var>datacommons-sa@<var>PROJECT_ID</var>.iam.gserviceaccount.com</pre>.
           <li>The region is the Cloud region where you want to run the service, e.g. <code>us-central1</code>.</li>
           <li>The secret name is the one created when you ran the Terraform script, in the form <var>NAMESPACE</var>-datacommons-dc-api-key-<var>FINGERPRINT</var>. If you're not sure about the name or fingerprint, go to to <https://console.cloud.google.com/security/secret-manager>{: target="_blank"} for your project and look it up.</li>
           </ul>
@@ -88,5 +83,28 @@ The following procedures assume that you have set up the following Google Cloud 
   </div>
   </div>
 </div>
+
+## Connect to the server from a remote client
+
+For details, see the following pages:
+- [Connect to the server from a local Gemini CLI client](/mcp/run_tools.html#gemini-cli-remote)
+- [Connect to the server from a local agent](/mcp/run_tools.html#remote)
+
+The HTTP URL parameter is the Cloud Run App URL, if you are exposing the service directly, or a custom domain URL if you are using a load balancer and domain mapping.
+
+## Troubleshoot deployment issues
+
+### Container fails to start
+
+If you see this error message:
+
+```
+The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout...
+```
+This is a generic message that could indicate a number of configuration problems. Check all of these:
+- Be sure you have specified the `DC_API_KEY` environment variable.
+- Be sure you have specified the correct service account.
+- Try increasing the health check timeout.
+
 
 
