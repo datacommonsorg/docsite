@@ -367,9 +367,6 @@ You need to restart the services container every time you make changes to the co
      </div>
    <div>
   </div>
-  </div>
-</div>
-
 
 ### View your running application {#view-app}
 
@@ -404,6 +401,7 @@ To create additional deployments:
 cp terraform.tfvars terraform_prod.tfvars
 ```
 > Tip: You may wish to rename the original `terraform.tfvars` to something more descriptive as well.
+
 1. Do any of the following:
    - If you intend to run the new deployment in a different GCP project, edit the `project_id` variable and specify the project ID.
    - If you intend to run the new deployment in the same GCP project, edit the `namespace` variable to name it according to the environment you are creating, e.g. `-prod`. When you run the deployment, all created services will use the new namespace.
