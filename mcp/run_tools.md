@@ -15,7 +15,7 @@ This page shows you how to run a local agent and connect to a Data Commons MCP s
 
 We provide specific instructions for the following agents. All may be used to query datacommons.org or a [Custom Data Commons instance](/custom_dc).
 
-- [Gemini CLI extension](#use-the-gemini-cli-extension) 
+- [Gemini CLI extension](#extension) 
    - Best for querying datacommons.org
    - Provides a built-in "agent" and context file for Data Commons
    - Downloads extension files locally
@@ -222,7 +222,7 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 </pre>
 
 {:.no_toc}
-### Configure to connect to a remote server
+### Configure to connect to a remote server {#gemini-cli-remote}
 
 1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
 1. In the `settings.json` file, replace the `datacommons-mcp` specification as follows:
@@ -298,9 +298,8 @@ By default, the agent will spawn a local server and connect to it over Stdio. If
    ```
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
-{: #remote}
 {:.no_toc}
-### Configure to connect to a remote server
+### Configure to connect to a remote server {#remote}
 
 If you want to connect to a remote MCP server, follow this procedure before starting the agent:
 
@@ -342,6 +341,8 @@ Here are some examples of such queries:
 - "Generate a concise report on income vs diabetes in US counties."
 
 ## Run a standalone server
+
+The following procedure starts the MCP server in a local environment. To run the server in Google Cloud against a Custom Data Commons instance, see [Run an MCP server in Google Cloud](/custom_dc/deploy_mcp_cloud.html)
 
 1. Ensure you've set up the relevant server [environment variables](#configure-environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
