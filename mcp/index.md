@@ -15,15 +15,15 @@ has_children: true
 
 The Data Commons [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) service gives AI agents access to the Data Commons knowledge graph and returns data related to statistical variables, topics, and observations. It allows end users to formulate complex natural-language queries interactively, get data in textual, structured or unstructured formats, and download the data as desired. For example, depending on the agent, a user can answer high-level questions such as "give me the economic indicators of the BRICS countries", view simple tables, and download a CSV file of the data in tabular format.
 
-The MCP server returns data from datacommons.org by default or can be configured to query a Custom Data Commons instance. 
+The MCP server returns data from datacommons.org ("base") by default or can be configured to query a Custom Data Commons instance. 
 
-The server is a Python binary based on the [FastMCP 2.0 framework](https://gofastmcp.com). A prebuilt package is available at <https://pypi.org/project/datacommons-mcp/>.
+For base Data Commons, the server is available as a hosted managed deployment to which you can connect from any AI agent running locally or remotely.
 
-At this time, there is no centrally deployed server; you run your own server, and any client you want to connect to it.
+![base Data Commons](/assets/images/mcp1.png)
 
-![alt text](/assets/images/mcp.png)
+You can also run your own MCP server locally, or in Google Cloud Platform. If you want to use the server to query a Custom Data Commons instance, you _must_ run your own. The server available as a prebuilt Python package or as a prebuilt Docker image at for running as Google Cloud Run service.
 
-You can run the server and client locally, or you can run the server and client on different machines.
+![base or Custom Data Commons](/assets/images/mcp2.png)
 
 ## Tools
 
@@ -36,9 +36,9 @@ The server currently supports the following tools:
 
 To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. 
 
-The server supports both standard MCP [transport protocols](https://modelcontextprotocol.io/docs/learn/architecture#transport-layer):
-- Stdio: For clients that connect directly using local processes
+For self-hosted deployments, the server supports both standard MCP [transport protocols](https://modelcontextprotocol.io/docs/learn/architecture#transport-layer):
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
+- Stdio: For clients that connect directly using local processes
 
 See [Run MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/).
 

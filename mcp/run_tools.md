@@ -340,6 +340,7 @@ Here are some examples of such queries:
 - "Compare the life expectancy, economic inequality, and GDP growth for BRICS nations."
 - "Generate a concise report on income vs diabetes in US counties."
 
+{: #standalone}
 ## Run a standalone server
 
 The following procedure starts the MCP server in a local environment. To run the server in Google Cloud against a Custom Data Commons instance, see [Run an MCP server in Google Cloud](/custom_dc/deploy_mcp_cloud.html)
