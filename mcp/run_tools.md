@@ -15,7 +15,7 @@ This page shows you how to run a local agent and connect to a Data Commons MCP s
 
 We provide specific instructions for the following agents. All may be used to query datacommons.org or a [Custom Data Commons instance](/custom_dc).
 
-- [Gemini CLI extension](#use-the-gemini-cli-extension) 
+- [Gemini CLI extension](#extension) 
    - Best for querying datacommons.org
    - Provides a built-in "agent" and context file for Data Commons
    - Downloads extension files locally
