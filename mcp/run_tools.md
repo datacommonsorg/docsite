@@ -156,11 +156,37 @@ gemini extensions uninstall datacommons
 In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}
 
-{:.no_toc}
-{: #gemini}
-### Configure to run a local server
-
 To configure Gemini CLI to recognize the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
+<pre>
+<pre>
+{
+   // ...
+   "mcpServers": {
+     "datacommons-mcp": {
+         "httpUrl": "https://api.datacommons.org/mcp",
+         "headers": {
+           "X-API-Key": "$DC_API_KEY"
+            // If you're using a Google API key to authenticate to Gemini
+           ,
+           "X-API-Key": "$GOOGLE_API_KEY"
+         }
+      }
+   }
+   // ...
+}
+</pre>
+   </pre>
+
+
+{:.no_toc}
+### Advanced: Configure to connect to a local server
+
+In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/){: target="_blank"}. 
+
+To connect to a [standalone server running Streaming HTTP](#standalone), modify the `settings.json` to specify the correct hostname and port for the `httpUrl`. 
+
+To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp`in the settings file as follows:
 
 <pre>
 {
@@ -177,37 +203,12 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
                 "DC_API_KEY": "<var>YOUR_DATA_COMMONS_API_KEY</var>"
                 // If you are using a Google API key
                 "GEMINI_API_KEY": "<var>YOUR_GOOGLE_API_KEY</var>",
-
-                // Only use these to run against a Custom Data Commons instance
-                "DC_TYPE": "custom",
-                "CUSTOM_DC_URL": "<var>INSTANCE_URL</var>"
             },
-            "trust": true
         }
     }
    // ...
 }
 </pre>
-
-{:.no_toc}
-### Configure to connect to a remote server {#gemini-cli-remote}
-
-1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
-1. In the `settings.json` file, replace the `datacommons-mcp` specification as follows:
-   <pre>
-   {
-    "mcpServers": {
-        "datacommons-mcp": {
-            "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
-            "headers": {
-               "Content-Type": "application/json",
-               "Accept": "application/json, text/event-stream"
-            },
-            // other settings as above
-         }
-      }
-   }
-   </pre>
 
 {:.no_toc}
 ### Run
@@ -227,6 +228,7 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
 In addition to the [standard prerequisites](#prerequisites), you will need:
 - A GCP project and a Google AI API key. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>{: target="_blank"}.
 - [Git](https://git-scm.com/){: target="_blank"} installed.
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/){: target="_blank"} installed.
 
 {:.no_toc}
 ### Install
@@ -239,7 +241,7 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
 {:.no_toc}
 ### Run
 
-By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in [Connect to a remote server](#remote) before using this procedure.
+By default, the agent connects to the hosted MCP server. If you want to spawn a local server from the agent, or connect to a standalone server, modify the code as described in [Connect to a local server](#remote) before using this procedure.
 
 1. Go to the root directory of the repo:
    ```bash
@@ -267,33 +269,40 @@ By default, the agent will spawn a local server and connect to it over Stdio. If
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
 {:.no_toc}
-### Configure to connect to a remote server {#remote}
+### Advanced: Configure to connect to a local server
 
-If you want to connect to a remote MCP server, follow this procedure before starting the agent:
+To connect to a [standalone server running Streaming HTTP](#standalone), modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to specify the correct hostname and port for the `httpUrl`. 
 
-1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
-1. Modify the code in [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set import modules and agent initialization parameters as follows:
+To spawn a local server that uses the Stdio protocol, modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set import modules and agent initialization parameters as follows:
 
 ```python
 from google.adk.tools.mcp_tool.mcp_toolset import (
-   MCPToolset,
-   StreamableHTTPConnectionParams
+    McpToolset,
+    StdioConnectionParams,
+    StdioServerParameters,
 )
 
+//...
+
 root_agent = LlmAgent(
-      # ...
-      tools=[McpToolset(
-         connection_params=StreamableHTTPConnectionParams(
-            url=f"http://<host>:<port>/mcp",
-            headers={
-               "Content-Type": "application/json",
-               "Accept": "application/json, text/event-stream"
-            },
-         ),
-      )
-      ],
+    model=AGENT_MODEL,
+    name="basic_agent",
+    instruction=AGENT_INSTRUCTIONS,
+    tools=[
+        McpToolset(
+            connection_params=StdioConnectionParams(
+                timeout=10,
+                server_params=StdioServerParameters(
+                    command="uvx",
+                    args=["datacommons-mcp", "serve", "stdio"],
+                    env={"DC_API_KEY": DC_API_KEY},
+                ),
+            )
+        )
+    ],
 )
 ```
+[Run the startup commands](#run) as usual.
 
 ## Sample queries
 
@@ -309,11 +318,10 @@ Here are some examples of such queries:
 - "Generate a concise report on income vs diabetes in US counties."
 
 {: #standalone}
-## Run a standalone server
+## Advanced: Run a standalone server
 
-The following procedure starts the MCP server in a local environment. To run the server in Google Cloud against a Custom Data Commons instance, see [Run an MCP server in Google Cloud](/custom_dc/deploy_mcp_cloud.html)
+The following procedure starts a standalone server in a local environment, using streaming HTTP as the protocol. 
 
-1. Ensure you've set up the relevant server [environment variables](#configure-environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    <pre>
    uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
