@@ -53,10 +53,6 @@ Other requirements for specific agents are given in their respective sections.
 
 ## Configure environment variables
 
-You can set these in the following ways:
-1. In your shell/startup script (e.g. `.bashrc`). This is the recommended option for most use cases.
-1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
-
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
 
 <div class="gcp-tab-group">

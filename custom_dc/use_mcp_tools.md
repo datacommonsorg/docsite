@@ -1,75 +1,37 @@
 ---
 layout: default
-title: Run an MCP server in Google Cloud
+title: Run MCP tools against a custom instance
 nav_order: 9
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Run an MCP server in Google Cloud
+# Run MCP tools against a custom instance
 
-If you have built a custom agent or Gemini CLI extension which you want to make publicly available, this page describes how to run the [Data Commons MCP server](https://pypi.org/project/datacommons-mcp/) in the cloud, using Google Cloud Run. 
+To use Data Commons MCP tools, you must run your own instance of the Data Commons MCP server. This page describes how to run a server locally and in Google Cloud, and how to connect to each type of deployment from an MCP client.
 
-Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. Data Commons provides a prebuilt Docker image in the Artifact Registry, so you only need to set up a new Cloud Run service to point to it. 
+* TOC
+{:toc}
 
-## Prebuilt images
+## Run a local MCP server
 
-There are several versions of the image available, viewable at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>. We recommend that you choose a production version with a specific version number, to ensure that changes introduced by the Data Commons team don't break your application.
-
-## Before you start: decide on a hosting model
-
-There are several ways you can host the MCP server in Cloud Run, namely:
-
-- As a standalone service. In this case, any client simply connects to it over HTTP, including your own MCP agent running as a separate Cloud Run service or locally. You can choose whether to make the internal Cloud Run app URL publicly available, or whether to put a load balancer in front of the service and map a domain name. 
-- As a ["sidecar"](https://docs.cloud.google.com/run/docs/deploying#sidecars){: target="_blank"} to an MCP client. If you are hosting your own MCP client in Cloud Run as well, this may be a useful option. In this case, the MCP server is not directly addressable; all external connections are managed by the client.
-
-In this page, we provide steps for running the Data Commons MCP server as a standalone container. If you want to go with the sidecar option, please see [Deploying multiple containers to a service (sidecars)](https://docs.cloud.google.com/run/docs/deploying#sidecars){: target="_blank"} for additional requirements and setup procedures.
-
-## Prerequisites
-
-The following procedures assume that you have set up the following Google Cloud Platform services, using the [Terraform scripts](deploy_cloud.md#terraform):
-- A service account and roles. 
-- A Google Cloud Secret Manager secret for storing your Data Commons API key. 
-
-> **Important**: Additionally, for Custom Data Commons instances:
-> If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+You can use any AI agent to run a local MCP server, or start a standalone server and connect to it from any client. The procedures are mostly the same as those provided in xxx, but there are some additional environment variables you must set in order to point the server at your custom instance.
 
 ## Configure environment variables
 
-You can set these in the following ways:
-1. In your shell/startup script (e.g. `.bashrc`). This is the recommended option for most use cases.
-1. [Use an `.env` file](#env), which the server locates automatically. This is useful for Custom Data Commons with multiple options, to keep all settings in one place.
-1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
-
-### Base Data Commons (datacommons.org)
-
-For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
-
-<div class="gcp-tab-group">
-  <ul class="gcp-tab-headers">
-    <li class="active">Linux or Mac shell</li>
-    <li>Windows Powershell</li>
-  </ul>
-  <div class="gcp-tab-content">
-      <div class="active">
-       <pre>
-   export DC_API_KEY="<var>YOUR API KEY</var>"</pre>
-      </div>
-    <div>
-    <pre>
-   $env:DC_API_KEY="<var>YOUR API KEY</var>"</pre> 
-   </div>
-  </div>
-</div>
-
-### Custom Data Commons
-
-To run against a Custom Data Commons instance, you must set additional variables. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"}. 
+To run against a Custom Data Commons instance, you must set environment variables. 
 
 The following variables are required:
 - <code>DC_API_KEY="<var>YOUR API KEY</var>"</code>
 - `DC_TYPE="custom"`
 - <code>CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
+
+Various other optional variables are also available; all are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"}. 
+
+You can set variables in the following ways:
+1. In your shell/startup script (e.g. `.bashrc`).
+1. [Use an `.env` file](#env), which the server locates automatically. This is useful for Custom Data Commons with multiple options, to keep all settings in one place.
+1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
 
 You can also set additional variables as described in the `.env.sample` file.
 
@@ -91,6 +53,35 @@ You can also set additional variables as described in the `.env.sample` file.
 1. Optionally, set other variables.
 1. Save the file.
 
+
+
+> **Important**: Additionally, for Custom Data Commons instances:
+> If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+
+## Run the MCP Server in Google Cloud Platform
+
+If you have built a custom agent or Gemini CLI extension which you want to make publicly available, this page describes how to run the [Data Commons MCP server](https://pypi.org/project/datacommons-mcp/) in the cloud, using Google Cloud Run. 
+
+Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. Data Commons provides a prebuilt Docker image in the Artifact Registry, so you only need to set up a new Cloud Run service to point to it. 
+
+### Prebuilt images
+
+There are several versions of the image available, viewable at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>. We recommend that you choose a production version with a specific version number, to ensure that changes introduced by the Data Commons team don't break your application.
+
+## Before you start: decide on a hosting model
+
+There are several ways you can host the MCP server in Cloud Run, namely:
+
+- As a standalone service. In this case, any client simply connects to it over HTTP, including your own MCP agent running as a separate Cloud Run service or locally. You can choose whether to make the internal Cloud Run app URL publicly available, or whether to put a load balancer in front of the service and map a domain name. 
+- As a ["sidecar"](https://docs.cloud.google.com/run/docs/deploying#sidecars){: target="_blank"} to an MCP client. If you are hosting your own MCP client in Cloud Run as well, this may be a useful option. In this case, the MCP server is not directly addressable; all external connections are managed by the client.
+
+In this page, we provide steps for running the Data Commons MCP server as a standalone container. If you want to go with the sidecar option, please see [Deploying multiple containers to a service (sidecars)](https://docs.cloud.google.com/run/docs/deploying#sidecars){: target="_blank"} for additional requirements and setup procedures.
+
+## Prerequisites
+
+The following procedures assume that you have set up the following Google Cloud Platform services, using the [Terraform scripts](deploy_cloud.md#terraform):
+- A service account and roles. 
+- A Google Cloud Secret Manager secret for storing your Data Commons API key. 
 
 ## Create a Cloud Run Service for the MCP server
 
