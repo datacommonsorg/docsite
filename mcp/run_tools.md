@@ -8,7 +8,11 @@ parent: MCP - Query data interactively with an AI agent
 {:.no_toc}
 # Run MCP tools
 
-This page shows you how to run a local agent and connect to a Data Commons MCP server running locally or remotely.
+This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at https://api.datacommons/mcp. 
+
+For advanced use cases, the page also describes how to run your own server and connect to it. 
+
+For additional steps specific to querying a Custom Data Commons instance, please see .... 
 
 * TOC
 {:toc}
@@ -19,12 +23,10 @@ We provide specific instructions for the following agents. All may be used to qu
    - Best for querying datacommons.org
    - Provides a built-in "agent" and context file for Data Commons
    - Downloads extension files locally
-   - Uses `uv` to run the MCP server locally
    - Minimal setup
 
 - [Gemini CLI](#use-gemini-cli) 
    - No additional downloads
-   - MCP server can be run locally or remotely
    - You can create your own LLM context file 
    - Minimal setup
 
@@ -32,33 +34,28 @@ We provide specific instructions for the following agents. All may be used to qu
    - Best for interacting with a Web GUI
    - Can be used to run other LLMs and prompts
    - Downloads agent code locally
-   - Server may be run remotely
    - Some additional setup
 
-For an end-to-end tutorial using a server and agent over HTTP, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb){: target="_blank"}.
+For an end-to-end tutorial using a locally running server and agent over HTTP, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb){: target="_blank"}.
 
 For other clients/agents, see the relevant documentation; you should be able to reuse the commands and arguments detailed below.
 
 ## Prerequisites
 
-These are required for all agents:
+These are required for all agents, regardless of the server deployment:
 
 - A (free) Data Commons API key. To obtain an API key, go to <https://apikeys.datacommons.org>{: target="_blank"} and request a key for the `api.datacommons.org` domain.
-- Install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
+
+Optional (advanced):
+- If you would like to run a local version of the server, install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
 
 Other requirements for specific agents are given in their respective sections.
-
-> **Important**: Additionally, for Custom Data Commons instances:
-> If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
 
 ## Configure environment variables
 
 You can set these in the following ways:
 1. In your shell/startup script (e.g. `.bashrc`). This is the recommended option for most use cases.
-1. [Use an `.env` file](#env), which the server locates automatically. This is useful for Custom Data Commons with multiple options, to keep all settings in one place.
 1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
-
-### Base Data Commons (datacommons.org)
 
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
 
@@ -79,34 +76,7 @@ For basic usage against datacommons.org, set the required `DC_API_KEY` in your s
   </div>
 </div>
 
-### Custom Data Commons
-
-To run against a Custom Data Commons instance, you must set additional variables. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"}. 
-
-The following variables are required:
-- <code>DC_API_KEY="<var>YOUR API KEY</var>"</code>
-- `DC_TYPE="custom"`
-- <code>CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
-
-You can also set additional variables as described in the `.env.sample` file.
-
-{: #env}
-{: .no_toc}
-#### Set variables with an `.env` file:
-
-1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>{: target="_blank"}.
-
-1. From the directory where you saved the sample file, copy it to a new file called `.env`. For example:
-   ```bash
-   cd ~/agent-toolkit/packages/datacommons-mcp
-   cp .env.sample .env
-   ```
-1. Set the following required variables, without quotes: 
-   - `DC_API_KEY`: Set to your Data Commons API key
-   - `DC_TYPE`: Set to `custom`.
-   - `CUSTOM_DC_URL`: Uncomment and set to the URL of your instance. 
-1. Optionally, set other variables.
-1. Save the file.
+To run against a Custom Data Commons instance, you must set additional variables. Please see xxx for details.
 
 {: #extension}
 ## Use the Gemini CLI extension
@@ -127,8 +97,6 @@ Open a new terminal and install the extension directly from GitHub:
 gemini extensions install https://github.com/gemini-cli-extensions/datacommons [--auto-update]
 ```
 The installation creates a local `.gemini/extensions/datacommons` directory with the required files.
-
-> Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
 
 {:.no_toc}
 ### Run

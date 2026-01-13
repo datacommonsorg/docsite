@@ -31,6 +31,67 @@ The following procedures assume that you have set up the following Google Cloud 
 - A service account and roles. 
 - A Google Cloud Secret Manager secret for storing your Data Commons API key. 
 
+> **Important**: Additionally, for Custom Data Commons instances:
+> If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+
+## Configure environment variables
+
+You can set these in the following ways:
+1. In your shell/startup script (e.g. `.bashrc`). This is the recommended option for most use cases.
+1. [Use an `.env` file](#env), which the server locates automatically. This is useful for Custom Data Commons with multiple options, to keep all settings in one place.
+1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
+
+### Base Data Commons (datacommons.org)
+
+For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Linux or Mac shell</li>
+    <li>Windows Powershell</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+       <pre>
+   export DC_API_KEY="<var>YOUR API KEY</var>"</pre>
+      </div>
+    <div>
+    <pre>
+   $env:DC_API_KEY="<var>YOUR API KEY</var>"</pre> 
+   </div>
+  </div>
+</div>
+
+### Custom Data Commons
+
+To run against a Custom Data Commons instance, you must set additional variables. All supported options are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"}. 
+
+The following variables are required:
+- <code>DC_API_KEY="<var>YOUR API KEY</var>"</code>
+- `DC_TYPE="custom"`
+- <code>CUSTOM_DC_URL="<var>YOUR_INSTANCE_URL</var>"</code>
+
+You can also set additional variables as described in the `.env.sample` file.
+
+{: #env}
+{: .no_toc}
+#### Set variables with an `.env` file:
+
+1. From Github, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>{: target="_blank"}.
+
+1. From the directory where you saved the sample file, copy it to a new file called `.env`. For example:
+   ```bash
+   cd ~/agent-toolkit/packages/datacommons-mcp
+   cp .env.sample .env
+   ```
+1. Set the following required variables, without quotes: 
+   - `DC_API_KEY`: Set to your Data Commons API key
+   - `DC_TYPE`: Set to `custom`.
+   - `CUSTOM_DC_URL`: Uncomment and set to the URL of your instance. 
+1. Optionally, set other variables.
+1. Save the file.
+
+
 ## Create a Cloud Run Service for the MCP server
 
 The following procedure sets up a bare-bones container service. To set additional options, such as request timeouts, instance replication, etc., please see [Configure Cloud Run services](https://docs.cloud.google.com/run/docs/configuring){: target="_blank"} for details.
