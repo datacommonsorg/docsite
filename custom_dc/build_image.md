@@ -17,8 +17,10 @@ While you are just testing out data changes, you don't need to build the website
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
 
-- `gcr.io/datcom-ci/datacommons-data:stable` and `gcr.io/datcom-ci/datacommons-services:stable`. These are tested, stable versions but may be several weeks old.
+- `gcr.io/datcom-ci/datacommons-data:stable` and `gcr.io/datcom-ci/datacommons-services:stable`. These are tested, stable versions but may be several weeks old. 
 - `gcr.io/datcom-ci/datacommons-data:latest` and `gcr.io/datcom-ci/datacommons-services:latest`. These are the latest versions built from head.
+
+You can see the images with their tags at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-data> and <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-services>.
 
 If you want to pick up the latest prebuilt version, do the following:
 
