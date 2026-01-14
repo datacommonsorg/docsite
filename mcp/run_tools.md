@@ -8,11 +8,9 @@ parent: MCP - Query data interactively with an AI agent
 {:.no_toc}
 # Run MCP tools
 
-This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at https://api.datacommons/mcp. 
+This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at https://api.datacommons/mcp. For advanced use cases, the page also describes how to run your own server and connect to it. 
 
-For advanced use cases, the page also describes how to run your own server and connect to it. 
-
-For additional steps specific to querying a Custom Data Commons instance, please see .... 
+For procedures to use MCP with a Custom Data Commons instance, please see instead [Run MCP tools with a Custom Data Commons instance](/custom_dc/use_mcp_tools.html).
 
 * TOC
 {:toc}
@@ -42,16 +40,16 @@ For other clients/agents, see the relevant documentation; you should be able to 
 
 ## Prerequisites
 
-These are required for all agents, regardless of the server deployment:
+This is required for all agents, regardless of the server deployment:
 
 - A (free) Data Commons API key. To obtain an API key, go to <https://apikeys.datacommons.org>{: target="_blank"} and request a key for the `api.datacommons.org` domain.
 
 Optional (advanced):
-- If you would like to run a local version of the server, install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
+- For running a local version of the server, install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
 
 Other requirements for specific agents are given in their respective sections.
 
-## Configure environment variables
+## Set environment variable
 
 For basic usage against datacommons.org, set the required `DC_API_KEY` in your shell/startup script (e.g. `.bashrc`).
 
@@ -72,14 +70,12 @@ For basic usage against datacommons.org, set the required `DC_API_KEY` in your s
   </div>
 </div>
 
-To run against a Custom Data Commons instance, you must set additional variables. Please see xxx for details.
-
 {: #extension}
 ## Use the Gemini CLI extension
 
 **Additional prerequisites** 
 
-In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
+In addition to the Data Commons API key, you must install the following:
 - [Git](https://git-scm.com/){: target="_blank"}
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"} 
 
@@ -149,7 +145,7 @@ gemini extensions uninstall datacommons
 
 ## Use Gemini CLI
 
-In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
+In addition to the Data Commons API key, you must install the following:
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}
 
 To configure Gemini CLI to recognize the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
@@ -177,10 +173,10 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 {:.no_toc}
 ### Advanced: Configure to connect to a local server
 
-In addition to the [standard prerequisites](#prerequisites), you must have the following installed:
+To use this option, you must also install:
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/){: target="_blank"}. 
 
-To connect to a [standalone server running Streaming HTTP](#standalone), modify the `settings.json` to specify the correct hostname and port for the `httpUrl`. 
+To connect to a [standalone server running streaming HTTP](#standalone), modify the `settings.json` to specify the correct hostname and port for the `httpUrl`. 
 
 To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp`in the settings file as follows:
 
@@ -221,7 +217,7 @@ We provide a basic agent for interacting with the MCP Server in [packages/dataco
 
 **Additional prerequisites** 
 
-In addition to the [standard prerequisites](#prerequisites), you will need:
+In addition to the Data Commons API key, you will also need:
 - A GCP project and a Google AI API key. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>{: target="_blank"}.
 - [Git](https://git-scm.com/){: target="_blank"} installed.
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/){: target="_blank"} installed.
@@ -237,7 +233,7 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
 {:.no_toc}
 ### Run
 
-By default, the agent connects to the hosted MCP server. If you want to spawn a local server from the agent, or connect to a standalone server, modify the code as described in [Connect to a local server](#remote) before using this procedure.
+By default, the agent connects to the hosted MCP server. If you want to spawn a local server from the agent, or connect to a standalone server, modify the code as described in [Connect to a local server](#local) before using this procedure.
 
 1. Go to the root directory of the repo:
    ```bash
@@ -265,6 +261,7 @@ By default, the agent connects to the hosted MCP server. If you want to spawn a 
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
 {:.no_toc}
+{: #local}
 ### Advanced: Configure to connect to a local server
 
 To connect to a [standalone server running Streaming HTTP](#standalone), modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to specify the correct hostname and port for the `httpUrl`. 
@@ -315,6 +312,9 @@ Here are some examples of such queries:
 
 {: #standalone}
 ## Advanced: Run a standalone server
+
+To use this option, you must also install:
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/){: target="_blank"}.
 
 The following procedure starts a standalone server in a local environment, using streaming HTTP as the protocol. 
 
