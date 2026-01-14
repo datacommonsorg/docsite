@@ -140,7 +140,7 @@ country/DNK	| 2008	| gender_wage_gap | 10.18354903 | percent |
 
 There are a few important things to note:
 - There are only 4 required columns: one representing a place or "entity", identified by a unique Data Commons identifier ("DCID"); one representing a date; one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept for a metric; and one representing the value of the variable. 
-- Every row is a separate variable and [_observation_](/glossary.html#observation). An observation is a value of the variable for a given place and time. There could be multiple different variables in a given CSV file (and these two files could actually be combined into one).
+- Every row is a separate [_observation_](/glossary.html#observation). An observation is a value of the variable for a given place and time. There could be multiple different variables in a given CSV file (and these two files could actually be combined into one).
 - There is an additional, optional column, `unit`, that provides more details about each observation.
 
 This is the format to which your data must conform for correct loading. (This topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
