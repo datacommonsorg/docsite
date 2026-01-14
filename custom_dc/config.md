@@ -22,8 +22,6 @@ Here is the general spec for the `config.json` file.
 
       # For entities only
       "rowEntityType": "<var>ENTITY_TYPE_DCID</var>",
-      "idColumn": "<var>COLUMN_HEADING</var>",
-      "entityColumns": ["<var>COLUMN_HEADING_DCID1</var>", "<var>COLUMN_HEADING_DCID2</var>", ...],
 
       # For variables only
       "entityType": "<var>ENTITY_TYPE_DCID</var>",
@@ -118,14 +116,6 @@ entityType (variables only)
 rowEntityType (entities only)
 
 : Required for CSV files containing custom entities: The DCID of the entity type (new or existing) of the custom entities you are importing. It must match the DCID specified in the `entities` section(s). For example, if you are importing a set of hospital entities, the entity type could be the existing entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}.
-
-idColumn (entities only)
-
-: Optional: The heading of the column representing DCIDs of custom entities that the importer should create. If you don't specify this, the importer will auto-generate DCIDs for each row in the file. It is strongly recommended that you use specify this to define your own DCIDs.
-
-entityColumns (entities only)
-
-: Optional: A list of headings of columns that represent existing DCIDs in the knowledge graph. The heading must be the DCID of the entity type of the column (e.g. `City`, `Country`) and each row must be the DCID of the entity (e.g. `country/CAN`, `country/PAN`).
 
 columnMappings
 
