@@ -131,7 +131,7 @@ country/BEL	| 2003	| average_annual_wage | 56491.99591 | USD |
 ... | ...   |     ...     | ... | ... |
 
 entity	| date	| variable | value | unit |
-------------------|-------|-----------------|
+--------|-------|----------|-------|------|
 country/DNK	| 2005	| gender_wage_gap | 10.16733044 | percent |
 country/DNK	| 2006	| gender_wage_gap | 10.17206126 | percent |
 country/DNK	| 2007	| gender_wage_gap | 9.850297951 | percent |
@@ -143,7 +143,7 @@ There are a few important things to note:
 - Every row is a separate variable and [_observation_](/glossary.html#observation). An observation is a value of the variable for a given place and time. There could be multiple different variables in a given CSV file (and these two files could actually be combined into one).
 - There is an additional, optional column, `unit`, that provides more details about each observation.
 
-This is the format to which your data must conform. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. (This topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
+This is the format to which your data must conform for correct loading. (This topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
 
 ## Load sample data and start the services
 
