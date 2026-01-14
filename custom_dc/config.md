@@ -115,7 +115,7 @@ entityType (variables only)
 
 rowEntityType (entities only)
 
-: Required for CSV files containing custom entities: The DCID of the entity type (new or existing) of the custom entities you are importing. It must match the DCID specified in the `entities` section(s). For example, if you are importing a set of hospital entities, the entity type could be the existing entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}.
+: Required for CSV files containing custom entities: The DCID of the entity type (new or existing) of the custom entities you are importing. For example, if you are importing a set of hospital entities, the entity type could be the existing entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}.
 
 columnMappings
 
