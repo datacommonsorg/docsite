@@ -152,7 +152,7 @@ Data Commons uses a schema that is called "variable-per-row". This means that ev
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
-> **Tip:** If your raw data does not conform to this structures (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel. 
+> **Tip:** If your raw data does not conform to this structure (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel. 
 
 ## Prepare your data
 
