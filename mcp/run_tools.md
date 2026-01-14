@@ -148,8 +148,7 @@ gemini extensions uninstall datacommons
 In addition to the Data Commons API key, you must install the following:
 - [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}
 
-To configure Gemini CLI to recognize the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
-<pre>
+To configure Gemini CLI to connect to the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
 <pre>
 {
    // ...
@@ -159,7 +158,6 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
          "headers": {
            "X-API-Key": "$DC_API_KEY"
             // If you're using a Google API key to authenticate to Gemini
-           ,
            "X-API-Key": "$GOOGLE_API_KEY"
          }
       }
@@ -167,8 +165,6 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
    // ...
 }
 </pre>
-   </pre>
-
 
 {:.no_toc}
 ### Advanced: Configure to connect to a local server
@@ -176,9 +172,9 @@ To configure Gemini CLI to recognize the Data Commons server, edit the relevant 
 To use this option, you must also install:
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/){: target="_blank"}. 
 
-To connect to a [standalone server running streaming HTTP](#standalone), modify the `settings.json` to specify the correct hostname and port for the `httpUrl`. 
+To connect to a [standalone server running streaming HTTP](#standalone), modify the `settings.json` file to specify the correct hostname and port for the `httpUrl`. 
 
-To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp`in the settings file as follows:
+To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` in the settings file as follows:
 
 <pre>
 {
