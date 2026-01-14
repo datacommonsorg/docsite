@@ -8,7 +8,7 @@ parent: MCP - Query data interactively with an AI agent
 {:.no_toc}
 # Run MCP tools
 
-This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at https://api.datacommons/mcp. For advanced use cases, the page also describes how to run your own server and connect to it. 
+This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at https://api.datacommons/mcp. For advanced use cases, this page also describes how to run your own server and connect to it. 
 
 For procedures to use MCP with a Custom Data Commons instance, please see instead [Run MCP tools with a Custom Data Commons instance](/custom_dc/use_mcp_tools.html).
 
@@ -245,6 +245,7 @@ Here are some examples of such queries:
 - "Compare the life expectancy, economic inequality, and GDP growth for BRICS nations."
 - "Generate a concise report on income vs diabetes in US counties."
 
+{: #self-hosted}
 ## Advanced: Run your own MCP server
 
 This section describes how to run the Data Commons MCP server locally, and how to configure a client to connect to it. You can run the server locally or remotely.
@@ -319,6 +320,7 @@ root_agent = LlmAgent(
 
 ### Run a remote server and a local agent
 
+{: #standalone}
 #### Step 1: Start the server as a standalone process
 
 Run:

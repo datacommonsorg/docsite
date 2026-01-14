@@ -10,8 +10,6 @@ parent: Build your own Data Commons
 
 To use Data Commons MCP tools with a Custom Data Commons instance, you must run your own instance of the Data Commons MCP server. This page describes how to run a server locally and in Google Cloud, and how to connect to each type of deployment from an MCP client.
 
-[add info a about pre-reading]
-
 > **Important**: 
 > If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
 
@@ -20,11 +18,7 @@ To use Data Commons MCP tools with a Custom Data Commons instance, you must run 
 
 ## Run a local MCP server
 
-You can use any AI agent to spawn a local MCP server, or start a standalone server and connect to it from any client. In this section, we provide procedures for running and connecting to a server from the following clients:
-
-- [Gemini CLI](#gemini)
-- [Custom Gemini CLI extension](#extension)
-- [Google ADK-based sample client](#sample)
+You can use any AI agent to spawn a local MCP server, or start a standalone server and connect to it from any client. For the most part, the procedures to do so are the same as those provided in [Run your own MCP server](/mcp/run_tools.html#self-hosted). The main difference is that you must set additional environment variables, as described below.
 
 ### Prerequisites
 
@@ -40,11 +34,11 @@ To run against a Custom Data Commons instance, you must set the following requir
 Various other optional variables are also available; all are documented in [packages/datacommons-mcp/.env.sample](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"}. 
 
 You can set variables in the following ways:
-1. In your shell/startup script (e.g. `.bashrc`).
-1. [Use an `.env` file](#env), which the server locates automatically. This is useful if you're setting multiple variables, to keep all settings in one place.
-1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](#gemini).
+1. In a shell/startup script (e.g. `.bashrc`).
+1. [Use an `.env` file](#env). This is useful if you're setting multiple variables, to keep all settings in one place.
+1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](/mcp/run_tools.html#gemini).
 
-You can also set additional variables as described in the `.env.sample` file.
+
 
 {: #env}
 {: .no_toc}
@@ -64,175 +58,117 @@ You can also set additional variables as described in the `.env.sample` file.
 1. Optionally, set other variables.
 1. Save the file.
 
-{: #gemini}
-### Use Gemini CLI
 
-The following procedures assume that you have installed the following:
-- [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}
 
-#### Configure to run a local server
+This section describes how to run the Data Commons MCP server locally, and how to configure a client to connect to it. You can run the server locally or remotely.
 
-To configure Gemini CLI to start up a local Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
+We provide procedures for the following scenarios:
+- Local server and local agent: The agent spawns the server in a subprocess using Stdio as the transport protocol.
+- Remote server and local agent: You start up the server as a standalone process and then connect the agent to it using streaming HTTP as the protocol.
+
+For both scenarios, we use Gemini CLI and the sample agent as examples. You should be able to adapt the configurations to other MCP-compliant agents/clients.
+
+**Additional prerequisities**
+
+- Install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
+
+### Run a local server and agent
+
+#### Gemini CLI
+
+To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` in your `settings.json` file as follows:
 
 <pre>
 {
    // ...
-    "mcpServers": {
-       "datacommons-mcp": {
-           "command": "uvx",
-            "args": [
-                "datacommons-mcp@latest",
-                "serve",
-                "stdio"
-            ],
-            // only needed if environment variables aren't set in a startup script
-            // or in a .env file
-            "env": {
-                "DC_API_KEY": "<var>YOUR_DATA_COMMONS_API_KEY</var>",
-                "DC_TYPE": "custom",
-                "CUSTOM_DC_URL": "<var>INSTANCE_URL</var>"
-                // If you are using a Google API key to authenticate to Gemini
-                "GEMINI_API_KEY": "<var>YOUR_GOOGLE_API_KEY</var>"
-            }
-        }
-    }
+   "mcpServers": {
+      "datacommons-mcp": {
+         "command": "uvx",
+         "args": [
+            "datacommons-mcp@latest",
+            "serve",
+            "stdio"
+         ],
+      }
+   }
    // ...
 }
 </pre>
 
-{:.no_toc}
-### Configure to connect to a remote server {#gemini-cli-remote}
+[Run Gemini CLI](#run-gemini) as usual.
 
-1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
-1. In the `settings.json` file, replace the `datacommons-mcp` specification as follows:
-   <pre>
-   {
-    "mcpServers": {
-        "datacommons-mcp": {
-            "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
-            "headers": {
-               "Content-Type": "application/json",
-               "Accept": "application/json, text/event-stream"
-            }
+#### Sample agent
+
+To instruct the sample agent to spawn a local server that uses the Stdio protocol, modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set import modules and agent initialization parameters as follows:
+
+```python
+from google.adk.tools.mcp_tool.mcp_toolset import (
+    McpToolset,
+    StdioConnectionParams,
+    StdioServerParameters,
+)
+
+//...
+
+root_agent = LlmAgent(
+    model=AGENT_MODEL,
+    name="basic_agent",
+    instruction=AGENT_INSTRUCTIONS,
+    tools=[
+        McpToolset(
+            connection_params=StdioConnectionParams(
+                timeout=10,
+                server_params=StdioServerParameters(
+                    command="uvx",
+                    args=["datacommons-mcp", "serve", "stdio"],
+                    env={"DC_API_KEY": DC_API_KEY}
+                )
+            )
+        )
+    ],
+)
+```
+[Run the startup commands](#run-sample) as usual.
+
+### Run a remote server and a local agent
+
+{: #standalone}
+#### Step 1: Start the server as a standalone process
+
+Run:
+<pre>
+uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
+</pre>
+By default, the host is `localhost` and the port is `8080` if you don't set these flags explicitly.
+
+The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
+
+#### Step 2: Configure an agent to connect to the running server
+
+##### Gemini CLI
+
+Replace the `datacommons-mcp` in your `settings.json` file as follows:
+<pre>
+{
+   "mcpServers": {
+      "datacommons-mcp": {
+         "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
+         "headers": {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream"
          }
       }
    }
-   </pre>
+}
+</pre>
 
-{: #extension}
-### Create your own Gemini CLI extension
+[Run Gemini CLI](#run-gemini) as usual.
 
-To create your own Data Commons Gemini CLI extension:
+##### Sample agent
 
-1. From the directory in which you want to create the extension, run the following command:
-   <pre>
-   gemini extensions new <var>EXTENSION_NAME</var>
-   </pre>
-   The extension name can be whatever you want; however, it must not collide with an existing extension name, so do not use `datacommons`. Gemini will create a subdirectory with the same name, with a skeleton configuration file `gemini-extension.json`.
-1. Switch to the subdirectory that has been created:
-   <pre>
-   cd <var>EXTENSION_NAME</var>
-   </pre>
-1. Create a new Markdown file (with a `.md` suffix). You can name it however you want, or just use the default, `GEMINI.md`.
-1. Write natural-language prompts to specify how Gemini should handle user queries and tool results. See <https://github.com/gemini-cli-extensions/datacommons/blob/main/DATACOMMONS.md> for a good example to get you started. Also see the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
-1. Modify `gemini-extension.json` to add the following configuration:
-   <pre>
-    {
-        "name": "<var>EXTENSION_NAME</var>",
-        "version": "1.0.0",
-        "description": "<var>EXTENSION_DESCRIPTION</var>",
-        // Only needed if the file name is not GEMINI.md
-        "contextFileName": "<var>MARKDOWN_FILE_NAME</var>",
+Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
 
-        // only needed if environment variables aren't set in a startup script
-        // or in a .env file
-        "env": {
-          "DC_API_KEY": "<var>YOUR_DATA_COMMONS_API_KEY</var>",
-          "DC_TYPE": "custom",
-          "CUSTOM_DC_URL": "<var>INSTANCE_URL</var>"
-          // If you are using a Google API key to authenticate to Gemini
-          "GEMINI_API_KEY": "<var>YOUR_GOOGLE_API_KEY</var>",
-        }
-    }
-    </pre>
-    The extension name is the one you created in step 1. In the `description` field, provide a brief description of your extension. If you release the extension publicly, this description will show up on <https://geminicli.com/extensions/>. 
-    
-    For additional options, see the [Gemini CLI extension documentation](https://geminicli.com/docs/extensions/#how-it-works){: target="_blank"}.
-1.  Run the following command to install your new extension locally:
-    ```
-    gemini extensions link .
-    ```
-
-#### Run the extension locally
-
-1. From any directory, run `gemini`.
-1. In the input box, enter `/extensions list` to verify that your extension is active.
-1. Optionally, if you have already installed the Data Commons extension but do not want to use it, exit Gemini and from the command line, run:
-  ```
-  gemini extensions disable datacommons
-  ```
-1. Restart `gemini`. 
-1. If you want to verify that `datacommons` is disabled, run `/extensions list` again.
-1. Start sending queries!
-
-#### Make your extension public
-
-If you would like to release your extension publicly for others to use, we recommend using a Github repository. See the [Gemini CLI extension release documentation](https://geminicli.com/docs/extensions/extension-releasing/){: target="_blank"} for full details.
-
-{: #sample}
-### Use the sample agent
-
-We provide a basic agent for interacting with the MCP Server in [packages/datacommons-mcp/examples/sample_agents/basic_agent](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent){: target="_blank"}. 
-
-In addition to the other prerequisites, you will need a Google AI API key to run it. For details on supported keys, see <https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model>{: target="_blank"}.
-
-{:.no_toc}
-### Install
-
-From the desired directory, clone the `agent-toolkit` repo:
-```bash
-git clone https://github.com/datacommonsorg/agent-toolkit.git
-```
-
-{:.no_toc}
-### Run
-
-By default, the agent will spawn a local server and connect to it over Stdio. If you want to connect to a remote server, modify the code as described in [Connect to a remote server](#remote) before using this procedure.
-
-1. Go to the root directory of the repo:
-   ```bash
-   cd agent-toolkit
-   ```
-1. Run the agent using one of the following methods.
-
-{:.no_toc}
-#### Web UI (recommended)
-
-1. Run the following command:
-   ```bash
-   uvx --from google-adk adk web ./packages/datacommons-mcp/examples/sample_agents/
-   ```
-1. Point your browser to the address and port displayed on the screen (e.g. `http://127.0.0.1:8000/`). The Agent Development Kit Dev UI is displayed. 
-1. From the **Type a message** box, type your [query for Data Commons](#sample-queries) or select another action.
-
-{:.no_toc}
-#### Command line interface
-
-1. Run the following command:
-   ```bash
-   uvx --from google-adk adk run ./packages/datacommons-mcp/examples/sample_agents/basic_agent
-   ```
-1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
-
-{:.no_toc}
-### Configure to connect to a remote server {#remote}
-
-If you want to connect to a remote MCP server, follow this procedure before starting the agent:
-
-1. Start up the MCP server in standalone mode, as described in [Run a standalone server](#run-a-standalone-server).
-1. Modify the code in [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set import modules and agent initialization parameters as follows:
-
-```python
+<pre>
 from google.adk.tools.mcp_tool.mcp_toolset import (
    MCPToolset,
    StreamableHTTPConnectionParams
@@ -246,28 +182,18 @@ root_agent = LlmAgent(
             headers={
                "Content-Type": "application/json",
                "Accept": "application/json, text/event-stream"
-            },
-         ),
+            }
+         )
       )
-      ],
+   ],
 )
-```
+</pre>
+
+[Run the startup commands](#run-sample) as usual.
+
+<script src="/assets/js/customdc-doc-tabs.js"></script>
 
 
-### Run a standalone server
-
-The following procedure starts the MCP server in a local environment. 
-
-1. Ensure you've set up the relevant server [environment variables](#configure-environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
-1. Run:
-   <pre>
-   uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
-   </pre>
-By default, the host is `localhost` and the port is `8080` if you don't set these flags explicitly.
-
-The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
-
-You can connect to the server using any client, including the ones listed earlier on this page. If you're using a different client from the ones documented on this page, consult its documentation to determine how to specify an HTTP URL.
 
 ## Run the MCP Server in Google Cloud Platform
 
@@ -360,9 +286,9 @@ For details, see the following pages:
 
 The HTTP URL parameter is the Cloud Run App URL, if you are exposing the service directly, or a custom domain URL if you are using a load balancer and domain mapping.
 
-## Troubleshoot deployment issues
+### Troubleshoot deployment issues
 
-### Container fails to start
+#### Container fails to start
 
 If you see this error message:
 
@@ -375,39 +301,4 @@ This is a generic message that could indicate a number of configuration problems
 - Try increasing the health check timeout.
 
 
-
-# Develop your own agent
-
-This page shows you how to develop a custom Data Commons agent, using two approaches:
-
-- Write a [custom Gemini CLI extension]()
-   - Simple to set up, no code required
-   - Minimal customization possible, mostly LLM prompts
-   - Requires Gemini CLI as the client
-
-- Write a [custom Google ADK agent](#customize-the-sample-agent)
-    - Some code required
-    - Any customization possible
-    - Provides a UI client as part of the framework 
-
-
-
-## Customize the sample agent
-
-We provide two sample Google Agent Development Kit-based agents you can use as inspiration for building your own agent:
-
-- [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb) is a Google Colab tutorial that shows how to build an ADK Python agent step by step. 
-- The sample [basic agent](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent) is a simple Python [Google ADK](https://google.github.io/adk-docs/) agent you can use to develop locally. You can make changes directly to the Python files. You'll need to [restart the agent](/mcp/run_tools.html#use-the-sample-agent) any time you make changes.
-
-> Tip: You do not need to install the Google ADK; when you use the [command we provide](run_tools.md#use-the-sample-agent) to start the agent, it downloads the ADK dependencies at run time.
-
-### Customize the model
-
-To change to a different LLM or model version, edit the `AGENT_MODEL` constant in [packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){: target="_blank"}.
-
-### Customize agent behavior
-
-The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTIONS` in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py){: target="_blank"}.
-
-You can add your own prompts to modify how the agent handles tool results. See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
 
