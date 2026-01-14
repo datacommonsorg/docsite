@@ -101,11 +101,7 @@ cd website
     </tr>
     <tr>
       <td width="300"><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/sample" target="_blank"><code>custom_dc/sample/</code></a></td>
-      <td>Sample supplemental data and config file (`config.json`) that is added to the base data in Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/datacommonsorg/website/tree/master/custom_dc/examples" target="_blank"><code>custom_dc/examples/</code></a></td>
-      <td>More examples of custom data in CSV format and `config.json`. To configure your own custom data, see <a href="custom_data.html">Work with custom data</a>.</td>
+      <td>Sample data and config file (`config.json`) that can be added to a Custom Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom" target="_blank"><code>server/templates/custom_dc/custom/</code></a></td>
@@ -126,27 +122,28 @@ cd website
 
 Before you start up a Data Commons site, it's important to understand the basics of the data model that is expected in a custom Data Commons instance. Let's look at the sample data in the CSV files in the `custom_dc/sample/` folder. This data is from the Organisation for Economic Co-operation and Development (OECD): "per country data for annual average wages" and "gender wage gaps":
 
-countryAlpha3Code	| date	| average_annual_wage |
-------------------|-------|---------------------|
-BEL	| 2000	| 54577.62735 |
-BEL	| 2001	| 54743.96009 |
-BEL	| 2002	| 56157.24355 |
-BEL	| 2003	| 56491.99591 |
-... | ...   |     ...     |
+entity	| date	| variable | value | unit |
+--------|-------|----------|-------|------|
+country/BEL	| 2000	| average_annual_wage | 54577.62735 | USD |
+country/BEL	| 2001	| average_annual_wage | 54743.96009 | USD |
+country/BEL	| 2002	| average_annual_wage | 56157.24355 | USD |
+country/BEL	| 2003	| average_annual_wage | 56491.99591 | USD |
+... | ...   |     ...     | ... | ... |
 
-countryAlpha3Code	| date	| gender_wage_gap |
-------------------|-------|-----------------|
-DNK	| 2005	| 10.16733044 |
-DNK	| 2006	| 10.17206126 |
-DNK	| 2007	| 9.850297951 |
-DNK	| 2008	| 10.18354903 |
-... |  ...  |   ...       |
+entity	| date	| variable | value | unit |
+--------|-------|----------|-------|------|
+country/DNK	| 2005	| gender_wage_gap | 10.16733044 | percent |
+country/DNK	| 2006	| gender_wage_gap | 10.17206126 | percent |
+country/DNK	| 2007	| gender_wage_gap | 9.850297951 | percent |
+country/DNK	| 2008	| gender_wage_gap | 10.18354903 | percent |
+... |  ...  |   ...       | ... | ... |
 
 There are a few important things to note:
-- There are only 3 columns: one representing a place (`countryAlpha3Code`, a [special Data Commons place type](/custom_dc/custom_data.html#special-names)); one representing a date (`date`); and one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept for a metric: `average_annual_wage` and `gender_wage_gap`. (Actually, there can be any number of statistical variable columns -- but no other types of additional columns -- and these two CSV files could be combined into one.)
-- Every row is a separate [_observation_](/glossary.html#observation), or a value of the variable for a given place and time. In the case of multiple statistical variable columns in the same file, each row would, of course, consist of multiple observations.
+- There are only 4 required columns: one representing a place or "entity", identified by a unique Data Commons identifier ("DCID"); one representing a date; one representing a [_statistical variable_](/glossary.html#variable), which is a Data Commons concept for a metric; and one representing the value of the variable. 
+- Every row is a separate [_observation_](/glossary.html#observation). An observation is a value of the variable for a given place and time. There could be multiple different variables in a given CSV file (and these two files could actually be combined into one).
+- There is an additional, optional column, `unit`, that provides more details about each observation.
 
-This is the format to which your data must conform if you want to take advantage of Data Commons' simple import facility. If your data doesn't follow this model, you'll need to do some more work to prepare or configure it for correct loading. You also need to write a `config.json` file to tell the importer which CSV files to import, where the data comes from, and additional options. (Those topics are discussed in detail in [Preparing and loading your data](custom_data.md).)
+This is the format to which your data must conform for correct loading. (This topic is discussed in detail in [Preparing and loading your data](custom_data.md).)
 
 ## Load sample data and start the services
 
