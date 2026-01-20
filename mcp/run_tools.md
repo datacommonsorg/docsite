@@ -346,7 +346,7 @@ Replace the `datacommons-mcp` section in your `settings.json` file as follows:
 {
    "mcpServers": {
       "datacommons-mcp": {
-         "httpUrl": "https://<var>HOST</var>:<var>PORT</var>/mcp",
+         "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
          "headers": {
             "Content-Type": "application/json",
             "Accept": "application/json, text/event-stream"
