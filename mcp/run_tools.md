@@ -158,7 +158,10 @@ To configure Gemini CLI to connect to the Data Commons server, edit the relevant
      "datacommons-mcp": {
          "httpUrl": "https://api.datacommons.org/mcp",
          "headers": {
+           // If you have set the key in your environment
            "X-API-Key": "$DC_API_KEY"
+            // If you have not set the key in your environment
+           "X-API-Key": "<var>YOUR DC API KEY</var>"
          }
       }
    }
