@@ -290,6 +290,8 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
             "serve",
             "stdio"
          ],
+         // Only needed if you have not set the key in your environment
+         "env": "<var>YOUR DC API KEY</var>"
       }
    }
    // ...
@@ -338,11 +340,12 @@ root_agent = LlmAgent(
 {: #standalone}
 #### Step 1: Start the server as a standalone process
 
-Run:
-<pre>
-uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
-</pre>
-By default, the host is `localhost` and the port is `8080` if you don't set these flags explicitly.
+1. Be sure to set the API key as an [environment variable](#prerequisites).
+2. Run:
+   <pre>
+   uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
+   </pre>
+   By default, the host is `localhost` and the port is `8080` if you don't set these flags explicitly.
 
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
 
@@ -362,6 +365,10 @@ Replace the `datacommons-mcp` section in your `settings.json` file as follows:
          "headers": {
             "Content-Type": "application/json",
             "Accept": "application/json, text/event-stream"
+            // If you have set the key in your environment
+           , "X-API-Key": "$DC_API_KEY"
+            // If you have not set the key in your environment
+           , "X-API-Key": "<var>YOUR DC API KEY</var>"
          }
       }
    }
