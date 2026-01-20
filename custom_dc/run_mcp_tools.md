@@ -36,8 +36,7 @@ Various other optional variables are also available; all are documented in [pack
 You can set variables in the following ways:
 1. In a shell/startup script (e.g. `.bashrc`).
 1. [Use an `.env` file](#env). This is useful if you're setting multiple variables, to keep all settings in one place.
-1. If you are using Gemini CLI (not the extension), you can use the `env` option in the [`settings.json` file](/mcp/run_tools.html#gemini).
-
+1. If you are using Gemini CLI (not the extension), you can use the `env` option in the `settings.json` file.
 
 
 {: #env}
@@ -57,143 +56,9 @@ You can set variables in the following ways:
    - `CUSTOM_DC_URL`: Uncomment and set to the URL of your instance. 
 1. Optionally, set other variables.
 1. Save the file.
-
-
-
-This section describes how to run the Data Commons MCP server locally, and how to configure a client to connect to it. You can run the server locally or remotely.
-
-We provide procedures for the following scenarios:
-- Local server and local agent: The agent spawns the server in a subprocess using Stdio as the transport protocol.
-- Remote server and local agent: You start up the server as a standalone process and then connect the agent to it using streaming HTTP as the protocol.
-
-For both scenarios, we use Gemini CLI and the sample agent as examples. You should be able to adapt the configurations to other MCP-compliant agents/clients.
-
-**Additional prerequisities**
-
-- Install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
-
-### Run a local server and agent
-
-#### Gemini CLI
-
-To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` in your `settings.json` file as follows:
-
-<pre>
-{
-   // ...
-   "mcpServers": {
-      "datacommons-mcp": {
-         "command": "uvx",
-         "args": [
-            "datacommons-mcp@latest",
-            "serve",
-            "stdio"
-         ],
-      }
-   }
-   // ...
-}
-</pre>
-
-[Run Gemini CLI](#run-gemini) as usual.
-
-#### Sample agent
-
-To instruct the sample agent to spawn a local server that uses the Stdio protocol, modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set import modules and agent initialization parameters as follows:
-
-```python
-from google.adk.tools.mcp_tool.mcp_toolset import (
-    McpToolset,
-    StdioConnectionParams,
-    StdioServerParameters,
-)
-
-//...
-
-root_agent = LlmAgent(
-    model=AGENT_MODEL,
-    name="basic_agent",
-    instruction=AGENT_INSTRUCTIONS,
-    tools=[
-        McpToolset(
-            connection_params=StdioConnectionParams(
-                timeout=10,
-                server_params=StdioServerParameters(
-                    command="uvx",
-                    args=["datacommons-mcp", "serve", "stdio"],
-                    env={"DC_API_KEY": DC_API_KEY}
-                )
-            )
-        )
-    ],
-)
-```
-[Run the startup commands](#run-sample) as usual.
-
-### Run a remote server and a local agent
-
-{: #standalone}
-#### Step 1: Start the server as a standalone process
-
-Run:
-<pre>
-uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
-</pre>
-By default, the host is `localhost` and the port is `8080` if you don't set these flags explicitly.
-
-The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
-
-#### Step 2: Configure an agent to connect to the running server
-
-##### Gemini CLI
-
-Replace the `datacommons-mcp` in your `settings.json` file as follows:
-<pre>
-{
-   "mcpServers": {
-      "datacommons-mcp": {
-         "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
-         "headers": {
-            "Content-Type": "application/json",
-            "Accept": "application/json, text/event-stream"
-         }
-      }
-   }
-}
-</pre>
-
-[Run Gemini CLI](#run-gemini) as usual.
-
-##### Sample agent
-
-Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
-
-<pre>
-from google.adk.tools.mcp_tool.mcp_toolset import (
-   MCPToolset,
-   StreamableHTTPConnectionParams
-)
-
-root_agent = LlmAgent(
-      # ...
-      tools=[McpToolset(
-         connection_params=StreamableHTTPConnectionParams(
-            url=f"http://<host>:<port>/mcp",
-            headers={
-               "Content-Type": "application/json",
-               "Accept": "application/json, text/event-stream"
-            }
-         )
-      )
-   ],
-)
-</pre>
-
-[Run the startup commands](#run-sample) as usual.
+1. When you start up the client or server, run the commands from the directory where the `.env` file is stored.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
-
-
 
 ## Run the MCP Server in Google Cloud Platform
 
@@ -205,7 +70,7 @@ Since setting up an MCP server is a simple, one-time setup, there's no need to u
 
 There are several versions of the image available, viewable at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server>. We recommend that you choose a production version with a specific version number, to ensure that changes introduced by the Data Commons team don't break your application.
 
-## Before you start: decide on a hosting model
+### Before you start: decide on a hosting model
 
 There are several ways you can host the MCP server in Cloud Run, namely:
 
@@ -214,13 +79,13 @@ There are several ways you can host the MCP server in Cloud Run, namely:
 
 In this page, we provide steps for running the Data Commons MCP server as a standalone container. If you want to go with the sidecar option, please see [Deploying multiple containers to a service (sidecars)](https://docs.cloud.google.com/run/docs/deploying#sidecars){: target="_blank"} for additional requirements and setup procedures.
 
-## Prerequisites
+### Prerequisites
 
 The following procedures assume that you have set up the following Google Cloud Platform services, using the [Terraform scripts](deploy_cloud.md#terraform):
 - A service account and roles. 
 - A Google Cloud Secret Manager secret for storing your Data Commons API key. 
 
-## Create a Cloud Run Service for the MCP server
+### Create a Cloud Run Service for the MCP server
 
 The following procedure sets up a bare-bones container service. To set additional options, such as request timeouts, instance replication, etc., please see [Configure Cloud Run services](https://docs.cloud.google.com/run/docs/configuring){: target="_blank"} for details.
 
@@ -278,16 +143,15 @@ The following procedure sets up a bare-bones container service. To set additiona
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
 
-## Connect to the server from a remote client
+### Connect to the server from a remote client
 
-For details, see the following pages:
-- [Connect to the server from a local Gemini CLI client](/mcp/run_tools.html#gemini-cli-remote)
-- [Connect to the server from a local agent](/mcp/run_tools.html#remote)
+For details, see [Configure an agent to connect to the running server](/mcp/run_tools.html#standalone-client).
 
 The HTTP URL parameter is the Cloud Run App URL, if you are exposing the service directly, or a custom domain URL if you are using a load balancer and domain mapping.
 
 ### Troubleshoot deployment issues
 
+{:.no_toc}
 #### Container fails to start
 
 If you see this error message:

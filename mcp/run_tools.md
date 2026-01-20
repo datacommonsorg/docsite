@@ -8,7 +8,7 @@ parent: MCP - Query data interactively with an AI agent
 {:.no_toc}
 # Run MCP tools
 
-This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at https://api.datacommons/mcp. For advanced use cases, this page also describes how to run your own server and connect to it. 
+This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at `https://api.datacommons/mcp`. For advanced use cases, this page also describes how to run your own server and connect to it. 
 
 For procedures to use MCP with a Custom Data Commons instance, please see instead [Run MCP tools with a Custom Data Commons instance](/custom_dc/use_mcp_tools.html).
 
@@ -183,6 +183,7 @@ In addition to the Data Commons API key, you will need:
 
 > Tip: You do not need to install the Google ADK; when you use the [command we provide](run_tools.md#use-the-sample-agent) to start the agent, it downloads the ADK dependencies at run time.
 
+{:.no_toc}
 ### Install
 
 From the desired directory, clone the `agent-toolkit` repo:
@@ -190,6 +191,7 @@ From the desired directory, clone the `agent-toolkit` repo:
 git clone https://github.com/datacommonsorg/agent-toolkit.git
 ```
 
+{:.no_toc}
 {: #run-sample}
 ### Run
 
@@ -218,15 +220,18 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
    ```
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
+{:.no_toc}
 ### Customize the agent
 
 To customize the sample agent, you can make changes directly to the Python files. You'll need to [restart the agent](#run-sample) any time you make changes.
 
-### Customize the model
+{:.no_toc}
+#### Customize the model
 
 To change to a different LLM or model version, edit the `AGENT_MODEL` constant in [packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){: target="_blank"}.
 
-### Customize agent behavior
+{:.no_toc}
+#### Customize agent behavior
 
 The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTIONS` in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py){: target="_blank"}.
 
@@ -264,7 +269,7 @@ For both scenarios, we use Gemini CLI and the sample agent as examples. You shou
 
 #### Gemini CLI
 
-To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` in your `settings.json` file as follows:
+To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` section in your `settings.json` file as follows:
 
 <pre>
 {
@@ -331,16 +336,17 @@ By default, the host is `localhost` and the port is `8080` if you don't set thes
 
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
 
+{: #standalone-client}
 #### Step 2: Configure an agent to connect to the running server
 
 ##### Gemini CLI
 
-Replace the `datacommons-mcp` in your `settings.json` file as follows:
+Replace the `datacommons-mcp` section in your `settings.json` file as follows:
 <pre>
 {
    "mcpServers": {
       "datacommons-mcp": {
-         "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
+         "httpUrl": "https://<var>HOST</var>:<var>PORT</var>/mcp",
          "headers": {
             "Content-Type": "application/json",
             "Accept": "application/json, text/event-stream"
@@ -366,7 +372,7 @@ root_agent = LlmAgent(
       # ...
       tools=[McpToolset(
          connection_params=StreamableHTTPConnectionParams(
-            url=f"http://<host>:<port>/mcp",
+            url=f"https://<var>HOST</var>:<var>PORT</var>/mcp",
             headers={
                "Content-Type": "application/json",
                "Accept": "application/json, text/event-stream"
