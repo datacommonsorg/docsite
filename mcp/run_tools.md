@@ -69,6 +69,8 @@ For basic usage against datacommons.org, set the required `DC_API_KEY` in your s
   </div>
 </div>
 
+**> Tip:** If you are using Gemini CLI (not the extension), you can skip this step and specify the key in the Gemini CLI configuration file.
+
 {: #extension}
 ## Use the Gemini CLI extension
 
