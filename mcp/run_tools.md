@@ -28,7 +28,7 @@ We provide specific instructions for the following agents. All may be used to qu
    - You can create your own LLM context file 
    - Minimal setup
 
-- A [sample basic agent](#sample) based on the Google [Agent Development Kit](https://google.github.io/adk-docs/){: target="_blank"}
+- A [sample basic agent](#use-the-sample-agent) based on the Google [Agent Development Kit](https://google.github.io/adk-docs/){: target="_blank"}
    - Best for interacting with a Web GUI
    - Can be used to run other LLMs and prompts
    - Downloads agent code locally
