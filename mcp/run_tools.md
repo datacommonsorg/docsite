@@ -255,7 +255,7 @@ Here are some examples of such queries:
 {: #self-hosted}
 ## Advanced: Run your own MCP server
 
-This section describes how to run the Data Commons MCP server locally, and how to configure a client to connect to it. You can run the server locally or remotely.
+This section describes how to run the Data Commons MCP server locally, and how to configure a client to connect to it. You can run the client locally or remotely.
 
 We provide procedures for the following scenarios:
 - Local server and local agent: The agent spawns the server in a subprocess using Stdio as the transport protocol.
