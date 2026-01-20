@@ -267,6 +267,7 @@ For both scenarios, we use Gemini CLI and the sample agent as examples. You shou
 
 ### Run a local server and agent
 
+{:.no_toc}
 #### Gemini CLI
 
 To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` section in your `settings.json` file as follows:
@@ -290,6 +291,7 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
 
 [Run Gemini CLI](#run-gemini) as usual.
 
+{:.no_toc}
 #### Sample agent
 
 To instruct the sample agent to spawn a local server that uses the Stdio protocol, modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set import modules and agent initialization parameters as follows:
@@ -325,6 +327,7 @@ root_agent = LlmAgent(
 
 ### Run a remote server and a local agent
 
+{:.no_toc}
 {: #standalone}
 #### Step 1: Start the server as a standalone process
 
@@ -337,8 +340,10 @@ By default, the host is `localhost` and the port is `8080` if you don't set thes
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
 
 {: #standalone-client}
+{:.no_toc}
 #### Step 2: Configure an agent to connect to the running server
 
+{:.no_toc}
 ##### Gemini CLI
 
 Replace the `datacommons-mcp` section in your `settings.json` file as follows:
@@ -358,6 +363,7 @@ Replace the `datacommons-mcp` section in your `settings.json` file as follows:
 
 [Run Gemini CLI](#run-gemini) as usual.
 
+{:.no_toc}
 ##### Sample agent
 
 Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
