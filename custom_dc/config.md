@@ -97,7 +97,7 @@ The first set of parameters only applies to `foo.csv`. The second set of paramet
 
 format
 
-: Required: Specify `variablePerRow`.
+: Required: Specify `variablePerRow`. The other option, `variablePerColumn`, is now deprecated.
 
 provenance
 
