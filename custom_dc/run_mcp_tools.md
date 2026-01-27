@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Run MCP tools against a custom instance
+title: Run an MCP server
 nav_order: 9
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Run MCP tools against a custom instance
+# Run an MCP server
 
 To use Data Commons MCP tools with a Custom Data Commons, you must run your own instance of the Data Commons MCP server. This page describes how to run a server locally and in Google Cloud. 
 
