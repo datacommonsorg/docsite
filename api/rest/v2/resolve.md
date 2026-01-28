@@ -23,8 +23,8 @@ You can resolve place entities by name/description, Wikidata ID, or geo coordina
 Note that you can only resolve entities by specific terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
 > **IMPORTANT:**
-   This endpoint relies on name-based geocoding, which can have ambiguities.
-   One common pattern is ambiguous place names that exist in different
+   For places, this endpoint relies on name-based geocoding, which can have ambiguities.
+   One common pattern is place names that that are the same in different
    countries, states, etc. For example, there is at least one popular city
    called "Cambridge" in both the UK and USA. Thus, for more precise results,
    please provide as much context in the description as possible. For example,
@@ -42,7 +42,7 @@ Note that you can only resolve entities by specific terminal properties. You can
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&resolver=place|indicator&property=<var>EXPRESSION</var>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&resolver=<var>NODE_TYPE</var>&property=<var>EXPRESSION</var>&target=<var>INSTANCE</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -59,7 +59,9 @@ JSON data:
     "<var>NODE_IDENTIFIER_2</var>",
     ...
   ],
-  "property": "<var>EXPRESSION</var>"
+  "resolver": "<var>NODE_TYPE</var>",
+  "property": "<var>EXPRESSION</var>",
+  "target": "<var>INSTANCE</var>"
 }
 
 </div>
@@ -72,12 +74,17 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. |
-| resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. |
-| property <br /> <required-tag>Required</required-tag> for place entities only | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). <br/> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties. |
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
+| resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. If not specified, the default is `place`. |
+| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude. <br/>If not specified, the default is `<-description`. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). <br/><b>Note:</b> To specify `wikidataId`,`geoCoordinates`, or a `typeOf` filter on the query, you must specify the `property` parameter. <br/> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties. |
+| target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
 {: .doc-table }
 
+> **Tip:** For places, this endpoint relies on name-based geocoding, which can have ambiguities. One common pattern is place names that that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
+
 ## Response
+
+The response contains all the candidates that match the query.
 
 When the `resolver` option is set to `place` (the default), the response looks like:
 
@@ -101,8 +108,8 @@ When the `resolver` option is set to `place` (the default), the response looks l
       "node": "<var>NODE_2</var>",
       "candidates": [
         {
-          "dcid": "<var>DCID_2</var>",
-          "dominantType": "<var>TYPE_OF_DCID_2</var>"
+          "dcid": "<var>DCID_3</var>",
+          "dominantType": "<var>TYPE_OF_DCID_3</var>"
         },
       ]
     },
@@ -123,21 +130,21 @@ When `resolver` option is set to `indicator`, the response looks like:
         {
           "dcid": "<var>DCID_1</var>",
           "metadata": {
-            "score": "<var>CANDIDATE_RANKING_SCORE</var>",
+            "score": "<var>CONFIDENCE_SCORE</var>",
             "sentence": "<var>STATVAR_DESCRIPTION</var>"
           },
           "typeOf": [
-            "StatisticalVariable"
+            "<var>TYPE_OF_DCID_1</var>"
           ]
         },
          {
-          "dcid": "<var>DCID_1</var>",
+          "dcid": "<var>DCID_2</var>",
           "metadata": {
-            "score": "<var>CANDIDATE_RANKING_SCORE</var>",
+            "score": "<var>CONFIDENCE_SCORE</var>",
             "sentence": "<var>STATVAR_DESCRIPTION</var>"
           },
           "typeOf": [
-            "StatisticalVariable"
+            "<var>TYPE_OF_DCID_2</var>"
           ]
         },
       ]
@@ -146,52 +153,20 @@ When `resolver` option is set to `indicator`, the response looks like:
       "node": "<var>NODE_2</var>",
       "candidates": [
         {
-          "dcid": "<var>DCID_2</var>",
-          "dominantType": "<var>TYPE_OF_DCID_2</var>"
+          "dcid": "<var>DCID_3</var>",
+          "metadata": {
+            "score": "<var>CONFIDENCE_SCORE</var>",
+            "sentence": "<var>STATVAR_DESCRIPTION</var>"
+          },
+          "typeOf": [
+            "<var>TYPE_OF_DCID_3</var>"
+          ]
         },
       ]
     },
     ...
   ]
 }
-
-
-
-{
-  "entities": [
-    {
-      "node": "population",
-      "candidates": [
-        {
-          "dcid": "Count_Person",
-          "metadata": {
-            "score": "0.8982",
-            "sentence": "population count"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
-        {
-          "dcid": "IncrementalCount_Person",
-          "metadata": {
-            "score": "0.8723",
-            "sentence": "population change"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
-        {
-          "dcid": "Count_Person_PerArea",
-          "metadata": {
-            "score": "0.8354",
-            "sentence": "Population Density"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
 </pre>
 {: .response-signature .scroll}
 
@@ -201,7 +176,10 @@ When `resolver` option is set to `indicator`, the response looks like:
 |-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
 | candidates | list | DCIDs matching the description you provided. |
-| dominantType | string | Optional field which, where present, disambiguates between multiple results. |
+| dominantType | string | Optional field which, when present, disambiguates between multiple results. Only returned when `resolver` is set to `place` (the default). |
+| metadata.score | float | The confidence score for the result, used to rank multiple results. Only returned when `resolver` is set to `indicator`. |
+| metadata.sentence | string | The matching substring contained in the node's name or description. Only returned when `resolver` is set to `indicator`. |
+| typeOf | string | The type of the result. Currently supports only `StatisticalVariable` and `Topic`. |
 {: .doc-table}
 
 ## Examples
@@ -348,14 +326,13 @@ Response:
 
 This queries for the DCID of "Georgia". Notice that specifying `Georgia` without a type filter returns all possible DCIDs with the same name: the state of Georgia in USA ([geoId/13](https://datacommons.org/browser/geoId/13){: target="_blank"}), the country Georgia ([country/GEO](https://datacommons.org/browser/country/GEO){: target="_blank"}) and the city Georgia in the US state of Vermont ([geoId/5027700](https://datacommons.org/browser/geoId/5027700){: target="_blank"}).
 
-Note the `description` property in the request. This currently only supports resolving place entities by name.
+Note that the expression `<-description->dcid` is set implicitly.
 
 Parameters:
 {: .example-box-title}
 
 ```bash
 nodes: "Georgia"
-property: "<-description->dcid"
 ```
 
 GET Request:
@@ -363,7 +340,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia&property=%3C-description-%3Edcid'
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Georgia'
 ```
 POST Request:
 {: .example-box-title}
@@ -371,7 +348,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/resolve \
-  -d '{"nodes": ["Georgia"], "property": "<-description->dcid"}'
+  -d '{"nodes": ["Georgia"]}'
 ```
 
 Response:
@@ -506,3 +483,108 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
+### Example 6: Find the DCID of a statistical variable
+
+This queries datacommons.org for statistical variables containing the term "population".
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "population"
+resolver: "indicator"
+```
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=population&resolver=indicator'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve \
+  -d '{"nodes": ["population"], "resolver": "indicator"}'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+(truncated)
+
+```json
+{
+  "entities": [
+    {
+      "node": "population",
+      "candidates": [
+        {
+          "dcid": "Count_Person",
+          "metadata": {
+            "score": "0.8982",
+            "sentence": "population count"
+          },
+          "typeOf": [
+            "StatisticalVariable"
+          ]
+        },
+        {
+          "dcid": "IncrementalCount_Person",
+          "metadata": {
+            "sentence": "population change",
+            "score": "0.8723"
+          },
+          "typeOf": [
+            "StatisticalVariable"
+          ]
+        },
+        {
+          "dcid": "Count_Person_PerArea",
+          "metadata": {
+            "score": "0.8354",
+            "sentence": "Population Density"
+          },
+          "typeOf": [
+            "StatisticalVariable"
+          ]
+        },
+        {
+          "dcid": "dc/topic/Demographics",
+          "metadata": {
+            "score": "0.8211",
+            "sentence": "Demographics"
+          },
+          "typeOf": [
+            "Topic"
+          ]
+        },
+        {
+          "dcid": "Count_Person_18OrMoreYears",
+          "metadata": {
+            "score": "0.8167",
+            "sentence": "adult population count"
+          },
+          "typeOf": [
+            "StatisticalVariable"
+          ]
+        },
+        {
+          "dcid": "Count_Person_Upto18Years",
+          "metadata": {
+            "score": "0.8121",
+            "sentence": "children population count"
+          },
+          "typeOf": [
+            "StatisticalVariable"
+          ]
+        },
+```
+{: .example-box-content .scroll}
+
