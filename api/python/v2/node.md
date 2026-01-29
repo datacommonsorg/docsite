@@ -1169,7 +1169,7 @@ Fetches the names, DCIDs, and types of all direct and indirect child places of t
 ### Signature
 
 ```python
-fetch_place_place_descendants(place_dcids, descendants_type, as_tree, max_concurrent_requests)
+fetch_place_descendants(place_dcids, descendants_type, as_tree, max_concurrent_requests)
 ```
 
 ### Input parameters
