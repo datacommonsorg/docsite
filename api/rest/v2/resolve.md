@@ -22,14 +22,6 @@ You can resolve place entities by name/description, Wikidata ID, or geo coordina
 
 Note that you can only resolve entities by specific terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
-> **IMPORTANT:**
-   For places, this endpoint relies on name-based geocoding, which can have ambiguities.
-   One common pattern is place names that that are the same in different
-   countries, states, etc. For example, there is at least one popular city
-   called "Cambridge" in both the UK and USA. Thus, for more precise results,
-   please provide as much context in the description as possible. For example,
-   to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can.
-
 ## Request
 
 <div class="api-tab">
@@ -80,7 +72,7 @@ JSON data:
 | target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
 {: .doc-table }
 
-> **Tip:** For places, this endpoint relies on name-based geocoding, which can have ambiguities. One common pattern is place names that that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
+> **Note:** For places, this endpoint relies on name-based geocoding, which may return imprecise results. One common pattern is ambiguous place names, that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
 
 ## Response
 
