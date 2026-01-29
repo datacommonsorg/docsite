@@ -589,7 +589,7 @@ fetch_indicators(queries, target)
 {: .no_toc}
 #### Example 1: Find the DCIDs of statistical variables
 
-This looks up all the statistical variables containing the terms "female population over 80".
+This looks up all the statistical variables containing the terms "female population over 50".
 
 Request:
 {: .example-box-title}
