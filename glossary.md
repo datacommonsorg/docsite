@@ -6,6 +6,7 @@ published: true
 parent: How to use Data Commons
 ---
 
+{: .no_toc}
 # Glossary of Common Terms
 
 {: .no_toc}
@@ -16,13 +17,6 @@ This page contains a selection of key terms important to understanding the struc
 
 * TOC
 {:toc}
-
-### [Cohort](https://datacommons.org/browser/CohortSet){: target="_blank"}
-{: #cohort}
-
-A group of entities sharing some characteristic. Interchangeably referred to in a Data Commons context as `Cohort` and `CohortSet`. Examples include [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City){: target="_blank"}.
-
-> The type [`Cohort`](https://datacommons.org/browser/Cohort){: target="_blank"} is a legacy type not used by the Sheets method [`DCCOHORTMEMBERS()`](/api/sheets/get_cohort_members.html).
 
 ### [Date](https://datacommons.org/browser/date){: target="_blank"}
 {: #date}
