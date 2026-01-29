@@ -139,7 +139,7 @@ For all other methods, the response looks like this:
 | dominantType | string | Optional field which, when present, disambiguates between multiple results. Only returned when `resolver` is set to `place` (the default). |
 | metadata.score | float | The confidence score for the result, used to rank multiple results. Only returned when `resolver` is set to `indicator`. |
 | metadata.sentence | string | The matching substring contained in the node's name or description. Only returned when `resolver` is set to `indicator`. |
-| typeOf | string | The type of the result. Currently supports only `StatisticalVariable` and `Topic`. Only returned when `resolver` is set to `indicator`. |
+| typeOf | string or list of strings | The type of the result. Currently supports only `StatisticalVariable` and `Topic`. Only returned when `resolver` is set to `indicator`. |
 {: .doc-table}
 
 
