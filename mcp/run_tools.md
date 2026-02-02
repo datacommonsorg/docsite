@@ -188,7 +188,7 @@ To configure Gemini CLI to connect to the Data Commons server, edit the relevant
 In addition to the Data Commons API key, you will need:
 - [Git](https://git-scm.com/){: target="_blank"} installed.
 
-> Tip: You do not need to install the Google ADK; when you use the [command we provide](run_tools.md#use-the-sample-agent) to start the agent, it downloads the ADK dependencies at run time.
+> Tip: You do not need to install the Google ADK; when you use the [command we provide](#run-sample) to start the agent, it downloads the ADK dependencies at run time.
 
 {:.no_toc}
 ### Install
