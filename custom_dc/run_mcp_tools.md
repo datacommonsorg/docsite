@@ -11,7 +11,7 @@ parent: Build your own Data Commons
 To use Data Commons MCP tools with a Custom Data Commons, you must run your own instance of the Data Commons MCP server. This page describes how to run a server locally and in Google Cloud. 
 
 > **Important**: 
-> If you have not rebuilt your Data Commons image since the stable release of 2025-09-08, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+> If you have not rebuilt your Data Commons image since the stable release of 2026-01-29, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
 
 * TOC
 {:toc}
