@@ -12,12 +12,12 @@ This page describes how to run a local agent and connect to a Data Commons MCP s
 
 For advanced use cases, this page also describes how to run your own local server and connect to it from an agent. 
 
-For procedures to use MCP with a Custom Data Commons instance, please see instead [Run MCP tools with a Custom Data Commons instance](/custom_dc/run_mcp_tools.html).
+For procedures for Custom Data Commons instances, please see instead [Run an MCP server](/custom_dc/run_mcp_tools.html).
 
 * TOC
 {:toc}
 
-We provide specific instructions for the following agents. All may be used to query datacommons.org or a [Custom Data Commons instance](/custom_dc).
+We provide specific instructions for the following agents.
 
 - [Gemini CLI extension](#extension) 
    - Best for querying datacommons.org
