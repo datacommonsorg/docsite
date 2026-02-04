@@ -85,15 +85,14 @@ root_agent = LlmAgent(
     ],
 )
 ```
-[Run the startup commands](run_tools.md#sample) as usual.
+[Run the startup commands](run_tools.md#run-sample) as usual.
 
 ## Run a remote server and a local agent
 
-{:.no_toc}
 {: #standalone}
 ### Step 1: Start the server as a standalone process
 
-1. Be sure to set the API key as an [environment variable](#prerequisites).
+1. Be sure to set the API key as an [environment variable](run_tools.md#prerequisites).
 2. Run:
    <pre>
    uvx datacommons-mcp serve http [--host <var>HOSTNAME</var>] [--port <var>PORT</var>]
@@ -103,10 +102,8 @@ root_agent = LlmAgent(
 The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-server:8080/mcp`.
 
 {: #standalone-client}
-{:.no_toc}
 ### Step 2: Configure an agent to connect to the running server
 
-{:.no_toc}
 #### Gemini CLI
 
 Replace the `datacommons-mcp` section in your `settings.json` file as follows:
@@ -130,7 +127,6 @@ Replace the `datacommons-mcp` section in your `settings.json` file as follows:
 
 [Run Gemini CLI](run_tools.md#run-gemini) as usual.
 
-{:.no_toc}
 #### Sample agent
 
 Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:

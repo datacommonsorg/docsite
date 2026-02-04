@@ -48,7 +48,7 @@ For self-hosted deployments, the server supports both standard MCP [transport pr
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
 - Stdio: For clients that connect directly using local processes
 
-See [Run MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/).
+See [Use MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/).
 
 ## Unsupported features
 

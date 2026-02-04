@@ -89,7 +89,7 @@ gemini extensions install https://github.com/gemini-cli-extensions/datacommons [
 ```
 The installation creates a local `.gemini/extensions/datacommons` directory with the required files.
 
-> Note: If you have previously configured Gemini CLI to use the Data Commons MCP Server and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
+> Note: If you have previously configured Gemini CLI to use Data Commons MCP tools and want to use the extension instead, be sure to delete the `datacommons-mcp` section from the relevant `settings.json` file (e.g. `~/.gemini/settings.json`).
 
 {:.no_toc}
 ### Run
