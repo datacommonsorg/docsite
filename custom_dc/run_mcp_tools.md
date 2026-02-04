@@ -18,7 +18,7 @@ To use Data Commons MCP tools with a Custom Data Commons, you must run your own 
 
 ## Run a local MCP server
 
-You can use any AI agent to spawn a local MCP server, or start a standalone server and connect to it from any client. For the most part, the procedures to do so are the same as those provided in [Run your own MCP server](/mcp/run_tools.html#self-hosted). The main difference is that you must set additional environment variables, as described below.
+You can use any AI agent to spawn a local MCP server as a subprocess, or start a standalone server and connect to it from any client. For the most part, the procedures to do so are the same as those provided in [Run your own MCP server](/mcp/run_tools.html#self-hosted). The main difference is that you must set additional environment variables, as described below.
 
 ### Prerequisites
 
