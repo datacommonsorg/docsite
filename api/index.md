@@ -43,6 +43,7 @@ Finally, an R client library is available from a third-party provider, [Tidy Int
 A key is required for APIs to authenticate and authorize requests, as follows:
 - All REST [V2](rest/v2/index.md) APIs. These requests are served by endpoints at `api.datacommons.org`.
 - [Python and Pandas V2](python/v2/index.md) APIs, also served by `api.datacommons.org`.
+- Data Commons MCP server requests. These are served by `api.datacommons.org/mcp`. 
 - All requests coming from a custom Data Commons instance. These are also served by `api.datacommons.org`.
 - Data Commons MCP server requests. These are served by `api.datacommons.org/mcp`.
 - Data Commons NL API requests (used by the [DataGemma](https://ai.google.devgit/gemma/docs/datagemma){: target="_blank"} tool). These are served by endpoints at `nl.datacommons.org`.
