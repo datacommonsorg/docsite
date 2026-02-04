@@ -22,7 +22,7 @@ that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate between candidates (for example, Georgia the country vs. Georgia
 the US state).
 
-You can also query for statistical variables and topics. For example, you could find the DCIDs for all statistical variables containing the string "population".
+You can also query for statistical variables and topics. For example, you could find the DCIDs for all statistical variables related to the string "population".
 
 Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
