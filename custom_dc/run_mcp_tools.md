@@ -35,7 +35,7 @@ Various other optional variables are also available; all are documented in [pack
 
 You can set variables in the following ways:
 1. In a shell/startup script (e.g. `.bashrc`).
-1. [Use an `.env` file](#env). This is useful if you're setting multiple variables, to keep all settings in one place. Copy the contents of [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} into a file called `.env` in the directory where you plan to run the server and/or agent.
+1. Use an `.env` file. This is useful if you're setting multiple variables, to keep all settings in one place. Copy the contents of [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} into a file called `.env` in the directory where you plan to run the server and/or agent.
 1. If you are using Gemini CLI (not the extension), you can use the `env` option in the `settings.json` file.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
