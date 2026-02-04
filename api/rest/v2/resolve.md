@@ -558,25 +558,8 @@ Response:
           ]
         },
         {
-          "dcid": "Count_Person_18OrMoreYears",
-          "metadata": {
-            "score": "0.8167",
-            "sentence": "adult population count"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
-        {
-          "dcid": "Count_Person_Upto18Years",
-          "metadata": {
-            "score": "0.8121",
-            "sentence": "children population count"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
+         // ...
+         ]}]}
 ```
 {: .example-box-content .scroll}
 
