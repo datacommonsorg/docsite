@@ -20,7 +20,7 @@ Data Commons knowledge graph based on certain properties and returns the DCIDs o
 
 You can resolve place entities by name/description, Wikidata ID, or geo coordinates. You can resolve statistical variables and topics by a substring of the name/description. 
 
-Note that you can only resolve entities by specific terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
+To fetch more data for the returned candidates, including linked nodes, you can then call Node API.
 
 ## Request
 
