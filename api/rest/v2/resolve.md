@@ -34,7 +34,7 @@ To fetch more data for the returned candidates, including linked nodes, you can 
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&resolver=<var>NODE_TYPE</var>&property=<var>EXPRESSION</var>&target=<var>INSTANCE</var>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&resolver=<var>RESOLUTION_TYPE</var>&property=<var>EXPRESSION</var>&target=<var>INSTANCE</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
