@@ -125,7 +125,7 @@ The following procedure sets up a bare-bones container service. To set additiona
 
 ### Connect to the server from a remote client
 
-For details, see [Configure an agent to connect to the running server](/mcp/run_tools.html#standalone-client).
+For details, see [Configure an agent to connect to the running server](/mcp/host_server.html#standalone-client).
 
 The HTTP URL parameter is the Cloud Run App URL, if you are exposing the service directly, or a custom domain URL if you are using a load balancer and domain mapping.
 

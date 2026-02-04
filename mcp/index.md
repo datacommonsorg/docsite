@@ -42,13 +42,13 @@ The server currently supports the following tools:
 
 ## Clients
 
-To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. 
+To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. See [Use MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/) with the hosted server.
 
 For self-hosted deployments, the server supports both standard MCP [transport protocols](https://modelcontextprotocol.io/docs/learn/architecture#transport-layer):
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
 - Stdio: For clients that connect directly using local processes
 
-See [Use MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/).
+If you're interested in this option, see [Run a self-hosted MCP server](host_server.md) for procedures.
 
 ## Unsupported features
 

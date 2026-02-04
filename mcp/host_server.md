@@ -23,7 +23,9 @@ For both scenarios, we use Gemini CLI and the sample agent as examples. You shou
 
 > **Tip:** For an end-to-end tutorial using a locally running server and agent over HTTP, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb){: target="_blank"}.
 
-**Additional prerequisities**
+## Prerequisites
+
+In addition to a [Data Commons API key](run_tools.md#prerequisites), you will need the following:
 
 - Install `uv` for managing and installing Python packages; see the instructions at <https://docs.astral.sh/uv/getting-started/installation/>{: target="_blank"}. 
 
