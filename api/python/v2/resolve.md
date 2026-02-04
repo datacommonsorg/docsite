@@ -22,7 +22,7 @@ that its DCID is `geoId/0667000`. You can also provide the type of entity
 (country, city, state, etc.) to disambiguate between candidates (for example, Georgia the country vs. Georgia
 the US state).
 
-You can also query for statistical variables and topics. For example, you could find the DCIDs for all statistical variables containing the string "population".
+You can also query for statistical variables and topics. For example, you could find the DCIDs for all statistical variables related to the string "population".
 
 Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
 
@@ -168,7 +168,7 @@ fetch(node_ids, expression, resolver, target)
 
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
-| node_ids <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
+| node_ids <br /> <required-tag>Required</required-tag>  | string or list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
 | resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. If not specified, the default is `place`. |
 | expression <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude. <br/>If not specified, the default is `<-description`. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). <br/><b>Note:</b> To specify `wikidataId`,`geoCoordinates`, or a `typeOf` filter on the query, you must specify this parameter. <br/> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties. |
 | target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
@@ -589,7 +589,7 @@ fetch_indicators(queries, target)
 {: .no_toc}
 #### Example 1: Find the DCIDs of statistical variables
 
-This looks up all the statistical variables containing the terms "female population over 80".
+This looks up all the statistical variables containing the terms "female population over 50".
 
 Request:
 {: .example-box-title}
