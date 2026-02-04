@@ -51,7 +51,7 @@ JSON data:
     "<var>NODE_IDENTIFIER_2</var>",
     ...
   ],
-  "resolver": "<var>NODE_TYPE</var>",
+  "resolver": "<var>RESOLUTION_TYPE</var>",
   "property": "<var>EXPRESSION</var>",
   "target": "<var>INSTANCE</var>"
 }
