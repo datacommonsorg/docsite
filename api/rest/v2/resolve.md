@@ -511,7 +511,7 @@ Response:
 
 (truncated)
 
-```json
+```jsonc
 {
   "entities": [
     {
