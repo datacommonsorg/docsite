@@ -24,8 +24,6 @@ the US state).
 
 You can also query for statistical variables and topics. For example, you could find the DCIDs for all statistical variables related to the string "population".
 
-Note that you can only resolve entities by some terminal properties. You cannot resolve properties that represent linked entities with incoming or outgoing arc relationships. For that, you need to use the [Node](node.md) API. For example, if you wanted to get all the DCIDs of entities that are related to a given entity by the `containedInPlace` property (say, all states in the United States), use the Node API.
-
 [Source code](https://github.com/datacommonsorg/api-python/blob/master/datacommons_client/endpoints/resolve.py){: target="_blank"}
 
 * TOC
@@ -44,6 +42,39 @@ The following are the methods available for the `resolve` endpoint.
 | [fetch_indicators](#fetch_indicators) | Look up the DCIDs of all matching statistical variables and topics. |
 
 ## Response
+
+For all the methods that resolve places (default `fetch`, `fetch_dcids_by_name`, `fetch_dcids_by_wikidata_id`, and `fetch_dcid_by_coordinates`), the response looks like this:
+
+<pre>
+{
+  "entities": [
+    {
+      "node": "<var>NODE_1</var>",
+      "candidates": [
+        {
+          "dcid": "<var>DCID_1</var>",
+          "dominantType": "<var>TYPE_OF_DCID_1</var>"
+        },
+        {
+          "dcid": "<var>DCID_2</var>",
+          "dominantType": "<var>TYPE_OF_DCID_2</var>"
+        },
+      ]
+    },
+    {
+      "node": "<var>NODE_2</var>",
+      "candidates": [
+        {
+          "dcid": "<var>DCID_3</var>",
+          "dominantType": "<var>TYPE_OF_DCID_3</var>"
+        },
+      ]
+    },
+    ...
+  ]
+}
+</pre>
+{: .response-signature .scroll}
 
 For the methods `fetch_indicators` and `fetch` with the `resolver` parameter set to `indicator`, the response looks like this:
 
@@ -96,46 +127,13 @@ For the methods `fetch_indicators` and `fetch` with the `resolver` parameter set
 </pre>
 {: .response-signature .scroll}
 
-For all other methods, the response looks like this:
-
-<pre>
-{
-  "entities": [
-    {
-      "node": "<var>NODE_1</var>",
-      "candidates": [
-        {
-          "dcid": "<var>DCID_1</var>",
-          "dominantType": "<var>TYPE_OF_DCID_1</var>"
-        },
-        {
-          "dcid": "<var>DCID_2</var>",
-          "dominantType": "<var>TYPE_OF_DCID_2</var>"
-        },
-      ]
-    },
-    {
-      "node": "<var>NODE_2</var>",
-      "candidates": [
-        {
-          "dcid": "<var>DCID_3</var>",
-          "dominantType": "<var>TYPE_OF_DCID_3</var>"
-        },
-      ]
-    },
-    ...
-  ]
-}
-</pre>
-{: .response-signature .scroll}
-
-
 ### Response fields
 
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | node | string | The query terms used to look up the DCIDs of entities. |
 | candidates | list | List of nodes that match the query terms. |
+| dcid | The DCID of the candidate node. |
 | dominantType | string | Optional field which, when present, disambiguates between multiple results. Only returned when `resolver` is set to `place` (the default). |
 | metadata.score | float | The confidence score for the result, used to rank multiple results. Only returned when `resolver` is set to `indicator`. |
 | metadata.sentence | string | The matching substring contained in the node's name or description. Only returned when `resolver` is set to `indicator`. |
