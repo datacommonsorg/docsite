@@ -34,7 +34,7 @@ To fetch more data for the returned candidates, including linked nodes, you can 
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&resolver=<var>NODE_TYPE</var>&property=<var>EXPRESSION</var>&target=<var>INSTANCE</var>
+https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>IDENTIFIER_LIST</var>&resolver=<var>RESOLUTION_TYPE</var>&property=<var>EXPRESSION</var>&target=<var>INSTANCE</var>
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -51,7 +51,7 @@ JSON data:
     "<var>NODE_IDENTIFIER_2</var>",
     ...
   ],
-  "resolver": "<var>NODE_TYPE</var>",
+  "resolver": "<var>RESOLUTION_TYPE</var>",
   "property": "<var>EXPRESSION</var>",
   "target": "<var>INSTANCE</var>"
 }
@@ -512,7 +512,7 @@ Response:
 
 (truncated)
 
-```json
+```jsonc
 {
   "entities": [
     {
@@ -559,25 +559,8 @@ Response:
           ]
         },
         {
-          "dcid": "Count_Person_18OrMoreYears",
-          "metadata": {
-            "score": "0.8167",
-            "sentence": "adult population count"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
-        {
-          "dcid": "Count_Person_Upto18Years",
-          "metadata": {
-            "score": "0.8121",
-            "sentence": "children population count"
-          },
-          "typeOf": [
-            "StatisticalVariable"
-          ]
-        },
+         // ...
+         ]}]}
 ```
 {: .example-box-content .scroll}
 
