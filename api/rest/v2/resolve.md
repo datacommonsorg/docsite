@@ -111,7 +111,7 @@ When the `resolver` option is set to `place` (the default), the response looks l
 </pre>
 {: .response-signature .scroll}
 
-When `resolver` option is set to `indicator`, the response looks like:
+When the `resolver` option is set to `indicator`, the response looks like:
 
 <pre>
 {
