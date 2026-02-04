@@ -35,29 +35,8 @@ Various other optional variables are also available; all are documented in [pack
 
 You can set variables in the following ways:
 1. In a shell/startup script (e.g. `.bashrc`).
-1. [Use an `.env` file](#env). This is useful if you're setting multiple variables, to keep all settings in one place.
-    * Copy the contents of [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} into a file called `.env` in the directory where you plan to run the server and/or agent.
+1. [Use an `.env` file](#env). This is useful if you're setting multiple variables, to keep all settings in one place. Copy the contents of [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} into a file called `.env` in the directory where you plan to run the server and/or agent.
 1. If you are using Gemini CLI (not the extension), you can use the `env` option in the `settings.json` file.
-
-
-{: #env}
-{: .no_toc}
-#### Set variables with an `.env` file:
-
-1. From GitHub, download the file [`.env.sample`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/.env.sample){: target="_blank"} to the desired directory. Alternatively, if you plan to run the sample agent, clone the repo <https://github.com/datacommonsorg/agent-toolkit/>{: target="_blank"}.
-
-1. From the directory where you saved the sample file, copy it to a new file called `.env`. For example:
-   ```bash
-   cd ~/agent-toolkit/packages/datacommons-mcp
-   cp .env.sample .env
-   ```
-1. Set the following required variables, without quotes: 
-   - `DC_API_KEY`: Set to your Data Commons API key
-   - `DC_TYPE`: Set to `custom`.
-   - `CUSTOM_DC_URL`: Uncomment and set to the URL of your instance. 
-1. Optionally, set other variables.
-1. Save the file.
-1. When you start up the client or server, run the commands from the directory where the `.env` file is stored.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
 
