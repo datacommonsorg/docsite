@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Run an MCP server
+title: Run MCP tools
 nav_order: 9
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Run an MCP server
+# Run MCP tools
 
-To use Data Commons MCP tools with a Custom Data Commons, you must run your own instance of the Data Commons MCP server. This page describes how to run a server locally and in Google Cloud. 
+To use Data Commons MCP tools with a Custom Data Commons, you must run your own instance of the [Data Commons MCP server](https://pypi.org/project/datacommons-mcp/). This page describes how to run a server locally and in Google Cloud. 
 
 > **Important**: 
 > If you have not rebuilt your Data Commons image since the stable release of 2026-01-29, you must [sync to the latest stable release](/custom_dc/build_image.html#sync-code-to-the-stable-branch), [rebuild your image](/custom_dc/build_image.html#build-package) and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
@@ -18,7 +18,7 @@ To use Data Commons MCP tools with a Custom Data Commons, you must run your own 
 
 ## Run a local MCP server
 
-You can use any AI agent to spawn a local MCP server as a subprocess, or start a standalone server and connect to it from any client. For the most part, the procedures to do so are the same as those provided in [Run your own MCP server](/mcp/run_tools.html#self-hosted). The main difference is that you must set additional environment variables, as described below.
+You can use any AI agent to spawn a local MCP server as a subprocess, or start a standalone server and connect to it from any client. For the most part, the procedures to do so are the same as those provided in [Run your own MCP server](/mcp/host_server.html). The main difference is that you must set additional environment variables, as described below.
 
 ### Prerequisites
 
@@ -42,7 +42,7 @@ You can set variables in the following ways:
 
 ## Run the MCP Server in Google Cloud Platform
 
-If you have built a custom agent or Gemini CLI extension which you want to make publicly available, this page describes how to run the [Data Commons MCP server](https://pypi.org/project/datacommons-mcp/) in the cloud, using Google Cloud Run. 
+If you have built a custom agent or Gemini CLI extension which you want to make publicly available, the following sections describe how to run the MCP server in the cloud, using Google Cloud Run. 
 
 Since setting up an MCP server is a simple, one-time setup, there's no need to use Terraform to manage it. Data Commons provides a prebuilt Docker image in the Artifact Registry, so you only need to set up a new Cloud Run service to point to it. 
 
@@ -125,7 +125,7 @@ The following procedure sets up a bare-bones container service. To set additiona
 
 ### Connect to the server from a remote client
 
-For details, see [Configure an agent to connect to the running server](/mcp/run_tools.html#standalone-client).
+For details, see [Configure an agent to connect to the running server](/mcp/host_server.html#standalone-client).
 
 The HTTP URL parameter is the Cloud Run App URL, if you are exposing the service directly, or a custom domain URL if you are using a load balancer and domain mapping.
 
@@ -143,6 +143,3 @@ This is a generic message that could indicate a number of configuration problems
 - Be sure you have specified the `DC_API_KEY` environment variable.
 - Be sure you have specified the correct service account.
 - Try increasing the health check timeout.
-
-
-
