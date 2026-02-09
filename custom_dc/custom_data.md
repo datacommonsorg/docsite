@@ -327,6 +327,7 @@ Here are the rules for observation values:
 - For null or not-a-number values, we recommend that you use blanks. (The strings `NaN`, `NA`, and `N/A` are also accepted.) These values will be ignored and not displayed in any charts or tables.
 - Do not use negative numbers or inordinately large numbers to represent NaNs or nulls.
 
+{: #json}
 ### Step 3: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. You need to provide these specifications:
