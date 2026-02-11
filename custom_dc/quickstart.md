@@ -29,7 +29,8 @@ The "services" Docker container consists of the following Data Commons component
 - A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/){: target="_blank"}, which routes incoming requests to the web or API server
 - A Python-Flask web server, which handles interactive requests from users
 - An Python-Flask NL server, for serving natural language queries
-- A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make an REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
+- An [MCP server](https://modelcontextprotocol.io/){: target="_blank"}, for serving tool responses to an MCP-compliant AI agent
+- A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make a REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
 
 ## Prerequisites
 
@@ -167,7 +168,7 @@ This does the following:
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
 - Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
 - Starts the services Docker container.
-- Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
+- Starts development/debug versions of the Web server, MCP server, NL server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
 
 You can see the actual Docker commands that the script runs at the [end of this page](#docker).
