@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Deploy to Google Cloud
-nav_order: 8
+nav_order: 9
 parent: Build your own Data Commons
 ---
 
 {: .no_toc}
 # Deploy your custom instance to Google Cloud
 
-This page shows you how to create a development environment in Google Cloud Platform, using [Terraform](https://cloud.google.com/docs/terraform){: target="_blank"}. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
+This page shows you how to create a development environment in Google Cloud Platform, using [Terraform](https://cloud.google.com/docs/terraform){: target="_blank"}. This is step 5 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 > **Note**: It's recommended that you go through the [Quickstart](quickstart.md) to start up a local instance before attempting to set up a Google Cloud instance. This will ensure you have all the necessary prerequisites, and give you a chance to test out your own data to make sure everything is working.
 
@@ -372,6 +372,14 @@ The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datac
 1. From the list of services, click the link the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab.
 
 If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
+
+### Connect an AI agent to the MCP server
+
+To connect an AI agent to the cloud service:
+
+1. Obtain the app URL from the previous step.
+1. In the configuration for the agent/client, specify the HTTP URL as _`APP_URL`_/mcp`. 
+1. Run the agent as usual.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
 
