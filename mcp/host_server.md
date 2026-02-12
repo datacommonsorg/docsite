@@ -37,7 +37,7 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
 
 <pre>
 {
-   // ...
+   ...
    "mcpServers": {
       "datacommons-mcp": {
          "command": "uvx",
@@ -50,7 +50,7 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
          "env": "<var>YOUR DC API KEY</var>"
       }
    }
-   // ...
+   ...
 }
 </pre>
 
@@ -133,7 +133,7 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
    MCPToolset,
    StreamableHTTPConnectionParams
    )
-   ...
+   #...
    root_agent = LlmAgent(
       # ...
       tools=[McpToolset(
@@ -146,7 +146,7 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
       )
     ],
    )  
-</pre>
+   </pre>
 1. Customize the agent as desired, as described in [Customize the agent](run_tools.md#customize-agent).
 1. [Run the startup commands](run_tools.md#run-sample) as usual.
 

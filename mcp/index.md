@@ -22,8 +22,9 @@ For base Data Commons, the server is available as a hosted managed deployment to
 ![base Data Commons](/assets/images/mcp1.png)
 
 You can also run your own MCP server locally, or in Google Cloud Platform. If you want to use the server to query a Custom Data Commons instance, you _must_ run your own. The server is available as:
--  A prebuilt Python package for running locally
--  A prebuilt Docker image for running in a Google Cloud Run service
+-  A prebuilt [Python package](https://pypi.org/project/datacommons-mcp/){: target="_blank"} for running locally 
+-  A prebuilt standalone [Docker image](https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-mcp-server?project=datcom-ci){: target="_blank"} for running in a cloud service
+-  Bundled with the [Custom Data Commons Docker services image](/custom_dc/quickstart.html#overview) for running in Google Cloud Run (for Custom Data Commons only)
 
 ![base or Custom Data Commons](/assets/images/mcp2.png)
 
