@@ -30,7 +30,7 @@ There are a few additional environment variables you can configure in your `env.
 
 You can use any AI agent to connect to the MCP server. The server is accessible at the `/mcp` endpoint. 
 
-Below we provide procedures for Gemini CLI and for a sample Google ADK agent provided in the Github Data Commons [`agent-toolkit` repo](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent){: target="_blank"}. You should be able to adapt the configuration to any other MCP-compliant agent, including your own custom-built agent.
+Below we provide procedures for Gemini CLI and for a sample Google ADK agent provided in the GitHub Data Commons [`agent-toolkit` repo](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent){: target="_blank"}. You should be able to adapt the configuration to any other MCP-compliant agent, including your own custom-built agent.
 
 ### Use Gemini CLI
 
@@ -59,7 +59,7 @@ Below we provide procedures for Gemini CLI and for a sample Google ADK agent pro
 ```bash
 git clone https://github.com/datacommonsorg/agent-toolkit.git
 ```
-  > Tip: You do not need to install the Google ADK; when you use the [command we provide](#run-sample) to start the agent, it downloads the ADK dependencies at run time.
+  > Tip: You do not need to install the Google ADK; when you use the [command we provide](/mcp/run_tools.html#run-sample) to start the agent, it downloads the ADK dependencies at run time.
 1. Modify [`packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set the `url` parameter of the `StreamableHTTPConnectionParams` object. 
    <pre>
    ...

@@ -147,7 +147,7 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
     ],
    )  
 </pre>
-1. Customize the agent as desired, as described in [Customize the agent](run_tools.md#customize-the-agent).
+1. Customize the agent as desired, as described in [Customize the agent](run_tools.md#customize-agent).
 1. [Run the startup commands](run_tools.md#run-sample) as usual.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
