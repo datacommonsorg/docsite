@@ -121,13 +121,30 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
       }
    }
    </pre>
+1. Replace the `datacommons-mcp` section in your `settings.json` file as follows:
+   <pre>
+   {
+      "mcpServers": {
+         "datacommons-mcp": {
+           "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
+           "headers": {
+             "Accept": "application/json, text/event-stream"
+            }
+         }
+      }
+   }
+   </pre>
 
+1. [Run Gemini CLI](run_tools.md#run-gemini) as usual.
 1. [Run Gemini CLI](run_tools.md#run-gemini) as usual.
 
 #### Sample agent
 
 1. Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
+1. Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
 
+   <pre>
+   from google.adk.tools.mcp_tool.mcp_toolset import (
    <pre>
    from google.adk.tools.mcp_tool.mcp_toolset import (
    MCPToolset,
