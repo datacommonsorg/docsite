@@ -60,7 +60,7 @@ Below we provide procedures for Gemini CLI and for a sample Google ADK agent pro
 ```bash
 git clone https://github.com/datacommonsorg/agent-toolkit.git
 ```
-  > Tip: You do not need to install the Google ADK; when you use the [command we provide](#run-sample) to start the agent, it downloads the ADK dependencies at run time.
+  > Tip: You do not need to install the Google ADK; when you use the [command we provide](/mcp/run_tools.html#run-sample) to start the agent, it downloads the ADK dependencies at run time.
 1. Modify [`packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set the `url` parameter of the `StreamableHTTPConnectionParams` object. 
    <pre>
    ...
