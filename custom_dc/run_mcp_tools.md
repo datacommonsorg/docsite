@@ -43,8 +43,7 @@ Below we provide procedures for Gemini CLI and for a sample Google ADK agent pro
       ...
       "mcpServers": {
           "datacommons-mcp": {         
-             "httpUrl": "http://localhost:8080/mcp",
-              "trust": true
+             "httpUrl": "http://localhost:8080/mcp"
           }
       }
       ...

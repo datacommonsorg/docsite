@@ -115,12 +115,7 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
          "datacommons-mcp": {
            "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
            "headers": {
-             "Content-Type": "application/json",
              "Accept": "application/json, text/event-stream"
-             // If you have set the key in your environment
-            , "X-API-Key": "$DC_API_KEY"
-             // If you have not set the key in your environment
-            , "X-API-Key": "<var>YOUR DC API KEY</var>"
             }
          }
       }
@@ -145,7 +140,6 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
          connection_params=StreamableHTTPConnectionParams(
             url="http://<var>HOST</var>:<var>PORT</var>/mcp",
             headers={
-               "Content-Type": "application/json",
                "Accept": "application/json, text/event-stream"
             }
          )

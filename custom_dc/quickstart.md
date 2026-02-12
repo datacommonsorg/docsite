@@ -29,7 +29,7 @@ The "services" Docker container consists of the following Data Commons component
 - A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/){: target="_blank"}, which routes incoming requests to the web or API server
 - A Python-Flask web server, which handles interactive requests from users
 - An Python-Flask NL server, for serving natural language queries
-- An [MCP server](https://modelcontextprotocol.io/){: target="_blank"}, for serving tool responses to an MCP-compliant AI agent
+- An [MCP server](https://modelcontextprotocol.io/){: target="_blank"}, for serving tool responses to an MCP-compliant AI agent (e.g. Google ADK apps, Gemini CLI, Google Antigravity)
 - A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make a REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
 
 ## Prerequisites
