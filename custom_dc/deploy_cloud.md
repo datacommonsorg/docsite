@@ -378,7 +378,7 @@ If the link is not clickable and the service is not running, go back to the Cons
 To connect an AI agent to the cloud service:
 
 1. Obtain the app URL from the previous step.
-1. In the configuration for the agent/client, specify the HTTP URL as _`APP_URL`_/mcp`. 
+1. In the configuration for the agent/client, specify the HTTP URL as <code>https://<var>APP_URL</var>/mcp</code>. 
 1. Run the agent as usual.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
