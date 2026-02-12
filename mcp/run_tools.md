@@ -143,7 +143,6 @@ To uninstall the extension, run:
 ```
 gemini extensions uninstall datacommons
 ```
-
 ## Use Gemini CLI
 
 In addition to the Data Commons API key, you must install the following:
@@ -187,6 +186,7 @@ To configure Gemini CLI to connect to the Data Commons server, edit the relevant
 
 In addition to the Data Commons API key, you will need:
 - [Git](https://git-scm.com/){: target="_blank"} installed.
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/), a Python package manager, installed.
 
 > Tip: You do not need to install the Google ADK; when you use the [command we provide](#run-sample) to start the agent, it downloads the ADK dependencies at run time.
 
@@ -228,6 +228,7 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
 1. Enter your [queries](#sample-queries) at the `User` prompt in the terminal.
 
 {:.no_toc}
+{: #customize-agent}
 ### Customize the agent
 
 To customize the sample agent, you can make changes directly to the Python files. You'll need to [restart the agent](#run-sample) any time you make changes.
