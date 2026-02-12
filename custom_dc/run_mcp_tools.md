@@ -65,25 +65,25 @@ Below we provide procedures for Gemini CLI and for a sample Google ADK agent pro
 1. If you don't have it on your system, install [Node.js](https://nodejs.org/en/download){: target="_blank"}.
 1. Install [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}.
 1. To configure Gemini CLI to connect to the Data Commons MCP server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
-  <pre>{
-    # ...
-    "mcpServers": {
-      "datacommons-mcp": {
-        # For a locally running server          
-        "httpUrl": "http://localhost:8080/mcp",
-        # For a server in Google Cloud Run
-        "httpUrl": "https://<var>YOUR_CUSTOM_DC_URL</var>/mcp",
-        "headers": {
-           # For a locally running server
-           "X-API-Key": "$DC_API_KEY"
-           # For a server in Google Cloud Run
-           "X-API-Key": "<var>YOUR DC API KEY</var>"
-        },
-        "trust": true
-      }
-     }
-   # ...
-  }</pre>
+    <pre>{
+          ...
+          "mcpServers": {
+              "datacommons-mcp": {
+                # For a locally running server          
+                "httpUrl": "http://localhost:8080/mcp",
+                # For a server in Google Cloud Run
+                "httpUrl": "https://<var>YOUR_CUSTOM_DC_URL</var>/mcp",
+                "headers": {
+                    # For a locally running server
+                    "X-API-Key": "$DC_API_KEY"
+                    # For a server in Google Cloud Run
+                    "X-API-Key": "<var>YOUR DC API KEY</var>"
+                  },
+                "trust": true
+              }
+          }
+          ...
+    }</pre>
 1. Start the service container if it's not already running.
 1. From any directory, start Gemini as described in [Run Gemini CLI](run_tools.md#run-gemini) from any directory. 
 
@@ -99,30 +99,16 @@ Below we provide procedures for Gemini CLI and for a sample Google ADK agent pro
    <pre>
    export DC_API_KEY="<var>YOUR_API_KEY</var>"
    </pre>
-1. Go to the directory where you've installed the repo. For example, from the root:
-   ```bash
-   cd agent-toolkit
-   ```
 1. Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} to set the `url` parameter of the `StreamableHTTPConnectionParams` object. 
-   For a locally running server:
    <pre>
    ...
    tools=[McpToolset(
          connection_params=StreamableHTTPConnectionParams(
+            # For a locally running server
             url="http://localhost:8080/mcp",
-            ...
-          )
-         )
-        ]
-   ...
-   </pre>
-   For a server in Google Cloud Run:
-   <pre>
-   ...
-   tools=[McpToolset(
-         connection_params=StreamableHTTPConnectionParams(
+            # For a server running in Google Cloud
             url="https://<var>YOUR_CUSTOM_DC_URL</var>/mcp",
-            ...
+            #...
           )
          )
         ]
