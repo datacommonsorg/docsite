@@ -15,6 +15,7 @@ This is step 1 of the [recommended workflow](/custom_dc/index.html#workflow).
 * TOC
 {:toc}
 
+{: #overview}
 ## System overview
 
 The instructions in this page use the following setup:

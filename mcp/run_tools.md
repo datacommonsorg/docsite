@@ -154,7 +154,7 @@ In addition to the Data Commons API key, you must install the following:
 To configure Gemini CLI to connect to the Data Commons server, edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
 <pre>
 {
-   // ...
+   ...
    "mcpServers": {
      "datacommons-mcp": {
          "httpUrl": "https://api.datacommons.org/mcp",
@@ -166,7 +166,7 @@ To configure Gemini CLI to connect to the Data Commons server, edit the relevant
          }
       }
    }
-   // ...
+   ...
 }
 </pre>
 
