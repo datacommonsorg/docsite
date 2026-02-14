@@ -1,3 +1,4 @@
+
 # Documentation style guide
 
 ## General rules
@@ -18,8 +19,20 @@ Absolute links are against the repo root and must be specified _with .html exten
 ```
 [Place types](/place_types.html)
 ```
+##  External links
 
-IMPORTANT: Section links only work with absolute links. For example, if you have a section in file `api/index.md` defined as `{#authentication}`, any links to it must specify the absolute path, i.e. `/api/index.html#authentication`. 
+Any links that go to sites outside of the Docsite should open in a new tab/window. Be sure to use `target="_blank"` in the markup for these links.
+
+## Redirects
+
+Whenever you move or delete files, you should be sure to redirect them. For any internal redirects, add `redirect_from` and the old path(s) to the front matter of the new (target) page.
+For redirects to an external page, remove the content from the original page, change its layout to `redirect`, and add`redirect_to` tag in the front matter.
+
+## Tabbed content
+
+If you'd like to use tabs to allow the user to select the content, use the following:
+- For pages that include a single group of tabs, include `assets/js/api-doc-tabs.js` and the styles from `_sass/api_documentation.scss`.
+- For pages that have several groups of tabs on the page, include `assets/js/customdc-doc-tabs.js` and the styles from `_sass/custom_dc.scss`. Be sure to include the JS file at the _end_ of the Markdown file so that all groups work correctly.
 
 ## TOCs
 
