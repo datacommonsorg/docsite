@@ -40,6 +40,7 @@ For the following use cases, a custom Data Commons instance is not necessary:
 |--------------------------------------------------------------|--------------------|---------------------|
 | Interactive tools (Exploration tools, Statistical Variable Explorer, etc.) |  yes  |    yes    |
 | Natural language query interface                            | yes, using Google AI technologies and models  |  yes, using open-source models only<sup>1</sup>  |
+| Model Context Protocol (MCP) server | yes | yes |
 | REST APIs                                                   |  yes | yes |
 | Python and Pandas API wrappers                               |  yes  | yes |
 | Google Spreadsheets                                         |  yes |  no<sup>2</sup> |
@@ -60,7 +61,6 @@ Essentially, a custom Data Commons instance is a mirror of the public Data Commo
 
 A custom Data Commons instance uses custom data that you provide as raw CSV files. An importer script converts the CSV data into the Data Commons format and stores this in a SQL database. For local development, we provide a lightweight, open-source [SQLite](http://sqlite.org) database; for production, we recommend that you use [Google Cloud SQL](https://cloud.google.com/sql/){: target="_blank"}.
 
-
 > **Note**: You have full control and ownership of your data, which will live in SQL data stores that you own and manage. Your data is never transferred to the base Data Commons data stores managed by Google; see full details in this [FAQ](/custom_dc/faq.html#data-security). 
 
 In addition to the data, a custom Data Commons instance consists of two Docker containers: 
@@ -71,7 +71,7 @@ Details about the components that make up the containers are provided in the [Qu
 
 ## Requirements and cost
 
-A custom Data Commons site runs in a Docker container on Google Cloud Platform (GCP), using Google Cloud Run, a serverless solution that provides auto-scaling and other benefits. You will need the following:
+A custom Data Commons site runs in Docker containers on Google Cloud Platform (GCP), using Google Cloud Run, a serverless solution that provides auto-scaling and other benefits. You will need the following:
 
 - A [GCP](http://console.cloud.google.com) billing account and project
 - A [Docker](http://docker.com) account
@@ -98,6 +98,7 @@ You may also need Cloud DNS, Networking - Cloud Loadbalancing, and Redis Memorys
 1. Prepare your real-world data and load it in the local custom instance. Data Commons requires your data to be in a specific format. See [Prepare and load your own data](/custom_dc/custom_data.html) for details. 
 > Note: This section is very important!  If your data is not in the scheme Data Commons expects, it won't load.
 1. If you want to customize the look of the feel of the site, see [Customize the site](/custom_dc/custom_ui.html) and [Build a custom image](build_images.md).
+1. Optionally, configure an AI agent to send NL queries to the MCP server (via an LLM). See [Run MCP tools](run_mcp_tools.md).
 1. When you have finished testing locally, set up a development environment in Google Cloud Platform. See [Deploy to Google Cloud](/custom_dc/deploy_cloud.html).
 1. Productionize and launch your site for external traffic. See [Launch your Data Commons](/custom_dc/launch_cloud.html).
 1. For future updates and launches, continue to make UI and data changes locally, before deploying the changes to GCP.
