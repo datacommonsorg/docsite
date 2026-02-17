@@ -37,7 +37,7 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
 
 <pre>
 {
-   // ...
+   ...
    "mcpServers": {
       "datacommons-mcp": {
          "command": "uvx",
@@ -50,7 +50,7 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
          "env": "<var>YOUR DC API KEY</var>"
       }
    }
-   // ...
+   ...
 }
 </pre>
 
@@ -108,52 +108,45 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
 
 #### Gemini CLI
 
-Replace the `datacommons-mcp` section in your `settings.json` file as follows:
-<pre>
-{
-   "mcpServers": {
-      "datacommons-mcp": {
-         "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
-         "headers": {
-            "Content-Type": "application/json",
-            "Accept": "application/json, text/event-stream"
-            // If you have set the key in your environment
-           , "X-API-Key": "$DC_API_KEY"
-            // If you have not set the key in your environment
-           , "X-API-Key": "<var>YOUR DC API KEY</var>"
+1. Replace the `datacommons-mcp` section in your `settings.json` file as follows:
+   <pre>
+   {
+      "mcpServers": {
+         "datacommons-mcp": {
+           "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
+           "headers": {
+             "Accept": "application/json, text/event-stream"
+            }
          }
       }
    }
-}
-</pre>
+   </pre>
 
-[Run Gemini CLI](run_tools.md#run-gemini) as usual.
+1. [Run Gemini CLI](run_tools.md#run-gemini) as usual.
 
 #### Sample agent
 
-Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
-
-<pre>
-from google.adk.tools.mcp_tool.mcp_toolset import (
+1. Modify [`basic_agent/agent.py`](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py){: target="_blank"} as follows:
+   <pre>
+   from google.adk.tools.mcp_tool.mcp_toolset import (
    MCPToolset,
    StreamableHTTPConnectionParams
-)
-
-root_agent = LlmAgent(
+   )
+   #...
+   root_agent = LlmAgent(
       # ...
       tools=[McpToolset(
          connection_params=StreamableHTTPConnectionParams(
             url="http://<var>HOST</var>:<var>PORT</var>/mcp",
             headers={
-               "Content-Type": "application/json",
                "Accept": "application/json, text/event-stream"
             }
          )
       )
-   ],
-)
-</pre>
-
-[Run the startup commands](run_tools.md#run-sample) as usual.
+    ],
+   )  
+   </pre>
+1. Customize the agent as desired, as described in [Customize the agent](run_tools.md#customize-agent).
+1. [Run the startup commands](run_tools.md#run-sample) as usual.
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
