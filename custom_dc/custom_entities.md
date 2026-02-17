@@ -1,14 +1,14 @@
 ---
 layout: default
-title:  Define custom entities
+title:  Define non-place entities
 nav_order: 4
 parent: Build your own Data Commons
 ---
 
 {: .no_toc}
-# Define custom (non-place) entities
+# Define non-place entities
 
-This page shows you how to define <!--or extend--> custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md).
+This page shows you how to define (or extend) custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md).
 
 Before creating new entities or entity types, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons (datacommons.org). 
 
@@ -25,9 +25,9 @@ New _entities_ (instantiations of a type) can be defined in either MCF or CSV fi
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
-In the following sections, we'll describe setting up the custom entities, as well as how to use them with custom statistical variables. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities){: target="_blank"}.
+In the following sections, we'll describe setting up the non-place entities, as well as how to use them with custom statistical variables. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities){: target="_blank"}.
 
-## Step 1: Define custom entity types (if needed)
+## Step 1: Define non-place entity types (if needed)
 
 You define custom entity types in MCF. You can have a single MCF file or as many as you like. 
 
@@ -54,7 +54,7 @@ Note especially the `subClassOf` field, which inserts it into a class hierarchy 
 
 The next step is to define entities of type `Agency`, as described below. 
 
-## Step 3: Define enumerations for the entity type (optional)
+## Step 2: Define enumerations for the entity type (optional)
 
 Data Commons relies fairly heavily on [enumerations](https://datacommons.org/browser/Enumeration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S., `Agency` would likely actually be defined as an enum with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use enums to break down classes into multiple sub-types. If you want to be able to link entities by subtype, you _must_ define enums for them, in MCF.
 
@@ -83,7 +83,7 @@ typeOf: dcid:HospitalTypeEnum
 description: "Small, rural hospitals with fewer than 25 beds."
 ```
 
-## Step 3: Define custom entities
+## Step 3: Define non-place entities
 
 In this section, we will walk you through concrete examples of how you can define new entities and variables in CSV files, and set up the `config.json` file. You may also define entities in MCF, but we won't give examples of that here.
 
@@ -91,9 +91,9 @@ CSV files can only contain one entity type, so if you are defining entities of m
 
 Each entity CSV file can contain as many columns as you need to define various properties of the entity. The columns can be in any order, with any heading. 
 
-You must have one column that defines DCIDs for the entities. In addition, for any cells that reference existing entities, if you want to link your entities to them, you must list them by DCID.
+You must have one column that defines DCIDs for the entities. In addition, for any cells that reference existing entities, if you want to link your entities to them, you must specify them by DCID.
 
-For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}, but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska. The CCN is a certification number that uniquely identifies U.S. hospitals, that we'll use for the DCIDs. 
+For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}, but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska. The CCN is a certification number that uniquely identifies U.S. hospitals. We'll use that number as the DCIDs. 
 
 ```csv
 ccn,name,address,City,zipCode,hospitalSubtype
@@ -146,15 +146,15 @@ Here's an example of how a `config.json` file could look for our hospital data.
 Here the input file specification is different from that of [observations](custom_data.md#). These are the important fields to note:
 
 - `importType`: By default this is `observations`; to tell the importer that you are adding entities in this CSV file, you must specify `entities`.
-- `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID. It must also match the identifier in the `entities` section. 
+- `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID.
 - `idColumn`: This indicates to the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities.
 - `entityColumns`: This is optional: if you want properties of your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. In this case [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. Note that values in this column must use the DCID of each entity referenced. If you would like the hospitals to be linked by zipcode, you would need to provide the DCID for each zip code.
   
 The other fields are explained in the [Data config file specification reference](config.md).
 
-### Step 5: Add statistical variables and observations for new entities
+## Step 5: Add statistical variables and observations for new entities
 
-If you are providing observations for custom entities, the observations must be in a separate file. You'll need a different observations CSV file for each entity type for which you are providing observations.
+If you are providing observations for the non-place entities, the observations must be in a separate file. You'll need a different observations CSV file for each entity type for which you are providing observations.
 
 For example, let's say you've already defined in MCF the following variables that measure weekly hospital capacity:
 * `total_count_staffed_beds`
@@ -166,7 +166,7 @@ For example, let's say you've already defined in MCF the following variables tha
 
 Aside: Note that the thing being measured here is "beds". There is an existing [Bed](https://datacommons.org/browser/Bed) class in Data Commons. So when defining such variables, you would specify `schema:bed` as the `populationType`.
 
-Just like for place entities, you provide observations for these variables in a CSV file. The CSV observations file uses the same variable-per-row format and [column headings](custom_data.md#exp-csv) as places. The only difference from a place-based CSV is that the entity column contains the DCIDs of the entities you have defined in a separate CSV (or MCF) file, instead of places. In this case, the DCIDs are the CCNs of the hospitals.
+Just like for place entities, you provide observations for these variables in a CSV file. The CSV observations file uses the same variable-per-row format and [column headings](custom_data.md#exp-csv) as places. The only difference from a place-based CSV is that the entity column contains the DCIDs of the entities you have defined in a separate CSV (or MCF) file, instead of places. In our example, the DCIDs are the CCNs of the hospitals.
 
 ```csv
 entity,date,variable,value
@@ -192,7 +192,7 @@ entity,date,variable,value
 We could also have added an `observationPeriod` column, which would be set to `P7D` for all rows.
 
 {: #ex13}
-### Step 6: Add the observations CSV to config.json
+## Step 6: Add the observations CSV to config.json
 
 Here's an example of the previous hospital data, covering both the entities and the statistical variables. Note that there can only be a single `config.json` file, so CSV files of observations and entities must be specified in the same config file.
 
@@ -224,8 +224,6 @@ Here's an example of the previous hospital data, covering both the entities and 
 }
 ``` 
 
-<!-- TODO: Consider adding a section for "extending" existing entities or entity types -->
-
 ## Load your entities data
 
 To load and serve your data locally, see the procedures in [Load local custom data](custom_data.md#loadlocal).
@@ -236,13 +234,11 @@ To load data in Google Cloud, see [Load data in Google Cloud](/custom_dc/deploy_
 
 If the servers have started up without errors, check to ensure that your data is showing up as expected.
 
-Custom entities without observational data are only displayed in the knowledge graph browser. To view your entities in a local server, enter the following in the browser address bar:
+Non-place entities without observational data are only displayed in the knowledge graph browser. To view your entities in a local server, enter the following in the browser address bar:
 
 <pre>
 https://localhost:8080/browser/<var>ENTITY_DCID</var>
 </pre>
-
-(If you're using a Cloud Run service, replace `localhost:8080` with the app name.)
 
 The _ENTITY_DCID_ is any DCID you have created previously. Using our previous hospitals example, we could enter `https://localhost:8080/browser/AKgov/20017` and would see this:
 

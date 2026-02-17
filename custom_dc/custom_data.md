@@ -25,7 +25,7 @@ At a high level, you need to provide the following:
 - All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 
-If you need to define new custom entities, please see [Define custom entities](custom_entities.md) for details.
+If you need to define new non-place entities, please see [Define non-place entities](custom_entities.md) for details.
 
 {: #dir}
 ### Files and directory structure
@@ -100,7 +100,7 @@ To search using the Python APIs:
 
 Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
-Data Commons already has thousands of statistical variables in its knowledge graph; you may be able to simply reuse existing ones. To browse and search for existing variables, see the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}. 
+Data Commons already has thousands of statistical variables in its knowledge graph; you may be able to simply reuse or extend existing ones. To browse and search for existing variables, see the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}. 
 
 If you do need to define a statistical variable, it must follow a certain model. The variable consists of a measure (e.g. "median age") on a set of things of a certain type (e.g. "persons") that satisfy some set of constraints (e.g. "gender is female"). To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
 
@@ -156,7 +156,7 @@ The names and order of the columns aren't important, as you can map them to the 
 
 ## Prepare your data
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, if you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID.
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, if you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID. You can also _extend_ existing statistical variables, that is, adding more arbitrary key-value fields, by redefining them in an MCF file. 
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
 
