@@ -1,14 +1,14 @@
 ---
 layout: default
-title:  Define non-place entities
+title:  Define custom entities
 nav_order: 4
 parent: Build your own Data Commons
 ---
 
 {: .no_toc}
-# Define non-place entities
+# Define custom (non-place) entities
 
-This page shows you how to define (or extend) custom non-place entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md).
+This page shows you how to define (or extend) custom (non-place) entities, which may be part of the process to add your data to your local instance. It assumes you are already familiar with the content in [Key concepts](/data_model.html) and [Prepare and load your own data](custom_data.md).
 
 Before creating new entities or entity types, please see [Determine if you need to create new entities](custom_data.md#entities) to determine if you can reuse existing entities and/or entity types from base Data Commons (datacommons.org). 
 
@@ -21,7 +21,7 @@ Before creating new entities or entity types, please see [Determine if you need 
 
 New _entity types_ are defined in an MCF file. It may be the same file in which you define variables, or it can be a separate one.
 
-New _entities_ (instantiations of a type) can be defined in either MCF or CSV files. If you have thousands of new entities of the same type, you will likely find it much easier to manage their definitions in a CSV file. On this page, we will use CSV for examples, and you can translate them into MCF format if you like.
+New _entities_ (instantiations of a type) can be defined in either MCF or CSV files. If you have thousands of new entities of the same type, you will likely find it much easier to manage their definitions in a CSV file. On this page, we will use CSV for examples, and you can translate them into MCF if you like.
 
 The [directory structure](custom_data.md#dir) is the same as for variables.
 
@@ -29,7 +29,7 @@ In the following sections, we'll describe setting up the non-place entities, as 
 
 ## Prepare your data
 
-### Step 1: Define non-place entity types (if needed)
+### Step 1: Define new entity types (if needed)
 
 If you need to define custom entity types in MCF (rare), you define them in MCF. You can have a single MCF file or as many as you like. 
 
@@ -59,9 +59,9 @@ Data Commons relies fairly heavily on [enumerations](https://datacommons.org/bro
 See [Example enum definitions](#enum-example) for details.
 
 {: #step2}
-### Step 2: Define non-place entities
+### Step 2: Define new entities
 
-Now let's walk through the process of defining the actual non-place entities you need for your data. You can define entities in both MCF files or CSV files, but we will only provide examples of CSV here. (You can easily convert these to MCF if desired.)
+Now let's walk through the process of defining the actual entities you need for your data. You can define entities in both MCF files or CSV files, but we will only provide examples of CSV here. (You can easily convert these to MCF if desired.)
 
 For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}, but you'll notice that there are no actual hospitals in the knowledge graph. The first step is to add definitions for hospital entities. Here is an example of real-world data from the U.S. Department of Health and Human Services for the state of Alaska. The CCN is a certification number that uniquely identifies U.S. hospitals. We'll use that number as the DCIDs. 
 
@@ -77,7 +77,7 @@ ccn,name,address,City,zipCode,hospitalType
 21311,Ketchikan Medical Center,3100 Tongass Avenue,geoId/02150,99901,Critical access hospital
 ```
 
-CSV files can only contain one entity type, so if you are defining entities of more than one type (for example, schools and hospitals), use a separate file for each. If you're adding observations as well, put them in files separate from the entity definitions. 
+CSV files can only contain one entity type, so if you are defining entities of more than one type (for example, schools and hospitals), use a separate file for each. When you add observations, put them in files separate from the entity definitions. 
 
 Here are the important points to note in this example:
 - Each entity CSV file can contain as many columns as you need to define various properties of the entity. 
