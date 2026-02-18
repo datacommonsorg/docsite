@@ -46,7 +46,7 @@ description: "Agency of a government, such as legal, legislative, insurance, tax
 For entity types, an MCF block definition must include the following fields:
 
 - `Node`: This is the DCID of the entity or entity type you are defining. It is also recommended that you use a prefix to create a namespace for your own entity types. The prefix must be separated from the main entity type name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom entity types from entity types in the base DC.
-- `name`: This is the readable name that will be displayed in various parts ot the UI. 
+- `name`: This is the readable name that will be displayed in various parts of the UI. 
 - `typeOf`: For an entity type, this must be `Class`.
 - `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that is somehow related. This inserts the entity type into a class hierarchy. You may also define sub-types of types you define, by using this field to indicate the "parent" class. In this example, the parent class is `Government`.   
 
