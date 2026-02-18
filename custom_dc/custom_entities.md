@@ -67,7 +67,7 @@ For example, let's say you wanted to track the performance of individual hospita
 
 ```csv
 ccn,name,address,City,zipCode,hospitalType
-20001,Providence Alaska Medical Center,3200 Providence Drive,geoId/02020,Short term hospital
+20001,Providence Alaska Medical Center,3200 Providence Drive,geoId/02020,99508,Short term hospital
 20008,Bartlett Regional Hospital,3260 Hospital Dr,geoId/02110,99801,Short term hospital
 22001,St Elias Specialty Hospital,4800 Cordova Street,geoId/02020,99503,Long term hospital
 20017,Alaska Regional Hospital,2801 Debarr Road,geoId/02020,99508,Short term hospital
