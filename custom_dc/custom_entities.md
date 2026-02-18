@@ -73,7 +73,7 @@ ccn,name,address,City,zipCode,hospitalType
 20017,Alaska Regional Hospital,2801 Debarr Road,geoId/02020,99508,Short term hospital
 21301,Providence Valdez Medical Center,Po Box 550,geoId/02261,99686,Critical access hospital
 21304,Petersburg Medical Center,Po Box 589,geoId/02280,99833,Critical access hospital
-21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,geoId/02150,99615,Critical access hospital
+21306,Providence Kodiak Island Medical Ctr,1915 East Rezanof Drive,geoId/02150,99615,Critical access hospital
 21311,Ketchikan Medical Center,3100 Tongass Avenue,geoId/02150,99901,Critical access hospital
 ```
 
