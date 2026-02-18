@@ -180,7 +180,6 @@ If you need to restart the services for any reason, do the following:
 
 1. In the terminal window where the container is running, press Ctrl-c to kill the Docker container.
 1. Run the script with the option to restart only the services container:
-
   ```shell
   ./run_cdc_dev_docker.sh -c service
   ```

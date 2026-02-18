@@ -27,18 +27,11 @@ The [directory structure](custom_data.md#dir) is the same as for variables.
 
 In the following sections, we'll describe setting up the non-place entities, as well as how to use them with custom statistical variables. Also see the example files provided in [https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities){: target="_blank"}.
 
-## Step 1: Define non-place entity types (if needed)
+## Prepare your data
 
-You define custom entity types in MCF. You can have a single MCF file or as many as you like. 
+### Step 1: Define non-place entity types (if needed)
 
-For entity types, an MCF block definition must include the following fields:
-
-- `Node`: This is the DCID of the entity or entity type you are defining. It is also recommended that you use a prefix to create a namespace for your own entity types. The prefix must be separated from the main entity type name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom entity types from entity types in the base DC. (See example below.)
-- `name`: This is the readable name that will be displayed in various parts ot the UI. 
-- `typeOf`: For an entity type, this must be `Class`.
-- `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that is somehow related. You may also define sub-types of types you define, by using this field to indicate the "parent" class.
-
-You can additionally define any number of key:value pairs.
+If you need to define custom entity types in MCF (rare), you define them in MCF. You can have a single MCF file or as many as you like. 
 
 For example, let's say a state government wanted to track the finances of its agencies. There is no "agency" type node in the Data Commons graph, so they could create one like this:
 
@@ -50,75 +43,56 @@ subClassOf: dcs:Government
 description: "Agency of a government, such as legal, legislative, insurance, taxes, etc."
 ```
 
-Note especially the `subClassOf` field, which inserts it into a class hierarchy with the direct parent of `Government`. You could add other properties, such as schema.org meta properties, and so on.
+For entity types, an MCF block definition must include the following fields:
 
-The next step is to define entities of type `Agency`, as described below. 
+- `Node`: This is the DCID of the entity or entity type you are defining. It is also recommended that you use a prefix to create a namespace for your own entity types. The prefix must be separated from the main entity type name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom entity types from entity types in the base DC.
+- `name`: This is the readable name that will be displayed in various parts ot the UI. 
+- `typeOf`: For an entity type, this must be `Class`.
+- `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that is somehow related. This inserts the entity type into a class hierarchy. You may also define sub-types of types you define, by using this field to indicate the "parent" class. In this example, the parent class is `Government`.   
 
-## Step 2: Define enumerations for the entity type (optional)
+You can add other optional properties, such as schema.org meta properties, and any number of key:value pairs.
+
+### Step 1a: Define enumerations for the entity type (optional)
 
 Data Commons relies fairly heavily on [enumerations](https://datacommons.org/browser/Enumeration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S., `Agency` would likely actually be defined as an enum with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use enums to break down classes into multiple sub-types. If you want to be able to link entities by subtype, you _must_ define enums for them, in MCF.
 
-For example, in our hospital data, each hospital is classified into 3 types: "long term", "short term" and "critical access". A common way to represent these types is defining an enum type, and each possible value as an instantiation of the enum. Here's an example:
+See [Example enum definitions](#enum-example) for details.
 
-```
-Node: dcid:HospitalTypeEnum
-name: "Hospital type enum"
-typeOf: schema:Class
-subClassOf: schema:Enumeration
-description: "Classifies hospitals into different types according to populations served."
+{: #step2}
+### Step 2: Define non-place entities
 
-Node: dcid:LongTermHospital
-name: "Long-term hospital"
-typeOf: dcid:HospitalTypeEnum
-description: "Hospitals where patient stays are longer than 25 days."
+Now let's walk through the process of defining the actual non-place entities you need for your data. You can define entities in both MCF files or CSV files, but we will only provide examples of CSV here. (You can easily convert these to MCF if desired.)
 
-Node: dcid:ShortTermHospital
-name: "Short-term hospital"
-typeOf: dcid:HospitalTypeEnum
-description: "Hospitals where patient stays are shorter than 25 days."
-
-Node: dcid:CriticalAccessHospital
-name: "Critical access hospital"
-typeOf: dcid:HospitalTypeEnum
-description: "Small, rural hospitals with fewer than 25 beds."
-```
-
-## Step 3: Define non-place entities
-
-In this section, we will walk you through concrete examples of how you can define new entities and variables in CSV files, and set up the `config.json` file. You may also define entities in MCF, but we won't give examples of that here.
-
-CSV files can only contain one entity type, so if you are defining entities of more than one type (e.g. schools and hospitals), use separate a separate file for each. If you're adding observations as well, put them in separate files from the entity definitions. 
-
-Each entity CSV file can contain as many columns as you need to define various properties of the entity. The columns can be in any order, with any heading. 
-
-You must have one column that defines DCIDs for the entities. In addition, for any cells that reference existing entities, if you want to link your entities to them, you must specify them by DCID.
-
-For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}, but you'll notice that there are no actual hospitals in the knowledge graph. The first step would be to add definitions for hospital entities. Here is an example of real-world data from U.S. Department of Health and Human Services for the state of Alaska. The CCN is a certification number that uniquely identifies U.S. hospitals. We'll use that number as the DCIDs. 
+For example, let's say you wanted to track the performance of individual hospitals in your state rather than at the aggregated state level. Base Data Commons already has an entity type [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}, but you'll notice that there are no actual hospitals in the knowledge graph. The first step is to add definitions for hospital entities. Here is an example of real-world data from the U.S. Department of Health and Human Services for the state of Alaska. The CCN is a certification number that uniquely identifies U.S. hospitals. We'll use that number as the DCIDs. 
 
 ```csv
-ccn,name,address,City,zipCode,hospitalSubtype
-20001,Providence Alaska Medical Center,3200 Providence Drive,geoId/02020,ShortTermHospital
-20008,Bartlett Regional Hospital,3260 Hospital Dr,geoId/02110,99801,ShortTermHospital
-22001,St Elias Specialty Hospital,4800 Cordova Street,geoId/02020,99503,LongTermHospital
-20017,Alaska Regional Hospital,2801 Debarr Road,geoId/02020,99508,ShortTermHospital
-21301,Providence Valdez Medical Center,Po Box 550,geoId/02261,99686,CriticalAccessHospital
-21304,Petersburg Medical Center,Po Box 589,geoId/02280,99833,CriticalAccess Hospital
-21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,geoId/02150,99615,CriticalAccessHospital
-21311,Ketchikan Medical Center,3100 Tongass Avenue,geoId/02150,99901,CriticalAccessHospital
-
+ccn,name,address,City,zipCode,hospitalType
+20001,Providence Alaska Medical Center,3200 Providence Drive,geoId/02020,Short term hospital
+20008,Bartlett Regional Hospital,3260 Hospital Dr,geoId/02110,99801,Short term hospital
+22001,St Elias Specialty Hospital,4800 Cordova Street,geoId/02020,99503,Long term hospital
+20017,Alaska Regional Hospital,2801 Debarr Road,geoId/02020,99508,Short term hospital
+21301,Providence Valdez Medical Center,Po Box 550,geoId/02261,99686,Critical access hospital
+21304,Petersburg Medical Center,Po Box 589,geoId/02280,99833,Critical access hospital
+21306,Providence KodigeoId/02 Island Medical Ctr,1915 East Rezanof Drive,geoId/02150,99615,Critical access hospital
+21311,Ketchikan Medical Center,3100 Tongass Avenue,geoId/02150,99901,Critical access hospital
 ```
-Here are a few things to note:
-- The order of columns does not matter. Even the column defining DCIDs does not need to be first; you will specify the column to use for DCIDs in `config.json`.
+
+CSV files can only contain one entity type, so if you are defining entities of more than one type (for example, schools and hospitals), use a separate file for each. If you're adding observations as well, put them in files separate from the entity definitions. 
+
+Here are the important points to note in this example:
+- Each entity CSV file can contain as many columns as you need to define various properties of the entity. 
+- You must have one column that defines DCIDs for the entities. 
+- Columns can be in any order, with any heading. Even the column defining the DCIDs does not need to be first; you will specify the column to use for DCIDs in `config.json`.
 - We recommended that you use a prefix to create a namespace for your own entities. It must be separated from the main variable name by a slash (`/`). For example, if your organization or project name is foo.com, you could use a namespace `foo/`. This way it is easy to distinguish your custom entities from entities in the base DC.
-- In this example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCIDs; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, zip codes won't be used to link these entities, so the `zipCode` values aren't given as DCIDs (although they could be).
+- For any cells that reference existing entities, if you want to link your entities to them, you must specify them by DCID. In the above example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCIDs; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, zip codes won't be used to link these entities, so the `zipCode` values aren't given as DCIDs (although they could be).
 
-> **Important:** Whenever you want to link properties of entities you are defining to existing entities, the cell values must contain DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity type](custom_data.md#search). 
+> **Important:** Whenever you want to link properties of entities you are defining to existing entities, the cell values must contain DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity](custom_data.md#search). 
 
-## Step 4: Write the config.json file
+### Step 3: Write the config.json file
 
 The next step is to create the `config.json` file to configure your new entities. This is the same `config.json` file you use for observations. 
 
-Here's an example of how a `config.json` file could look for our hospital data.
+Here's an example of how the file could look for our hospital data.
 
 ```json
 {
@@ -146,15 +120,15 @@ Here's an example of how a `config.json` file could look for our hospital data.
 Here the input file specification is different from that of [observations](custom_data.md#). These are the important fields to note:
 
 - `importType`: By default this is `observations`; to tell the importer that you are adding entities in this CSV file, you must specify `entities`.
-- `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity must be identified by its DCID.
+- `rowEntityType`: This specifies the entity type that the entities are derived from. In this case, we specify an existing entity type, [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"}. Note that the entity type must be identified by its DCID.
 - `idColumn`: This indicates to the importer to use the values in the specified column as DCIDs. In this case, we specify `ccn`, which indicates that the values in the `ccn` column should be used as the DCIDs for the entities.
-- `entityColumns`: This is optional: if you want properties of your new entities to be linked to an existing entity type (or types), you can specify the column(s) containing matching existing entities. In this case [`City`](https://datacommons.org/browser/City){: target="_blank"} as an entity column. Note that values in this column must use the DCID of each entity referenced. If you would like the hospitals to be linked by zipcode, you would need to provide the DCID for each zip code.
+- `entityColumns`: This is optional: if you want properties of your new entities to be linked to existing entities, you can specify the column(s) containing the matching entities. In this case we list the [`City`](https://datacommons.org/browser/City){: target="_blank"} column. Note that the heading of this column must be the DCID of the corresponding entity type, and the values must be the DCIDs of each entity referenced. If you would like the hospitals to be linked by zipcode, you would need to provide the DCID for each zip code.
   
 The other fields are explained in the [Data config file specification reference](config.md).
 
-## Step 5: Add statistical variables and observations for new entities
+### Step 4: Add statistical variables and observations for new entities
 
-If you are providing observations for the non-place entities, the observations must be in a separate file. You'll need a different observations CSV file for each entity type for which you are providing observations.
+If you are providing observations for the non-place entities, the observations must be in a separate file. You'll need a different CSV file for each entity type for which you are providing observations.
 
 For example, let's say you've already defined in MCF the following variables that measure weekly hospital capacity:
 * `total_count_staffed_beds`
@@ -191,10 +165,9 @@ entity,date,variable,value
 ```
 We could also have added an `observationPeriod` column, which would be set to `P7D` for all rows.
 
-{: #ex13}
-## Step 6: Add the observations CSV to config.json
+### Step 5: Add the observations CSV to config.json
 
-Here's an example of the previous hospital data, covering both the entities and the statistical variables. Note that there can only be a single `config.json` file, so CSV files of observations and entities must be specified in the same config file.
+Now let's update the config file to cover both the entities and the statistical variables. Since there can only be a single `config.json` file, CSV files of observations and entities must be specified in the same config.
 
 ```jsonc
 {
@@ -223,6 +196,64 @@ Here's an example of the previous hospital data, covering both the entities and 
   }
 }
 ``` 
+{: #enum-example}
+### Example enum definitions
+
+In our hospital data, hospitals are classified into 3 types: "long term", "short term" and "critical access". A common way to represent these types is to define an enum, and each possible value as an instantiation of the enum. Here's an example:
+
+```
+Node: dcid:HospitalTypeEnum
+name: "Hospital type enum"
+typeOf: schema:Class
+subClassOf: schema:Enumeration
+description: "Classifies hospitals into different types according to populations served."
+
+Node: dcid:LongTermHospital
+name: "Long-term hospital"
+typeOf: dcid:HospitalTypeEnum
+description: "Hospitals where patient stays are longer than 25 days."
+
+Node: dcid:ShortTermHospital
+name: "Short-term hospital"
+typeOf: dcid:HospitalTypeEnum
+description: "Hospitals where patient stays are shorter than 25 days."
+
+Node: dcid:CriticalAccessHospital
+name: "Critical access hospital"
+typeOf: dcid:HospitalTypeEnum
+description: "Small, rural hospitals with fewer than 25 beds."
+```
+
+These are the important fields to note:
+- For the node representing the enum itself, it must be of type `Class` and must be a subclass of `Enumeration`.
+- For the nodes representing the allowed values of the enum, they must be of the type you have defined as the enum.
+
+If we were to use these definitions in the hospitals CSV file, the last column would look like this:
+```csv
+HospitalTypeEnum
+ShortTermHospital
+LongTermHospital
+ShortTermHospital
+CriticalAccessHospital
+...
+```
+Then, if desired, you could provide aggregated observations for each hospital types. For example:
+
+```csv
+entity,date,variable,value
+ShortTermHospital,2023-01-27,count_staffed_adult_beds,...
+ShortTermHospital,count_staffed_adult_icu_beds_occupied,...
+ShortTermHospital,2023-01-27,count_staffed_adult_inpatient_icu_beds,...
+ShortTermHospital,2023-01-27,count_staffed_inpatient_icu_beds,...
+ShortTermHospital,2023-01-27,count_staffed_inpatient_icu_beds_occupied,...
+ShortTermHospital,2023-01-27,total_count_staffed_beds,...
+LongTermHospital,2023-01-27,count_staffed_adult_beds,...
+LongTermHospital,count_staffed_adult_icu_beds_occupied,...
+LongTermHospital,count_staffed_adult_inpatient_icu_beds...
+LongTermHospital,count_staffed_inpatient_icu_beds...
+LongTermHospital,count_staffed_inpatient_icu_beds_occupied,...
+...
+```
 
 ## Load your entities data
 
