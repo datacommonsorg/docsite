@@ -1,0 +1,80 @@
+<!-- Displays another page inside an iframe with source code on the left and the page on the right
+
+For maintainers: Set the url to display using the iframe_content_url variable in the frontmatter. 
+-->
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>{{ page.title }} - Docs - Data Commons</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto&family=Material+Icons&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/assets/css/styles.css" rel="stylesheet" />
+    {% if page.url == "/api/web_components/" or page.parent == "Web Components"
+    %}
+    <script src="https://datacommons.org/datacommons.js"></script>
+    {% endif %}
+    <!-- Syntax highlighting for code -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      {% include header.html %}
+      <main id="{{ main_id }}" class="container-fluid">
+        <div id="content">
+          <div id="source-code">
+            <h3>Source Code</h3>
+            <pre><code id="code-target" class="language-html">Loading source code...</code></pre>
+          </div>
+          <div id="preview">
+            <h3>Preview</h3>
+            <iframe id="iframe" src="{{ page.iframe_content_url }}"></iframe>
+          </div>
+        </div>
+      </main>
+      {% include footer.html %}
+    </div>
+    <script>
+      // Fetch the source code for the page and display it in the source code
+      // div.
+      const fileUrl = "{{ page.iframe_content_url }}";
+      fetch(fileUrl)
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.text();
+        })
+        .then((data) => {
+          // Escape the HTML so it doesn't render as actual elements
+          const codeTarget = document.getElementById("code-target");
+          codeTarget.textContent = data;
+          Prism.highlightElement(codeTarget);
+        })
+        .catch((err) => {
+          document.getElementById("code-target").textContent =
+            "Error loading source: " + err.message;
+        });
+    </script>
+    {% include scripts.html %}
+  </body>
+</html>

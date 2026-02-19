@@ -20,32 +20,7 @@
 </head>
 <body>
   <div id="main">
-    <header id="main-header">
-      <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
-        <div class="container-fluid">
-          <div class="navbar-brand">
-            <div id="main-header-logo">
-                <a href="https://datacommons.org/">
-                  <img src="/assets/images/dc-logo.svg" />
-                </a>
-            </div>
-            <a href="https://datacommons.org">Data Commons</a>
-            <!-- dot separater -->
-            <span class="separator">&#8226;</span>
-            <span><a href="/">Docs</a></span>
-            </a>
-          </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#dc-main-nav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
-            <div class="gcse-searchbox-only"
-              data-resultsUrl="https://datacommons.org/search"></div>
-            </div>
-            </div>
-      </nav>
-    </header>
+    {% include header.html %}
 
     <main id="{{ main_id }}" class="container-fluid">
       <div class="row">
@@ -109,52 +84,8 @@
       </div>
     </main>
 
-    <footer id="main-footer">
-      <div id="sub-footer">
-        <span class="brand-byline">
-          <span class="brand-text">An initiative from</span>
-          <img class="brand-logo" src="/assets/images/google-logo.svg" />
-        </span>
-        <div class="sub-footer-links">
-          <a href="https://policies.google.com/terms">Terms and Conditions</a>
-          <a href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
-        </div>
-      </div>
-    </footer>
+    {% include footer.html %}
   </div>
-  <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <script async
-    src="https://cse.google.com/cse.js?cx=010079880385165835740%3Aosnv3q-sw08"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWSES5WXZE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-KWSES5WXZE', {
-      client_storage: 'none',
-      anonymize_ip: true,
-    });
-  </script>
-  <script>
-    /**
-     * Add placeholder text for Google Custom Search Engine search box in the page header
-     */
-    window.addEventListener("load", function() {
-      const googleCustomSearchInput = document.querySelector(".gsc-search-box input[name=\"search\"]");
-      if (googleCustomSearchInput) {
-        googleCustomSearchInput.placeholder = "Search docs";
-      }
-    });
-  </script>
-  <script src="/assets/js/tabs.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-  <script>
-    anchors.add();
-  </script>
+  {% include scripts.html %}
 </body>
 </html>

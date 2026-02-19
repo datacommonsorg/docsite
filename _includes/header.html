@@ -1,0 +1,36 @@
+<!-- Header for the docsite -->
+<header id="main-header">
+  <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <div id="main-header-logo">
+            <a href="https://datacommons.org/">
+              <img src="/assets/images/dc-logo.svg" />
+            </a>
+        </div>
+        <a href="https://datacommons.org">Data Commons</a>
+        <!-- dot separater -->
+        <span class="separator">&#8226;</span>
+        <span><a href="/">Docs</a></span>
+        </a>
+      </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#dc-main-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-md-end" id="dc-main-nav">
+      <div class="gcse-searchbox-only" data-resultsUrl="https://datacommons.org/search"></div>
+    </div>
+  </nav>
+</header>
+<script>
+  /**
+   * Add placeholder text for Google Custom Search Engine search box in the page header
+   */
+  window.addEventListener("load", function() {
+    const googleCustomSearchInput = document.querySelector(".gsc-search-box input[name=\"search\"]");
+    if (googleCustomSearchInput) {
+      googleCustomSearchInput.placeholder = "Search docs";
+    }
+  });
+</script>
