@@ -17,10 +17,6 @@
  * limitations under the License.
  */
 
-@import "third_party/bootstrap-4.0.0/functions";
-@import "third_party/bootstrap-4.0.0/variables";
-@import "third_party/bootstrap-4.0.0/mixins";
-
 /**
  * CSS for the code-preview layout (e.g., /api/web_components/examples/all-charts.html)
  */
@@ -73,8 +69,9 @@ footer {
   h3 {
     margin: 0;
     padding: 10px;
-    background: $gray-100;
-    border-bottom: 1px solid $gray-300;
+    background: #fafcff;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
     flex-shrink: 0;
     font-size: 1rem;
     font-weight: 500;
