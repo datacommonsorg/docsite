@@ -51,9 +51,7 @@ For example, to embed a line chart:
 </html>
 ```
 
-See a live version of this example you can play around with in
-[Playground](https://lit.dev/playground/#gist=c0c88276739f4f6061807cc943937a14){: target="_blank"}
-([source](/assets/examples/web-components/line-chart.html)).
+See a live version of this example [here](examples/line-chart.html){: target="_blank"}.
 
 ## Components
 
@@ -125,9 +123,8 @@ Additionally, the following css variables are supported:
 
 ### Styling Example
 
-See a live version of this example you can play around with in
-[Playground](https://lit.dev/playground/#gist=719f5d71c2823ac3e58f504cb6ceccd3){: target="_blank"}
-([source](/assets/examples/web-components/map-styles.html)).
+See a live example of a styled map
+[here](examples/map-styles.html){: target="_blank"}.
 
 ```html
 <html>
