@@ -161,12 +161,6 @@ The names and order of the columns aren't important, as you can map them to the 
 
 ## Prepare your data
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, if you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID. 
-
-> **Note:** You cannot "override" a variable by changing the value of existing fields. If you need to override the values of existing fields, you should create a new variable, with a new DCID.
-
-You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
-
 In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
 {: #mcf}
@@ -174,7 +168,11 @@ In this section, we will walk you through a concrete example of how to go about 
 
 If you are only reusing existing variables, you can skip this step entirely.
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF) files. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF) files. If you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID. 
+
+> **Note:** You cannot "override" a variable definition by changing the value of existing fields. If you need to override the values of existing fields, you should create a new variable, with a new DCID.
+
+You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
 Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 new statistical variable nodes. 
 
@@ -208,7 +206,7 @@ The following fields are always required:
 - `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. 
   You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
-  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
+  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example: 
 
     ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
 
@@ -218,7 +216,7 @@ Note that all fields that reference another node in the graph must be prefixed b
 
 The following fields are optional:
 - `description`: A more detailed textual description of the variable.
-- `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
+- `statType`: By default, if not specified, this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr` and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
 - `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 - `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
@@ -226,7 +224,9 @@ Additionally, you can specify any number of property-value pairs representing th
 
 #### Naming conventions
 
-If you plan to eventually contribute your variables to base Data Commons, they should follow the standard naming conventions. For a basic variable without a `measurementQualifer` or `measurementDenominator`, it should look like this:
+If you plan to eventually contribute your variables to base Data Commons, they should follow the standard naming conventions. 
+
+For a basic variable without a `measurementQualifer` or `measurementDenominator`, it should look like this:
 
 _`statType_measuredProperty_populationType_constraintValue1_constraintValue2`_
 
@@ -248,9 +248,9 @@ Examples:
 - `Count_Death_Female_AsAFractionOf_Count_Person_Female`
 - `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
 
-### Step 2: Define a statistical variable group {#statvar-group}
+### Step 2 (optional): Define a statistical variable group {#statvar-group}
 
-By default, existing variables are shown in the Statistical Variable Explorer in their existing categories. If you would like any variables you extend or new variables you create to be displayed together in a separate group, for easy discovery, you can create a _statistical variable group_. You can even define a hierarchical tree of categories this way.
+By default, existing variables are shown in the Statistical Variable Explorer in preset categories. If you would like to more easily discover any variables you reuse/extend or new variables you create in the Statistical Variable Explorer, you can create a _statistical variable group_ and assign variables to it. You can even define a hierarchical tree of categories this way.
 
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
@@ -280,17 +280,17 @@ You can define as many statistical variable group nodes as you like. Each must i
 - `name`: This is the name of the heading that will appear in the Statistical Variable Explorer. 
 - `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
 
-```
-Node: dcid:who/g/WHO
-typeOf: dcs:StatVarGroup
-name: "WHO"
-specializationOf: dcid:dc/g/Root
+  ```
+  Node: dcid:who/g/WHO
+  typeOf: dcs:StatVarGroup
+  name: "WHO"
+  specializationOf: dcid:dc/g/Root
 
-Node: dcid:who/g/Smoking
-typeOf: dcs:StatVarGroup
-name: "Smoking"
-specializationOf: dcid:who/g/WHO
-```
+  Node: dcid:who/g/Smoking
+  typeOf: dcs:StatVarGroup
+  name: "Smoking"
+  specializationOf: dcid:who/g/WHO
+  ```
 
 You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
 
@@ -307,7 +307,19 @@ Node: dcid:who/Adult_curr_cig_smokers_male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
-Similarly, you can assign a reused variable to a new statistical variable group; it will appear in both its original category and in your new group. When you select one in the Statistical Variable Explorer, the other will automatically be selected too. For example:
+
+Similarly, you can assign an existing variable to a new statistical variable group; it will appear in both its original category and in your new group. When you select one in the Statistical Variable Explorer, the other will automatically be selected too. To do this, you must specify the variable's DCID and type. For example, let's say you wanted to add  [`GenderIncomeInequality_Person_15OrMoreYears_WithIncome`]() (by default in the **Demographics** category) to a new top-level group called `My variables`, you would use the following:
+
+```
+Node: dcid:MyVariables
+typeOf: dcs:StatVarGroup
+name: "My variables"
+specializationOf: dcid:dc/g/Root
+
+Node: dcid:GenderIncomeInequality_Person_15OrMoreYears_WithIncome
+typeOf: dcs:StatVarGroup
+memberOf: dcid:MyVariables
+```
 
 {: #exp_csv}
 ### Step 3: Prepare the CSV observation files
