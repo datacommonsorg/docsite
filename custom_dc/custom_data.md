@@ -103,9 +103,9 @@ To search using the Python APIs:
 
 Your data undoubtedly contains metrics and observed values. In Data Commons, the metrics themselves are known as statistical variables, and the time series data, or values over time, are known as observations. While observations are always numeric, statistical variables must be defined as _nodes_ in the Data Commons knowledge graph.  
 
-Data Commons already has thousands of statistical variables in its knowledge graph; you may be able to simply reuse or extend existing ones. To browse and search for existing variables, see the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}. 
+Data Commons already has thousands of statistical variables in its knowledge graph; you may be able to simply reuse or extend existing ones. Before creating a new variable, take a look at the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"} to check if you can use an existing variable to represent the data you are importing. This is important if you want to correctly link your data to data in base Data Commons. In addition, if you ever plan to contribute your data to datacommons.org, it's very important to reuse variables as much as possible, to avoid creating unnecessary duplication that can lead to misleading query results.
 
-If you do need to define a statistical variable, it must follow a certain model. The variable consists of a measure (e.g. "median age") on a set of things of a certain type (e.g. "persons") that satisfy some set of constraints (e.g. "gender is female"). To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
+If you do need to define new variables, they must follow a certain model. The variable consists of a measure (e.g. "median age") on a set of things of a certain type (e.g. "persons") that satisfy some set of constraints (e.g. "gender is female"). To explain what this means, consider the following example. Let's say your dataset contains the number of schools in U.S. cities, broken down by level (elementary, middle, secondary) and type (private, public), reported for each year (numbers are not real, but are just made up for the sake of example):
 
 | CITY | YEAR | SCHOOL_TYPE | SCHOOL_LEVEL | COUNT |
 |------|------|----------------|-------|
@@ -131,6 +131,8 @@ The measure here is a simple count; the set of things is "schools"; and the cons
 - `Count_School_Private_Secondary`
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
+
+If you plan to contribute your data to base Data Commons, you'll also need to ensure that they conform to [naming conventions](#naming-conventions).
 
 #### Variable schema
 
@@ -159,7 +161,9 @@ The names and order of the columns aren't important, as you can map them to the 
 
 ## Prepare your data
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, if you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID. You can also _extend_ existing statistical variables, that is, adding more arbitrary key-value fields, by redefining them in an MCF file. 
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, if you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID. 
+
+> **Note:** You cannot "override" a variable by changing the value of existing fields. If you need to override the values of existing fields, you should create a new variable, with a new DCID.
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
 
@@ -168,9 +172,11 @@ In this section, we will walk you through a concrete example of how to go about 
 {: #mcf}
 ### Step 1: Define statistical variables in MCF
 
+If you are only reusing existing variables, you can skip this step entirely.
+
 Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF) files. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 statistical variable nodes. 
+Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 new statistical variable nodes. 
 
 ```
 Node: dcid:who/Adult_curr_cig_smokers
@@ -199,7 +205,7 @@ The following fields are always required:
 - `Node`: This is the DCID of the entity you are defining. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namspace, and should represent your organization, dataset, project, or whatever makes sense for you.  
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
-- `populationType`: This is the type of thing being measured, and its value must be an existing `Class` type. It is mainly used to classify variables into categories that appear in the Statistical Variable Explorer. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above.
+- `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. 
   You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the `domainIncludes` section of the page. For example: 
@@ -216,13 +222,35 @@ The following fields are optional:
 - `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 - `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
-Additionally, you can specify any number of property-value pairs representing the constraints on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. 
+Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. 
 
-#### Extend or override an existing 
+#### Naming conventions
+
+If you plan to eventually contribute your variables to base Data Commons, they should follow the standard naming conventions. For a basic variable without a `measurementQualifer` or `measurementDenominator`, it should look like this:
+
+_`statType_measuredProperty_populationType_constraintValue1_constraintValue2`_
+
+Example: `GrowthRate_Amount_EconomicActivity_GrossDomesticProduction`
+
+If the `statType` is the default, `measuredValue`, omit it. For example: `Count_Person_Male_AsianAlone`.
+
+Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
+
+For a variable with `measurementQualifier`, add the value to the prefix. Examples:
+- `Annual_Average_RetailPrice_Electricity`
+- `Annual_Average_Wage`
+
+For a variable with `measurementDenominator`, add a suffix of:
+
+`AsAFractionOf_`_`measurementDenominator`_
+
+Examples: 
+- `Count_Death_Female_AsAFractionOf_Count_Person_Female`
+- `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
 
 ### Step 2: Define a statistical variable group {#statvar-group}
 
-By default, any existing variables are shown in the Statistical Variable Explorer in their existing categories. Any new variables you create won't show up in the Explorer unless you f you would like to display variables in specific named groups, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
+By default, existing variables are shown in the Statistical Variable Explorer in their existing categories. If you would like any variables you extend or new variables you create to be displayed together in a separate group, for easy discovery, you can create a _statistical variable group_. You can even define a hierarchical tree of categories this way.
 
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
@@ -279,9 +307,10 @@ Node: dcid:who/Adult_curr_cig_smokers_male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
+Similarly, you can assign a reused variable to a new statistical variable group; it will appear in both its original category and in your new group. When you select one in the Statistical Variable Explorer, the other will automatically be selected too. For example:
 
 {: #exp_csv}
-### Step 2: Prepare the CSV observation files
+### Step 3: Prepare the CSV observation files
 
 CSV files contain the following columns using the following headings:
 
@@ -331,7 +360,7 @@ Here are the rules for observation values:
 - Do not use negative numbers or inordinately large numbers to represent NaNs or nulls.
 
 {: #json}
-### Step 3: Write the JSON config file
+### Step 4: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. You need to provide these specifications:
 - The input files location and entity type

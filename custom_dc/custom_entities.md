@@ -29,6 +29,7 @@ In the following sections, we'll describe setting up the non-place entities, as 
 
 ## Prepare your data
 
+{: #entity-type}
 ### Step 1: Define new entity types (if needed)
 
 If you need to define custom entity types in MCF (rare), you define them in MCF. You can have a single MCF file or as many as you like. 
