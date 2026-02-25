@@ -62,7 +62,9 @@ permalink: /api/web_components/line
 | Name      | Type   | Description                                                                                                                                                                                                                                                                                                                                                             |
 | --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | colors    | list   | Specify custom color for each variable. Pass in colors in the same order as variables.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`. |
-| timeScale | string | One of `"year"`, `"month"`, or `"day"`. If provided, the x-axis will draw a tick mark and label at that time scale.                                                                                                                                                                                                                                                     |
+| timeScale | string | One of `"year"`, `"month"`, or `"day"`. If provided, the x-axis will draw a tick mark and label at that time scale. |
+| startDate | string | The earliest date to show on the chart, in ISO-8601 format. |
+| endDate | string | The latest date to show on the chart, in ISO-8601 format. |
 {: .doc-table }
 
 ### Advanced Configuration
