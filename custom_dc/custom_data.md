@@ -25,7 +25,7 @@ At a high level, you need to provide the following:
 - All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 
-If you need to define new non-place entities, please see [Define non-place entities](custom_entities.md) for details.
+If you need to define new entities, please see [Define custom entities](custom_entities.md) for details.
 
 {: #dir}
 ### Files and directory structure
