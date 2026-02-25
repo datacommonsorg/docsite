@@ -317,7 +317,7 @@ name: "My variables"
 specializationOf: dcid:dc/g/Root
 
 Node: dcid:GenderIncomeInequality_Person_15OrMoreYears_WithIncome
-typeOf: dcs:StatVarGroup
+typeOf: dcs:StatisticalVariable
 memberOf: dcid:MyVariables
 ```
 
