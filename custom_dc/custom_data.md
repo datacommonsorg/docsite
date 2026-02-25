@@ -200,7 +200,8 @@ gender: dcid:Male
 The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
-- `Node`: This is the DCID of the entity you are defining. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namspace, and should represent your organization, dataset, project, or whatever makes sense for you.  
+- `Node`: This is the DCID of the entity you are defining. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
+   > Note: If you plan to contribute your data to base Data Commons, DCIDs should follow the [DCID naming conventions](#naming). Otherwise, you can name them however you want.
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
 - `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
@@ -218,39 +219,32 @@ The following fields are optional:
 - `description`: A more detailed textual description of the variable.
 - `statType`: By default, if not specified, this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr` and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
 - `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
+- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
 Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. 
 
-#### Naming conventions
+{: #naming}
+#### Variable DCID naming conventions
 
-If you plan to eventually contribute your variables to base Data Commons, they should follow the standard naming conventions. 
+- Variable DCIDs should be in PascalCase with underscores between properties.
+- For a basic variable without `measurementQualifier` or `measurementDenominator` properties, it should look like this:
 
-For a basic variable without a `measurementQualifier` or `measurementDenominator`, it should look like this:
+  _`statType_measuredProperty_populationType_constraintValue1_constraintValue2`_
 
-_`statType_measuredProperty_populationType_constraintValue1_constraintValue2`_
+  Example: `GrowthRate_Amount_EconomicActivity_GrossDomesticProduction`
 
-Example: `GrowthRate_Amount_EconomicActivity_GrossDomesticProduction`
-
-If the `statType` is the default, `measuredValue`, omit it. For example: `Count_Person_Male_AsianAlone`.
-
-Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
-
-For a variable with `measurementQualifier`, add the value to the prefix. Examples:
-- `Annual_Average_RetailPrice_Electricity`
-- `Annual_Average_Wage`
-
-For a variable with `measurementDenominator`, add a suffix of:
-
-`AsAFractionOf_`_`measurementDenominator`_
-
-Examples: 
-- `Count_Death_Female_AsAFractionOf_Count_Person_Female`
-- `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
+- If the `statType` is the default, `measuredValue`, omit it. For example: `Count_Person_Male_AsianAlone`
+- For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
+  - `Annual_Average_RetailPrice_Electricity`
+  - `Annual_Average_Wage`
+- For a variable with a `measurementDenominator` property, add the suffix `AsAFractionOf_`_`measurementDenominator`_. Examples: 
+  - `Count_Death_Female_AsAFractionOf_Count_Person_Female`
+  - `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
+- Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
 
 ### Step 2 (optional): Define a statistical variable group {#statvar-group}
 
-By default, existing variables are shown in the Statistical Variable Explorer in preset categories. If you would like to more easily discover any variables you reuse/extend or new variables you create in the Statistical Variable Explorer, you can create a _statistical variable group_ and assign variables to it. You can even define a hierarchical tree of categories this way.
+By default, existing variables are shown in the Statistical Variable Explorer in preset categories. If you would like to more easily discover any variables you reuse/extend or new custom variables, you can create a _statistical variable group_ and assign variables to it. You can even define a hierarchical tree of categories this way.
 
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
@@ -308,7 +302,7 @@ Node: dcid:who/Adult_curr_cig_smokers_male
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
 
-Similarly, you can assign an existing variable to a new statistical variable group; it will appear in both its original category and in your new group. When you select one in the Statistical Variable Explorer, the other will automatically be selected too. To do this, you must specify the variable's DCID and type. For example, let's say you wanted to add  [`GenderIncomeInequality_Person_15OrMoreYears_WithIncome`]() (by default in the **Demographics** category) to a new top-level group called `My variables`, you would use the following:
+Similarly, you can assign an existing variable to a new statistical variable group; it will appear in both its original category and in your new group. When you select one in the Statistical Variable Explorer, the other will automatically be selected too. To do this, you must specify the variable's DCID and type. For example, let's say you wanted to add  [`GenderIncomeInequality_Person_15OrMoreYears_WithIncome`](https://datacommons.org/browser/GenderIncomeInequality_Person_15OrMoreYears_WithIncome){: target="_blank"} (by default in the **Demographics** category) to a new top-level group called `My variables`, you would use the following:
 
 ```
 Node: dcid:MyVariables
