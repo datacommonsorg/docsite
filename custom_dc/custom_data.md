@@ -226,7 +226,7 @@ Additionally, you can specify any number of property-value pairs representing th
 
 If you plan to eventually contribute your variables to base Data Commons, they should follow the standard naming conventions. 
 
-For a basic variable without a `measurementQualifer` or `measurementDenominator`, it should look like this:
+For a basic variable without a `measurementQualifier` or `measurementDenominator`, it should look like this:
 
 _`statType_measuredProperty_populationType_constraintValue1_constraintValue2`_
 
