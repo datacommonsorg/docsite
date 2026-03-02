@@ -201,15 +201,15 @@ Once the services are up and running, visit your local instance by pointing your
 
 ![screenshot_homepage](/assets/images/custom_dc/customdc_screenshot1.png){: width="900"}
 
-Now click the **Timeline** link to visit the Timeline explorer. Click **Start**, enter an OECD country (e.g. Canada) and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
+Now click the **Statistical Variable Explorer** chip to show the Statistical Variable Explorer. You should see the new **OECD** group of variables at the top of the left pane. Select one of them and you will see some linked sample countries that have data for these variables.
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 
-Select one (or both) and click **Display** to show the timeline graph:
+Now, select **Tools** > **Timeline Explorer** to open the Timeline Explorer. In the **Select places** field, enter an OECD country, for example, Canada, and select one or both variables from the left pane. The timeline chart automatically loads in the right pane.
 
 ![screenshot_display](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
 
-To issue natural language queries, click the **Search** link. Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+Now try issuing some natural-language queries. Click the **Data Commons** link to go back to the home page. In the search bar, type in queries against the sample data. For example, enter "What are the average annual wages in Canada  Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
 
 ![screenshot_search](/assets/images/custom_dc/customdc_screenshot3a.png){: width="900"}
 
