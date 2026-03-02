@@ -62,7 +62,9 @@ permalink: /api/web_components/line
 | Name      | Type   | Description                                                                                                                                                                                                                                                                                                                                                             |
 | --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | colors    | list   | Specify custom color for each variable. Pass in colors in the same order as variables.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`. |
-| timeScale | string | One of `"year"`, `"month"`, or `"day"`. If provided, the x-axis will draw a tick mark and label at that time scale.                                                                                                                                                                                                                                                     |
+| timeScale | string | One of `"year"`, `"month"`, or `"day"`. If provided, the x-axis will draw a tick mark and label at that time scale. |
+| startDate | string | The earliest date to show on the chart, in ISO-8601 format. |
+| endDate | string | The latest date to show on the chart, in ISO-8601 format. |
 {: .doc-table }
 
 ### Advanced Configuration
@@ -72,7 +74,7 @@ permalink: /api/web_components/line
 | apiRoot             | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`.                                                                                                                                                |
 | defaultVariableName | string  | To be used with `variableNameRegex`. If specified and no variable name is extracted out with the regex, use this as the variable name. e.g., if the variableNameRegex is "(.*?)(?=:)", and the defaultVariableName is "Total", for a variable named "variable 1", it will become "Total". |
 | placeNameProp       | string  | Optionally specify the property to use to get the place names.                                                                                                                                                                                                                            |
-| showExploreMore     | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/visualization){: target="_blank"}.                                                                                                                          |
+| showExploreMore     | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/timeline){: target="_blank"}.                                                                                                                          |
 | variableNameRegex   | string  | Optionally specify regex to use to extract out variable name. e.g., if the variableNameRegex is "(.*?)(?=:)", only the part before a ":" will be used for variable names. So "variable 1: test" will become "variable 1".                                                                 |
 {: .doc-table }
 
