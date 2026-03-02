@@ -10,6 +10,8 @@ parent: Build your own Data Commons
 
 This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
 
+Please also see the sample data and files provided in [custom_dc/sample](https://github.com/datacommonsorg/website/tree/master/custom_dc/sample){: target="_blank"}.
+
 * TOC
 {:toc}
 
@@ -19,10 +21,11 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 
 At a high level, you need to provide the following:
 
+- If you need to define your own statistical variables (metrics), you need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
 - All observations data must be in CSV format, using the schema described later. 
 - You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
-- If you need to define your own statistical variables (metrics), you need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
-- If you need to define new custom entities, please see [Define custom entities](custom_entities.md) for details.
+
+If you need to define new custom entities, please see [Define custom entities](custom_entities.md) for details.
 
 {: #dir}
 ### Files and directory structure
@@ -40,7 +43,7 @@ my_data/
     ├── datafile3.csv
     └── datafile4.csv
 ```
-The following sections walk you through the process of setting up your data.
+The following sections walk you through the process of setting up your data. 
 
 ## Prerequisite steps
 
@@ -149,23 +152,22 @@ Data Commons uses a schema that is called "variable-per-row". This means that ev
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
-> **Tip:** Iff your raw data does not conform to this structures (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel. 
-
+> **Tip:** If your raw data does not conform to this structure (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel. 
 
 ## Prepare your data
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, you must define your statistical variables as new _nodes_ using MCF. When you define any variable in MCF, you must explicitly assign them DCIDs. 
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons, if you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID.
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. 
 
 In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
 {: #mcf}
-### Step 1: Define statistical variables in MCF
+### Step 1: Define statistical variables in MCF (if needed)
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF). For custom Data Commons using explicit schema, you must define your statistical variables using MCF. The MCF file must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF) files. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Here's an example of defining the same statistical variables representing data in a UN WHO dataset. It defines 3 statistical variable nodes. 
+Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 statistical variable nodes. 
 
 ```
 Node: dcid:who/Adult_curr_cig_smokers
@@ -206,6 +208,7 @@ The following fields are always required:
 Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
+- `description`: A more detailed textual description of the variable.
 - `statType`: By default this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr`. In this case, your data set should only include the observations that correspond to those calculated values. 
 - `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 - `measurementDenominator`: For percentages or ratios, this refers to another statistical variable. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
@@ -217,8 +220,6 @@ Additionally, you can specify any number of property-value pairs representing th
 #### (Optional) Define a statistical variable group {#statvar-group}
 
 If you would like to display variables in specific named groups, you can create a statistical variable group. You can actually define a hierarchical tree of categories this way.
-
-> Tip: If you are using implicit schema, where your variables are defined in the .csv files only (and optionally in `config.json`), and you want to assign variables to multiple groups, you can simply create an MCF file like the one below, and just specify the `Node` and `memberOf` fields for each variable.
 
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
@@ -281,16 +282,15 @@ memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
 CSV files contain the following columns using the following headings:
 
-```csv
 `entity, variable, date, value` [`, unit`] [`, scalingFactor`] [`, measurementMethod`] [`, observationPeriod`]
-```
+
 The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
 These columns are required:
-- `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place. For places, you can use the place names listed in [Place types](/place_types.html) and other [special names](#special-names) as headings.
-- `variable`: The DCID of the node you have defined in the MCF. 
-- `date`: The date of the observation and should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
-- `value`: See [Observation](#obs) for valid values of this column. 
+- `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place.
+- `variable`: The DCID of an existing variable or the node you have defined in the MCF
+- `date`: The date of the observation. This should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
+- `value`: See [Observation values](#obs) for valid values of this column. 
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
@@ -319,17 +319,7 @@ dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
 
 In this case, the columns need to be mapped to the expected columns listed above; see below for details.
 
-{:.no_toc}
-#### Special place names {#special-names}
-
-You can use these as the `entity` heading:
-- [`dcid`](/glossary.html#dcid) --- An already resolved DCID. Examples:`country/USA`, `geoId/06`
-- `country3AlphaCode` --- Three-character country codes. Examples: `USA`, `CHN`
-- `geoId` --- Place geo IDs. Examples: `06`, `023`
-- `lat#lng` --- Latitude and longitude of the place using the format _lat_#_long_. Example: `38.7#-119.4`
-- `wikidataId` --- Wikidata place identifiers. Example: `Q12345`
-
-#### Observations {#obs}
+#### Observation values {#obs}
 
 Here are the rules for observation values:
 - Variable values must be numeric. Do not include any special characters such as `*` or `#`.
@@ -372,11 +362,13 @@ Here is an example of how the config file would look for the CSV file we defined
 }
 ```
 
-The following fields are specific to the variable-per-row format:
+The following fields are required:
 - `input_files`:
-  - `format` must be `variablePerRow` (the default is `variablePerColumn` if not specified)
+  - `format` must be `variablePerRow`
   - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
-- `groupStatVarsByProperty` is optional, and allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
+
+The following is optional:
+- `groupStatVarsByProperty` allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
 
 Note that you don't specify your MCF files as input files; the Data Commons importer will identify them automatically.
 
@@ -474,7 +466,7 @@ If the servers have started up without errors, check to ensure that your data is
 
 1. Verify statistical variables: go to the [Statistical Variable Explorer](https://localhost:8080/tools/statvar){: target="_blank"} to verify that your statistical variables are showing up correctly. You should see something like this:
 
-    ![](/assets/images/custom_dc/customdc_screenshot11.png){: width="400"}
+  ![](/assets/images/custom_dc/customdc_screenshot11.png){: width="400"}
 1. Click on a variable name to get more information on the right panel.
 1. Verify that your observations are loaded: Click on an **Example Place** link to open the detailed page for that place. Scroll to the bottom, where you should see a timeline graph of observations for the selected place.
 1. Verify natural-language querying: go to the [Search page](https://localhost:8080/tools/explore){: target="_blank"} and enter a query related to your data. You should get relevant graphs using your data.

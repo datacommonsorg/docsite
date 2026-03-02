@@ -6,6 +6,7 @@ published: true
 parent: How to use Data Commons
 ---
 
+{: .no_toc}
 # Glossary of Common Terms
 
 {: .no_toc}
@@ -16,13 +17,6 @@ This page contains a selection of key terms important to understanding the struc
 
 * TOC
 {:toc}
-
-### [Cohort](https://datacommons.org/browser/CohortSet){: target="_blank"}
-{: #cohort}
-
-A group of entities sharing some characteristic. Interchangeably referred to in a Data Commons context as `Cohort` and `CohortSet`. Examples include [the CDC's list of the United States' 500 largest cities](https://datacommons.org/browser/CDC500_City){: target="_blank"}.
-
-> The type [`Cohort`](https://datacommons.org/browser/Cohort){: target="_blank"} is a legacy type not used by the Sheets method [`DCCOHORTMEMBERS()`](/api/sheets/get_cohort_members.html).
 
 ### [Date](https://datacommons.org/browser/date){: target="_blank"}
 {: #date}
@@ -96,8 +90,11 @@ Any type of metric, statistic, or measure that can be measured for a specific en
 ### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup){: target="_blank"}
 {: #variable-group}
 
-Represents a grouping of variables that are conceptually related. For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"} consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"}, [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome){: target="_blank"} and etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female){: target="_blank"} is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"}. It contains variables that have age constraints.
+Represents a grouping of variables that are conceptually related, used for display purposes in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"} consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"}, [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome){: target="_blank"} etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female){: target="_blank"} is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"}. It contains variables that have age constraints.
 
+### [Topic](https://datacommons.org/browser/Topic){: target="_blank"}
+
+Represents a curated collection of statistical variables, used for natural-language search and the [MCP server](/mcp/index.html). For example, the topic [Parents Educational Attainment](https://datacommons.org/browser/dc/topic/ParentsEducationalAttainment){: target="_blank"} consists of variables such as [Percent of Parent: 25 Years or More, Public School, Bachelors Degree or Higher](https://datacommons.org/browser/Percent_Parent_25OrMoreYears_ChildEnrolledInPublicSchool_EducationalAttainmentBachelorsDegreeOrHigher){: target="_blank"} and [Percent of Parent: 25 Years or More, Public School, High School Graduate or Higher](https://datacommons.org/browser/Percent_Parent_25OrMoreYears_ChildEnrolledInPublicSchool_EducationalAttainmentHighSchoolGraduateOrHigher){: target="_blank"}.
 
 ### Triple
 {: #triple}

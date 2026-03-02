@@ -1,0 +1,61 @@
+<!-- Header for the docsite -->
+
+{% comment %}
+! IMPORTANT
+If you include header.html in a page, you must also include scripts.html
+at the bottom of the page to load the javascript for the search box.
+
+Placing the script at the bottom is to make sure the script runs after the page is loaded,
+and does not interfere with the first contentful paint.
+{% endcomment %}
+
+<header id="main-header">
+  <nav class="navbar navbar-light navbar-expand-lg col" id="main-nav">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <div id="main-header-logo">
+          <a href="https://datacommons.org/">
+            <img src="/assets/images/dc-logo.svg" alt="Data Commons logo" />
+          </a>
+        </div>
+        <a href="https://datacommons.org">Data Commons</a>
+        <!-- dot separater -->
+        <span class="separator">&#8226;</span>
+        <span><a href="/">Docs</a></span>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#dc-main-nav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-md-end"
+        id="dc-main-nav"
+      >
+        <div
+          class="gcse-searchbox-only"
+          data-resultsUrl="https://datacommons.org/search"
+        ></div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+{% capture header_search_script %}
+<script>
+  /**
+   * Add placeholder text for Google Custom Search Engine search box in the page header
+   */
+  window.addEventListener("load", function () {
+    const googleCustomSearchInput = document.querySelector(
+      '.gsc-search-box input[name="search"]',
+    );
+    if (googleCustomSearchInput) {
+      googleCustomSearchInput.placeholder = "Search docs";
+    }
+  });
+</script>
+{% endcapture %}
