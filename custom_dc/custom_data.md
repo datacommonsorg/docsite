@@ -200,7 +200,7 @@ gender: dcid:Male
 The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
-- `Node`: This is the DCID of the entity you are defining. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
+- `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
    > Note: If you plan to contribute your data to base Data Commons, DCIDs should follow the [DCID naming conventions](#naming). Otherwise, you can name them however you want.
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
