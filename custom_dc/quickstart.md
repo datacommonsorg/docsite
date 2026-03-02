@@ -205,7 +205,7 @@ Now click the **Statistical Variable Explorer** chip to show the Statistical Var
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 
-Now, select **Tools** > **Timeline Explorer** to open the Timeline Explorer. In the **Select places** field, enter an OECD country, for example, Canada, and select one or both variables from the left pane.
+Now, select **Tools** > **Timeline Explorer** to open the Timeline Explorer. In the **Select places** field, enter an OECD country, for example, Canada, and select one or both variables from the left pane. The timeline chart automatically loads in the right pane.
 
 ![screenshot_display](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
 
