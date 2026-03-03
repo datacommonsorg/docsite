@@ -32,7 +32,7 @@ HTML and CSS customization files are provided as samples to get you started. The
   <tbody>
     <tr>
       <td width="450"><a href="https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html"><code>server/templates/custom_dc/custom/base.html</code></a></td>
-      <td>Template file for the site's header and footer. More details below.</td>
+      <td>Template file for the site's header. More details below.</td>
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/homepage.html"><code>server/templates/custom_dc/custom/homepage.html</code></a></td>
@@ -47,23 +47,25 @@ HTML and CSS customization files are provided as samples to get you started. The
       <td>Stylesheet overrides for the site. </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/a246b809e1d756e0512ed4f09b59137a64dc6e4e/static/custom_dc/custom/logo.png"><code>static/custom_dc/custom/logo.png</code></a></td>
+      <td><a href="https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/logo.png"><code>static/custom_dc/custom/logo.png</code></a></td>
       <td>Sample logo file – replace with your own.</td>
     </tr>
   </tbody>
 </table>
 
-Note that the `custom` parent directory is customizable as the `FLASK_ENV` environment variable. You can rename the directory as desired and update the environment variable in `custom_dc/env.list`.
-
-If you have renamed the parent `custom` directory, be sure to use that name in the flag.
-
 > **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/build_image.html#build-repo). We plan to fix this in the near future.
 
-## Customize HTML templates {#html-templates}
+## Customize header and homepage HTML templates {#html-templates}
+
+### Before you start: Copy template files
+
+Before you make changes to the template files in the repo, to ensure that you don't override your changes or have to resolve merge conflicts when you resync to the latest release, we recommend that you create a copy of the directory and files as follows:
+
+1. Create a new subdirectory under `static/custom_dc` and name it with your project name.
+1. Copy the HTML files under `static/custom_dc/custom` to your new directory.
+1. In your `custom_dc/env.list` file, set the `FLASK_ENV` environment variable to the name of your new directory. When you build the website, your customized files will be picked up instead of the original ones.
 
 You can customize the page header and footer (by default, empty) in [base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html) by adding or changing the HTML elements within the `<header></header>` and `<footer></footer>` tags, respectively.
-
-<!--TODO: Add an example of customization e.g. different colors or text-->
 
 ## Customize Javascript and styles {#styles}
 

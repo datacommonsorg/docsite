@@ -107,8 +107,11 @@ cd website
     </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom" target="_blank"><code>server/templates/custom_dc/custom/</code></a></td>
-      <td>Contains customizable HTML files. To modify these, see <a href="custom_ui.html#html-templates">Customize HTML templates</a>.</td>
+      <td>Contains customizable HTML files. To work with these, see <a href="custom_ui.html#html-templates">Customize HTML templates</a>.</td>
     </tr>
+    <tr>
+     <td><a href="https://github.com/datacommonsorg/website/tree/master/server/config/custom_dc/custom/base/header.json"><code>server/config/custom_dc/custom/base/header.json</code></a></td>
+     <td>Controls the content of the site-wide header. To modify this, see <a href="custom_ui.html#modify-header">Modify the header</a></td></tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
       <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
