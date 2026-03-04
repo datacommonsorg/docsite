@@ -15,6 +15,7 @@ This is step 1 of the [recommended workflow](/custom_dc/index.html#workflow).
 * TOC
 {:toc}
 
+{: #overview}
 ## System overview
 
 The instructions in this page use the following setup:
@@ -29,7 +30,8 @@ The "services" Docker container consists of the following Data Commons component
 - A [Nginx reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/){: target="_blank"}, which routes incoming requests to the web or API server
 - A Python-Flask web server, which handles interactive requests from users
 - An Python-Flask NL server, for serving natural language queries
-- A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make an REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
+- An [MCP server](https://modelcontextprotocol.io/){: target="_blank"}, for serving tool responses to an MCP-compliant AI agent (e.g. Google ADK apps, Gemini CLI, Google Antigravity)
+- A Go Mixer, also known as the API server, which serves programmatic requests using Data Commons APIs. The SQL query engine is built into the Mixer, which sends queries to both the local and remote data stores to find the right data. If the Mixer determines that it cannot fully resolve a user query from the custom data, it will make a REST API call, as an anonymous "user" to the base Data Commons Mixer and data.
 
 ## Prerequisites
 
@@ -167,7 +169,7 @@ This does the following:
 - Imports the data from the CSV files, resolves entities, and writes the data to a SQLite database file, `custom_dc/sample/datacommons/datacommons.db`.
 - Generates embeddings in `custom_dc/sample/datacommons/nl`. (To learn more about embeddings generation, see the [FAQ](/custom_dc/faq.html#natural-language-processing)).
 - Starts the services Docker container.
-- Starts development/debug versions of the Web Server, NL Server, and Mixer, as well as the Nginx proxy, inside the container.
+- Starts development/debug versions of the Web server, MCP server, NL server, and Mixer, as well as the Nginx proxy, inside the container.
 - Maps the output sample data to a Docker path.
 
 You can see the actual Docker commands that the script runs at the [end of this page](#docker).
@@ -178,7 +180,6 @@ If you need to restart the services for any reason, do the following:
 
 1. In the terminal window where the container is running, press Ctrl-c to kill the Docker container.
 1. Run the script with the option to restart only the services container:
-
   ```shell
   ./run_cdc_dev_docker.sh -c service
   ```
@@ -199,15 +200,15 @@ Once the services are up and running, visit your local instance by pointing your
 
 ![screenshot_homepage](/assets/images/custom_dc/customdc_screenshot1.png){: width="900"}
 
-Now click the **Timeline** link to visit the Timeline explorer. Click **Start**, enter an OECD country (e.g. Canada) and click **Continue**. Now, in the **Select variables** tools, you'll see the new variables:
+Now click the **Statistical Variable Explorer** chip to show the Statistical Variable Explorer. You should see the new **OECD** group of variables at the top of the left pane. Select one of them and you will see some linked sample countries that have data for these variables.
 
 ![screenshot_timeline](/assets/images/custom_dc/customdc_screenshot2.png){: width="900"}
 
-Select one (or both) and click **Display** to show the timeline graph:
+Now, select **Tools** > **Timeline Explorer** to open the Timeline Explorer. In the **Select places** field, enter an OECD country, for example, Canada, and select one or both variables from the left pane. The timeline chart automatically loads in the right pane.
 
 ![screenshot_display](/assets/images/custom_dc/customdc_screenshot3.png){: width="900"}
 
-To issue natural language queries, click the **Search** link. Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
+Now try issuing some natural-language queries. Click the **Data Commons** link to go back to the home page. In the search bar, type in queries against the sample data. For example, enter "What are the average annual wages in Canada  Try NL queries against the sample data you just loaded, e.g. "Average annual wages in Canada".
 
 ![screenshot_search](/assets/images/custom_dc/customdc_screenshot3a.png){: width="900"}
 
