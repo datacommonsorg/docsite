@@ -47,5 +47,6 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - STYLE_GUIDE.md
+  - "**/README.md"
 
 include: ["CNAME"]
