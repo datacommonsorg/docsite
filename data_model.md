@@ -22,7 +22,7 @@ Whether you're just exploring the data on [datacommons.org](http://datacommons.o
 
 To allow data from hundreds of organizations around the world, in a myriad of models and formats to be interoperable and queryable in a unified way, Data Commons needs to have a common way of understanding and representing this data. To do so, it applies a schema, or vocabulary to all its data, that is largely derived from earlier schemes developed for semantic understanding of web pages – most notably, the data models and schemas of [Schema.org](http://Schema.org) (which were in turn based on earlier schemes such as Microformats and Resource Description Framework (RDF)). 
 
-The Data Commons schema is in fact a superset of [Schema.org schemas](https://schema.org/docs/schemas.html){: target="_blank"}, with a particular emphasis on time series and statistical data. Every data set must have an associated schema, written in [Meta Content Format](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} (MCF) language, that maps the provider's data to existing concepts in the Data Commons.
+The Data Commons schema is in fact a superset of [Schema.org schemas](https://schema.org/docs/schemas.html){: target="_blank"}, with a particular emphasis on time series and statistical data. Every data set must have an associated schema, written in [Meta Content Format](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} (MCF) language, that maps the provider's data to existing concepts in the Data Commons knowledge graph.
 
 ## Knowledge Graph
 
@@ -43,9 +43,9 @@ Each node consists of some kind of entity or value, and each edge describes some
 -  Various [properties](#property)
 -  A [provenance](#provenance-source-dataset)
 
-As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a subject node, predicate (or "edge") and object node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know (although it can be queried from some APIs).
+As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a subject node, predicate (or "edge") and object node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know.
 
-You can get all the information about a node and its edges by looking at the Knowledge Graph browser. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing <code>https://datacommons.org/browser/<var>DCID</var></code>. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City){: target="_blank"}:
+You can get information about a node and its edges by looking at the [Knowledge Graph browser](https://datacommons.org/browser){: target="_blank"}. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing <code>https://datacommons.org/browser/<var>DCID</var></code>. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City){: target="_blank"}:
 
 ![KG browser]({{site.url}}/assets/images/dc/concept2.png){: width="900"}
 
@@ -118,13 +118,18 @@ To find the DCID for a place using other methods:
 - Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
 - Use the Python v2 [`resolve.fetch_dcids_by_name`](/api/python/v2/resolve.html#fetch_dcids_by_name) API method, either interactively or programmatically.
 
-To find the DCID for a statistical variable:
+To find the DCID for a statistical variable using the datacommons.org website:
 
 1. Open the Statistical Variable Explorer.
 1. Search for the variable of interest, and optionally filter by data source and dataset.
 1. Look under the heading for the DCID.
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept9.png){: width="900"}
+
+To find the DCID for a statistical variable using other methods:
+
+- Use the REST v2 [Resolve API](/api/rest/v2/resolve.html) with the `resolver=indicator` option.
+- Use the Python v2 [`resolve.fetch_indicators`](/api/python/v2/resolve.html#fetch_indicators) API method.
 
 ## Property
 
@@ -152,12 +157,11 @@ Time series made up of many observations underlie the data available in the [Tim
 
 Every node and triple also have some important properties that indicate the origin of the data. 
 
--  [`Provenance`](https://datacommons.org/browser/Provenance){: target="_blank"}: All triples have a provenance, typically the URL of the data provider's website; for example, [www.abs.gov.au](https://datacommons.org/browser/dc/base/AustraliaStatistics){: target="_blank"}.  In addition, all entity types also have a provenance, defined with a DCID, such as [`AustraliaStatistics`](https://datacommons.org/browser/dc/base/AustraliaStatistics){: target="_blank"}. It also (For many property types, which are defined by the Data Commons schema, their provenance is always [datacommons.org](datacommons.org).)
+-  [`Provenance`](https://datacommons.org/browser/Provenance){: target="_blank"}: All triples have a provenance, typically the URL of the data provider's website; for example, [www.abs.gov.au](https://datacommons.org/browser/dc/base/AustraliaStatistics){: target="_blank"}.  In addition, all entity types also have a provenance, defined with a DCID, such as [`AustraliaStatistics`](https://datacommons.org/browser/dc/base/AustraliaStatistics){: target="_blank"}. (For many property types, which are defined by the Data Commons schema, their provenance is always datacommons.org.)
 -  [`Source`](https://datacommons.org/browser/Source){: target="_blank"}: This is a property of a provenance, and a dataset, usually the name of an organization that provides the data or the schema. For example, for provenance [www.abs.gov.au](www.abs.gov.au), the source is the [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics){: target="_blank"}.
 -  [`Dataset`](https://datacommons.org/browser/Dataset){: target="_blank"}: This is the name of a specific dataset provided by a provider. Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, [Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics){: target="_blank"} (not to be confused with the provenance above), and [Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries){: target="_blank"}.
 
 ![Knowledge graph]({{site.url}}/assets/images/dc/concept12.png){: width="600"}
-
 
 Note that a given statistical variable may have multiple provenances, since many data sets define the same variables. You can see the list of all the data sources for a given statistical variable in the Statistical Variable Explorer. For example, the explorer shows multiple sources (Censuses from India, Mexico, Vietnam, OECD, World Bank, etc.) for the variable [Life Expectancy](https://datacommons.org/tools/statvar#LifeExpectancy_Person=&sv=LifeExpectancy_Person){: target="_blank"}:
 
@@ -165,7 +169,7 @@ Note that a given statistical variable may have multiple provenances, since many
 
 You can see a list of all sources and data sets in several places:
 
--  The [Data sources](/datasets/) pages in this site.
--  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer.
+-  The [Data Sources](https://datacommons.org/data/){: target="_blank"} pages
+-  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer
 
 ![Stat Var Explorer]({{site.url}}/assets/images/dc/concept14.png){: width="600"}

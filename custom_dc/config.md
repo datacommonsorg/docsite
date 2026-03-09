@@ -129,9 +129,7 @@ columnMappings
 
 ## groupStatVarsByProperty
 
-Optional: When set to `true`, causes the Statistical Variable Explorer to display a top-level category called "Custom Variables", and groups together variables with the same population types and measured properties. For example:
-
-![group_screenshot](/assets/images/custom_dc/customdc_screenshot10.png){: width="400"}
+Optional: When set to `true`, groups together variables in the Statistical Variable Explorer by the values of a custom property (or properties). For example, if you define a custom property for variables called `gender` which you set to `male` or `female`, setting this option will show all variables with `gender:male` together in a single group and all variables with `gender:female` together in a different group.
 
 ## Sources
 
