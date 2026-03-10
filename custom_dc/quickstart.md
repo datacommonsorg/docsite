@@ -89,6 +89,8 @@ cd website
 
 ## About the downloaded files
 
+Here are some key files for Custom Data Commons:
+
 <table>
   <thead>
     <tr>
@@ -106,22 +108,14 @@ cd website
       <td>Sample data and config file (`config.json`) that can be added to a Custom Data Commons. This page describes the model and format of this data and how you can load and view it.  </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/tree/master/server/templates/custom_dc/custom" target="_blank"><code>server/templates/custom_dc/custom/</code></a></td>
-      <td>Contains customizable HTML files. To work with these, see <a href="custom_ui.html#html-templates">Customize HTML templates</a>.</td>
-    </tr>
-    <tr>
-     <td><a href="https://github.com/datacommonsorg/website/tree/master/server/config/custom_dc/custom/base/header.json"><code>server/config/custom_dc/custom/base/header.json</code></a></td>
-     <td>Controls the content of the site-wide header. To modify this, see <a href="custom_ui.html#modify-header">Modify the header</a></td></tr>
-    <tr>
-      <td><a href="https://github.com/datacommonsorg/website/tree/master/static/custom_dc/custom" target="_blank"><code>static/custom_dc/custom/</code></a></td>
-      <td>Contains customizable CSS file and default logo. To modify the styles or replace the logo, see <a href="custom_ui.html#styles">Customize Javascript and styles</a>.</td>
-    </tr>
     <tr>
       <td><a href="https://github.com/datacommonsorg/website/tree/master/deploy/terraform-custom-datacommons" target="_blank"><code>deploy/terraform-custom-datacommons</code></a></td>
       <td>Contains <a href="https://developer.hashicorp.com/terraform"  target="_blank">Terraform</a> and convenience shell scripts for setting up your instance on Google Cloud Platform. See <a href="deploy_cloud.md">Deploy your custom instance to Google Cloud</a> for complete details.</td>
     </tr>
   </tbody>
 </table>
+
+Files for customizing the UI are described in [Customize the site](custom_ui.md).
 
 ## Look at the sample data
 
