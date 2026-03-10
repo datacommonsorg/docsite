@@ -50,7 +50,12 @@ For maintainers: Set the url to display using the iframe_content_url variable in
           </div>
           <div id="preview">
             <h3>Output</h3>
-            <iframe id="iframe" src="{{ page.iframe_content_url | escape}}" sandbox="allow-scripts"></iframe>
+            <iframe
+              id="iframe"
+              title="{{ page.title | escape }} Rendered Output"
+              src="{{ page.iframe_content_url | escape}}"
+              sandbox="allow-scripts"
+            ></iframe>
           </div>
         </div>
       </main>
