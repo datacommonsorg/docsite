@@ -51,7 +51,7 @@ For maintainers: Set the url to display using the iframe_content_url variable in
               id="iframe"
               title="{{ page.title | escape }} Rendered Output"
               src="{{ page.iframe_content_url | escape}}"
-              sandbox="allow-scripts"
+              sandbox="allow-scripts allow-popups"
             ></iframe>
           </div>
         </div>
