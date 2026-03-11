@@ -29,7 +29,6 @@ The Data Commons [REST API V2](index.md) is significantly different from V1. Thi
 | APIs for node information |  Multiple endpoints: `find/entities`, `info/place`, `info/variable`, `info/variable-group` and `bulk` versions |  Endpoint `node` with `property` parameter and `resolve` endpoint for place DCIDs |
 | APIs for statistical observations | Endpoints `observations/series` and `observations/point` and `bulk` versions | Single endpoint `observation` | 
 | APIs for statistical variables | Endpoint `variables` and `bulk` equivalent | Endpoint `node` with `property` parameter and relation expressions |
-| SPARQL API | Endpoint `query` | Endpoint `sparql` |
 | HTTP requests | POST requests supported for some bulk endpoints | POST requests supported for all endpoints | 
 
 ## Examples

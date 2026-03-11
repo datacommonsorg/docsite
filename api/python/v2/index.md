@@ -33,7 +33,6 @@ Here are just some of the changes from the previous version of the libraries:
 - Requests to base datacommons.org require an [API key](/api/index.html#get-key).
 - The primary interface is a set of classes representing the REST V2 API endpoints.
 - Each class provides a `fetch` method that takes an API [_relation expression_](/api/rest/v2/index.md#relation-expressions) as an argument as well as several convenience methods for commonly used operations.
-- There is no SPARQL endpoint.
 
 {: #install}
 ## Install the Python Data Commons V2 API
