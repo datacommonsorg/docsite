@@ -47,7 +47,7 @@ The following files contain the content you can reuse and customize:
       <td>Stylesheet overrides for the site. See [Customize static assets]() for details. </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/logo.png"><code>static/custom_dc/custom/logo.svg</code></a></td>
+      <td><a href="https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/logo.svg"><code>static/custom_dc/custom/logo.svg</code></a></td>
       <td>Sample logo file – replace with your own. See [Customize static assets]() for details.</td>
     </tr>
   </tbody>
