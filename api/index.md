@@ -18,17 +18,13 @@ The Data Commons APIs allow developers to programmatically access the data in Da
 * A [REST API](/api/rest/v2) that can be used on the command line as well as in any language with an HTTP library.
 * A [Python](/api/python/v2) client library that wraps the REST APIs and includes support for [Pandas](https://pandas.pydata.org/){: target="_blank}.
 
-The endpoints can be roughly grouped into four categories:
+The endpoints can be roughly grouped into three categories:
 
 -   **Statistical data**: Given a set of statistical variables, dates and entities, get observations.
 
 -   **Graph exploration**: Given a set of nodes, explore the graph around those nodes.
 
 -   **Resolution to DCIDs**: Given a set of place nodes identified by other means, get their Data Commons IDs.
-
--   **Graph query/SPARQL**: Given a subgraph where some of the nodes are
-    variables, retrieve possible matches. This corresponds to a subset of the
-    graph query language [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"}. This is useful for complex node connections which would require multiple API calls; for example, "hate crimes motivated by disability status in Californian cities". 
 
 In addition, Data Commons provides additional tools for accessing its data that call the REST APIs under the hood:
 

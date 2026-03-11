@@ -49,7 +49,6 @@ The URIs for the V2 API are below:
 | Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
 | Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
 | Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
-| SPARQL | [/v2/sparql](/sparql) | Returns matches to a [SPARQL](https://www.w3.org/TR/rdf-sparql-query/){: target="_blank"} graph query |
 
 ### Base URL for custom instances
 
@@ -198,7 +197,7 @@ You can combine multiple properties together within `[]`. For example, to reques
 
 ### Filters
 
-V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter (for non-SPARQL queries) is:
+V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter is:
 
 <pre>
 {typeOf:<var>VALUE</var>}
@@ -210,7 +209,6 @@ Here are the contexts where this filter is currently supported:
 |-----|--------------------------------------|-------------|
 | Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
 | Resolve entity | Incoming properties `<-description` <br />`<-wikiId` <br /> `<-geoCoordinate` | Return entities of the specified type, that match a selected name, wiki ID, or geocoordinate. |
-| SPARQL | In a `WHERE` clause, for any entity being queried | Return only entities of the specified type. |
 
 See the endpoint pages for examples.
 
