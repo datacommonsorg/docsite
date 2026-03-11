@@ -123,8 +123,7 @@ Additionally, the following css variables are supported:
 
 ### Styling Example
 
-See a live version of this example you can play around with
-[here](examples/map-styles.html).
+See a live example [here](examples/map-styles.html){: target="_blank"}.
 
 ```html
 <html>
