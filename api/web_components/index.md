@@ -51,9 +51,8 @@ For example, to embed a line chart:
 </html>
 ```
 
-See a live version of this example you can play around with in
-[Playground](https://lit.dev/playground/#gist=c0c88276739f4f6061807cc943937a14){: target="_blank"}
-([source](/assets/examples/web-components/line-chart.html)).
+See a live version of this example you can play around with
+[here](examples/line-chart.html){: target="_blank"}.
 
 ## Components
 
@@ -67,12 +66,11 @@ See a live version of this example you can play around with in
 - [datacommons-scatter](/api/web_components/scatter)
 - [datacommons-slider](/api/web_components/slider)
 
-## Code Playground Examples
+## Examples
 
-- [Static page with all chart types playground](https://lit.dev/playground/#gist=822ce6018bb41113c866d703760c1def){: target="_blank"}
-  ([source](/assets/examples/web-components/all-charts.html))
-- [Dynamically updating charts playground](https://lit.dev/playground/#gist=9e3ac88e162248f849dd276ff5895ad0){: target="_blank"}
-  ([source](/assets/examples/web-components/dynamic-map.html))
+- [All chart types](examples/all-charts.html){: target="_blank"}
+- [A dynamically updating map](examples/dynamic-map.html){: target="_blank"}
+- [A styled map](examples/map-styles.html){: target="_blank"}
 
 ## Variables and places
 
@@ -125,9 +123,7 @@ Additionally, the following css variables are supported:
 
 ### Styling Example
 
-See a live version of this example you can play around with in
-[Playground](https://lit.dev/playground/#gist=719f5d71c2823ac3e58f504cb6ceccd3){: target="_blank"}
-([source](/assets/examples/web-components/map-styles.html)).
+See a live example [here](examples/map-styles.html){: target="_blank"}.
 
 ```html
 <html>
