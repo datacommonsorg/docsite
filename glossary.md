@@ -82,7 +82,7 @@ Attributes of the entities in the Data Common knowledge graph. Instead of statis
 
 ### [Provenance](https://datacommons.org/browser/Provenance){: target="_blank"}
 
-A subset of data in a [dataset](#dataset). For small datasets, the provenance may represent the entire dataset. Larger datasets may comprise mulltiple provenances. See [Key concepts](data_model.md#sources) for more details.
+A subset of data in a [dataset](#dataset). For small datasets, the provenance may represent the entire dataset. Larger datasets may comprise multiple provenances. See [Key concepts](data_model.md#sources) for more details.
 
 ### [Scaling Factor](https://datacommons.org/browser/scalingFactor){: target="_blank"}
 {: #scaling-factor}
