@@ -164,7 +164,7 @@ Every node and triple also have some important properties that indicate the orig
   
    For larger datasets, a provenance usually represents a subset of the dataset, roughly corresponding to a "table" in relational database terminology. Thus, there may be several provenances for a given dataset. For example, [Brazil VIS DATA 3](https://datacommons.org/browser/dc/d/BrazilMinistryOfDevelopmentAndSocialAssistanceFamilyAndFightAgainstHunger_BrazilVisData3){: target="_blank"} is a dataset that comprises 2 provenances: [Brazil Food Distribution](https://datacommons.org/browser/dc/base/Brazil_FoodDsitribution){: target="_blank"} and [Brazil Rural Development Program](https://datacommons.org/browser/dc/base/Brazil_RuralDevelopmentProgram){: target="_blank"}. 
   
-    In Data Commons, a provenance is the physical unit of an import, and thus contains detailed import information. A dataset is more of an abstract concept, a property of a provenance.
+    In Data Commons, a provenance is the physical unit of an import, and thus contains detailed import information. A dataset is more of an abstract concept; each provenance has a property that points to the dataset it belongs to.
 
 ![Knowledge graph](/assets/images/dc/concept12.png){: width="600"}
 
