@@ -7,7 +7,7 @@ parent: How to use Data Commons
 ---
 
 {: .no_toc}
-# Glossary of Common Terms
+# Glossary of common Terms
 
 {: .no_toc}
 This page contains a selection of key terms important to understanding the structure of data within Data Commons.
