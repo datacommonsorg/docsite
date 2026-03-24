@@ -112,6 +112,11 @@ If you would like to customize the body of the home page entirely (doing away wi
 ```
 1. To add styling for the header to `overrides.css`, add a new selector named for the ID you choose in step 1.
 
+### Option 2: Modify default Javascript
+
+To customize the header (beyond the logo, title, and menus), do the following:
+
+1. 
 
 
 
