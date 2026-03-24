@@ -93,14 +93,25 @@ The contents of the home page and site-wide header, defined in
 - Override the default Javascript entirely. With this option, you can directly modify the template HTML and/or reuse JS you are already using in other parts of your site. However, you will start with a completely blank slate for the header and/or home page. In particular, if you override the  need to provide code to generate the search bar and tool chips (if desired) and/or any items you want to add to the header. To use this option, see 
 - Modify the existing React component(s). In this way, you can mix and match the default content with your own. However, you'll need to code in Typescript add build rules to Webpack to create your custom Javascript file(s). To use this option, see 
 
-### Option 1: Override default JS
+### Option 1: Override default components
 
-If you would like to customize the header, beyond the logo, title, and righ-side menus, do the following:
-1. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME<var></code> directory.
-1. In your copied `base.html` file, in the `head` section, remove the following line or specify your JS file name instead:
-   `<script src={{url_for('static', filename='base.js', t=config['VERSION'])}} async></script>`
-1. Optionally add HTML elements in the `header` tags. 
-1. To add styling for the header to `overrides.css`, add a new selector and replace the `main-header` ID with its name.
+If you would like to customize the header entirely (doing away with the logo, title, and menus), do the following:
+
+1. In your copied `base.html` file, rename the `id` in the `header` tag from `main-header` to something else, and add HTML elements in the tags. 
+1. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME<var></code> directory. In  `base.html` copy this line in the `head` section, replacing the file name(s) with your own:
+```
+<script src={{url_for('static', filename='base.js' , t=config['VERSION'])}} async></script>
+```
+1. To add styling for the header to `overrides.css`, add a new selector named for the ID you choose in step 1.
+
+If you would like to customize the body of the home page entirely (doing away with the text, search bar and tools), do the following:
+1. In your copied `homepage.html` file, rename the `id` in the `div` tag from `app-container` to something else and add HTML elements. 
+. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME<var></code> directory. In  `homepage.html` copy this line in the `head` section, replacing the file name(s) with your own:
+```
+<script src={{url_for('static', filename='homepage_custom_dc.js', t=config['VERSION'])}} async></script>
+```
+1. To add styling for the header to `overrides.css`, add a new selector named for the ID you choose in step 1.
+
 
 
 
