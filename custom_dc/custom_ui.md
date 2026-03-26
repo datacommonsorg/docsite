@@ -19,59 +19,6 @@ The Custom Data Commons image provides a default site user interface that you wi
 
 This page describes how you can reuse and modify various code and configuration files that are provided for Custom Data Commons in the `website` repo.
 
-## Simple customizations
-
-Here are the files that control the interface for the Custom Data Commons UI. They allow for some simple customizations, namely:
-
-- Instance-wide parameters, such as site name, static asset file paths, etc.: [server/app_env/custom.py](https://github.com/datacommonsorg/website/blob/master/server/app_env/custom.py){: target="_blank"}. See [Set up your environment](#setup) for details.
-- Styles: [static/custom_dc/custom/overrides.css](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/overrides.css){: target="_blank"}. Override default styles.
-- Logo: [static/custom_dc/custom/logo.svg](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/logo.svg){: target="_blank"}. Replace with your own.
-- Create a site-wide footer: [server/templates/custom_dc/custom/base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"}. Add elements to the `footer` block. To style the footer using `overrides.css`, add a new selector ID specify the `id` in the `footer` tag. For example:
-   ```
-   # base.html
-   
-- Change the menus that appear in the right side of the site-wide header: [server/config/custom_dc/custom/base/header.json](https://github.com/datacommonsorg/website/blob/master/server/config/custom_dc/custom/base/header.json){: target="_blank"}
-
-  ![menus](/assets/images/custom_dc/customdc_screenshot17.png){: width="200"}
-
-  ![menu items](/assets/images/custom_dc/customdc_screenshot16.png){: width="600"}
-
-  Add, remove, or edit the default entries to change menus, text, items, section layout, and links.
-
-- Add a search bar to the header: [server/templates/custom_dc/custom/base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"}. Set the `is_hide_header_search_bar` variable to `false`.
-- Edit the text and links that appear on the Knowledge Graph landing page (`/browser`): [server/templates/custom_dc/custom/browser_landing.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/browser_landing.html){: target="_blank"}. Edit or replace the content in the `content` block.
-
-  ![knowlege graph browser links](/assets/images/custom_dc/customdc_screenshot15.png){: width="600"}
-
-- Edit the examples that appear at the bottom of the visualization tools (Map Explorer, Scatter Plot Explorer, Timeline Explorer): [server/templates/tools/*_examples.json](https://github.com/datacommonsorg/website/blob/master/server/templates/tools/){: target="_blank"}
-  
-  ![viztool examples](/assets/images/custom_dc/customdc_screemshot18.png){: width="600"}
-
-  Add, remove, or modify default entries as follows:
-  - Set `id` to any string you want.
-  - Replace `titleMessageId` with `title`, and pecify the text that you want to appear in the example chip. (Note: `titleMessageId` is only used if you are localizing your site, and is mutually exclusive with `title`.)
-  - Set `url` to the full, URL-encoded path to the chart you would like to display.
-	  Here's an example:
-
-    ```json
-    {
-      "id": "map_oecd_country_gender_wage_gap",
-      "title": "Gender wage gap by OECD country",
-      "url": "tools/map#%26sv%3Dgender_wage_gap%26pc%3D0%26denom%3DCount_Person%26pd%3DEarth%26ept%3DCountry"
-    }
-    ```
-- Add more pages to the site: See [Set up your environment](#setup) for details.
-
-> **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/build_image.html#build-repo). 
-
-
-{: #complex}
-## Complex customizations: header and homepage
-
-The content of the site-wide header and the homepage are built by Javascript and require more work:
-- Header content: [server/templates/custom_dc/custom/base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"}. You can only remove the default contents and provide your own. See [Customize the home page and/or header](#complex) for details.
-- Homepage content: [server/templates/custom_dc/custom/homepage.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/homepage.html){: target="_blank"}. You can either remove the default contents and provide your own, or modify the source Typescript to add or remove elements. See [Customize the home page and/or header](#complex) for details.
-
 {: #setup}
 ## Before you start: Set up your environment
 
@@ -100,7 +47,6 @@ While it's possible to edit all of the files in place, this risks causing merge 
    mkdir base
    cp ../../../config/custom_dc/custom/base/header.json base/
   ```
-
 ### Step 2: Set up your static assets environment
 
 1. Create a new subdirectory under `static/custom_dc/` using the same name you created in step 1.
@@ -116,10 +62,10 @@ While it's possible to edit all of the files in place, this risks causing merge 
 
 ### Step 3: Set up environment variables
 
-1. In your `env.list` file, set `FLASK_ENV` variable to the same name you created in step 1:
-    ```
-   `FLASK_ENV=yourproject`
+1. In your `env.list` file, set the `FLASK_ENV` variable to the same name you created in step 1:
    ```
+   FLASK_ENV=yourproject
+  ```
 1. Copy and rename the file `server/app_env/custom.py` to the same name.
    ```
    cd website/server/app_env
@@ -127,18 +73,67 @@ While it's possible to edit all of the files in place, this risks causing merge 
    ```
 1. In this file, set the following variables:
    ```
-   NAME = "My Data Commons"
-   OVERRIDE_CSS_PATH = '/custom_dc/myproject/overrides.css'
+   NAME = "My Data Commons" # Used for browser title bar
+   OVERRIDE_CSS_PATH = "/custom_dc/myproject/overrides.css"
    LOGO_PATH = "/custom_dc/myproject/logo.svg"
    ```
 
-> Tip: The `app_env/yourproject.py` overrides default options set in `app_env/_base.py`. You can add other variables you would like to override from that file.
+> Tip: The `app_env/yourproject.py` file overrides default options set in `app_env/_base.py`. You can add other variables you would like to override from that file.
+
+## Simple customizations
+
+The following are simple customizations you can make by editing HTML, CSS, and JSON files directly.
+
+- Logo: [logo.svg](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/logo.svg){: target="_blank"}. Replace with your own logo file.
+- Styles: [overrides.css](https://github.com/datacommonsorg/website/blob/master/static/custom_dc/custom/overrides.css){: target="_blank"}. Add new selectors and declaration blocks. (Note: The provided blocks control more than just styles, but content as well. Don't try to override them.)
+- Add a site-wide footer: [base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"}. Add elements to the `footer` block. To style the footer using `overrides.css`, create a new CSS block. For example:
+  ```
+  <!--base.html-->
+  <footer id="myfooter">
+  <p>Here is my footer!</p>
+  </footer>
+  ```
+  ```
+  /* overrides.css */
+  #myfooter {
+    border-top: 1px solid #efefef;
+    background-color: green;
+  }
+  ```
+- Header bar menus: [header.json](https://github.com/datacommonsorg/website/blob/master/server/config/custom_dc/custom/base/header.json){: target="_blank"}. Add, remove, or edit the default entries to change menus, text, items, section layout, and links. For example:
+
+- Add a search bar to the header: [base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"}. Set this option:
+   ```
+   set is_hide_header_search_bar = 'false'
+   ```
+
+- Text and links on the Knowledge Graph landing page (`/browser`): [browser_landing.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/browser_landing.html){: target="_blank"}. Edit or replace the content in the `content` block. For example:
+
+- Visualization tools (Map Explorer, Scatter Plot Explorer, Timeline Explorer) example chips: [*_examples.json](https://github.com/datacommonsorg/website/blob/master/server/templates/tools/){: target="_blank"}
+
+  Add, remove, or modify default entries as follows:
+  - Set `id` to any string you want.
+  - Replace `titleMessageId` with `title`, and pecify the text that you want to appear in the example chip. (Note: `titleMessageId` is only used if you are localizing your site, and is mutually exclusive with `title`.)
+  - Set `url` to the full, URL-encoded path to the chart you would like to display.
+	  Here's an example:
+
+    ```json
+    {
+      "id": "map_oecd_country_gender_wage_gap",
+      "title": "Gender wage gap by OECD country",
+      "url": "tools/map#%26sv%3Dgender_wage_gap%26pc%3D0%26denom%3DCount_Person%26pd%3DEarth%26ept%3DCountry"
+    }
+    ```
+- Add more pages to the site: See [Set up your environment](#setup) for details.
+
+> **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/build_image.html#build-repo). 
+
 
 {: #complex}
-## Customize the home page and/or header
+## Complex customizations: header and homepage
 
 The contents of the home page and site-wide header, defined in
- [server/templates/custom_dc/custom/homepage.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/homepage.html){: target="_blank"} and [server/templates/custom_dc/custom/base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"} respectively, are entirely generated by Javascript as React "apps". The Javascript is actually compiled at build time, using [Webpack](https://webpack.js.org/){: target="_blank"}. To make changes to these elements, you have two options:
+ [homepage.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/homepage.html){: target="_blank"} and [base.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"} respectively, are entirely generated by Javascript as React "apps". The Javascript is actually compiled at build time, using [Webpack](https://webpack.js.org/){: target="_blank"}. To make changes to these elements, you have two options:
 
 - Override the default Javascript entirely to start from scratch. With this option, you can directly modify the template HTML and/or reuse JS you are already using in other parts of your site. However, you will essentially remove all the default content and start with a blank page and/or header. For example, if you override the home page JS, you'll need to provide code to generate the search bar. For the header, this is the only available option currently.
 - Modify the existing React component(s). In this way, you can mix and match the default content with your own. However, you'll need to code in Typescript add build rules to Webpack to create your custom Javascript file(s). The Typescript is a separate Custom Data Commons component that you can copy and build. This option is only usable for the homepage.
@@ -147,27 +142,75 @@ The contents of the home page and site-wide header, defined in
 
 To remove the default header contents (logo, title, and menus), do the following:
 
-1. In your copied `base.html` file, rename the `id` in the `header` tag from `main-header` to something else, and add HTML elements in the tags. 
-1. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME</var></code> directory. In `base.html` `script` tag line in the `head` section, and replace `base.js` with your own file name(s).
-1. To add styling for the header to `overrides.css`, add a new selector named for the ID you choose in step 1.
+1. In your copied `base.html` file, remove the header `main-header` ID (or rename to something else), and add HTML elements in the tags. 
+   ```
+   <header id="myheader">
+   <p>Here is my header content!</p>
+   </header>
+   ```
+1. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME</var></code> directory and add lines like this to the `head` section of `base.html`:
+   ```
+   <head>
+   ...
+   <script src={{url_for('static', filename='myjsfile.js', t=config['VERSION'])}} async></script>
+   ...
+   </head>
+   ```
+
+1. To add styling for the header to `overrides.css`, add a new block for it:
+   ```
+   #myheader {
+    ...
+   }
+   ```
 
 To remove the default home page main body (text, search bar and tools), do the following:
-1. In your copied `homepage.html` file, rename the `id` in the `div` tag from `app-container` to something else and add HTML elements. 
-. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME</var></code> directory. In `homepage.html`, copy the `script` tag line in the `head` section, and replace `homepage_custom.js` with your own file name(s).
-1. To add styling for the header to `overrides.css`, add a new selector named for the ID you choose in step 1.
+1. In your copied `homepage.html` file, remove the content block div `main-header` ID (or rename to something else), and add HTML elements in the tags. 
+
+ ```
+   <div id="mycontent">
+   <p>Here is my home page content!</p>
+   </div> 
+  ```
+1. If you have your your own JS file(s), add them to your <code>static/custom_dc/<var>PROJECT_NAME</var></code> directory and add lines like this to the `head` section of `homepage.html`:
+   ```
+   <head>
+   ...
+   <script src={{url_for('static', filename='myjsfile.js', t=config['VERSION'])}} async></script>
+   ...
+   </head>
+   ```
+1. To add styling, add new selector blocks to `overrides.css`.
 
 ### Option 2: Modify default Javascript
 
-> **Note**: Only use this option if you are very familiar with React libraries and coding in Typescript.
+> **Note**: Only use this option if you are familiar with React libraries and coding in Typescript.
 
 To modify elements of the home page:
 
-1. Copy the files [static/js/apps/homepage/custom_dc_app.tsx](https://github.com/datacommonsorg/website/blob/master/static/js/apps/homepage/custom_dc_app.tsx){: target="_blank"} and [static/js/apps/homepage/main_custom_dc.ts](https://github.com/datacommonsorg/website/blob/master/static/js/apps/homepage/main_custom_dc.ts){: target="_blank"} and give them different file names.
-1. Edit [static/webpack.config.js](https://github.com/datacommonsorg/website/blob/master/static/webpack.config.js){: target="_blank"} to add another build entry: copy the `homepage_custom_dc` entry and rename it to the name of your `.ts` file.
-1. Edit the `.tsx` file to add or remove components.
-1. In `base.html`, in the `head` section, replace the `filename` in the `script` tag line with your new `.ts` file.
-1. To add styling for the page, in `overrides.css`, add new selectors and 
+1. Copy the files [static/js/apps/homepage/custom_dc_app.tsx](https://github.com/datacommonsorg/website/blob/master/static/js/apps/homepage/custom_dc_app.tsx){: target="_blank"} and [static/js/apps/homepage/main_custom_dc.ts](https://github.com/datacommonsorg/website/blob/master/static/js/apps/homepage/main_custom_dc.ts){: target="_blank"} and give them different file names. For example:
+   ```
+   cd website/static/js/apps/homepage
+   cp custom_dc_app.tsx my_homepage.tsx
+   cp main_custom_dc.ts my_main.ts
+   ```
+1. Edit [static/webpack.config.js](https://github.com/datacommonsorg/website/blob/master/static/webpack.config.js){: target="_blank"} to add another build entry: 
+   ```
+       my_homepage: [
+      __dirname + "/js/apps/homepage/my_main.ts",
+      __dirname + "/css/homepage.scss",
+    ]
+    ```
 
+1. Edit the `.tsx` file to add or remove components. For example:
+
+1. In `base.html`, replace the `homepage_custom_dc.js` script file name with your new name. For example:
+   <head>
+   ...
+   <script src={{url_for('static', filename='my_homepage_.js', t=config['VERSION'])}} async></script>
+   ...
+   </head>
+   ```
 
 
 
