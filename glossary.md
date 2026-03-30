@@ -28,11 +28,6 @@ A collection of data, provided by a [source](#source). For example, [Brazil Cens
 
 The date of measurement. Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
-### [Dataset](https://datacommons.org/browser/Dataset){: target="_blank"}
-{: #dataset}
-
-A collection of data, provided by a [source](#source). For example, [Brazil Census](https://datacommons.org/browser/dc/d/BrazilianInstituteOfGeographyAndStatisticsIbge_BrazilCensus){: target="_blank"} is a dataset provided by the source Brazilian Institute of Geography and Statistics. See [Key concepts](data_model.md#sources) for more details.
-
 ### DCID
 {: #dcid}
 
