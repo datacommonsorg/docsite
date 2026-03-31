@@ -885,7 +885,7 @@ Response:
 ```
 
 {: .no_toc}
-#### Example 3: Get the observations at a particular date for given entities by DCID
+#### Example 3: Get the observations at a particular date for multiple entities by DCID
 
 This gets observations for the median household income of the U.S.A. and California in 2015.  It uses one variable, two entities, and a specific date. 
 
