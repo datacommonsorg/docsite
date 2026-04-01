@@ -69,9 +69,9 @@ With `select=["date", "entity", "variable", "value"]` in effect (the default), t
       "provenanceUrl": "<var>DATASET_URL</var>",
       ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
       ["observationPeriod": "<var>TIME_PERIOD</var>",]
-      ["scaling_factor": "<var>NUMBER</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
       ["unit": "<var>UNIT</var>",]
-      ["is_dc_aggregate": "true" | "false"]
+      ["isDcAggregate": "true" | "false"]
     },
     ...
   }
@@ -122,9 +122,9 @@ With `select=["variable", "entity", "facet"]`, the response looks like:
       "provenanceUrl": "<var>DATASET_URL</var>",
       ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
       ["observationPeriod": "<var>TIME_PERIOD</var>",]
-      ["scaling_factor": "<var>NUMBER</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
       ["unit": "<var>UNIT</var>",]
-      ["is_dc_aggregate": "true" | "false"]
+      ["isDcAggregate": "true" | "false"]
     },
     ...
   }

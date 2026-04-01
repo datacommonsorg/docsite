@@ -159,18 +159,18 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
       "provenanceUrl": "<var>DATASET_URL</var>",
       ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
       ["observationPeriod": "<var>TIME_PERIOD</var>",]
-      ["scaling_factor": "<var>NUMBER</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
       ["unit": "<var>UNIT</var>",]
-      ["is_dc_aggregate": "true" | "false"]
+      ["isDcAggregate": "true" | "false"]
     },
     "<var>FACET_ID_2</var>": {
      "importName": "<var>DATASET_NAME</var>",
       "provenanceUrl": "<var>DATASET_URL</var>",
       ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
       ["observationPeriod": "<var>TIME_PERIOD</var>",]
-      ["scaling_factor": "<var>NUMBER</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
       ["unit": "<var>UNIT</var>",]
-      ["is_dc_aggregate": "true" | "false"]
+      ["isDcAggregate": "true" | "false"]
     },
     ...
   }
@@ -210,18 +210,18 @@ With`select=variable`, `select=entity` and `select=facet`, only the details abou
       "provenanceUrl": "<var>DATASET_URL</var>",
       ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
       ["observationPeriod": "<var>TIME_PERIOD</var>",]
-      ["scaling_factor": "<var>NUMBER</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
       ["unit": "<var>UNIT</var>",]
-      ["is_dc_aggregate": "true" | "false"]
+      ["isDcAggregate": "true" | "false"]
     },
     "<var>FACET_ID_2</var>": {
       "importName": "<var>DATASET_NAME</var>",
       "provenanceUrl": "<var>DATASET_URL</var>",
       ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
       ["observationPeriod": "<var>TIME_PERIOD</var>",]
-      ["scaling_factor": "<var>NUMBER</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
       ["unit": "<var>UNIT</var>",]
-      ["is_dc_aggregate": "true" | "false"]
+      ["isDcAggregate": "true" | "false"]
     },
     ...
   }
