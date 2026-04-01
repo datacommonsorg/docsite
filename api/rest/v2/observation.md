@@ -1165,7 +1165,7 @@ Parameters:
 {: .example-box-title}
 
 ```bash
-date: "2015"
+date: ""
 variable.dcids: "Count_Person"
 entity.dcids: "cCount_Person_EducationalAttainmentDoctorateDegree"
 entity.dcids: "geoId/55"
@@ -1181,7 +1181,7 @@ GET Request:
 
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&date=""&select=date&select=entity&select=value&select=variable'
 ```
 {: .example-box-content .scroll}
 
