@@ -65,13 +65,13 @@ With `select=["date", "entity", "variable", "value"]` in effect (the default), t
     }
   "facets" {
     "<var>FACET_ID</var>": {
-     "importName": "<var>DATASET_NAME</var>",
+      "importName": "<var>DATASET_NAME</var>",
       "provenanceUrl": "<var>DATASET_URL</var>",
-      "measurementMethod": "<var>MEASUREMENT_METHOD</var>",
-      "observationPeriod": "<var>TIME_PERIOD</var>",
-      "scaling_factor": "<var>NUMBER</var>",
-      "unit": "<var>UNIT</var>,
-      "is_dc_aggregate": "true" | "false"
+      ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
+      ["observationPeriod": "<var>TIME_PERIOD</var>",]
+      ["scaling_factor": "<var>NUMBER</var>",]
+      ["unit": "<var>UNIT</var>",]
+      ["is_dc_aggregate": "true" | "false"]
     },
     ...
   }
@@ -120,11 +120,11 @@ With `select=["variable", "entity", "facet"]`, the response looks like:
     "<var>FACET_ID</var>": {
       "importName": "<var>DATASET_NAME</var>",
       "provenanceUrl": "<var>DATASET_URL</var>",
-      "measurementMethod": "<var>MEASUREMENT_METHOD</var>",
-      "observationPeriod": "<var>TIME_PERIOD</var>",
-      "scaling_factor": "<var>NUMBER</var>",
-      "unit": "<var>UNIT</var>,
-      "is_dc_aggregate": "true" | "false"
+      ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
+      ["observationPeriod": "<var>TIME_PERIOD</var>",]
+      ["scaling_factor": "<var>NUMBER</var>",]
+      ["unit": "<var>UNIT</var>",]
+      ["is_dc_aggregate": "true" | "false"]
     },
     ...
   }
