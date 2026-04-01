@@ -129,17 +129,7 @@ For the methods `fetch_indicators` and `fetch` with the `resolver` parameter set
 
 ### Response fields
 
-| Name        | Type   |   Description                       |
-|-------------|--------|-------------------------------------|
-| node | string | The query terms used to look up the DCIDs of entities. |
-| candidates | list | List of nodes that match the query terms. Each node contains a DCID and (optionally) metadata and type information. |
-| dcid | The DCID of the candidate node. |
-| dominantType | string | Optional field which, when present, disambiguates between multiple results. Only returned when `resolver` is set to `place` (the default). |
-| metadata.score | float | The confidence score for the result, used to rank multiple results. Only returned when `resolver` is set to `indicator`. |
-| metadata.sentence | string | The matching substring contained in the node's name or description. Only returned when `resolver` is set to `indicator`. |
-| typeOf | string or list of strings | The type of the result. Currently supports only `StatisticalVariable` and `Topic`. Only returned when `resolver` is set to `indicator`. |
-{: .doc-table}
-
+See [v2/resolve](/api/rest/v2/resolve.html#response-fields) for details.
 
 ### Response property methods
 
