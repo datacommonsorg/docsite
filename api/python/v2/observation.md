@@ -65,10 +65,13 @@ With `select=["date", "entity", "variable", "value"]` in effect (the default), t
     }
   "facets" {
     "<var>FACET_ID</var>": {
-      "importName": "...",
-      "provenanceUrl": "...",
-      "measurementMethod": "...",
-      "observationPeriod": "..."
+      "importName": "<var>DATASET_NAME</var>",
+      "provenanceUrl": "<var>DATASET_URL</var>",
+      ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
+      ["observationPeriod": "<var>TIME_PERIOD</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
+      ["unit": "<var>UNIT</var>",]
+      ["isDcAggregate": "true" | "false"]
     },
     ...
   }
@@ -115,10 +118,13 @@ With `select=["variable", "entity", "facet"]`, the response looks like:
     }
   "facets" {
     "<var>FACET_ID</var>": {
-      "importName": "...",
-      "provenanceUrl": "...",
-      "measurementMethod": "...",
-      "observationPeriod": "..."
+      "importName": "<var>DATASET_NAME</var>",
+      "provenanceUrl": "<var>DATASET_URL</var>",
+      ["measurementMethod": "<var>MEASUREMENT_METHOD</var>",]
+      ["observationPeriod": "<var>TIME_PERIOD</var>",]
+      ["scalingFactor": "<var>NUMBER</var>",]
+      ["unit": "<var>UNIT</var>",]
+      ["isDcAggregate": "true" | "false"]
     },
     ...
   }
@@ -131,12 +137,7 @@ There are additional methods you can call on the response to structure the data 
 
 ### Response fields
 
-| Name        | Type   |   Description                       |
-|-------------|--------|-------------------------------------|
-| orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity. These include the date range, the number of observations included in the facet and so on. |
-| observations | list of objects | Date and value pairs for the observations made in the time period. |
-| facets | object | Various properties of reported facets, where available, including the provenance of the data, the import name, date range of observations, etc. |
-{: .doc-table}
+See [v2/observation](/api/rest/v2/observation.html#response-fields) for details.
 
 ### Response property methods
 
@@ -879,208 +880,75 @@ Response:
 ```
 
 {: .no_toc}
-#### Example 3: Get the observations at a particular date for given entities by DCID
+#### Example 3: Get the observations at a particular date for multiple entities by DCID
 
-This gets observations for the populations of the U.S.A. and California in 2015.  It uses the same variable as the previous example, two entities, and a specific date. 
+This gets observations for the median household income of the U.S.A. and California in 2015.  It uses one variable, two entities, and a specific date. 
 
 Request:
 {: .example-box-title}
 
 ```python
-client.observation.fetch_observations_by_entity_dcid(date="2015", entity_dcids=["country/USA", "geoId/06"], variable_dcids="Count_Person")
+client.observation.fetch_observations_by_entity_dcid(date="2015", entity_dcids=["country/USA", "geoId/06"], variable_dcids="Median_Income_Household")
 ```
 {: .example-box-content .scroll}
 
-> Tip: This example is the equivalent of `client.observation.fetch(variable_dcids="Count_Person", date="2015", entity_dcids=["country/USA", "geoId/06"])`
+> Tip: This example is the equivalent of `client.observation.fetch(variable_dcids="Median_Income_Household", date="2015", entity_dcids=["country/USA", "geoId/06"])`
 
 Response:
 {: .example-box-title}
 
 ```python
-{
-  "byVariable": {
-    "Count_Person": {
-      "byEntity": {
-        "country/USA": {
-          "orderedFacets": [
-            {
-              "facetId": "2176550201",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320738994
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "2645850372",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320098094
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "3981252704",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320738994
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1151455814",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 320635163
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            ...
-        "geoId/06": {
-          "orderedFacets": [
-            {
-              "facetId": "2176550201",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38904296
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1145703171",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38421464
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "1151455814",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38918045
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "4181918134",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38918045
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            {
-              "facetId": "10983471",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 38421464
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            },
-            ...
-            {
-              "facetId": "2458695583",
-              "observations": [
-                {
-                  "date": "2015",
-                  "value": 39144818
-                }
-              ],
-              "obsCount": 1,
-              "earliestDate": "2015",
-              "latestDate": "2015"
-            }
-          ]
-        }
+{'byVariable': 
+   {'Median_Income_Household': 
+      {'byEntity': 
+         {'country/USA': 
+            {'orderedFacets': [
+               {'earliestDate': '2015',
+                'facetId': '1107922769',
+                'latestDate': '2015',
+                'obsCount': 1,
+                'observations': [
+                  {'date': '2015', 'value': 53889.0}
+                ]
+               }
+            ]
+         },
+          'geoId/06': 
+            {'orderedFacets': [
+               {'earliestDate': '2015',
+                'facetId': '1305418269',
+                'latestDate': '2015',
+                'obsCount': 1,
+                'observations': [
+                  {'date': '2015', 'value': 61818.0}
+                ]
+               },
+               {'earliestDate': '2015',
+                'facetId': '1107922769',
+                'latestDate': '2015',
+                'obsCount': 1,
+                'observations': [{'date': '2015', 'value': 61818.0}
+                ]
+               }
+            ]
+         }
       }
-    }
-  },
-  "facets": {
-    "1226172227": {
-      "importName": "CensusACS1YearSurvey",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html",
-      "measurementMethod": "CensusACS1yrSurvey"
-    },
-    "2458695583": {
-      "importName": "WikidataPopulation",
-      "provenanceUrl": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
-      "measurementMethod": "WikidataPopulation"
-    },
-    "3981252704": {
-      "importName": "WorldDevelopmentIndicators",
-      "provenanceUrl": "https://datacatalog.worldbank.org/dataset/world-development-indicators/",
-      "observationPeriod": "P1Y"
-    },
-    "4181918134": {
-      "importName": "OECDRegionalDemography_Population",
-      "provenanceUrl": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C",
-      "measurementMethod": "OECDRegionalStatistics",
-      "observationPeriod": "P1Y"
-    },
-    "10983471": {
-      "importName": "CensusACS5YearSurvey_SubjectTables_S2601A",
-      "provenanceUrl": "https://data.census.gov/cedsci/table?q=S2601A&tid=ACSST5Y2019.S2601A",
-      "measurementMethod": "CensusACS5yrSurveySubjectTable"
-    },
-    "1964317807": {
-      "importName": "CensusACS5YearSurvey_SubjectTables_S0101",
-      "provenanceUrl": "https://data.census.gov/table?q=S0101:+Age+and+Sex&tid=ACSST1Y2022.S0101",
-      "measurementMethod": "CensusACS5yrSurveySubjectTable"
-    },
-    "2517965213": {
-      "importName": "CensusPEP",
-      "provenanceUrl": "https://www.census.gov/programs-surveys/popest.html",
-      "measurementMethod": "CensusPEPSurvey"
-    },
-    "2825511676": {
-      "importName": "CDC_Mortality_UnderlyingCause",
-      "provenanceUrl": "https://wonder.cdc.gov/ucd-icd10.html"
-    },
-    "1151455814": {
-      "importName": "OECDRegionalDemography",
-      "provenanceUrl": "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#",
-      "measurementMethod": "OECDRegionalStatistics",
-      "observationPeriod": "P1Y"
-    },
-    ...
-  }
+   }
+   },
+   'facets': {
+      '1305418269': 
+      {'importName': 'CensusACS5YearSurvey',
+       'measurementMethod': 'CensusACS5yrSurvey',
+       'provenanceUrl': 'https://www.census.gov/programs-surveys/acs/data/data-via-ftp.html',
+       'unit': 'USDollar'
+      },
+      '1107922769': {
+       'importName': 'CensusACS5YearSurvey_SubjectTables_S1901',
+       'measurementMethod': 'CensusACS5yrSurveySubjectTable',
+       'provenanceUrl': 'https://data.census.gov/cedsci/table?q=S1901&tid=ACSST5Y2023.S1901',
+       'unit': 'InflationAdjustedUSD_CurrentYear'
+       }
+   }
 }
 ```
 {: .example-box-content .scroll}

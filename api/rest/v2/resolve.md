@@ -167,8 +167,8 @@ When the `resolver` option is set to `indicator`, the response looks like:
 | Name        | Type   |   Description                       |
 |-------------|--------|-------------------------------------|
 | node | string | The property value or description provided. |
-| candidates | list | A list of candidate nodes matching the description you provided. Each candidate contains a DCID and (optionally) metadata and type. |
-| dcid | The DCID of the candidate node. |
+| candidates | list of objects | A list of candidate nodes matching the description you provided. Each candidate contains a DCID and (optionally) metadata and type. |
+| dcid | string | The DCID of the candidate node. |
 | dominantType | string | Optional field which, when present, disambiguates between multiple results. Only returned when `resolver` is set to `place` (the default). |
 | metadata.score | float | The confidence score for the result, used to rank multiple results. Only returned when `resolver` is set to `indicator`. |
 | metadata.sentence | string | The matching substring contained in the node's name or description. Only returned when `resolver` is set to `indicator`. |
