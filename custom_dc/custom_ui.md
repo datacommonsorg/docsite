@@ -120,9 +120,9 @@ The following are simple customizations you can make by editing HTML, CSS, and J
 - Header bar menus: In [`header.json`](https://github.com/datacommonsorg/website/blob/master/server/config/custom_dc/custom/base/header.json){: target="_blank"}, add, remove, or edit the default entries to change menus, text, items, section layout, and links.
 
 - Add a search bar to the header: In [`base.html`](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/base.html){: target="_blank"}, set this option:
-   ```
-   set is_hide_header_search_bar = 'false'
-   ```
+   ```{% raw %}
+   {% set is_hide_header_search_bar = 'false' %}
+   ```{% endraw %}
 - Text and links on the Knowledge Graph landing page (`/browser`): Edit or replace the content in the `content` block of [browser_landing.html](https://github.com/datacommonsorg/website/blob/master/server/templates/custom_dc/custom/browser_landing.html){: target="_blank"}.
 
 - Visualization tools (Map Explorer, Scatter Plot Explorer, Timeline Explorer) example chips: Add, remove, or modify default entries in the [`*_examples.json`](https://github.com/datacommonsorg/website/blob/master/server/templates/tools/){: target="_blank"} files as follows:
