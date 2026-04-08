@@ -43,6 +43,8 @@ my_data/
     ├── datafile3.csv
     └── datafile4.csv
 ```
+The top-level directory (e.g. `my_data`) can live anywhere in the file system; you will specify the full path to it when you [configure your input directory](#env). When you set up your files in Google Cloud Storage using the Terraform script, it will automatically create a top-level directory in your bucket called `input`.
+
 The following sections walk you through the process of setting up your data. 
 
 ## Prerequisite steps
@@ -420,6 +422,7 @@ The following procedures show you how to load and serve your custom data locally
 
 To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
+{: #env}
 ### Configure environment variables
 
 Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env-vars) as follows:

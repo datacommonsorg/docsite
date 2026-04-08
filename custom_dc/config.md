@@ -60,7 +60,7 @@ Each section contains some required and optional fields, which are described in 
 
 ## Enable subdirectories {#subdirs}
 
-If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as the input directory), and be sure to set `"includeInputSubdirs": true` (the default is false if the option is not specified.) For example:
+If you are using subdirectories, specify the file names using paths relative to the top-level directory (which you specify in the `env.list` file as `INPUT_DIR`), and be sure to set `"includeInputSubdirs": true` (the default is false if the option is not specified.) For example:
 
 ```
 {
@@ -77,7 +77,7 @@ If you are using subdirectories, specify the file names using paths relative to 
 
 ## Input files
 
-The top-level `inputFiles` lists out the CSV input files and options specific to each file. The file expression is the file name (including relative subdirectories, where applicable) or wildcard patterns if the same configuration applies to multiple files.
+The top-level `inputFiles` lists out the CSV input files and options specific to each file. The file expression is the file name (including relative subdirectories, where applicable) or wildcard patterns if the same configuration applies to multiple files. The files and sudirectories are assumed to be relative to the directory which you have specified as `INPUT_DIR` in your `env.list` file.
 
 You can use the `*` wildcard; matches are applied in the order in which they are specified in the config. For example, in the following:
 
