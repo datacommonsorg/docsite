@@ -77,7 +77,7 @@ If you are using subdirectories, specify the file names using paths relative to 
 
 ## Input files
 
-The top-level `inputFiles` lists out the CSV input files and options specific to each file. The file expression is the file name (including relative subdirectories, where applicable) or wildcard patterns if the same configuration applies to multiple files. The files and sudirectories are assumed to be relative to the directory which you have specified as `INPUT_DIR` in your `env.list` file.
+The top-level `inputFiles` lists out the CSV input files and options specific to each file. The file expression is the file name (including relative subdirectories, where applicable) or wildcard patterns if the same configuration applies to multiple files. The files and subdirectories are assumed to be relative to the directory which you have specified as `INPUT_DIR` in your `env.list` file.
 
 You can use the `*` wildcard; matches are applied in the order in which they are specified in the config. For example, in the following:
 
