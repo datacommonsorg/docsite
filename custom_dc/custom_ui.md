@@ -19,6 +19,8 @@ The Custom Data Commons image provides a default site user interface that you wi
 
 This page describes how you can reuse and modify various code and configuration files that are provided for Custom Data Commons in the `website` repo.
 
+> **Note**:  Whenever you make changes you will need to build a custom version of the website. See [Build a local image](build_image.md#build-repo) for details.
+
 {: #setup}
 ## Before you start: Set up your environment
 

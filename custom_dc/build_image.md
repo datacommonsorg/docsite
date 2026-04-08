@@ -157,7 +157,7 @@ Run the following command to build the repo (and run it locally):
       -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
       -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
       -v $PWD/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var> \
-      -v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
+      -v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
       <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
       </pre>
    </div>
