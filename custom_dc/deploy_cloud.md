@@ -283,7 +283,7 @@ If this is the first time you are viewing the default image with your data, rest
 The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
 
 1. Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.
-1. From the list of services, click the link the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab.
+1. From the list of services, click the link of the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in another browser window or tab.
 
 If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
 
