@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Build and run images
-nav_order: 7
+nav_order: 6
 parent: Build your own Data Commons
 ---
 
@@ -66,7 +66,7 @@ To pick up the latest versions of either prebuilt image in Google Cloud Platform
 
 ## Build a local image {#build-repo}
 
-You will need to build a local image in any of the following cases whenever you make changes to the website UI.
+You will need to build a local image whenever you make changes to the website UI.
 
 Building from the master branch includes the very latest changes in Github, that may not have been tested. Instead, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
 
