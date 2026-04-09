@@ -47,7 +47,7 @@ To pick up the most recent stable or latest prebuilt image(s) locally, do the fo
     --env-file $PWD/custom_dc/env.list \
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-    gcr.io/datcom-ci/datacommons-data:stable|latest
+    gcr.io/datcom-ci/datacommons-data:<var>RELEASE</var>
     </pre>
     <pre>
     docker run -it \
