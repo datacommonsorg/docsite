@@ -144,6 +144,7 @@ region  = "us-east1"
 
 ## Manage your data
 
+{: #data}
 ### Upload data files to Google Cloud Storage
 
 > **Note**: Before proceeding, make sure your data is in the correct format required by Data Commons, and you've written an accompanying config file. Please see [Prepare and load your own data](custom_data.md) for complete details.
