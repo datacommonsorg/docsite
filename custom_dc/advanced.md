@@ -131,8 +131,8 @@ To run a local instance of the services container, you need to set all of the en
 -e DEBUG=true \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
--v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \
--v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
+-v $PWD/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var> \
+-v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
     <ul><li>The image name and image tag are the values you set when you <a href="build_image.md#build-package">created the package</a>.</li>
     <li>You don't specify any directories here, as you aren't mounting any local volumes.</li></ul><br/>

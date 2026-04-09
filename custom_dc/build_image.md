@@ -156,14 +156,15 @@ Run the following command to build the repo (and run it locally):
       -e DEBUG=true \
       -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
       -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-      -v $PWD/server/templates/custom_dc/custom:/workspace/server/templates/custom_dc/custom \
-      -v $PWD/static/custom_dc/custom:/workspace/static/custom_dc/custom \
+      -v $PWD/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var> \
+      -v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
       <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
       </pre>
    </div>
   </div>
 </div>
 
+- The project directory is the directory you have set up for your development environment, as described in [Set up your environment](custom_ui.md#setup) (or `custom` if you are using the default).
 - The image name is a meaningful name, such as `datacommons-services`.
 - The image tag is a meaningful description of the version you are building, such as `latest`.
 
