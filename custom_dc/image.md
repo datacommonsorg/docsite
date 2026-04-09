@@ -27,10 +27,10 @@ To pick up the most recent stable or latest prebuilt image(s) locally, do the fo
 
 1. From your repo root directory (e.g. `website`), run the following command:
    <pre>  
-   docker pull gcr.io/datcom-ci/datacommons-services:<var>VERSION</var>
-   docker pull gcr.io/datcom-ci/datacommons-data:<var>VERSION</var>
+   docker pull gcr.io/datcom-ci/datacommons-services:<var>RELEASE</var>
+   docker pull gcr.io/datcom-ci/datacommons-data:<var>RELEASE</var>
    </pre>
-2. Rerun the containers, specifying the version you want:
+2. Rerun the containers, specifying the release you want:
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
