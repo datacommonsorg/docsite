@@ -59,6 +59,7 @@ gcloud auth application-default set-quota-project <var>PROJECT_ID</var></pre>
  cd website/deploy/terraform-custom-datacommons
  ./setup.sh <var>PROJECT_ID</var></pre>
 
+{: #registry}
 ## One-time setup: Create a Google Cloud Artifact Registry repository for custom builds
 
 If you are building your own services Docker image, this is necessary. If you are only reusing the image provided by Data Commons with no customizations, you can skip this step.
@@ -275,11 +276,106 @@ To view the tables:
 If you don't see any data, go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project, select
 the job you ran in the previous step, and click the **Logs** tab to look for errors.
 
+## View your running application {#view-app}
+
+By default, the Terraform scripts create a service using the prebuilt Data Commons services image, `gcr.io/datcom-ci/datacommons-services:stable`. If this is the first time you are viewing the default image with your data, restart the service by running `terraform apply` again. If you want to change the image, see []().
+
+The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
+
+1. Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.
+1. From the list of services, click the link the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab.
+
+If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
+
 ## Manage your service
 
-### Upload a custom Docker image to the Artifact Registry {#upload}
+By default, the Terraform scripts create a Cloud Run service named <code><var>NAMESPACE</var>-datacommons-web-service.</code>
 
-When you ran the "create artifact registry" script, it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
+You need to restart the service every time you do any of the following:
+* (Re)run the [data management job](#run-job) to process new data
+* Pick up a newly released [prebuilt image]()
+* [Switch a prebuilt image]() to `latest` (or back to `stable`)
+* (Re)build a [custom image]()
+
+### Start/restart the services container {#start-service}
+
+#### Restart the container with the same image
+
+If you are not making any changes to the image used in the container, you can just run `terraform apply` every time to restart the services. Alternatively, you can also use either of the following procedures:
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+  <li class="active">Cloud Console</li>
+  <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+  <div class="active">
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
+             <li>From the list of services, click the link of the service created by the Terraform scripts.</li>
+             <li>Click <b>Edit & Deploy Revision</b>.</li>
+           <li>Click <b>Deploy</b>. It will take several minutes for the service to start. You can click the <b>Logs</b> tab to view the progress.</li>
+        </ol>
+      </div>
+    <div><p>From any local directory, run the following command:
+      <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></p>
+      <p> To view the startup status, run the following command:
+            <pre>gcloud beta run jobs logs tail <var>SERVICE_NAME</var></pre>
+    </p>
+     </div>
+   </div>
+  </div>
+
+{: #image}
+#### (Re)start the container with a new image
+
+If you want to switch the prebuilt image or use a custom image, use the following procedure. To use a newly built custom image, you must first [upload the image to the Artifact Registry](#upload) before performing this procedure.
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+<li class="active">Terraform (recommended)</li>
+  <li>Cloud Console</li>
+  <li>gcloud CLI</li>
+  </ul>
+  <div class="gcp-tab-content">
+  <div class="active"><ol><li>Open the file <code>website/deploy/terraform-custom-datacommons/modules/terraform.tfvars</code> and add the following line:
+    <pre>dc_web_service_image = "<var>CONTAINER_IMAGE_URL</var>"</pre>
+    The container image URL is the name of a <a href="build_image.md#prebuilt">prebuilt image</a>, or the package name of a container you have <a href="upload">uploaded to the Artifact Registry</a>.</li>
+  <li>From the <code>modules</code> directory, run <code>terraform apply</code>.</li>
+ <li>To view the running application with your custom UI and data, open the browser link listed in the `cloud_run_service_url` output, or see <a href="#view-app">View the running application</a> for more details.</li></ol>
+   <div>
+           <ol>
+           <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
+             <li>From the list of services, click the link of the service created by the Terraform scripts.</li>
+             <li>Click <b>Edit & Deploy Revision</b>.</li>
+           <li>Under <b>Container image URL</b>, click <b>Select</b>.</li>
+           <li>In the <b>Select container image from Artifact Registry</b> pane, do either of the following:
+           <ul>To select an image you have <a href="">uploaded to the Artifact Registry</a>: <ol><li>Expand the package name you created in xxx</li>
+           <li>Expand the image name of the container, and select the tag you created in xxx.</li></ol>
+           <li>To select a prebuilt Data Commons image: <ol><li>Click <b>Change project</b>.</li><li>In the search bar, enter <code>datcom-ci</code> and click on the link that appears.</li>
+           <li>Expand <b>gcr.io/datcom-ci</b> and <b>datacommons-services</b>.</li>
+           <li>Select an image with the lable `stable` or `latest` (don't select a specific build).</li>
+           </ol>
+           </ul>
+           <li>Click <b>Deploy</b>. It will take several minutes for the service to start. You can click the <b>Logs</b> tab to view the progress.</li>
+           <li>To view the running application, see <a href="#view-app">View the running application</a> for more details.</li>
+        </ol>
+      </div>
+    <div><p>From any local directory, run the following command:
+      <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></p>
+      <p>The container image URL is the name of a <a href="">prebuilt image</a>, or the package name of a container you have <a href="">uploaded to the Artifact Registry</a>.
+      <p> To view the startup status, run the following command:
+            <pre>gcloud beta run jobs logs tail <var>SERVICE_NAME</var></pre>
+            <p>To view the running application, see <a href="#view-app">View the running application</a> for more details.
+    </p>
+     </div>
+   </div>
+  </div>
+
+
+## Upload a custom Docker image to the Artifact Registry {#upload}
+
+When you ran the [create artifact registry script](#registry), it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
 
 Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
@@ -315,70 +411,21 @@ Any time you make changes to the website and want to deploy your changes to the 
 
 > Tip: We suggest you name and tag your image the same for every release, and let the Artifact Registry manage versioning. This way you won't have to continually update your Terraform configuration to a new name every time you upload a new build.
 
-It will take several minutes to upload. Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service) to pick it up, as described below.
+It will take several minutes to upload. Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service) to pick it up.
 
 {: .no_toc}
-#### Verify the upload
+### Verify the upload
 
 When the push completes, verify that the container has been uploaded in the Cloud Console:
 
 1. Go to [https://console.cloud.google.com/artifacts](https://console.cloud.google.com/artifacts){: target="_blank"} for your project.
 1. In the list of repositories, click on <code><var>PROJECT_ID</var>-artifacts</code>. You should see your image in the list. You can click through to view revisions and tags.
 
-### Start/restart the services container {#start-service}
-
-By default, the Terraform scripts point the service at the prebuilt Data Commons services image, `gcr.io/datcom-ci/datacommons-services:stable`. If you just want to see the running default website in action with your data, run `terraform apply` again.
-
-If you are using a custom image, which is normally the case, you first need to repoint the service to your own image and then restart the service:
-
-1. Open the file `website/deploy/terraform-custom-datacommons/modules/terraform.tfvars` and add the following line:
-    <pre>dc_web_service_image = "<var>CONTAINER_IMAGE_URL</var>"</pre>
-    The container image URL is the name of the package you created in the previous step.
-1. From the `modules` directory, run `terraform apply`.
-1. To view the running application with your custom UI and data, open the browser link listed in the `cloud_run_service_url` output, or see [View the running application](#view-app) for more details.
-
-You need to restart the services container every time you make changes to the code and release a new Docker artifact, or rerun the [data management job](#run-job) to process new data. For future pushes and restarts, if you use a different image or tag name, re-edit the `terraform.tfvars` file. If you use the same image name or tag you can simply rerun `terraform apply` every time to restart the services. Alternatively, you can also use either of the following procedures:
-
-<div class="gcp-tab-group">
-  <ul class="gcp-tab-headers">
-  <li class="active">Cloud Console</li>
-  <li>gcloud CLI</li>
-  </ul>
-  <div class="gcp-tab-content">
-  <div class="active">
-           <ol>
-           <li>Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.</li>
-             <li>From the list of services, click the link of the service created by the Terraform scripts.</li>
-             <li>Click <b>Edit & Deploy Revision</b>.</li>
-           <li>Under <b>Container image URL</b>, click <b>Select</b>.</li>
-           <li>Expand the package name you created in the previous step.</li>
-           <li>Expand the image name of the container, and select the tag you created in the previous step.</li>
-           <li>Click <b>Deploy</b>. It will take several minutes for the service to start. You can click the <b>Logs</b> tab to view the progress.</li>
-        </ol>
-      </div>
-    <div><p>From any local directory, run the following command:
-      <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var></pre></p>
-      <p> To view the startup status, run the following command:
-            <pre>gcloud beta run jobs logs tail <var>SERVICE_NAME</var></pre>
-    </p>
-     </div>
-   </div>
-  </div>
-
-### View your running application {#view-app}
-
-The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
-
-1. Go to the <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> page for your project.
-1. From the list of services, click the link the service created by the Terraform script. The app URL appears at the top of the page. If the service is running, the URL will be a clickable link. When you click on it, it should open in in another browser window or tab.
-
-If the link is not clickable and the service is not running, go back to the Console Cloud Run page, click the  **Logs** tab and look for errors. Also check the output of your `terraform apply` run.
-
-### Connect an AI agent to the MCP server
+## Connect an AI agent to the MCP server
 
 To connect an AI agent to the cloud service:
 
-1. Obtain the app URL from the previous step.
+1. Obtain the [app URL](#view-app) for your service.
 1. In the configuration for the agent/client, specify the HTTP URL as <code>https://<var>APP_URL</var>/mcp</code>. 
 1. Run the agent as usual.
 
