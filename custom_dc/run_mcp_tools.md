@@ -11,7 +11,7 @@ parent: Build your own Data Commons
 The Custom Data Commons services container includes the [Data Commons MCP server](/mcp/index.html) as a component. This page describes how to connect from an AI agent to a local MCP server. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 > **Important**: 
-> This feature is available starting from the stable release of 2026-02-10. To use it, you must [sync your code](/custom_dc/build_image.html#sync-code-to-the-stable-branch) to a stable release from that date or later, [rebuild your image](/custom_dc/build_image.html#build-package), and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+> This feature is available starting from the stable release of 2026-02-10. To use it, you must [sync your code](/custom_dc/image.html#sync-code-to-the-stable-branch) to a stable release from that date or later, [rebuild your image](/custom_dc/image.html#build-package), and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
 
 * TOC
 {:toc}
