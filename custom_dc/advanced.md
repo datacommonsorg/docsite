@@ -134,7 +134,7 @@ To run a local instance of the services container, you need to set all of the en
 -v $PWD/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var> \
 -v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
 <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-    <ul><li>The image name and image tag are the values you set when you <a href="build_image.md#build-package">created the package</a>.</li>
+    <ul><li>The image name and image tag are the values you set when you <a href="image.md#build-package">created the package</a>.</li>
     <li>You don't specify any directories here, as you aren't mounting any local volumes.</li></ul><br/>
     To run a Data Commons standard release:
    <pre>docker run -it \

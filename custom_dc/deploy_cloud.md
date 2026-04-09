@@ -340,7 +340,7 @@ If you want to switch the prebuilt image or use a custom image, use the followin
   <div class="gcp-tab-content">
   <div class="active"><ol><li>Open the file <code>website/deploy/terraform-custom-datacommons/modules/terraform.tfvars</code> and add the following line:
     <pre>dc_web_service_image = "<var>CONTAINER_IMAGE_URL</var>"</pre>
-    The container image URL is the name of a <a href="build_image.md#prebuilt">prebuilt image</a>, or the package name of a container you have <a href="upload">uploaded to the Artifact Registry</a>.</li>
+    The container image URL is the name of a <a href="image.md#prebuilt">prebuilt image</a>, or the package name of a container you have <a href="upload">uploaded to the Artifact Registry</a>.</li>
   <li>From the <code>modules</code> directory, run <code>terraform apply</code>.</li>
  <li>To view the running application with your custom UI and data, open the browser link listed in the `cloud_run_service_url` output, or see <a href="#view-app">View the running application</a> for more details.</li></ol>
    <div>
@@ -392,7 +392,7 @@ Any time you make changes to the website and want to deploy your changes to the 
    <pre>./run_cdc_dev_docker.sh --actions build_upload --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> [--package <var>TARGET_IMAGE_NAME</var>:<var>TARGET_IMAGE_TAG</var>]</pre>
    If you don't specify the <code>--package</code> option, the package name and tag will be the same as the source image.
    </div>
-    <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="/custom_dc/build_image.html#build-repo">Build a local image</a>.</li>
+    <div><ol><li>Build a local version of the Docker image, following the procedure in <a href="/custom_dc/image.html#build-repo">Build a local image</a>.</li>
       <li>Generate credentials for the Docker package: 
     <pre>gcloud auth configure-docker <var>REGION</var>-docker.pkg.dev</pre></li>
    <li>Create a package from the source image you created in step 1:

@@ -62,7 +62,7 @@ To pick up the most recent stable or latest prebuilt image(s) locally, do the fo
   </div>
 </div>
 
-To pick up any of the prebuilt images in Google Cloud Platform, see [Manage your service](deploy_cloud.md#start-service).
+To pick up the latest versions of either prebuilt image in Google Cloud Platform, see [Manage your service](deploy_cloud.md#start-service).
 
 ## Build a local image {#build-repo}
 
