@@ -278,7 +278,7 @@ the job you ran in the previous step, and click the **Logs** tab to look for err
 
 ## View your running application {#view-app}
 
-By default, the Terraform scripts create a service using the prebuilt Data Commons services image, `gcr.io/datcom-ci/datacommons-services:stable`. If this is the first time you are viewing the default image with your data, restart the service by running `terraform apply` again. If you want to change the image, see []().
+If this is the first time you are viewing the default image with your data, restart the service by running `terraform apply` again. If you want to change the image, see[(Re)start the container with a new image](#image).
 
 The URL for your service is in the form <code>https://<var>NAMESPACE</var>-datacommons-web-service-<var>XXXXX</var>.<var>REGION</var>.run.app</code>. To get the exact URL:
 
@@ -291,17 +291,17 @@ If the link is not clickable and the service is not running, go back to the Cons
 
 By default, the Terraform scripts create a Cloud Run service named <code><var>NAMESPACE</var>-datacommons-web-service.</code>
 
-You need to restart the service every time you do any of the following:
+You need to [restart the service](#start-service) every time you do any of the following:
 * (Re)run the [data management job](#run-job) to process new data
-* Pick up a newly released [prebuilt image]()
-* [Switch a prebuilt image]() to `latest` (or back to `stable`)
-* (Re)build a [custom image]()
+* Pick up a newly released [prebuilt image](#start-service)
+* [Switch a prebuilt image](#start-service) to `latest` (or back to `stable`)
+* (Re)build a [custom image](#image)
 
 ### Start/restart the services container {#start-service}
 
-#### Restart the container with the same image
+By default, the Terraform scripts create a service using the prebuilt Data Commons services image, `gcr.io/datcom-ci/datacommons-services:stable`. 
 
-If you are not making any changes to the image used in the container, you can just run `terraform apply` every time to restart the services. Alternatively, you can also use either of the following procedures:
+If you are not making any changes to the image used in the container, you can just run `terraform apply` every time to restart the services. Alternatively, you can use the following procedure.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -350,7 +350,7 @@ If you want to switch the prebuilt image or use a custom image, use the followin
              <li>Click <b>Edit & Deploy Revision</b>.</li>
            <li>Under <b>Container image URL</b>, click <b>Select</b>.</li>
            <li>In the <b>Select container image from Artifact Registry</b> pane, do either of the following:
-           <ul>To select an image you have <a href="">uploaded to the Artifact Registry</a>: <ol><li>Expand the package name you created in xxx</li>
+           <ul>To select an image you have <a href="#upload">uploaded to the Artifact Registry</a>: <ol><li>Expand the package name you created in xxx</li>
            <li>Expand the image name of the container, and select the tag you created in xxx.</li></ol>
            <li>To select a prebuilt Data Commons image: <ol><li>Click <b>Change project</b>.</li><li>In the search bar, enter <code>datcom-ci</code> and click on the link that appears.</li>
            <li>Expand <b>gcr.io/datcom-ci</b> and <b>datacommons-services</b>.</li>
@@ -372,10 +372,9 @@ If you want to switch the prebuilt image or use a custom image, use the followin
    </div>
   </div>
 
+### Upload a custom Docker image to the Artifact Registry {#upload}
 
-## Upload a custom Docker image to the Artifact Registry {#upload}
-
-When you ran the [create artifact registry script](#registry), it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a custom-built Docker service image, which is usually the case, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
+When you ran the [create artifact registry script](#registry), it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a custom-built Docker service image, you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
 
 Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
@@ -411,10 +410,11 @@ Any time you make changes to the website and want to deploy your changes to the 
 
 > Tip: We suggest you name and tag your image the same for every release, and let the Artifact Registry manage versioning. This way you won't have to continually update your Terraform configuration to a new name every time you upload a new build.
 
-It will take several minutes to upload. Once you have uploaded a new image, you must [restart the web services Cloud Run service](#start-service) to pick it up.
+It will take several minutes to upload. 
 
-{: .no_toc}
-### Verify the upload
+To deploy the new image, [restart the web services Cloud Run service](#start-service) to pick it up.
+
+#### Verify the upload
 
 When the push completes, verify that the container has been uploaded in the Cloud Console:
 

@@ -16,7 +16,7 @@ parent: Build your own Data Commons
 
 While you are just testing out data changes, you don't need to build the website, but can just use a prebuilt Data Commons image.
 
-Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container (and use as the [container in a Google Cloud Run service]()):
+Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container (and use as the [container in a Google Cloud Run service](deploy_cloud.md#start-service)):
 
 - `gcr.io/datcom-ci/datacommons-data:stable` and `gcr.io/datcom-ci/datacommons-services:stable`. These are tested, stable versions but may be several weeks old. 
 - `gcr.io/datcom-ci/datacommons-data:latest` and `gcr.io/datcom-ci/datacommons-services:latest`. These are the latest versions built from head.
