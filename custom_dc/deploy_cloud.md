@@ -340,7 +340,7 @@ If you want to switch the prebuilt image or use a custom image, use the followin
   <div class="active">
     <ol><li>Open the file <code>website/deploy/terraform-custom-datacommons/modules/terraform.tfvars</code> and add the following line:
     <pre>dc_web_service_image = "<var>CONTAINER_IMAGE_URL</var>"</pre>
-    The container image URL is the name of a <a href="image.md#prebuilt">prebuilt image</a>, or the package name of a container you have <a href="upload">uploaded to the Artifact Registry</a>.</li>
+    The container image URL is the name of a <a href="image.md#prebuilt">prebuilt image</a>, or the package name of a container you have <a href="#upload">uploaded to the Artifact Registry</a>.</li>
   <li>From the <code>modules</code> directory, run <code>terraform apply</code>.</li>
   </ol>
   </div>
