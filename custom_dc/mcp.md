@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Run MCP tools
+title: Use MCP tools
 nav_order: 8
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Run MCP tools
+# Use MCP tools
 
 The Custom Data Commons services container includes the [Data Commons MCP server](/mcp/index.html) as a component. This page describes how to connect from an AI agent to a local MCP server. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
@@ -20,11 +20,29 @@ The Custom Data Commons services container includes the [Data Commons MCP server
 
 The MCP server runs by default, in HTTP streaming mode, when you start up the services. You don't need an API key for the server or for any agent connecting to it.
 
-There are a few additional environment variables you can configure in your `env.list` file:
+There are a few additional environment variables you can configure in your `env.list` file, all of which are optional:
 -  `ENABLE_MCP`: By default this is set to true. If you want to disable the MCP server from running, set it to false.
 -  `DC_SEARCH_SCOPE`: This controls the datasets (base and/or custom) that are searched in response to AI queries. By default it is set to search both base and custom data (`base_and_custom`). If you would like to search only your custom data, set it to `custom_only`.
+- `DC_INSTRUCTIONS_DIR`: This allows you to provide overrides or additional instructions for the server tools. For details, see 
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
+
+{: #instructions}
+### Provide custom instructions for the server
+
+You can customize the instructions that the server tools send to agents, by providing additional prompts in Markdown files. You can see the default instructions in [agent-toolkit/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}. You should not try to completely override these prompts; just provide additional hints for any or all of the tools. 
+
+You can run the server with the custom instructions locally and in Google Cloud. In both cases, you must store your Markdown files in a directory with the following structure and naming:
+  <ul><li><var><code>ROOT_DIR</code></var>
+    <ul><li><code>server.md</code></li>
+        <li><code>tools</code>
+        <ul><li><code><var>TOOL_NAME</var>.md</code></li>
+        </ul>
+      </ul>
+  </ul>
+
+To run locally:
+1. Create the above directory in your local filesystem. 
 
 ## Connect an AI agent to a locally running server
 

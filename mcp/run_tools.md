@@ -12,7 +12,7 @@ This page describes how to run a local agent and connect to a Data Commons MCP s
 
 For advanced use cases, such as developing a custom agent, [Run a self-hosted MCP server](host_server.md) describes how to run your own local server and connect to it from an agent. 
 
-For procedures for Custom Data Commons instances, please see instead [Run MCP tools](/custom_dc/run_mcp_tools.html).
+For procedures for Custom Data Commons instances, please see instead [Use MCP tools](/custom_dc/mcp.html).
 
 * TOC
 {:toc}

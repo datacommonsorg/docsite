@@ -10,7 +10,7 @@ parent: MCP - Query data interactively with an AI agent
 
 This page describes how to run your own local Data Commons MCP server and connect to it from an agent. This is useful for advanced use cases, such as developing your own custom AI agent/client to use with Data Commons.
 
-For procedures for Custom Data Commons instances, please see instead [Run MCP tools](/custom_dc/run_mcp_tools.html).
+For procedures for Custom Data Commons instances, please see instead [Use MCP tools](/custom_dc/mcp.html).
 
 * TOC
 {:toc}
