@@ -8,7 +8,7 @@ parent: Build your own Data Commons
 {:.no_toc}
 # Customize the site
 
-This page shows you how to customize the UI of your local instance. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
+This page shows you how to customize the UI of your local instance. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 * TOC
 {:toc}
