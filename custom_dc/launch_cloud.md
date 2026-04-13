@@ -29,7 +29,6 @@ Throughout these procedures, we recommend using Terraform to create a production
 > **Note:** If you make future updates to this deployment, we recommend always using Terraform to do so. If you use the Cloud Console or gcloud to make updates and try to run Terraform again, it will override any changes you have made outside of Terraform. For options that are available as variables in the Data Commons `variables.tf`, you must sync your production `terraform.tfvars` options to the same values you have set outside Terraform before running Terraform commands again. If you use the Cloud Console or gcloud to configure options that are not available as Data Commons variables, you _must not_ run Terraform again.
 
 {: #serve}
-
 ## Serve traffic from your service
 
 For Cloud Run services, you use a global external load balancer, even if you're only running in a single region. Follow the procedures in [Set up a global external Application Load Balancer](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless){: target="\_blank"} as follows:
@@ -40,7 +39,6 @@ For Cloud Run services, you use a global external load balancer, even if you're 
 1. [Add or modify DNS records](https://docs.cloud.google.com/load-balancing/docs/https/setup-global-ext-https-serverless#update_dns) to map your domain name to the new IP address.
 
 {: #bot}
-
 ## Detect and prevent bot traffic with Google Cloud Armor
 
 Once your website reaches wide adoption, it will likely be hit by unwanted bot traffic. This can cause major spikes in your resource usage. If your project is sensitive to sudden increases in resource charges, you should set up Google Cloud Armor, with Adaptive Protection, before such attacks happen.

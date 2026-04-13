@@ -11,6 +11,7 @@ parent: Build your own Data Commons
 This page covers hybrid setups that are not recommended for most use cases, but may be helpful for some custom Data Commons instances:
 - [Running the data management container locally, and the service container in Google Cloud](#run-local). In this scenario, you store your input data locally, and write the output to Cloud Storage and Cloud SQL. This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
 - [Running the service container locally, and the data management container in Google Cloud](#local-services). If you have already set up a data processing pipeline to send your input data to Google Cloud, but are still iterating on the website code, this might be a useful option.
+- [Running the service container locally, and custom MCP instructions in Google Cloud](#instructions). If you're already using Google Cloud Storage but want to test the server locally, you can use this option.
 
 ## Run the data management container locally and the service container in the cloud {#run-local}
 
@@ -20,16 +21,16 @@ This process is similar to running both data management and services containers 
 
 Before you proceed, ensure you have [set up all necessary GCP services](deploy_cloud.md).
 
-### Set environment variables
+### Step 1: Set environment variables
 
 To run a local instance of the data management container, you need to set all of the environment variables in the `custom_dc/env.list` file, including all the GCP ones. 
 
 1. Obtain the values output by Terraform scripts: Go to <https://console.cloud.google.com/run/jobs>{: target="_blank"} for your project, select the relevant job from the list, and click **View and edit job configuration**. 
 1. Expand **Edit container**, and select the **Variables and secrets** tab.
 1. Copy the values of all the variables, with the exception of `FORCE_RESTART` and `INPUT_DIR` to your `env.list` file.
-1. Set the value of `INPUT_DIR` to the full local path where your CSV, JSON, and JSON files are located.
+1. Set the value of `INPUT_DIR` to the full local path where your CSV, JSON, and MCF files are located.
 
-### Run the data management Docker container
+### Step 2: Run the data management Docker container
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -85,9 +86,9 @@ gcr.io/datcom-ci/datacommons-data:<var>VERSION</var></pre>
     </div>
 </div>
  
-### Restart the services container in Google Cloud
+### Step 3: Restart the services container in Google Cloud
 
-Follow any of the procedures provided in [Start/restart the services container](deploy_cloud.md#start-service).
+Follow any of the procedures provided in [Manage your service](deploy_cloud.md#service).
 
 ## Access Cloud data from a local services container {#local-services}
 
@@ -95,7 +96,7 @@ For testing purposes, if you wish to run the services Docker container locally b
 
 Before you proceed, ensure you have [set up all necessary GCP services](deploy_cloud.md).
 
-### Set environment variables
+### Step 1: Set environment variables
 
 To run a local instance of the services container, you need to set all of the environment variables in the `custom_dc/env.list` file, including all the GCP ones. 
 
@@ -103,7 +104,7 @@ To run a local instance of the services container, you need to set all of the en
 1. In the right-hand window, scroll to **Environment variables**.
 1. Copy the values of all the variables, with the exception of `FORCE_RESTART` to your `env.list` file.
 
-### Run the services Docker container
+### Step 2: Run the services Docker container
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -155,5 +156,67 @@ gcr.io/datcom-ci/datacommons-services:<var>VERSION</var></pre>
 Once the services are up and running, visit your local instance by pointing your browser to <http://localhost:8080>.
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
+
+## Run the service container locally, with custom MCP instruction files in Google Cloud {#instructions}
+
+This process is similar to running everything locally, with the following exceptions:
+- Your environment variable will specify a GCS path (`gs://`).
+- You must start the services with credentials to be passed to Google Cloud
+- You don't mount an additional Docker volume for the path.
+
+Before you proceed, ensure you have set up [all necessary GCP services](deploy_cloud.md).
+
+### Step 1: Upload Markdown files to Google Cloud Storage
+
+Follow step 1 of [Provide custom MCP instructions files](deploy_cloud.md##instructions), using any of the methods to create the directories and upload the files.
+
+### Step 2: Configure local environment variable
+
+In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your the folder you created in Google Cloud Storage in the previous step, using the form <code>gs://<var>GCS_BUCKET</var>/<var>INSTRUCTIONS_FOLDER</var></code>. For example, if your Cloud Storage bucket is named `mybucket` and the folder you created in it is called `instructions`, you would specify the following:
+```
+DC_INSTRUCTIONS_DIR=gs://mybucket/instructions
+```
+### Step 3: Restart the services container
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+      <ol><li>Generate credentials for Cloud application authentication:
+    <pre>gcloud auth application-default login</pre></li>
+    <li>Run the container:
+       <pre>./run_cdc_dev_docker.sh --container service [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
+      </li></ol>
+      </div>
+    <div>
+   <ol><li>Generate credentials for Cloud application authentication:
+    <pre>gcloud auth application-default login</pre></li>
+    <li>Run the container:
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
+    -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
+    <var>IMAGE_CONTAINER_URL</var>
+    </pre>   
+    </li></ol>
+   </div>
+  </div>
+</div>
+
+To verify that the custom files are loaded, in the MCP server output, you should see something like the following:
+
+```
+INFO:datacommons_mcp.app:Loaded custom instructions for server.md from gs://mybucket/instructions
+INFO:datacommons_mcp.app:Loaded custom instructions for tools/get_observations.md from gs://mybucket/instructions
+INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.md from gs://mybucket/instructions
+```
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
