@@ -85,7 +85,7 @@ To run locally:
   mkdir instructions/tools
   ```
 1. Add Markdown files for any or all of the tools for which you would like to customize the instructions. Each Markdown file must be named as described above. For example, additional prompts for the `search_indicators` tool must be supplied in a file named `search_indicators.md`.
-1. In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your top-level instructions directory, using an absolute path. For example for a directory called `instruction` in the `website` directory:
+1. In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your top-level instructions directory, using an absolute path. For example for a directory called `instructions` in the `website` directory:
 ```
 DC_INSTRUCTIONS_DIR=/usr/local/google/home/username/website/instructions
 ```
