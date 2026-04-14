@@ -122,9 +122,9 @@ DC_INSTRUCTIONS_DIR=/usr/local/google/home/username/website/instructions
 To verify that the custom files are loaded, in the MCP server output, you should see something like the following:
 
 ```
-INFO:datacommons_mcp.app:Loaded custom instructions for server.md from /usr/local/google/home/kmoscoe/website/instructions
-INFO:datacommons_mcp.app:Loaded custom instructions for tools/get_observations.md from /usr/local/google/home/kmoscoe/website/instructions
-INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.md from /usr/local/google/home/kmoscoe/website/instructions
+INFO:datacommons_mcp.app:Loaded custom instructions for server.md from /usr/local/google/home/username/website/instructions
+INFO:datacommons_mcp.app:Loaded custom instructions for tools/get_observations.md from /usr/local/google/home/username/website/instructions
+INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.md from /usr/local/google/home/username/website/instructions
 ```
 
 To specify custom instructions on a Cloud Run server, see [Provide custom MCP instructions files](deploy_cloud.md#instructions). 
