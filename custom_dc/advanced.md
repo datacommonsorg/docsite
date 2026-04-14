@@ -168,7 +168,7 @@ Before you proceed, ensure you have set up [all necessary GCP services](deploy_c
 
 ### Step 1: Upload Markdown files to Google Cloud Storage
 
-Follow step 1 of [Provide custom MCP instructions files](deploy_cloud.md##instructions), using any of the methods to create the directories and upload the files.
+Follow step 1 of [Provide custom MCP instructions files](deploy_cloud.md#instructions), using any of the methods to create the directories and upload the files.
 
 ### Step 2: Configure local environment variable
 
