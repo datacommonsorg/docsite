@@ -385,7 +385,7 @@ If you want to switch the prebuilt image or use a custom image, use the followin
 
 ### Upload a custom Docker image to the Artifact Registry {#upload}
 
-When you ran the [create artifact registry script](#registry), it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a [custom-built Docker service image](/custom_dc/build.html#build-repo), you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
+When you ran the [create artifact registry script](#registry), it created a repository called <code><var>PROJECT_ID</var>-artifacts</code>. If you are using a [custom-built Docker service image](/custom_dc/image.html#build-repo), you need to upload it to the Google Cloud Artifact Registry repository, where it will be picked up by the Cloud Run Docker services container.
 
 Any time you make changes to the website and want to deploy your changes to the cloud, you need to rerun this procedure.
 
