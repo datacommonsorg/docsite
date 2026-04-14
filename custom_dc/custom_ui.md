@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Customize the site
-nav_order: 6
+nav_order: 7
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
 # Customize the site
 
-This page shows you how to customize the UI of your local instance. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
+This page shows you how to customize the UI of your local instance. This is step 4 of the [recommended workflow](/custom_dc/index.html#workflow).
 
 * TOC
 {:toc}
@@ -19,7 +19,7 @@ The Custom Data Commons image provides a default site user interface that you wi
 
 This page describes how you can reuse and modify various code and configuration files that are provided for Custom Data Commons in the `website` repo.
 
-> **Note**:  Whenever you make changes you will need to build a custom version of the website. See [Build a local image](build_image.md#build-repo) for details.
+> **Note**:  Whenever you make changes you will need to build a custom version of the website. See [Build a local image](image.md#build-repo) for details.
 
 {: #setup}
 ## Before you start: Set up your environment
@@ -143,7 +143,7 @@ The following are simple customizations you can make by editing HTML, CSS, and J
     ```
 - Add more pages to the site: Add HTML templates to your `server/templates/` directory. They should extend `base.html` and set the required variables listed at the top of that file.
 
-> **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/build_image.html#build-repo). 
+> **Note:** Currently, making changes to any of the files in the `static/` directory, even if you're testing locally, requires that you rebuild a local version of the repo to pick up the changes, as described in [Build a local image](/custom_dc/image.html#build-repo). 
 
 
 {: #complex}

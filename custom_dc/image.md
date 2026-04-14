@@ -1,35 +1,36 @@
 ---
 layout: default
-title: Build and run a custom image
-nav_order: 7
+title: Build and run images
+nav_order: 8
 parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-# Build and run a custom image
+# Build and run images
 
 * TOC
 {:toc}
 
+{: #prebuilt}
 ## Use a prebuilt image
 
 While you are just testing out data changes, you don't need to build the website, but can just use a prebuilt Data Commons image.
 
-Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container:
+Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container (and use as the [container in a Google Cloud Run service](deploy_cloud.md#start-service)):
 
 - `gcr.io/datcom-ci/datacommons-data:stable` and `gcr.io/datcom-ci/datacommons-services:stable`. These are tested, stable versions but may be several weeks old. 
 - `gcr.io/datcom-ci/datacommons-data:latest` and `gcr.io/datcom-ci/datacommons-services:latest`. These are the latest versions built from head.
 
 You can see the images with their tags at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-data> and <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-services>.
 
-If you want to pick up the latest prebuilt version, do the following:
+To pick up the most recent stable or latest prebuilt image(s) locally, do the following:
 
-1. From the root directory (e.g. `website`), run the following command:
-   ```shell  
-   docker pull gcr.io/datcom-ci/datacommons-services:latest
-   docker pull gcr.io/datcom-ci/datacommons-data:latest
-   ```
-2. Rerun the containers, specifying the "latest" release:
+1. From your repo root directory (e.g. `website`), run the following command:
+   <pre>  
+   docker pull gcr.io/datcom-ci/datacommons-services:<var>RELEASE</var>
+   docker pull gcr.io/datcom-ci/datacommons-data:<var>RELEASE</var>
+   </pre>
+2. Rerun the containers, specifying the release you want:
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -38,7 +39,7 @@ If you want to pick up the latest prebuilt version, do the following:
   </ul>
   <div class="gcp-tab-content">
       <div class="active">
-       <pre>./run_cdc_dev_docker.sh --release latest</pre>
+       <pre>./run_cdc_dev_docker.sh --release stable|latest</pre>
       </div>
     <div>
     <pre>
@@ -46,7 +47,7 @@ If you want to pick up the latest prebuilt version, do the following:
     --env-file $PWD/custom_dc/env.list \
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-    gcr.io/datcom-ci/datacommons-data:latest
+    gcr.io/datcom-ci/datacommons-data:stable|latest
     </pre>
     <pre>
     docker run -it \
@@ -55,17 +56,17 @@ If you want to pick up the latest prebuilt version, do the following:
     --env-file $PWD/custom_dc/env.list \
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-    gcr.io/datcom-ci/datacommons-services:latest
+    gcr.io/datcom-ci/datacommons-services:stable|latest
     </pre>   
    </div>
   </div>
 </div>
 
+To pick up the latest versions of either prebuilt image in Google Cloud Platform, see [Manage your service](deploy_cloud.md#start-service).
+
 ## Build a local image {#build-repo}
 
-You will need to build a local image in any of the following cases:
-- You are making substantive changes to the website UI
-- You are ready to deploy your custom site to GCP
+You will need to build a local image whenever you make changes to the website UI.
 
 Building from the master branch includes the very latest changes in Github, that may not have been tested. Instead, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
 
@@ -170,7 +171,7 @@ Run the following command to build the repo (and run it locally):
 
 It will take several minutes to build.
 
-Once the services are up and running, visit your local instance by pointing your browser to [http://localhost:8080](http://localhost:8080). 
+Once the services are up and running, visit your local instance by pointing your browser to <http://localhost:8080>. 
 
 To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
