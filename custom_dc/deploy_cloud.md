@@ -493,7 +493,7 @@ To connect an AI agent to the Cloud Run service app:
       ...
       "mcpServers": {
           "datacommons-mcp": {         
-             "httpUrl": "https://<var>YOUR_APP_NAME</var>/mcp"
+             "httpUrl": "<var>APP_URL</var>/mcp"
           }
       }
       ...
