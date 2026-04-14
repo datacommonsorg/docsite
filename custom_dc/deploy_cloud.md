@@ -205,14 +205,9 @@ Every time you upload new input files to Google Cloud Storage, you will need to 
         </ol>
       </div>
     <div>
-    <ol>
-         <li>From any local directory, run the following command:
+    <p>From any local directory, run the following command:
            <pre>gcloud run jobs execute <var>JOB_NAME</var></pre>
-         </li>
-         <li>To view the progress of the job, run the following command:
-              <pre>gcloud run jobs logs read <var>JOB_NAME</var></pre>
-          </li>
-      </ol>
+  </p>
       </div>
       </div>
 </div>
@@ -239,14 +234,9 @@ If you have tried to start a container, and have received a `SQL check failed` e
         </ol>
       </div>
     <div>
-    <ol>
-         <li>From any local directory, run the following command:
+   <p>From any local directory, run the following command:
             <pre>gcloud run jobs execute <var>JOB_NAME</var> -update-env-vars DATA_RUN_MODE=schemaupdate</pre>
-         </li>
-         <li>To view the progress of the job, run the following command:
-            <pre>gcloud run jobs logs read <var>JOB_NAME</var></pre>
-          </li>
-      </ol>
+         </p>
    </div>
   </div>
 </div>
@@ -324,9 +314,7 @@ Alternatively, you can use the following procedure.
   </div>
   <div><p>From any local directory, run the following command:
       <pre>gcloud run deploy <var>SERVICE_NAME</var> --image gcr.io/datcom-ci/datacommons-services:stable [<var>OTHER_OPTIONS...</var>]</pre>
-      You can specify any options as flags (see the <a href="https://docs.cloud.google.com/sdk/gcloud/reference/run/deploy" target="_blank">gcloud deploy reference documentation</a>). For example, to add or change an environment variable, use <code>--set-env-vars</code>.</p>
-      <p>To view the startup status, run the following command:
-      <pre>gcloud run services logs read <var>SERVICE_NAME</var></pre></p>
+      You can specify any options as flags (see the <a href="https://docs.cloud.google.com/sdk/gcloud/reference/run/deploy" target="_blank">gcloud deploy reference documentation</a>). For example, to add or change an environment variable, use <code>--set-env-vars</code>.
       </p>
   </div>
 </div>
@@ -377,8 +365,7 @@ If you want to switch the prebuilt image or use a custom image, use the followin
     <div><p>From any local directory, run the following command:
       <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var>  [<var>OTHER_OPTIONS...</var>]</pre>
       The container image URL is the name of a <a href="image.md#prebuilt">prebuilt image</a>, or the package name of a container you have <a href="#upload">uploaded to the Artifact Registry</a>.</p>
-      <p>To view the startup status, run the following command:
-      <pre>gcloud run services logs read <var>SERVICE_NAME</var></pre></p>
+     </p>
     </div>
   </div>
 </div>
@@ -488,9 +475,6 @@ Before running this procedure, please see [Required directory structure](mcp.md#
       <li>The container image URL is a prebuilt Data Commons image, or a custom image you have previously uploaded to the artifact registry.</li>
       <li>The instructions folder is the one you created in the previous step, specified in the form <code>gs://<var>GCS_BUCKET</var>/<var>INSTRUCTIONS_FOLDER</var></code>.</li>
       </ul>
-      </p>
-      <p>To view the startup status, run the following command:
-      <pre>gcloud run services logs read <var>SERVICE_NAME</var></pre>
       </p>
   </div>
 </div>
