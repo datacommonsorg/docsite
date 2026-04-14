@@ -102,7 +102,7 @@ To run a local instance of the services container, you need to set all of the en
 
 1. Obtain the values output by Terraform scripts: Go to <https://console.cloud.google.com/run/services>{: target="_blank"} for your project, select the relevant service from the list, and click the **Revisions** tab. 
 1. In the right-hand window, scroll to **Environment variables**.
-1. Copy the values of all the variables, with the exception of `FORCE_RESTART` to your `env.list` file.
+1. Copy the values of all the variables, with the exception of `FORCE_RESTART`, to your `env.list` file.
 
 ### Step 2: Run the services Docker container
 
@@ -112,43 +112,30 @@ To run a local instance of the services container, you need to set all of the en
     <li>Docker commands</li>
   </ul>
   <div class="gcp-tab-content">
-   <div class="active">
-   To build and run a custom image:
-   <pre>./run_cdc_dev_docker.sh --actions build_run --container service --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-   To run a previously built custom image:
-   <pre>./run_cdc_dev_docker.sh --container service --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-   To run a Data Commons standard release:
-   <pre>./run_cdc_dev_docker.sh --container service [--release latest]</pre>
-   If you don't specify the <code>--release</code> option, it will use the <code>stable</code> version by default.
-   </div>
-    <div>
-    <ol><li>Generate credentials for Cloud application authentication:
+      <div class="active">
+      <ol><li>Generate credentials for Cloud application authentication:
     <pre>gcloud auth application-default login</pre></li>
-    <li>Run the container. <br />
-    To run a custom image:    
-    <pre>docker run -it \
---env-file $PWD/custom_dc/env.list \
--p 8080:8080 \
--e DEBUG=true \
--e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
--v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
--v $PWD/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var> \
--v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
-<var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
-    <ul><li>The image name and image tag are the values you set when you <a href="image.md#build-package">created the package</a>.</li>
-    <li>You don't specify any directories here, as you aren't mounting any local volumes.</li></ul><br/>
-    To run a Data Commons standard release:
-   <pre>docker run -it \
---env-file $PWD/custom_dc/env.list \
--p 8080:8080 \
--e DEBUG=true \
--e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
--v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-gcr.io/datcom-ci/datacommons-services:<var>VERSION</var></pre>
-    <ul><li>The version is <code>latest</code> or <code>stable</code>.</li>
-    <li>You don't specify any directories here, as you aren't mounting any local volumes.</li></ul>
+    <li>Run the container:
+       <pre>./run_cdc_dev_docker.sh --container service [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
+      </li>
+      The image container URL is the name and tag of a prebuilt or custom-built image.
+      </ol>
+      </div>
+    <div>
+   <ol><li>Generate credentials for Cloud application authentication:
+    <pre>gcloud auth application-default login</pre></li>
+    <li>Run the container:
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
+    -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
+    <var>IMAGE_CONTAINER_URL</var>
+    </pre>   
     </li>
-    </ol>
+    The image container URL is the name and tag of a prebuilt or custom-built image.</ol>
    </div>
   </div>
 </div>
@@ -157,12 +144,9 @@ Once the services are up and running, visit your local instance by pointing your
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
 
-## Run the service container locally, with custom MCP instruction files in Google Cloud {#instructions}
+### Run the service container locally, with custom MCP instruction files in Google Cloud {#instructions}
 
-This process is similar to running everything locally, with the following exceptions:
-- Your environment variable will specify a GCS path (`gs://`).
-- You must start the services with credentials to be passed to Google Cloud
-- You don't mount an additional Docker volume for the path.
+This process is similar to the above, assuming that your data are also stored in Google Cloud Storage.
 
 Before you proceed, ensure you have set up [all necessary GCP services](deploy_cloud.md).
 
@@ -178,38 +162,7 @@ DC_INSTRUCTIONS_DIR=gs://mybucket/instructions
 ```
 ### Step 3: Restart the services container
 
-<div class="gcp-tab-group">
-  <ul class="gcp-tab-headers">
-    <li class="active">Bash script</li>
-    <li>Docker commands</li>
-  </ul>
-  <div class="gcp-tab-content">
-      <div class="active">
-      <ol><li>Generate credentials for Cloud application authentication:
-    <pre>gcloud auth application-default login</pre></li>
-    <li>Run the container:
-       <pre>./run_cdc_dev_docker.sh --container service [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
-      </li></ol>
-      </div>
-    <div>
-   <ol><li>Generate credentials for Cloud application authentication:
-    <pre>gcloud auth application-default login</pre></li>
-    <li>Run the container:
-    <pre>
-    docker run -it \
-    -p 8080:8080 \
-    -e DEBUG=true \
-    --env-file $PWD/custom_dc/env.list \
-    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
-    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-    -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
-    -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-    <var>IMAGE_CONTAINER_URL</var>
-    </pre>   
-    </li></ol>
-   </div>
-  </div>
-</div>
+Run the services container as above.
 
 To verify that the custom files are loaded, in the MCP server output, you should see something like the following:
 
