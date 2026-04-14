@@ -29,6 +29,7 @@ To run a local instance of the data management container, you need to set all of
 1. Expand **Edit container**, and select the **Variables and secrets** tab.
 1. Copy the values of all the variables, with the exception of `FORCE_RESTART` and `INPUT_DIR` to your `env.list` file.
 1. Set the value of `INPUT_DIR` to the full local path where your CSV, JSON, and MCF files are located.
+1. Set the value of `OUTPUT_DIR` to the Google Cloud Storage folder where the output should be written, in the form <code>gs://<var>GCS_BUCKET</var>/output</code>.
 
 ### Step 2: Run the data management Docker container
 
@@ -39,21 +40,22 @@ To run a local instance of the data management container, you need to set all of
   </ul>
   <div class="gcp-tab-content">
     <div class="active">
+    From the <code>website</code> root directory, run the following command:
     <pre>./run_cdc_dev_docker.sh --container data [--release latest]</pre>
-    If you don't specify the <code>--release</code> option, it will use the <code>stable</code> version by default.
+    If you don't specify the <code>--release</code> option, the script uses the <code>stable</code> version by default.
     </div>
     <div>
     <ol><li>Generate credentials for Cloud application authentication:
     <pre>gcloud auth application-default login</pre></li>
-    <li>Run the container:    
+    <li>From the <code>website</code> root directory, run the data container:    
     <pre>docker run \
 --env-file $PWD/custom_dc/env.list \
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-gcr.io/datcom-ci/datacommons-data:<var>VERSION</var></pre></li></ol>
+gcr.io/datcom-ci/datacommons-data:<var>VERSION</var></pre>
     <ul><li>The input directory is the local path. You don't specify the output directory, as you aren't mounting a local output volume.</li>
-    <li>The version is <code>latest</code> or <code>stable</code>.</li></ul>
+    <li>The version is <code>latest</code> or <code>stable</code>.</li></ul></li></ol>
    </div>
   </div>
 </div>
@@ -104,6 +106,7 @@ To run a local instance of the services container, you need to set all of the en
 1. In the right-hand window, scroll to **Environment variables**.
 1. Copy the values of all the variables, with the exception of `FORCE_RESTART`, to your `env.list` file.
 
+{: #step2}
 ### Step 2: Run the services Docker container
 
 <div class="gcp-tab-group">
@@ -115,10 +118,10 @@ To run a local instance of the services container, you need to set all of the en
       <div class="active">
       <ol><li>Generate credentials for Cloud application authentication:
     <pre>gcloud auth application-default login</pre></li>
-    <li>Run the container:
-       <pre>./run_cdc_dev_docker.sh --container service [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
-      </li>
-      The image container URL is the name and tag of a prebuilt or custom-built image.
+    <li>From your <code>website</code> root directory, run the services container:
+       <pre>./run_cdc_dev_docker.sh --container service [--release latest] [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
+      <p>The script uses the prebuilt stable image by default. If you want the latest image, specify the <code>--release</code> flag.</p>
+      <p>If you're using a custom-built image, the image container URL is required, in the form <code><var>name</var>:<var>tag</var></code>.</p></li>
       </ol>
       </div>
     <div>
@@ -132,10 +135,10 @@ To run a local instance of the services container, you need to set all of the en
     --env-file $PWD/custom_dc/env.list \
     -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
     -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-    <var>IMAGE_CONTAINER_URL</var>
-    </pre>   
+    <var>IMAGE_CONTAINER_URL</var></pre>   
+      The image container URL is the name and tag of a prebuilt or custom-built image.
     </li>
-    The image container URL is the name and tag of a prebuilt or custom-built image.</ol>
+  </ol>
    </div>
   </div>
 </div>
@@ -144,9 +147,9 @@ Once the services are up and running, visit your local instance by pointing your
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
 
-### Run the service container locally, with custom MCP instruction files in Google Cloud {#instructions}
+## Run the service container locally, with custom MCP instruction files in Google Cloud {#instructions}
 
-This process is similar to the above, assuming that your data are also stored in Google Cloud Storage.
+This process is similar to the above, assuming that you are also accessing data files in Google Cloud Storage.
 
 Before you proceed, ensure you have set up [all necessary GCP services](deploy_cloud.md).
 
@@ -162,7 +165,7 @@ DC_INSTRUCTIONS_DIR=gs://mybucket/instructions
 ```
 ### Step 3: Restart the services container
 
-Run the services container as above.
+Run the services container as in [step 2](#step2) above.
 
 To verify that the custom files are loaded, in the MCP server output, you should see something like the following:
 
@@ -171,5 +174,9 @@ INFO:datacommons_mcp.app:Loaded custom instructions for server.md from gs://mybu
 INFO:datacommons_mcp.app:Loaded custom instructions for tools/get_observations.md from gs://mybucket/instructions
 INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.md from gs://mybucket/instructions
 ```
+
+### Step 4: Connect an agent to the server
+
+Follow any of the procedures in [Connect an AI agent to a local server](mcp.md#agent).
 
 <script src="/assets/js/customdc-doc-tabs.js"></script>
