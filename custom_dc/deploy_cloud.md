@@ -483,7 +483,7 @@ Before running this procedure, please see [Required directory structure](mcp.md#
 </p>
   <p>Step 2: Set the environment variable and restart the Cloud Run service:</p>
   <p>From any local directory, run the following command:
-      <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var> --set-env-vars DC_INSTRUCTIONS_DIR=<var>INSTRUCTIONS_FOLDER</var></pre>
+      <pre>gcloud run deploy <var>SERVICE_NAME</var> --image <var>CONTAINER_IMAGE_URL</var> --set-env-vars DC_INSTRUCTIONS_DIR=gs://<var>GCS_BUCKET</var>/<var>INSTRUCTIONS_FOLDER</var></pre>
       <ul>
       <li>The container image URL is a prebuilt Data Commons image, or a custom image you have previously uploaded to the artifact registry.</li>
       <li>The instructions folder is the one you created in the previous step, specified in the form <code>gs://<var>GCS_BUCKET</var>/<var>INSTRUCTIONS_FOLDER</var></code>.</li>
