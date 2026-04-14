@@ -128,7 +128,7 @@ INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.
 ```
 
 To specify custom instructions on a Cloud Run server, see [Provide custom MCP instructions files](deploy_cloud.md#instructions). 
-To specify custom instructions hosted in Cloud Storage but loaded by a local server, see xxx
+To specify custom instructions hosted in Cloud Storage but loaded by a local server, see [Running the service container locally, and custom MCP instructions in Google Cloud](advanced.md#instructions)
 
 ## Connect an AI agent to a local server
 
