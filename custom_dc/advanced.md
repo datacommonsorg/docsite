@@ -172,7 +172,7 @@ Follow step 1 of [Provide custom MCP instructions files](deploy_cloud.md##instru
 
 ### Step 2: Configure local environment variable
 
-In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your the folder you created in Google Cloud Storage in the previous step, using the form <code>gs://<var>GCS_BUCKET</var>/<var>INSTRUCTIONS_FOLDER</var></code>. For example, if your Cloud Storage bucket is named `mybucket` and the folder you created in it is called `instructions`, you would specify the following:
+In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to the folder you created in Google Cloud Storage in the previous step, using the form <code>gs://<var>GCS_BUCKET</var>/<var>INSTRUCTIONS_FOLDER</var></code>. For example, if your Cloud Storage bucket is named `mybucket` and the folder you created in it is called `instructions`, you would specify the following:
 ```
 DC_INSTRUCTIONS_DIR=gs://mybucket/instructions
 ```
