@@ -18,7 +18,7 @@ in other API calls or programs. An important step for a Data Commons developer i
 identify the DCIDs of entities they care about. This API searches for an entry in the
 Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
 
-You can resolve place entities by name/description, Wikidata ID, or geo coordinates. You can resolve statistical variables and topics by a substring of the name/description. 
+You can resolve place entities by name/description, Wikidata ID, geo coordinatesand several other geo properties. You can resolve statistical variables and topics by a substring of the name/description. 
 
 To fetch more data for the returned candidates, including linked nodes, you can then call Node API.
 
@@ -68,11 +68,35 @@ JSON data:
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
 | resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. If not specified, the default is `place`. |
-| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. Only three are currently supported:<br />`<-description`: Search for nodes based on name-related properties (such as `name`, `alternateName`, etc.).<br/>`<-wikidataId`: Search for nodes based on their Wikidata ID(s) (place resolution only).<br/>`<-geoCoordinates`: Search for nodes based on latitude and/or longitude (place resolution only). <br/>If not specified, the default is `<-description`. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). <br/><b>Note:</b> To specify `wikidataId`,`geoCoordinates`, or a `typeOf` filter on the query, you must specify this parameter. <br/> Note: The `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. The `geoCoordinates` field is a synthesis of `latitude` and `longitude` properties. |
+| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. See Supported place properties for a list of properties you can specify for place resolutions. <br/>If not specified, the default is `<-description`. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
 | target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
 {: .doc-table }
 
 > **Note:** For places, this endpoint relies on name-based geocoding, which may return imprecise results. One common pattern is ambiguous place names, that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
+
+### Supported place properties
+
+The following identifiers are supported as the `property` value for place resolutions:
+
+* `description`: Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`.
+* `wikidataId`: Resolve by Wikidata ID.
+* `geoCoordinates`: Resolve by a synthesis of `latitude` and `longitude` properties.
+* `unDataCode`: Resolve by UN data code.
+* `geoId`: Resolve 
+* `isoCode`: 
+* `nutsCode`: 
+* `geoNamesId`:,
+		"istatId",
+		"austrianMunicipalityKey",
+		"indianCensusAreaCode2011",
+		"indianCensusAreaCode2001",
+		"lgdCode",
+		"udiseCode",
+		"fips52AlphaCode",
+		"countryAlpha3Code",
+		"countryNumericCode",
+
+    <br/><b>Note:</b> To specify `wikidataId`,`geoCoordinates`, or a `typeOf` filter on the query, you must specify this parameter. <br/> Note:  The `
 
 ## Response
 
