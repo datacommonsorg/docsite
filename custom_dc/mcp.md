@@ -83,15 +83,15 @@ You can provide a Markdown file for each tool you want to customize. Any file yo
 
 1. Create a new directory anywhere in your file system, as described above. For example:
   ```
-  cd website
+  cd projectdir
   mkdir instructions
   mkdir instructions/tools
   ```
 1. Go to <https://github.com/agent-toolkit>{: target="_blank"} and from [/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}, copy the tool file(s) you would like to customize into the `tools` directory you created in the previous step. 
 1. Edit the file(s) as necessary.
-1. In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your top-level instructions directory, using an absolute path. For example for a directory called `instructions` in the `website` directory:
+1. In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your top-level instructions directory, using an absolute path. For example for a directory called `instructions` in your home directory, it could look like this:
 ```
-DC_INSTRUCTIONS_DIR=/usr/local/google/home/username/website/instructions
+DC_INSTRUCTIONS_DIR=/usr/local/home/username/instructions
 ```
 1. When you restart the Docker service container, you need to mount the new directory as a Docker volume. If you use the Bash convenience script this is done for you automatically.
 
