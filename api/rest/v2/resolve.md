@@ -68,35 +68,33 @@ JSON data:
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
 | resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. If not specified, the default is `place`. |
-| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. See Supported place properties for a list of properties you can specify for place resolutions. <br/>If not specified, the default is `<-description`. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
+| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. See [Supported place properties](#placetypes) for a list of property types you can specify for place resolutions. <br/>If not specified, the default is `<-description`. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with `->dcid` and may optionally include a [`typeOf` filter](/api/rest/v2/index.html#filters). |
 | target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
 {: .doc-table }
 
 > **Note:** For places, this endpoint relies on name-based geocoding, which may return imprecise results. One common pattern is ambiguous place names, that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
 
+{: #placetypes}
 ### Supported place properties
 
-The following identifiers are supported as the `property` value for place resolutions:
+The following is a selection of identifiers are supported as the `property` value for place resolutions:
 
-* `description`: Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`.
-* `wikidataId`: Resolve by Wikidata ID.
-* `geoCoordinates`: Resolve by a synthesis of `latitude` and `longitude` properties.
-* `unDataCode`: Resolve by UN data code.
-* `geoId`: Resolve 
-* `isoCode`: 
-* `nutsCode`: 
-* `geoNamesId`:,
-		"istatId",
-		"austrianMunicipalityKey",
-		"indianCensusAreaCode2011",
-		"indianCensusAreaCode2001",
-		"lgdCode",
-		"udiseCode",
-		"fips52AlphaCode",
-		"countryAlpha3Code",
-		"countryNumericCode",
+| Property name | Description | Examples |
+|---------------|-------------|---------|
+| `description` | Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name` |  `Berlin`, `Berlin, Germany`, `India`|
+| `wikidataId` | Resolve by [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers){: target="_blank"} | `Q64`, `Q668` |
+| `geoCoordinate` | Resolve by a synthesis of [`latitude` and `longitude`](https://datacommons.org/browser/GeoCoordinates){: target="_blank"} properties. This is a synthetic ID assigned by Data Commons. | `52.516666666667#-13.383333333333` |
+| `unDataCode` | Resolve by the code used in UN-curated datasets. | `undata-geo:C11200007`, `undata-geo:G00001380` |
+| `isoCode` | Resolve by ISO 2-letter location code. | `DE-BE`, `IN` |
+| `nutsCode`| Resolve the by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
 
-    <br/><b>Note:</b> To specify `wikidataId`,`geoCoordinates`, or a `typeOf` filter on the query, you must specify this parameter. <br/> Note:  The `
+Several region-specific codes are also supported:
+
+* `istatId` (India)
+* `austrianMunicipalityKey` (Austria)
+* `lgdCode` (India)
+* `udiseCode` (India)
+* `fips52AlphaCode` (United States)
 
 ## Response
 
@@ -248,6 +246,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: #geocoordinate}
 ### Example 2: Find the DCID of a place by coordinates
 
 This queries for the DCID of "Mountain View" by its coordinates. This is most often represented by the [`latitude`](https://datacommons.org/browser/latitude){: target="_blank"} and [`longitude`](https://datacommons.org/browser/longitude){: target="_blank"} properties on a node. Since the API only supports querying a single property, use the synthetic `geoCoordinate` property. To specify the latitude and longitude, use the `#` sign to separate both values. This returns all the places in the graph that contains the coordinate.
