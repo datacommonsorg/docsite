@@ -77,9 +77,9 @@ JSON data:
 {: #placetypes}
 ### Supported place properties
 
-The following is a selection of property labels that are supported as the `property` parameter for place resolutions:
+The following is a selection of properties that are supported as the `property` parameter for place resolutions:
 
-| Property name | Description | Examples |
+| Property label | Description | Examples |
 |---------------|-------------|---------|
 | `description` | Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. |  `Berlin`, `Berlin, Germany`, `India`|
 | `geoCoordinate` | Resolve by a synthesis of [`latitude` and `longitude`](https://datacommons.org/browser/GeoCoordinates){: target="_blank"} properties. This is a synthetic ID assigned by Data Commons. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. | `52.516666666667#-13.383333333333` |
