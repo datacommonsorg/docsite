@@ -81,8 +81,6 @@ You can provide a Markdown file for each tool you want to customize. Any file yo
 
 ### Run the server locally
 
-To run locally:
-
 1. Create a new directory anywhere in your file system, as described above. For example:
   ```
   cd website
