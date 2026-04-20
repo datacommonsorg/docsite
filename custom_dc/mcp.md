@@ -75,7 +75,7 @@ The server expects a specific directory structure and naming, as follows:
     └──<var>TOOL_NAME</var>.md
 </pre>
 
-You can provide an instruction Markdown file for each tool you want to customize. Any file you provide will completely replace the default version of the file. For any tool file you don't provide, the server will just use the default instructions.
+You can provide a Markdown file for each tool you want to customize. Any file you provide will completely replace the default version of the file. For any tool file you don't provide, the server will just use the default instructions.
 
 > Tip: Most AI agents ignore `server.md` so there is little benefit to overriding this file specifically.
 
