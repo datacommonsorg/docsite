@@ -86,7 +86,7 @@ The following is a selection of identifiers supported as the `property` paramete
 | `wikidataId` | Resolve by [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers){: target="_blank"} | `Q64`, `Q668` |
 | `unDataCode` | Resolve by the code used in UN-curated datasets. | `undata-geo:C11200007`, `undata-geo:G00001380` |
 | `isoCode` | Resolve by ISO 2-letter location code. | `DE-BE`, `IN` |
-| `nutsCode`| Resolve the by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
+| `nutsCode`| Resolve by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
 
 Several region-specific codes are also supported:
 
