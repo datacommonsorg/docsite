@@ -57,7 +57,10 @@ To set the options on a server in Cloud Run, see [Start/restart the services con
 
 The MCP server tools are prompted by instructions Markdown files located at [agent-toolkit/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}. These instructions are also used by agents when they make tool calls to the server.
 
-You can customize the instructions by providing additional prompts in Markdown files.  You should not try to completely override the default instructions; just provide additional hints for any or all of the tools where applicable. 
+You can customize the instructions by providing custom Markdown files for the tools whose instructions you want to replace. For example, for the `search_indicators` tool, you may wish to replace this default instruction with a specific place instead of "World":
+```
+Action: If a user asks a general question about available data, proactively call the tool for "World" to provide an initial overview.
+```
 
 {: #structure}
 ### Required directory structure
@@ -71,20 +74,22 @@ The server expects a specific directory structure and naming, as follows:
     └──<var>TOOL_NAME</var>.md
 </pre>
 
-You can provide an instruction Markdown file for each tool you want to customize. For any tool file you don't provide, the server will just use the default instructions.
+You can provide an instruction Markdown file for each tool you want to customize. Any file you provide will completely replace the default version of the file. For any tool file you don't provide, the server will just use the default instructions.
 
 > Tip: Most AI agents ignore `server.md` so there is little benefit to overriding this file specifically.
 
 ### Run the server locally
 
 To run locally:
+
 1. Create a new directory anywhere in your file system, as described above. For example:
   ```
   cd website
   mkdir instructions
   mkdir instructions/tools
   ```
-1. Add Markdown files for any or all of the tools for which you would like to customize the instructions. Each Markdown file must be named as described above. For example, additional prompts for the `search_indicators` tool must be supplied in a file named `search_indicators.md`.
+1. Go to <https://github.com/agent-toolkit>{: target="_blank"} and from [/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}, copy the tool file(s) you would like to customize into the `tools` directory you created in the previous step. 
+1. Edit the file(s) as necessary.
 1. In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your top-level instructions directory, using an absolute path. For example for a directory called `instructions` in the `website` directory:
 ```
 DC_INSTRUCTIONS_DIR=/usr/local/google/home/username/website/instructions

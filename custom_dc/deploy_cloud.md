@@ -424,7 +424,7 @@ When the push completes, verify that the container has been uploaded in the Clou
 
 As described in [Provide custom instructions for the server](mcp.md#instructions), you can upload custom instructions files to Google Cloud Storage, that will be loaded by the MCP server when it is restarted. 
 
-Before running this procedure, please see [Required directory structure](mcp.md#structure).
+Before running this procedure, please see [Required directory structure](mcp.md#structure), download the default Markdown instruction file(s) you want to customize from <https://https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools>, and make your edits to the files locally.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -433,7 +433,6 @@ Before running this procedure, please see [Required directory structure](mcp.md#
   </ul>
   <div class="gcp-tab-content">
    <div class="active">
-      <p>Step 1: Upload files to Google Cloud Storage:
       <ol>
         <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> for your service and select the [Data Commons bucket](#data) that was created by the Terraform script.</li>
         <li>Click <b>Create folder</b>.</li>
@@ -441,7 +440,7 @@ Before running this procedure, please see [Required directory structure](mcp.md#
         <li>Click on the link of the new folder you just created, and click <b>Create folder</b> again.</li>
         <li>In the <b>Create folder</b> dialog, name the new folder <code>tools</code>.</li>
         <li>Click on the link of the <b>tools</b> folder.</li>
-        <li>Click <b>Upload files</b> and select any <code><var>TOOL_NAME</var>.md</code> file you want to upload.</li>
+        <li>Click <b>Upload files</b> and select any of the customized <code><var>TOOL_NAME</var>.md</code> file you want to upload.</li>
      </ol>
      </p>
      <p>Step 2: Set the environment variable and restart the Cloud Run service:
@@ -461,7 +460,7 @@ Before running this procedure, please see [Required directory structure](mcp.md#
   <p>
   Step 1: Upload your files to Google Cloud Storage:
    <ol>
-         <li>Navigate to a local directory where your Markdown files are stored, e.g. <code>website/instructions/tools/</code>.</li>
+         <li>Navigate to a local directory where your customized Markdown files are stored, e.g. <code>website/instructions/tools/</code>.</li>
          <li>Run the following command:
              <pre>gcloud storage cp *.md gs://<var>BUCKET_NAME</var>/<var>INSTRUCTIONS_FOLDER</var>/tools/</pre>
           The instructions folder can be any name you want.
