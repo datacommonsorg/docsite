@@ -77,7 +77,7 @@ JSON data:
 {: #placetypes}
 ### Supported place properties
 
-The following is a selection of identifiers are supported as the `property` value for place resolutions:
+The following is a selection of identifiers supported as the `property` parameter for place resolutions:
 
 | Property name | Description | Examples |
 |---------------|-------------|---------|
@@ -90,11 +90,8 @@ The following is a selection of identifiers are supported as the `property` valu
 
 Several region-specific codes are also supported:
 
-* `istatId` (India)
-* `austrianMunicipalityKey` (Austria)
 * `lgdCode` (India)
 * `udiseCode` (India)
-* `fips52AlphaCode` (United States)
 
 ## Response
 
