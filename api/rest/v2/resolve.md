@@ -77,7 +77,7 @@ JSON data:
 {: #placetypes}
 ### Supported place properties
 
-The following is a selection of identifiers supported as the `property` parameter for place resolutions:
+The following is a selection of property labels that are supported as the `property` parameter for place resolutions:
 
 | Property name | Description | Examples |
 |---------------|-------------|---------|
