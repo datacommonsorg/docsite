@@ -23,7 +23,7 @@ The MCP server runs by default, in HTTP streaming mode, when you start up the se
 There are a few additional environment variables you can configure, all of which are optional:
 -  `ENABLE_MCP`: By default this is set to true. If you want to disable the MCP server from running, set it to false.
 -  `DC_SEARCH_SCOPE`: This controls the datasets (base and/or custom) that are searched in response to AI queries. By default it is set to search both base and custom data (`base_and_custom`). If you would like to search only your custom data, set it to `custom_only`.
-- `DC_INSTRUCTIONS_DIR`: This allows you to provide overrides or additional instructions for the server tools and agents making tool calls. For details, see below.
+- `DC_INSTRUCTIONS_DIR`: This allows you to provide customized instructions for the server tools and agents making tool calls. For details, see [below](#instructions).
 
 To set the options on a locally running server, specify them in your `env.list` file, and restart the services, for example:
 
@@ -57,10 +57,11 @@ To set the options on a server in Cloud Run, see [Start/restart the services con
 
 The MCP server tools are prompted by instructions Markdown files located at [agent-toolkit/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}. These instructions are also used by agents when they make tool calls to the server.
 
-You can customize the instructions by providing custom Markdown files for the tools whose instructions you want to replace. For example, for the `search_indicators` tool, you may wish to replace this default instruction with a specific place instead of "World":
+You can customize the instructions by providing your own versions of the Markdown files for the tools whose instructions you want to replace. For example, the `search_indicators` tool instruction has this prompt:
 ```
 Action: If a user asks a general question about available data, proactively call the tool for "World" to provide an initial overview.
 ```
+If your dataset doesn't involve global data, you could rewrite it to instruct the tool to use a specific location instead of "World". 
 
 {: #structure}
 ### Required directory structure
