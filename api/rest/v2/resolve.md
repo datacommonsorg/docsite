@@ -18,7 +18,7 @@ in other API calls or programs. An important step for a Data Commons developer i
 identify the DCIDs of entities they care about. This API searches for an entry in the
 Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
 
-You can resolve place entities by name/description, Wikidata ID, geo coordinatesand several other geo properties. You can resolve statistical variables and topics by a substring of the name/description. 
+You can resolve place entities by name/description, Wikidata ID, geo coordinates, and several other place codes. You can resolve statistical variables and topics by a substring of the name/description. 
 
 To fetch more data for the returned candidates, including linked nodes, you can then call Node API.
 
