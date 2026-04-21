@@ -3,6 +3,7 @@ layout: default
 title: Configure the MCP server
 nav_order: 6
 parent: Build your own Data Commons
+redirect_from: /run_mcp_tools
 ---
 
 {:.no_toc}

@@ -3,6 +3,7 @@ layout: default
 title: Build and run images
 nav_order: 8
 parent: Build your own Data Commons
+redirect_from: /build_image
 ---
 
 {:.no_toc}
