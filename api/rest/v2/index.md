@@ -208,7 +208,7 @@ Here are the contexts where this filter is currently supported:
 | API | Context  | Use |
 |-----|--------------------------------------|-------------|
 | Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
-| Resolve entity | Incoming properties `<-description` <br />`<-wikiId` <br /> `<-geoCoordinate` | Return entities of the specified type, that match a selected name, wiki ID, or geocoordinate. |
+| Resolve entity | Incoming properties `<-description` or `<-geoCoordinate` | Return entities of the specified type, that match a selected name or geocoordinate. |
 
 See the endpoint pages for examples.
 
