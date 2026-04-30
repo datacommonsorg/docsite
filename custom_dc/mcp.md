@@ -162,7 +162,7 @@ To connect to a server running in Google Cloud, see [Connect an AI agent to the 
       ...
     }
     </pre>
-    The actual server name can be anything you want; for example, `datacommons-mcp-local`.
+    The server name can be anything you want; for example, `datacommons-mcp-local`.
 1. From any directory, start Gemini as described in [Run Gemini CLI](/mcp/run_tools.html#run-gemini). 
 
 ### Use the sample agent
