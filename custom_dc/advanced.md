@@ -41,8 +41,7 @@ To run a local instance of the data management container, you need to set all of
   <div class="gcp-tab-content">
     <div class="active">
     From the <code>website</code> root directory, run the following command:
-    <pre>./run_cdc_dev_docker.sh --container data [--release latest]</pre>
-    If you don't specify the <code>--release</code> option, the script uses the <code>stable</code> version by default.
+    <pre>./run_cdc_dev_docker.sh --container data</pre>
     </div>
     <div>
     <ol><li>Generate credentials for Cloud application authentication:
@@ -53,9 +52,9 @@ To run a local instance of the data management container, you need to set all of
 -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
-gcr.io/datcom-ci/datacommons-data:<var>VERSION</var></pre>
+gcr.io/datcom-ci/datacommons-data:stable></pre>
     <ul><li>The input directory is the local path. You don't specify the output directory, as you aren't mounting a local output volume.</li>
-    <li>The version is <code>latest</code> or <code>stable</code>.</li></ul></li></ol>
+   </ul></li></ol>
    </div>
   </div>
 </div>
@@ -74,7 +73,7 @@ If you have tried to start a container, and have received a `SQL check failed` e
   </ul>
   <div class="gcp-tab-content">
     <div class="active">
-    <pre>./run_cdc_dev_docker.sh --container data --schema_update [--release latest]</pre>
+    <pre>./run_cdc_dev_docker.sh --container data --schema_update</pre>
     </div>
     <div>
     <pre>docker run \
@@ -83,7 +82,7 @@ If you have tried to start a container, and have received a `SQL check failed` e
 -e GOOGLE_APPLICATION_CREDENTIALS=/gcp/creds.json \
 -v $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds.json:ro \
 -e DATA_RUN_MODE=schemaupdate
-gcr.io/datcom-ci/datacommons-data:<var>VERSION</var></pre>
+gcr.io/datcom-ci/datacommons-data:stable
     </div>
     </div>
 </div>
@@ -119,8 +118,7 @@ To run a local instance of the services container, you need to set all of the en
       <ol><li>Generate credentials for Cloud application authentication:
     <pre>gcloud auth application-default login</pre></li>
     <li>From your <code>website</code> root directory, run the services container:
-       <pre>./run_cdc_dev_docker.sh --container service [--release latest] [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
-      <p>The script uses the prebuilt stable image by default. If you want the latest image, specify the <code>--release</code> flag.</p>
+       <pre>./run_cdc_dev_docker.sh --container service [--image <var>IMAGE_CONTAINER_URL</var>]</pre>
       <p>If you're using a custom-built image, the image container URL is required, in the form <code><var>name</var>:<var>tag</var></code>.</p></li>
       </ol>
       </div>

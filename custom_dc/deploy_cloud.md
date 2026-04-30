@@ -111,7 +111,6 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 | `mysql_instance_name` | <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> | Cloud SQL instance name. You can override the `datacommons-mysql-instance` portion of the name. |
 | `mysql_database_name` | `datacommons` | The MySQL database managed by Cloud SQL. |
 | `mysql_user` | `datacommons` | The default user of the MySQL database. |
-| `dc_data_job_image` | `gcr.io/datcom-ci/datacommons-data:stable` | Specifies the image for the Docker data management container. You may wish to set it to `gcr.io/datcom-ci/datacommons-data:latest`. |
 | `dc_web_service_image` | `gcr.io/datcom-ci/datacommons-services:stable` | Specifies the image for the Docker services container. You will want to change this to a custom image once you have created it in [Upload a custom Docker image](#upload). |
 | `make_dc_web_service_public` | `true` | If you intend to restrict access to your instance, set this to `false`. |
 | `disable_google_maps` | `false` | If you want to disable showing Google Maps in the website, set this to `true`. |
@@ -286,7 +285,6 @@ You need to restart the service every time you do any of the following:
 * (Re)run the [data management job](#run-job) to process new data: see [Restart the services container](#start-service)
 * Add or change service environment variables: see [Restart the services container](#start-service)
 * Pick up a newly released prebuilt image: see [Restart the services container](#start-service)
-* Switch a prebuilt image to `latest` (or back to `stable`): see [Restart the container with a new image](#image)
 * (Re)build a [custom image](image.md#build-repo): see [Restart the container with a new image](#image)
 
 ### Start/restart the services container {#start-service}
@@ -353,7 +351,7 @@ If you want to switch the prebuilt image or use a custom image, use the followin
                 <li>Click <b>Change project</b>.</li>
                 <li>In the search bar, enter <code>datcom-ci</code> and click on the link that appears.</li>
                 <li>Expand <b>gcr.io/datcom-ci</b> and <b>datacommons-services</b>.</li>
-                <li>Select the most recent image with the label <b>stable</b> or <b>latest</b>.</li>
+                <li>Select the most recent image with the label <b>stable</b>.</li>
               </ol>
             </li>
           </ul>
@@ -424,7 +422,7 @@ When the push completes, verify that the container has been uploaded in the Clou
 
 As described in [Provide custom instructions for the server](mcp.md#instructions), you can upload custom instructions files to Google Cloud Storage, that will be loaded by the MCP server when it is restarted. 
 
-Before running this procedure, please see [Required directory structure](mcp.md#structure), download the default Markdown instruction file(s) you want to customize from <https://https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools>, and make your edits to the files locally.
+Before running this procedure, please see [Required directory structure](mcp.md#structure), download the default Markdown instruction file(s) you want to customize from <https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools>, and make your edits to the files locally.
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">

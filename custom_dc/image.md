@@ -19,19 +19,19 @@ While you are just testing out data changes, you don't need to build the website
 
 Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container (and use as the [container in a Google Cloud Run service](deploy_cloud.md#start-service)):
 
-- `gcr.io/datcom-ci/datacommons-data:stable` and `gcr.io/datcom-ci/datacommons-services:stable`. These are tested, stable versions but may be several weeks old. 
-- `gcr.io/datcom-ci/datacommons-data:latest` and `gcr.io/datcom-ci/datacommons-services:latest`. These are the latest versions built from head.
+- `gcr.io/datcom-ci/datacommons-data:stable`: the data import container
+- `gcr.io/datcom-ci/datacommons-services:stable`: the web services container 
 
 You can see the images with their tags at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-data> and <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-services>.
 
-To pick up the most recent stable or latest prebuilt image(s) locally, do the following:
+To pick up the most recent stable prebuilt image(s) locally, do the following:
 
 1. From your repo root directory (e.g. `website`), run the following command:
-   <pre>  
-   docker pull gcr.io/datcom-ci/datacommons-services:<var>RELEASE</var>
-   docker pull gcr.io/datcom-ci/datacommons-data:<var>RELEASE</var>
-   </pre>
-2. Rerun the containers, specifying the release you want:
+   ```
+   docker pull gcr.io/datcom-ci/datacommons-services:stable
+   docker pull gcr.io/datcom-ci/datacommons-data:stable
+   ```
+2. Rerun the containers:
 
 <div class="gcp-tab-group">
   <ul class="gcp-tab-headers">
@@ -40,7 +40,7 @@ To pick up the most recent stable or latest prebuilt image(s) locally, do the fo
   </ul>
   <div class="gcp-tab-content">
       <div class="active">
-       <pre>./run_cdc_dev_docker.sh --release stable|latest</pre>
+       <pre>./run_cdc_dev_docker.sh</pre>
       </div>
     <div>
     <pre>
@@ -48,7 +48,7 @@ To pick up the most recent stable or latest prebuilt image(s) locally, do the fo
     --env-file $PWD/custom_dc/env.list \
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-    gcr.io/datcom-ci/datacommons-data:stable|latest
+    gcr.io/datcom-ci/datacommons-data:stable
     </pre>
     <pre>
     docker run -it \
@@ -57,7 +57,7 @@ To pick up the most recent stable or latest prebuilt image(s) locally, do the fo
     --env-file $PWD/custom_dc/env.list \
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
-    gcr.io/datcom-ci/datacommons-services:stable|latest
+    gcr.io/datcom-ci/datacommons-services:stable
     </pre>   
    </div>
   </div>
@@ -151,7 +151,7 @@ Run the following command to build the repo (and run it locally):
       docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
       -f build/cdc_services/Dockerfile .
       </pre>
-      Restart the services container wth the custom image:
+      Restart the services container with the custom image:
       <pre>docker run -it \
       --env-file $PWD/custom_dc/env.list \
       -p 8080:8080 \
