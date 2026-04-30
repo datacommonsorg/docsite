@@ -436,7 +436,7 @@ Before running this procedure, please see [Required directory structure](mcp.md#
       <ol>
         <li>Go to <a href="https://console.cloud.google.com/storage/browse" target="_blank">https://console.cloud.google.com/storage/browse</a> for your service and select the [Data Commons bucket](#data) that was created by the Terraform script.</li>
         <li>Click <b>Create folder</b>.</li>
-        <li>In the <b>Create folder</b> dialog, provide a name for the folder. It can be anything you want.</li>
+        <li>In the <b>Create folder</b> dialog, provide a name for the folder. It can be anything you want; for example, `mcp_instructions`.</li>
         <li>Click on the link of the new folder you just created, and click <b>Create folder</b> again.</li>
         <li>In the <b>Create folder</b> dialog, name the new folder <code>tools</code>.</li>
         <li>Click on the link of the <b>tools</b> folder.</li>

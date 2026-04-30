@@ -86,9 +86,10 @@ You can provide a Markdown file for each tool you want to customize. Any file yo
   ```
   cd projectdir
   mkdir instructions
-  mkdir instructions/tools
   ```
-1. Go to <https://github.com/agent-toolkit>{: target="_blank"} and from [/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}, copy the tool file(s) you would like to customize into the `tools` directory you created in the previous step. 
+1. Go to <https://github.com/datacommonsorg/agent-toolkit>{: target="_blank"} and from [/packages/datacommons-mcp/datacommons_mcp/instructions/tools/](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/tools){: target="_blank"}, copy the tool file(s) you want to customize. 
+ > Tip: You can download the full directory structure easily by going to <https://download-directory.github.io/>{: target="_blank"}
+and entering the folder URL, `https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions`. This will download a .zip file containing all the files. Extract them imto your instructions directory. 
 1. Edit the file(s) as necessary.
 1. In your `env.list` file, set the `DC_INSTRUCTIONS_DIR` variable to your top-level instructions directory, using an absolute path. For example for a directory called `instructions` in your home directory, it could look like this:
 ```
@@ -154,13 +155,14 @@ To connect to a server running in Google Cloud, see [Connect an AI agent to the 
     {
       ...
       "mcpServers": {
-          "datacommons-mcp": {         
+          "<var>SERVER_NAME</var>": {         
              "httpUrl": "http://localhost:8080/mcp"
           }
       }
       ...
     }
     </pre>
+    The actual server name can be anything you want; for example, `datacommons-mcp-local`.
 1. From any directory, start Gemini as described in [Run Gemini CLI](/mcp/run_tools.html#run-gemini). 
 
 ### Use the sample agent
