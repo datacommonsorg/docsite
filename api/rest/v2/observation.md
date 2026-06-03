@@ -253,8 +253,8 @@ With`select=variable` and `select=entity` only, the response looks like the foll
 |-------------|--------|-------------------------------------|
 | orderedFacets | list of objects | Metadata about the observations returned, keyed first by variable, and then by entity, such as the date range, the number of observations included in the facet etc. |
 | orderedFacets.facetId | string | The ID of the specific facet. |
-| orderedFacets.earliestDate | date | The earliest date of observations available in this facet. |
-| orderedFacets.latestDate | date | The latest date of observations available in this facet. | 
+| orderedFacets.earliestDate | string | The earliest date of observations available in this facet. |
+| orderedFacets.latestDate | string | The latest date of observations available in this facet. | 
 | orderedFacets.obsCount | integer | The total number of observations available in this facet. |
 | observations | list of objects | Date and value pairs for the observations made in the time period |
 | facets | object | Various properties of reported facets, where available. |
