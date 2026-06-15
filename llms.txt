@@ -1,0 +1,59 @@
+# Data Commons Documentation
+
+> Comprehensive user and developer documentation for datacommons.org and Custom Data Commons, covering concepts, tools, and APIs for querying Data Commons and setting up custom deployments.
+
+Links below point to GitHub raw Markdown on the master branch for the freshest agent-readable content.
+
+- Use **Query data with agents** for MCP setup, hosted MCP usage, Gemini CLI integration, or self-hosted MCP.
+- Use **Query data programmatically** for REST and Python APIs.
+- Use **Build a Custom Data Commons** for local and cloud deployment, configuration, data imports, and UI customization of Custom Data Commons instances.
+- Use **Background and data coverage** for concepts, glossary, datasets, and background material.
+
+## Query data with agents
+
+- [MCP - Query data interactively with an AI agent](https://raw.githubusercontent.com/datacommonsorg/docsite/master/mcp/index.md): Overview of Data Commons MCP and supported tools.
+- [Use MCP tools](https://raw.githubusercontent.com/datacommonsorg/docsite/master/mcp/run_tools.md): Instructions for using Gemini CLI or another MCP-capable agent to query the hosted Data Commons MCP server.
+- [Run an MCP server](https://raw.githubusercontent.com/datacommonsorg/docsite/master/mcp/host_server.md): Instructions for self-hosting an MCP server and connecting a client.
+
+## Query data programmatically
+
+- [API - Query data programmatically](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/index.md): Overview of programmatic integration options and API key requirements.
+- [REST (V2)](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/rest/v2/index.md): Overview of common REST API features, such query syntax, filtering, and authentication.
+- [Get statistical observations - REST](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/rest/v2/observation.md): REST API reference and examples for querying timeseries or observations data.
+- [Resolve entities - REST](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/rest/v2/resolve.md): REST API reference and examples for resolving entities to DCIDs (Data Commons identifiers).
+- [Get node properties - REST](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/rest/v2/node.md): REST API reference and examples for exploring properties and relationships of nodes in the knowledge graph.
+- [Troubleshooting](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/rest/v2/troubleshooting.md): Guidance for troubleshooting API errors.
+- [Migrate from V1 to V2 - REST](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/rest/v2/migration.md): Guidance for migrating from REST API V1 to V2.
+- [Python (V2)](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/index.md): Overview of the Python client library, including client creation, authentication, and endpoints.
+- [Tutorials - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/tutorials.md): Colab notebooks for the Python client library illustrating common scenarios.
+- [Get statistical observations - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/observation.md): Python client reference and examples for querying timeseries or observations data.
+- [Get statistical observations as Pandas DataFrames](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/pandas.md): Python client reference and examples for returning timeseries or observations data as Pandas DataFrames.
+- [Resolve entities - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/resolve.md): Python client reference and examples for resolving entities to DCIDs.
+- [Get node properties - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/node.md): Python client reference and examples for exploring properties and relationships of nodes in the knowledge graph.
+- [Migrate from V1 to V2 - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/migration.md): Guidance for migrating from Python client library V1 to V2.
+
+## Build A Custom Data Commons
+
+- [Build your own Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/index.md): Overview of the offering and requirements, intended to help determine if Custom Data Commons is the right solution for prospective customers.
+- [Quickstart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/quickstart.md): Instructions on how to run a local Custom Data Commons demo.
+- [Prepare and load your own data](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/custom_data.md): Instructions for converting source data into the Data Commons schema and loading it into a local custom instance.
+- [Define custom entities](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/custom_entities.md): Instructions for defining non-place entities from source data in a custom instance.
+- [Configure MCP](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/mcp.md): Instructions for configuring and connecting to the MCP server bundled with Custom Data Commons.
+- [Data config file reference](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/config.md): Reference to config.json, the Custom Data Commons data configuration file.
+- [Customize the site](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/custom_ui.md): Instructions on how to customize the website user interface of a custom instance.
+- [Build and run a custom image](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/build_image.md): Instructions on how to build the Custom Data Commons website image.
+- [Deploy to Google Cloud](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/deploy_cloud.md): Instructions on how to set up a Custom Data Commons instance in the Google Cloud Platform.
+- [Launch your Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/launch_cloud.md): Instructions for productionization and post-launch tasks for Custom Data Commons in Google Cloud Platform.
+- [Advanced (hybrid) setups](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/advanced.md): Instructions for setting up a local data job + cloud service or local service + cloud data job.
+- [Troubleshooting](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/troubleshooting.md): Guidance on troubleshooting errors and issues encountered when running a Custom Data Commons instance.
+- [Frequently asked questions](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/faq.md): Frequently asked questions about Custom Data Commons.
+
+## Background, concepts, data model
+
+- [Get started](https://raw.githubusercontent.com/datacommonsorg/docsite/index.md): Summary of different ways to interact with datacommons.org interactively and programmatically.
+- [What is Data Commons?](https://raw.githubusercontent.com/datacommonsorg/docsite/master/what_is.md): Conceptual introduction to Data Commons.
+- [Key concepts and tasks](https://raw.githubusercontent.com/datacommonsorg/docsite/data_model.md): Information on the knowledge graph and schema.
+- [Glossary](https://raw.githubusercontent.com/datacommonsorg/docsite/master/glossary.md): Data Commons terminology reference.
+- [Data coverage](https://raw.githubusercontent.com/datacommonsorg/docsite/master/datasets/index.md): Overview of datasets in Data Commons and per-country coverage.
+- [Place types](https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md): Reference for place types in Data Commons.
+- [Get support](https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md): Support channels and feedback paths.
