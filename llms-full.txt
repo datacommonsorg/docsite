@@ -22,25 +22,26 @@
 {'title': 'Configure MCP', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/mcp.md', 'desc': 'Instructions for configuring and connecting to the MCP server bundled with Custom Data Commons.'}
 {'title': 'Data config file reference', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/config.md', 'desc': 'Reference to config.json, the Custom Data Commons data configuration file.'}
 {'title': 'Customize the site', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/custom_ui.md', 'desc': 'Instructions on how to customize the website user interface of a custom instance.'}
-{'title': 'Build and run a custom image', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/build_image.md', 'desc': 'Instructions on how to build the Custom Data Commons website image.'}
+{'title': 'Build and run a custom image', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/image.md', 'desc': 'Instructions on how to build the Custom Data Commons website image.'}
 {'title': 'Deploy to Google Cloud', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/deploy_cloud.md', 'desc': 'Instructions on how to set up a Custom Data Commons instance in the Google Cloud Platform.'}
 {'title': 'Launch your Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/launch_cloud.md', 'desc': 'Instructions for productionization and post-launch tasks for Custom Data Commons in Google Cloud Platform.'}
 {'title': 'Advanced (hybrid) setups', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/advanced.md', 'desc': 'Instructions for setting up a local data job + cloud service or local service + cloud data job.'}
 {'title': 'Troubleshooting', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/troubleshooting.md', 'desc': 'Guidance on troubleshooting errors and issues encountered when running a Custom Data Commons instance.'}
 {'title': 'Frequently asked questions', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/faq.md', 'desc': 'Frequently asked questions about Custom Data Commons.'}
-{'title': 'Get started', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/index.md', 'desc': 'Summary of different ways to interact with datacommons.org interactively and programmatically.'}
+{'title': 'Get started', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/index.md', 'desc': 'Summary of different ways to interact with datacommons.org interactively and programmatically.'}
 {'title': 'What is Data Commons?', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/what_is.md', 'desc': 'Conceptual introduction to Data Commons.'}
-{'title': 'Key concepts and tasks', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/data_model.md', 'desc': 'Information on the knowledge graph and schema.'}
+{'title': 'Key concepts and tasks', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/data_model.md', 'desc': 'Information on the knowledge graph and schema.'}
 {'title': 'Glossary', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/glossary.md', 'desc': 'Data Commons terminology reference.'}
 {'title': 'Data coverage', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/datasets/index.md', 'desc': 'Overview of datasets in Data Commons and per-country coverage.'}
 {'title': 'Place types', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md', 'desc': 'Reference for place types in Data Commons.'}
 {'title': 'Get support', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md', 'desc': 'Support channels and feedback paths.'}
+{'title': 'Contribute to Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md', 'desc': {}}
 <project title="Data Commons Documentation" summary="Comprehensive user and developer documentation for datacommons.org and Custom Data Commons, covering concepts, tools, and APIs for querying Data Commons and setting up custom deployments.">Links below point to GitHub raw Markdown on the master branch for the freshest agent-readable content.
 
 - Use **Query data with agents** for MCP setup, hosted MCP usage, Gemini CLI integration, or self-hosted MCP.
 - Use **Query data programmatically** for REST and Python APIs.
 - Use **Build a Custom Data Commons** for local and cloud deployment, configuration, data imports, and UI customization of Custom Data Commons instances.
-- Use **Background and data coverage** for concepts, glossary, datasets, and background material.<query data with agents><doc title="MCP - Query data interactively with an AI agent" desc="Overview of Data Commons MCP and supported tools.">---
+- Use **Background, concepts, data model** for concepts, glossary, datasets, and background material.<query data with agents><doc title="MCP - Query data interactively with an AI agent" desc="Overview of Data Commons MCP and supported tools.">---
 layout: default
 title: MCP - Query data interactively with an AI agent
 nav_order: 20
@@ -12815,7 +12816,187 @@ To modify elements of the home page:
       <script src={{url_for('static', filename='my_homepage.js', t=config['VERSION'])}} async></script>
       ...
    </head>
-   {% endraw %}```</doc><doc title="Build and run a custom image" desc="Instructions on how to build the Custom Data Commons website image.">404: Not Found</doc><doc title="Deploy to Google Cloud" desc="Instructions on how to set up a Custom Data Commons instance in the Google Cloud Platform.">---
+   {% endraw %}```</doc><doc title="Build and run a custom image" desc="Instructions on how to build the Custom Data Commons website image.">---
+layout: default
+title: Build and run images
+nav_order: 8
+parent: Build your own Data Commons
+redirect_from: /build_image
+---
+
+{:.no_toc}
+# Build and run images
+
+* TOC
+{:toc}
+
+{: #prebuilt}
+## Use a prebuilt image
+
+While you are just testing out data changes, you don't need to build the website, but can just use a prebuilt Data Commons image.
+
+Data Commons provides two prebuilt images in the Google Artifact Registry that you can download to run in a Docker container (and use as the [container in a Google Cloud Run service](deploy_cloud.md#start-service)):
+
+- `gcr.io/datcom-ci/datacommons-data:stable`: the data import container
+- `gcr.io/datcom-ci/datacommons-services:stable`: the web services container 
+
+You can see the images with their tags at <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-data> and <https://console.cloud.google.com/artifacts/docker/datcom-ci/us/gcr.io/datacommons-services>.
+
+To pick up the most recent stable prebuilt image(s) locally, do the following:
+
+1. From your repo root directory (e.g. `website`), run the following command:
+   ```
+   docker pull gcr.io/datcom-ci/datacommons-services:stable
+   docker pull gcr.io/datcom-ci/datacommons-data:stable
+   ```
+2. Rerun the containers:
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="gcp-tab-content">
+      <div class="active">
+       <pre>./run_cdc_dev_docker.sh</pre>
+      </div>
+    <div>
+    <pre>
+    docker run \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-data:stable
+    </pre>
+    <pre>
+    docker run -it \
+    -p 8080:8080 \
+    -e DEBUG=true \
+    --env-file $PWD/custom_dc/env.list \
+    -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+    -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+    gcr.io/datcom-ci/datacommons-services:stable
+    </pre>   
+   </div>
+  </div>
+</div>
+
+To pick up the latest versions of either prebuilt image in Google Cloud Platform, see [Manage your service](deploy_cloud.md#start-service).
+
+## Build a local image {#build-repo}
+
+You will need to build a local image whenever you make changes to the website UI.
+
+Building from the master branch includes the very latest changes in Github, that may not have been tested. Instead, we recommend that you use the tested "stable" branch equivalent of the stable Docker image. This branch is `customdc_stable`, and is available at [https://github.com/datacommonsorg/website/tree/customdc_stable](https://github.com/datacommonsorg/website/tree/customdc_stable){: target="_blank"}.
+
+> **Note:** If you are working on a large-scale customization, we recommend that you use a version control system to manage your code. We provide some procedures for Github.
+
+### Clone the stable branch only
+
+Use this procedure if you are not using Github, or if you are using Github and want to create a new source directory and start from scratch.
+
+1. Run the following command:
+   <pre>
+   git clone https://github.com/datacommonsorg/website --branch customdc_stable --single-branch  [<var>DIRECTORY</var>]
+   </pre>
+   This creates a new local branch called `customdc_stable` set to track the Data Commons repo branch. 
+1. To verify, run:
+   <pre>
+   cd website | cd <var>DIRECTORY</var>
+   git branch -vv
+   </pre>
+   You should see output like the following:
+
+   ```
+   * customdc_stable 83732891 [origin/customdc_stable] 2024-11-06 Custom DC stable release (#4710)
+   ```
+   Rather than developing on this default branch, we recommend that you create another branch.
+
+### Sync code to the stable branch
+
+The following procedure uses Github. If you are using another version control system, use the appropriate methods for updating submodules and syncing.
+
+1. Switch to the directory where you have cloned the Data Commons code:
+   <pre>
+   cd website | cd <var>DIRECTORY</var>
+   </pre>
+
+1. Update files:
+   ```
+   git pull origin customdc_stable
+   ```
+   Note that `origin` here refers to the source `datacommonsorg/website` repo. You may be using another remote name to point to that repo.
+
+   You should see output like the following:
+   ```
+   From https://github.com/datacommonsorg/website
+   * branch              customdc_stable -> FETCH_HEAD
+   Already up to date.
+   ```
+
+1. Create and update the necessary submodules:
+   ```
+   git submodule update --init --recursive
+   ```
+   You should see output like the following:
+   ```
+   Submodule 'import' (https://github.com/datacommonsorg/import.git) registered for path 'import'
+   Submodule 'mixer' (https://github.com/datacommonsorg/mixer.git) registered for path 'mixer'
+   Submodule path 'import': checked out '7d197583b6ad0dfe0568532f919482527c004a8e'
+   Submodule path 'mixer': checked out '478cd499d4841a14efaf96ccf71bd36b74604486'
+   ```
+### Build the repo and run the services locally {#build-package}
+
+Run the following command to build the repo (and run it locally):
+
+<div class="gcp-tab-group">
+  <ul class="gcp-tab-headers">
+    <li class="active">Bash script</li>
+    <li>Docker commands</li>
+  </ul>
+  <div class="gcp-tab-content">
+   <div class="active">
+   To build the image without running it:
+   <pre>./run_cdc_dev_docker.sh --actions build --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start just the service container:
+   <pre>./run_cdc_dev_docker.sh --actions build_run --container service --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   To build the image and start both containers:
+   <pre>./run_cdc_dev_docker.sh --actions build_run --image <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var></pre>
+   </div>
+    <div>
+      Build the image:
+      <pre>
+      docker build --tag <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var> \
+      -f build/cdc_services/Dockerfile .
+      </pre>
+      Restart the services container with the custom image:
+      <pre>docker run -it \
+      --env-file $PWD/custom_dc/env.list \
+      -p 8080:8080 \
+      -e DEBUG=true \
+      -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
+      -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
+      -v $PWD/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/server/templates/custom_dc/<var>PROJECT_DIRECTORY</var> \
+      -v $PWD/static/custom_dc/<var>PROJECT_DIRECTORY</var>:/workspace/static/custom_dc/<var>PROJECT_DIRECTORY</var> \
+      <var>IMAGE_NAME</var>:<var>IMAGE_TAG</var>
+      </pre>
+   </div>
+  </div>
+</div>
+
+- The project directory is the directory you have set up for your development environment, as described in [Set up your environment](custom_ui.md#setup) (or `custom` if you are using the default).
+- The image name is a meaningful name, such as `datacommons-services`.
+- The image tag is a meaningful description of the version you are building, such as `latest`.
+
+It will take several minutes to build.
+
+Once the services are up and running, visit your local instance by pointing your browser to <http://localhost:8080>. 
+
+To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
+
+If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
+
+<script src="/assets/js/customdc-doc-tabs.js"></script></doc><doc title="Deploy to Google Cloud" desc="Instructions on how to set up a Custom Data Commons instance in the Google Cloud Platform.">---
 layout: default
 title: Deploy to Google Cloud
 nav_order: 9
@@ -14195,7 +14376,72 @@ No. However, you have the ability to improve query quality by improving your [se
 ### How can I find out what terms my users are searching on?
 
 The best way to record your users' search queries is with Google Analytics. Data Commons exports many custom Google Analytics events that you can use to create dimensions to report on. In particular, for NL queries, there are three different event types, that are triggered when a user submits a query, when results are returned and so on. See [https://github.com/datacommonsorg/website/blob/f5e8e87c2291d87dfa37a3a887f01d7ff28d6467/static/js/shared/ga_events.ts](https://github.com/datacommonsorg/website/blob/f5e8e87c2291d87dfa37a3a887f01d7ff28d6467/static/js/shared/ga_events.ts){: target="_blank"} for details. For procedures on setting this up, see [Report on custom dimensions](/custom_dc/launch_cloud.html#custom-dimensions).
-</doc></build a custom data commons><background, concepts, data model><doc title="Get started" desc="Summary of different ways to interact with datacommons.org interactively and programmatically.">400: Invalid request</doc><doc title="What is Data Commons?" desc="Conceptual introduction to Data Commons.">---
+</doc></build a custom data commons><background, concepts, data model><doc title="Get started" desc="Summary of different ways to interact with datacommons.org interactively and programmatically.">---
+layout: default
+title: How to use Data Commons
+nav_order: 1
+has_children: true
+redirect_from: /how_to_use
+---
+
+# How to use Data Commons
+
+Data Commons offers many different ways to consume its data: 
+
+- [Interact with the website](#interact), datacommons.org
+- [Learn about the data sources](#learn)
+- [Query the base data directly](#query), interactively and programmatically
+- [Embed data visualizations](#embed) in your own site
+- [Download data in CSV format](#download), for offline analysis
+
+There are also several options for providing new data to Data Commons:
+- [Contribute data to the base Data Commons](#contribute-data)
+- [Host your own data site](#custom) using Data Commons' web framework 
+
+## Interact with the datacommons.org website {#interact}
+
+For quick analysis, use the search query bar on the [home page](https://datacommons.org/){: target="_blank"} or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/timeline){: target="_blank"}, [Scatter](https://datacommons.org/tools/scatter){: target="_blank"}, and [Map](https://datacommons.org/tools/map){: target="_blank"} explorers.
+
+## Learn about the data in Data Commons {#learn}
+
+To find out what data is available in Data Commons, see the [Data sources](/datasets) pages, and check out the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}.
+
+## Query the Data Commons data directly {#query}
+
+There are several options for directly querying the data, without accessing the datacommons.org website, both interactive and programmatic:
+
+- **APIs**: Data Commons publishes REST, Python, and Pandas [APIs](/api/index.html). These APIs support both low-level exploration of the knowledge graph as well as higher-level statistical analysis of data. You can call them from any application that supports REST protocols. 
+
+    The [Python](/api/python/v2) APIs provide convenient wrappers, that you can call programatically or interactively, for example, from a Python virtual environment shell or from [Google Colab](https://colab.sandbox.google.com/){: target="_blank"}. We have developed a set of [Google Colab tutorials](/tutorials/index.html) to help you get started with analysis.  
+
+    Data Commons also provides ideal training data for developing machine learning models and other data science applications. We have developed a [Data science curriculum](/courseware/intro_data_science.html) featuring the Python APIs and data, currently in use at MIT.
+
+- **LLMs**: Data Commons provides a [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) server. This allows you to use any MCP-enabled agent, powered by a Large Language Model (LLM) such as Google Gemini, to [interactively query](/mcp/index.html) Data Commons data.
+
+- **Google Sheets Add-on**: You can load Data Commons data into Google Sheets for analysis and charting, using a familiar spreadsheet interface. Install and run the Data Commons Google [Sheets add-on](/api/sheets/index.html).
+
+## Embed Data Commons visualizations in your website {#embed}
+
+Data Commons provides a [Web components API](/api/web_components/index.html) that makes it a snap to embed various chart elements in your own site, such as scatter plots, maps, pie charts, and many more, using the base Data Commons data.
+
+## Download data for offline analysis {#download}
+
+Data Commons provides tools for downloading its data in CSV format. To preview and download for selected places and statistical variables:
+
+- Use the standalone [Data Download Tool](https://datacommons.org/tools/download){: target="_blank"}
+- Click the **Download** link in any of the results pages of the visualization tools.	
+
+## Contribute data to datacommons.org {#contribute-data}
+
+We are always looking to expand the data available from the base Data Commons site, datacommons.org. If you are interested in contributing data, please file a ticket in our [IssueTracker](https://issuetracker.google.com/issues/new?component=1660823&template=2053232&pli=1){: target="_blank"}.
+
+## Develop and host a Data Commons site with your own data {#custom}
+
+If you would like to leverage Data Commons' analytical and visualization tools, and natural-language query interface for your own data and website, we provide a reference website implementation you can customize to meet your needs. See [Build your own Data Commons](/custom_dc/index.html) for details.
+
+## Contribute to the open-source initiative {#contribute-project}
+
+We also welcome code, documentation, and educational contributions to the Data Commons open-source project. See [Contribute to Data Commons](/contributing/index.html) for the myriad ways you can help improve Data Commons!</doc><doc title="What is Data Commons?" desc="Conceptual introduction to Data Commons.">---
 layout: default
 title: What is Data Commons?
 nav_order: 2
@@ -14254,7 +14500,186 @@ Here are just some of the unique features of Data Commons:
 
 ## Learn more
 
-For more background on why and how Data Commons was built, see the [Data Commons Overview](https://arxiv.org/abs/2309.13054){: target="_blank"} paper.</doc><doc title="Key concepts and tasks" desc="Information on the knowledge graph and schema.">400: Invalid request</doc><doc title="Glossary" desc="Data Commons terminology reference.">---
+For more background on why and how Data Commons was built, see the [Data Commons Overview](https://arxiv.org/abs/2309.13054){: target="_blank"} paper.</doc><doc title="Key concepts and tasks" desc="Information on the knowledge graph and schema.">---
+layout: default
+title: Key concepts and common tasks
+nav_order: 3
+parent: How to use Data Commons
+redirect_from: 
+  - /bigquery/data_in_bq
+  - /bigquery/unique_identifiers
+---
+
+{: .no_toc}
+# Key concepts and common tasks
+
+Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
+- If you are only using Data Commons interactive tools, Google Sheets or CSV download, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
+- If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
+
+{:toc}
+* TOC
+
+## Schema 
+
+To allow data from hundreds of organizations around the world, in a myriad of models and formats to be interoperable and queryable in a unified way, Data Commons needs to have a common way of understanding and representing this data. To do so, it applies a schema, or vocabulary to all its data, that is largely derived from earlier schemes developed for semantic understanding of web pages – most notably, the data models and schemas of [Schema.org](http://Schema.org) (which were in turn based on earlier schemes such as Microformats and Resource Description Framework (RDF)). 
+
+The Data Commons schema is in fact a superset of [Schema.org schemas](https://schema.org/docs/schemas.html){: target="_blank"}, with a particular emphasis on time series and statistical data. Every data set must have an associated schema, written in [Meta Content Format](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} (MCF) language, that maps the provider's data to existing concepts in the Data Commons knowledge graph.
+
+## Knowledge Graph
+
+Data Commons models the world as a directed labeled graph, consisting of a set of _nodes_ and edges with labels, known as _properties_. This general framework allows Data Commons to represent information about a wide range of domains: from time series about demographics and employment, to hurricanes, to protein structures. 
+
+As a simple example, here are a set of nodes and edges that represent the following statements:
+
+-  California is a state
+-  Santa Clara county and Berkeley are contained in the state of California
+-  The latitude of Berkeley, CA is 37.8703
+
+![knowledge graph](/assets/images/dc/concept1.png){: width="600"}
+
+Each node consists of some kind of entity or value, and each edge describes some kind of property. More specifically, each node consists of the following objects:
+
+-  One or more [types](#type): an [entity](#entity), [event](#event), [statistical variable](#statistical-variable), or [statistical observation](#observation)
+-  A [unique identifier](#unique-identifier-dcid), known as a DCID
+-  Various [properties](#property)
+-  A [provenance](#provenance-source-dataset)
+
+As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a subject node, predicate (or "edge") and object node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know.
+
+You can get information about a node and its edges by looking at the [Knowledge Graph browser](https://datacommons.org/browser){: target="_blank"}. If you know the [DCID](#unique-identifier-dcid) for a node, you can access it directly by typing <code>https://datacommons.org/browser/<var>DCID</var></code>. For example, here is the entry for the `City` node, available at [https://datacommons.org/browser/City](https://datacommons.org/browser/City){: target="_blank"}:
+
+![KG browser](/assets/images/dc/concept2.png){: width="900"}
+
+Every node entry shows a list of outgoing edges, or _properties,_ and incoming edges. [Properties](#property) are discussed in more detail below.
+
+## Type
+
+Every node has at least one type, where each type may be a sub-class of multiple types. For entities and events, their type is typically another entity. For example, `Berkeley` is a type of `City`. At the root, all types are instances of the Class type. For statistical variables and observations, their type is always `StatisticalVariable` and `StatVarObservation`, respectively.
+
+## Entity
+
+An _entity_ represents a persistent, physical thing in the real world. While Data Commons has information about a wide variety of types of entities (cities, states, countries, schools, companies, facilities, etc.), most of the information today is about _places_. Data Commons contains a catalog of about 2.9 million places. In addition to basic metadata like the location, type and containment information, many places also contain information about their shape, area, etc. For a list of available place types, take a look at the [place types page](/place_types.html).
+
+## Event
+
+An _event_ is what it sounds like: an occurrence at a specific point in time, such as an extreme weather event, a criminal incident, an election, etc. 
+
+## Statistical variable
+
+In Data Commons, even statistical measurements and time series data are modeled as nodes. A _statistical variable_ represents any type of metric, statistic, or measurement that can be taken at a place and time, such as a count, an average, a percentage, etc. A statistical variable for a specific place is a _time series_, consisting of a set of observed values over a time period.
+
+Data Commons comprises hundreds of thousands of statistical variables, which you can view using the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}. 
+
+The type of a statistical variable is always the special sub-class [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}. For example, the metric [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"} is a node whose type is a statistical variable. 
+
+A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person){: target="_blank"}, or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino){: target="_blank"}. Complex variables may be broken down into constituent parts, or not.  
+
+### Task: Find places available for a statistical variable {#find-places}
+
+Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you can do the following:
+
+1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}, and search for a variable of interest.
+1. Optionally, filter by data source and data set.
+1. Scroll to the **Places** section.
+
+For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance){: target="_blank"} shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
+
+![Stat Var Explorer](/assets/images/dc/concept4.png){: width="900"}
+
+On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity){: target="_blank"}, or `Quarterly_Average_RetailPrice_Electricity`, is only available at the state level states in the US but not at the city or county level. 
+
+![Stat Var Explorer](/assets/images/dc/concept5.png){: width="900"}
+
+## Unique identifier: DCID
+
+Every node has a unique identifier, called a Data Commons ID, or DCID. In the [Knowledge Graph browser](https://datacommons.org/browser/){: target="_blank"}, you can view the DCID for any node or edge. For example, the DCID for the city of Berkeley is `geoid/0606000`:
+
+![KG browser](/assets/images/dc/concept6.png){: width="600"}
+
+DCIDs are not restricted to entities; statistical variables also have DCIDs. For example, the DCID for the Gini Index of Economic Activity is `GiniIndex_EconomicActivity`:
+
+![Stat Var Explorer](/assets/images/dc/concept7.png){: width="900"}
+
+### Task: Find a DCID for an entity or variable {#find-dcid}
+
+Many Data Commons tools and APIs require that you provide a DCID as input for a query. There are a few ways to do this.
+
+To find the DCID for a place using the datacommons.org website:
+
+1. Go to [https://docs.datacommons.org/place_types.html](https://docs.datacommons.org/place_types.html){: target="_blank"}. 
+1. Click the link on the place type of interest and click its link to open the Knowledge Graph page for the entity; for example, **City**.
+1. Scroll to the **In Arcs** section to look up the places of interest. 
+1. If necessary, continue to drill down on links until you find the place of interest. 
+
+![KG browser](/assets/images/dc/concept8.png){: width="900"}
+
+To find the DCID for a place using other methods:
+
+- Use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
+- Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
+- Use the Python v2 [`resolve.fetch_dcids_by_name`](/api/python/v2/resolve.html#fetch_dcids_by_name) API method, either interactively or programmatically.
+
+To find the DCID for a statistical variable using the datacommons.org website:
+
+1. Open the Statistical Variable Explorer.
+1. Search for the variable of interest, and optionally filter by data source and dataset.
+1. Look under the heading for the DCID.
+
+![Stat Var Explorer](/assets/images/dc/concept9.png){: width="900"}
+
+To find the DCID for a statistical variable using other methods:
+
+- Use the REST v2 [Resolve API](/api/rest/v2/resolve.html) with the `resolver=indicator` option.
+- Use the Python v2 [`resolve.fetch_indicators`](/api/python/v2/resolve.html#fetch_indicators) API method.
+
+## Property
+
+Every node also contains properties or characteristics that describe its entity, event, or statistical variable. Each property is actually an edge to another node, with a label. If the object node is a primitive type, such as a string, date, or number, it is a "leaf", or terminal node, which we call an _attribute_. Examples are properties such as `latitude`, `year`, various unique IDs and so on. 
+
+Other properties are links to other entities/events/ etc. In the Knowledge Graph, you can click through links to non-terminal nodes. 
+
+For example, in this node for the city of Addis Ababa, Ethiopia, the `typeOf` and `containedInPlace` edges link to other entities, namely `City` and `Ethiopia`, whereas all the other values are terminal.
+
+![KG browser](/assets/images/dc/concept10.png){: width="600"}
+
+Note that the DCID for a property is the same as its name.
+
+## Observation
+
+An _observation_ is a single measured value for a statistical variable, at or during a specified period of time, for a specific entity.
+
+For example, the value of the statistical variable [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"} for the city of San Antonio, Texas in 2014 could have an observation `Observation_Median_Age_Person_Female_SanAntonio_TX_2014`. The type of an observation is always the special sub-class [`StatVarObservation`](https://datacommons.org/browser/StatVarObservation){: target="_blank"}.
+
+Time series made up of many observations underlie the data available in the [Timeline Explorer](https://datacommons.org/tools/timeline){: target="_blank"} and timeline graphs. For example, here is the [median income in Berkeley, CA over a period of ten years](https://datacommons.org/tools/timeline#place=geoId%2F0606000&statsVar=Median_Income_Person){: target="_blank"}, according to the US Census Bureau:
+
+![Timeline Explorer](/assets/images/dc/concept11.png){: width="900"}
+
+## Provenance, Source, Dataset
+{: #sources}
+
+Every node and triple also have some important properties that indicate the origin of the data. 
+
+-  [`Source`](https://datacommons.org/browser/Source){: target="_blank"}: This is the organization that provides the data, and is usually specified as the name of the organization; for example, [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics){: target="_blank"}.
+-  [`Dataset`](https://datacommons.org/browser/Dataset){: target="_blank"}: This is the name of a specific dataset provided by a source. In relational database terminology, a `dataset` roughly corresponds to a "database". Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, [Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics){: target="_blank"}, and [Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries){: target="_blank"}.
+-  [`Provenance`](https://datacommons.org/browser/Provenance){: target="_blank"}: A provenance is a subset of a dataset. For small datasets, it may represent the entire dataset. For example, Sweden Census is both a [dataset](https://datacommons.org/browser/dc/d/StatisticsSweden_SwedenCensus){: target="_blank"} and a [provenance](https://datacommons.org/browser/dc/base/Sweden_Census){: target="_blank"}.
+  
+   For larger datasets, a provenance usually represents a subset of the dataset, roughly corresponding to a "table" in relational database terminology. Thus, there may be several provenances for a given dataset. For example, [Brazil VIS DATA 3](https://datacommons.org/browser/dc/d/BrazilMinistryOfDevelopmentAndSocialAssistanceFamilyAndFightAgainstHunger_BrazilVisData3){: target="_blank"} is a dataset that comprises 2 provenances: [Brazil Food Distribution](https://datacommons.org/browser/dc/base/Brazil_FoodDsitribution){: target="_blank"} and [Brazil Rural Development Program](https://datacommons.org/browser/dc/base/Brazil_RuralDevelopmentProgram){: target="_blank"}. 
+  
+    In Data Commons, a provenance is the physical unit of an import, and thus contains detailed import information. A dataset is more of an abstract concept; each provenance has a property that points to the dataset it belongs to.
+
+![Knowledge graph](/assets/images/dc/concept12.png){: width="600"}
+
+Note that a given statistical variable may have multiple provenances, since many data sets define the same variables. You can see the list of all the data sources for a given statistical variable in the Statistical Variable Explorer. For example, the explorer shows multiple sources (Censuses from India, Mexico, Vietnam, OECD, World Bank, etc.) for the variable [Life Expectancy](https://datacommons.org/tools/statvar#LifeExpectancy_Person=&sv=LifeExpectancy_Person){: target="_blank"}:
+
+![Stat Var Explorer](/assets/images/dc/concept13.png){: width="900"}
+
+You can see a list of all sources and data sets in several places:
+
+-  The [Data Sources](https://datacommons.org/data/){: target="_blank"} pages
+-  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer
+
+![Stat Var Explorer](/assets/images/dc/concept14.png){: width="600"}</doc><doc title="Glossary" desc="Data Commons terminology reference.">---
 layout: default
 title: Glossary
 nav_order: 4
@@ -14553,4 +14978,4 @@ If you are using a Custom Data Commons instance, make sure to indicate that the 
 
 ## Email support forum
 
-For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc></background, concepts, data model></project>
+For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons">404: Not Found</doc></background, concepts, data model></project>
