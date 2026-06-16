@@ -41,7 +41,7 @@ Links below point to GitHub raw Markdown on the master branch for the freshest a
 - [Configure MCP](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/mcp.md): Instructions for configuring and connecting to the MCP server bundled with Custom Data Commons.
 - [Data config file reference](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/config.md): Reference to config.json, the Custom Data Commons data configuration file.
 - [Customize the site](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/custom_ui.md): Instructions on how to customize the website user interface of a custom instance.
-- [Build and run a custom image](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/build_image.md): Instructions on how to build the Custom Data Commons website image.
+- [Build and run a custom image](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/image.md): Instructions on how to build the Custom Data Commons website image.
 - [Deploy to Google Cloud](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/deploy_cloud.md): Instructions on how to set up a Custom Data Commons instance in the Google Cloud Platform.
 - [Launch your Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/launch_cloud.md): Instructions for productionization and post-launch tasks for Custom Data Commons in Google Cloud Platform.
 - [Advanced (hybrid) setups](https://raw.githubusercontent.com/datacommonsorg/docsite/master/custom_dc/advanced.md): Instructions for setting up a local data job + cloud service or local service + cloud data job.
