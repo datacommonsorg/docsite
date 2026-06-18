@@ -36,6 +36,16 @@
 {'title': 'Place types', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md', 'desc': 'Reference for place types in Data Commons.'}
 {'title': 'Get support', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md', 'desc': 'Support channels and feedback paths.'}
 {'title': 'Contribute to Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md', 'desc': {}}
+{'title': 'Web Components', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/index.md', 'desc': 'Embed Data Commons charts in your own website.'}
+{'title': 'Map chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/map.md', 'desc': {}}
+{'title': 'Bar chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/bar.md', 'desc': {}}
+{'title': 'Gauge chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/gauge.md', 'desc': {}}
+{'title': 'Highlight chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/highlight.md', 'desc': {}}
+{'title': 'Line chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/line.md', 'desc': {}}
+{'title': 'Pie chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/pie.md', 'desc': {}}
+{'title': 'Ranking chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/ranking.md', 'desc': {}}
+{'title': 'Scatter plot chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/scatter.md', 'desc': {}}
+{'title': 'Slider chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/slider.md', 'desc': {}}
 <project title="Data Commons Documentation" summary="Comprehensive user and developer documentation for datacommons.org and Custom Data Commons, covering concepts, tools, and APIs for querying Data Commons and setting up custom deployments.">Links below point to GitHub raw Markdown on the master branch for the freshest agent-readable content.
 
 - Use **Query data with agents** for MCP setup, hosted MCP usage, Gemini CLI integration, or self-hosted MCP.
@@ -14978,4 +14988,1322 @@ If you are using a Custom Data Commons instance, make sure to indicate that the 
 
 ## Email support forum
 
-For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons">404: Not Found</doc></background, concepts, data model></project>
+For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons">404: Not Found</doc></background, concepts, data model><optional><doc title="Web Components" desc="Embed Data Commons charts in your own website.">---
+layout: default
+title: Embed data and visualizations in your own website
+nav_order: 60
+has_children: true
+published: true
+---
+# Data Commons Web Components
+
+Embed [Data Commons](https://datacommons.org){: target="_blank"}
+[statistical variable](https://datacommons.org/tools/statvar){: target="_blank"} observation
+visualizations in your web application.
+
+<img
+  src="/assets/images/web_components/all.png"
+  style="width: 100%; max-width: 1024px;"
+/>
+
+<div markdown="span" class="alert alert-info" role="alert">
+    <span class="material-icons md-16">info </span>
+    <b>Are you using the Data Commons Web Components?</b><br />
+    Sign up for our announcement mailing list to stay up to date with our latest
+    developments. Join the list by
+    <a
+      href="https://groups.google.com/g/datacommons-announce"
+      target="_blank"
+    >clicking here</a>, then clicking the “Join group” button.
+</div>
+
+## Usage
+
+Include `datacommons.js` in your html's
+`<head>...</head>` tag. Then use Data Commons
+[web component](https://developer.mozilla.org/en-US/docs/Web/API/Web_components){: target="_blank"}
+tags (e.g. `datacommons-line`) to add embedded data visualizations.
+
+For example, to embed a line chart:
+
+```html
+<html>
+  <head>
+    <script src="https://datacommons.org/datacommons.js"></script>
+  </head>
+  <body>
+    <datacommons-line
+      header="US Population Over Time"
+      place="country/USA"
+      variables="Count_Person"
+    ></datacommons-line>
+  </body>
+</html>
+```
+
+See a live version of this example you can play around with
+[here](examples/line-chart.html){: target="_blank"}.
+
+## Components
+
+- [datacommons-bar](/api/web_components/bar)
+- [datacommons-highlight](/api/web_components/highlight)
+- [datacommons-gauge](/api/web_components/gauge)
+- [datacommons-line](/api/web_components/line)
+- [datacommons-map](/api/web_components/map)
+- [datacommons-pie](/api/web_components/pie)
+- [datacommons-ranking](/api/web_components/ranking)
+- [datacommons-scatter](/api/web_components/scatter)
+- [datacommons-slider](/api/web_components/slider)
+
+## Examples
+
+- [All chart types](examples/all-charts.html){: target="_blank"}
+- [A dynamically updating map](examples/dynamic-map.html){: target="_blank"}
+- [A styled map](examples/map-styles.html){: target="_blank"}
+
+## Variables and places
+
+Data Commons web components visualize statistical variables about one or more
+places. Variables and places are identified by
+[Data Commons Identifiers](/glossary.html#dcid), or
+[DCID](/glossary.html#dcid)s.
+
+To look up a DCID for an entity or variable, see the different methods described in [this page](/data_model.html#find-dcid).
+
+To find places available for a statistical variable, see [this page](/data_model.html#find-places).
+
+## Styling
+
+Custom styles are supported through
+[CSS shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/::part){: target="_blank"}.
+
+<div markdown="span" class="alert alert-danger" role="alert">
+  <span class="material-icons exclamation-icon">priority_high</span>
+  <b>IMPORTANT:</b><br />
+  Escape forward slashes in `::part()` names, like in DCIDs.
+</div>
+
+| CSS `::part`                          | Description                                                                                                 | Components                 |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `container`                           | Chart container element                                                                                     | All                        |
+| `legend`                              | Chart legend                                                                                                | `bar`, `line`, `map`,`pie` |
+| `place-path`                          | Geo boundary                                                                                                | `map`                      |
+| `place-path-<dcid>`                   | Geo boundary for a particular place. Example: `place-path-geoId\/12` \*                                     | `map`                      |
+| `series`                              | Series data (line, bar, lollipop, etc)                                                                      | `bar`, `line`. `pie`       |
+| `series-place-<dcid>`                 | Series data for a particular place. Example: `series-place-geoId\/12` \*                                    | `bar`, `line`. `pie`       |
+| `series-place-<dcid>-variable-<dcid>` | Series data for a particular place and variable. Example: `series-place-geoId\/12-variable-Count_Person` \* | `bar`, `line`              |
+| `series-variable-<dcid>`              | Series data for a variable. Example: `series-place-variable-Count_Person`                                   | `bar`, `line`. `pie`       |
+| `header`                              | Chart title                                                                                                 | All                        |
+| `subheader`                           | Chart subtitle (if provided in `slot="subheader"`)                                                          | All                        |
+| `tools-footer`                        | Chart footer with `Download`, `API Code`, and `Explore in...` buttons | All                        |
+| `footer`                              | Custom chart footer (if provided in `slot="footer"`)                                                               | All                        |
+| `x-axis`                              | X-axis line                                                                                                 | `bar`, `line`              |
+| `x-axis-text`                         | X-axis label text                                                                                           | `bar`, `line`              |
+| `x-axis-tick`                         | X-axis tick mark                                                                                            | `bar`, `line`              |
+| `y-axis-text`                         | Y-Axis label text                                                                                           | `bar`, `line`              |
+| `y-axis-tick`                         | Y-Axis tick mark                                                                                            | `bar`, `line`              |
+
+Additionally, the following css variables are supported:
+
+| CSS variable                | Description                                                | Default            |
+| --------------------------- | ---------------------------------------------------------- | ------------------ |
+| `--dc-headings-font-family` | Font family for web component headings (`h1` through `h6`) | `Google Sans`      |
+| `--dc-font-family`          | Font family for web component body text                    | `Google Sans Text` |
+
+### Styling Example
+
+See a live example [here](examples/map-styles.html){: target="_blank"}.
+
+```html
+<html>
+  <head>
+    <style>
+      #styled-map {
+        --dc-headings-font-family: monospace;
+      }
+      #styled-map::part(container) {
+        border-radius: 10px;
+        border: 1px solid #f5f5f5;
+        box-shadow: 1px 2px 6px rgba(3, 7, 18, 0.04),
+          5px 8px 25px rgba(3, 7, 18, 0.08);
+      }
+      #styled-map::part(legend) {
+        border: 1px solid #e1e1e1;
+        padding: 5px 8px;
+        border-radius: 10px;
+      }
+      #styled-map::part(title) {
+        font-weight: 200;
+        font-size: 16px;
+        margin-bottom: 16px;
+        color: #111a1b;
+      }
+      #styled-map::part(place-path) {
+        fill: #e9e9e9;
+      }
+      #styled-map::part(place-path-geoId\/12),
+      #styled-map::part(place-path-geoId\/13),
+      #styled-map::part(place-path-geoId\/06) {
+        fill-opacity: 1;
+        fill: #e76f51;
+        stroke: #b72a53;
+        stroke-width: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <datacommons-map
+      id="styled-map"
+      header="Three most populous US states"
+      parentPlace="country/USA"
+      childPlaceType="State"
+      variable="Count_Person"
+    ></datacommons-map>
+  </body>
+</head>
+```
+
+## License
+
+[Apache 2.0](https://github.com/datacommonsorg/website/blob/master/packages/web-components/LICENSE){: target="_blank"}
+
+## Support
+
+For general questions or issues, please open an issue on our
+[issues](https://github.com/datacommonsorg/website/issues){: target="_blank"} page. For all other
+questions, please send an email to `support@datacommons.org`.</doc><doc title="Map chart">---
+layout: default
+title: Map chart
+nav_order: 5
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/map
+---
+
+# Data Commons map chart Web Component
+
+[Data Commons Web Component](/api/web_components) for visualizing a single statistical variables around one or more places on a map.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'contained-in')">
+    Places in a Parent Place
+  </button>
+</div>
+
+```html
+<datacommons-map
+  header="Chart title"
+  parentPlace="place_dcid"
+  childPlaceType="place_type_dcid"
+  variable="variable_dcid"
+></datacommons-map>
+```
+{: #contained-in .api-tabcontent}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name           | Type   | Description                                                                                                                                      |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| childPlaceType | string | Child place types to plot. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).<br /> <optional-tag>Optional</optional-tag> if `places` is specified.                              |
+| header         | string | Chart title.                                                                                                                                     |
+| parentPlace    | string | Parent place [DCID](/glossary.html#dcid) to plot. Example: `country/USA`. <br /> <optional-tag>Optional</optional-tag> if `places` is specified. |
+| variable       | string | Variable [DCID](/glossary.html#dcid) to plot.                                                                                                    |
+{: .doc-table }
+
+### Optional
+
+| Name      | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| allowZoom | boolean | Include to allow zooming and panning using the mouse and show zoom-in and zoom-out buttons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| colors    | list    | List up to three colors to define a custom color scale.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`.<br /><br /> - If one color is given: a luminance based color scale will be used<br /> - If two colors are given: a divergent color scale will be used, with the first color corresponding to the min value, and the second color corresponding to the max value.<br /> - If three colors are given: a color scale with the first three colors corresponding to [min, mean, max] values will be used. |
+| date      | string  | Specific date to show data for. ISO 8601 format (e.g. "YYYY", "YYYY-MM", "YYYY-MM-DD").<br /><br />Note: Ensure your variable has data available at the specified date using the [Stat Var Explorer](https://datacommons.org/tools/statvar){: target="_blank"}<br /><br />Default: Most recent data available.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| subscribe | string  | Listen for data changes on this event channel. Channel name should match the `publish` name on a control component. Example: [datacommons-slider](./slider.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name            | Type    | Description                                                                                                                                                      |
+| --------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| apiRoot         | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`.                       |
+| geoJsonProp     | string  | Optionally specify the property to use to get geojsons.                                                                                                          |
+| placeNameProp   | string  | Optionally specify the property to use to get the place names.                                                                                                   |
+| showExploreMore | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/map){: target="_blank"}. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Show a population map for the year 2020
+
+A map of population below poverty level in US States in the year 2020.
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-map
+  header="Population Below Poverty Level Status in Past Year in States of United States (2020)"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person_BelowPovertyLevelInThePast12Months"
+  date="2020"
+></datacommons-map>
+```
+{: .example-box-content}
+
+<datacommons-map
+  header="Population Below Poverty Level Status in Past Year in States of United States (2020)"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person_BelowPovertyLevelInThePast12Months"
+  date="2020"
+></datacommons-map></doc><doc title="Bar chart">---
+layout: default
+title: Bar chart
+nav_order: 1
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/bar
+---
+
+# Data Commons bar chart Web Component
+
+[Data Commons Web Component](/api/web_components/) for visualizing one or more statistical variables around one or more places on a bar chart.
+
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'multi-place')">
+    Specific Places
+  </button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'contained-in')">
+    Places in a Parent Place
+  </button>
+</div>
+
+```html
+<datacommons-bar
+  header="Populations of USA, India, and China"
+  places="country/USA country/IND country/CHN"
+  variables="Count_Person"
+  maxPlaces="15"
+></datacommons-bar>
+```
+{: #multi-place .api-tabcontent}
+
+```html
+<datacommons-bar
+  header="Most populous states in the US"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variables="Count_Person"
+  maxPlaces="15"
+></datacommons-bar>
+```
+{: #contained-in .api-tabcontent}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name           | Type   | Description                                                                                                                                                                                   |
+| -------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| childPlaceType | string | Child place types to plot. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).<br /><optional-tag>Optional</optional-tag> if `places` is specified.                                                                           |
+| header         | string | Chart title.                                                                                                                                                                                  |
+| parentPlace    | string | Parent place [DCID](/glossary.html#dcid) to plot. Example: `country/USA`. <br /> <optional-tag>Optional</optional-tag> if `places` is specified.                                                                     |
+| places         | list   | Places [DCID](/glossary.html#dcid)s to plot, as a space separated list of strings. Example: `"geoId/12 geoId/13"`. <br /> <optional-tag>Optional</optional-tag> if `childPlaceType` and `parentPlace` are specified. |
+| variables      | list   | Variable [DCID](/glossary.html#dcid)(s) to plot, as a space separated list of strings. Example: `"Count_Person Count_Farm"`.                                                                                         |
+{: .doc-table }
+
+### Optional
+
+| Name       | Type    | Description                                                                                                                                                                                                                                                                                                                                                             |
+| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| barHeight  | number  | Bar height (in px) for horizontal charts.                                                                                                                                                                                                                                                                                                                               |
+| colors     | list    | Specify custom color for each variable. Pass in colors in the same order as variables.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`. |
+| disableEntityLink     | boolean    | Include to disable entity (place) links in the x-axis. Default: `false` (links are enabled) |
+
+| horizontal | boolean | Include to draw bars horizontally instead of vertically.                                                                                                                                                                                                                                                                                                                |
+| lollipop   | boolean | Include to draw lollipops instead of bars.                                                                                                                                                                                                                                                                                                                              |
+| maxPlaces  | number  | Maximum _number_ of child places to plot. Default: `7`.                                                                                                                                                                                                                                                                                                                 |
+| maxVariables  | number  | Maximum _number_ of varibales to plot. Default: show all variables.                                                                                                                                                                                                                                                                                                                 |
+| sort       | string  | Bar chart sort order. <br/><br/>Options: <br /> - `ascending` (ascending by the variable's value)<br /> - `descending` (descending by variable's value)<br /> - `ascendingPopulation` (ascending by the place's population)<br /> -`descendingPopulation` (descending by the place's population)<br /><br />Default: `descendingPopulation`                   |
+| stacked    | boolean | Include to draw as stacked bar chart instead of grouped chart.                                                                                                                                                                                                                                                                                                          |
+| subscribe    | string  | Listen for data changes on this event channel. Channel name should match the `publish` name on a control component. Example: [datacommons-slider](./slider.md)                                                                                                                                                                                                          |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name                | Type   | Description                                                                                                                                                                                                                                                                                |
+| ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| apiRoot         | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`. |
+| defaultVariableName | string | To be used with `variableNameRegex`. If specified and no variable name is extracted out with the regex, use this as the variable name. e.g., if the variableNameRegex is "(.*?)(?=:)", and the defaultVariableName is "Total", for a variable named "variable 1", it will become "Total". |
+| placeNameProp   | string  | Optionally specify the property to use to get the place names.                                                                             |
+| showExploreMore | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/timeline){: target="_blank"}.                                        |
+| variableNameRegex   | string | Optionally specify regex to use to extract out variable name. e.g., if the variableNameRegex is "(.*?)(?=:)", only the part before a ":" will be used for variable names. So "variable 1: test" will become "variable 1".                                                                  |
+| yAxisMargin | number | Set size (in px) of y-axis' margin to fit the axis label text. Default: 60px. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: A bar chart of population for states in the US
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-bar
+  header="Population of US States"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variables="Count_Person"
+></datacommons-bar>
+```
+{: .example-box-content}
+
+<div>
+  <datacommons-bar
+    header="Population of US States"
+    parentPlace="country/USA"
+    childPlaceType="State"
+    variables="Count_Person"
+  ></datacommons-bar>
+</div>
+{: .web-component-container}
+
+### Example 2: A bar chart of population for specific US states
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-bar
+  header="Population of US States"
+  variables="Count_Person"
+  places="geoId/01 geoId/02"
+></datacommons-bar>
+```
+{: .example-box-content}
+
+<div>
+<datacommons-bar
+  header="Population of US States"
+  variables="Count_Person"
+  places="geoId/01 geoId/02"
+></datacommons-bar>
+</div>
+{: .web-component-container}
+
+### Example 3: A stacked bar chart of population by gender for specific US states
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-bar
+  header="Population of US States"
+  variables="Count_Person"
+  places="geoId/01 geoId/02"
+  stacked
+></datacommons-bar>
+```
+{: .example-box-content}
+
+<div>
+<datacommons-bar
+  header="Population of US States"
+  variables="Count_Person_Male Count_Person_Female"
+  places="geoId/01 geoId/02"
+  stacked
+></datacommons-bar>
+</div>
+{: .web-component-container}
+
+### Example 4: A horizontal, stacked bar chart of median income for specific US states
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-bar
+  header="Median income by gender"
+  variables="Median_Income_Person_15OrMoreYears_Male_WithIncome Median_Income_Person_15OrMoreYears_Female_WithIncome"
+  places="geoId/01 geoId/02 geoId/04 geoId/20 geoId/21 geoId/22 geoId/23 geoId/24 geoId/25"
+  stacked
+  horizontal
+  sort="descending"
+></datacommons-bar>
+```
+{: .example-box-content}
+
+<div>
+<datacommons-bar
+  header="Median income by gender"
+  variables="Median_Income_Person_15OrMoreYears_Male_WithIncome Median_Income_Person_15OrMoreYears_Female_WithIncome"
+  places="geoId/01 geoId/02 geoId/04 geoId/20 geoId/21 geoId/22 geoId/23 geoId/24 geoId/25"
+  stacked
+  horizontal
+  sort="descending"
+></datacommons-bar>
+</div>
+{: .web-component-container}
+
+### Example 5: A lollipop chart of population for states in the US
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-bar
+  header="Population of US States"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variables="Count_Person"
+  lollipop
+></datacommons-bar>
+```
+{: .example-box-content}
+
+<div>
+<datacommons-bar
+  header="Population of US States"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variables="Count_Person"
+  lollipop
+></datacommons-bar>
+</div>
+{: .web-component-container}</doc><doc title="Gauge chart">---
+layout: default
+title: Gauge chart
+nav_order: 2
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/gauge
+---
+
+# Data Commons gauge chart Web Component
+
+[Data Commons Web Component](/api/web_components/) for visualizing a single statistical variable about a single place.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'single-place')">
+    Specific Place
+  </button>
+</div>
+
+```html
+<datacommons-gauge
+  header="Title here"
+  place="place_dcid"
+  variable="variable_dcid"
+  min="0"
+  max="100"
+></datacommons-gauge>
+```
+{: #single-place .api-tabcontent .api-signature}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name     | Type   | Description                                   |
+| -------- | ------ | --------------------------------------------- |
+| header   | string | Chart title.                                  |
+| max      | number | Gauge maximum value.                          |
+| min      | number | Gauge mininmum value.                         |
+| place    | string | Place [DCID](/glossary.html#dcid) to plot.    |
+| variable | string | Variable [DCID](/glossary.html#dcid) to plot. |
+{: .doc-table }
+
+### Optional
+
+| Name   | Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| colors | list | Optionally specify a custom chart color scheme for the display variable. Will interpolate colors linearly depending on how many are passed in.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`. |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name    | Type   | Description                                                                                                                                |
+| ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| apiRoot | string | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Show percentage of US population that are internet users
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-gauge
+  header="Percentage of US Population that are Internet Users"
+  place="country/USA"
+  variable="Count_Person_IsInternetUser_PerCapita"
+  min="0"
+  max="100"
+></datacommons-gauge>
+```
+{: .example-box-content}
+
+<datacommons-gauge
+  header="Percentage of US Population that are Internet Users"
+  place="country/USA"
+  variable="Count_Person_IsInternetUser_PerCapita"
+  min="0"
+  max="100"
+></datacommons-gauge></doc><doc title="Highlight chart">---
+layout: default
+title: Highlight tile
+nav_order: 3
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/highlight
+---
+
+# Data Commons highlight chart Web Component
+
+[Data Commons Web Component](/api/web_components) for highlighting a specific
+variable value from a specific variable about a single place.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'single-place')">
+    Specific Place
+  </button>
+</div>
+
+```html
+<datacommons-highlight
+  header="Title here"
+  place="place_dcid"
+  variable="variable_dcid"
+></datacommons-highlight>
+```
+{: #single-place .api-tabcontent .api-signature}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name     | Type   | Description                                          |
+| -------- | ------ | ---------------------------------------------------- |
+| header   | string | Text to show next to the variable value highlighted. |
+| place    | type   | Place [DCID](/glossary.html#dcid) to plot.           |
+| variable | type   | Variable [DCID](/glossary.html#dcid) to plot.        |
+{: .doc-table }
+
+### Optional
+
+| Name | Type   | Description                                                                                                                                                                                                                                                                                 |
+| ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| date | string | Specific date to show data for. ISO 8601 format (e.g. "YYYY", "YYYY-MM", "YYYY-MM-DD").<br /><br />Note: Ensure your variable has data available at the specified date using the [Stat Var Explorer](https://datacommons.org/tools/statvar){: target="_blank"}<br /><br />Default: Most recent data available. |
+| unit | string | Unit the variable is measured in.                                                                                                                                                                                                                                                           |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name    | Type   | Description                                                                                                                                |
+| ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| apiRoot | string | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Show percentage of US population that are internet users
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-highlight
+  header="Percentage of US Population that are Internet Users"
+  place="country/USA"
+  variable="Count_Person_IsInternetUser_PerCapita"
+></datacommons-highlight>
+```
+{: .example-box-content}
+
+<datacommons-highlight
+  header="Percentage of US Population that are Internet Users"
+  place="country/USA"
+  variable="Count_Person_IsInternetUser_PerCapita"
+></datacommons-highlight></doc><doc title="Line chart">---
+layout: default
+title: Line chart
+nav_order: 4
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/line
+---
+
+# Data Commons line chart Web Component
+
+[Data Commons Web Component](/api/web_components/) for visualizing one or more statistical variables about a number of places as a line chart.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'multi-place')">
+    Specific Places
+  </button>
+  <button id="post-button" class="api-tablink" onclick="openTab(event, 'contained-in')">
+    Places in a Parent Place
+  </button>
+</div>
+
+```html
+<datacommons-line
+  places="place_dcid_1 place_dcid_2"
+  variables="var_dcid_1 var_dcid_2"
+  header="Chart title"
+></datacommons-line>
+```
+{: #multi-place .api-tabcontent}
+
+```html
+<datacommons-line
+  parentPlace="parent_place_dcid"
+  childPlaceType="type"
+  variables="var_dcid_1 var_dcid_2"
+  header="Chart title"
+></datacommons-line>
+```
+{: #contained-in .api-tabcontent}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name           | Type   | Description                                                                                                                                                                                                          |
+| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| childPlaceType | string | Child place types to plot. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).<br /> <optional-tag>Optional</optional-tag> if `places` is specified.                                                                                                  |
+| header         | string | Chart title.                                                                                                                                                                                                         |
+| parentPlace    | string | Parent place [DCID](/glossary.html#dcid) to plot. Example: `country/USA`. <br /> <optional-tag>Optional</optional-tag> if `places` is specified.                                                                     |
+| places         | list   | Places [DCID](/glossary.html#dcid)s to plot, as a space separated list of strings. Example: `"geoId/12 geoId/13"`. <br /> <optional-tag>Optional</optional-tag> if `childPlaceType` and `parentPlace` are specified. |
+| variables      | list   | Variable [DCID](/glossary.html#dcid)(s) to plot, as a space separated list of strings. Example: `"Count_Person Count_Farm"`.                                                                                         |
+{: .doc-table }
+
+### Optional
+
+| Name      | Type   | Description                                                                                                                                                                                                                                                                                                                                                             |
+| --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| colors    | list   | Specify custom color for each variable. Pass in colors in the same order as variables.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`. |
+| timeScale | string | One of `"year"`, `"month"`, or `"day"`. If provided, the x-axis will draw a tick mark and label at that time scale. |
+| startDate | string | The earliest date to show on the chart, in ISO-8601 format. |
+| endDate | string | The latest date to show on the chart, in ISO-8601 format. |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name                | Type    | Description                                                                                                                                                                                                                                                                               |
+| ------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| apiRoot             | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`.                                                                                                                                                |
+| defaultVariableName | string  | To be used with `variableNameRegex`. If specified and no variable name is extracted out with the regex, use this as the variable name. e.g., if the variableNameRegex is "(.*?)(?=:)", and the defaultVariableName is "Total", for a variable named "variable 1", it will become "Total". |
+| placeNameProp       | string  | Optionally specify the property to use to get the place names.                                                                                                                                                                                                                            |
+| showExploreMore     | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/timeline){: target="_blank"}.                                                                                                                          |
+| variableNameRegex   | string  | Optionally specify regex to use to extract out variable name. e.g., if the variableNameRegex is "(.*?)(?=:)", only the part before a ":" will be used for variable names. So "variable 1: test" will become "variable 1".                                                                 |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Plot a single variable over time for a single place
+
+Show the number of people under poverty level in the US over time.
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-line
+  header="Population Below Poverty Level Status in United States"
+  places="country/USA"
+  variables="Count_Person_BelowPovertyLevelInThePast12Months"
+></datacommons-line>
+```
+{: .example-box-content}
+
+<datacommons-line
+  header="Population Below Poverty Level Status in United States"
+  places="country/USA"
+  variables="Count_Person_BelowPovertyLevelInThePast12Months"
+></datacommons-line>
+
+### Example 2: Plot a single variable over time for multiple places
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-line
+  header="Population for USA, India, and China"
+  places="country/USA country/IND country/CHN"
+  variables="Count_Person"
+></datacommons-line>
+```
+{: .example-box-content}
+
+<datacommons-line
+  header="Population for USA, India, and China"
+  places="country/USA country/IND country/CHN"
+  variables="Count_Person"
+></datacommons-line>
+
+### Example 3: Plot a single variable for all child places in a parent place
+
+Show population for all counties in Alaska, USA.
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-line
+  header="Population of counties in Alaska"
+  parentPlace="geoId/02"
+  childPlaceType="County"
+  variables="Count_Person"
+></datacommons-line>
+```
+{: .example-box-content}
+
+<datacommons-line
+  header="Population of counties in Alaska"
+  parentPlace="geoId/02"
+  childPlaceType="County"
+  variables="Count_Person"
+></datacommons-line>
+
+### Example 4: Plot multiple variables for a single place
+
+Show number of households without internet and number of households without health insurance for California, USA.
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-line
+  header="Population by gender of California"
+  places="geoId/06"
+  variables="Count_Household_InternetWithoutSubscription Count_Household_NoHealthInsurance"
+></datacommons-line>
+```
+{: .example-box-content}
+
+<datacommons-line
+  header="Population by gender of California"
+  places="geoId/06"
+  variables="Count_Household_InternetWithoutSubscription Count_Household_NoHealthInsurance"
+></datacommons-line></doc><doc title="Pie chart">---
+layout: default
+title: Pie chart
+nav_order: 6
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/pie
+---
+
+# Data Commons pie chart Web Component
+
+[Data Commons Web Component](/api/web_components/) for visualizing multiple statistical variables around a single place on a pie/donut chart.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'single-place')">
+    Specific Place
+  </button>
+</div>
+
+```html
+<datacommons-pie
+  header="Chart title"
+  place="place_dcid"
+  variables="variable_dcid_1 variable_dcid_2 variable_dcid_3"
+></datacommons-pie>
+```
+{: #single-place .api-tabcontent .api-signature}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name      | Type   | Description                                                                                                                  |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| header    | string | Chart title.                                                                                                                 |
+| place     | string | Places [DCID](/glossary.html#dcid) to plot.                                                                                  |
+| variables | list   | Variable [DCID](/glossary.html#dcid)(s) to plot, as a space separated list of strings. Example: `"Count_Person Count_Farm"`. |
+{: .doc-table }
+
+### Optional
+
+| Name      | Type    | Description                                                                                                                                                                                                                                                                                                                                                             |
+| --------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| colors    | list    | Specify custom color for each variable. Pass in colors in the same order as variables.<br /><br />Values should follow CSS specification (keywords, rgb, rgba, hsl, #hex). Separate multiple values with spaces, e.g., `"#ff0000 #00ff00 #0000ff"`. Make sure individual colors have no spaces. For example, use `rgba(255,0,0,0.3)` instead of `rgba(255, 0, 0, 0.3)`. |
+| donut     | boolean | Include to draw as a donut chart instead of a pie chart.                                                                                                                                                                                                                                                                                                                |
+| subheader | string  | Text to add under the header.                                                                                                                                                                                                                                                                                                                                           |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name    | Type   | Description                                                                                                                                |
+| ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| apiRoot | string | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Multiple variables for a single place
+
+Show the split of median income by gender in California as a pie chart.
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-pie
+  header="Median Income by gender in California"
+  place="geoId/06"
+  variables="Median_Income_Person_15OrMoreYears_Male_WithIncome Median_Income_Person_15OrMoreYears_Female_WithIncome"
+></datacommons-pie>
+```
+{: .example-box-content}
+
+<datacommons-pie
+  header="Median Income by gender in California"
+  place="geoId/06"
+  variables="Median_Income_Person_15OrMoreYears_Male_WithIncome Median_Income_Person_15OrMoreYears_Female_WithIncome"
+></datacommons-pie>
+
+### Example 2: Multiple variables for a single place, as a donut chart
+
+Show the split of median income by gender in California as a donut chart.
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-pie
+  header="Median Income by gender in California"
+  place="geoId/06"
+  variables="Median_Income_Person_15OrMoreYears_Male_WithIncome Median_Income_Person_15OrMoreYears_Female_WithIncome"
+  donut
+></datacommons-pie>
+```
+{: .example-box-content}
+
+<datacommons-pie
+  header="Median Income by gender in California"
+  place="geoId/06"
+  variables="Median_Income_Person_15OrMoreYears_Male_WithIncome Median_Income_Person_15OrMoreYears_Female_WithIncome"
+  donut
+></datacommons-pie></doc><doc title="Ranking chart">---
+layout: default
+title: Ranking chart
+nav_order: 7
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/ranking
+---
+
+# Data Commons ranking chart Web Component
+
+[Data Commons Web Component](/api/web_components/) for listing statistical variables around a single place in descending or ascending order.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'contained-in')">
+    Places in a Parent Place
+  </button>
+</div>
+
+```html
+<datacommons-ranking
+  header="US States with the Highest Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+></datacommons-ranking>
+```
+{: #contained-in .api-tabcontent}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name           | Type   | Description                                                                                                                                                                                                       |
+| -------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| childPlaceType | string | Child place types to plot. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).                                                                                                                                                                      |
+| header         | string | Chart title.                                                                                                                                                                                                      |
+| parentPlace    | string | Parent place [DCID](/glossary.html#dcid) to plot. Example: `country/USA`.                                                                                                                                         |
+| variable       | string | Variable [DCID](/glossary.html#dcid) to plot.                                                                                                                                                                     |
+| variables      | list   | A list of variable [DCID](/glossary.html#dcid)s to plot. Entries in the list should be separated by spaces. Example: `"dcid1 dcid2"`.<br /><br /><optional-tag>optional</optional-tag> if `variable` is provided. |
+{: .doc-table }
+
+### Optional
+
+| Name              | Type    | Description                                                                                                                                                                                                                                                              |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| highestTitle      | string  | Chart title to show if `header` is not provided. Will only show if a highest-to-lowest ranking is shown.                                                                                                                                                                 |
+| lowestTitle       | string  | Chart title to show if `header` is not provided. Will only show if a lowest-to-highest ranking is shown.                                                                                                                                                                 |
+| perCapita         | list    | A list of variable [DCID](/glossary.html#dcid)s to rank by per capita value. Entries in the list should be separated by spaces. Example: `"dcid1 dcid2"`.                                                                                                                |
+| rankingCount      | integer | How many places to show, e.g. the "N" in "Top-N".<br /><br />Default: `5`.                                                                                                                                                                                               |
+| showHighestLowest | boolean | Include to show both the top and bottom places, ordered highest-to-lowest, in one chart.<br /><br />Default: `false`.                                                                                                                                                    |
+| showLowest        | boolean | Include to sort values in ascending order. Ignored if `showHighestLowest` is true.                                                                                                                                                                                       |
+| showMultiColumn   | boolean | Include to show variables across multiple columns in one table, with a header for each variable. The last variable provided is used for ranking.<br /><br />Default: false. If multiple variables are provided, a separate ranking table is generated for each variable. |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name            | Type    | Description                                                                                                                                                      |
+| --------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| apiRoot         | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`.                       |
+| hideFooter      | boolean | Include to hide footer with download link.<br /><br />Default: `false`.                                                                                          |
+| showExploreMore | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/map){: target="_blank"}. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Show a ranking of US states by population, highest to lowest
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-ranking
+  header="US States with the Highest Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+></datacommons-ranking>
+```
+{: .example-box-content}
+
+<datacommons-ranking
+  header="US States with the Highest Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+></datacommons-ranking>
+
+
+### Example 2: Show a ranking of US states by population, lowest to highest
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-ranking
+  header="US States with the Lowest Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+  showLowest
+></datacommons-ranking>
+```
+{: .example-box-content}
+
+<datacommons-ranking
+  header="US States with the Lowest Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+  showLowest
+></datacommons-ranking>
+
+### Example 3: Show both highest and lowest US states by population
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-ranking
+  header="US States Ranking by Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+  showHighestLowest
+></datacommons-ranking>
+```
+{: .example-box-content}
+
+<datacommons-ranking
+  header="US States Ranking by Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variable="Count_Person"
+  showHighestLowest
+></datacommons-ranking></doc><doc title="Scatter plot chart">---
+layout: default
+title: Scatter plot
+nav_order: 8
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/scatter
+---
+
+# Data Commons scatter plot chart Web Component
+
+[Data Commons Web Component](/api/web_components/) for visualizing the relationship
+between two variables.
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'contained-in')">
+    Places in a Parent Place
+  </button>
+</div>
+
+```html
+<datacommons-TYPE
+  parentPlace="parent_place_dcid"
+  childPlaceType="type"
+  variables="var_dcid_1 var_dcid_2"
+  header="Chart title"
+></datacommons-TYPE>
+```
+{: #contained-in .api-tabcontent}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name           | Type   | Description                                                                                                                                                                                                         |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| childPlaceType | string | Child place types to plot. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).                                                                                                                                                                        |
+| header         | string | Chart title.                                                                                                                                                                                                        |
+| parentPlace    | string | Parent place [DCID](/glossary.html#dcid) to plot. Example: `country/USA`.                                                                                                                                           |
+| variables      | list   | Variable [DCID](/glossary.html#dcid)(s) to plot, as a space separated list of strings. Example: `"Count_Person Count_Farm"`. At least 2 variables must be provided, and only the first 2 variables will be plotted. |
+{: .doc-table }
+
+### Optional
+
+| Name                 | Type    | Description                                                                                                              |
+| -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| highlightBottomLeft  | boolean | Include to label outliers in the bottom left quadrant. Defaults to `false`.                                              |
+| highlightBottomRight | boolean | Include to label outliers in the bottom right quadrant. Defaults to `false`.                                             |
+| highlightTopLeft     | boolean | Include to label outliers in the top left quadrant. Defaults to `false`.                                                 |
+| highlightTopRight    | boolean | Include to label outliers in the top right quadrant. Defaults to `false`.                                                |
+| showPlaceLabels      | boolean | Include to label all points with the place they correspond to.  Defaults to `false`.                                     |
+| showQuadrants        | boolean | Include to show grid lines delimiting top right, top left, bottom right, and bottom left quadrants. Defaults to `false`. |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name            | Type    | Description                                                                                                                                                      |
+| --------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| apiRoot         | string  | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`.                       |
+| placeNameProp   | string  | Optionally specify the property to use to get the place names.                                                                                                   |
+| showExploreMore | boolean | Include to show "Explore more" link in the footer, which takes the user to Datacommons.org's [visualization tools](https://datacommons.org/tools/scatter){: target="_blank"}. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Plot population vs median household income for US states
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-scatter
+  header="Population vs Median Household Income for US States"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variables="Count_Person Median_Income_Household"
+></datacommons-scatter>
+```
+{: .example-box-content}
+
+<datacommons-scatter
+  header="Population vs Median Household Income for US States"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  variables="Count_Person Median_Income_Household"
+></datacommons-scatter></doc><doc title="Slider chart">---
+layout: default
+title: Slider control
+nav_order: 9
+parent: Embed data and visualizations in your own website
+published: true
+permalink: /api/web_components/slider
+---
+
+# Data Commons slider Web Component
+
+[Data Commons Web Component](/api/web_components/) for controlling the date in [datacommons-map](./map.md) or 
+[datacommons-bar](./bar.md).
+
+## Usage
+
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'map-tab')">
+    Control a map
+  </button>
+  <button class="api-tablink" onclick="openTab(event, 'bar-tab')">
+    Control a bar chart
+  </button>
+</div>
+
+```html
+<datacommons-map
+  [...other map attributes here]
+  subscribe="event-name-here"
+></datacommons-map>
+
+<datacommons-slider
+  publish="event-name-here"
+  variable="variable_dcid"
+  parentPlace="place_dcid"
+  childPlaceType="child_place_type_dcid"
+></datacommons-slider>
+```
+{: #map-tab .api-tabcontent}
+
+```html
+<datacommons-bar
+  header="Population below the poverty line in the US, Russia, and Mexico (${date})"
+  variables="sdg/SI_POV_DAY1"
+  places="country/USA country/RUS country/MEX"
+  subscribe="dc-bar"
+  date="HIGHEST_COVERAGE"
+>
+  <!-- Place slider in the component's footer and publish events on the "dc-bar" channel -->
+  <datacommons-slider
+    variables="sdg/SI_POV_DAY1"
+    places="country/USA country/RUS country/MEX"
+    publish="dc-bar"
+    slot="footer"
+    >
+  </datacommons-slider>
+</datacommons-bar>
+```
+{: #bar-tab .api-tabcontent}
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
+
+## Attributes
+
+### Required
+
+| Name           | Type   | Description                                                                                                                                                           |
+| -------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| childPlaceType | string | Child place types of date range. Example: `State`. For a list of available place types, see the [place types page](/place_types.html).<br /><br /><optional-tag>optional</optional-tag> if `dates` is specified.                                          |
+| dates          | list   | Set date option range. Example: `"2001 2002 2003"`<br /><br /><optional-tag>optional</optional-tag> if `variable`, `parentPlace`, and `childPlaceType` are specified. |
+| parentPlace    | string | Parent place [DCID](/glossary.html#dcid) of date range. Example: `country/USA`.<br /><br /><optional-tag>optional</optional-tag> if `dates` is specified.             |
+| publish        | string | Event name to publish on slider change.                                                                                                                               |
+| variable       | string | Variable [DCID](/glossary.html#dcid) of date range. Example: `Count_Person`.<br /><br /><optional-tag>optional</optional-tag> if `dates` is specified.                |
+{: .doc-table }
+
+### Optional
+
+| Name   | Type   | Description                   |
+| ------ | ------ | ----------------------------- |
+| header | string | Override default header text. |
+| value  | number | Initial slider value.         |
+{: .doc-table }
+
+### Advanced Configuration
+
+| Name    | Type   | Description                                                                                                                                |
+| ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| apiRoot | string | Domain to make data fetch API calls from. Used primarily for fetching data from custom DCs.<br /><br />Default: `https://datacommons.org`. |
+{: .doc-table }
+
+## Examples
+
+### Example 1: Use slider to change dates on a `datacommons-map` web component
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-map
+  header="Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  subscribe="dc-map"
+  variable="Count_Person"
+></datacommons-map>
+
+<datacommons-slider
+  publish="dc-map"
+  variable="Count_Person"
+  parentPlace="country/USA"
+  childPlaceType="State"
+></datacommons-slider>
+```
+{: .example-box-content}
+
+<datacommons-map
+  header="Population"
+  parentPlace="country/USA"
+  childPlaceType="State"
+  subscribe="dc-map"
+  variable="Count_Person"
+></datacommons-map>
+
+<datacommons-slider
+  publish="dc-map"
+  variable="Count_Person"
+  parentPlace="country/USA"
+  childPlaceType="State"
+></datacommons-slider>
+
+### Example 2: Use slider to change dates on a `datacommons-bar` web component
+
+Code:
+{: .example-box-title}
+```html
+<datacommons-bar
+  header="Population below the poverty line in the US, Russia, and Mexico (${date})"
+  variables="sdg/SI_POV_DAY1"
+  places="country/USA country/RUS country/MEX"
+  subscribe="dc-bar"
+  date="HIGHEST_COVERAGE"
+>
+  <!-- Place slider in the component's footer and publish events on the "dc-bar" channel -->
+  <datacommons-slider
+    variables="sdg/SI_POV_DAY1"
+    places="country/USA country/RUS country/MEX"
+    publish="dc-bar"
+    slot="footer"
+    >
+  </datacommons-slider>
+</datacommons-bar>
+```
+{: .example-box-content}
+
+
+<datacommons-bar
+  header="Population below the poverty line in the US, Russia, and Mexico (${date})"
+  variables="sdg/SI_POV_DAY1"
+  places="country/USA country/RUS country/MEX"
+  subscribe="dc-bar"
+  date="HIGHEST_COVERAGE"
+>
+  <!-- Place slider in the component's footer and publish events on the "dc-bar" channel -->
+  <datacommons-slider
+    variables="sdg/SI_POV_DAY1"
+    places="country/USA country/RUS country/MEX"
+    publish="dc-bar"
+    slot="footer"
+    >
+  </datacommons-slider>
+</datacommons-bar></doc></optional></project>
