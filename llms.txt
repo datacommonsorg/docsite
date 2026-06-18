@@ -57,7 +57,7 @@ Links below point to GitHub raw Markdown on the master branch for the freshest a
 - [Data coverage](https://raw.githubusercontent.com/datacommonsorg/docsite/master/datasets/index.md): Overview of datasets in Data Commons and per-country coverage.
 - [Place types](https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md): Reference for place types in Data Commons.
 - [Get support](https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md): Support channels and feedback paths.
-- [Contribute to Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md)
+- [Contribute to Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md): Contribute data, code, or documentation to Data Commons.
 
 ## Optional
 
