@@ -58,3 +58,16 @@ Links below point to GitHub raw Markdown on the master branch for the freshest a
 - [Place types](https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md): Reference for place types in Data Commons.
 - [Get support](https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md): Support channels and feedback paths.
 - [Contribute to Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md)
+
+## Optional
+
+- [Web Components](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/index.md): Embed Data Commons charts in your own website.
+- [Map chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/map.md)
+- [Bar chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/bar.md)
+- [Gauge chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/gauge.md)
+- [Highlight chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/highlight.md)
+- [Line chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/line.md)
+- [Pie chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/pie.md)
+- [Ranking chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/ranking.md)
+- [Scatter plot chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/scatter.md)
+- [Slider chart](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/slider.md)
