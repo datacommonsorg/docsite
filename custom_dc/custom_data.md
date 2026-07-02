@@ -176,28 +176,32 @@ Nodes in the Data Commons knowledge graph are defined in Metadata Content Format
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 new statistical variable nodes. 
+Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 new statistical variable nodes. Assume that`cigaretteSmoker` already exists as a property. 
 
 ```
-Node: dcid:who/Adult_curr_cig_smokers
+Node: dcid:who/Percent_Smokers_Adults
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%)"
 populationType: dcid:Person
-measuredProperty: dcid:percent
+measuredProperty: dcid:cigaretteSmoking
+statType: dcid:percent
+measurementDenominator: dcid:Count_Person
 
-Node: dcid:who/Adult_curr_cig_smokers_female
+Node: dcid:who/Percent_Smokers_Adult_Females
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
-populationType: dcid:Person
-measuredProperty: dcid:percent
-gender: dcid:Female
+populationType: dcid:Female
+measuredProperty: dcid:cigaretteSmoking
+statType: dcid:percent
+measurementDenominator: dcid:Count_Person_Female
 
-Node: dcid:who/Adult_curr_cig_smokers_male
+Node: dcid:who/Percent_Smokers_Adult_Males
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
-populationType: dcid:Person
-measuredProperty: dcid:percent
-gender: dcid:Male
+populationType: dcid:Male
+measuredProperty: dcid:cigaretteSmoking
+statType: dcid:percent
+measurementDenominator: dcid:Count_Person_Male
 ```
 The order of nodes and fields within nodes does not matter.
 
@@ -206,8 +210,8 @@ The following fields are always required:
    > Note: If you plan to contribute your data to base Data Commons, DCIDs should follow the [DCID naming conventions](#naming). Otherwise, you can name them however you want.
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
-- `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
-- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. 
+- `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`, `dcid:Female` and `dcid:Male`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
+- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the prevelance of smoking, represented as a property called `cigaretteSmoking` of persons, females, and males, being measured. 
   You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example: 
 
@@ -219,11 +223,11 @@ Note that all fields that reference another node in the graph must be prefixed b
 
 The following fields are optional:
 - `description`: A more detailed textual description of the variable.
-- `statType`: By default, if not specified, this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr` and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
+- `statType`: By default, if not specified, this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
 - `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 - `measurementDenominator`: For percentages or ratios, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
-Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. 
+Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we could have used a constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`.
 
 {: #naming}
 #### Variable DCID naming conventions
@@ -345,16 +349,17 @@ Here is an example of some real-world data from the WHO on the prevalance of smo
 
 ```csv
 SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/AFG,2019,1.2
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/AFG,2019,13.4
-dcs:who/Adult_curr_cig_smokers,dcid:country/AFG,2019,7.5
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/AGO,2016,1.8
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/AGO,2016,14.3
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/ALB,2018,4.5
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/ALB,2018,35.7
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/ARE,2018,11.1
-dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6
-dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
+dcs:who/Percent_Smokers_Adult_Females,dcid:country/AFG,2019,1.2
+dcs:who/Percent_Smokers_Adult_Males,dcid:country/AFG,2019,13.4
+dcs:who/Percent_Smokers_Adults,dcid:country/AFG,2019,7.5
+dcs:who/Percent_Smokers_Adult_Females,dcid:country/AGO,2016,1.8
+dcs:who/Percent_Smokers_Adult_Males,dcid:country/AGO,2016,14.3
+dcs:who/Percent_Smokers_Adult_Females,dcid:country/ALB,2018,4.5
+dcs:who/Percent_Smokers_Adult_Males,dcid:country/ALB,2018,35.7
+dcs:who/Percent_Smokers_Adult_Males,dcid:country/ARE,2018,11.1
+dcs:who/Percent_Smokers_Adult_Females,dcid:country/ARE,2018,1.6
+dcs:who/Percent_Smokers_Adults,dcid:country/ARE,2018,6.3
+...
 ```
 
 In this case, the columns need to be mapped to the expected columns listed above; see below for details.
