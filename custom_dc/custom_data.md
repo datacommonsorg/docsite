@@ -183,7 +183,7 @@ Node: dcid:who/Percent_Smokers_Adults
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%)"
 populationType: dcid:Person
-measuredProperty: dcid:cigaretteSmoking
+measuredProperty: dcid:cigaretteSmoker
 statType: dcid:percent
 measurementDenominator: dcid:Count_Person
 
@@ -191,7 +191,7 @@ Node: dcid:who/Percent_Smokers_Adult_Females
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
 populationType: dcid:Female
-measuredProperty: dcid:cigaretteSmoking
+measuredProperty: dcid:cigaretteSmoker
 statType: dcid:percent
 measurementDenominator: dcid:Count_Person_Female
 
@@ -199,7 +199,7 @@ Node: dcid:who/Percent_Smokers_Adult_Males
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcid:Male
-measuredProperty: dcid:cigaretteSmoking
+measuredProperty: dcid:cigaretteSmoker
 statType: dcid:percent
 measurementDenominator: dcid:Count_Person_Male
 ```
@@ -211,7 +211,7 @@ The following fields are always required:
 - `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
 - `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`, `dcid:Female` and `dcid:Male`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
-- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the prevelance of smoking, represented as a property called `cigaretteSmoking` of persons, females, and males, being measured. 
+- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the prevelance of smoking, represented as a property called `cigaretteSmoker` of persons, females, and males, being measured. 
   You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
   - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example: 
 
