@@ -1,4 +1,4 @@
 ---
 layout: redirect
-redirect_to: https://datacommons.org/api/python/v2/
+redirect_to: https://docs.datacommons.org/api/python/v2/
 ---
