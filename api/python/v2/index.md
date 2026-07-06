@@ -5,6 +5,8 @@ nav_order: 1
 parent: API - Query data programmatically
 has_children: true
 published: true
+redirect_from: 
+   /api/python/index
 ---
 
 {:.no_toc}
