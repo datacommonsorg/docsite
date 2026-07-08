@@ -131,12 +131,12 @@ The other fields are explained in the [Data config file specification reference]
 If you are providing observations for the non-place entities, the observations must be in a separate file. You'll need a different CSV file for each entity type for which you are providing observations.
 
 For example, let's say you've already defined in MCF the following variables that measure weekly hospital capacity:
-* `total_count_staffed_beds`
-* `count_staffed_adult_beds`
-* `count_staffed_inpatient_icu_beds`
-* `count_staffed_adult_inpatient_icu_beds`
-* `count_staffed_inpatient_icu_beds_occupied`
-* `count_staffed_adult_icu_beds_occupied`
+* `Count_StaffedBeds`
+* `Count_StaffedBeds_Adult`
+* `Count_StaffedBeds_Inpatient_ICU`
+* `Count_StaffedBeds_Adult_Inpatient_ICU`
+* `Count_StaffedBedsOccupied_Inpatient_ICU`
+* `Count_StaffedBedsOccupied_Adult_ICU_beds`
 
 Aside: Note that the thing being measured here is "beds". There is an existing [Bed](https://datacommons.org/browser/Bed) class in Data Commons. So when defining such variables, you would specify `schema:bed` as the `populationType`.
 
@@ -144,23 +144,23 @@ Just like for place entities, you provide observations for these variables in a 
 
 ```csv
 entity,date,variable,value
-20001,2023-01-27,count_staffed_adult_beds,1048
-20001,2023-01-27,count_staffed_adult_icu_beds_occupied,146
-20001,2023-01-27,count_staffed_adult_inpatient_icu_beds,146
-20001,2023-01-27,count_staffed_inpatient_icu_beds,264
-20001,2023-01-27,count_staffed_inpatient_icu_beds_occupied,264
-20001,2023-01-27,total_count_staffed_beds,1262
-20017,2023-01-27,count_staffed_adult_beds,0
-20017,2023-01-27,count_staffed_adult_icu_beds_occupied,0
-20017,2023-01-27,count_staffed_adult_inpatient_icu_beds,
-20017,2023-01-27,count_staffed_inpatient_icu_beds,
-20017,2023-01-27,count_staffed_inpatient_icu_beds_occupied,0
-21301,2023-01-27,count_staffed_adult_beds,780
-21301,2023-01-27,count_staffed_adult_icu_beds_occupied,62
-21301,2023-01-27,count_staffed_adult_inpatient_icu_beds,62
-21301,2023-01-27,count_staffed_inpatient_icu_beds,101
-21301,2023-01-27,count_staffed_inpatient_icu_beds_occupied,66
-21301,2023-01-27,total_count_staffed_beds,836
+20001,2023-01-27,Count_StaffedBeds,1048
+20001,2023-01-27,Count_StaffedBedsOccupied_Adult_ICU_beds,146
+20001,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,146
+20001,2023-01-27,Count_StaffedBeds_Inpatient_ICU,264
+20001,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,264
+20001,2023-01-27,Count_StaffedBeds,1262
+20017,2023-01-27,Count_StaffedBeds_Adult,0
+20017,2023-01-27,Count_StaffedBedsOccupied_Adult_ICU_beds,0
+20017,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,
+20017,2023-01-27,Count_StaffedBeds_Inpatient_ICU,
+20017,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,0
+21301,2023-01-27,Count_StaffedBeds_Adult,780
+21301,2023-01-27,Count_StaffedBedsOccupied_Adult_ICU_beds,62
+21301,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,62
+21301,2023-01-27,Count_StaffedBeds_Inpatient_ICU,101
+21301,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,66
+21301,2023-01-27,Count_StaffedBeds,836
 ...
 ```
 We could also have added an `observationPeriod` column, which would be set to `P7D` for all rows.

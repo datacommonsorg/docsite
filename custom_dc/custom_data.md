@@ -269,15 +269,15 @@ By default, existing variables are shown in the Statistical Variable Explorer in
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
 ```
-Node: dcid:who/Adult_curr_cig_smokers
+Node: dcid:who/Percent_Smokers_Adult
 ...
 memberOf: dcid:who/g/WHO
 
-Node: dcid:who/Adult_curr_cig_smokers_female
+Node: dcid:who/Percent_Smokers_Adult_Female
 ...
 memberOf:dcid:who/g/WHO
 
-Node: dcid:who/Adult_curr_cig_smokers_male
+Node: dcid:who/Percent_Smokers_Adult_Male
 ...
 memberOf: dcid:who/g/WHO
 
@@ -310,15 +310,15 @@ You can define as many statistical variable group nodes as you like. Each must i
 You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
 
 ```
-Node: dcid:who/Adult_curr_cig_smokers
+Node: dcid:who/Percent_Smokers_Adult
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Adult_curr_cig_smokers_female
+Node: dcid:who/Percent_Smokers_Adult_Female
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Adult_curr_cig_smokers_male
+Node: dcid:who/Percent_Smokers_Adult_Male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
