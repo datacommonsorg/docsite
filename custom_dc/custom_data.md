@@ -180,37 +180,37 @@ Here's an example of defining some statistical variables representing data in a 
 
 ```
 Node: dcid:who/Percent_Smokers_Adult
-typeOf: dcid:StatisticalVariable
+typeOf: dcs:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%)"
-populationType: dcid:Person
+populationType: schema:Person
 measuredProperty: dcid:cigaretteSmoker
-statType: dcid:Percent
-measurementDenominator: dcid:Count_Person
+statType: dcs:Percent
+measurementDenominator: dcs:Count_Person
 
 Node: dcid:who/Percent_Smokers_Adult_Female
-typeOf: dcid:StatisticalVariable
+typeOf: dcs:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
-populationType: dcid:Person
-gender: dcid:Female
+populationType: schema:Person
+gender: dcs:Female
 measuredProperty: dcid:cigaretteSmoker
-statType: dcid:Percent
-measurementDenominator: dcid:Count_Person_Female
+statType: dcs:Percent
+measurementDenominator: dcs:Count_Person_Female
 
 Node: dcid:who/Percent_Smokers_Adult_Male
-typeOf: dcid:StatisticalVariable
+typeOf: dcs:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcid:Person
-gender: dcid:Male
+gender: dcs:Male
 measuredProperty: dcid:cigaretteSmoker
-statType: dcid:Percent
-measurementDenominator: dcid:Count_Person_Male
+statType: dcs:Percent
+measurementDenominator: dcs:Count_Person_Male
 ```
 The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
-- `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
+- `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. It must be preceded by the prefix `dcid:`. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
    > Note: If you plan to contribute your data to base Data Commons, DCIDs should follow the [DCID naming conventions](#naming). Otherwise, you can name them however you want.
-- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
+- `typeOf`: In the case of statistical variable, this is always `dcs:StatisticalVariable`. 
 - `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
 - `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
 - `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the prevelance of smoking, represented as a property called `cigaretteSmoker` of persons, females, and males, being measured. 
@@ -221,11 +221,15 @@ The following fields are always required:
 
   - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
 
-Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. All fields that do not reference another node must be in quotation marks.
+Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:` or `schema:`. Use the following guidelines to determine which to use:
+- If the node exists in [schema.org](https://schema.org/docs/schemas.html){: target="_blank"} (you can look them up in the **Term Finder**), use `schema`.
+- If the node exists in the core Data Commons schema, [dcschema.mcf](https://github.com/datacommonsorg/schema/blob/main/core/dcschema.mcf){: target="blank"}, use `dcs`.
+- Otherwise, use `dcid` for all others. 
+All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 - `description`: A more detailed textual description of the variable.
-- `statType`: By default, if not specified, this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
+- `statType`: By default, if not specified, this is `dcis:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
 - `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 - `measurementDenominator`: For percentages or ratios, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
@@ -351,16 +355,16 @@ Here is an example of some real-world data from the WHO on the prevalance of smo
 
 ```csv
 SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE
-dcs:who/Percent_Smokers_Adult_Female,dcid:country/AFG,2019,1.2
-dcs:who/Percent_Smokers_Adult_Male,dcid:country/AFG,2019,13.4
-dcs:who/Percent_Smokers_Adult,dcid:country/AFG,2019,7.5
-dcs:who/Percent_Smokers_Adult_Female,dcid:country/AGO,2016,1.8
-dcs:who/Percent_Smokers_Adult_Male,dcid:country/AGO,2016,14.3
-dcs:who/Percent_Smokers_Adult_Female,dcid:country/ALB,2018,4.5
-dcs:who/Percent_Smokers_Adult_Male,dcid:country/ALB,2018,35.7
-dcs:who/Percent_Smokers_Adult_Male,dcid:country/ARE,2018,11.1
-dcs:who/Percent_Smokers_Adult_Female,dcid:country/ARE,2018,1.6
-dcs:who/Percent_Smokers_Adult,dcid:country/ARE,2018,6.3
+dcid:who/Percent_Smokers_Adult_Female,dcid:country/AFG,2019,1.2
+dcid:who/Percent_Smokers_Adult_Male,dcid:country/AFG,2019,13.4
+dcid:who/Percent_Smokers_Adult,dcid:country/AFG,2019,7.5
+dcid:who/Percent_Smokers_Adult_Female,dcid:country/AGO,2016,1.8
+dcid:who/Percent_Smokers_Adult_Male,dcid:country/AGO,2016,14.3
+dcid:who/Percent_Smokers_Adult_Female,dcid:country/ALB,2018,4.5
+dcid:who/Percent_Smokers_Adult_Male,dcid:country/ALB,2018,35.7
+dcid:who/Percent_Smokers_Adult_Male,dcid:country/ARE,2018,11.1
+dcid:who/Percent_Smokers_Adult_Female,dcid:country/ARE,2018,1.6
+dcid:who/Percent_Smokers_Adult,dcid:country/ARE,2018,6.3
 ...
 ```
 
