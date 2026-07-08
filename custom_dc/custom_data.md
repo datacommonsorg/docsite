@@ -179,7 +179,7 @@ You can define your statistical variables in a single MCF file, or split them in
 Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 new statistical variable nodes. Assume that`cigaretteSmoker` already exists as a property. 
 
 ```
-Node: dcid:who/Percent_Smokers_Adults
+Node: dcid:who/Percent_Smokers_Adult
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%)"
 populationType: dcid:Person
@@ -187,7 +187,7 @@ measuredProperty: dcid:cigaretteSmoker
 statType: dcid:Percent
 measurementDenominator: dcid:Count_Person
 
-Node: dcid:who/Percent_Smokers_Adult_Females
+Node: dcid:who/Percent_Smokers_Adult_Female
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Female]"
 populationType: dcid:Person
@@ -196,7 +196,7 @@ measuredProperty: dcid:cigaretteSmoker
 statType: dcid:Percent
 measurementDenominator: dcid:Count_Person_Female
 
-Node: dcid:who/Percent_Smokers_Adult_Males
+Node: dcid:who/Percent_Smokers_Adult_Male
 typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcid:Person
@@ -351,16 +351,16 @@ Here is an example of some real-world data from the WHO on the prevalance of smo
 
 ```csv
 SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE
-dcs:who/Percent_Smokers_Adult_Females,dcid:country/AFG,2019,1.2
-dcs:who/Percent_Smokers_Adult_Males,dcid:country/AFG,2019,13.4
-dcs:who/Percent_Smokers_Adults,dcid:country/AFG,2019,7.5
-dcs:who/Percent_Smokers_Adult_Females,dcid:country/AGO,2016,1.8
-dcs:who/Percent_Smokers_Adult_Males,dcid:country/AGO,2016,14.3
-dcs:who/Percent_Smokers_Adult_Females,dcid:country/ALB,2018,4.5
-dcs:who/Percent_Smokers_Adult_Males,dcid:country/ALB,2018,35.7
-dcs:who/Percent_Smokers_Adult_Males,dcid:country/ARE,2018,11.1
-dcs:who/Percent_Smokers_Adult_Females,dcid:country/ARE,2018,1.6
-dcs:who/Percent_Smokers_Adults,dcid:country/ARE,2018,6.3
+dcs:who/Percent_Smokers_Adult_Female,dcid:country/AFG,2019,1.2
+dcs:who/Percent_Smokers_Adult_Male,dcid:country/AFG,2019,13.4
+dcs:who/Percent_Smokers_Adult,dcid:country/AFG,2019,7.5
+dcs:who/Percent_Smokers_Adult_Female,dcid:country/AGO,2016,1.8
+dcs:who/Percent_Smokers_Adult_Male,dcid:country/AGO,2016,14.3
+dcs:who/Percent_Smokers_Adult_Female,dcid:country/ALB,2018,4.5
+dcs:who/Percent_Smokers_Adult_Male,dcid:country/ALB,2018,35.7
+dcs:who/Percent_Smokers_Adult_Male,dcid:country/ARE,2018,11.1
+dcs:who/Percent_Smokers_Adult_Female,dcid:country/ARE,2018,1.6
+dcs:who/Percent_Smokers_Adult,dcid:country/ARE,2018,6.3
 ...
 ```
 
