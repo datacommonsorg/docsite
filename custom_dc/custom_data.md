@@ -184,7 +184,7 @@ typeOf: dcid:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adults (%)"
 populationType: dcid:Person
 measuredProperty: dcid:cigaretteSmoker
-statType: dcid:percent
+statType: dcid:Percent
 measurementDenominator: dcid:Count_Person
 
 Node: dcid:who/Percent_Smokers_Adult_Females
@@ -193,7 +193,7 @@ name: "Prevalence of current cigarette smoking among adults (%) [Female]"
 populationType: dcid:Person
 gender: dcid:Female
 measuredProperty: dcid:cigaretteSmoker
-statType: dcid:percent
+statType: dcid:Percent
 measurementDenominator: dcid:Count_Person_Female
 
 Node: dcid:who/Percent_Smokers_Adult_Males
@@ -202,7 +202,7 @@ name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcid:Person
 gender: dcid:Male
 measuredProperty: dcid:cigaretteSmoker
-statType: dcid:percent
+statType: dcid:Percent
 measurementDenominator: dcid:Count_Person_Male
 ```
 The order of nodes and fields within nodes does not matter.
