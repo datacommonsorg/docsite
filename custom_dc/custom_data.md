@@ -202,7 +202,7 @@ name: "Prevalence of current cigarette smoking among adults (%) [Male]"
 populationType: dcid:Person
 gender: dcs:Male
 measuredProperty: dcid:cigaretteSmoker
-statType: dcs:Percent
+statType: schema:Percent
 measurementDenominator: dcs:Count_Person_Male
 ```
 The order of nodes and fields within nodes does not matter.
@@ -228,7 +228,7 @@ All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 * `description`: A more detailed textual description of the variable.
-* `statType`: By default, if not specified, this is `dcs:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
+* `statType`: By default, if not specified, this is `schema:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
 * `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It must be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 * `measurementDenominator`: For percentages or ratios, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
