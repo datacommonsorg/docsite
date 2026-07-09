@@ -35,7 +35,7 @@
 {'title': 'Data coverage', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/datasets/index.md', 'desc': 'Overview of datasets in Data Commons and per-country coverage.'}
 {'title': 'Place types', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md', 'desc': 'Reference for place types in Data Commons.'}
 {'title': 'Get support', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md', 'desc': 'Support channels and feedback paths.'}
-{'title': 'Contribute to Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md', 'desc': {}}
+{'title': 'Contribute to Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md', 'desc': 'Contribute data, code, or documentation to Data Commons.'}
 {'title': 'Web Components', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/index.md', 'desc': 'Embed Data Commons charts in your own website.'}
 {'title': 'Map chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/map.md', 'desc': {}}
 {'title': 'Bar chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/bar.md', 'desc': {}}
@@ -5275,6 +5275,8 @@ nav_order: 1
 parent: API - Query data programmatically
 has_children: true
 published: true
+redirect_from: 
+   /api/python/index
 ---
 
 {:.no_toc}
@@ -14988,7 +14990,7 @@ If you are using a Custom Data Commons instance, make sure to indicate that the 
 
 ## Email support forum
 
-For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons">404: Not Found</doc></background, concepts, data model><optional><doc title="Web Components" desc="Embed Data Commons charts in your own website.">---
+For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons" desc="Contribute data, code, or documentation to Data Commons.">404: Not Found</doc></background, concepts, data model><optional><doc title="Web Components" desc="Embed Data Commons charts in your own website.">---
 layout: default
 title: Embed data and visualizations in your own website
 nav_order: 60
