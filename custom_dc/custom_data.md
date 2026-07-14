@@ -418,7 +418,7 @@ In this case, the columns need to be mapped to the expected columns listed above
 #### Observation values {#obs}
 
 Here are the rules for observation values:
-- Variable values must be numeric. Do not include any special characters such as `-` or `#`.
+- Variable values must be numeric. Do not include any special characters such as `*` or `#`.
 - Zeros are accepted and recorded.
 - For null or not-a-number values, we recommend that you use blanks. (The strings `NaN`, `NA`, and `N/A` are also accepted.) These values will be ignored and not displayed in any charts or tables.
 - Do not use negative numbers or inordinately large numbers to represent NaNs or nulls.
