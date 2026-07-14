@@ -388,10 +388,10 @@ Here is our above example in the correct CSV format:
 Indicator,Year,Country,Value
 Ratio_Smokers_Age13to17_Female,2022,country/ALB,8
 Ratio_Smokers_Age13to17_Male,2022,country/ALB,18
-Ratio_Smokers_Age13to17	2016,country/ARE,8.1
+Ratio_Smokers_Age13to17,2016,country/ARE,8.1
 Ratio_Smokers_Age13to17_Female,2016,country/ARE,5
 Ratio_Smokers_Age13to17_Male,2016,country/ARE,11.3
-Ratio_Smokers_Age13to17	2018.country/ARG,18
+Ratio_Smokers_Age13to17,2018,country/ARG,18
 Ratio_Smokers_Age13to17_Female,2018,country/ARG,20
 Ratio_Smokers_Age13to17_Male,2018,country/ARG,15.5
 Ratio_Smokers_Age13to17_Female,2022,country/ARM,0
@@ -399,11 +399,10 @@ Ratio_Smokers_Age13to17_Male,2022,country/ARM,17
 Ratio_Smokers_Age13to17,2017,country/ATG,1.4
 Ratio_Smokers_Age13to17_Female,2017,country/ATG,1.2
 Ratio_Smokers_Age13to17_Male,2017,country/ATG,1.5
-Ratio_Smokers_Age13to17	2024,country/AUT,19.5
+Ratio_Smokers_Age13to17,2024,country/AUT,19.5
 Ratio_Smokers_Age13to17_Female,2024,country/AUT,21.3
 Ratio_Smokers_Age13to17_Male,2024,country/AUT,17.2
 ...
-```
 
 In this case, the columns need to be mapped to the expected columns listed above; see below for details.
 
