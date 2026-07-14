@@ -21,9 +21,9 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 
 At a high level, you need to provide the following:
 
-- If you need to define your own statistical variables (metrics), you need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
-- All observations data must be in CSV format, using the schema described later.
-- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+* If you need to define your own statistical variables (metrics), you need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
+* All observations data must be in CSV format, using the schema described later.
+* You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 
 If you need to define new entities, please see [Define custom entities](custom_entities.md) for details.
 
@@ -62,8 +62,8 @@ In addition, even if you aggregate by geographical area, you may want to measure
 #### Entities and entity types
 
 Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. Non-place entities are of two types:
-- The thing you are measuring, known as the `populationType` in Data Commons. Often this is a `Person`, which is a commonly used population in Data Commons. But it could be something else entirely, like the beds in a hospital, the price of a commodity, Olympic medals won by a country, or the surface area of an ocean.
-- The level at which you want to aggregate the data. Most commonly in Data Commons this is a place type such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc.
+* The thing you are measuring, known as the `populationType` in Data Commons. Often this is a `Person`, which is a commonly used population in Data Commons. But it could be something else entirely, like the beds in a hospital, the price of a commodity, Olympic medals won by a country, or the surface area of an ocean.
+* The level at which you want to aggregate the data. Most commonly in Data Commons this is a place type such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc.
 It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
 
 An _entity_ is an instance of an entity type. For example, for `PublicSchool`, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
@@ -130,12 +130,12 @@ If you do need to define new variables, they must follow a certain model. The va
 | San Jose | 2023 | private | secondary | 100 |
 
 The measure here is a simple count; the set of things is "schools"; and the constraints are the type and levels of the schools, namely "public", "private", "elementary", "middle" and "secondary". All of these things must be encoded as separate variables. Therefore, although the _properties_ of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
-- `Count_School_Public_Elementary`
-- `Count_School_Public_Middle`
-- `Count_School_Public_Secondary`
-- `Count_School_Private_Elementary`
-- `Count_School_Private_Middle`
-- `Count_School_Private_Secondary`
+* `Count_School_Public_Elementary`
+* `Count_School_Public_Middle`
+* `Count_School_Public_Secondary`
+* `Count_School_Private_Elementary`
+* `Count_School_Private_Middle`
+* `Count_School_Private_Secondary`
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
@@ -181,7 +181,8 @@ Nodes in the Data Commons knowledge graph are defined in Metadata Content Format
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Let's look at an example from a WHO dataset that reports the [prevalence of smoking among adolescents](https://platform.who.int/data/maternal-newborn-child-adolescent-ageing/indicator-explorer-new/MCA/prevalence-of-current-cigarette-smoking-amongq
+Let's look at an example from a WHO dataset that reports the [prevalence of smoking among adolescents](https://platform.who.int/data/maternal-newborn-child-adolescent-ageing/indicator-explorer-new/MCA/prevalence-of-current-cigarette-smoking-among-adolescents){: target="_blank"} (adolescents are age 13 - 17).
+
 | Indicator | Year | Country code | Country | Sex | Value |
 |-----------|------|--------------|---------|-----|-------|
 | Prevalence of current cigarette smoking among adolescents | 2018 | ARG | Argentina | Male | 15.5 |
@@ -190,16 +191,16 @@ Let's look at an example from a WHO dataset that reports the [prevalence of smok
 | Prevalence of current cigarette smoking among adolescents | 2022 | ARM | Armenia | Male | 17 |
 | Prevalence of current cigarette smoking among adolescents | 2022 | ARM | Armenia | Female | 0 |
 | Prevalence of current cigarette smoking among adolescents | 2024 | AUT | Austria | Male | 17.2 |
-| Prevalence of current cigarette smoking among adolescents 2024 | AUT | Austria | Female | 21.3 |
-| Prevalence of current cigarette smoking among adolescents 2024 | AUT | Austria | Both sexes | 19.5 |
+| Prevalence of current cigarette smoking among adolescents | 2024 | AUT | Austria | Female | 21.3 |
+| Prevalence of current cigarette smoking among adolescents | 2024 | AUT | Austria | Both sexes | 19.5 |
 
 The first thing to notice is that there is a breakdown by sex. Therefore, we'll need 3 different variables to represent that dimension: 1 variable for males, 1 variable for females, and 1 variable for both.
 
 The second thing is figure out if there are existing entities or properties we can use to represent cigarette smoking, adolescents, and sex. It turns out that there are!
 
-- Age is represented by an existing property, [`age`](https://datacommons.org/browser/){: target="_blank"}, which can be of type [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"}, which is an enumeration. One value of this enum is [Years13to17](https://datacommons.org/browser/Years13To17){: target="_blank"}.
-- Sex is represented by an existing property, [gender](https://datacommons.org/browser/gender){: target="_blank"}, which is of type [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"}, an enumeration. Its members [Female](https://datacommons.org/browser/Female){: target="_blank"} and [Male](https://datacommons.org/browser/Male){: target="_blank"} already exist as well.
-- [Smoking](https://datacommons.org/browser/Smoking){: target="_blank"}, which is a member of the enumeration [HealthBehaviorEnum](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}
+* Age is represented by an existing property, [`age`](https://datacommons.org/browser/){: target="_blank"}, which can be of type [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"}, which is an enumeration. One value of this enum is [Years13to17](https://datacommons.org/browser/Years13To17){: target="_blank"}.
+* Sex is represented by an existing property, [gender](https://datacommons.org/browser/gender){: target="_blank"}, which is of type [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"}, an enumeration. Its members [Female](https://datacommons.org/browser/Female){: target="_blank"} and [Male](https://datacommons.org/browser/Male){: target="_blank"} already exist as well.
+* [Smoking](https://datacommons.org/browser/Smoking){: target="_blank"}, which is a member of the enumeration [HealthBehaviorEnum](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}.
 
 The MCF would therefore look like this:
 
@@ -242,56 +243,56 @@ The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
 
-- `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. It must be preceded by the prefix `dcid:`. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
+* `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. It must be preceded by the prefix `dcid:`. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
    > Note: If you plan to contribute your data to base Data Commons, DCIDs should follow the [DCID naming conventions](#naming). Otherwise, you can name them however you want.
-- `typeOf`: In the case of statistical variable, this is always `schema:StatisticalVariable`.
-- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
-- `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` or `Enumeration` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
-- `measuredProperty`: This is a property of the thing being measured. It must be defined as a `schema:Property` of the `populationType` you have specified. In this example, it is the prevalence of smoking. The node `Smoking` is a member of the `HealthBehaviorEnum`, which is a property of `Person`. To view the list of properties for a given `populationType`, use either of the following methods:
-  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example:
+* `typeOf`: In the case of statistical variable, this is always `schema:StatisticalVariable`.
+* `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
+* `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` or `Enumeration` type. In this example it is `schema:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
+* `measuredProperty`: This is a property of the thing being measured. It must be defined as a `schema:Property` of the `populationType` you have specified. In this example, it is the prevalence of smoking. The node [`Smoking`](https://datacommons.org/browser/Smoking){: target="_blank"} is a member of the [`HealthBehaviorEnum`](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}, which is a property of `Person`. To view the list of properties for a given `populationType`, use either of the following methods:
+  * Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example:
 
     ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
 
-  - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
+  * Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
   If the `measuredProperty` is essentially the same thing as the `populationType` omit it. For example, `Count_Person` has no property being measured; it is just a count of the population.
-- `statType`: This is the measurement represented by this variable. It could be a count, an average, a rate, a ratio, etc. For historical reasons, stat type properties are dispersed around the graph: you can see some at  <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"} and its older, deprecated counterpart <https://datacommons.org/browser/StatisticalPopulation>{: target="_blank"}, under the **domainIncludes** section of the page. Some stat types are part of various enums, such as [`BinaryOperatorEnum`](https://datacommons.org/browser/BinaryOperatorEnum){: target="_blank"}.
+* `statType`: This is the measurement represented by this variable. It could be a count, an average, a rate, a ratio, etc. For historical reasons, stat type properties are dispersed around the graph: you can see some at  <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"} and its older, deprecated counterpart <https://datacommons.org/browser/StatisticalPopulation>{: target="_blank"}, under the **domainIncludes** section of the page. Some stat types are part of various enums, such as [`BinaryOperatorEnum`](https://datacommons.org/browser/BinaryOperatorEnum){: target="_blank"}.
 
 Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:` or `schema:`. Use the following guidelines to determine which to use:
 
-- If the node exists in [schema.org](https://schema.org/docs/schemas.html){: target="_blank"} (you can look them up in the **Term Finder**), use `schema`.
-- If the node exists in the core Data Commons schema, [dcschema.mcf](https://github.com/datacommonsorg/schema/blob/main/core/dcschema.mcf){: target="blank"}, use `dcs`.
-- Otherwise, use `dcid` for all others.
+* If the node exists in [schema.org](https://schema.org/docs/schemas.html){: target="_blank"} (you can look them up in the **Term Finder**), use `schema`.
+* If the node exists in the core Data Commons schema, [dcschema.mcf](https://github.com/datacommonsorg/schema/blob/main/core/dcschema.mcf){: target="blank"}, use `dcs`.
+* Otherwise, use `dcid` for all others.
 All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 
-- `description`: A more detailed textual description of the variable.
-- `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It should be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-- `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
+* `description`: A more detailed textual description of the variable.
+* `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It should be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
+* `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
 #### Constraint properties
 
-Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use two constraint properties: `gender` and `age`, both of which are indirect properties. The constraint property values are typically enumerations: [`GenderType`](https://datacommons.org/browser/GenderType) (an enum){: target="_blank"} is the type of `gender` and [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"} is the type of `age`.
+Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use two constraint properties: `gender` and `age`, both of which are indirect properties. The constraint property values are typically enumerations: [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"} is an enum that serves as the type of `gender`. [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"} is an enum that serves as the type of `age`.
 
-> **Tip:** If you're not sure whether a property should be a `measuredProperty` or a constraint property, use this rule of thumb: `measuredProperty` is the key thing that's being measured, while constraint properties are ways of slicing the data into segments, but aren't the main thing being measured. For example, if you were measuring the average age of a population, "age" would be a measured property because it is the main metric. But for a metric that counts the number of smokers in a population, it's the smoking behavior that is the key metric; the age is a secondary dimension; and is hence a constraint property.
+> **Tip:** If you're not sure whether a property should be a `measuredProperty` or a constraint property, use this rule of thumb: `measuredProperty` is the key attribute that's being measured, while constraint properties are ways of slicing the data into segments, but aren't key attributes. For example, if you were measuring the average age of a population, "age" would be a measured property because it is the main metric. But for a metric that counts the number of smokers in a population, it's the smoking behavior that is the key metric; the age is a secondary dimension and is hence a constraint property.
 
 {: #naming}
 #### Variable DCID naming conventions
 
-- Variable DCIDs should be in PascalCase with underscores between properties.
-- For a basic variable without `measurementQualifier` or `measurementDenominator` properties, it should look like this:
+* Variable DCIDs should be in PascalCase with underscores between properties.
+* For a basic variable without `measurementQualifier` or `measurementDenominator` properties, it should look like this:
 
   _`[measurementQualifier]_statType_[measuredProperty]_populationType[_constraintValue1_constraintValue2]`_
 
   Example: `GrowthRate_Amount_GrossDomesticProduction_`
 
-- For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
-  - `Annual_Average_RetailPrice_Electricity`
-  - `Annual_Average_Wage`
-- For a variable with a `measurementDenominator` property, add the suffix `AsAFractionOf_`_`measurementDenominator`_. Examples:
-  - `Count_Death_Female_AsAFractionOf_Count_Person_Female`
-  - `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
-- Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
+* For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
+  * `Annual_Average_RetailPrice_Electricity`
+  * `Annual_Average_Wage`
+* For a variable with a `measurementDenominator` property, add the suffix `AsAFractionOf_`_`measurementDenominator`_. Examples:
+  * `Count_Death_Female_AsAFractionOf_Count_Person_Female`
+  * `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
+* Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
 
 ### Step 2 (optional): Define a statistical variable group {#statvar-group}
 
@@ -321,10 +322,10 @@ specializationOf: dcid:dc/g/Root
 
 You can define as many statistical variable group nodes as you like. Each must include the following fields:
 
-- `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
-- `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`.
-- `name`: This is the name of the heading that will appear in the Statistical Variable Explorer.
-- `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
+* `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
+* `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`.
+* `name`: This is the name of the heading that will appear in the Statistical Variable Explorer.
+* `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
 
   ```
   Node: dcid:who/g/WHO
@@ -377,19 +378,19 @@ CSV files contain the following columns using the following headings:
 The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
 These columns are required:
-- `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place.
-- `variable`: The DCID of an existing variable or the node you have defined in the MCF
-- `date`: The date of the observation. This should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_.
-- `value`: See [Observation values](#obs) for valid values of this column.
+* `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place.
+* `variable`: The DCID of an existing variable or the node you have defined in the MCF
+* `date`: The date of the observation. This should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_.
+* `value`: See [Observation values](#obs) for valid values of this column.
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
 These columns are optional, and allow you to specify additional per-observation properties:
 
-- [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
-- [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
-- [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
-- [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`.
+* [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
+* [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
+* [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
+* [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`.
 
 Here is our above example in the correct CSV format:
 
@@ -412,10 +413,12 @@ Ratio_Smokers_Age13to17,2024,country/AUT,19.5
 Ratio_Smokers_Age13to17_Female,2024,country/AUT,21.3
 Ratio_Smokers_Age13to17_Male,2024,country/AUT,17.2
 ...
+```
 
 In this case, the columns need to be mapped to the expected columns listed above; see below for details.
 
-#### Observation values {#obs}
+{: #obs}
+#### Observation values
 
 Here are the rules for observation values:
 - Variable values must be numeric. Do not include any special characters such as `*` or `#`.
@@ -460,12 +463,12 @@ Here is an example of how the config file would look for the CSV file we defined
 ```
 
 The following fields are required:
-- `input_files`:
-  - `format` must be `variablePerRow`
-  - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
+* `input_files`:
+  * `format` must be `variablePerRow`
+  * `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
 
 The following is optional:
-- `groupStatVarsByProperty` allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
+* `groupStatVarsByProperty` allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
 
 Note that you don't specify your MCF files as input files; the Data Commons importer will identify them automatically.
 
@@ -482,8 +485,8 @@ To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc
 ### Configure environment variables
 
 Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env-vars) as follows:
-- Set the `INPUT_DIR` variable to the full path to the directory where your input files are stored.
-- Set the `OUTPUT_DIR` variable to the full path to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
+* Set the `INPUT_DIR` variable to the full path to the directory where your input files are stored.
+* Set the `OUTPUT_DIR` variable to the full path to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
 ### Start the Docker containers with local custom data {#docker-data}
 
