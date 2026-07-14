@@ -186,8 +186,7 @@ Nodes in the Data Commons knowledge graph are defined in Metadata Content Format
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Let's look at an example from a WHO dataset that reports the [prevalence of smoking among adolescents](https://platform.who.int/data/maternal-newborn-child-adolescent-ageing/indicator-explorer-new/MCA/prevalence-of-current-cigarette-smoking-among-adolescents){: target="_blank"} globally. (Adolescents are defined as age 13 - 17). The source data looks like this:
-
+Let's look at an example from a WHO dataset that reports the [prevalence of smoking among adolescents](https://platform.who.int/data/maternal-newborn-child-adolescent-ageing/indicator-explorer-new/MCA/prevalence-of-current-cigarette-smoking-amongq
 | Indicator | Year | Country code | Country | Sex | Value |
 |-----------|------|--------------|---------|-----|-------|
 | Prevalence of current cigarette smoking among adolescents | 2018 | ARG | Argentina | Male | 15.5 |
@@ -203,7 +202,7 @@ The first thing to notice is that there is a breakdown by sex. Therefore, we'll 
 
 The second thing is figure out if there are existing entities or properties we can use to represent cigarette smoking, adolescents, and sex. It turns out that there are!
 
-* Age is represented by an existing property, [`age`](https://datacommons.org/browser/){: target="_blank"}, which can be of type [`QuantityRagne`](https://datacommons.org/browser/QuantityRange){: target="_blank"}, which is an enumeration. One value of this enum is [Years13to17](https://datacommons.org/browser/Years13To17){: target="_blank"}.
+* Age is represented by an existing property, [`age`](https://datacommons.org/browser/){: target="_blank"}, which can be of type [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"}, which is an enumeration. One value of this enum is [Years13to17](https://datacommons.org/browser/Years13To17){: target="_blank"}.
 * Sex is represented by an existing property, [gender](https://datacommons.org/browser/gender){: target="_blank"}, which is of type [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"}, an enumeration. Its members [Female](https://datacommons.org/browser/Female){: target="_blank"} and [Male](https://datacommons.org/browser/Male){: target="_blank"} already exist as well.
 * [Smoking](https://datacommons.org/browser/Smoking){: target="_blank"}, which is a member of the enumeration [HealthBehaviorEnum](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}
 
@@ -218,7 +217,7 @@ measuredProperty: dcid:Smoking
 statType: dcid:Ratio
 constraintProperties: dcid:age
 age: dcid:Years13to17
-measurementDenominator: dcid:Count_Person_Adolescents
+measurementDenominator: dcid:Count_Person_13To17Years
 
 Node: dcid:who/Ratio_Smokers_Age13to17_Female
 typeOf: schema:StatisticalVariable
@@ -229,7 +228,7 @@ statType: dcs:Ratio
 constraintProperties: dcid:age,dcid:gender
 age: dcid:Years13to17
 gender: dcid:Female
-measurementDenominator: dcid:Count_Person_Adolescents
+measurementDenominator: dcid:Count_Person_13To17Years_Female
 
 Node: dcid:who/Ratio_Smokers_Age13to17_Male
 typeOf: schema:StatisticalVariable
@@ -241,7 +240,7 @@ measurementDenominator: dcid:Count_Person_Adolescents
 constraintProperties: dcid:age,dcid:gender
 age: dcid:Years13to17
 gender: dcid:Male
-measurementDenominator: dcid:Count_Person_Adolescents
+measurementDenominator: dcid:Count_Person_13To17Years_Memale
 ```
 
 The order of nodes and fields within nodes does not matter.
@@ -253,12 +252,13 @@ The following fields are always required:
 * `typeOf`: In the case of statistical variable, this is always `schema:StatisticalVariable`.
 * `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
 * `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` or `Enumeration` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
-* `measuredProperty`: This is a property of the thing being measured. It must be property of the `populationType` you have specified. In this example, it is the prevalance of smoking. The node `Smoking` is member of the `healthBehaviorEnum`, which is a property of `Person`. To view the list of properties for a given `populationType`, use either of the following methods:
+* `measuredProperty`: This is a property of the thing being measured. It must be defined as a `schema:Property` of the `populationType` you have specified. In this example, it is the prevalence of smoking. The node `Smoking` is a member of the `HealthBehaviorEnum`, which is a property of `Person`. To view the list of properties for a given `populationType`, use either of the following methods:
   * Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example:
 
     ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
 
   * Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
+  If the `measuredProperty` is essentially the same thing as the `populationType` omit it. For example, `Count_Person` has no property being measured; it is just a count of the population.
 * `statType`: This is the measurement represented by this variable. It could be a count, an average, a rate, a ratio, etc. For historical reasons, stat type properties are dispersed around the graph: you can see some at  <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"} and its older, deprecated counterpart <https://datacommons.org/browser/StatisticalPopulation>{: target="_blank"}, under the **domainIncludes** section of the page. Some stat types are part of various enums, such as [`BinaryOperatorEnum`](https://datacommons.org/browser/BinaryOperatorEnum){: target="_blank"}.
 
 Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:` or `schema:`. Use the following guidelines to determine which to use:
@@ -287,11 +287,10 @@ Additionally, you can specify any number of property-value pairs representing th
 * Variable DCIDs should be in PascalCase with underscores between properties.
 * For a basic variable without `measurementQualifier` or `measurementDenominator` properties, it should look like this:
 
-  _`[measurementQualifier]_statType_measuredProperty_populationType[_constraintValue1_constraintValue2]`_
+  _`[measurementQualifier]_statType_[measuredProperty]_populationType[_constraintValue1_constraintValue2]`_
 
   Example: `GrowthRate_Amount_GrossDomesticProduction_`
 
-* If the `measuredProperty` is essentially the same thing as` the `populationType omit it. For example, `Count_Person` has no property being measured; it is just a count of the population.
 * For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
   * `Annual_Average_RetailPrice_Electricity`
   * `Annual_Average_Wage`
