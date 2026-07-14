@@ -51,8 +51,12 @@ For entity types, an MCF block definition must include the following fields:
 - `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that is somehow related. This inserts the entity type into a class hierarchy. You may also define sub-types of types you define, by using this field to indicate the "parent" class. In this example, the parent class is `Government`.   
 
 You can add other optional properties, such as schema.org meta properties, and any number of key:value pairs.
-You may also want to create subclasses of your new entity and/or enumeration members. See the next step for examples.
 
+### Step 1a: Define enumerations for the entity type (optional)
+
+Data Commons relies fairly heavily on [enumerations](https://datacommons.org/browser/Enumeration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S., `Agency` would likely actually be defined as an enum with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use enums to break down classes into multiple sub-types. If you want to be able to link entities by subtype, you _must_ define enums for them, in MCF.
+
+See [Example enum definitions](#enum-example) for details.
 
 {: #step2}
 ### Step 2: Define new entities
@@ -83,10 +87,6 @@ Here are the important points to note in this example:
 - For any cells that reference existing entities, if you want to link your entities to them, you must specify them by DCID. In the above example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCIDs; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, zip codes won't be used to link these entities, so the `zipCode` values aren't given as DCIDs (although they could be).
 
 > **Important:** Whenever you want to link properties of entities you are defining to existing entities, the cell values must contain DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity](custom_data.md#search). 
-
-### Step 2a: Define new properties (optional)
-
-
 
 ### Step 3: Write the config.json file
 
@@ -131,12 +131,12 @@ The other fields are explained in the [Data config file specification reference]
 If you are providing observations for the non-place entities, the observations must be in a separate file. You'll need a different CSV file for each entity type for which you are providing observations.
 
 For example, let's say you've already defined in MCF the following variables that measure weekly hospital capacity:
-* `Count_StaffedBeds`
-* `Count_StaffedBeds_Adult`
-* `Count_StaffedBeds_Inpatient_ICU`
-* `Count_StaffedBeds_Adult_Inpatient_ICU`
-* `Count_StaffedBedsOccupied_Inpatient_ICU`
-* `Count_StaffedBedsOccupied_Adult_ICU_beds`
+* `total_count_staffed_beds`
+* `count_staffed_adult_beds`
+* `count_staffed_inpatient_icu_beds`
+* `count_staffed_adult_inpatient_icu_beds`
+* `count_staffed_inpatient_icu_beds_occupied`
+* `count_staffed_adult_icu_beds_occupied`
 
 Aside: Note that the thing being measured here is "beds". There is an existing [Bed](https://datacommons.org/browser/Bed) class in Data Commons. So when defining such variables, you would specify `schema:bed` as the `populationType`.
 
@@ -144,23 +144,23 @@ Just like for place entities, you provide observations for these variables in a 
 
 ```csv
 entity,date,variable,value
-20001,2023-01-27,Count_StaffedBeds,1048
-20001,2023-01-27,Count_StaffedBedsOccupied_Adult_ICU,146
-20001,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,146
-20001,2023-01-27,Count_StaffedBeds_Inpatient_ICU,264
-20001,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,264
-20001,2023-01-27,Count_StaffedBeds,1262
-20017,2023-01-27,Count_StaffedBeds_Adult,0
-20017,2023-01-27,Count_StaffedBedsOccupied_Adult_ICU,0
-20017,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,
-20017,2023-01-27,Count_StaffedBeds_Inpatient_ICU,
-20017,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,0
-21301,2023-01-27,Count_StaffedBeds_Adult,780
-21301,2023-01-27,Count_StaffedBedsOccupied_Adult_ICU,62
-21301,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,62
-21301,2023-01-27,Count_StaffedBeds_Inpatient_ICU,101
-21301,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,66
-21301,2023-01-27,Count_StaffedBeds,836
+20001,2023-01-27,count_staffed_adult_beds,1048
+20001,2023-01-27,count_staffed_adult_icu_beds_occupied,146
+20001,2023-01-27,count_staffed_adult_inpatient_icu_beds,146
+20001,2023-01-27,count_staffed_inpatient_icu_beds,264
+20001,2023-01-27,count_staffed_inpatient_icu_beds_occupied,264
+20001,2023-01-27,total_count_staffed_beds,1262
+20017,2023-01-27,count_staffed_adult_beds,0
+20017,2023-01-27,count_staffed_adult_icu_beds_occupied,0
+20017,2023-01-27,count_staffed_adult_inpatient_icu_beds,
+20017,2023-01-27,count_staffed_inpatient_icu_beds,
+20017,2023-01-27,count_staffed_inpatient_icu_beds_occupied,0
+21301,2023-01-27,count_staffed_adult_beds,780
+21301,2023-01-27,count_staffed_adult_icu_beds_occupied,62
+21301,2023-01-27,count_staffed_adult_inpatient_icu_beds,62
+21301,2023-01-27,count_staffed_inpatient_icu_beds,101
+21301,2023-01-27,count_staffed_inpatient_icu_beds_occupied,66
+21301,2023-01-27,total_count_staffed_beds,836
 ...
 ```
 We could also have added an `observationPeriod` column, which would be set to `P7D` for all rows.
@@ -233,6 +233,7 @@ If we were to use these definitions in the hospitals CSV file, the last column w
 HospitalTypeEnum
 ShortTermHospital
 LongTermHospital
+ShortTermHospital
 CriticalAccessHospital
 ...
 ```
@@ -240,17 +241,17 @@ Then, if desired, you could provide aggregated observations for each hospital ty
 
 ```csv
 entity,date,variable,value
-ShortTermHospital,2023-01-27,Count_StaffedBeds_Adult...
-ShortTermHospital,2023-01-27,Count_StaffedBedsOccuped_Adult_ICU,...
-ShortTermHospital,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU,...
-ShortTermHospital,2023-01-27,Count_StaffedBeds_Inpatient_ICU,...
-ShortTermHospital,2023-01-27,Count_StaffedBedsOccupied_Inpatient_ICU,...
-ShortTermHospital,2023-01-27,Count_StaffedBeds,...
-LongTermHospital,2023-01-27,Count_StaffedBeds_Adult,...
-LongTermHospital,2023-01-27,Count_StaffedBedsOccuped_Adult_ICU,...
-LongTermHospital,2023-01-27,Count_StaffedBeds_Adult_Inpatient_ICU...
-LongTermHospital,2023-01-27,Count_StaffedBeds_Inpatient_ICU...
-LongTermHospital,2023-01-27,ount_StaffedBedsOccupied_Inpatient_ICU,...
+ShortTermHospital,2023-01-27,count_staffed_adult_beds,...
+ShortTermHospital,2023-01-27,count_staffed_adult_icu_beds_occupied,...
+ShortTermHospital,2023-01-27,count_staffed_adult_inpatient_icu_beds,...
+ShortTermHospital,2023-01-27,count_staffed_inpatient_icu_beds,...
+ShortTermHospital,2023-01-27,count_staffed_inpatient_icu_beds_occupied,...
+ShortTermHospital,2023-01-27,total_count_staffed_beds,...
+LongTermHospital,2023-01-27,count_staffed_adult_beds,...
+LongTermHospital,2023-01-27,count_staffed_adult_icu_beds_occupied,...
+LongTermHospital,2023-01-27,count_staffed_adult_inpatient_icu_beds...
+LongTermHospital,2023-01-27,count_staffed_inpatient_icu_beds...
+LongTermHospital,2023-01-27,count_staffed_inpatient_icu_beds_occupied,...
 ...
 ```
 
