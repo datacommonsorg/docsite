@@ -51,12 +51,8 @@ For entity types, an MCF block definition must include the following fields:
 - `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that is somehow related. This inserts the entity type into a class hierarchy. You may also define sub-types of types you define, by using this field to indicate the "parent" class. In this example, the parent class is `Government`.   
 
 You can add other optional properties, such as schema.org meta properties, and any number of key:value pairs.
+You may also want to create subclasses of your new entity and/or enumeration members. See the next step for examples.
 
-### Step 1a: Define enumerations for the entity type (optional)
-
-Data Commons relies fairly heavily on [enumerations](https://datacommons.org/browser/Enumeration){: target="_blank"} to define subclasses (there are hundreds of them in the graph) of other entity types. For example, in the U.S., `Agency` would likely actually be defined as an enum with members `StateAgency`, `FederalAgency`, `MunicipalAgency`, and so on. If you are creating one or more new entity types, you may find it convenient to use enums to break down classes into multiple sub-types. If you want to be able to link entities by subtype, you _must_ define enums for them, in MCF.
-
-See [Example enum definitions](#enum-example) for details.
 
 {: #step2}
 ### Step 2: Define new entities
@@ -87,6 +83,10 @@ Here are the important points to note in this example:
 - For any cells that reference existing entities, if you want to link your entities to them, you must specify them by DCID. In the above example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCIDs; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. By contrast, zip codes won't be used to link these entities, so the `zipCode` values aren't given as DCIDs (although they could be).
 
 > **Important:** Whenever you want to link properties of entities you are defining to existing entities, the cell values must contain DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity](custom_data.md#search). 
+
+### Step 2a: Define new properties (optional)
+
+
 
 ### Step 3: Write the config.json file
 
@@ -233,7 +233,6 @@ If we were to use these definitions in the hospitals CSV file, the last column w
 HospitalTypeEnum
 ShortTermHospital
 LongTermHospital
-ShortTermHospital
 CriticalAccessHospital
 ...
 ```

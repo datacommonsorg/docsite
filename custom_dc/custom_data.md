@@ -200,7 +200,7 @@ The second thing is figure out if there are existing entities or properties we c
 The MCF would therefore look like this:
 
 ```
-Node: dcid:who/Ratio_Smoking_Age13to17
+Node: dcid:who/Ratio_Smokers_Age13to17
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%)"
 populationType: schema:Person
@@ -210,7 +210,7 @@ constraintProperties: dcid:age
 age: dcid:Years13to17
 measurementDenominator: dcid:Count_Person_Adolescents
 
-Node: dcid:who/Ratio_Smoking_Age13to17_Female
+Node: dcid:who/Ratio_Smokers_Age13to17_Female
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%) [Female]"
 populationType: schema:Person
@@ -221,7 +221,7 @@ age: dcid:Years13to17
 gender: dcid:Female
 measurementDenominator: dcid:Count_Person_Adolescents
 
-Node: dcid:who/Percent_Smoking_Adolescents_Male
+Node: dcid:who/Ratio_Smokers_Age13to17_Male
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%) [Male]"
 populationType: schema:Person
@@ -247,6 +247,7 @@ The following fields are always required:
     ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
 
   - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
+* `statType`: This is the measurement represented by this variable. It could be a count, an average, a rate, a ratio, etc. For historical reasons, stat type properties are dispersed around the graph: you can see some at  <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"} and its older, deprecated counterpart <https://datacommons.org/browser/StatisticalPopulation>{: target="_blank"}, under the **domainIncludes** section of the page. Some stat types are part of various enums, such as [`BinaryOperatorEnum`](https://datacommons.org/browser/BinaryOperatorEnum){: target="_blank"}. 
 
 Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:` or `schema:`. Use the following guidelines to determine which to use:
 * If the node exists in [schema.org](https://schema.org/docs/schemas.html){: target="_blank"} (you can look them up in the **Term Finder**), use `schema`.
@@ -256,13 +257,14 @@ All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 * `description`: A more detailed textual description of the variable.
-* `statType`: This is the measurement represented by this variable. It could be a count, an average, a rate, a ratio, etc.  You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
-* `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It must be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-* `measurementDenominator`: For percentages or ratios, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
+* `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It should be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
+* `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
 #### Constraint properties
 
-Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use a constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`.
+Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use two constraint properties: `gender` and `age`, both of which are indirect properties. The constraint property values are typically enumerations: [`GenderType`](https://datacommons.org/browser/GenderType) (an enum){: target="_blank"} is the type of `gender` and [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"} is the type of `age`.
+
+> **Tip:** If you're not sure whether a property should be a `measuredProperty` or a constraint property, use this rule of thumb: `measuredProperty` is the key thing that's being measured, while constraint properties are ways of slicing the data into segments, but aren't the main thing being measured. For example, if you were measuring the average age of a population, "age" would be a measured property because it is the main metric. But for a metric that counts the number of smokers in a population, it's the smoking behavior that is the key metric; the age is a secondary dimension; and is hence a constraint property.
 
 {: #naming}
 #### Variable DCID naming conventions
@@ -272,9 +274,9 @@ Additionally, you can specify any number of property-value pairs representing th
 
   _`[measurementQualifier]_statType_measuredProperty_populationType[_constraintValue1_constraintValue2]`_
 
-  Example: `GrowthRate_Amount_EconomicActivity_GrossDomesticProduction`
+  Example: `GrowthRate_Amount_GrossDomesticProduction_`
 
-- If the `statType` is the default, `measuredValue`, omit it. For example: `Count_Person_Male_AsianAlone`
+- If the `measuredProperty` is essentially the same thing as` the `populationType omit it. For example, `Count_Person` has no property being measured; it is just a count of the population.
 - For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
   - `Annual_Average_RetailPrice_Electricity`
   - `Annual_Average_Wage`
@@ -290,15 +292,15 @@ By default, existing variables are shown in the Statistical Variable Explorer in
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
 ```
-Node: dcid:who/Percent_Smoking_Adolescents
+Node: dcid:who/Ratio_Smokers_Age13to17
 ...
 memberOf: dcid:who/g/WHO
 
-Node: dcid:who/Percent_Smoking_Adolescents_Female
+Node: dcid:who/Ratio_Smokers_Age13to17_Female
 ...
 memberOf:dcid:who/g/WHO
 
-Node: dcid:who/Percent_Smoking_Adolescents_Male
+Node: dcid:who/Ratio_Smokers_Age13to17_Male
 ...
 memberOf: dcid:who/g/WHO
 
@@ -330,15 +332,15 @@ You can define as many statistical variable group nodes as you like. Each must i
 You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
 
 ```
-Node: dcid:who/Percent_Smoking_Adolescents
+Node: dcid:who/Ratio_Smokers_Age13to17
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Percent_Smoking_Adolescents_Female
+Node: dcid:who/Ratio_Smokers_Age13to17_Female
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/PPercent_Smoking_Adolescents_Male
+Node: dcid:who/Ratio_Smokers_Age13to17_Male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
@@ -384,22 +386,22 @@ Here is our above example in the correct CSV format:
 
 ```csv
 Indicator,Year,Country,Value
-Percent_Smoking_Adolescents_Female,2022,country/ALB,8
-Percent_Smoking_Adolescents_Male,2022,country/ALB,18
-Percent_Smoking_Adolescents	2016,country/ARE,8.1
-Percent_Smoking_Adolescents_Female,2016,country/ARE,5
-Percent_Smoking_Adolescents_Male,2016,country/ARE,11.3
-Percent_Smoking_Adolescents	2018.country/ARG,18
-Percent_Smoking_Adolescents_Female,2018,country/ARG,20
-Percent_Smoking_Adolescents_Male,2018,country/ARG,15.5
-Percent_Smoking_Adolescents_Female,2022,country/ARM,0
-Percent_Smoking_Adolescents_Male,2022,country/ARM,17
-Percent_Smoking_Adolescents,2017,country/ATG,1.4
-Percent_Smoking_Adolescents_Female,2017,country/ATG,1.2
-Percent_Smoking_Adolescents_Male,2017,country/ATG,1.5
-Percent_Smoking_Adolescents	2024,country/AUT,19.5
-Percent_Smoking_Adolescents_Female,2024,country/AUT,21.3
-Percent_Smoking_Adolescents_Male,2024,country/AUT,17.2
+Ratio_Smokers_Age13to17_Female,2022,country/ALB,8
+Ratio_Smokers_Age13to17_Male,2022,country/ALB,18
+Ratio_Smokers_Age13to17	2016,country/ARE,8.1
+Ratio_Smokers_Age13to17_Female,2016,country/ARE,5
+Ratio_Smokers_Age13to17_Male,2016,country/ARE,11.3
+Ratio_Smokers_Age13to17	2018.country/ARG,18
+Ratio_Smokers_Age13to17_Female,2018,country/ARG,20
+Ratio_Smokers_Age13to17_Male,2018,country/ARG,15.5
+Ratio_Smokers_Age13to17_Female,2022,country/ARM,0
+Ratio_Smokers_Age13to17_Male,2022,country/ARM,17
+Ratio_Smokers_Age13to17,2017,country/ATG,1.4
+Ratio_Smokers_Age13to17_Female,2017,country/ATG,1.2
+Ratio_Smokers_Age13to17_Male,2017,country/ATG,1.5
+Ratio_Smokers_Age13to17	2024,country/AUT,19.5
+Ratio_Smokers_Age13to17_Female,2024,country/AUT,21.3
+Ratio_Smokers_Age13to17_Male,2024,country/AUT,17.2
 ...
 ```
 
@@ -430,10 +432,10 @@ Here is an example of how the config file would look for the CSV file we defined
       "provenance": "UN_WHO",
       "format": "variablePerRow",
       "columnMappings": {
-        "variable": "SERIES",
-        "entity": "GEOGRAPHY",
-        "date": "TIME_PERIOD",
-        "value": "OBS_VALUE"
+        "variable": "Indicator",
+        "entity": "Country",
+        "date": "Year",
+        "value": "Value"
       }
     }
   },
