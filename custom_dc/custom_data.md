@@ -428,7 +428,7 @@ Here is an example of how the config file would look for the CSV file we defined
 ```json
 {
   "inputFiles": {
-    "adult_cig_smoking.csv": {
+    "adolescent_smoking.csv": {
       "provenance": "UN_WHO",
       "format": "variablePerRow",
       "columnMappings": {
