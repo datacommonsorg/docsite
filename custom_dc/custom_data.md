@@ -6,7 +6,6 @@ parent: Build your own Data Commons
 ---
 
 {:.no_toc}
-
 # Prepare and load your own data
 
 This page shows you how to format and load your own custom data into your local instance. This is step 2 of the [recommended workflow](/custom_dc/index.html#workflow).
@@ -29,7 +28,6 @@ At a high level, you need to provide the following:
 If you need to define new entities, please see [Define custom entities](custom_entities.md) for details.
 
 {: #dir}
-
 ### Files and directory structure
 
 You can have as many CSV and MCF files as you like, and they can be in multiple subdirectories (with an additional [configuration option](#subdirs)). There must only be one JSON config file, in the top-level input directory. For example:
@@ -55,7 +53,6 @@ The following sections walk you through the process of setting up your data.
 The following sections describe the high-level conceptual work you need to do before starting to write your data and config files.
 
 {: entities}
-
 ### Step 0.1: Determine whether you need new entities or entity types
 
 Data Commons is optimized to support aggregations of data at geographical levels, such as city, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.
@@ -74,7 +71,6 @@ An _entity_ is an instance of an entity type. For example, for `PublicSchool`, b
 > **Note:** You should always reuse existing entity types and entities from base Data Commons rather than re-defining them. This way, you get all the properties already defined for those entities and all their linked nodes, and can more easily join with base data if needed.
 
 {: #search}
-
 #### Search for an existing entity / entity type
 
 Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs.
@@ -175,7 +171,6 @@ The names and order of the columns aren't important, as you can map them to the 
 In this section, we will walk you through a concrete example of how to go about setting up your MCF, CSV, and JSON files.
 
 {: #mcf}
-
 ### Step 1: Define statistical variables in MCF
 
 If you are only reusing existing variables, you can skip this step entirely.
@@ -281,7 +276,6 @@ Additionally, you can specify any number of property-value pairs representing th
 > **Tip:** If you're not sure whether a property should be a `measuredProperty` or a constraint property, use this rule of thumb: `measuredProperty` is the key thing that's being measured, while constraint properties are ways of slicing the data into segments, but aren't the main thing being measured. For example, if you were measuring the average age of a population, "age" would be a measured property because it is the main metric. But for a metric that counts the number of smokers in a population, it's the smoking behavior that is the key metric; the age is a secondary dimension; and is hence a constraint property.
 
 {: #naming}
-
 #### Variable DCID naming conventions
 
 * Variable DCIDs should be in PascalCase with underscores between properties.
@@ -374,7 +368,6 @@ memberOf: dcid:MyVariables
 ```
 
 {: #exp_csv}
-
 ### Step 3: Prepare the CSV observation files
 
 CSV files contain the following columns using the following headings:
@@ -431,7 +424,6 @@ Here are the rules for observation values:
 * Do not use negative numbers or inordinately large numbers to represent NaNs or nulls.
 
 {: #json}
-
 ### Step 4: Write the JSON config file
 
 You must define a `config.json` in the top-level directory where your CSV files are located. You need to provide these specifications:
@@ -480,7 +472,6 @@ Note that you don't specify your MCF files as input files; the Data Commons impo
 The other fields are explained in the [Data config file specification reference](config.md).
 
 {: #loadlocal}
-
 ## Load local custom data
 
 The following procedures show you how to load and serve your custom data locally.
@@ -488,7 +479,6 @@ The following procedures show you how to load and serve your custom data locally
 To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
 {: #env}
-
 ### Configure environment variables
 
 Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env-vars) as follows:
@@ -532,7 +522,6 @@ Once you have configured everything, just run the `run_cdc_dev_docker.sh` script
 > **Note:** Any time you make changes to the CSV or JSON files and want to reload the data, you need to restart both containers.
 
 {:.no_toc}
-
 #### (Optional) Start the data management container in schema update mode {#schema-update-mode}
 
 If you have tried to start a container, and have received a `SQL check failed` error, this indicates that a database schema update is needed. You need to restart the data management container, and you can specify an additional, optional, flag. This mode updates the database schema without re-importing data or re-building natural language embeddings. This is the quickest way to resolve a SQL check failed error during services container startup.
@@ -569,7 +558,6 @@ If you have tried to start a container, and have received a `SQL check failed` e
 </div>
 
 {: #verify}
-
 ### Verify your data
 
 If the servers have started up without errors, check to ensure that your data is showing up as expected.
