@@ -198,43 +198,38 @@ The first thing to notice is that there is a breakdown by sex. Therefore, we'll 
 
 The second thing is figure out if there are existing entities or properties we can use to represent cigarette smoking, adolescents, and sex. It turns out that there are!
 
-* Age is represented by an existing property, [`age`](https://datacommons.org/browser/){: target="_blank"}, which can be of type [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"}, which is an enumeration. One value of this enum is [Years13to17](https://datacommons.org/browser/Years13To17){: target="_blank"}.
+* Adolescence is represented by [`Adolescents`](https://datacommons.org/browser/Adolescents){: target="_blank"}, which is a member of the [`AgeGroupClassificationEnum`](https://datacommons.org/browser/AgeGroupClassificationEnum){: target="_blank"}.
 * Sex is represented by an existing property, [gender](https://datacommons.org/browser/gender){: target="_blank"}, which is of type [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"}, an enumeration. Its members [Female](https://datacommons.org/browser/Female){: target="_blank"} and [Male](https://datacommons.org/browser/Male){: target="_blank"} already exist as well.
 * [Smoking](https://datacommons.org/browser/Smoking){: target="_blank"}, which is a member of the enumeration [HealthBehaviorEnum](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}.
 
 The MCF would therefore look like this:
 
 ```
-Node: dcid:who/Ratio_Smokers_Age13to17
+Node: dcid:who/Ratio_Smokers_Adolescents
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%)"
 populationType: schema:Person
 measuredProperty: dcid:Smoking
 statType: dcid:Ratio
-constraintProperties: dcid:age
-age: dcid:Years13to17
 measurementDenominator: dcid:Count_Person_13To17Years
 
-Node: dcid:who/Ratio_Smokers_Age13to17_Female
+Node: dcid:who/Ratio_Smokers_Adolescents_Female
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%) [Female]"
 populationType: schema:Person
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
-constraintProperties: dcid:age,dcid:gender
-age: dcid:Years13to17
+constraintProperties: dcid:gender
 gender: dcid:Female
 measurementDenominator: dcid:Count_Person_13To17Years_Female
 
-Node: dcid:who/Ratio_Smokers_Age13to17_Male
+Node: dcid:who/Ratio_Smokers_Adolescents_Male
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%) [Male]"
 populationType: schema:Person
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
-measurementDenominator: dcid:Count_Person_Adolescents
-constraintProperties: dcid:age,dcid:gender
-age: dcid:Years13to17
+constraintProperties: dcid:gender
 gender: dcid:Male
 measurementDenominator: dcid:Count_Person_13To17Years_Memale
 ```
@@ -272,7 +267,7 @@ The following fields are optional:
 
 #### Constraint properties
 
-Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use two constraint properties: `gender` and `age`, both of which are indirect properties. The constraint property values are typically enumerations: [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"} is an enum that serves as the type of `gender`. [`QuantityRange`](https://datacommons.org/browser/QuantityRange){: target="_blank"} is an enum that serves as the type of `age`.
+Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use the constraint property `gender` which is an indirect property. Constraint property values are typically enumerations: [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"} is an enum that serves as the type of `gender`. 
 
 > **Tip:** If you're not sure whether a property should be a `measuredProperty` or a constraint property, use this rule of thumb: `measuredProperty` is the key attribute that's being measured, while constraint properties are ways of slicing the data into segments, but aren't key attributes. For example, if you were measuring the average age of a population, "age" would be a measured property because it is the main metric. But for a metric that counts the number of smokers in a population, it's the smoking behavior that is the key metric; the age is a secondary dimension and is hence a constraint property.
 
@@ -301,15 +296,15 @@ By default, existing variables are shown in the Statistical Variable Explorer in
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
 ```
-Node: dcid:who/Ratio_Smokers_Age13to17
+Node: dcid:who/Ratio_Smokers_Adolescents
 ...
 memberOf: dcid:who/g/WHO
 
-Node: dcid:who/Ratio_Smokers_Age13to17_Female
+Node: dcid:who/Ratio_Smokers_Adolescents_Female
 ...
 memberOf:dcid:who/g/WHO
 
-Node: dcid:who/Ratio_Smokers_Age13to17_Male
+Node: dcid:who/Ratio_Smokers_Adolescents_Male
 ...
 memberOf: dcid:who/g/WHO
 
@@ -342,15 +337,15 @@ You can define as many statistical variable group nodes as you like. Each must i
 You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
 
 ```
-Node: dcid:who/Ratio_Smokers_Age13to17
+Node: dcid:who/Ratio_Smokers_Adolescents
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Ratio_Smokers_Age13to17_Female
+Node: dcid:who/Ratio_Smokers_Adolescents_Female
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Ratio_Smokers_Age13to17_Male
+Node: dcid:who/Ratio_Smokers_Adolescents_Male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
@@ -396,22 +391,22 @@ Here is our above example in the correct CSV format:
 
 ```csv
 Indicator,Year,Country,Value
-Ratio_Smokers_Age13to17_Female,2022,country/ALB,8
-Ratio_Smokers_Age13to17_Male,2022,country/ALB,18
-Ratio_Smokers_Age13to17,2016,country/ARE,8.1
-Ratio_Smokers_Age13to17_Female,2016,country/ARE,5
-Ratio_Smokers_Age13to17_Male,2016,country/ARE,11.3
-Ratio_Smokers_Age13to17,2018,country/ARG,18
-Ratio_Smokers_Age13to17_Female,2018,country/ARG,20
-Ratio_Smokers_Age13to17_Male,2018,country/ARG,15.5
-Ratio_Smokers_Age13to17_Female,2022,country/ARM,0
-Ratio_Smokers_Age13to17_Male,2022,country/ARM,17
-Ratio_Smokers_Age13to17,2017,country/ATG,1.4
-Ratio_Smokers_Age13to17_Female,2017,country/ATG,1.2
-Ratio_Smokers_Age13to17_Male,2017,country/ATG,1.5
-Ratio_Smokers_Age13to17,2024,country/AUT,19.5
-Ratio_Smokers_Age13to17_Female,2024,country/AUT,21.3
-Ratio_Smokers_Age13to17_Male,2024,country/AUT,17.2
+Ratio_Smokers_Adolescents_Female,2022,country/ALB,8
+Ratio_Smokers_Adolescents_Male,2022,country/ALB,18
+Ratio_Smokers_Adolescents,2016,country/ARE,8.1
+Ratio_Smokers_Adolescents_Female,2016,country/ARE,5
+Ratio_Smokers_Adolescents_Male,2016,country/ARE,11.3
+Ratio_Smokers_Adolescents,2018,country/ARG,18
+Ratio_Smokers_Adolescents_Female,2018,country/ARG,20
+Ratio_Smokers_Adolescents_Male,2018,country/ARG,15.5
+Ratio_Smokers_Adolescents_Female,2022,country/ARM,0
+Ratio_Smokers_Adolescents_Male,2022,country/ARM,17
+Ratio_Smokers_Adolescents,2017,country/ATG,1.4
+Ratio_Smokers_Adolescents_Female,2017,country/ATG,1.2
+Ratio_Smokers_Adolescents_Male,2017,country/ATG,1.5
+Ratio_Smokers_Adolescents,2024,country/AUT,19.5
+Ratio_Smokers_Adolescents_Female,2024,country/AUT,21.3
+Ratio_Smokers_Adolescents_Male,2024,country/AUT,17.2
 ...
 ```
 
