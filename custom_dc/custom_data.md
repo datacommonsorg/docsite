@@ -208,7 +208,7 @@ The MCF would therefore look like this:
 Node: dcid:who/Ratio_Smokers_Adolescents
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%)"
-populationType: schema:Person
+populationType: dcid:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcid:Ratio
 measurementDenominator: dcid:Count_Person_13To17Years
@@ -216,7 +216,7 @@ measurementDenominator: dcid:Count_Person_13To17Years
 Node: dcid:who/Ratio_Smokers_Adolescents_Female
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%) [Female]"
-populationType: schema:Person
+populationType: schema:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
 constraintProperties: dcid:gender
@@ -226,7 +226,7 @@ measurementDenominator: dcid:Count_Person_13To17Years_Female
 Node: dcid:who/Ratio_Smokers_Adolescents_Male
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (%) [Male]"
-populationType: schema:Person
+populationType: schema:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
 constraintProperties: dcid:gender
