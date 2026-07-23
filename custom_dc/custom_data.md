@@ -207,7 +207,8 @@ The MCF would therefore look like this:
 ```
 Node: dcid:who/Ratio_Smokers_Adolescents
 typeOf: schema:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adolescents (%)"
+name: "Prevalence of current cigarette smoking among adolescents"
+description: "Percentage of adolescents who are current cigarette smokers"
 populationType: dcid:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcid:Ratio
@@ -215,23 +216,25 @@ measurementDenominator: dcid:Count_Person_13To17Years
 
 Node: dcid:who/Ratio_Smokers_Adolescents_Female
 typeOf: schema:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adolescents (%) [Female]"
+name: "Prevalence of current cigarette smoking among adolescents (female)"
+description: "Percentage of adolescents who are current cigarette smokers and are female"
 populationType: schema:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
 constraintProperties: dcid:gender
 gender: dcid:Female
-measurementDenominator: dcid:Count_Person_13To17Years_Female
+measurementDenominator: dcid:Count_Person_13To17Years
 
 Node: dcid:who/Ratio_Smokers_Adolescents_Male
 typeOf: schema:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adolescents (%) [Male]"
+name: "Prevalence of current cigarette smoking among adolescents (male)"
+description: "Percentage of adolescents who are current cigarette smokers and male"
 populationType: schema:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
 constraintProperties: dcid:gender
 gender: dcid:Male
-measurementDenominator: dcid:Count_Person_13To17Years_Memale
+measurementDenominator: dcid:Count_Person_13To17Years
 ```
 
 The order of nodes and fields within nodes does not matter.
@@ -261,7 +264,7 @@ All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
 
-* `description`: A more detailed textual description of the variable.
+* `description`: A more detailed textual description of the variable. Although this is optional, it is highly recommended, as the description is used to generate embeddings for natural-language search.
 * `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It should be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
 * `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
