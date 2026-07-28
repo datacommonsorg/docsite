@@ -43,7 +43,7 @@ The server currently supports the following tools:
    - "How far back does your population data for Canada go?"
 - `get_observations`: Fetches statistical data for a given variable and place. This allows queries like:
    - "List the population of Canada since 1964."
-   - "What is the current populations of China and India?"
+   - "What are the current populations of China and India?"
 - `get_child_observations`: Fetch numerical time-series for all contained-in places of a specified type. This allows queries like:
    - "Compare the life expectancy between different countries in South America."
    - "Rank-order the GDP for all countries in Eastern Europe."
