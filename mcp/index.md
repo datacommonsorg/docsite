@@ -34,12 +34,19 @@ The server currently supports the following tools:
 
 - `search_indicators`: Searches for available variables and/or topics (a hierarchy of sub-topics and member variables) for a given place or metric. This allows queries like:
    - "Tell me what data you have about health in Egypt."
+   - "What census data do you have for Canada?"
+- `search_child_indicators`: Searches for available variables and topics for sub-national divisions (places contained in other places). This allows queries like:
+   - "What census data do you have for the U.S. states?"
    - "Do you have GDP data for Eastern European countries?"
-   - "What census data do you have for the U.S.?"
+- `get_variable_metadata`: Returns more detailed data about candidate indicators, such as sources, available dates, etc. This allows queries like:
+   - "What are the sources of data you have about health in Egypt?"
+   - "How far back does your population data for Canada go?"
 - `get_observations`: Fetches statistical data for a given variable and place. This allows queries like:
    - "List the population of Canada since 1964."
-   - "Rank-order the GDP for all countries in Eastern Europe."
+   - "What is the current populations of China and India?"
+- `get_child_observations`: Fetch numerical time-series for all contained-in places of a specified type. This allows queries like:
    - "Compare the life expectancy between different countries in South America."
+   - "Rank-order the GDP for all countries in Eastern Europe."
 
 ## Clients
 
