@@ -245,9 +245,9 @@ The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTION
 
 You can add your own prompts to modify how the agent handles tool results. See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
 
-Here are suggested prompts to add to your agent's instructions, that will improve Data Commons MCP results:
+Here are suggested prompts to add to your agent's instructions, that should improve Data Commons MCP results:
 
-1. Read the MCP server's system `instructions.md` file immediately after establishing a connection.
+1. Read the MCP server's `instructions.md` file immediately after establishing a connection.
 2. Unpack MCP skill resources: When directed by `instructions.md` or tool descriptions, call `read_resource` on the target resource URI before executing tool calls.
 3. Always resolve DCIDs via `search_indicators` and/or `search_child_indicators` tools before calling observation tools.
 4. Always include data provenance and source attributions in responses.
