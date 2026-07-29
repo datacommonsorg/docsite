@@ -248,7 +248,7 @@ You can add your own prompts to modify how the agent handles tool results. See t
 Here are suggested prompts to add to your agent's instructions to improve Data Commons MCP results:
 
 1. Read the MCP server's `instructions.md` file immediately after establishing a connection.
-2. Unpack MCP skill resources: When directed by `instructions.md` or tool descriptions, call `read_resource` on the target resource URI before executing tool calls.
+2. Unpack MCP skill resources: When directed by tool descriptions, call `read_resource` on the target resource URI before executing tool calls.
 3. Always resolve DCIDs via `search_indicators` and/or `search_child_indicators` tools before calling observation tools.
 4. Always include data provenance and source attributions in responses.
 
