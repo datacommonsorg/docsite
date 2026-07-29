@@ -61,6 +61,12 @@ The MCP server has a library of skills packaged as MCP resources. The skills are
 
 If you're curious, you can see the library at <https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/agent_api/skills>{: target="_blank"}.
 
+## Skills
+
+The MCP server has a library of skills that provide expert guidance to agents on how to interact with it. There are general skills that provide global recipes for formulating tool calls and processing responses, and more detailed skills tailored to specific use cases, such as getting data for contained-in places or metrics involving multiple dimensions (beyond places).
+
+If you're curious, you can see the library at <https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/agent_api/skills>{: target="_blank"}.
+
 ## Clients
 
 To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. See [Use MCP tools](run_tools.md) for procedures for using [Google Antigravity](https://antigravity.google/).
