@@ -265,8 +265,13 @@ All fields that do not reference another node must be in quotation marks.
 The following fields are optional:
 
 * `description`: A more detailed textual description of the variable. Although this is optional, it is highly recommended, as the description is used to generate embeddings for natural-language search.
-* `measurementQualifier`: This is used to qualify the measurement represented in all observations using the variable. It should be a member of an enumeration, e.g. `Weekly`, `Monthly`, `Annual`, which are members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
+* `measurementQualifier`: This is used to qualify the measurement in a more specific way, to express aspects such as temporal adjustments, aggregation periods, financial specifications, and so on. The value should be a member of an enumeration, such as:
+  * Members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type: `dcid:Weekly`, `dcid:Monthly`, and `dcid:Annual`
+  * Members of the [CurrencyUnitStandardizationEnum](https://datacommons.org/browser/CurrencyUnitStandardizationEnum){: target="_blank"} type: `dcid:LocalCurrency`, `dcid:StandardizedCurrency`.
+  * Members of the [EconomicMetricEnum](https://datacommons.org/browser/EconomicMetricEnum){: target="_blank"} type: `dcid:Nominal`, `dcid:Gross`, `dcid:RealValue`, etc.
+  Note: Don't use this field for additional constraints that should be specifed as `constraintProperties`.
 * `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
+* `comparisonPeriod`: For a variable measuring a change over time, such as a price or a growth rate, you can use members of the [ComparisonPeriodEnum)](https://datacommons.org/browser/ComparisonPeriodEnum){: target="_blank"} to specify the time period. Supported values are `dcid:MonthOnChange`, `dcid:QuarterOnChange`, and `dcid:YearOnChange`.
 
 #### Constraint properties
 
