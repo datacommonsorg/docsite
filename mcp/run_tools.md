@@ -36,7 +36,7 @@ We provide specific instructions for the following agents.
    - Downloads agent code locally
    - Some additional setup
 
-For other clients/agents, see the relevant documentation; you should be able to easily adapt the configurations detailed here. See also [Customize agent behavior](#agent-behavior) for tips on prompts to use with other agents.
+For other clients/agents, see the relevant documentation; you should be able to easily adapt the configurations detailed here.
 
 ## Prerequisites
 
@@ -244,13 +244,6 @@ To change to a different LLM or model version, edit the `AGENT_MODEL` constant i
 The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTIONS` in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py){: target="_blank"}.
 
 You can add your own prompts to modify how the agent handles tool results. See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
-
-Here are suggested prompts to add to your agent's instructions to improve Data Commons MCP results:
-
-1. Read the MCP server's `instructions.md` file immediately after establishing a connection.
-2. Unpack MCP skill resources: When directed by tool descriptions, call `read_resource` on the target resource URI before executing tool calls.
-3. Always resolve DCIDs via `search_indicators` and/or `search_child_indicators` tools before calling observation tools.
-4. Always include data provenance and source attributions in responses.
 
 ## Sample queries
 
