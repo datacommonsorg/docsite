@@ -53,7 +53,7 @@ The server currently supports the following tools:
 
 ## Skills
 
-The MCP server has a library of packaged skills that provide expert guidance to agents for accessing its resources. There are general skills that provide global recipes for formulating tool calls and processing responses, and more detailed skills tailored to specific tools, such as getting data for contained-in places or metrics involving directional relationships between places.
+The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" for different types of queries. There are general skills that provide global recipes for formulating tool calls and processing responses, and more detailed skills tailored to specific tools, such as getting data for contained-in places or metrics involving directional relationships between places.
 
 If you're curious, you can see the library at <https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/agent_api/skills>{: target="_blank"}.
 
