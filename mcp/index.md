@@ -53,9 +53,9 @@ The server currently supports the following tools:
 
 ## Skills
 
-The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" for different types of queries. Each skill is specialized skills for a different kind of workflow, including:
+The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" that give detailed instructions to agents on how to interact with the server. Each skill is specialized for a different kind of workflow, including:
 
-* Queries for indicators and observations tied directly to a single, specified place, e.g. "France".
+* Queries for indicators and observations tied directly to a single, specified place, e.g. "France"
 * Queries for indicators and observations across contained-in places or sub-regions inside a parent location, e.g. "all countries in South America"
 * Queries for indicators and observations involving multiple places with directional relationships between them, e.g. "Canada to/from the United States"
 
