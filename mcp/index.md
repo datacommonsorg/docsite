@@ -47,13 +47,17 @@ The server currently supports the following tools:
 - `get_child_observations`: Fetches statistical time-series data for all contained-in places of a specified type. This allows queries such as:
    - "Compare the life expectancy between different countries in South America."
    - "Rank-order the GDP for all countries in Eastern Europe."
-- `get_multi_entity_observations`: Fetches statistical time-series data for observations that are related to more than one entity (or place) that have a directional relationship. This allows queries such as:
+- `get_multi_entity_observations`: Fetches statistical time-series data for observations involving places that have a directional relationship. This allows queries such as:
    - "What are the current rice exports from Sri Lanka to Australia?"
    - "Which African countries has China provided the most financial aid to?"
 
 ## Skills
 
-The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" for different types of queries. There are general skills that provide global recipes for formulating tool calls and processing responses, and more detailed skills tailored to specific tools, such as getting data for contained-in places or metrics involving directional relationships between places.
+The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" for different types of queries. Each skill is specialized skills for a different kind of workflow, including:
+
+* Queries for indicators and observations tied directly to a single, specified place, e.g. "France".
+* Queries for indicators and observations across contained-in places or sub-regions inside a parent location, e.g. "all countries in South America"
+* Queries for indicators and observations involving multiple places with directional relationships between them, e.g. "Canada to/from the United States"
 
 If you're curious, you can see the library at <https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/agent_api/skills>{: target="_blank"}.
 
