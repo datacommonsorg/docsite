@@ -953,7 +953,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Female"] }, "entity": { "expression": "Earth<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable"] }'
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Female"] }, "entity": { "expression": "Earth<-containedInPlace+{typeOf:Country}"}, "select": ["entity", "variable"] }'
 ```
 
 Response:
