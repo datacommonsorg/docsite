@@ -74,7 +74,7 @@ Endpoints are the same as above; append the URI to the base URL, e.g. `https://l
 
 ## Query parameters {#query-param}
 
-Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
+Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. 
 
 Query parameters are chained at the end of a URL behind a `?` symbol. Separate multiple parameter entries with an `&` symbol. For example, this would look like:
 
@@ -147,12 +147,9 @@ curl -X POST \
 }'
 </pre>
 
-## Find available entities, variables, and their DCIDs
+## Find DCIDs
 
-Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
-
-- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
-- [Find places available for a statistical variable](/data_model.html#find-places)
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. To find a DCID using the datacommons.org website, see [Find a DCID for an entity or variable](/data_model.html#find-dcid). To find a DCID using the APIs, see the [Resolve](resolve.md) page.
 
 {: #relation-expressions}
 ## Relation expressions

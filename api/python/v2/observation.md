@@ -11,7 +11,7 @@ published: true
 # Observation
 
 The Observation API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. 
+entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. You can also use this API to just look up the data available for given entities (places) and variables.
 
 > Note: This endpoint returns Python objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
 
@@ -26,7 +26,7 @@ The following are the methods available for this endpoint.
 
 | Method | Description | 
 |--------|-------------|
-| [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions) |
+| [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions), or look up what data is available for a given entity or variable |
 | [fetch_available_statistical_variables](#fetch_available_statistical_variables) | Fetch the statistical variables available for a given entity or entities. |
 | [fetch_observations_by_entity_dcid](#fetch_observations_by_entity_dcid) | Fetch observations for specified variables, dates and entities, by entity DCID. |
 | [fetch_observations_by_entity_type](fetch_observations_by_entity_type) | Fetch observations for specified variables and dates, by entity type and parent entity. |
@@ -153,7 +153,7 @@ The following methods are available for responses that return `NodeResponse` obj
 
 ## fetch
 
-Fetches observations for the specified variables, dates, and entities. You can specify entities by DCID or by relation expression. 
+Fetches observations for the specified variables, dates, and entities, and looks up whether data is available for a given entity or variable. You can specify entities by DCID or by relation expression. 
 
 ### Signature
 
@@ -174,7 +174,7 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
-### Examples
+### Examples 
 
 {: .no_toc}
 #### Example 1: Look up whether a given entity (place) has data for a given variable
@@ -372,8 +372,90 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
+#### Example 3: Look up all places with data available for a specific variable
+
+This example looks up all places that have data for the variable `Count_Person_Female`. It uses a relation expression to specify places of type `Country` that are contained in `Earth`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observation.fetch(variable_dcids=["Count_Person_Female"], select=["entity", "variable"], entity_expression="Earth<-containedInPlace+{typeOf:Country}") 
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'byVariable': {'Count_Person_Female': {'byEntity': {'country/CRI': {'orderedFacets': []},
+    'country/FIN': {'orderedFacets': []},
+    'country/GRC': {'orderedFacets': []},
+    'country/SVK': {'orderedFacets': []},
+    'country/ESP': {'orderedFacets': []},
+    'country/ZAF': {'orderedFacets': []},
+    'country/IDN': {'orderedFacets': []},
+    'country/CZE': {'orderedFacets': []},
+    'country/KOR': {'orderedFacets': []},
+    'country/RUS': {'orderedFacets': []},
+    'country/IRL': {'orderedFacets': []},
+    'country/PER': {'orderedFacets': []},
+    'country/DEU': {'orderedFacets': []},
+    'country/MLT': {'orderedFacets': []},
+    'country/IND': {'orderedFacets': []},
+    'country/MEX': {'orderedFacets': []},
+    'country/NZL': {'orderedFacets': []},
+    'country/LTU': {'orderedFacets': []},
+    'country/TUN': {'orderedFacets': []},
+    'country/CHN': {'orderedFacets': []},
+    'country/CHL': {'orderedFacets': []},
+    'country/SWE': {'orderedFacets': []},
+    'country/BGR': {'orderedFacets': []},
+    'country/HRV': {'orderedFacets': []},
+    'country/NOR': {'orderedFacets': []},
+    'country/EST': {'orderedFacets': []},
+    'country/GBR': {'orderedFacets': []},
+    'country/SVN': {'orderedFacets': []},
+    'country/BRA': {'orderedFacets': []},
+    'country/LVA': {'orderedFacets': []},
+    'country/LKA': {'orderedFacets': []},
+    'country/KEN': {'orderedFacets': []},
+    'country/LUX': {'orderedFacets': []},
+    'country/HUN': {'orderedFacets': []},
+    'country/MNG': {'orderedFacets': []},
+    'country/CAN': {'orderedFacets': []},
+    'country/BEL': {'orderedFacets': []},
+    'country/ROU': {'orderedFacets': []},
+    'country/FXX': {'orderedFacets': []},
+    'country/ISR': {'orderedFacets': []},
+    'country/TUR': {'orderedFacets': []},
+    'country/AUT': {'orderedFacets': []},
+    'country/ITA': {'orderedFacets': []},
+    'country/JPN': {'orderedFacets': []},
+    'country/ARG': {'orderedFacets': []},
+    'country/ISL': {'orderedFacets': []},
+    'country/NGA': {'orderedFacets': []},
+    'country/FRA': {'orderedFacets': []},
+    'country/POL': {'orderedFacets': []},
+    'country/CHE': {'orderedFacets': []},
+    'country/COL': {'orderedFacets': []},
+    'country/DNK': {'orderedFacets': []},
+    'country/PRT': {'orderedFacets': []},
+    'country/RWA': {'orderedFacets': []},
+    'country/USA': {'orderedFacets': []},
+    'country/NLD': {'orderedFacets': []},
+    'country/AUS': {'orderedFacets': []},
+    'country/EGY': {'orderedFacets': []},
+    'country/ETH': {'orderedFacets': []},
+    'country/CIV': {'orderedFacets': []}}}},
+ 'facets': {}}
+```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
 {: #ex3}
-#### Example 3: Get all observations for multiple entities specified by DCID, and return the results as flat records
+#### Example 4: Get all observations for multiple entities specified by DCID, and return the results as flat records
 
 In this example, we get all the observations for the 2 countries, Mexico and Canada, that have data for[`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}. Each observation is returned as a single record.
 
@@ -493,7 +575,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 4: Get the latest observations for entities specified by expression
+#### Example 5: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of type county".
 

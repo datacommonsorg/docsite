@@ -124,10 +124,10 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
-| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` and Python dictionary |
+| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) and looks up availability of data for entities (places) and variables | `ObservationResponse` and Python dictionary |
 | [Observations Pandas DataFrame](pandas.md) | none | Similar to the `fetch_observations_by_entity_dcids` and `fetch_observations_by_entity_type` methods of the Observation endpoint, except that the functionality is provided by a single method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` and Python dictionary |
-| Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph | `ResolveResponse` |
+| Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph and searches for variables | `ResolveResponse` |
 
 To send a request, you use one of the endpoints available as methods of the client object. For example: 
 
@@ -145,14 +145,12 @@ ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geo
 ```
 {: .example-box-content .scroll}
 
+
 See the linked pages for descriptions of the methods available for each endpoint, its methods and responses.
 
 ## Find available entities, variables, and their DCIDs
 
-Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
-
-- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
-- [Find places available for a statistical variable](/data_model.html#find-places)
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. To find a DCID using the datacommons.org website, see [Find a DCID for an entity or variable](/data_model.html#find-dcid). To find a DCID using the APIs, see the [Resolve](resolve.md) page.
 
 {: #relation-expressions}
 ## Relation expressions
