@@ -148,7 +148,7 @@ The following methods are available for responses that return `NodeResponse` obj
 | to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
 | to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | get_data_by_entity | Key the response data by entity rather than by variable. This is useful for queries that involve multiple entities. |
-| to_observations_as_records | Get the response data as a series of flat records. See [Example 3](#ex3) below for details. |
+| to_observations_as_records | Get the response data as a series of flat records. See [Example 4](#ex4) below for details. |
 {: .doc-table}
 
 ## fetch
@@ -454,7 +454,7 @@ Response:
 
 
 {: .no_toc}
-{: #ex3}
+{: #ex4}
 #### Example 4: Get all observations for multiple entities specified by DCID, and return the results as flat records
 
 In this example, we get all the observations for the 2 countries, Mexico and Canada, that have data for[`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}. Each observation is returned as a single record.
