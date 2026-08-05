@@ -46,9 +46,9 @@ The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Observation | [/observation](/api/rest/v2/observation) | Looks up information about available observations and fetches observations |
 | Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
-| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns Data Commons IDs ([`DCIDs`](/glossary.html#dcid)) for entities in the graph and searches for variables |
 
 ### Base URL for custom instances
 
@@ -162,12 +162,10 @@ nodes are connected by directed edges, or arcs, to form a knowledge graph. The
 label of the arc is the name of the [property](/glossary.html#property).
 
 Relation expressions include arrow annotation and other symbols in the syntax to
-represent neighboring nodes, and to support chaining and filtering.
-These new expressions allow all of the functionality of the V1 API to be
-expressed with fewer API endpoints in V2. All V2 API calls require relation
+represent neighboring nodes, and to support chaining and filtering. All calls require relation
 expressions in the `property` or `expression` parameter.
 
-The following table describes symbols in the V2 API relation expressions:
+The following table describes symbols in the relation expressions:
 
 | ------ | ---------- |
 | `->` | An outgoing arc |
