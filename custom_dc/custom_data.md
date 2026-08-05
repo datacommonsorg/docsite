@@ -62,7 +62,7 @@ In addition, even if you aggregate by geographical area, you may want to measure
 #### Entities and entity types
 
 Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. Non-place entities are of two types:
-* The thing you are measuring, known as the `populationType` in Data Commons. Often this is a `Person`, which is a commonly used population in Data Commons. But it could be something else entirely, like the beds in a hospital, the price of a commodity, Olympic medals won by a country, or the surface area of an ocean.
+* The thing you are measuring, known as the `populationType` in Data Commons. Often this is a `Person`, which is a commonly used population in Data Commons. But it could be something else entirely, such as hospital beds, consumer commodities, Olympic medals, oceans, etc..
 * The level at which you want to aggregate the data. Most commonly in Data Commons this is a place type such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc.
 It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
 
@@ -73,7 +73,7 @@ An _entity_ is an instance of an entity type. For example, for `PublicSchool`, b
 {: #search}
 #### Search for an existing entity / entity type
 
-Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs.
+It is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs.
 
 To search using the REST APIs:
 
