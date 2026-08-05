@@ -32,14 +32,34 @@ You can also run your own MCP server locally, or in Google Cloud Platform. If yo
 
 The server currently supports the following tools:
 
-- `search_indicators`: Searches for available variables and/or topics (a hierarchy of sub-topics and member variables) for a given place or metric. This allows queries like:
+- `search_indicators`: Searches for available variables and/or topics (a hierarchy of sub-topics and member variables) for a given place or metric. This allows queries such as:
    - "Tell me what data you have about health in Egypt."
+   - "What census data do you have for Canada?"
+- `search_child_indicators`: Searches for available variables and topics for contained-in places of a specified type. This allows queries such as:
+   - "What census data do you have for the U.S. states?"
    - "Do you have GDP data for Eastern European countries?"
-   - "What census data do you have for the U.S.?"
-- `get_observations`: Fetches statistical data for a given variable and place. This allows queries like:
+- `get_variable_metadata`: Returns more detailed data about candidate indicators, such as sources, available dates, etc. This allows queries such as:
+   - "What are the sources of data you have about health in Egypt?"
+   - "How far back does your population data for Canada go?"
+- `get_observations`: Fetches statistical time-series data for a given variable and place. This allows queries such as:
    - "List the population of Canada since 1964."
-   - "Rank-order the GDP for all countries in Eastern Europe."
+   - "What are the current populations of China and India?"
+- `get_child_observations`: Fetches statistical time-series data for all contained-in places of a specified type. This allows queries such as:
    - "Compare the life expectancy between different countries in South America."
+   - "Rank-order the GDP for all countries in Eastern Europe."
+- `get_multi_entity_observations`: Fetches statistical time-series data for observations involving places that have a directional relationship. This allows queries such as:
+   - "What are the current rice exports from Sri Lanka to Australia?"
+   - "Which African countries has China provided the most financial aid to?"
+
+## Skills
+
+The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" that give detailed instructions to agents on how to interact with the server. Each skill is specialized for a different kind of workflow, including:
+
+* Queries for indicators and observations tied directly to a single, specified place, e.g. "France"
+* Queries for indicators and observations across contained-in places or sub-regions inside a parent location, e.g. "all countries in South America"
+* Queries for indicators and observations involving multiple places with directional relationships between them, e.g. "Canada to/from the United States"
+
+If you're curious, you can see the library at <https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/agent_api/skills>{: target="_blank"}.
 
 ## Clients
 
