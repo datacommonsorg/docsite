@@ -46,9 +46,9 @@ The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Observation | [/observation](/api/rest/v2/observation) | Looks up information about available observations and fetches observations |
 | Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
-| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns Data Commons IDs ([`DCIDs`](/glossary.html#dcid)) for entities in the graph and searches for variables |
 
 ### Base URL for custom instances
 
