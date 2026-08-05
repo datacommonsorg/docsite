@@ -79,7 +79,7 @@ Note that not all statistical variables have observations for all places or othe
 
 > Tip: You can also use an agent to query the [MCP server](/mcp/run_tools.html) for this information.
 
-To use the APIs to look up places available for stsatistical variables:
+To use the APIs to look up places available for statistical variables:
 
 - Use the REST v2 [Observation API](/api/rest/v2/observation.html) with an entity expression and `containedInPlace` filter, either interactively (e.g. using curl or the browser address bar) or programmatically.
 - Use the Python v2 [`observation.fetch`](/api/python/v2/observation.html#fetch) API method with an entity expression, either interactively or programmatically.
