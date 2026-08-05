@@ -936,14 +936,13 @@ variable.dcids: "Count_Person_Female"
 entity.expression: "Earth<-containedInPlace+{typeOf:Country}"
 select: "entity"
 select: "variable"
-select: "facet"
 ```
 GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&entity.expression=Earth%3C-containedInPlace%2B{typeOf:Country}'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&entity.expression=Earth%3C-containedInPlace%2B{typeOf:Country}&select=entity&select=variable'
 ```
 {: .example-box-content .scroll}
 
