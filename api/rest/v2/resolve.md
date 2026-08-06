@@ -14,11 +14,7 @@ published: true
 {:toc}
 
 Each entity in Data Commons has an associated `DCID` which is used to refer to it
-in other API calls or programs. An important step for a Data Commons developer is to
-identify the DCIDs of entities they care about. This API searches for an entry in the
-Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
-
-You can resolve place entities by name/description, Wikidata ID, geo coordinates, and several other place codes. You can resolve statistical variables and topics by a substring of the name/description. 
+in other API calls or programs. To make any other API calls, you must know the DCIDs of the entities or variables you want to query. The Resolve API searches for an entry in the Data Commons knowledge graph based on specified properties and returns the DCIDs of matches. 
 
 To fetch more data for the returned candidates, including linked nodes, you can then call Node API.
 
@@ -66,38 +62,19 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
-| resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. If not specified, the default is `place`. |
-| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. See [Supported place properties](#placetypes) for a list of property types you can specify for place resolutions. <br/>If not specified, the default is `<-description`. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with `->dcid`. |
-| target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. If the `resolver` parameter is not set to  `indicator`, the value must exactly match the actual property value of the entity.  |
+| resolver <br /> <optional-tag>Optional</optional-tag> | string literal | The only currently accepted option is  `indicator`, which resolves statistical variables and topics. By default, queries resolve all other types of nodes. |
+| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. You can use any valid incoming property (edge) on any type of node. You may use a `typeOf` filter only for place resolutions using the special synthetic properties `<-geoCoordinate` or `<-description`. <br/>If this parameter not specified, the default is `<-description`. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with `->dcid`.<br/><br/><b>Note:</b> For Custom Data Commons instances, when `resolver=indicator` is not specified, only place resolutions are supported, with a subset of properties. See [Supported place properties for Custom Data Commons](#placetypes) for a list of these. |
+| target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for Custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
 {: .doc-table }
 
 > **Note:** For places, this endpoint relies on name-based geocoding, which may return imprecise results. One common pattern is ambiguous place names, that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
-
-{: #placetypes}
-### Supported place properties
-
-The following is a selection of properties that are supported as the `property` parameter for place resolutions:
-
-| Property label | Description | Examples |
-|---------------|-------------|---------|
-| `description` | Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. |  `Berlin`, `Berlin, Germany`, `India`|
-| `geoCoordinate` | Resolve by a synthesis of [`latitude` and `longitude`](https://datacommons.org/browser/GeoCoordinates){: target="_blank"} properties. This is a synthetic ID assigned by Data Commons. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. | `52.516666666667#-13.383333333333` |
-| `wikidataId` | Resolve by [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers){: target="_blank"} | `Q64`, `Q668` |
-| `unDataCode` | Resolve by the code used in UN-curated datasets. | `undata-geo:C11200007`, `undata-geo:G00001380` |
-| `isoCode` | Resolve by ISO 2-letter location code. | `DE-BE`, `IN` |
-| `nutsCode`| Resolve by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
-
-Several region-specific codes are also supported:
-
-* `lgdCode` (India)
-* `udiseCode` (India)
 
 ## Response
 
 The response contains all the candidates that match the query.
 
-When the `resolver` option is set to `place` (the default), the response looks like:
+When the `resolver` option is not specified, the response looks like:
 
 <pre>
 {
@@ -584,3 +561,129 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+### Example 7: Find the DCID of an entity using its name
+
+This example looks up the DCID of a statistical variable group by its name. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "Sustainable Development Goals"
+property: "<-name"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Sustainable%20Development%20Goals&property=%3C-name-%3Edcid'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve  \
+  -d '{"nodes": ["Sustainable Development Goals"], "property": "<-name->dcid"}'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```jsonc
+  "entities": [
+    {
+      "node": "Sustainable Development Goals",
+      "candidates": [
+        {
+          "dcid": "WHO/g/SustainableDevelopmentGoals"
+        },
+        {
+          "dcid": "dc/g/SDG"
+        },
+        {
+          "dcid": "dc/topic/sdg"
+        }
+      ]
+    }
+  ]
+}
+```
+{: .example-box-content .scroll}
+
+### Example 8: Find the DCID of an entity using another field
+
+This example looks up the DCID of a provenance by its URL. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "https://unstats.un.org/sdgs/dataportal"
+property: "url"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=https://unstats.un.org/sdgs/dataportal&property=%3C-url-%3Edcid'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve  \
+  -d '{"nodes": ["https://unstats.un.org/sdgs/dataportal"], "property": "<-url->dcid"}'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+  "entities": [
+    {
+      "node": "https://unstats.un.org/sdgs/dataportal",
+      "candidates": [
+        {
+          "dcid": "dc/base/UN_SDG"
+        },
+        {
+          "dcid": "dc/d/UnitedNationsUn_SdgIndicatorsDatabase"
+        }
+      ]
+    }
+  ]
+}
+```
+{: .example-box-content .scroll}
+
+{: #placetypes}
+### Supported place properties for Custom Data Commons
+
+The following is a selection of properties that are supported as the `property` parameter for place resolutions:
+
+| Property label | Description | Examples |
+|---------------|-------------|---------|
+| `description` | Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. |  `Berlin`, `Berlin, Germany`, `India`|
+| `geoCoordinate` | Resolve by a synthesis of [`latitude` and `longitude`](https://datacommons.org/browser/GeoCoordinates){: target="_blank"} properties. This is a synthetic ID assigned by Data Commons. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. | `52.516666666667#-13.383333333333` |
+| `wikidataId` | Resolve by [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers){: target="_blank"} | `Q64`, `Q668` |
+| `unDataCode` | Resolve by the code used in UN-curated datasets. | `undata-geo:C11200007`, `undata-geo:G00001380` |
+| `isoCode` | Resolve by ISO 2-letter location code. | `DE-BE`, `IN` |
+| `nutsCode`| Resolve by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
+
+Several region-specific codes are also supported:
+
+* `lgdCode` (India)
+* `udiseCode` (India)

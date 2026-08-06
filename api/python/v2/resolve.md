@@ -315,6 +315,59 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
+#### Example 5: Find the DCID of a non-place entity using its name
+
+This example looks up the DCID of a statistical variable group by its name. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = "Sustainable Development Goals", expression="<-name->dcid")
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+  { 
+    'entities': [{
+       'node': 'Sustainable Development Goals',
+       'candidates': [{'dcid': 'WHO/g/SustainableDevelopmentGoals'},
+                      {'dcid': 'dc/g/SDG'},
+                      {'dcid': 'dc/topic/sdg'}]
+    }]
+  }
+```
+{: .example-box-content .scroll}
+
+### Example 8: Find the DCID of an entity using another field
+
+This example looks up the DCID of a provenance by its URL. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = "https://unstats.un.org/sdgs/dataportal", expression="<-url->dcid")
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+   'entities': [{
+      'node': 'https://unstats.un.org/sdgs/dataportal',
+      'candidates': [{'dcid': 'dc/base/UN_SDG'},
+                     {'dcid': 'dc/d/UnitedNationsUn_SdgIndicatorsDatabase'}]
+  }]
+}
+```
+{: .example-box-content .scroll}
+
+
 ## fetch_dcids_by_name
 
 Resolve places to DCIDs by using a name.
@@ -406,6 +459,7 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
 
 ## fetch_dcids_by_wikidata_id
 

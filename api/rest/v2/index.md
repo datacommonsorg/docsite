@@ -167,10 +167,10 @@ The following table describes symbols in the relation expressions:
 | ------ | ---------- |
 | `->` | An outgoing arc |
 | `<-` | An incoming arc |
-| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
+| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value. Support for filters varies among different endpoints. See the endpoint pages for details. |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
-| `+` | Allows arcs from nodes not directly connected, i.e. can be several hops away. Only supported for the `containedInPlace` property. |
+| `+` | Allows arcs to and from nodes not directly connected, that is, are several hops away. Support for this recursive "chaining" varies among different endpoints. See the endpoint pages for details.|
 
 ### Incoming and outgoing relations
 
@@ -189,25 +189,6 @@ Nodes for outgoing relations are represented by `->`. Nodes for incoming relatio
 
 You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
 `->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
-
-### Filters
-
-V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter is:
-
-<pre>
-{typeOf:<var>VALUE</var>}
-</pre>
-
-Here are the contexts where this filter is currently supported:
-
-| API | Context  | Use |
-|-----|--------------------------------------|-------------|
-| Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
-| Resolve entity | Incoming properties `<-description` or `<-geoCoordinate` | Return entities of the specified type, that match a selected name or geocoordinate. |
-
-See the endpoint pages for examples.
-
-The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
 
 ### Wildcard
 

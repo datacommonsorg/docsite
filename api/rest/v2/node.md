@@ -67,7 +67,7 @@ JSON data:
 | ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, using a [relation expression](/api/rest/v2/#relation-expressions). The relation expression can consist of any incoming or outgoing edge (property), and can include filters or recursive "chains" (multi-hop arcs). A filter can consist of any valid property:value pair. You can specify multiple property-value pairs separated by commas. Recursion is limited to 10 hops. See examples for more details.<br/> <b>Note:</b> For custom Data Commons instances, chaining and filters can only be specified in expressions composed of `specializationOf->` or `<-containedInPlace+`. A filter can only use the `typeOf` property. |
 
 {: .doc-table }
 
@@ -613,6 +613,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 
 Response:
 {: .example-box-title}
+(truncated)
 
 ```json
 {
@@ -671,10 +672,443 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-{: #list-entity-types}
-### Example 7: Get a list of all existing entity types
+### Example 7: Get a list of all existing statistical variables filtered by 2 property values
 
-Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
+This example gets all nodes of type `StatisticalVariable`, filtered by gender and population type. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "StatisticalVariable"
+property: "<-typeOf{gender:Female,populationType:Student}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=StatisticalVariable&property=%3C-typeOf{gender:Female,populationType:Student}'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["StatisticalVariable"], "property": "<-typeOf{gender:Female,populationType:Student}"}'
+```
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```json
+{
+  "data": {
+    "StatisticalVariable": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "name": "Count of Student: Years 6 To 12, Female, Primary Education",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_6To12Years_Female_PrimaryEducation",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 5 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade5_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 5, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade5_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 6 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade6_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 6, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade6_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 7 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade7_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 7, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade7_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 8 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade8_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 8, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade8_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 1 in school grade 3, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 3 english language arts who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade3_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of female students in school grade 3 Mathematics who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade3_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 1 in school grade 4, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 4 english language arts who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade4_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of female students in school grade 4 Mathematics who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade4_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 1 in school grade 5, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade5_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 5 english language arts who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade5_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade5_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 5 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade5_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of female students in school grade 5 Mathematics who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade5_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade5_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 1 in school grade 6, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade6_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 6 english language arts who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade6_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade6_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 6 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade6_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of female students in school grade 6 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade6_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade6_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 1 in school grade 7, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade7_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 7 english language arts who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade7_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade7_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 7 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade7_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of female students in school grade 7 Mathematics who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade7_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade7_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 1 in school grade 8, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade8_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 8 english language arts who achieved Assessment Level 1",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade8_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade8_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Count of Student: Assessment Level 1, Female, School Grade 8, Mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade8_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of female students in school grade 8 who completed an academic assessment in mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel1_Female_SchoolGrade8_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade8_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 2 in school grade 3, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 3 english language arts who achieved Assessment Level 2",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade3_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 2 in school grade 3, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 3, mathematics who achieved Assessment Level 2",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade3_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 2 in school grade 4, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 4 english language arts who achieved Assessment Level 2",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade4_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 2 in school grade 4, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 4, mathematics who achieved Assessment Level 2",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade4_Mathematics_AsAFractionOf_Count_Student_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 2 in school grade 5, english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade5_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Percentage of Female students in school grade 5 english language arts who achieved Assessment Level 2",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AssessmentLevel2_Female_SchoolGrade5_EnglishLanguageArts_AsAFractionOf_Count_Student_Female_SchoolGrade5_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of Female students who achieved Assessment Level 2 in school grade 5, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+            }...
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=="
+}
+```
+{: .example-box-content .scroll}
+
+
+{: #list-entity-types}
+### Example 8: Get a list of all existing entity types
+
+This example gets all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
 
 Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
 
@@ -832,5 +1266,310 @@ Response:
   },
   "nextToken": "H4sIAAAAAAAA/yzHsQ5EQBiF0Z27O7PXTyFf5X20Es+goFJIRuPtRaI7J6bI477UGuW8jnXe3vKhOPVp+CEL+Yv8OCMX5D+ykRvkQG6RuxsAAP//AQAA//8tG+Q2TgAAAA=="
 }         
+```
+{: .example-box-content .scroll}
+
+### Example 9: Get the hierarchy of a node by a given property
+
+This example uses recursive chaining to get all subgroups of a statistical variable group. Statistical variable groups are identified by the prefix `dc/g`. They can have several levels of nesting, and are linked by the property `specializationOf`. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "dc/g/SDG"
+property: "<-specializationOf+"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc/g/SDG&property=<-specializationOf%2B'
+
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["dc/g/SDG"], "property": "<-specializationOf+"}'
+```
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```jsonc
+{
+  {
+  "data": {
+    "dc/g/SDG": {
+      "arcs": {
+        "specializationOf+": {
+          "nodes": [
+            {
+              "name": "1: No Poverty",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1"
+            },
+            {
+              "name": "1.1: By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.1"
+            },
+            {
+              "name": "1.1.1: Proportion of the population living below the international poverty line by sex, age, employment status and geographic location (urban/rural)",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.1.1"
+            },
+            {
+              "name": "1.2: By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.2"
+            },
+            {
+              "name": "1.2.1: Proportion of population living below the national poverty line, by sex and age",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.2.1"
+            },
+            {
+              "name": "1.2.2: Proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.2.2"
+            },
+            {
+              "name": "1.3: Implement nationally appropriate social protection systems and measures for all, including floors, and by 2030 achieve substantial coverage of the poor and the vulnerable",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.3"
+            },
+            {
+              "name": "1.3.1: Proportion of population covered by social protection floors/systems, by sex, distinguishing children, unemployed persons, older persons, persons with disabilities, pregnant women, newborns, work-injury victims and the poor and the vulnerable",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.3.1"
+            },
+            {
+              "name": "1.4: By 2030, ensure that all men and women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.4"
+            },
+            {
+              "name": "1.4.1: Proportion of population living in households with access to basic services",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.4.1"
+            },
+            {
+              "name": "1.4.2: Proportion of total adult population with secure tenure rights to land, (a) with legally recognized documentation, and (b) who perceive their rights to land as secure, by sex and type of tenure",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.4.2"
+            },
+            {
+              "name": "1.5: By 2030, build the resilience of the poor and those in vulnerable situations and reduce their exposure and vulnerability to climate-related extreme events and other economic, social and environmental shocks and disasters",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.5"
+            },
+            {
+              "name": "1.5.1: Number of deaths, missing persons and directly affected persons attributed to disasters per 100K population",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.5.1"
+            },
+            {
+              "name": "1.5.2: Direct economic loss attributed to disasters in relation to global gross domestic product (GDP)",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.5.2"
+            },
+            {
+              "name": "1.5.3: Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015-2030",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.5.3"
+            },
+            {
+              "name": "1.5.4: Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.5.4"
+            },
+            {
+              "name": "1.a: Ensure significant mobilization of resources from a variety of sources, including through enhanced development cooperation, in order to provide adequate and predictable means for developing countries, in particular least developed countries, to implement programmes and policies to end poverty in all its dimensions",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.a"
+            },
+            {
+              "name": "1.a.1: Total official development assistance grants from all donors that focus on poverty reduction as a share of the recipient country’s gross national income",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.a.1"
+            },
+            {
+              "name": "1.a.2: Proportion of total government spending on essential services (education, health and social protection)",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.a.2"
+            },
+            {
+              "name": "1.b: Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.b"
+            },
+            {
+              "name": "1.b.1: Pro-poor public social spending",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_1.b.1"
+            },
+            {
+              "name": "10: Reduced Inequality",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10"
+            },
+            {
+              "name": "10.1: By 2030, progressively achieve and sustain income growth of the bottom 40 per cent of the population at a rate higher than the national average",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.1"
+            },
+            {
+              "name": "10.1.1: Growth rates of household expenditure or income per capita among the bottom 40 per cent of the population and the total population",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.1.1"
+            },
+            {
+              "name": "10.2: By 2030, empower and promote the social, economic and political inclusion of all, irrespective of age, sex, disability, race, ethnicity, origin, religion or economic or other status",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.2"
+            },
+            {
+              "name": "10.2.1: Proportion of people living below 50 per cent of median income, by sex, age and persons with disabilities",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.2.1"
+            },
+            {
+              "name": "10.3: Ensure equal opportunity and reduce inequalities of outcome, including by eliminating discriminatory laws, policies and practices and promoting appropriate legislation, policies and action in this regard",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.3"
+            },
+            {
+              "name": "10.3.1: Proportion of population reporting having personally felt discriminated against or harassed in the previous 12 months on the basis of a ground of discrimination prohibited under international human rights law",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.3.1"
+            },
+            {
+              "name": "10.4: Adopt policies, especially fiscal, wage and social protection policies, and progressively achieve greater equality",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.4"
+            },
+            {
+              "name": "10.4.1: Labour share of GDP",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.4.1"
+            },
+            {
+              "name": "10.4.2: Redistributive impact of fiscal policy",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.4.2"
+            },
+            {
+              "name": "10.5: Improve the regulation and monitoring of global financial markets and institutions and strengthen the implementation of such regulations",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.5"
+            },
+            {
+              "name": "10.5.1: Financial Soundness Indicators",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.5.1"
+            },
+            {
+              "name": "10.6: Ensure enhanced representation and voice for developing countries in decision-making in global international economic and financial institutions in order to deliver more effective, credible, accountable and legitimate institutions",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.6"
+            },
+            {
+              "name": "10.6.1: Proportion of members and voting rights of developing countries in international organizations",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.6.1"
+            },
+            {
+              "name": "10.7: Facilitate orderly, safe, regular and responsible migration and mobility of people, including through the implementation of planned and well-managed migration policies",
+              "types": [
+                "StatVarGroup"
+              ],
+              "dcid": "dc/g/SDG_10.7"
+            },
+            ...
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=="
+}
 ```
 {: .example-box-content .scroll}
