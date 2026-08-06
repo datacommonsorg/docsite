@@ -384,15 +384,15 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 5: Get the hierarchy of a node by a given property
+#### Example 5: Get the hierarchy of a node
 
-This example uses recursive chaining to get all subgroups of a statistical variable group. Statistical variable groups are identified by the prefix `dc/g`. They can have several levels of nesting, and are linked by the property `specializationOf`. 
+This example uses recursive chaining to get all subclasses of the class `Person`.
 
 Request:
 {: .example-box-title}
 
 ```python
-client.node.fetch(node_dcids=["dc/g/SDG"], expression="<-specializationOf+", all_pages=False)
+client.node.fetch(node_dcids=["Person"], expression="<-subClassOf+")
 ```
 {: .example-box-content .scroll}
 
@@ -401,89 +401,25 @@ Response:
 
 
 ```json
-{'data': {'dc/g/SDG': {'arcs': {'specializationOf+': {'nodes': [{'dcid': 'dc/g/SDG_1',
-       'name': '1: No Poverty',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.1',
-       'name': '1.1: By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.1.1',
-       'name': '1.1.1: Proportion of the population living below the international poverty line by sex, age, employment status and geographic location (urban/rural)',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.2',
-       'name': '1.2: By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.2.1',
-       'name': '1.2.1: Proportion of population living below the national poverty line, by sex and age',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.2.2',
-       'name': '1.2.2: Proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.3',
-       'name': '1.3: Implement nationally appropriate social protection systems and measures for all, including floors, and by 2030 achieve substantial coverage of the poor and the vulnerable',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.3.1',
-       'name': '1.3.1: Proportion of population covered by social protection floors/systems, by sex, distinguishing children, unemployed persons, older persons, persons with disabilities, pregnant women, newborns, work-injury victims and the poor and the vulnerable',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.4',
-       'name': '1.4: By 2030, ensure that all men and women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.4.1',
-       'name': '1.4.1: Proportion of population living in households with access to basic services',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.4.2',
-       'name': '1.4.2: Proportion of total adult population with secure tenure rights to land, (a) with legally recognized documentation, and (b) who perceive their rights to land as secure, by sex and type of tenure',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.5',
-       'name': '1.5: By 2030, build the resilience of the poor and those in vulnerable situations and reduce their exposure and vulnerability to climate-related extreme events and other economic, social and environmental shocks and disasters',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.5.1',
-       'name': '1.5.1: Number of deaths, missing persons and directly affected persons attributed to disasters per 100K population',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.5.2',
-       'name': '1.5.2: Direct economic loss attributed to disasters in relation to global gross domestic product (GDP)',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.5.3',
-       'name': '1.5.3: Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015-2030',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.5.4',
-       'name': '1.5.4: Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.a',
-       'name': '1.a: Ensure significant mobilization of resources from a variety of sources, including through enhanced development cooperation, in order to provide adequate and predictable means for developing countries, in particular least developed countries, to implement programmes and policies to end poverty in all its dimensions',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.a.1',
-       'name': '1.a.1: Total official development assistance grants from all donors that focus on poverty reduction as a share of the recipient country’s gross national income',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.a.2',
-       'name': '1.a.2: Proportion of total government spending on essential services (education, health and social protection)',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.b',
-       'name': '1.b: Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_1.b.1',
-       'name': '1.b.1: Pro-poor public social spending',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_10',
-       'name': '10: Reduced Inequality',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_10.1',
-       'name': '10.1: By 2030, progressively achieve and sustain income growth of the bottom 40 per cent of the population at a rate higher than the national average',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_10.1.1',
-       'name': '10.1.1: Growth rates of household expenditure or income per capita among the bottom 40 per cent of the population and the total population',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_10.2',
-       'name': '10.2: By 2030, empower and promote the social, economic and political inclusion of all, irrespective of age, sex, disability, race, ethnicity, origin, religion or economic or other status',
-       'types': ['StatVarGroup']},
-      {'dcid': 'dc/g/SDG_10.2.1',
-       'name': '10.2.1: Proportion of people living below 50 per cent of median income, by sex, age and persons with disabilities',
-       'types': ['StatVarGroup']},             
-      ...
-      ]}}}
-  },
-   'nextToken': 'H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=='
-}
+{'data': {'Person': {'arcs': {'subClassOf+': {'nodes': 
+      [{'dcid': 'ACSEDChild', 'name': 'ACSEDChild', 'types': ['Class']},
+      {'dcid': 'ACSEDParent', 'name': 'ACSEDParent', 'types': ['Class']},
+      {'dcid': 'BLSWorker', 'name': 'BLSWorker', 'types': ['Class']},
+      {'dcid': 'Child', 'name': 'Child', 'types': ['Class']},
+      {'dcid': 'Consumer', 'name': 'Consumer', 'types': ['Class']},
+      {'dcid': 'ElectricityConsumer', 'name': 'ElectricityConsumer', 'types': ['Class']},
+      {'dcid': 'Faculty', 'name': 'Faculty', 'types': ['Class']},
+      {'dcid': 'HealthcareWorker', 'name': 'HealthcareWorker', 'types': ['Class']},
+      {'dcid': 'Infant', 'name': 'Infant', 'types': ['AgeGroupClassificationEnum', 'Class']},
+      {'dcid': 'MedicareEnrollee', 'name': 'MedicareEnrollee', 'types': ['Class']},
+      {'dcid': 'MenstrualWoman', 'name': 'MenstrualWoman', 'types': ['Class']},
+      {'dcid': 'Mother', 'name': 'Mother', 'types': ['Class']},
+      {'dcid': 'NonPregnantWoman', 'name': 'NonPregnantWoman', 'types': ['Class']},
+      {'dcid': 'PregnantWoman', 'name': 'PregnantWoman', 'types': ['Class']},
+      {'dcid': 'Student', 'name': 'Student', 'types': ['Class']},
+      {'dcid': 'USCWorker', 'name': 'USCWorker', 'types': ['Class']},
+      {'dcid': 'UrbanConsumer', 'name': 'UrbanConsumer', 'types': ['Class']},
+      {'dcid': 'UrbanWageEarnerAndClericalWorker', 'name': 'UrbanWageEarnerAndClericalWorker', 'types': ['Class']}]}}}}}
 ```
 {: .example-box-content .scroll}
 

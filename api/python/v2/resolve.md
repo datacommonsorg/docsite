@@ -342,7 +342,8 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 8: Find the DCID of an entity using another field
+{: .no_toc}
+### Example 6: Find the DCID of an entity using another field
 
 This example looks up the DCID of a provenance by its URL. 
 

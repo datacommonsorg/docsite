@@ -67,7 +67,7 @@ JSON data:
 | ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, using a [relation expression](/api/rest/v2/#relation-expressions). The relation expression can consist of any incoming or outgoing edge (property), and can include filters or recursive "chains" (multi-hop arcs). A filter can consist of any valid property:value pair. You can specify multiple property-value pairs separated by commas. Recursion is limited to 10 hops. See examples for more details.<br/> <b>Note:</b> For custom Data Commons instances, chaining and filters can only be specified in expressions composed of `specializationOf->` or `<-containedInPlace+`. A filter can only use the `typeOf` property. |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, using a [relation expression](/api/rest/v2/#relation-expressions). The relation expression can consist of any incoming or outgoing edge (property), and can include filters or recursive "chaining" (multi-hop arcs). A filter can consist of any valid property:value pair. and you specify multiple property-value pairs separated by commas. Recursion is limited to 10 hops. See examples for more details.<br/><br/> <b>Note:</b> For custom Data Commons instances, chaining and filters can only be specified in expressions composed of `specializationOf->` or `<-containedInPlace`. A filter can only use the `typeOf` property. |
 
 {: .doc-table }
 
@@ -205,7 +205,7 @@ Response:
   }
 }
 ```
-{: .example-box-content .scroll
+{: .example-box-content .scroll}
 
 ### Example 3: Get the DCIDs of all the states in the United States
 
@@ -1269,16 +1269,16 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 9: Get the hierarchy of a node by a given property
+### Example 9: Get the hierarchy of a node
 
-This example uses recursive chaining to get all subgroups of a statistical variable group. Statistical variable groups are identified by the prefix `dc/g`. They can have several levels of nesting, and are linked by the property `specializationOf`. 
+This example uses recursive chaining to get all subclasses of the class `Person`.
 
 Parameters:
 {: .example-box-title}
 
 ```bash
-nodes: "dc/g/SDG"
-property: "<-specializationOf+"
+nodes: "Person"
+property: "<-subClassOf+"
 ```
 
 GET Request:
@@ -1286,7 +1286,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=dc/g/SDG&property=<-specializationOf%2B'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=<-subClassOf%2B'
 
 ```
 
@@ -1296,280 +1296,151 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
-  -d '{"nodes": ["dc/g/SDG"], "property": "<-specializationOf+"}'
+  -d '{"nodes": ["Person"], "property": "<-subClassOf+"}'
 ```
 
 Response:
 {: .example-box-title}
-(truncated)
 
 ```jsonc
 {
-  {
   "data": {
-    "dc/g/SDG": {
+    "Person": {
       "arcs": {
-        "specializationOf+": {
+        "subClassOf+": {
           "nodes": [
             {
-              "name": "1: No Poverty",
+              "name": "ACSEDChild",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1"
+              "dcid": "ACSEDChild"
             },
             {
-              "name": "1.1: By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day",
+              "name": "ACSEDParent",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.1"
+              "dcid": "ACSEDParent"
             },
             {
-              "name": "1.1.1: Proportion of the population living below the international poverty line by sex, age, employment status and geographic location (urban/rural)",
+              "name": "BLSWorker",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.1.1"
+              "dcid": "BLSWorker"
             },
             {
-              "name": "1.2: By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions",
+              "name": "Child",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.2"
+              "dcid": "Child"
             },
             {
-              "name": "1.2.1: Proportion of population living below the national poverty line, by sex and age",
+              "name": "Consumer",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.2.1"
+              "dcid": "Consumer"
             },
             {
-              "name": "1.2.2: Proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions",
+              "name": "ElectricityConsumer",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.2.2"
+              "dcid": "ElectricityConsumer"
             },
             {
-              "name": "1.3: Implement nationally appropriate social protection systems and measures for all, including floors, and by 2030 achieve substantial coverage of the poor and the vulnerable",
+              "name": "Faculty",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.3"
+              "dcid": "Faculty"
             },
             {
-              "name": "1.3.1: Proportion of population covered by social protection floors/systems, by sex, distinguishing children, unemployed persons, older persons, persons with disabilities, pregnant women, newborns, work-injury victims and the poor and the vulnerable",
+              "name": "HealthcareWorker",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.3.1"
+              "dcid": "HealthcareWorker"
             },
             {
-              "name": "1.4: By 2030, ensure that all men and women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance",
+              "name": "Infant",
               "types": [
-                "StatVarGroup"
+                "AgeGroupClassificationEnum",
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.4"
+              "dcid": "Infant"
             },
             {
-              "name": "1.4.1: Proportion of population living in households with access to basic services",
+              "name": "MedicareEnrollee",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.4.1"
+              "dcid": "MedicareEnrollee"
             },
             {
-              "name": "1.4.2: Proportion of total adult population with secure tenure rights to land, (a) with legally recognized documentation, and (b) who perceive their rights to land as secure, by sex and type of tenure",
+              "name": "MenstrualWoman",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.4.2"
+              "dcid": "MenstrualWoman"
             },
             {
-              "name": "1.5: By 2030, build the resilience of the poor and those in vulnerable situations and reduce their exposure and vulnerability to climate-related extreme events and other economic, social and environmental shocks and disasters",
+              "name": "Mother",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.5"
+              "dcid": "Mother"
             },
             {
-              "name": "1.5.1: Number of deaths, missing persons and directly affected persons attributed to disasters per 100K population",
+              "name": "NonPregnantWoman",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.5.1"
+              "dcid": "NonPregnantWoman"
             },
             {
-              "name": "1.5.2: Direct economic loss attributed to disasters in relation to global gross domestic product (GDP)",
+              "name": "PregnantWoman",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.5.2"
+              "dcid": "PregnantWoman"
             },
             {
-              "name": "1.5.3: Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015-2030",
+              "name": "Student",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.5.3"
+              "dcid": "Student"
             },
             {
-              "name": "1.5.4: Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies",
+              "name": "USCWorker",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.5.4"
+              "dcid": "USCWorker"
             },
             {
-              "name": "1.a: Ensure significant mobilization of resources from a variety of sources, including through enhanced development cooperation, in order to provide adequate and predictable means for developing countries, in particular least developed countries, to implement programmes and policies to end poverty in all its dimensions",
+              "name": "UrbanConsumer",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.a"
+              "dcid": "UrbanConsumer"
             },
             {
-              "name": "1.a.1: Total official development assistance grants from all donors that focus on poverty reduction as a share of the recipient country’s gross national income",
+              "name": "UrbanWageEarnerAndClericalWorker",
               "types": [
-                "StatVarGroup"
+                "Class"
               ],
-              "dcid": "dc/g/SDG_1.a.1"
-            },
-            {
-              "name": "1.a.2: Proportion of total government spending on essential services (education, health and social protection)",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_1.a.2"
-            },
-            {
-              "name": "1.b: Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_1.b"
-            },
-            {
-              "name": "1.b.1: Pro-poor public social spending",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_1.b.1"
-            },
-            {
-              "name": "10: Reduced Inequality",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10"
-            },
-            {
-              "name": "10.1: By 2030, progressively achieve and sustain income growth of the bottom 40 per cent of the population at a rate higher than the national average",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.1"
-            },
-            {
-              "name": "10.1.1: Growth rates of household expenditure or income per capita among the bottom 40 per cent of the population and the total population",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.1.1"
-            },
-            {
-              "name": "10.2: By 2030, empower and promote the social, economic and political inclusion of all, irrespective of age, sex, disability, race, ethnicity, origin, religion or economic or other status",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.2"
-            },
-            {
-              "name": "10.2.1: Proportion of people living below 50 per cent of median income, by sex, age and persons with disabilities",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.2.1"
-            },
-            {
-              "name": "10.3: Ensure equal opportunity and reduce inequalities of outcome, including by eliminating discriminatory laws, policies and practices and promoting appropriate legislation, policies and action in this regard",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.3"
-            },
-            {
-              "name": "10.3.1: Proportion of population reporting having personally felt discriminated against or harassed in the previous 12 months on the basis of a ground of discrimination prohibited under international human rights law",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.3.1"
-            },
-            {
-              "name": "10.4: Adopt policies, especially fiscal, wage and social protection policies, and progressively achieve greater equality",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.4"
-            },
-            {
-              "name": "10.4.1: Labour share of GDP",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.4.1"
-            },
-            {
-              "name": "10.4.2: Redistributive impact of fiscal policy",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.4.2"
-            },
-            {
-              "name": "10.5: Improve the regulation and monitoring of global financial markets and institutions and strengthen the implementation of such regulations",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.5"
-            },
-            {
-              "name": "10.5.1: Financial Soundness Indicators",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.5.1"
-            },
-            {
-              "name": "10.6: Ensure enhanced representation and voice for developing countries in decision-making in global international economic and financial institutions in order to deliver more effective, credible, accountable and legitimate institutions",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.6"
-            },
-            {
-              "name": "10.6.1: Proportion of members and voting rights of developing countries in international organizations",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.6.1"
-            },
-            {
-              "name": "10.7: Facilitate orderly, safe, regular and responsible migration and mobility of people, including through the implementation of planned and well-managed migration policies",
-              "types": [
-                "StatVarGroup"
-              ],
-              "dcid": "dc/g/SDG_10.7"
-            },
-            ...
+              "dcid": "UrbanWageEarnerAndClericalWorker"
+            }
           ]
         }
       }
     }
-  },
-  "nextToken": "H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=="
+  }
 }
 ```
 {: .example-box-content .scroll}

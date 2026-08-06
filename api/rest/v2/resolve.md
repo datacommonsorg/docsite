@@ -670,7 +670,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: #placetypes}
-### Supported place properties for Custom Data Commons
+## Supported place properties for Custom Data Commons
 
 The following is a selection of properties that are supported as the `property` parameter for place resolutions:
 
