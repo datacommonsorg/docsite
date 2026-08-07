@@ -752,7 +752,11 @@ Response:
               "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_Mathematics",
               "provenanceId": "dc/base/Schema"
             },
-            ...
+          ]
+        }
+      }
+    }
+  },
   "nextToken": "H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=="
 }
 ```
