@@ -393,7 +393,9 @@ Response:
 (truncated)
 
 ```jsonc
-{'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [{'dcid': 'Count_Student_6To12Years_Female_PrimaryEducation',
+{
+  'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [
+      {'dcid': 'Count_Student_6To12Years_Female_PrimaryEducation',
        'name': 'Count of Student: Years 6 To 12, Female, Primary Education',
        'provenanceId': 'dc/base/Schema',
        'types': ['StatisticalVariable']},
@@ -475,8 +477,9 @@ Response:
 
 
 ```json
-{'data': 
-{'Person': {'arcs': {'subClassOf+': {'nodes': 
+{
+  'data': 
+  {'Person': {'arcs': {'subClassOf+': {'nodes': 
       [{'dcid': 'ACSEDChild', 'name': 'ACSEDChild', 'types': ['Class']},
       {'dcid': 'ACSEDParent', 'name': 'ACSEDParent', 'types': ['Class']},
       {'dcid': 'BLSWorker', 'name': 'BLSWorker', 'types': ['Class']},
@@ -495,7 +498,7 @@ Response:
       {'dcid': 'USCWorker', 'name': 'USCWorker', 'types': ['Class']},
       {'dcid': 'UrbanConsumer', 'name': 'UrbanConsumer', 'types': ['Class']},
       {'dcid': 'UrbanWageEarnerAndClericalWorker', 'name': 'UrbanWageEarnerAndClericalWorker', 'types':['Class']}]
-    }}}}
+  }}}}
 }
 ```
 {: .example-box-content .scroll}
