@@ -10,10 +10,8 @@ published: true
 {: .no_toc}
 # Resolve
 
-The Resolve API returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph.
-Each entity in Data Commons has an associated `DCID` which is used to refer to it
-in other API calls or programs. An important step for a Data Commons developer is to
-identify the DCIDs of entities they care about. This API searches for an entry in the
+Each entity in Data Commons has an associated [`DCID`](/glossary.html#dcid) which is the unique identifier used
+in other API calls or programs. This API searches for an entry in the
 Data Commons knowledge graph and returns the DCIDs of matches. You can use
 common properties or even descriptive words to find entities.
 
@@ -43,7 +41,7 @@ The following are the methods available for the `resolve` endpoint.
 
 ## Response
 
-For all the methods that resolve places (default `fetch`, `fetch_dcids_by_name`, `fetch_dcids_by_wikidata_id`, and `fetch_dcid_by_coordinates`), the response looks like this:
+For the methods `fetch` (with default options), `fetch_dcids_by_name`, `fetch_dcids_by_wikidata_id`, and `fetch_dcid_by_coordinates`, the response looks like this:
 
 <pre>
 {
@@ -315,6 +313,60 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
+#### Example 5: Find the DCID of a non-place entity using its name
+
+This example looks up the DCID of a statistical variable group by its name. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = "Sustainable Development Goals", expression="<-name->dcid")
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+  { 
+    'entities': [{
+       'node': 'Sustainable Development Goals',
+       'candidates': [{'dcid': 'WHO/g/SustainableDevelopmentGoals'},
+                      {'dcid': 'dc/g/SDG'},
+                      {'dcid': 'dc/topic/sdg'}]
+    }]
+  }
+```
+{: .example-box-content .scroll}
+
+{: .no_toc}
+#### Example 6: Find the DCID of an entity using another field
+
+This example looks up the DCID of a provenance by its URL. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = "https://unstats.un.org/sdgs/dataportal", expression="<-url->dcid")
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+   'entities': [{
+      'node': 'https://unstats.un.org/sdgs/dataportal',
+      'candidates': [{'dcid': 'dc/base/UN_SDG'},
+                     {'dcid': 'dc/d/UnitedNationsUn_SdgIndicatorsDatabase'}]
+  }]
+}
+```
+{: .example-box-content .scroll}
+
+
 ## fetch_dcids_by_name
 
 Resolve places to DCIDs by using a name.
@@ -406,6 +458,7 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
 
 ## fetch_dcids_by_wikidata_id
 

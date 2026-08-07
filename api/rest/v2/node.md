@@ -67,7 +67,7 @@ JSON data:
 | ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, using a [relation expression](/api/rest/v2/#relation-expressions). The relation expression can consist of any incoming or outgoing edge (property), and can include filters or recursive "chaining" (multi-hop arcs). A filter can consist of any valid property:value pair, and you can specify multiple property-value pairs separated by commas. Recursion is limited to 10 hops. See examples for more details.<br/><br/> <b>Note:</b> For custom Data Commons instances, chaining and filters can only be specified in expressions composed of `specializationOf->` or `<-containedInPlace`. A filter can only use the `typeOf` property. |
 
 {: .doc-table }
 
@@ -205,7 +205,7 @@ Response:
   }
 }
 ```
-{: .example-box-content .scroll
+{: .example-box-content .scroll}
 
 ### Example 3: Get the DCIDs of all the states in the United States
 
@@ -613,6 +613,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 
 Response:
 {: .example-box-title}
+(truncated)
 
 ```json
 {
@@ -671,10 +672,101 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-{: #list-entity-types}
-### Example 7: Get a list of all existing entity types
+### Example 7: Get a list of all existing statistical variables filtered by 2 property values
 
-Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
+This example gets all nodes of type `StatisticalVariable`, filtered by gender and population type. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "StatisticalVariable"
+property: "<-typeOf{gender:Female,populationType:Student}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=StatisticalVariable&property=%3C-typeOf{gender:Female,populationType:Student}'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["StatisticalVariable"], "property": "<-typeOf{gender:Female,populationType:Student}"}'
+```
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```jsonc
+{
+  "data": {
+    "StatisticalVariable": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "name": "Count of Student: Years 6 To 12, Female, Primary Education",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_6To12Years_Female_PrimaryEducation",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=="
+}
+```
+{: .example-box-content .scroll}
+
+
+{: #list-entity-types}
+### Example 8: Get a list of all existing entity types
+
+This example gets all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
 
 Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
 
@@ -824,7 +916,8 @@ Response:
               ],
               "dcid": "ActivateAction",
               "provenanceId": "dc/base/BaseSchema"
-            }...
+            },
+            ...
           ]
         }
       }
@@ -832,5 +925,181 @@ Response:
   },
   "nextToken": "H4sIAAAAAAAA/yzHsQ5EQBiF0Z27O7PXTyFf5X20Es+goFJIRuPtRaI7J6bI477UGuW8jnXe3vKhOPVp+CEL+Yv8OCMX5D+ykRvkQG6RuxsAAP//AQAA//8tG+Q2TgAAAA=="
 }         
+```
+{: .example-box-content .scroll}
+
+### Example 9: Get the hierarchy of a node
+
+This example uses recursive chaining to get all subclasses of the class `Person`.
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "Person"
+property: "<-subClassOf+"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=<-subClassOf%2B'
+
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["Person"], "property": "<-subClassOf+"}'
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+  "data": {
+    "Person": {
+      "arcs": {
+        "subClassOf+": {
+          "nodes": [
+            {
+              "name": "ACSEDChild",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACSEDChild"
+            },
+            {
+              "name": "ACSEDParent",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACSEDParent"
+            },
+            {
+              "name": "BLSWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "BLSWorker"
+            },
+            {
+              "name": "Child",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Child"
+            },
+            {
+              "name": "Consumer",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Consumer"
+            },
+            {
+              "name": "ElectricityConsumer",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ElectricityConsumer"
+            },
+            {
+              "name": "Faculty",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Faculty"
+            },
+            {
+              "name": "HealthcareWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "HealthcareWorker"
+            },
+            {
+              "name": "Infant",
+              "types": [
+                "AgeGroupClassificationEnum",
+                "Class"
+              ],
+              "dcid": "Infant"
+            },
+            {
+              "name": "MedicareEnrollee",
+              "types": [
+                "Class"
+              ],
+              "dcid": "MedicareEnrollee"
+            },
+            {
+              "name": "MenstrualWoman",
+              "types": [
+                "Class"
+              ],
+              "dcid": "MenstrualWoman"
+            },
+            {
+              "name": "Mother",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Mother"
+            },
+            {
+              "name": "NonPregnantWoman",
+              "types": [
+                "Class"
+              ],
+              "dcid": "NonPregnantWoman"
+            },
+            {
+              "name": "PregnantWoman",
+              "types": [
+                "Class"
+              ],
+              "dcid": "PregnantWoman"
+            },
+            {
+              "name": "Student",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Student"
+            },
+            {
+              "name": "USCWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "USCWorker"
+            },
+            {
+              "name": "UrbanConsumer",
+              "types": [
+                "Class"
+              ],
+              "dcid": "UrbanConsumer"
+            },
+            {
+              "name": "UrbanWageEarnerAndClericalWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "UrbanWageEarnerAndClericalWorker"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
 ```
 {: .example-box-content .scroll}
