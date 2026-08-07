@@ -596,6 +596,7 @@ Response:
 {: .example-box-title}
 
 ```jsonc
+{
   "entities": [
     {
       "node": "Sustainable Development Goals",
