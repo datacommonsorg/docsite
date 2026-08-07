@@ -561,7 +561,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 7: Find the DCID of an entity using its name
+### Example 7: Find the DCID of a non-place entity using its name
 
 This example looks up the DCID of a statistical variable group by its name. 
 
