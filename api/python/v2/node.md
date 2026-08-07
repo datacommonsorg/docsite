@@ -101,7 +101,7 @@ fetch(node_dcids, expression, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the nodes to query.  |
-| expression <br/> <required-tag>Required</required-tag> | string  | See the description of the `property` parameter in [v2/node](/rest/v2/node.html#query-parameters) for details. |
+| expression <br/> <required-tag>Required</required-tag> | string  | See the description of the 'property' parameter in [v2/node](/api/rest/v2/node.html#query-parameters) for details. |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
