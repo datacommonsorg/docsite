@@ -368,6 +368,7 @@ Response:
        'name': 'Adjusted GDP Growth Rate (Quarter-over-Quarter)',
        'provenanceId': 'dc/base/Schema',
        'types': ['StatisticalVariable']},
+     ]}}==,
      ...
   'nextToken': 'H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=='
   }
