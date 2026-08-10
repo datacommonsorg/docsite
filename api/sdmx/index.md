@@ -60,7 +60,7 @@ _The trial key is capped with a limited quota for requests._ If you are planning
 
 To include an API key, add your API key to the URL as a query parameter by appending <code>?key=<var>API_KEY</var></code>.
 
-For GET requests, this looks like:
+This looks like:
 
 <pre>
 https://api.datacommons.org/sdmx/v3/<var>ENDPOINT</var>/dataflow/DC/DF_OBS/1.0.0/*?key=<var>API_KEY</var>
@@ -69,12 +69,33 @@ https://api.datacommons.org/sdmx/v3/<var>ENDPOINT</var>/dataflow/DC/DF_OBS/1.0.0
 If the key is not the first query parameter, use <code>&key=<var>API_KEY</var></code> instead. This looks like:
 
 <pre>
-https://api.datacommons.org/v2/<var>ENDPOINT</var>?<var>QUERY</var>=<var>VALUE</var>&key=<var>API_KEY</var>
+https://api.datacommons.org/sdmx/v3/<var>ENDPOINT</var>/dataflow/DC/DF_OBS/1.0.0/*?<var>QUERY</var>&key=<var>API_KEY</var>
 </pre>
 
-In cURL pass the key as a header. For example:
+In cURL, you can also pass the key as a header. For example:
 
 <pre>
-curl 
+curl -g \
+"https://api.datacommons.org/sdmx/v3/<var>ENDPOINT</var>/dataflow/DC/DF_OBS/1.0.0/*?<var>QUERY</var>" -H "X-API-Key: <var>API_KEY</var>"
 </pre>
+
+## URL-encoding reserved characters
+
+All SDMX requests use HTTP GET. GET requests do not allow some of the characters used by Data Commons DCIDs and relation expressions. When sending GET requests, you may need to use the [corresponding percent codes](https://en.wikipedia.org/wiki/Percent-encoding){: target="_blank"} for reserved characters. For example, a query string such as the following:
+
+```
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId/06&property=<-*
+```
+should be encoded as:
+
+```
+https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=geoId%2F06&property=%3C-%2A
+```
+
+Although sometimes the original characters may work, it's safest to always encode them.
+
+> **Tip:** Don't URL-encode delimiters between parameters (`&`), separators between parameter names and values  (`=`), or `-`. 
+
+See [https://www.w3schools.com/tags/ref_urlencode.ASP](https://www.w3schools.com/tags/ref_urlencode.ASP){: target="_blank"} for a handy reference.
+
 
