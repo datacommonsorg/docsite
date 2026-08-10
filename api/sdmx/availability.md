@@ -118,6 +118,10 @@ curl -g \
 
 Response
 {: .example-box-title}
+
+The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. 
+
+
 ```json
 {
    "$schema" : "https://json.sdmx.org/2.0.0/sdmx-json-structure-schema.json",
@@ -151,13 +155,17 @@ Response
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Get all the entities (places) that have data for a specific variable, filtered for a specific year
+### Example 2: Look up all the countries that have data for a specific variable in a specific year
 
-This example gets all the countries that have data for the year 2020 for the variable `Count_Person_Female`. We use the `containedInPlace+` and `typeOf` filters. Note that you must URL-encode the `+` character.
+This example gets all the countries that have population density data for the year 2020, using the variable `Count_Person_PerArea. For this query, we use the filter `containedInPlace+` with the value `Earth` and the filter `typeOf` to get only countries and not other place types.
 
+Note that you must URL-encode the `+` character.
+
+Parameters:
+{: .example-box-title}
 <pre>
 <var>OBSERVATION_FIELD</var>: observationAbout
-variableMeasured: Count_Person_Female
+variableMeasured: Count_Person_PerArea
 observationAbout.containedInPlace+: Earth
 observationAbout.typeOf: Country
 TIME_PERIOD: 2020
@@ -167,7 +175,7 @@ Request
 {: .example-box-title}
 ```bash
 curl -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \ 
--g "https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/observationAbout?c[variableMeasured]=Count_Person_Female&c[observationAbout.containedInPlace%2B]=Earth&c[observationAbout.typeOf]=Country&c[TIME_PERIOD]=2020" 
+-g "https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/observationAbout?c[variableMeasured]=Count_Person_PerArea&c[observationAbout.containedInPlace%2B]=Earth&c[observationAbout.typeOf]=Country&c[TIME_PERIOD]=2020" 
 ```
 {: .example-box-content .scroll}
 
@@ -188,16 +196,19 @@ Response
                         "id" : "observationAbout",
                         "include" : true,
                         "values" : [
+                           "country/ALB",
                            "country/AUS",
                            "country/AUT",
                            "country/BEL",
                            "country/BGR",
+                           "country/BRA",
                            "country/CAN",
                            "country/CHE",
                            "country/CHL",
-                           "country/CIV",
+                           "country/CHN",
                            "country/COL",
                            "country/CRI",
+                           "country/CYP",
                            "country/CZE",
                            "country/DEU",
                            "country/DNK",
@@ -205,25 +216,26 @@ Response
                            "country/EST",
                            "country/FIN",
                            "country/FRA",
-                           "country/FXX",
                            "country/GBR",
                            "country/GRC",
                            "country/HRV",
                            "country/HUN",
-                           "country/IDN",
                            "country/IND",
                            "country/IRL",
                            "country/ISL",
                            "country/ISR",
                            "country/ITA",
                            "country/JPN",
+                           "country/KEN",
                            "country/KOR",
+                           "country/LIE",
                            "country/LTU",
                            "country/LUX",
                            "country/LVA",
                            "country/MEX",
+                           "country/MKD",
                            "country/MLT",
-                           "country/MNG",
+                           "country/MNE",
                            "country/NLD",
                            "country/NOR",
                            "country/NZL",
@@ -232,11 +244,17 @@ Response
                            "country/PRT",
                            "country/ROU",
                            "country/RUS",
+                           "country/RWA",
+                           "country/SGP",
+                           "country/SRB",
                            "country/SVK",
                            "country/SVN",
                            "country/SWE",
+                           "country/TUN",
                            "country/TUR",
-                           "country/USA"
+                           "country/USA",
+                           "country/ZAF",
+                           "nuts/FI2"
                         ]
                      }
                   ]
@@ -253,267 +271,4 @@ Response
 ```
 {: .example-box-content .scroll}
 
-
-### Example 3: Get all the entities that have data for a specific value of a constraint property
-
-This example gets all the countries that have data about females `.
-
-Request
-
-undefined
-
-Response
-
-undefined
-
-#### Example 4: Get the entities that have data for a specific property of a multi-entity variable, filtered by entity (place) type and parent
-
-This example gets the countries in Europe that have data about females, for a multi-entity variable, `Adult_curr_cig_smokers_by_sex`.
-
-##### Request
-
-undefined
-
-##### Response
-
-undefined 
-
-* TOC
-{:toc}
-
-
-
-### Example 2: Look up whether a given entity (place) has data for a given variable
-
-In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
-
-Parameters:
-{: .example-box-title}
-
-```
-date: "LATEST"
-variable.dcids: "Count_Person_Male", "Count_Person_Female"
-entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
-```
-GET Request:
-{: .example-box-title}
-
-```bash
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable'
-```
-{: .example-box-content .scroll}
-
-POST Request:
-{: .example-box-title}
-
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
-https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable"] }'
-```
-
-Response:
-{: .example-box-title}
-
-The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. (The empty brackets just mean that the facets and observations have been omitted.)
-
-```json
-{
-   "byVariable" : {
-      "Count_Person_Female" : {
-         "byEntity" : {
-            "country/CAN" : {},
-            "country/MEX" : {}
-         }
-      },
-      "Count_Person_Male" : {
-         "byEntity" : {
-            "country/CAN" : {},
-            "country/MEX" : {}
-         }
-      }
-   }
-}
-```
-
-### Example 3: Look up whether a given entity (place) has data for a given variable and show all the available sources
-
-This example is the same as above, but we also get the facets, to see the sources of the available data. This query shows all the facets for the available sources, but it doesn't show any observations.
-
-Parameters:
-{: .example-box-title}
-
-```
-date: "LATEST"
-variable.dcids: "Count_Person_Male", "Count_Person_Female"
-entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
-select: "facet"
-```
-GET Request:
-{: .example-box-title}
-
-```bash
-curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable&select=facet'
-```
-{: .example-box-content .scroll}
-
-POST Request:
-{: .example-box-title}
-
-```bash
-curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
-https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable", "facet"] }'
-```
-
-Response:
-{: .example-box-title}
-
-```json
-{
-   "byVariable" : {
-      "Count_Person_Female" : {
-         "byEntity" : {
-            "country/CAN" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "1216205004",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  }
-               ]
-            },
-            "country/MEX" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "3251078590",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "3614729857",
-                     "latestDate" : "2020",
-                     "obsCount" : 6
-                  }
-               ]
-            }
-         }
-      },
-      "Count_Person_Male" : {
-         "byEntity" : {
-            "country/CAN" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2023",
-                     "obsCount" : 34
-                  },
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "1216205004",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  }
-               ]
-            },
-            "country/MEX" : {
-               "orderedFacets" : [
-                  {
-                     "earliestDate" : "2021",
-                     "facetId" : "3251078590",
-                     "latestDate" : "2021",
-                     "obsCount" : 1
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "4181918134",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "1151455814",
-                     "latestDate" : "2020",
-                     "obsCount" : 31
-                  },
-                  {
-                     "earliestDate" : "1990",
-                     "facetId" : "3614729857",
-                     "latestDate" : "2020",
-                     "obsCount" : 6
-                  }
-               ]
-            }
-         }
-      }
-   },
-   "facets" : {
-      "1151455814" : {
-         "importName" : "OECDRegionalDemography",
-         "measurementMethod" : "OECDRegionalStatistics",
-         "observationPeriod" : "P1Y",
-         "provenanceUrl" : "https://stats.oecd.org/Index.aspx?DataSetCode=REGION_DEMOGR#"
-      },
-      "1216205004" : {
-         "importName" : "CanadaStatistics",
-         "provenanceUrl" : "https://www150.statcan.gc.ca/n1/en/type/data?MM=1"
-      },
-      "3251078590" : {
-         "importName" : "MexicoCensus_AA2",
-         "provenanceUrl" : "https://data.humdata.org/dataset/cod-ps-mex"
-      },
-      "3614729857" : {
-         "importName" : "MexicoCensus",
-         "provenanceUrl" : "https://www.inegi.org.mx/temas/"
-      },
-      "4181918134" : {
-         "importName" : "OECDRegionalDemography_Population",
-         "measurementMethod" : "OECDRegionalStatistics",
-         "observationPeriod" : "P1Y",
-         "provenanceUrl" : "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C0%7CRegional%252C%20rural%20and%20urban%20development%23GEO%23&pg=40&fc=Topic&bp=true&snb=117&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REG_DEMO%40DF_POP_5Y&df[ag]=OECD.CFE.EDS&df[vs]=2.0&dq=A.......&to[TIME_PERIOD]=false&vw=tb&pd=%2C"
-      }
-   }
-}
-```
-{: .example-box-content .scroll}
 
