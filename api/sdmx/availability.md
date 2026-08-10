@@ -155,9 +155,9 @@ The response shows that Canada and Mexico are associated with this variable, but
 ```
 {: .example-box-content .scroll}
 
-### Example 2: Look up all the countries that have data for a specific variable in a specific year
+### Example 2: Look up all the places that have data for a specific variable in a specific year, filtered by type and parent place
 
-This example gets all the countries that have population density data for the year 2020, using the variable `Count_Person_PerArea. For this query, we use the filter `containedInPlace+` with the value `Earth` and the filter `typeOf` to get only countries and not other place types.
+This example gets all the countries that have population density data for the year 2020, using the variable `Count_Person_PerArea`. For this query, we use the filter `containedInPlace+` with the value `Earth` and the filter `typeOf` to get only countries and not other place types.
 
 Note that you must URL-encode the `+` character.
 
