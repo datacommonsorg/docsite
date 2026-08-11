@@ -68,7 +68,7 @@ The most common way of representing such properties, where potential values are 
 Node: dcid:chhs/HospitalCategoryEnum
 typeOf: schema:Class
 name: "Hospital license category"
-subclassOf: schema:Enumeration
+subClassOf: schema:Enumeration
 description: "The HCAI (Department of Health Care Access and Information) license category designation"
 
 Node: dcid:chhs/GeneralAcuteCare
