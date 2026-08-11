@@ -208,7 +208,7 @@ The MCF would therefore look like this:
 Node: dcid:who/Ratio_Smokers_Adolescents
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents"
-description: "Percentage of adolescents who are current cigarette smokers"
+description: "Percentage of all adolescents who are current cigarette smokers"
 populationType: dcid:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcid:Ratio
@@ -217,24 +217,24 @@ measurementDenominator: dcid:Count_Person_13To17Years
 Node: dcid:who/Ratio_Smokers_Adolescents_Female
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (female)"
-description: "Percentage of adolescents who are current cigarette smokers and are female"
+description: "Percentage of adolescents who are current cigarette smokers among all female adolescents"
 populationType: schema:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
 constraintProperties: dcid:gender
 gender: dcid:Female
-measurementDenominator: dcid:Count_Person_13To17Years
+measurementDenominator: dcid:Count_Person_13To17Years_Female
 
 Node: dcid:who/Ratio_Smokers_Adolescents_Male
 typeOf: schema:StatisticalVariable
 name: "Prevalence of current cigarette smoking among adolescents (male)"
-description: "Percentage of adolescents who are current cigarette smokers and male"
+description: "Percentage of adolescents who are current cigarette smokers among all male adolescents"
 populationType: schema:Adolescents
 measuredProperty: dcid:Smoking
 statType: dcs:Ratio
 constraintProperties: dcid:gender
 gender: dcid:Male
-measurementDenominator: dcid:Count_Person_13To17Years
+measurementDenominator: dcid:Count_Person_13To17Years_Male
 ```
 
 The order of nodes and fields within nodes does not matter.
