@@ -48,7 +48,7 @@ We also need to define a new class to capture the concept of a "patient stay" (o
 Node: dcid:chhs/HospitalStay
 typeOf: schema:Class
 name: "Inpatient hospital stay"
-subclassOf: dcs:PlaceVisitEvent
+subClassOf: dcs:PlaceVisitEvent
 ```
 
 For entity types, an MCF block definition must include the following fields:
