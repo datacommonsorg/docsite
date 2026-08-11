@@ -147,11 +147,7 @@ Here are the important points to note in this example:
 * We recommended that you use a prefix to create a namespace for your own entities. It must be separated from the main variable name by a slash (`/`). For example, if your organization or project name is foo.com, you could use a namespace `foo/`. This way it is easy to distinguish your custom entities from entities in the base DC.
 * For any cells that reference existing entities, if you want to link your entities to them, you must specify them by DCID. In addition, the column heading must use the existing DCID. In the above example, there is a `City` column, that uses the existing [`City`](https://datacommons.org/browser/City){: target="_blank"} DCIDs; in `config.json` we'll declare that column as an existing entity, so that our new hospital entities will be linked to the `City` entity type in the knowledge graph. We'll do the same for `County` but not zip.
 
-> **Important:** Whenever you want to link properties of entities you are defining to existing entities, the cell values must contain DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity](custom_data.md#search). 
-
-### Step 2a: Define new properties (optional)
-
-
+> **Important:** Whenever you want to link properties of entities you are defining to existing entities, the cell values must contain DCIDs of the relevant entities. If you don't know the DCID, see [Search for an existing entity](custom_data.md#search).
 
 ### Step 3: Write the config.json file
 
@@ -209,39 +205,39 @@ Now we can define the variables:
 Node: dcid:chhs/Count_Total_HospitalBeds
 typeOf: schema:StatisticalVariable
 name: "Total number of inpatient beds at the last date of the year"
-populationType: dcid:HospitalBed
+populationType: dcid:chhs/HospitalBed
 statType: dcs:count
-constraintProperty: dcid:patientType
-patientType: dcid:Inpatient
+constraintProperties: dcid:chhs/patientType
+patientType: dcid:chhs/Inpatient
 
 Node: dcid:chhs/Count_Total_PatientDischarges
 typeOf: schema:StatisticalVariable
 name: "Total number of inpatient discharges"
 description: "Total number of inpatient discharges over the entire year"
-populationType: dcid:HospitalStay
+populationType: dcid:chhs/HospitalStay
 statType: dcs:count 
-constraintProperty: dcid:patientType
-patientType: dcid:Inpatient
+constraintProperty: dcid:chhs/patientType
+patientType: dcid:chhs/Inpatient
 
 Node: dcid:chhs/Count_Days_Total_Patients
 typeOf: schema:StatisticalVariable
 name: "Total number of days of all inpatients in hospital"
 description: "Total number of days for all inpatient stays over the entire year"
-populationType: dcid:HospitalStay
-measuredProperty: dcid:hospitalStayDuration
+populationType: dcid:chhs/HospitalStay
+measuredProperty: dcid:chhs/hospitalStayDuration
 statType: dcs:count
-constraintProperty: dcid:patientType
-patientType: dcid:Inpatient
+constraintProperty: dcid:chhs/patientType
+patientType: dcid:chhs/Inpatient
 
 Node: dcid:chhs/Mean_LengthOfStay_Total_Patients
 typeOf: schema:StatisticalVariable
 name: "Average length of stay of all inpatients in hospital"
 description: "Mean length of stay, in days, of all inpatient stays over the entire year. Calculated as the total number of patient days divided by the number of patient discharges."
-populationType: dcid:InpatientHospitalStay
-measuredProperty: dcid:hospitalStayDuration
+populationType: dcid:chhs/InpatientHospitalStay
+measuredProperty: dcid:chhs/hospitalStayDuration
 statType: dcs:meanValue
-constraintProperty: dcid:patientType
-patientType: dcid:Inpatient
+constraintProperty: dcid:chhs/patientType
+patientType: dcid:chhs/Inpatient
 ```
 
 Just like for place entities, you provide observations for these variables in a CSV file. The CSV observations file uses the same variable-per-row format and [column headings](custom_data.md#exp-csv) as places. The only difference from a place-based CSV is that the entity column contains the DCIDs of the entities you have defined in a separate CSV (or MCF) file, instead of places. In our example, the DCIDs are the facility IDs of the hospitals. We also add a unit (days) where it's relevant and the observation period of one year.
