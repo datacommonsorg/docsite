@@ -96,6 +96,7 @@ typeOf: schema:Property
 name: "License category"
 domainIncludes: dcid:Hospital
 rangeIncludes: dcid:chhs/HospitalCategoryEnum
+```
 
 These are the important fields to note:
 * For the node representing the enum itself, it must be of type `Class` and must be a subclass of `Enumeration`.
@@ -258,7 +259,6 @@ chhs/106410806,2024,chhs/Count_Days_Total_Patients,26154,Day,P1Y
 chhs/106410806,2024,chhs/Mean_LengthOfStay_Total_Patients,4.2,Day,P1Y
 ...
 ```
-We could also have added an `observationPeriod` column, which would be set to `P7D` for all rows.
 
 ### Step 5: Add the observations CSV to config.json
 
