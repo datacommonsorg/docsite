@@ -101,7 +101,7 @@ fetch(node_dcids, expression, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the nodes to query.  |
-| expression <br/> <required-tag>Required</required-tag> | string  | A [relation expression](/api/rest/v2/#relation-expressions), represented with symbols including arrow notation, that specifies the property (or properties) to query. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
+| expression <br/> <required-tag>Required</required-tag> | string  | See the description of the 'property' parameter in [v2/node](/api/rest/v2/node.html#query-parameters) for details. |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
@@ -197,59 +197,313 @@ client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf", all
 
 Response:
 {: .example-box-title}
+(truncated)
 
+```jsonc
+{'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [{'dcid': 'AbsoluteVorticity_Place_0.01Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.01',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.02Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.02',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.04Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.04',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.07Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.07',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.1Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.1',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.2Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.2',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.4Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.4',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.7Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.7',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_1000Millibar',
+       'name': 'Absolute Vorticity: Millibar 1000',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_100Millibar',
+       'name': 'Absolute Vorticity: Millibar 100',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_10Millibar',
+       'name': 'Absolute Vorticity: Millibar 10',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_150Millibar',
+       'name': 'Absolute Vorticity: Millibar 150',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_15Millibar',
+       'name': 'Absolute Vorticity: Millibar 15',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_1Millibar',
+       'name': 'Absolute Vorticity: Millibar 1',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_200Millibar',
+       'name': 'Absolute Vorticity: Millibar 200',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_20Millibar',
+       'name': 'Absolute Vorticity: Millibar 20',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_250Millibar',
+       'name': 'Absolute Vorticity: Millibar 250',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_2Millibar',
+       'name': 'Absolute Vorticity: Millibar 2',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_300Millibar',
+       'name': 'Absolute Vorticity: Millibar 300',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_30Millibar',
+       'name': 'Absolute Vorticity: Millibar 30',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_350Millibar',
+       'name': 'Absolute Vorticity: Millibar 350',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_3Millibar',
+       'name': 'Absolute Vorticity: Millibar 3',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_400Millibar',
+       'name': 'Absolute Vorticity: Millibar 400',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_40Millibar',
+       'name': 'Absolute Vorticity: Millibar 40',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_450Millibar',
+       'name': 'Absolute Vorticity: Millibar 450',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_500Millibar',
+       'name': 'Absolute Vorticity: Millibar 500',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_50Millibar',
+       'name': 'Absolute Vorticity: Millibar 50',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_550Millibar',
+       'name': 'Absolute Vorticity: Millibar 550',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_5Millibar',
+       'name': 'Absolute Vorticity: Millibar 5',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_600Millibar',
+       'name': 'Absolute Vorticity: Millibar 600',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_650Millibar',
+       'name': 'Absolute Vorticity: Millibar 650',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_700Millibar',
+       'name': 'Absolute Vorticity: Millibar 700',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_70Millibar',
+       'name': 'Absolute Vorticity: Millibar 70',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_750Millibar',
+       'name': 'Absolute Vorticity: Millibar 750',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_7Millibar',
+       'name': 'Absolute Vorticity: Millibar 7',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_800Millibar',
+       'name': 'Absolute Vorticity: Millibar 800',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_850Millibar',
+       'name': 'Absolute Vorticity: Millibar 850',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_900Millibar',
+       'name': 'Absolute Vorticity: Millibar 900',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_925Millibar',
+       'name': 'Absolute Vorticity: Millibar 925',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_950Millibar',
+       'name': 'Absolute Vorticity: Millibar 950',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_975Millibar',
+       'name': 'Absolute Vorticity: Millibar 975',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Adjusted_GrowthRate_GrossDomesticProduct_EconomicActivity_QuarterOnChange',
+       'name': 'Adjusted GDP Growth Rate (Quarter-over-Quarter)',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+     ]}}==,
+     ...
+  'nextToken': 'H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=='
+  }
 ```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+#### Example 4: Get a list of all statistical variables, filtered by 2 property values
+
+This example gets all nodes of type `StatisticalVariable`, filtered by gender and population type. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf{gender:Female,populationType:Student}", all_pages=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```jsonc
 {
-  "data": {
-    "StatisticalVariable": {
-      "arcs": {
-        "typeOf": {
-          "nodes": [
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate1990_Max_Temperature",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To 1990, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP45",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 4.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP85",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 8.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP45",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 4.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP85",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 8.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            ...
-            "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
+  'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [
+      {'dcid': 'Count_Student_6To12Years_Female_PrimaryEducation',
+       'name': 'Count of Student: Years 6 To 12, Female, Primary Education',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 3 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_Mathematics',
+       'name': 'Number of female students in school grade 3, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 4 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_Mathematics',
+       'name': 'Number of female students in school grade 4, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade5_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 5 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade5_Mathematics',
+       'name': 'Number of female students in school grade 5, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade6_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 6 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade6_Mathematics',
+       'name': 'Number of female students in school grade 6, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade7_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 7 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade7_Mathematics',
+       'name': 'Number of female students in school grade 7, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade8_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 8 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade8_Mathematics',
+       'name': 'Number of female students in school grade 8, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AssessmentLevel1_Female_SchoolGrade3_EnglishLanguageArts',
+       'name': 'Number of Female students who achieved Assessment Level 1 in school grade 3, english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      ]}}}},
+      ...
+ 'nextToken': 'H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=='
+ }
+```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+#### Example 5: Get the hierarchy of a node
+
+This example uses recursive chaining to get all subclasses of the class `Person`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch(node_dcids=["Person"], expression="<-subClassOf+")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+
+```json
+{
+  'data': 
+  {'Person': {'arcs': {'subClassOf+': {'nodes': 
+      [{'dcid': 'ACSEDChild', 'name': 'ACSEDChild', 'types': ['Class']},
+      {'dcid': 'ACSEDParent', 'name': 'ACSEDParent', 'types': ['Class']},
+      {'dcid': 'BLSWorker', 'name': 'BLSWorker', 'types': ['Class']},
+      {'dcid': 'Child', 'name': 'Child', 'types': ['Class']},
+      {'dcid': 'Consumer', 'name': 'Consumer', 'types': ['Class']},
+      {'dcid': 'ElectricityConsumer', 'name': 'ElectricityConsumer', 'types': ['Class']},
+      {'dcid': 'Faculty', 'name': 'Faculty', 'types': ['Class']},
+      {'dcid': 'HealthcareWorker', 'name': 'HealthcareWorker', 'types': ['Class']},
+      {'dcid': 'Infant', 'name': 'Infant', 'types': ['AgeGroupClassificationEnum', 'Class']},
+      {'dcid': 'MedicareEnrollee', 'name': 'MedicareEnrollee', 'types': ['Class']},
+      {'dcid': 'MenstrualWoman', 'name': 'MenstrualWoman', 'types': ['Class']},
+      {'dcid': 'Mother', 'name': 'Mother', 'types': ['Class']},
+      {'dcid': 'NonPregnantWoman', 'name': 'NonPregnantWoman', 'types': ['Class']},
+      {'dcid': 'PregnantWoman', 'name': 'PregnantWoman', 'types': ['Class']},
+      {'dcid': 'Student', 'name': 'Student', 'types': ['Class']},
+      {'dcid': 'USCWorker', 'name': 'USCWorker', 'types': ['Class']},
+      {'dcid': 'UrbanConsumer', 'name': 'UrbanConsumer', 'types': ['Class']},
+      {'dcid': 'UrbanWageEarnerAndClericalWorker', 'name': 'UrbanWageEarnerAndClericalWorker', 'types':['Class']}]
+  }}}}
 }
 ```
 {: .example-box-content .scroll}
+
 
 ## fetch_property_labels
 
