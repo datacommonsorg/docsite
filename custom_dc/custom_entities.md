@@ -220,7 +220,7 @@ name: "Total number of inpatient discharges"
 description: "Total number of inpatient discharges over the entire year"
 populationType: dcid:chhs/HospitalStay
 statType: dcs:count 
-constraintProperty: dcid:chhs/patientType
+constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
 
 Node: dcid:chhs/Count_Days_Total_Patients
@@ -230,7 +230,7 @@ description: "Total number of days for all inpatient stays over the entire year"
 populationType: dcid:chhs/HospitalStay
 measuredProperty: dcid:chhs/hospitalStayDuration
 statType: dcs:count
-constraintProperty: dcid:chhs/patientType
+constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
 
 Node: dcid:chhs/Mean_LengthOfStay_Total_Patients
@@ -240,7 +240,7 @@ description: "Mean length of stay, in days, of all inpatient stays over the enti
 populationType: dcid:chhs/InpatientHospitalStay
 measuredProperty: dcid:chhs/hospitalStayDuration
 statType: dcs:meanValue
-constraintProperty: dcid:chhs/patientType
+constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
 ```
 
