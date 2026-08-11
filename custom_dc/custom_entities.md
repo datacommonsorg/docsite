@@ -33,7 +33,7 @@ In the following sections, we'll describe setting up the non-place entities, as 
 
 If you need to define custom [entity types](custom_data.md#entities) in MCF (rare), you define them in MCF. You can have a single MCF file or as many as you like. 
 
-Let's look at a concrete example. We are going to look at yearly [hospital utilization data] provided by the [California Department of Health and Human Services Agency](https://data.chhs.ca.gov/dataset/hospital-annual-utilization-report){: target="_blank"}. The data is aggregated per-hospital, so we'll use the existing [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} class. The dataset we'll use reports on hospital bed capacity. There is an existing [`Bed`](https://datacommons.org/browser/Bed){: target="_blank"} class in Data Commons and schema.org, but we should define something more specific to represent "hospital bed". We could create a new class like this:
+Let's look at a concrete example. We are going to look at yearly [hospital utilization data](https://data.chhs.ca.gov/dataset/hospital-annual-utilization-report){: target="_blank"} provided by the [California Department of Health and Human Services Agency](https://data.chhs.ca.gov/dataset/hospital-annual-utilization-report){: target="_blank"}. The data is aggregated per-hospital, so we'll use the existing [`Hospital`](https://datacommons.org/browser/Hospital){: target="_blank"} class. The dataset we'll use reports on hospital bed capacity. There is an existing [`Bed`](https://datacommons.org/browser/Bed){: target="_blank"} class in Data Commons and schema.org, but we should define something more specific to represent "hospital bed". We could create a new class like this:
 
 ```
 Node: dcid:chhs/HospitalBed
