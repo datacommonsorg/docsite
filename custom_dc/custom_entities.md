@@ -60,7 +60,11 @@ For entity types, an MCF block definition must include the following fields:
 
 ### Step 1a: Define properties of the entity type (if needed)
 
-The California Department of Health Care Access and Information (HCAI) defines 4 different license categories for hospitals: 
+The California Department of Health Care Access and Information (HCAI) defines 4 different license categories for hospitals:
+* General Acute Care
+* Acute Psychiatric
+* Psychiatric Health Facility
+* Chemical Dependency Recovery Hospital
 
 The most common way of representing such properties, where potential values are mutually exclusive, is by defining an enumeration, whose members are the allowable values. Here's how we would define the license category enum:
 
