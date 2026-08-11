@@ -100,7 +100,7 @@ These are the important fields to note:
   * `domainIncludes`, which specify the entity type to which the property can be applied. In this case, it is any entity of `Hospital` type.
   * `rangeIncludes`, which specify the allowable types of the property. In this case, it is the hospital type enum.
 
-In our dataset, patients are also broken down into "inpatient" and "outpatient". It turns out that there is an existing enumeration for patent type: `who/PatientTypeEnum`. So we can derive a property from this that we can use for our data.
+In our dataset, patients are also broken down into "inpatient" and "outpatient". It turns out that there is an existing enumeration for patient type: `who/PatientTypeEnum`. So we can derive a property from this that we can use for our data.
 
 ```
 Node: dcid:chhs/patientType
@@ -129,13 +129,13 @@ Going back to our example of hospitals in California, although Base Data Commons
 
 ```csv
 hospitalId,hospitalName,hospitalAddress,City,zip,County,hospitalCategory
-chhs/106410817,AHMC Seton Medical Center,1900 Sullivan Avenue,geoId/0617918,94015,geoId/06081,GeneralAcute CareHospital
-chhs/106410828,AHMC Seton Medical Center Coastside,600 Marine Boulevard,geoId/0649446,94038,geoId/06081,GeneralAcuteCareHospital
-chhs/106414139,Kaiser Foundation Hospital - Redwood City,1100 Veterans Blvd.,geoId/0660102,94063,geoId/06081,GeneralAcuteCareHospital
-chhs/106410806,Kaiser Foundation Hospital - South San Francisco,1200 El Camino Real,geoId/0673262,94080,geoId/06081,GeneralAcuteCareHospital
-chhs/106410852,Mills-Peninsula Medical Center,1501 Trousdale Drive,geoId/0609066,94010,geoId/06081,General AcuteCareHospital
-chhs/106410782,San Mateo Medical Center,222 West 39Th Avenue,geoId/0668252,94403,geoId/06081,GeneralAcute CareHospital
-chhs/106410891,Sequoia Hospital,170 Alameda De Las Pulgas,geoId/0660102,94062,geoId/06081,GeneralAcuteCare Hospital
+chhs/106410817,AHMC Seton Medical Center,1900 Sullivan Avenue,geoId/0617918,94015,geoId/06081,chhs/GeneralAcuteCare
+chhs/106410828,AHMC Seton Medical Center Coastside,600 Marine Boulevard,geoId/0649446,94038,geoId/06081,chhs/GeneralAcuteCare
+chhs/106414139,Kaiser Foundation Hospital - Redwood City,1100 Veterans Blvd.,geoId/0660102,94063,geoId/06081,chhs/GeneralAcuteCare
+chhs/106410806,Kaiser Foundation Hospital - South San Francisco,1200 El Camino Real,geoId/0673262,94080,geoId/06081,chhs/GeneralAcuteCare
+chhs/106410852,Mills-Peninsula Medical Center,1501 Trousdale Drive,geoId/0609066,94010,geoId/06081,chhs/GeneralAcuteCare
+chhs/106410782,San Mateo Medical Center,222 West 39Th Avenue,geoId/0668252,94403,geoId/06081,chhs/GeneralAcuteCare
+chhs/106410891,Sequoia Hospital,170 Alameda De Las Pulgas,geoId/0660102,94062,geoId/06081,chhs/GeneralAcuteCare
 ```
 
 A given CSV file can only contain one entity type, so if you are defining entities of more than one type (for example, schools and hospitals), use a separate file for each. 
@@ -249,13 +249,13 @@ Just like for place entities, you provide observations for these variables in a 
 ```csv
 entity,date,variable,value,unit,observationPeriod
 chhs/106410782,2024,chhs/Count_Total_HospitalBeds,448,,P1Y
-chhs/106410782,2024,chhs/Count_Total_Patients_Discharges,2746,,P1Y
-chhs/106410782,2024,chhs/Count_LengthOfStay_Total_Patients,112527,,P1Y
-chhs/106410782	2024,chhs/Mean_LengthOfStay_Per_Patient,41,Day,P1Y
-chhs/106410806	2024,chhs/Count_Total_HospitalBeds,120,,P1Y
-chhs/106410806	2024,chhs/Count_Total_Patients_Discharges,6172,,P1Y
-chhs/106410806	2024,chhs/Count_LengthOfStay_Total_Patients,26154,Day,P1Y
-chhs/106410806	2024,chhs/Mean_LengthOfStay_Per_Patient,4.2,Day,P1Y
+chhs/106410782,2024,chhs/Count_Total_PatientDischarges,2746,,P1Y
+chhs/106410782,2024,chhs/Count_Days_Total_Patients,112527,,P1Y
+chhs/106410782,2024,chhs/Mean_LengthOfStay_Total_Patients,41,Day,P1Y
+chhs/106410806,2024,chhs/Count_Total_HospitalBeds,120,,P1Y
+chhs/106410806,2024,chhs/Count_Total_PatientDischarges,6172,,P1Y
+chhs/106410806,2024,chhs/Count_Days_Total_Patients,26154,Day,P1Y
+chhs/106410806,2024,chhs/Mean_LengthOfStay_Total_Patients,4.2,Day,P1Y
 ...
 ```
 We could also have added an `observationPeriod` column, which would be set to `P7D` for all rows.
