@@ -2,7 +2,7 @@
 layout: default
 title: Find available data
 nav_order: 2
-parent: REST (V2)
+parent: SDMX 3.0
 grand_parent: API - Query data programmatically
 published: true
 ---
@@ -10,49 +10,41 @@ published: true
 {: .no_toc}
 # /availability
 
-The Availability API allows you to find out what data and metadata is available for a given variable, without getting the observations. You can get a list of provenances, entities (places), and other metadata, if available. 
+The Availability API allows you to find out what data and metadata is available for selected variables, without getting the observations. You can get a list of provenances and other metadata, if available. 
 
 ## Request syntax
 
-The basic syntax for the Availability API is as follows:
-
-<div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/<var>OBSERVATION_FIELD</var>?key=<var>YOUR_API_KEY</var>c[variableMeasured]=<var>VARIABLE_DCIDS</var>&c[<var>OBSERVATION_FIELD</var>]=<var>ENTITY_DCIDS</var>&...c[<var>TIME_PERIOD</var>]=<var>DATES</var>
+<div class="api-tab">
+  <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">
+    GET request
+  </button>
 </div>
 
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
+<div id="GET-request" class="api-tabcontent api-signature">
+https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/<var>OBSERVATION_FIELD</var>?key=<var>YOUR_API_KEY</var>c[variableMeasured]=<var>VARIABLE_DCIDS</var>&c[<var>OBSERVATION_FIELD</var>]=<var>ENTITY_DCIDS</var>&...c[TIME_PERIOD]=<var>DATES</var>
+</div>
 
 ### Query parameters
 
 | Parameter | Description | Valid values |
-| :--- | :--- | :--- |
-| key <br /><required-tag>Required</required-tag> | Your API key. See the section on [authentication](index.md#authentication) for details. |
-| _OBSERVATION_FIELD_ <br /><required-tag>Required</required-tag> | The property for which available data should be returned. Supported properties are: <br /><ul><li>`observationAbout`: Return all entities/places that have data for this variable. Use this for single-entity statistical variables. </li>
-<li>Custom <code>observationProperties</code> dimension: Return all entities that have data for this custom property. Use this for multi-entity statistical variables. </li>
-<li><code>provenance</code>: Return all provenances associated with observations for this variable.</li>
-<li><code>unit</code>: Return all units that are specified in observations associated with this variable</li>
-<li><code>measurementMethod</code>: Return all measurement methods that are specified in observations associated with this variable.</li>
-</ul>
-<li><code>observationPeriod</code>: Return all observation periods that are specified in observations associated with this variable.</li></ul> | n/a |
+| --------- | ----------- | ------------ |
+| key <br /><required-tag>Required</required-tag> | Your API key. See the section on [authentication](index.md#authentication) for details. | n/a |
+| <var>OBSERVATION_FIELD</var> <br /><required-tag>Required</required-tag> | The property for which available data should be returned. Supported properties are: <br/>`observationAbout`: Return all entities/places that have data for the selected variable(s). Use this for single-entity statistical variables.<br/>Custom `observationProperties` dimension: Return all entities that have data for this custom property. Use this for multi-entity statistical variables.<br/>`provenance`: Return all provenances associated with observations for the selected variable(s).<br/>`unit`: Return all units that are specified in observations associated with the selected variable(s).<br/>`measurementMethod`: Return all measurement methods that are specified in observations associated with the selected variable(s).<br/>`observationPeriod`: Return all observation periods that are specified in observations associated with the selected variable(s).<br/> | n/a |
 | variableMeasured <br /><required-tag>Required</required-tag> | The statistical variable(s) about which you are looking up data availability. | Comma-separated list of statistical variable DCIDs |
-| _OBSERVATION_FIELD_ <br/><optional-tag>Optional</optional-tag> | Additional property or properties by which you would like to filter results. The _OBSERVATION_FIELD_ is any of the properties listed above. <br/> For custom observation properties, up to 3 are supported.<br/>
-In addition, for place-type entities, you can filter by place type and parent, using the qualifiers <code>containedInPlace+</code> and <code>typeOf</code>. If you use these, you must specify both parameters. See the examples below for the syntax.<br/>
-Multiple filter properties are ANDed together. |
-| <ul><li>For <code>observationAbout</code>, custom observation properties, and <code>provenance</code>: comma-separated list of DCID values for the selected observation property. </li>
-<li>For all others: see their respective entries in the [Glossary](/glossary.html)</li>
-</ul><br/>
-Each value applies to all variables specified in the <code>variableMeasured</code> parameter.</td> |
-| TIME_PERIOD <br/><optional-tag>Optional</optional-tag> | Filter results by a specific time period. If not specified, defaults to all results. | Comma-separated dates, in the format <em>YYYY</em>, <em>YYYY</em>-<em>MM</em>, or <em>YYYY</em>-<em>MM</em>-<em>DD</em>. |
+| <var>OBSERVATION_FIELD</var> <br/><optional-tag>Optional</optional-tag> | Additional property or properties by which you would like to filter results. The <var>OBSERVATION_FIELD</var> is any of the properties listed above. <br/><br/> For custom observation properties, up to 3 are supported. <br/><br/>In addition, for place-type entities, you can filter by place type and parent, using the qualifiers `containedInPlace+` and `typeOf`. If you use these, you must specify both parameters. See the examples below for the syntax. <br/><br/>Multiple filter properties are ANDed together. | For `observationAbout`, custom observation properties, and `provenance`: comma-separated list of DCID values for the selected observation property. <br/><br/>For all others: see their respective entries in the [Glossary](/glossary.html) <br/><br/>Each value applies to all variables specified in the `variableMeasured` parameter. |
+| TIME_PERIOD <br/><optional-tag>Optional</optional-tag> | Filter results by a specific time period. If not specified, defaults to all results. | Comma-separated dates, in the format <var>YYYY</var>, <var>YYYY</var>-<var>MM</var>, or <var>YYYY</var>-<var>MM</var>-<var>DD</var>. |
 {: .doc-table }
 
 At this time, the following parameters are accepted but redundant:
 
--  `mode`: only the default `exact` is supported
--  `references`: only the default `none` is supported
--  `format`: only `sdmx-json` is supported
+*  `mode`: only the default `exact` is supported
+*  `references`: only the default `none` is supported
+*  `format`: only `sdmx-json` is supported
 
 The only supported operator is `eq` (which is the same as `=`).
+
+<script src="/assets/js/syntax_highlighting.js"></script>
+<script src="/assets/js/api-doc-tabs.js"></script>
 
 ## Response format
 

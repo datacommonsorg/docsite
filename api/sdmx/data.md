@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get statistical observations
-nav_order: 2
+nav_order: 3
 parent: SDMX 3.0
 grand_parent: API - Query data programmatically
 published: true

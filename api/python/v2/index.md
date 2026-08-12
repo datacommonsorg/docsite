@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Python (V2)
-nav_order: 1
+nav_order: 2
 parent: API - Query data programmatically
 has_children: true
 published: true

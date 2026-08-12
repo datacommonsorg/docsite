@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SDMX 3.0
-nav_order: 1
+nav_order: 3
 parent: API - Query data programmatically
 has_children: true
 published: true
