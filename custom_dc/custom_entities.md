@@ -306,19 +306,16 @@ If the servers have started up without errors, check to ensure that your data is
 Non-place entities without observational data are only displayed in the knowledge graph browser. To view your entities in a local server, enter the following in the browser address bar:
 
 <pre>
-https://localhost:8080/browser/<var>ENTITY_DCID</var>
+https://localhost:8080/browser/<var>ENTITY_TYPE_DCID</var>
 </pre>
 
-The _ENTITY_DCID_ is any DCID you have created previously. Using our previous hospitals example, we could enter `https://localhost:8080/browser/AKgov/20017` and would see this:
+You should see a list of all the entities in the **In Arcs typeOf** section. For example, using the Alaska hospitals sample in https://github.com/datacommonsorg/website/tree/master/custom_dc/sample/entities, you could enter `https://localhost:8080/browser/Hospital`, and you would see all the hospitals listed:
 
-![](/assets/images/custom_dc/customdc_screenshot12.png){: width="800"}
 
-For an entity type, you will see all the entities you've created as instances of that type listed in the **In Arcs** section, with clickable links. For example:
-
-![](/assets/images/custom_dc/customdc_screenshot13.png){: width="800"}
+![](/assets/images/custom_dc/customdc_screenshot12.png){: width="600"}
 
 If you've associated statistical variables with an entity, you will see them at the bottom of the page, with timeline graphs. For example:
 
-![](/assets/images/custom_dc/customdc_screenshot14.png){: width="600"}
+![](/assets/images/custom_dc/customdc_screenshot14.png){: width="800"}
 
 See [Verify your data](custom_data.md#verify) for more details on checking variables and observational data.
