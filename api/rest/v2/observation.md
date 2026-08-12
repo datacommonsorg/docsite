@@ -1105,8 +1105,7 @@ Parameters:
 
 ```bash
 date: ""
-variable.dcids: "Count_Person"
-entity.dcids: "cCount_Person_EducationalAttainmentDoctorateDegree"
+variable.dcids: "cCount_Person_EducationalAttainmentDoctorateDegree"
 entity.dcids: "geoId/55"
 entity.dcids: "geoId/27"
 select: "date"
@@ -1277,8 +1276,7 @@ Response:
 
 ### Example 8: Get the latest observations for entities specified by expression
 
-In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of
-type `County`".
+In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of type `County`".
 
 Parameters:
 {: .example-box-title}
@@ -1381,7 +1379,8 @@ GET Request:
 {: .example-box-title}
 
 ```bash
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=value&select=date
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=value&select=date'
 ```
 POST Request:
 {: .example-box-title}
@@ -1452,7 +1451,8 @@ GET Request:
 {: .example-box-title}
 
 ```bash
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=value&select=date
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=value&select=date'
 ```
 
 POST Request:
