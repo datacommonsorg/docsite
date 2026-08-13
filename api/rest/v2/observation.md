@@ -1105,7 +1105,7 @@ Parameters:
 
 ```bash
 date: ""
-variable.dcids: "cCount_Person_EducationalAttainmentDoctorateDegree"
+variable.dcids: "Count_Person_EducationalAttainmentDoctorateDegree"
 entity.dcids: "geoId/55"
 entity.dcids: "geoId/27"
 select: "date"
