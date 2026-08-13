@@ -31,7 +31,7 @@ The currently supported endpoints are:
 
 | API | URI path | Description |
 | :---| :--- | :--- | :--- |
-| [Availability](https://github.com/sdmx-twg/sdmx-rest/blob/v2.0.0/doc/availability.md){: target="_blank} | [/availability](availability.md) | Gets metadata about the data available for selected entities and variables |
+| [Availability](https://github.com/sdmx-twg/sdmx-rest/blob/v2.0.0/doc/availability.md){: target="_blank"} | [/availability](availability.md) | Gets metadata about the data available for selected entities and variables |
 | [Data](https://github.com/sdmx-twg/sdmx-rest/blob/v2.0.0/doc/data.md){: target="_blank"} | [/data](data.md) | Fetches statistical observations for selected entities and variables |
 
 ### Common parameters
