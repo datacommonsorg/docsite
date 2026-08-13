@@ -24,7 +24,7 @@ The Data API returns actual observations for specific variables, filtered by var
 https://api.datacommons.org/sdmx/v3/data/dataflow/DC/DF_OBS/1.0.0/*?key=<var>YOUR_API_KEY</var>&c[variableMeasured]=<var>VARIABLE_DCIDS</var>&c[<var>OBSERVATION_FIELD</var>]=<var>ENTITY_DCIDS</var>&...&c[TIME_PERIOD]=<var>DATES</var>|LATEST
 </div>
 
-> **Note**: A single entity or variable may be associated with multiple [_facets_](/glossary.html#facet). By default, a query returns all available facets. This means that your results may be a mixed set of observations, potentially combining data from various sources or using different measurement methods. To ensure consistency and restrict your query to a specific facet, you must use a observation filters, described below.
+> **Note**: A single entity or variable may be associated with multiple [_facets_](/glossary.html#facet). By default, a query returns all available facets. This means that your results may be a mixed set of observations, potentially combining data from various sources or using different measurement methods. To ensure consistency and restrict your query to a specific facet, you must use observation filters, described below.
 
 
 ### Query parameters
