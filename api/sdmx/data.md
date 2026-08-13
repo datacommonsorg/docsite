@@ -10,9 +10,12 @@ published: true
 {: .no_toc}
 # /data
 
-The Data API returns actual observations for specific variables, filtered by various criteria. 
+* TOC
+{:toc}
 
-### Request syntax
+The Data API returns actual observations for specific variables, filtered by various criteria.
+
+## Request syntax
 
 <div class="api-tab">
   <button id="get-button" class="api-tablink" onclick="openTab(event, 'GET-request')">

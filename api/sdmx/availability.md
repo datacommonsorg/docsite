@@ -10,7 +10,10 @@ published: true
 {: .no_toc}
 # /availability
 
-The Availability API allows you to find out what data and metadata is available for selected variables, without getting the observations. You can get a list of provenances and other metadata, if available. 
+* TOC
+{:toc}
+
+The Availability API allows you to find out what data and metadata is available for selected variables, without getting the observations. You can get a list of provenances and other metadata, if available.
 
 ## Request syntax
 
@@ -27,19 +30,20 @@ https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/<var
 ### Query parameters
 
 | Parameter | Description | Valid values |
-| --------- | ----------- | ------------ |
+| :--------- | :----------- | :------------ |
 | key <br /><required-tag>Required</required-tag> | Your API key. See the section on [authentication](index.md#authentication) for details. | n/a |
 | <var>OBSERVATION_FIELD</var> <br /><required-tag>Required</required-tag> | The property for which available data should be returned. Supported properties are: <br/>- `observationAbout`: Return all entities/places that have data for the selected variable(s). Use this for single-entity statistical variables. <br/>- Custom `observationProperties` dimension: Return all entities that have data for this custom property. Use this for multi-entity statistical variables.<br/>- `provenance`: Return all provenances associated with observations for the selected variable(s).<br/>- `unit`: Return all units that are specified in observations associated with the selected variable(s).<br/>- `measurementMethod`: Return all measurement methods that are specified in observations associated with the selected variable(s).<br/>- `observationPeriod`: Return all observation periods that are specified in observations associated with the selected variable(s).<br/> | n/a |
 | variableMeasured <br /><required-tag>Required</required-tag> | The statistical variable(s) about which you are looking up data availability. | Comma-separated list of statistical variable DCIDs |
 | <var>OBSERVATION_FIELD</var> <br/><optional-tag>Optional</optional-tag> | Additional property or properties by which you would like to filter results. The <var>OBSERVATION_FIELD</var> is any of the properties listed above. <br/><br/> For custom observation properties, up to 3 are supported. <br/><br/>In addition, for place-type entities, you can filter by place type and parent, using the qualifiers `containedInPlace+` and `typeOf`. If you use these, you must specify both parameters. See the examples below for the syntax. <br/><br/>Multiple filter properties are ANDed together. | For `observationAbout`, custom observation properties, and `provenance`: comma-separated list of DCID values for the selected observation property. <br/><br/>For all others: see their respective entries in the [Glossary](/glossary.html) <br/><br/>Each value applies to all variables specified in the `variableMeasured` parameter. |
 | TIME_PERIOD <br/><optional-tag>Optional</optional-tag> | Filter results by a specific time period. If not specified, defaults to all results. | Comma-separated dates, in the format <var>YYYY</var>, <var>YYYY</var>-<var>MM</var>, or <var>YYYY</var>-<var>MM</var>-<var>DD</var>. |
+
 {: .doc-table }
 
 At this time, the following parameters are accepted but redundant:
 
-*  `mode`: only the default `exact` is supported
-*  `references`: only the default `none` is supported
-*  `format`: only `sdmx-json` is supported
+* `mode`: only the default `exact` is supported
+* `references`: only the default `none` is supported
+* `format`: only `sdmx-json` is supported
 
 The only supported operator is `eq` (which is the same as `=`).
 
@@ -101,6 +105,7 @@ observationAbout: country/MEX,country/MYS,country/SGP,country/CAN
 
 Request
 {: .example-box-title}
+
 ```bash
 curl -g \
 'https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/observationAbout?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&c[variableMeasured]=Count_Person_Female,Count_Person_Male&c[observationAbout]=country/MEX,country/MYS,country/SGP,country/CAN'
@@ -110,8 +115,7 @@ curl -g \
 Response
 {: .example-box-title}
 
-The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia. 
-
+The response shows that Canada and Mexico are associated with this variable, but not Singapore or Malaysia.
 
 ```json
 {
@@ -164,6 +168,7 @@ TIME_PERIOD: 2020
 
 Request
 {: .example-box-title}
+
 ```bash
 curl -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \ 
 -g "https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/observationAbout?c[variableMeasured]=Count_Person_PerArea&c[observationAbout.containedInPlace%2B]=Earth&c[observationAbout.typeOf]=Country&c[TIME_PERIOD]=2020" 
@@ -172,6 +177,7 @@ curl -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 
 Response
 {: .example-box-title}
+
 ```json
 {
    "$schema" : "https://json.sdmx.org/2.0.0/sdmx-json-structure-schema.json",
@@ -259,7 +265,5 @@ Response
       ]
    }
 }
-```
+``` 
 {: .example-box-content .scroll}
-
-
