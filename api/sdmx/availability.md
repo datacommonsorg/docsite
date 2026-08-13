@@ -21,7 +21,7 @@ The Availability API allows you to find out what data and metadata is available 
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/<var>OBSERVATION_FIELD</var>?key=<var>YOUR_API_KEY</var>c[variableMeasured]=<var>VARIABLE_DCIDS</var>&c[<var>OBSERVATION_FIELD</var>]=<var>ENTITY_DCIDS</var>&...c[TIME_PERIOD]=<var>DATES</var>
+https://api.datacommons.org/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/<var>OBSERVATION_FIELD</var>?key=<var>YOUR_API_KEY</var>&c[variableMeasured]=<var>VARIABLE_DCIDS</var>&c[<var>OBSERVATION_FIELD</var>]=<var>ENTITY_DCIDS</var>&...&c[TIME_PERIOD]=<var>DATES</var>
 </div>
 
 ### Query parameters
