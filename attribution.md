@@ -39,7 +39,7 @@ When referencing a specific data point within a written document, report, or pre
 
 In the below example, the source and year are both in the sentence and may therefore be dropped from the citation. 
 
-_According to the US Census Bureau, the median income for households in Santa Clara County was $130,875 in 2021 (Source*: U.S. Census Population, 2021-2022, with minor processing by Data Commons)._
+_According to the US Census Bureau, the median income for households in Santa Clara County was $130,875 in 2021 (Source: U.S. Census Population, 2021-2022, with minor processing by Data Commons)._
 
 Note that adding the word “source” is optional, and left to the discretion of the editor/user.
 
