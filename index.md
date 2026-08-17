@@ -20,6 +20,8 @@ There are also several options for providing new data to Data Commons:
 - [Contribute data to the base Data Commons](#contribute-data)
 - [Host your own data site](#custom) using Data Commons' web framework 
 
+> **Tip:** To use this documentation with an LLM, point the agent to <https://docs.datacommons.org/llms.txt>.
+
 ## Interact with the datacommons.org website {#interact}
 
 For quick analysis, use the search query bar on the [home page](https://datacommons.org/){: target="_blank"} or use any of the visualization tools, such as the [Timeline](https://datacommons.org/tools/timeline){: target="_blank"}, [Scatter](https://datacommons.org/tools/scatter){: target="_blank"}, and [Map](https://datacommons.org/tools/map){: target="_blank"} explorers.
