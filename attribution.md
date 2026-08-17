@@ -25,7 +25,7 @@ If you use Data Commons data in a public website, the citation should appear on 
 
 Here is an example in Google Search AI Mode that uses several links that go to the Data Commons place page for the relevant query:
 
-![](/assets/citation.png){: width="800"}
+![Example of citations in Google Search AI Mode](/assets/citation.png){: width="800"}
 
 The link should go to a Data Commons page which contains the same graph seen on the referring site. This is typically a set of URL parameters on the `explore` endpoint (the natural search query interface in datacommons.org); for example, `https://datacommons.org/explore?#q=population%20of%20Vietnam%20since%201955`. All charts in Data Commons come with an **About this data** pop-up-link that displays all the associated metadata, including the URL for the original source. 
 
