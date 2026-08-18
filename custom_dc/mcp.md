@@ -50,10 +50,6 @@ To set the options on a locally running server, specify them in your `env.list` 
 
 To set the options on a server in Cloud Run, see [Start/restart the services container](deploy_cloud.md#start-service). 
 
-## Connect to the server from an agent
-
-To connect to the server from an agent, see the procedure in 
-
 {: #instructions}
 ## Provide custom instructions for the server
 
