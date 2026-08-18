@@ -48,7 +48,6 @@ The server currently supports the following tools:
    - "Compare the life expectancy between different countries in South America."
    - "Rank-order the GDP for all countries in Eastern Europe."
 - `get_multi_entity_observations`: Fetches statistical time-series data for observations involving places that have a directional relationship. This allows queries such as:
-- `get_multi_entity_observations`: Fetches statistical time-series data for observations involving places that have a directional relationship. This allows queries such as:
    - "What are the current rice exports from Sri Lanka to Australia?"
    - "Which African countries has China provided the most financial aid to?"
 
