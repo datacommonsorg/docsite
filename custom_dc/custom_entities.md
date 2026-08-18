@@ -56,7 +56,7 @@ For entity types, an MCF block definition must include the following fields:
 * `Node`: This is the DCID of the entity or entity type you are defining. DCIDs can be a maximum of 256 characters long. It is also recommended that you use a prefix to create a namespace for your own entity types. The prefix must be separated from the main entity type name by a slash (`/`), and should represent your organization, dataset, project, or whatever makes sense for you. For example, if your organization or project name is "foo.com", you could use a namespace `foo/`. This way it is easy to distinguish your custom entity types from entity types in the base DC.
 * `name`: This is the readable name that will be displayed in various parts of the UI.
 * `typeOf`: For an entity type, this must be `Class`.
-* `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that is somehow related. This inserts the entity type into a class hierarchy. You may also define sub-types of types you define, by using this field to indicate the "parent" class.
+* `subClassOf`: To link your new entity type to existing types in the knowledge graph, this can be any existing class that can act as a parent. This inserts the entity type into a class hierarchy. You may also define sub-types of types you define, by using this field to indicate the "parent" class.
 
 ### Step 1a: Define properties of the entity type (if needed)
 
@@ -113,16 +113,6 @@ typeOf: schema:Property
 name: "Patient type"
 domainIncludes: dcid:Patient, dcid:chhs/HospitalBed, dcid:chhs/HospitalStay
 rangeIncludes: dcid:who/PatientTypeEnum
-```
-
-Finally, we'll define a property of the `HospitalStay` class, which is the length of stay:
-
-```
-Node: dcid:chhs/hospitalStayDuration
-typeOf: schema:Property
-name: "Length of inpatient hospital stay"
-domainIncludes: dcid:chhs/HospitalStay
-rangeIncludes: dcs:TimeUnitOfMeasure
 ```
 
 {: #step2}
@@ -207,15 +197,15 @@ Within our dataset are indicators about inpatient utilization:
 Now we can define the variables:
 
 ```
-Node: dcid:chhs/Count_Total_HospitalBeds
+Node: dcid:chhs/Count_HospitalBeds
 typeOf: schema:StatisticalVariable
-name: "Total number of inpatient beds at the last date of the year"
+name: "Total number of inpatient beds utilized in the calendar year"
 populationType: dcid:chhs/HospitalBed
 statType: dcs:count
 constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
 
-Node: dcid:chhs/Count_Total_PatientDischarges
+Node: dcid:chhs/Count_InpatientDischarges
 typeOf: schema:StatisticalVariable
 name: "Total number of inpatient discharges"
 description: "Total number of inpatient discharges over the entire year"
@@ -224,22 +214,22 @@ statType: dcs:count
 constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
 
-Node: dcid:chhs/Count_Days_Total_Patients
+Node: dcid:chhs/Count_Days_Inpatients
 typeOf: schema:StatisticalVariable
 name: "Total number of days of all inpatients in hospital"
 description: "Total number of days for all inpatient stays over the entire year"
 populationType: dcid:chhs/HospitalStay
-measuredProperty: dcid:chhs/hospitalStayDuration
+measuredProperty: dcid:duration
 statType: dcs:count
 constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
 
-Node: dcid:chhs/Mean_LengthOfStay_Total_Patients
+Node: dcid:chhs/Mean_Duration_HospitalStay_Inpatients
 typeOf: schema:StatisticalVariable
 name: "Average length of stay of all inpatients in hospital"
 description: "Mean length of stay, in days, of all inpatient stays over the entire year. Calculated as the total number of patient days divided by the number of patient discharges."
-populationType: dcid:chhs/InpatientHospitalStay
-measuredProperty: dcid:chhs/hospitalStayDuration
+populationType: dcid:chhs/HospitalStay
+measuredProperty: dcid:duration
 statType: dcs:meanValue
 constraintProperties: dcid:chhs/patientType
 patientType: dcid:chhs/Inpatient
@@ -249,14 +239,14 @@ Just like for place entities, you provide observations for these variables in a 
 
 ```csv
 entity,date,variable,value,unit,observationPeriod
-chhs/106410782,2024,chhs/Count_Total_HospitalBeds,448,,P1Y
-chhs/106410782,2024,chhs/Count_Total_PatientDischarges,2746,,P1Y
-chhs/106410782,2024,chhs/Count_Days_Total_Patients,112527,,P1Y
-chhs/106410782,2024,chhs/Mean_LengthOfStay_Total_Patients,41,Day,P1Y
-chhs/106410806,2024,chhs/Count_Total_HospitalBeds,120,,P1Y
-chhs/106410806,2024,chhs/Count_Total_PatientDischarges,6172,,P1Y
-chhs/106410806,2024,chhs/Count_Days_Total_Patients,26154,Day,P1Y
-chhs/106410806,2024,chhs/Mean_LengthOfStay_Total_Patients,4.2,Day,P1Y
+chhs/106410782,2024,chhs/Count_HospitalBeds,448,,P1Y
+chhs/106410782,2024,chhs/Count_InpatientDischarges,2746,,P1Y
+chhs/106410782,2024,chhs/Count_Days_Inpatients,112527,,P1Y
+chhs/106410782,2024,chhs/Mean_Duration_HospitalStay_Inpatients,41,Day,P1Y
+chhs/106410806,2024,chhs/Count_HospitalBeds,120,,P1Y
+chhs/106410806,2024,chhs/Count_InpatientDischarges,6172,,P1Y
+chhs/106410806,2024,chhs/Count_Days_Inpatients,26154,Day,P1Y
+chhs/106410806,2024,chhs/Mean_Duration_HospitalStay_Inpatients,4.2,Day,P1Y
 ...
 ```
 
