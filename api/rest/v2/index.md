@@ -46,9 +46,9 @@ The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Observation | [/observation](/api/rest/v2/observation) | Looks up information about available observations and fetches observations |
 | Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
-| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns Data Commons IDs ([`DCIDs`](/glossary.html#dcid)) for entities in the graph and searches for variables |
 
 ### Base URL for custom instances
 
@@ -74,7 +74,7 @@ Endpoints are the same as above; append the URI to the base URL, e.g. `https://l
 
 ## Query parameters {#query-param}
 
-Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
+Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. 
 
 Query parameters are chained at the end of a URL behind a `?` symbol. Separate multiple parameter entries with an `&` symbol. For example, this would look like:
 
@@ -147,12 +147,9 @@ curl -X POST \
 }'
 </pre>
 
-## Find available entities, variables, and their DCIDs
+## Find DCIDs
 
-Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
-
-- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
-- [Find places available for a statistical variable](/data_model.html#find-places)
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. To find a DCID using the datacommons.org website, see [Find a DCID for an entity or variable](/data_model.html#find-dcid). To find a DCID using the APIs, see the [Resolve](resolve.md) page.
 
 {: #relation-expressions}
 ## Relation expressions
@@ -162,20 +159,18 @@ nodes are connected by directed edges, or arcs, to form a knowledge graph. The
 label of the arc is the name of the [property](/glossary.html#property).
 
 Relation expressions include arrow annotation and other symbols in the syntax to
-represent neighboring nodes, and to support chaining and filtering.
-These new expressions allow all of the functionality of the V1 API to be
-expressed with fewer API endpoints in V2. All V2 API calls require relation
+represent neighboring nodes, and to support chaining and filtering. All calls require relation
 expressions in the `property` or `expression` parameter.
 
-The following table describes symbols in the V2 API relation expressions:
+The following table describes symbols in the relation expressions:
 
 | ------ | ---------- |
 | `->` | An outgoing arc |
 | `<-` | An incoming arc |
-| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
+| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value. Support for filters varies among different endpoints. See the endpoint pages for details. |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
-| `+` | Allows arcs from nodes not directly connected, i.e. can be several hops away. Only supported for the `containedInPlace` property. |
+| `+` | Allows arcs to and from nodes not directly connected, that is, are several hops away. Support for this recursive "chaining" varies among different endpoints. See the endpoint pages for details.|
 
 ### Incoming and outgoing relations
 
@@ -194,25 +189,6 @@ Nodes for outgoing relations are represented by `->`. Nodes for incoming relatio
 
 You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
 `->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
-
-### Filters
-
-V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter is:
-
-<pre>
-{typeOf:<var>VALUE</var>}
-</pre>
-
-Here are the contexts where this filter is currently supported:
-
-| API | Context  | Use |
-|-----|--------------------------------------|-------------|
-| Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
-| Resolve entity | Incoming properties `<-description` or `<-geoCoordinate` | Return entities of the specified type, that match a selected name or geocoordinate. |
-
-See the endpoint pages for examples.
-
-The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
 
 ### Wildcard
 

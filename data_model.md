@@ -75,19 +75,14 @@ A statistical variable can be simple, such as [`Total Population`](https://datac
 
 ### Task: Find places available for a statistical variable {#find-places}
 
-Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you can do the following:
+Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you have to use the APIs to do so.
 
-1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}, and search for a variable of interest.
-1. Optionally, filter by data source and data set.
-1. Scroll to the **Places** section.
+> Tip: You can also use an agent to query the [MCP server](/mcp/run_tools.html) for this information.
 
-For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance){: target="_blank"} shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
+To use the APIs to look up places available for statistical variables:
 
-![Stat Var Explorer](/assets/images/dc/concept4.png){: width="900"}
-
-On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity){: target="_blank"}, or `Quarterly_Average_RetailPrice_Electricity`, is only available at the state level states in the US but not at the city or county level. 
-
-![Stat Var Explorer](/assets/images/dc/concept5.png){: width="900"}
+- Use the REST v2 [Observation API](/api/rest/v2/observation.html) with an entity expression and `containedInPlace` filter, either interactively (e.g. using curl or the browser address bar) or programmatically.
+- Use the Python v2 [`observation.fetch`](/api/python/v2/observation.html#fetch) API method with an entity expression, either interactively or programmatically.
 
 ## Unique identifier: DCID
 

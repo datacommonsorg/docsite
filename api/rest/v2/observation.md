@@ -12,7 +12,7 @@ published: true
 
 The Observation API fetches statistical observations. An observation is associated with an
 entity and a variable at a particular date: for example, "population of USA in
-2020", "GDP of California in 2010", and so on. 
+2020", "GDP of California in 2010", and so on. You can also use this API to just look up the data available for given entities (places) and variables.
 
 * TOC
 {:toc}
@@ -29,7 +29,7 @@ entity and a variable at a particular date: for example, "population of USA in
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity[&select=value][&select=date][&select=facet]
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity&select=value&select=date&select=facet
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -83,11 +83,11 @@ JSON data:
 | Name                                                  | Type   |  Description                                                    |
 |-------------------------------------------------------|--------|-----------------------------------------------------------------|
 | key <br /><required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
-| date <br /><required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
-| variable.dcids <br/><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. To return actual  observations, this is required. To just get a list of variables associated with given entities, you can omit it.|
+| date <br /><optional-tag>Optional</optional-tag> | string | Required for retrieving observations; unnecessary for retrieving availability of variables or data. See [below](#date-string) for allowable values. |
+| variable.dcids <br /><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. Required for retrieving observations. To just get a list of variables associated with given entities, you can omit it. |
 | entity.dcids  | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
 | entity.expression | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
-| select <br /><required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=date`, `select=value` and `select=facet` are optional: if you omit `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
+| select <br /><optional-tag>Optional</optional-tag>  | string literal | With no 'select' parameters, only checks whether a given entity (or entities) has data for a given variable or variables. With 'select=facet', the available facets are also returned with the response. To get actual observations, both 'select=date' and 'select=value' are required. 'select=entity' and 'select=variable' are optional in all requests.<br/><br/><b>Note:</b> For Custom Data Commons instances, 'select=date' and 'select=value' are required in all requests.  |
 | filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance URL. See [Response](#response) below for more details. |
 | filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing _facet IDs_ that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. See [Response](#response) below for more details. |
 {: .doc-table }
@@ -112,7 +112,7 @@ Statistical variable dates are defined as yearly, monthly, weekly, or daily. For
 
 ## Response {#response}
 
-With `select=variable`, `select=entity`, `select=date` and `select=value` specified (and no filters), all observations and available facets are returned. The response looks like this:
+With `select=date` and `select=value` specified (and no filters), all observations and available facets are returned. The response looks like this:
 
 <pre>
 {
@@ -177,7 +177,7 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
 </pre>
 {: .response-signature .scroll}
 
-With`select=variable`, `select=entity` and `select=facet`, only the details about the available facets are returned, including the number of observations available for each facet. But no actual observations are returned. The response looks like:
+With `select=facet`, only the details about the available facets are returned, including the number of observations available for each facet. But no actual observations are returned. The response looks like:
 
 <pre>
 {
@@ -228,7 +228,7 @@ With`select=variable`, `select=entity` and `select=facet`, only the details abou
 </pre>
 {: .response-signature .scroll}
 
-With`select=variable` and `select=entity` only, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
+With no `select` parameters, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
 
 <pre>
 {
@@ -267,7 +267,7 @@ With`select=variable` and `select=entity` only, the response looks like the foll
 | facets.is_dc_aggregate | boolean |  Set to true for variables that are auto-generated by Data Commons to aggregate observations by place hierarchies or event observations by time intervals. Not returned if false. |
 {: .doc-table}
 
-## Examples
+## Examples without observations
 
 ### Example 1: Look up the statistical variables available for a given entity (place)
 
@@ -277,10 +277,7 @@ Parameters:
 {: .example-box-title}
 
 ```
-date: "LATEST"
 entity.dcids: "country/TGO"
-select: "entity"
-select: "variable"
 ```
 
 GET Request:
@@ -288,7 +285,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country/TGO&select=entity&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&entity.dcids=country/TGO'
 ```
 {: .example-box-content .scroll}
 
@@ -298,7 +295,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "entity": { "dcids": ["country/TGO"] }, "select": ["entity", "variable"] }'
+-d '{ "entity": { "dcids": ["country/TGO"] } }'
 ```
 Response:
 {: .example-box-title}
@@ -405,310 +402,29 @@ Response:
         }
       }
     },
-    "AmountOutstanding_Debt_OfficialCreditor_Concessional_PubliclyGuaranteed_Multilateral_LongTermExternalDebt_LenderArabBankforEconomicDevinAfrica": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Consumption_Fuel_OtherManufacturingIndustry_Fuelwood": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_GreenhouseGas_FuelCombustionForRoadVehicles": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/account_t_d_8": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountPrincipalRepayment_Debt_OfficialCreditor_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCAN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Amount_Debt_WorldBankMultipleCurrency_LenderWorldBankIDA_AsAFractionOf_Amount_Debt_LenderWorldBankIDA": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BX_GSR_TOTL_CD": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SH_STA_AIRP_P5": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountPrincipalRepayment_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryDNK": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "eia/INTL.12-1-MTOE.A": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/ER_MTN_DGRDP": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SP_ACS_BSRVH2O": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BAR_NOED_7074_FE_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SP_POP_AG05_FE_IN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_PTRHC_02_TRAINED": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_XUNIT_US_3_FSGOV": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "LocalCurrency_ExchangeRate_Currency_FromCurrency_USD_ToCurrencyUSD": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MaxTemp_Daily_Hist_95PctProb_Greater_Atleast1DayADecade_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_GaussianMixture_50PctProb_LessThan_Atleast1DayAYear_CMIP6_Ensemble_SSP245": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/fin17b_t_d_2": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Amount_Debt_FRF_AsAFractionOf_Amount_Debt": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SP_GNP_WNOWNS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/NY_GDY_TOTL_KN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_PTRHC_2T3_TRAINED": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_CarbonDioxideEquivalent100YearGlobalWarmingPotential_FluorinatedGases": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MaxTemp_Daily_GaussianMixture_50PctProb_Greater_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_Hist_50PctProb_LessThan_Atleast1DayADecade_CMIP6_GFDL-ESM4_SSP585": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SH_HAP_ASMORT": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/AG_LND_TOTL_K2": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/HF_UHC_NOP1_CG": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/VA_STD_ERR": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountOutstanding_Debt_LongTermExternalDebt_LenderInternationalFundforAgriculturalDev": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Imports_Fuel_OtherOilProducts": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_Hist_1PctProb_LessThan_Atleast1DayAYear_CMIP6_GFDL-ESM4_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_NitrousOxide_WasteManagement": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_GaussianMixture_5PctProb_LessThan_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "eia/INTL.2-4-QBTU.A": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BN_CAB_XOKA_GD_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SP_REG_BRTH_FE_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountInterestRepayment_Debt_LongTermExternalDebt_LenderCountrySWE": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
+...
 ```
 {: .example-box-content .scroll}
 
 
 ### Example 2: Look up whether a given entity (place) has data for a given variable
 
-In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
+In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}.
 
 Parameters:
 {: .example-box-title}
 
 ```
-date: "LATEST"
 variable.dcids: "Count_Person_Male", "Count_Person_Female"
 entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
 ```
+
 GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS'
 ```
 {: .example-box-content .scroll}
 
@@ -718,7 +434,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable"] }'
+-d '{ "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] } }'
 ```
 
 Response:
@@ -753,11 +469,8 @@ Parameters:
 {: .example-box-title}
 
 ```
-date: "LATEST"
 variable.dcids: "Count_Person_Male", "Count_Person_Female"
 entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
 select: "facet"
 ```
 GET Request:
@@ -765,7 +478,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable&select=facet'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=facet'
 ```
 {: .example-box-content .scroll}
 
@@ -775,7 +488,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable", "facet"] }'
+-d '{ "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["facet"] }'
 ```
 
 Response:
@@ -923,7 +636,234 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 4: Get the latest observations for a single entity by DCID
+### Example 4: Look up all the entities (places) that have data for a given variable
+
+This example is similar to the above, but uses an entity expression to look up _all_ countries that have data for the variable `Count_Person_Female`. To do this, we use the entity `Earth` and get all countries contained in it.
+
+Parameters:
+{: .example-box-title}
+
+```
+variable.dcids: "Count_Person_Female"
+entity.expression: "Earth<-containedInPlace+{typeOf:Country}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=Count_Person_Female&entity.expression=Earth%3C-containedInPlace%2B{typeOf:Country}'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
+https://api.datacommons.org/v2/observation  \
+-d '{ "variable": { "dcids": ["Count_Person_Female"] }, "entity": { "expression": "Earth<-containedInPlace+{typeOf:Country}"} }'
+```
+
+Response:
+{: .example-box-title}
+
+```json
+{
+  "byVariable": {
+    "Count_Person_Female": {
+      "byEntity": {
+        "country/DNK": {
+
+        },
+        "country/RUS": {
+
+        },
+        "country/CZE": {
+
+        },
+        "country/ETH": {
+
+        },
+        "country/GRC": {
+
+        },
+        "country/LTU": {
+
+        },
+        "country/MLT": {
+
+        },
+        "country/SWE": {
+
+        },
+        "country/FRA": {
+
+        },
+        "country/NGA": {
+
+        },
+        "country/NZL": {
+
+        },
+        "country/AUS": {
+
+        },
+        "country/CHE": {
+
+        },
+        "country/HUN": {
+
+        },
+        "country/IRL": {
+
+        },
+        "country/EGY": {
+
+        },
+        "country/FXX": {
+
+        },
+        "country/LVA": {
+
+        },
+        "country/RWA": {
+
+        },
+        "country/CRI": {
+
+        },
+        "country/PER": {
+
+        },
+        "country/BRA": {
+
+        },
+        "country/HRV": {
+
+        },
+        "country/ROU": {
+
+        },
+        "country/USA": {
+
+        },
+        "country/CHN": {
+
+        },
+        "country/CIV": {
+
+        },
+        "country/KEN": {
+
+        },
+        "country/KOR": {
+
+        },
+        "country/NLD": {
+
+        },
+        "country/NOR": {
+
+        },
+        "country/BGR": {
+
+        },
+        "country/DEU": {
+
+        },
+        "country/EST": {
+
+        },
+        "country/GBR": {
+
+        },
+        "country/ZAF": {
+
+        },
+        "country/TUN": {
+
+        },
+        "country/TUR": {
+
+        },
+        "country/AUT": {
+
+        },
+        "country/CHL": {
+
+        },
+        "country/FIN": {
+
+        },
+        "country/ISR": {
+
+        },
+        "country/ITA": {
+
+        },
+        "country/POL": {
+
+        },
+        "country/COL": {
+
+        },
+        "country/ESP": {
+
+        },
+        "country/IDN": {
+
+        },
+        "country/SVN": {
+
+        },
+        "country/MNG": {
+
+        },
+        "country/SVK": {
+
+        },
+        "country/ARG": {
+
+        },
+        "country/BEL": {
+
+        },
+        "country/CAN": {
+
+        },
+        "country/ISL": {
+
+        },
+        "country/LUX": {
+
+        },
+        "country/MEX": {
+
+        },
+        "country/IND": {
+
+        },
+        "country/JPN": {
+
+        },
+        "country/LKA": {
+
+        },
+        "country/PRT": {
+
+        }
+      }
+    }
+  }
+}
+```
+{: .example-box-content .scroll}
+
+## Examples with observations
+
+### Example 5: Get the latest observations for a single entity by DCID
 
 In this example, we get all the latest population observations for one country, Canada. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
@@ -934,8 +874,6 @@ Parameters:
 date: "LATEST"
 variable.dcids: "Count_Person"
 entity.dcids: "country/CAN"
-select: "entity"
-select: "variable"
 select: "value"
 select: "date"
 ```
@@ -945,7 +883,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FCAN&select=value&select=date'
 ```
 {: .example-box-content .scroll}
 
@@ -955,7 +893,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
-  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/CAN"] }, "select": ["entity", "variable", "value", "date"] }'
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/CAN"] }, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -1049,8 +987,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-
-### Example 5: Get the observations at a particular date for given entities by DCID
+### Example 6: Get the observations at a particular date for given entities by DCID
 
 This gets observations for the median income of households in the U.S.A. and California in 2015. 
 
@@ -1063,9 +1000,7 @@ variable.dcids: "Median_Income_Household"
 entity.dcids: "country/USA"
 entity.dcids: "geoId/06"
 select: "date"
-select: "entity"
 select: "value"
-select: "variable"
 ```
 
 GET Request:
@@ -1073,7 +1008,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Median_Income_Household&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Median_Income_Household&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=value'
 ```
 {: .example-box-content .scroll}
 
@@ -1083,7 +1018,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
-  -d '{"date": "2015", "variable": { "dcids": ["Median_Income_Household"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["entity", "variable", "value", "date"] }'
+  -d '{"date": "2015", "variable": { "dcids": ["Median_Income_Household"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -1161,7 +1096,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 6: Get all observations for selected entities by DCID
+### Example 7: Get all observations for selected entities by DCID
 
 This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"}. Note that we use the empty string in the `date` parameter to get all observations for this variable and entities.
 
@@ -1175,9 +1110,7 @@ entity.dcids: "cCount_Person_EducationalAttainmentDoctorateDegree"
 entity.dcids: "geoId/55"
 entity.dcids: "geoId/27"
 select: "date"
-select: "entity"
 select: "value"
-select: "variable"
 ```
 
 GET Request:
@@ -1185,7 +1118,7 @@ GET Request:
 
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&date=""&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&date=""&select=date&select=value'
 ```
 {: .example-box-content .scroll}
 
@@ -1195,7 +1128,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "",  "entity": {"dcids": ["geoId/27","geoId/55"]}, "variable": { "dcids": ["Count_Person_EducationalAttainmentDoctorateDegree"] }, "select": ["entity", "variable", "value", "date"] }'
+-d '{"date": "",  "entity": {"dcids": ["geoId/27","geoId/55"]}, "variable": { "dcids": ["Count_Person_EducationalAttainmentDoctorateDegree"] }, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -1342,11 +1275,10 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 7: Get the latest observations for entities specified by expression
+### Example 8: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of
-type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
-`Count_Person` and entity (all counties in California).
+type `County`".
 
 Parameters:
 {: .example-box-title}
@@ -1356,9 +1288,7 @@ date: "LATEST"
 variable.dcids: "Count_Person"
 entity.expression: "geoId/06<-containedInPlace+{typeOf:County}"
 select: "date"
-select: "entity"
 select: "value"
-select: "variable"
 ```
 
 GET Request:
@@ -1366,7 +1296,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=value'
 ```
 {: .example-box-content .scroll}
 
@@ -1376,7 +1306,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
-  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable", "value", "date"] }'
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -1431,7 +1361,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 8: Get the latest observations for a single entity, filtering by facet provenance (domain)
+### Example 9: Get the latest observations for a single entity, filtering by facet provenance (domain)
 
 This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
@@ -1443,8 +1373,6 @@ date: "LATEST"
 variable.dcids: "Count_Person"
 entity.dcids: "country/USA"
 filter.domains: "www2.census.gov"
-select: "entity"
-select: "variable"
 select: "value"
 select: "date"
 ```
@@ -1453,7 +1381,7 @@ GET Request:
 {: .example-box-title}
 
 ```bash
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=entity&select=variable&select=value&select=date
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=value&select=date
 ```
 POST Request:
 {: .example-box-title}
@@ -1461,7 +1389,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \  
 https://api.datacommons.org/v2/observation  \ 
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"], "filter": {"domains": ["www2.census.gov"]}}'
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["value", "date"], "filter": {"domains": ["www2.census.gov"]}}'
 ```
 
 {: .example-box-content .scroll}
@@ -1504,7 +1432,7 @@ Response:
 }
 ```
 
-### Example 9: Get the latest observations for a single entity, filtering by facet for a specific dataset
+### Example 10: Get the latest observations for a single entity, filtering by facet for a specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 
@@ -1516,8 +1444,6 @@ date: "LATEST"
 variable.dcids: "Count_Person"
 entity.dcids: "country/BRA"
 filter.facet_ids: "3981252704"
-select: "entity"
-select: "variable"
 select: "value"
 select: "date"
 ```
@@ -1526,15 +1452,16 @@ GET Request:
 {: .example-box-title}
 
 ```bash
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=entity&select=variable&select=value&select=date
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=value&select=date
 ```
+
 POST Request:
 {: .example-box-title}
 
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 https://api.datacommons.org/v2/observation  \ 
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/BRA"] }, "select": ["entity", "variable", "value", "date"], "filter": {"facet_ids": ["3981252704"]} }'
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/BRA"] }, "select": ["value", "date"], "filter": {"facet_ids": ["3981252704"]} }'
 ```
 
 {: .example-box-content .scroll}
