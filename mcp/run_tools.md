@@ -53,7 +53,7 @@ This is required for all agents, regardless of the server deployment:
 
 To see the Data Commons tools, use `/mcp tools`. To see the Data Commons resources, use `/mcp resources`.
 
-> **Tip**: Data Commons provides a set of agent skills as server resources, so you don't need to provide any Data Commons-specific customizations.
+> **Tip**: Data Commons provides a set of [agent skills](index.md#skills) as server resources, so you don't need to provide any Data Commons-specific customizations.
 
 ## Use the sample agent 
 
@@ -120,7 +120,7 @@ The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTION
 
 You can add your own prompts to modify how the client processes the results of tool calls. See the Google ADK page on [LLM agent instructions](https://google.github.io/adk-docs/agents/llm-agents/#guiding-the-agent-instructions-instruction){: target="_blank"} for tips on how to write good prompts.
 
-> Tip: Data Commons provides a set of agent skills as server resources, so you don't need to provide any Data Commons-specific instructions.
+> Tip: Data Commons provides a set of agent [skills](run_toolsmd#skills) as server resources, so you don't need to provide any Data Commons-specific instructions.
 
 ## Sample queries
 

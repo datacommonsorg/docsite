@@ -9,17 +9,14 @@ redirect_from: /run_mcp_tools
 {:.no_toc}
 # Configure the MCP server
 
-The Custom Data Commons services container includes the [Data Commons MCP server](/mcp/index.html) as a component. This page describes how to connect from an AI agent to a local MCP server. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
+The Custom Data Commons services container includes the [Data Commons MCP server](/mcp/index.html) as a component. This page describes how to set additional options on the server and connect from an AI agent to a locally running server. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
 
-> **Important**: 
-> This feature is available starting from the stable release of 2026-02-10. To use it, you must [sync your code](/custom_dc/image.html#sync-code-to-the-stable-branch) to a stable release from that date or later, [rebuild your image](/custom_dc/image.html#build-package), and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+The MCP server runs by default, in HTTP streaming mode, when you start up the services. You don't need an API key for the server or for any agent connecting to it. You can use any MCP-compliant agent. See [Query data interactively with an AI agent](/mcp/run_tools.html) for examples, and substitute your own application URL.
 
 * TOC
 {:toc}
 
 ## Set options
-
-The MCP server runs by default, in HTTP streaming mode, when you start up the services. You don't need an API key for the server or for any agent connecting to it.
 
 There are a few additional environment variables you can configure, all of which are optional:
 -  `ENABLE_MCP`: By default this is set to true. If you want to disable the MCP server from running, set it to false.
@@ -52,6 +49,10 @@ To set the options on a locally running server, specify them in your `env.list` 
 </div>
 
 To set the options on a server in Cloud Run, see [Start/restart the services container](deploy_cloud.md#start-service). 
+
+## Connect to the server from an agent
+
+To connect to the server from an agent, see the procedure in 
 
 {: #instructions}
 ## Provide custom instructions for the server
@@ -134,6 +135,7 @@ INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.
 ```
 
 To specify custom instructions on a Cloud Run server, see [Provide custom MCP instructions files](deploy_cloud.md#instructions). 
+
 To specify custom instructions hosted in Cloud Storage but loaded by a local server, see [Running the service container locally, and custom MCP instructions in Google Cloud](advanced.md#instructions)
 
 {: #agent}

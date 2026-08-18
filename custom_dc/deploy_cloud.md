@@ -485,13 +485,13 @@ You can use any AI agent to connect to the MCP server. The MCP server is address
 To connect an AI agent to the Cloud Run service app:
 
 1. Obtain the [app URL](#view-app) for your service.
-1. In the configuration for the agent/client, specify the HTTP URL as the hostname for your service + `mcp` path. For example, for Gemini CLI, you would add this section to your `settings.json` file:
+1. In the configuration for the agent/client, specify the HTTP URL as the hostname for your service + `mcp` path. For example, for Google Antigravity, you would add this to your `~.gemini/config/mcp_config.json` file:
 
     <pre>{
       ...
       "mcpServers": {
           "<var>SERVER_NAME</var>": {         
-             "httpUrl": "<var>APP_URL</var>/mcp"
+             "serverUrl": "<var>APP_URL</var>/mcp"
           }
       }
       ...
