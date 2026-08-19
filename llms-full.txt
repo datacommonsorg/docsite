@@ -35,7 +35,8 @@
 {'title': 'Data coverage', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/datasets/index.md', 'desc': 'Overview of datasets in Data Commons and per-country coverage.'}
 {'title': 'Place types', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md', 'desc': 'Reference for place types in Data Commons.'}
 {'title': 'Get support', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md', 'desc': 'Support channels and feedback paths.'}
-{'title': 'Contribute to Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md', 'desc': {}}
+{'title': 'Contribute to Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md', 'desc': 'Contribute data, code, or documentation to Data Commons.'}
+{'title': 'Cite Data Commons', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/attribution.md', 'desc': 'Provide correct attributions for Data Commons data used in your site or app.'}
 {'title': 'Web Components', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/index.md', 'desc': 'Embed Data Commons charts in your own website.'}
 {'title': 'Map chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/map.md', 'desc': {}}
 {'title': 'Bar chart', 'url': 'https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/web_components/bar.md', 'desc': {}}
@@ -51,7 +52,9 @@
 - Use **Query data with agents** for MCP setup, hosted MCP usage, Gemini CLI integration, or self-hosted MCP.
 - Use **Query data programmatically** for REST and Python APIs.
 - Use **Build a Custom Data Commons** for local and cloud deployment, configuration, data imports, and UI customization of Custom Data Commons instances.
-- Use **Background, concepts, data model** for concepts, glossary, datasets, and background material.<query data with agents><doc title="MCP - Query data interactively with an AI agent" desc="Overview of Data Commons MCP and supported tools.">---
+- Use **Background, concepts, data model** for concepts, glossary, datasets, and background material.
+
+For a single file with all Markdown content, see <https://raw.githubusercontent.com/datacommonsorg/docsite/master/llms-full.txt>.<query data with agents><doc title="MCP - Query data interactively with an AI agent" desc="Overview of Data Commons MCP and supported tools.">---
 layout: default
 title: MCP - Query data interactively with an AI agent
 nav_order: 20
@@ -85,14 +88,34 @@ You can also run your own MCP server locally, or in Google Cloud Platform. If yo
 
 The server currently supports the following tools:
 
-- `search_indicators`: Searches for available variables and/or topics (a hierarchy of sub-topics and member variables) for a given place or metric. This allows queries like:
+- `search_indicators`: Searches for available variables and/or topics (a hierarchy of sub-topics and member variables) for a given place or metric. This allows queries such as:
    - "Tell me what data you have about health in Egypt."
+   - "What census data do you have for Canada?"
+- `search_child_indicators`: Searches for available variables and topics for contained-in places of a specified type. This allows queries such as:
+   - "What census data do you have for the U.S. states?"
    - "Do you have GDP data for Eastern European countries?"
-   - "What census data do you have for the U.S.?"
-- `get_observations`: Fetches statistical data for a given variable and place. This allows queries like:
+- `get_variable_metadata`: Returns more detailed data about candidate indicators, such as sources, available dates, etc. This allows queries such as:
+   - "What are the sources of data you have about health in Egypt?"
+   - "How far back does your population data for Canada go?"
+- `get_observations`: Fetches statistical time-series data for a given variable and place. This allows queries such as:
    - "List the population of Canada since 1964."
-   - "Rank-order the GDP for all countries in Eastern Europe."
+   - "What are the current populations of China and India?"
+- `get_child_observations`: Fetches statistical time-series data for all contained-in places of a specified type. This allows queries such as:
    - "Compare the life expectancy between different countries in South America."
+   - "Rank-order the GDP for all countries in Eastern Europe."
+- `get_multi_entity_observations`: Fetches statistical time-series data for observations involving places that have a directional relationship. This allows queries such as:
+   - "What are the current rice exports from Sri Lanka to Australia?"
+   - "Which African countries has China provided the most financial aid to?"
+
+## Skills
+
+The MCP server has a library of skills packaged as MCP resources. The skills are recipes or "playbooks" that give detailed instructions to agents on how to interact with the server. Each skill is specialized for a different kind of workflow, including:
+
+* Queries for indicators and observations tied directly to a single, specified place, e.g. "France"
+* Queries for indicators and observations across contained-in places or sub-regions inside a parent location, e.g. "all countries in South America"
+* Queries for indicators and observations involving multiple places with directional relationships between them, e.g. "Canada to/from the United States"
+
+If you're curious, you can see the library at <https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/datacommons_mcp/instructions/agent_api/skills>{: target="_blank"}.
 
 ## Clients
 
@@ -355,7 +378,7 @@ To customize the sample agent, you can make changes directly to the Python files
 To change to a different LLM or model version, edit the `AGENT_MODEL` constant in [packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/agent.py#L23){: target="_blank"}.
 
 {:.no_toc}
-#### Customize agent behavior
+#### Customize agent behavior {#agent-behavior}
 
 The agent's behavior is determined by prompts provided in the `AGENT_INSTRUCTIONS` in [packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py](https://github.com/datacommonsorg/agent-toolkit/blob/main/packages/datacommons-mcp/examples/sample_agents/basic_agent/instructions.py){: target="_blank"}.
 
@@ -634,9 +657,9 @@ The URIs for the V2 API are below:
 
 | API | URI path | Description |
 | --- | --- | ----------- |
-| Observation | [/observation](/api/rest/v2/observation) | Fetches statistical observations |
+| Observation | [/observation](/api/rest/v2/observation) | Looks up information about available observations and fetches observations |
 | Node | [/node](/api/rest/v2/node) | Fetches information about edges and neighboring nodes |
-| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph |
+| Resolve entities | [/resolve](/api/rest/v2/resolve) | Returns Data Commons IDs ([`DCIDs`](/glossary.html#dcid)) for entities in the graph and searches for variables |
 
 ### Base URL for custom instances
 
@@ -662,7 +685,7 @@ Endpoints are the same as above; append the URI to the base URL, e.g. `https://l
 
 ## Query parameters {#query-param}
 
-Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. The V2 APIs only use query parameters.
+Endpoints take a set of parameters which allow you to specify the entities, variables, timescales, etc. you are interested in. 
 
 Query parameters are chained at the end of a URL behind a `?` symbol. Separate multiple parameter entries with an `&` symbol. For example, this would look like:
 
@@ -735,12 +758,9 @@ curl -X POST \
 }'
 </pre>
 
-## Find available entities, variables, and their DCIDs
+## Find DCIDs
 
-Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
-
-- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
-- [Find places available for a statistical variable](/data_model.html#find-places)
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. To find a DCID using the datacommons.org website, see [Find a DCID for an entity or variable](/data_model.html#find-dcid). To find a DCID using the APIs, see the [Resolve](resolve.md) page.
 
 {: #relation-expressions}
 ## Relation expressions
@@ -750,20 +770,18 @@ nodes are connected by directed edges, or arcs, to form a knowledge graph. The
 label of the arc is the name of the [property](/glossary.html#property).
 
 Relation expressions include arrow annotation and other symbols in the syntax to
-represent neighboring nodes, and to support chaining and filtering.
-These new expressions allow all of the functionality of the V1 API to be
-expressed with fewer API endpoints in V2. All V2 API calls require relation
+represent neighboring nodes, and to support chaining and filtering. All calls require relation
 expressions in the `property` or `expression` parameter.
 
-The following table describes symbols in the V2 API relation expressions:
+The following table describes symbols in the relation expressions:
 
 | ------ | ---------- |
 | `->` | An outgoing arc |
 | `<-` | An incoming arc |
-| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value |
+| <code>{<var>PROPERTY</var>:<var>VALUE</var>}</code> | Filtering; identifies the property and associated value. Support for filters varies among different endpoints. See the endpoint pages for details. |
 | `[]` | Multiple properties, separated by commas |
 | `*` | All properties linked to this node |
-| `+` | Allows arcs from nodes not directly connected, i.e. can be several hops away. Only supported for the `containedInPlace` property. |
+| `+` | Allows arcs to and from nodes not directly connected, that is, are several hops away. Support for this recursive "chaining" varies among different endpoints. See the endpoint pages for details.|
 
 ### Incoming and outgoing relations
 
@@ -782,25 +800,6 @@ Nodes for outgoing relations are represented by `->`. Nodes for incoming relatio
 
 You can combine multiple properties together within `[]`. For example, to request a few outgoing arcs for a node, use
 `->[name, latitude, longitude]`. See more in this [Node API example](/api/rest/v2/node.html#multiple-properties)).
-
-### Filters
-
-V2 supports limited filtering of result candidates. Currently the only support is to restrict candidates by entity type. The format of this filter is:
-
-<pre>
-{typeOf:<var>VALUE</var>}
-</pre>
-
-Here are the contexts where this filter is currently supported:
-
-| API | Context  | Use |
-|-----|--------------------------------------|-------------|
-| Node and Observation | Incoming property `<-containedInPlace+`  | Return entities of the specified type, that are contained in the selected place entity (or entities). **Note:** the `+` character is required between the property and filter. |
-| Resolve entity | Incoming properties `<-description` or `<-geoCoordinate` | Return entities of the specified type, that match a selected name or geocoordinate. |
-
-See the endpoint pages for examples.
-
-The Observation endpoint supports additional filters for provenances and facets. See the [Observation page](observation.md) for details. 
 
 ### Wildcard
 
@@ -889,7 +888,7 @@ published: true
 
 The Observation API fetches statistical observations. An observation is associated with an
 entity and a variable at a particular date: for example, "population of USA in
-2020", "GDP of California in 2010", and so on. 
+2020", "GDP of California in 2010", and so on. You can also use this API to just look up the data available for given entities (places) and variables.
 
 * TOC
 {:toc}
@@ -906,7 +905,7 @@ entity and a variable at a particular date: for example, "population of USA in
 </div>
 
 <div id="GET-request" class="api-tabcontent api-signature">
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity[&select=value][&select=date][&select=facet]
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=<var>DATE_EXPRESSION</var>&variable.dcids=<var>DCID_LIST</var>&entity.dcids|expression=<var>DCID_LIST_OR_RELATION_EXPRESSION</var>&filter.facet_ids=<var>FACET_ID_LIST</var>&filter.domains=<var>DOMAIN_NAME_LIST</var>&select=variable&select=entity&select=value&select=date&select=facet
 </div>
 
 <div id="POST-request" class="api-tabcontent api-signature">
@@ -960,11 +959,11 @@ JSON data:
 | Name                                                  | Type   |  Description                                                    |
 |-------------------------------------------------------|--------|-----------------------------------------------------------------|
 | key <br /><required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
-| date <br /><required-tag>Required</required-tag>     | string | See [below](#date-string) for allowable values. |
-| variable.dcids <br/><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. To return actual  observations, this is required. To just get a list of variables associated with given entities, you can omit it.|
+| date <br /><optional-tag>Optional</optional-tag> | string | Required for retrieving observations; unnecessary for retrieving availability of variables or data. See [below](#date-string) for allowable values. |
+| variable.dcids <br /><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. Required for retrieving observations. To just get a list of variables associated with given entities, you can omit it. |
 | entity.dcids  | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
 | entity.expression | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
-| select <br /><required-tag>Required</required-tag>  | string literal | `select=variable` and `select=entity` are required. `select=date`, `select=value` and `select=facet` are optional: if you omit `select=date` and `select=value`, no observations are returned. You can use this to first check whether a given entity (or entities) has data for a given variable or variables, before fetching the observations. `select=facet` additionally fetches all the _facets_, which show the sources of the data as well. |
+| select <br /><optional-tag>Optional</optional-tag>  | string literal | With no 'select' parameters, only checks whether a given entity (or entities) has data for a given variable or variables. With 'select=facet', the available facets are also returned with the response. To get actual observations, both 'select=date' and 'select=value' are required. 'select=entity' and 'select=variable' are optional in all requests.<br/><br/><b>Note:</b> For Custom Data Commons instances, 'select=date' and 'select=value' are required in all requests.  |
 | filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance URL. See [Response](#response) below for more details. |
 | filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing _facet IDs_ that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. See [Response](#response) below for more details. |
 {: .doc-table }
@@ -989,7 +988,7 @@ Statistical variable dates are defined as yearly, monthly, weekly, or daily. For
 
 ## Response {#response}
 
-With `select=variable`, `select=entity`, `select=date` and `select=value` specified (and no filters), all observations and available facets are returned. The response looks like this:
+With `select=date` and `select=value` specified (and no filters), all observations and available facets are returned. The response looks like this:
 
 <pre>
 {
@@ -1054,7 +1053,7 @@ With `select=variable`, `select=entity`, `select=date` and `select=value` specif
 </pre>
 {: .response-signature .scroll}
 
-With`select=variable`, `select=entity` and `select=facet`, only the details about the available facets are returned, including the number of observations available for each facet. But no actual observations are returned. The response looks like:
+With `select=facet`, only the details about the available facets are returned, including the number of observations available for each facet. But no actual observations are returned. The response looks like:
 
 <pre>
 {
@@ -1105,7 +1104,7 @@ With`select=variable`, `select=entity` and `select=facet`, only the details abou
 </pre>
 {: .response-signature .scroll}
 
-With`select=variable` and `select=entity` only, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
+With no `select` parameters, the response looks like the following. Note the empty brackets after the entity DCIDs; this simply means that the facet and observation data have been omitted from the response.
 
 <pre>
 {
@@ -1144,7 +1143,7 @@ With`select=variable` and `select=entity` only, the response looks like the foll
 | facets.is_dc_aggregate | boolean |  Set to true for variables that are auto-generated by Data Commons to aggregate observations by place hierarchies or event observations by time intervals. Not returned if false. |
 {: .doc-table}
 
-## Examples
+## Examples without observations
 
 ### Example 1: Look up the statistical variables available for a given entity (place)
 
@@ -1154,10 +1153,7 @@ Parameters:
 {: .example-box-title}
 
 ```
-date: "LATEST"
 entity.dcids: "country/TGO"
-select: "entity"
-select: "variable"
 ```
 
 GET Request:
@@ -1165,7 +1161,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&entity.dcids=country/TGO&select=entity&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&entity.dcids=country/TGO'
 ```
 {: .example-box-content .scroll}
 
@@ -1175,7 +1171,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "entity": { "dcids": ["country/TGO"] }, "select": ["entity", "variable"] }'
+-d '{ "entity": { "dcids": ["country/TGO"] } }'
 ```
 Response:
 {: .example-box-title}
@@ -1282,310 +1278,29 @@ Response:
         }
       }
     },
-    "AmountOutstanding_Debt_OfficialCreditor_Concessional_PubliclyGuaranteed_Multilateral_LongTermExternalDebt_LenderArabBankforEconomicDevinAfrica": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Consumption_Fuel_OtherManufacturingIndustry_Fuelwood": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_GreenhouseGas_FuelCombustionForRoadVehicles": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/account_t_d_8": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountPrincipalRepayment_Debt_OfficialCreditor_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryCAN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Amount_Debt_WorldBankMultipleCurrency_LenderWorldBankIDA_AsAFractionOf_Amount_Debt_LenderWorldBankIDA": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BX_GSR_TOTL_CD": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SH_STA_AIRP_P5": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountPrincipalRepayment_Debt_PubliclyGuaranteed_LongTermExternalDebt_LenderCountryDNK": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "eia/INTL.12-1-MTOE.A": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/ER_MTN_DGRDP": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SP_ACS_BSRVH2O": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BAR_NOED_7074_FE_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SP_POP_AG05_FE_IN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_PTRHC_02_TRAINED": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_XUNIT_US_3_FSGOV": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "LocalCurrency_ExchangeRate_Currency_FromCurrency_USD_ToCurrencyUSD": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MaxTemp_Daily_Hist_95PctProb_Greater_Atleast1DayADecade_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_GaussianMixture_50PctProb_LessThan_Atleast1DayAYear_CMIP6_Ensemble_SSP245": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/fin17b_t_d_2": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Amount_Debt_FRF_AsAFractionOf_Amount_Debt": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SP_GNP_WNOWNS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/NY_GDY_TOTL_KN": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/UIS_PTRHC_2T3_TRAINED": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_CarbonDioxideEquivalent100YearGlobalWarmingPotential_FluorinatedGases": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MaxTemp_Daily_GaussianMixture_50PctProb_Greater_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_Hist_50PctProb_LessThan_Atleast1DayADecade_CMIP6_GFDL-ESM4_SSP585": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "sdg/SH_HAP_ASMORT": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/AG_LND_TOTL_K2": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/HF_UHC_NOP1_CG": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/VA_STD_ERR": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountOutstanding_Debt_LongTermExternalDebt_LenderInternationalFundforAgriculturalDev": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Imports_Fuel_OtherOilProducts": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_Hist_1PctProb_LessThan_Atleast1DayAYear_CMIP6_GFDL-ESM4_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "Annual_Emissions_NitrousOxide_WasteManagement": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "MinTemp_Daily_GaussianMixture_5PctProb_LessThan_Atleast1DayAYear_CMIP6_MPI-ESM1-2-HR_Historical": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "eia/INTL.2-4-QBTU.A": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/BN_CAB_XOKA_GD_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "worldBank/SP_REG_BRTH_FE_ZS": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
-    "AmountInterestRepayment_Debt_LongTermExternalDebt_LenderCountrySWE": {
-      "byEntity": {
-        "country/TGO": {
-
-        }
-      }
-    },
+...
 ```
 {: .example-box-content .scroll}
 
 
 ### Example 2: Look up whether a given entity (place) has data for a given variable
 
-In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}, and use the `select` options of only `entity` and `variable` to omit observations.
+In this example, we check whether we have population data, broken down by male and female, for 4 countries, Mexico, Canada, Malaysia, and Singapore. We check if the entities are associated with two variables, [`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}.
 
 Parameters:
 {: .example-box-title}
 
 ```
-date: "LATEST"
 variable.dcids: "Count_Person_Male", "Count_Person_Female"
 entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
 ```
+
 GET Request:
 {: .example-box-title}
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS'
 ```
 {: .example-box-content .scroll}
 
@@ -1595,7 +1310,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable"] }'
+-d '{ "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] } }'
 ```
 
 Response:
@@ -1630,11 +1345,8 @@ Parameters:
 {: .example-box-title}
 
 ```
-date: "LATEST"
 variable.dcids: "Count_Person_Male", "Count_Person_Female"
 entity.dcids: "country/MEX", "country/CAN", "country/MYS", "country/SGP"
-select: "entity"
-select: "variable"
 select: "facet"
 ```
 GET Request:
@@ -1642,7 +1354,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=entity&select=variable&select=facet'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=Count_Person_Female&variable.dcids=Count_Person_Male&entity.dcids=country/CAN&entity.dcids=country/MEX&entity.dcids=country/SGP&entity.dcids=country/MYS&select=facet'
 ```
 {: .example-box-content .scroll}
 
@@ -1652,7 +1364,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["entity", "variable", "facet"] }'
+-d '{ "variable": { "dcids": ["Count_Person_Male", "Count_Person_Female"] }, "entity": { "dcids": ["country/CAN", "country/MEX", "country/MYS", "country/SGP"] }, "select": ["facet"] }'
 ```
 
 Response:
@@ -1800,7 +1512,234 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 4: Get the latest observations for a single entity by DCID
+### Example 4: Look up all the entities (places) that have data for a given variable
+
+This example is similar to the above, but uses an entity expression to look up _all_ countries that have data for the variable `Count_Person_Female`. To do this, we use the entity `Earth` and get all countries contained in it.
+
+Parameters:
+{: .example-box-title}
+
+```
+variable.dcids: "Count_Person_Female"
+entity.expression: "Earth<-containedInPlace+{typeOf:Country}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=Count_Person_Female&entity.expression=Earth%3C-containedInPlace%2B{typeOf:Country}'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"  \
+https://api.datacommons.org/v2/observation  \
+-d '{ "variable": { "dcids": ["Count_Person_Female"] }, "entity": { "expression": "Earth<-containedInPlace+{typeOf:Country}"} }'
+```
+
+Response:
+{: .example-box-title}
+
+```json
+{
+  "byVariable": {
+    "Count_Person_Female": {
+      "byEntity": {
+        "country/DNK": {
+
+        },
+        "country/RUS": {
+
+        },
+        "country/CZE": {
+
+        },
+        "country/ETH": {
+
+        },
+        "country/GRC": {
+
+        },
+        "country/LTU": {
+
+        },
+        "country/MLT": {
+
+        },
+        "country/SWE": {
+
+        },
+        "country/FRA": {
+
+        },
+        "country/NGA": {
+
+        },
+        "country/NZL": {
+
+        },
+        "country/AUS": {
+
+        },
+        "country/CHE": {
+
+        },
+        "country/HUN": {
+
+        },
+        "country/IRL": {
+
+        },
+        "country/EGY": {
+
+        },
+        "country/FXX": {
+
+        },
+        "country/LVA": {
+
+        },
+        "country/RWA": {
+
+        },
+        "country/CRI": {
+
+        },
+        "country/PER": {
+
+        },
+        "country/BRA": {
+
+        },
+        "country/HRV": {
+
+        },
+        "country/ROU": {
+
+        },
+        "country/USA": {
+
+        },
+        "country/CHN": {
+
+        },
+        "country/CIV": {
+
+        },
+        "country/KEN": {
+
+        },
+        "country/KOR": {
+
+        },
+        "country/NLD": {
+
+        },
+        "country/NOR": {
+
+        },
+        "country/BGR": {
+
+        },
+        "country/DEU": {
+
+        },
+        "country/EST": {
+
+        },
+        "country/GBR": {
+
+        },
+        "country/ZAF": {
+
+        },
+        "country/TUN": {
+
+        },
+        "country/TUR": {
+
+        },
+        "country/AUT": {
+
+        },
+        "country/CHL": {
+
+        },
+        "country/FIN": {
+
+        },
+        "country/ISR": {
+
+        },
+        "country/ITA": {
+
+        },
+        "country/POL": {
+
+        },
+        "country/COL": {
+
+        },
+        "country/ESP": {
+
+        },
+        "country/IDN": {
+
+        },
+        "country/SVN": {
+
+        },
+        "country/MNG": {
+
+        },
+        "country/SVK": {
+
+        },
+        "country/ARG": {
+
+        },
+        "country/BEL": {
+
+        },
+        "country/CAN": {
+
+        },
+        "country/ISL": {
+
+        },
+        "country/LUX": {
+
+        },
+        "country/MEX": {
+
+        },
+        "country/IND": {
+
+        },
+        "country/JPN": {
+
+        },
+        "country/LKA": {
+
+        },
+        "country/PRT": {
+
+        }
+      }
+    }
+  }
+}
+```
+{: .example-box-content .scroll}
+
+## Examples with observations
+
+### Example 5: Get the latest observations for a single entity by DCID
 
 In this example, we get all the latest population observations for one country, Canada. by its DCID using `entity.dcids`. Note that in the response, there are multiple facets returned, because this variable (representing a simple population count) is used in several datasets.
 
@@ -1811,8 +1750,6 @@ Parameters:
 date: "LATEST"
 variable.dcids: "Count_Person"
 entity.dcids: "country/CAN"
-select: "entity"
-select: "variable"
 select: "value"
 select: "date"
 ```
@@ -1822,7 +1759,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FCAN&select=entity&select=variable&select=value&select=date'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FCAN&select=value&select=date'
 ```
 {: .example-box-content .scroll}
 
@@ -1832,7 +1769,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
-  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/CAN"] }, "select": ["entity", "variable", "value", "date"] }'
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/CAN"] }, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -1926,8 +1863,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-
-### Example 5: Get the observations at a particular date for given entities by DCID
+### Example 6: Get the observations at a particular date for given entities by DCID
 
 This gets observations for the median income of households in the U.S.A. and California in 2015. 
 
@@ -1940,9 +1876,7 @@ variable.dcids: "Median_Income_Household"
 entity.dcids: "country/USA"
 entity.dcids: "geoId/06"
 select: "date"
-select: "entity"
 select: "value"
-select: "variable"
 ```
 
 GET Request:
@@ -1950,7 +1884,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Median_Income_Household&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&variable.dcids=Median_Income_Household&entity.dcids=country%2FUSA&entity.dcids=geoId%2F06&select=date&select=value'
 ```
 {: .example-box-content .scroll}
 
@@ -1960,7 +1894,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
-  -d '{"date": "2015", "variable": { "dcids": ["Median_Income_Household"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["entity", "variable", "value", "date"] }'
+  -d '{"date": "2015", "variable": { "dcids": ["Median_Income_Household"] }, "entity": { "dcids": ["country/USA", "geoId/06"] }, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -2038,7 +1972,7 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 6: Get all observations for selected entities by DCID
+### Example 7: Get all observations for selected entities by DCID
 
 This example gets all observations for populations with doctoral degrees in the states of Wisconsin and Minnesota, represented by statistical variable  [`Count_Person_EducationalAttainmentDoctorateDegree`](https://datacommons.org/browser/Count_Person_EducationalAttainmentDoctorateDegree){: target="_blank"}. Note that we use the empty string in the `date` parameter to get all observations for this variable and entities.
 
@@ -2052,9 +1986,7 @@ entity.dcids: "cCount_Person_EducationalAttainmentDoctorateDegree"
 entity.dcids: "geoId/55"
 entity.dcids: "geoId/27"
 select: "date"
-select: "entity"
 select: "value"
-select: "variable"
 ```
 
 GET Request:
@@ -2062,7 +1994,7 @@ GET Request:
 
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&date=""&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=&variable.dcids=Count_Person_EducationalAttainmentDoctorateDegree&entity.dcids=geoId/27&entity.dcids=geoId/55&date=""&select=date&select=value'
 ```
 {: .example-box-content .scroll}
 
@@ -2072,7 +2004,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 https://api.datacommons.org/v2/observation  \
--d '{"date": "",  "entity": {"dcids": ["geoId/27","geoId/55"]}, "variable": { "dcids": ["Count_Person_EducationalAttainmentDoctorateDegree"] }, "select": ["entity", "variable", "value", "date"] }'
+-d '{"date": "",  "entity": {"dcids": ["geoId/27","geoId/55"]}, "variable": { "dcids": ["Count_Person_EducationalAttainmentDoctorateDegree"] }, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -2219,11 +2151,10 @@ Response:
 {: .example-box-content .scroll}
 
 
-### Example 7: Get the latest observations for entities specified by expression
+### Example 8: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of
-type `County`". Then we specify the `select` fields to fetch the latest observations for the variable
-`Count_Person` and entity (all counties in California).
+type `County`".
 
 Parameters:
 {: .example-box-title}
@@ -2233,9 +2164,7 @@ date: "LATEST"
 variable.dcids: "Count_Person"
 entity.expression: "geoId/06<-containedInPlace+{typeOf:County}"
 select: "date"
-select: "entity"
 select: "value"
-select: "variable"
 ```
 
 GET Request:
@@ -2243,7 +2172,7 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable'
+'https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=2015&date=LATEST&variable.dcids=Count_Person&entity.expression=geoId%2F06%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=value'
 ```
 {: .example-box-content .scroll}
 
@@ -2253,7 +2182,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/observation \
-  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["entity", "variable", "value", "date"] }'
+  -d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "expression": "geoId/06<-containedInPlace+{typeOf:County}"}, "select": ["value", "date"] }'
 ```
 {: .example-box-content .scroll}
 
@@ -2308,7 +2237,7 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-### Example 8: Get the latest observations for a single entity, filtering by facet provenance (domain)
+### Example 9: Get the latest observations for a single entity, filtering by facet provenance (domain)
 
 This example is the same as example #1, except it filters for a single data source, namely the U.S. government census, represented by its domain name, `www2.census.gov`.
 
@@ -2320,8 +2249,6 @@ date: "LATEST"
 variable.dcids: "Count_Person"
 entity.dcids: "country/USA"
 filter.domains: "www2.census.gov"
-select: "entity"
-select: "variable"
 select: "value"
 select: "date"
 ```
@@ -2330,7 +2257,7 @@ GET Request:
 {: .example-box-title}
 
 ```bash
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=entity&select=variable&select=value&select=date
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FUSA&filter.domains=www2.census.gov&select=value&select=date
 ```
 POST Request:
 {: .example-box-title}
@@ -2338,7 +2265,7 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \  
 https://api.datacommons.org/v2/observation  \ 
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["entity", "variable", "value", "date"], "filter": {"domains": ["www2.census.gov"]}}'
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/USA"] }, "select": ["value", "date"], "filter": {"domains": ["www2.census.gov"]}}'
 ```
 
 {: .example-box-content .scroll}
@@ -2381,7 +2308,7 @@ Response:
 }
 ```
 
-### Example 9: Get the latest observations for a single entity, filtering by facet for a specific dataset
+### Example 10: Get the latest observations for a single entity, filtering by facet for a specific dataset
 
 This example gets the latest population count of Brazil. It filters for a single dataset from the World Bank, using the facet ID `3981252704`.
 
@@ -2393,8 +2320,6 @@ date: "LATEST"
 variable.dcids: "Count_Person"
 entity.dcids: "country/BRA"
 filter.facet_ids: "3981252704"
-select: "entity"
-select: "variable"
 select: "value"
 select: "date"
 ```
@@ -2403,15 +2328,16 @@ GET Request:
 {: .example-box-title}
 
 ```bash
-https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=entity&select=variable&select=value&select=date
+https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&date=LATEST&variable.dcids=Count_Person&entity.dcids=country%2FBRA&filter.facet_ids=3981252704&select=value&select=date
 ```
+
 POST Request:
 {: .example-box-title}
 
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 https://api.datacommons.org/v2/observation  \ 
--d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/BRA"] }, "select": ["entity", "variable", "value", "date"], "filter": {"facet_ids": ["3981252704"]} }'
+-d '{"date": "LATEST", "variable": { "dcids": ["Count_Person"] }, "entity": { "dcids": ["country/BRA"] }, "select": ["value", "date"], "filter": {"facet_ids": ["3981252704"]} }'
 ```
 
 {: .example-box-content .scroll}
@@ -2467,11 +2393,7 @@ published: true
 {:toc}
 
 Each entity in Data Commons has an associated `DCID` which is used to refer to it
-in other API calls or programs. An important step for a Data Commons developer is to
-identify the DCIDs of entities they care about. This API searches for an entry in the
-Data Commons knowledge graph based on certain properties and returns the DCIDs of matches. 
-
-You can resolve place entities by name/description, Wikidata ID, geo coordinates, and several other place codes. You can resolve statistical variables and topics by a substring of the name/description. 
+in other API calls or programs. To make any other API calls, you must know the DCIDs of the entities or variables you want to query. The Resolve API searches for an entry in the Data Commons knowledge graph based on specified properties and returns the DCIDs of matches. 
 
 To fetch more data for the returned candidates, including linked nodes, you can then call Node API.
 
@@ -2519,38 +2441,19 @@ JSON data:
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | key <br /> <required-tag>Required</required-tag> | string | Your API key. See the [section on authentication](/api/rest/v2/index.html#authentication) for details. |
-| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. |
-| resolver <br /> <optional-tag>Optional</optional-tag> | string literal | Currently accepted options are `place` (the default) and `indicator`, which resolves statistical variables. If not specified, the default is `place`. |
-| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the `nodes` parameter. See [Supported place properties](#placetypes) for a list of property types you can specify for place resolutions. <br/>If not specified, the default is `<-description`. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with `->dcid`. |
-| target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
+| nodes <br /> <required-tag>Required</required-tag>  | list of strings | A list of terms that identify each node to search for, such as their names. A single string can contain spaces and commas. If the `resolver` parameter is not set to  `indicator`, the value must exactly match the actual property value of the entity.  |
+| resolver <br /> <optional-tag>Optional</optional-tag> | string literal | The only currently accepted option is  `indicator`, which resolves statistical variables and topics. By default, queries resolve all other types of nodes. |
+| property <br /> <optional-tag>Optional</optional-tag>  | string | An expression that describes the identifier used in the 'nodes' parameter. You can use any valid incoming property (edge) on any type of node. You may use a 'typeOf' filter only for place resolutions using the special synthetic properties '<-geoCoordinate' or '<-description'. <br/>If this parameter is not specified, the default is '<-description'. For all other place-related resolutions, this parameter is required. <br/>Each expression must end with '->dcid'.<br/><br/><b>Note:</b> For Custom Data Commons instances, when 'resolver=indicator' is not specified, only place resolutions are supported, with a subset of properties. See [Supported place properties for Custom Data Commons](#placetypes) for a list of these. |
+| target <br /> <optional-tag>Optional</optional-tag> | string literal | Only relevant for Custom Data Commons: specifies the Data Commons instance(s) whose data should be queried. Supported options are: <br />`custom_only`<br />`base_only`<br/>`base_and_custom`. <br/>If not specified, the default is `base_and_custom`. |
 {: .doc-table }
 
 > **Note:** For places, this endpoint relies on name-based geocoding, which may return imprecise results. One common pattern is ambiguous place names, that are the same in different countries, states, etc. For example, there is at least one popular city called "Cambridge" in both the UK and USA. Thus, for more precise results, provide as much context in the description as possible. For example, to resolve Cambridge in USA, pass "Cambridge, MA, USA" if you can. <br/>For indicators, the endpoint returns all possible results that match the query. To limit results, use more precise query terms. 
-
-{: #placetypes}
-### Supported place properties
-
-The following is a selection of properties that are supported as the `property` parameter for place resolutions:
-
-| Property label | Description | Examples |
-|---------------|-------------|---------|
-| `description` | Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. |  `Berlin`, `Berlin, Germany`, `India`|
-| `geoCoordinate` | Resolve by a synthesis of [`latitude` and `longitude`](https://datacommons.org/browser/GeoCoordinates){: target="_blank"} properties. This is a synthetic ID assigned by Data Commons. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. | `52.516666666667#-13.383333333333` |
-| `wikidataId` | Resolve by [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers){: target="_blank"} | `Q64`, `Q668` |
-| `unDataCode` | Resolve by the code used in UN-curated datasets. | `undata-geo:C11200007`, `undata-geo:G00001380` |
-| `isoCode` | Resolve by ISO 2-letter location code. | `DE-BE`, `IN` |
-| `nutsCode`| Resolve by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
-
-Several region-specific codes are also supported:
-
-* `lgdCode` (India)
-* `udiseCode` (India)
 
 ## Response
 
 The response contains all the candidates that match the query.
 
-When the `resolver` option is set to `place` (the default), the response looks like:
+When the `resolver` option is not specified, the response looks like:
 
 <pre>
 {
@@ -3036,7 +2939,134 @@ Response:
          ]}]}
 ```
 {: .example-box-content .scroll}
-</doc><doc title="Get node properties - REST" desc="REST API reference and examples for exploring properties and relationships of nodes in the knowledge graph.">---
+
+### Example 7: Find the DCID of a non-place entity using its name
+
+This example looks up the DCID of a statistical variable group by its name. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "Sustainable Development Goals"
+property: "<-name"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Sustainable%20Development%20Goals&property=%3C-name-%3Edcid'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve  \
+  -d '{"nodes": ["Sustainable Development Goals"], "property": "<-name->dcid"}'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+  "entities": [
+    {
+      "node": "Sustainable Development Goals",
+      "candidates": [
+        {
+          "dcid": "WHO/g/SustainableDevelopmentGoals"
+        },
+        {
+          "dcid": "dc/g/SDG"
+        },
+        {
+          "dcid": "dc/topic/sdg"
+        }
+      ]
+    }
+  ]
+}
+```
+{: .example-box-content .scroll}
+
+### Example 8: Find the DCID of an entity using another field
+
+This example looks up the DCID of a provenance by its URL. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "https://unstats.un.org/sdgs/dataportal"
+property: "url"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+'https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=https://unstats.un.org/sdgs/dataportal&property=%3C-url-%3Edcid'
+```
+{: .example-box-content .scroll}
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/resolve  \
+  -d '{"nodes": ["https://unstats.un.org/sdgs/dataportal"], "property": "<-url->dcid"}'
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+  "entities": [
+    {
+      "node": "https://unstats.un.org/sdgs/dataportal",
+      "candidates": [
+        {
+          "dcid": "dc/base/UN_SDG"
+        },
+        {
+          "dcid": "dc/d/UnitedNationsUn_SdgIndicatorsDatabase"
+        }
+      ]
+    }
+  ]
+}
+```
+{: .example-box-content .scroll}
+
+{: #placetypes}
+## Supported place properties for Custom Data Commons
+
+The following is a selection of properties that are supported as the `property` parameter for place resolutions:
+
+| Property label | Description | Examples |
+|---------------|-------------|---------|
+| `description` | Resolve by description or name. Note that a `description` field is not necessarily present in the knowledge graph for all entities. It is a synthetic property that Data Commons uses to check various name-related fields, such as `name`. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. |  `Berlin`, `Berlin, Germany`, `India`|
+| `geoCoordinate` | Resolve by a synthesis of [`latitude` and `longitude`](https://datacommons.org/browser/GeoCoordinates){: target="_blank"} properties. This is a synthetic ID assigned by Data Commons. You may optionally specify a [`typeOf` filter](/api/rest/v2/index.html#filters) with this property. | `52.516666666667#-13.383333333333` |
+| `wikidataId` | Resolve by [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers){: target="_blank"} | `Q64`, `Q668` |
+| `unDataCode` | Resolve by the code used in UN-curated datasets. | `undata-geo:C11200007`, `undata-geo:G00001380` |
+| `isoCode` | Resolve by ISO 2-letter location code. | `DE-BE`, `IN` |
+| `nutsCode`| Resolve by the [NUTS](https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics){: target="_blank"} European Union location code. | `DE3` |
+
+Several region-specific codes are also supported:
+
+* `lgdCode` (India)
+* `udiseCode` (India)</doc><doc title="Get node properties - REST" desc="REST API reference and examples for exploring properties and relationships of nodes in the knowledge graph.">---
 layout: default
 title: Get node properties
 nav_order: 3
@@ -3105,7 +3135,7 @@ JSON data:
 | ----------------------------------------------------- | ------ | -----------------------|
 | key <br /> <required-tag>Required</required-tag>      | string | Your API key. See the section on [authentication](/api/rest/v2/index.html#authentication) for details. |
 | nodes <br /> <required-tag>Required</required-tag>    | list of strings | List of the [DCIDs](/glossary.html#dcid) of the nodes to query. |
-| property <br /> <required-tag>Required</required-tag> | string | Property to query, represented with symbols including arrow notation. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different `property` parameters, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes.   |
+| property <br /> <required-tag>Required</required-tag> | string | Property to query, using a [relation expression](/api/rest/v2/#relation-expressions). The relation expression can consist of any incoming or outgoing edge (property), and can include filters or recursive "chaining" (multi-hop arcs). A filter can consist of any valid property:value pair, and you can specify multiple property-value pairs separated by commas. Recursion is limited to 10 hops. See examples for more details.<br/><br/> <b>Note:</b> For custom Data Commons instances, chaining and filters can only be specified in expressions composed of `specializationOf->` or `<-containedInPlace`. A filter can only use the `typeOf` property. |
 
 {: .doc-table }
 
@@ -3243,7 +3273,7 @@ Response:
   }
 }
 ```
-{: .example-box-content .scroll
+{: .example-box-content .scroll}
 
 ### Example 3: Get the DCIDs of all the states in the United States
 
@@ -3651,6 +3681,7 @@ curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
 
 Response:
 {: .example-box-title}
+(truncated)
 
 ```json
 {
@@ -3709,10 +3740,101 @@ Response:
 ```
 {: .example-box-content .scroll}
 
-{: #list-entity-types}
-### Example 7: Get a list of all existing entity types
+### Example 7: Get a list of all existing statistical variables filtered by 2 property values
 
-Get all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
+This example gets all nodes of type `StatisticalVariable`, filtered by gender and population type. 
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "StatisticalVariable"
+property: "<-typeOf{gender:Female,populationType:Student}"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=StatisticalVariable&property=%3C-typeOf{gender:Female,populationType:Student}'
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["StatisticalVariable"], "property": "<-typeOf{gender:Female,populationType:Student}"}'
+```
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```jsonc
+{
+  "data": {
+    "StatisticalVariable": {
+      "arcs": {
+        "typeOf": {
+          "nodes": [
+            {
+              "name": "Count of Student: Years 6 To 12, Female, Primary Education",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_6To12Years_Female_PrimaryEducation",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 3, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4 who completed an academic assessment in english language arts",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_EnglishLanguageArts",
+              "provenanceId": "dc/base/Schema"
+            },
+            {
+              "name": "Number of female students in school grade 4, mathematics",
+              "types": [
+                "StatisticalVariable"
+              ],
+              "dcid": "Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_Mathematics",
+              "provenanceId": "dc/base/Schema"
+            },
+          ]
+        }
+      }
+    }
+  },
+  "nextToken": "H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=="
+}
+```
+{: .example-box-content .scroll}
+
+
+{: #list-entity-types}
+### Example 8: Get a list of all existing entity types
+
+This example gets all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
 
 Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
 
@@ -3862,7 +3984,8 @@ Response:
               ],
               "dcid": "ActivateAction",
               "provenanceId": "dc/base/BaseSchema"
-            }...
+            },
+            ...
           ]
         }
       }
@@ -3870,6 +3993,182 @@ Response:
   },
   "nextToken": "H4sIAAAAAAAA/yzHsQ5EQBiF0Z27O7PXTyFf5X20Es+goFJIRuPtRaI7J6bI477UGuW8jnXe3vKhOPVp+CEL+Yv8OCMX5D+ykRvkQG6RuxsAAP//AQAA//8tG+Q2TgAAAA=="
 }         
+```
+{: .example-box-content .scroll}
+
+### Example 9: Get the hierarchy of a node
+
+This example uses recursive chaining to get all subclasses of the class `Person`.
+
+Parameters:
+{: .example-box-title}
+
+```bash
+nodes: "Person"
+property: "<-subClassOf+"
+```
+
+GET Request:
+{: .example-box-title}
+
+```bash
+curl --request GET --url \
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=<-subClassOf%2B'
+
+```
+
+POST Request:
+{: .example-box-title}
+
+```bash
+curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
+  https://api.datacommons.org/v2/node \
+  -d '{"nodes": ["Person"], "property": "<-subClassOf+"}'
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+  "data": {
+    "Person": {
+      "arcs": {
+        "subClassOf+": {
+          "nodes": [
+            {
+              "name": "ACSEDChild",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACSEDChild"
+            },
+            {
+              "name": "ACSEDParent",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ACSEDParent"
+            },
+            {
+              "name": "BLSWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "BLSWorker"
+            },
+            {
+              "name": "Child",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Child"
+            },
+            {
+              "name": "Consumer",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Consumer"
+            },
+            {
+              "name": "ElectricityConsumer",
+              "types": [
+                "Class"
+              ],
+              "dcid": "ElectricityConsumer"
+            },
+            {
+              "name": "Faculty",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Faculty"
+            },
+            {
+              "name": "HealthcareWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "HealthcareWorker"
+            },
+            {
+              "name": "Infant",
+              "types": [
+                "AgeGroupClassificationEnum",
+                "Class"
+              ],
+              "dcid": "Infant"
+            },
+            {
+              "name": "MedicareEnrollee",
+              "types": [
+                "Class"
+              ],
+              "dcid": "MedicareEnrollee"
+            },
+            {
+              "name": "MenstrualWoman",
+              "types": [
+                "Class"
+              ],
+              "dcid": "MenstrualWoman"
+            },
+            {
+              "name": "Mother",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Mother"
+            },
+            {
+              "name": "NonPregnantWoman",
+              "types": [
+                "Class"
+              ],
+              "dcid": "NonPregnantWoman"
+            },
+            {
+              "name": "PregnantWoman",
+              "types": [
+                "Class"
+              ],
+              "dcid": "PregnantWoman"
+            },
+            {
+              "name": "Student",
+              "types": [
+                "Class"
+              ],
+              "dcid": "Student"
+            },
+            {
+              "name": "USCWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "USCWorker"
+            },
+            {
+              "name": "UrbanConsumer",
+              "types": [
+                "Class"
+              ],
+              "dcid": "UrbanConsumer"
+            },
+            {
+              "name": "UrbanWageEarnerAndClericalWorker",
+              "types": [
+                "Class"
+              ],
+              "dcid": "UrbanWageEarnerAndClericalWorker"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
 ```
 {: .example-box-content .scroll}</doc><doc title="Troubleshooting" desc="Guidance for troubleshooting API errors.">---
 layout: default
@@ -5275,6 +5574,8 @@ nav_order: 1
 parent: API - Query data programmatically
 has_children: true
 published: true
+redirect_from: 
+   /api/python/index
 ---
 
 {:.no_toc}
@@ -5392,10 +5693,10 @@ The Python client library sends HTTP POST requests to the Data Commons [REST API
 
 | API | Endpoint | Description | Response type |
 | --- | --- -----| ----------- |---------------|
-| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) | `ObservationResponse` and Python dictionary |
+| Observation | [`observation`](observation.md) | Fetches statistical observations (time series) and looks up availability of data for entities (places) and variables | `ObservationResponse` and Python dictionary |
 | [Observations Pandas DataFrame](pandas.md) | none | Similar to the `fetch_observations_by_entity_dcids` and `fetch_observations_by_entity_type` methods of the Observation endpoint, except that the functionality is provided by a single method of the `DataCommonsClient` class directly, instead of an intermediate endpoint. Requires the optional `Pandas` module. | `pd.DataFrame` |
 | Node | [`node`](node.md) | Fetches information about edges and neighboring nodes | `NodeResponse` and Python dictionary |
-| Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph | `ResolveResponse` |
+| Resolve entities | [`resolve`](resolve.md) | Returns Data Commons IDs ([`DCID`](/glossary.html#dcid)) for entities in the knowledge graph and searches for variables | `ResolveResponse` |
 
 To send a request, you use one of the endpoints available as methods of the client object. For example: 
 
@@ -5413,14 +5714,12 @@ ResolveResponse(entities=[Entity(node='Georgia', candidates=[Candidate(dcid='geo
 ```
 {: .example-box-content .scroll}
 
+
 See the linked pages for descriptions of the methods available for each endpoint, its methods and responses.
 
 ## Find available entities, variables, and their DCIDs
 
-Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. For tips on how to find relevant DCIDs, entities and variables, please see the [Key concepts](/data_model.html) document, specifically the following sections:
-
-- [Find a DCID for an entity or variable](/data_model.html#find-dcid)
-- [Find places available for a statistical variable](/data_model.html#find-places)
+Many requests require the [DCID](/glossary.html#dcid) of the entity or variable you wish to query. To find a DCID using the datacommons.org website, see [Find a DCID for an entity or variable](/data_model.html#find-dcid). To find a DCID using the APIs, see the [Resolve](resolve.md) page.
 
 {: #relation-expressions}
 ## Relation expressions
@@ -5572,7 +5871,7 @@ published: true
 # Observation
 
 The Observation API fetches statistical observations. An observation is associated with an
-entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. 
+entity and variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. You can also use this API to just look up the data available for given entities (places) and variables.
 
 > Note: This endpoint returns Python objects, like other endpoints. To get Pandas DataFrames results, see [Observation pandas](pandas.md) which is a direct property method of the `Client` object.
 
@@ -5587,7 +5886,7 @@ The following are the methods available for this endpoint.
 
 | Method | Description | 
 |--------|-------------|
-| [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions) |
+| [fetch](#fetch) | Fetch observations for specified variables, dates, and entities by DCID or [relation expression](/api/rest/v2/index.html#relation-expressions), or look up what data is available for a given entity or variable |
 | [fetch_available_statistical_variables](#fetch_available_statistical_variables) | Fetch the statistical variables available for a given entity or entities. |
 | [fetch_observations_by_entity_dcid](#fetch_observations_by_entity_dcid) | Fetch observations for specified variables, dates and entities, by entity DCID. |
 | [fetch_observations_by_entity_type](fetch_observations_by_entity_type) | Fetch observations for specified variables and dates, by entity type and parent entity. |
@@ -5709,12 +6008,12 @@ The following methods are available for responses that return `NodeResponse` obj
 | to_json | Return the result as a JSON string. See [Response formatting](index.md#response-formatting) for details. |
 | to_dict | Return the result as a dictionary. See [Response formatting](index.md#response-formatting) for details. |
 | get_data_by_entity | Key the response data by entity rather than by variable. This is useful for queries that involve multiple entities. |
-| to_observations_as_records | Get the response data as a series of flat records. See [Example 3](#ex3) below for details. |
+| to_observations_as_records | Get the response data as a series of flat records. See [Example 4](#ex4) below for details. |
 {: .doc-table}
 
 ## fetch
 
-Fetches observations for the specified variables, dates, and entities. You can specify entities by DCID or by relation expression. 
+Fetches observations for the specified variables, dates, and entities, and looks up whether data is available for a given entity or variable. You can specify entities by DCID or by relation expression. 
 
 ### Signature
 
@@ -5735,7 +6034,7 @@ fetch(variable_dcids, date, select, entity_dcids, entity_expression)
 | filter_facet_ids <br /><optional-tag>Optional</optional-tag> | string or list of strings | Comma-separated list of existing [facet IDs](#response) that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. |
 {: .doc-table }
 
-### Examples
+### Examples 
 
 {: .no_toc}
 #### Example 1: Look up whether a given entity (place) has data for a given variable
@@ -5933,8 +6232,90 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-{: #ex3}
-#### Example 3: Get all observations for multiple entities specified by DCID, and return the results as flat records
+#### Example 3: Look up all places with data available for a specific variable
+
+This example looks up all places that have data for the variable `Count_Person_Female`. It uses a relation expression to specify places of type `Country` that are contained in `Earth`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.observation.fetch(variable_dcids=["Count_Person_Female"], select=["entity", "variable"], entity_expression="Earth<-containedInPlace+{typeOf:Country}") 
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+```python
+{'byVariable': {'Count_Person_Female': {'byEntity': {'country/CRI': {'orderedFacets': []},
+    'country/FIN': {'orderedFacets': []},
+    'country/GRC': {'orderedFacets': []},
+    'country/SVK': {'orderedFacets': []},
+    'country/ESP': {'orderedFacets': []},
+    'country/ZAF': {'orderedFacets': []},
+    'country/IDN': {'orderedFacets': []},
+    'country/CZE': {'orderedFacets': []},
+    'country/KOR': {'orderedFacets': []},
+    'country/RUS': {'orderedFacets': []},
+    'country/IRL': {'orderedFacets': []},
+    'country/PER': {'orderedFacets': []},
+    'country/DEU': {'orderedFacets': []},
+    'country/MLT': {'orderedFacets': []},
+    'country/IND': {'orderedFacets': []},
+    'country/MEX': {'orderedFacets': []},
+    'country/NZL': {'orderedFacets': []},
+    'country/LTU': {'orderedFacets': []},
+    'country/TUN': {'orderedFacets': []},
+    'country/CHN': {'orderedFacets': []},
+    'country/CHL': {'orderedFacets': []},
+    'country/SWE': {'orderedFacets': []},
+    'country/BGR': {'orderedFacets': []},
+    'country/HRV': {'orderedFacets': []},
+    'country/NOR': {'orderedFacets': []},
+    'country/EST': {'orderedFacets': []},
+    'country/GBR': {'orderedFacets': []},
+    'country/SVN': {'orderedFacets': []},
+    'country/BRA': {'orderedFacets': []},
+    'country/LVA': {'orderedFacets': []},
+    'country/LKA': {'orderedFacets': []},
+    'country/KEN': {'orderedFacets': []},
+    'country/LUX': {'orderedFacets': []},
+    'country/HUN': {'orderedFacets': []},
+    'country/MNG': {'orderedFacets': []},
+    'country/CAN': {'orderedFacets': []},
+    'country/BEL': {'orderedFacets': []},
+    'country/ROU': {'orderedFacets': []},
+    'country/FXX': {'orderedFacets': []},
+    'country/ISR': {'orderedFacets': []},
+    'country/TUR': {'orderedFacets': []},
+    'country/AUT': {'orderedFacets': []},
+    'country/ITA': {'orderedFacets': []},
+    'country/JPN': {'orderedFacets': []},
+    'country/ARG': {'orderedFacets': []},
+    'country/ISL': {'orderedFacets': []},
+    'country/NGA': {'orderedFacets': []},
+    'country/FRA': {'orderedFacets': []},
+    'country/POL': {'orderedFacets': []},
+    'country/CHE': {'orderedFacets': []},
+    'country/COL': {'orderedFacets': []},
+    'country/DNK': {'orderedFacets': []},
+    'country/PRT': {'orderedFacets': []},
+    'country/RWA': {'orderedFacets': []},
+    'country/USA': {'orderedFacets': []},
+    'country/NLD': {'orderedFacets': []},
+    'country/AUS': {'orderedFacets': []},
+    'country/EGY': {'orderedFacets': []},
+    'country/ETH': {'orderedFacets': []},
+    'country/CIV': {'orderedFacets': []}}}},
+ 'facets': {}}
+```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+{: #ex4}
+#### Example 4: Get all observations for multiple entities specified by DCID, and return the results as flat records
 
 In this example, we get all the observations for the 2 countries, Mexico and Canada, that have data for[`Count_Person_Male`](https://datacommons.org/browser/Count_Person_Male){: target="_blank"} and [`Count_Person_Female`](https://datacommons.org/browser/Count_Person_Female){: target="_blank"}. Each observation is returned as a single record.
 
@@ -6054,7 +6435,7 @@ Response:
 {: .example-box-content .scroll}
 
 {: .no_toc}
-#### Example 4: Get the latest observations for entities specified by expression
+#### Example 5: Get the latest observations for entities specified by expression
 
 In this example, we get the latest population counts for counties in California. We use a [filter expression](/api/rest/v2/#filters) to specify "all contained places in California of type county".
 
@@ -7378,10 +7759,8 @@ published: true
 {: .no_toc}
 # Resolve
 
-The Resolve API returns a Data Commons ID ([`DCID`](/glossary.html#dcid)) for entities in the graph.
-Each entity in Data Commons has an associated `DCID` which is used to refer to it
-in other API calls or programs. An important step for a Data Commons developer is to
-identify the DCIDs of entities they care about. This API searches for an entry in the
+Each entity in Data Commons has an associated [`DCID`](/glossary.html#dcid) which is the unique identifier used
+in other API calls or programs. This API searches for an entry in the
 Data Commons knowledge graph and returns the DCIDs of matches. You can use
 common properties or even descriptive words to find entities.
 
@@ -7411,7 +7790,7 @@ The following are the methods available for the `resolve` endpoint.
 
 ## Response
 
-For all the methods that resolve places (default `fetch`, `fetch_dcids_by_name`, `fetch_dcids_by_wikidata_id`, and `fetch_dcid_by_coordinates`), the response looks like this:
+For the methods `fetch` (with default options), `fetch_dcids_by_name`, `fetch_dcids_by_wikidata_id`, and `fetch_dcid_by_coordinates`, the response looks like this:
 
 <pre>
 {
@@ -7683,6 +8062,60 @@ Response:
 ```
 {: .example-box-content .scroll}
 
+{: .no_toc}
+#### Example 5: Find the DCID of a non-place entity using its name
+
+This example looks up the DCID of a statistical variable group by its name. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = "Sustainable Development Goals", expression="<-name->dcid")
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+  { 
+    'entities': [{
+       'node': 'Sustainable Development Goals',
+       'candidates': [{'dcid': 'WHO/g/SustainableDevelopmentGoals'},
+                      {'dcid': 'dc/g/SDG'},
+                      {'dcid': 'dc/topic/sdg'}]
+    }]
+  }
+```
+{: .example-box-content .scroll}
+
+{: .no_toc}
+#### Example 6: Find the DCID of an entity using another field
+
+This example looks up the DCID of a provenance by its URL. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.resolve.fetch(node_ids = "https://unstats.un.org/sdgs/dataportal", expression="<-url->dcid")
+```
+
+Response:
+{: .example-box-title}
+
+```jsonc
+{
+   'entities': [{
+      'node': 'https://unstats.un.org/sdgs/dataportal',
+      'candidates': [{'dcid': 'dc/base/UN_SDG'},
+                     {'dcid': 'dc/d/UnitedNationsUn_SdgIndicatorsDatabase'}]
+  }]
+}
+```
+{: .example-box-content .scroll}
+
+
 ## fetch_dcids_by_name
 
 Resolve places to DCIDs by using a name.
@@ -7774,6 +8207,7 @@ Response:
 }
 ```
 {: .example-box-content .scroll}
+
 
 ## fetch_dcids_by_wikidata_id
 
@@ -8098,7 +8532,7 @@ fetch(node_dcids, expression, all_pages, next_token)
 | Name          | Type  |   Description  |
 |---------------|-------|----------------|
 | node_dcids <br/> <required-tag>Required</required-tag> | string or list of strings | One or more DCIDs of the nodes to query.  |
-| expression <br/> <required-tag>Required</required-tag> | string  | A [relation expression](/api/rest/v2/#relation-expressions), represented with symbols including arrow notation, that specifies the property (or properties) to query. For more details, see [relation expressions](/api/rest/v2/#relation-expressions). By using different relations, you can query node information in different ways, such as getting the edges and neighboring node values. Examples below show how to request this information for one or multiple nodes. |
+| expression <br/> <required-tag>Required</required-tag> | string  | See the description of the 'property' parameter in [v2/node](/api/rest/v2/node.html#query-parameters) for details. |
 | all_pages <br/> <optional-tag>Optional</optional-tag> | bool | Whether all data should be sent in the response. Defaults to `True`. Set to `False` to return paginated responses. See [Pagination](#pagination) for details. |
 | next_token <br/> <optional-tag>Optional</optional-tag> | string | If `all_pages` is set to `False`, set this to the next token returned by the previous response. Defaults to `None`. See [Pagination](#pagination) for details. |
 {: .doc-table }
@@ -8194,59 +8628,313 @@ client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf", all
 
 Response:
 {: .example-box-title}
+(truncated)
 
+```jsonc
+{'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [{'dcid': 'AbsoluteVorticity_Place_0.01Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.01',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.02Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.02',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.04Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.04',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.07Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.07',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.1Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.1',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.2Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.2',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.4Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.4',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_0.7Millibar',
+       'name': 'Absolute Vorticity: Millibar 0.7',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_1000Millibar',
+       'name': 'Absolute Vorticity: Millibar 1000',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_100Millibar',
+       'name': 'Absolute Vorticity: Millibar 100',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_10Millibar',
+       'name': 'Absolute Vorticity: Millibar 10',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_150Millibar',
+       'name': 'Absolute Vorticity: Millibar 150',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_15Millibar',
+       'name': 'Absolute Vorticity: Millibar 15',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_1Millibar',
+       'name': 'Absolute Vorticity: Millibar 1',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_200Millibar',
+       'name': 'Absolute Vorticity: Millibar 200',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_20Millibar',
+       'name': 'Absolute Vorticity: Millibar 20',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_250Millibar',
+       'name': 'Absolute Vorticity: Millibar 250',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_2Millibar',
+       'name': 'Absolute Vorticity: Millibar 2',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_300Millibar',
+       'name': 'Absolute Vorticity: Millibar 300',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_30Millibar',
+       'name': 'Absolute Vorticity: Millibar 30',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_350Millibar',
+       'name': 'Absolute Vorticity: Millibar 350',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_3Millibar',
+       'name': 'Absolute Vorticity: Millibar 3',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_400Millibar',
+       'name': 'Absolute Vorticity: Millibar 400',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_40Millibar',
+       'name': 'Absolute Vorticity: Millibar 40',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_450Millibar',
+       'name': 'Absolute Vorticity: Millibar 450',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_500Millibar',
+       'name': 'Absolute Vorticity: Millibar 500',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_50Millibar',
+       'name': 'Absolute Vorticity: Millibar 50',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_550Millibar',
+       'name': 'Absolute Vorticity: Millibar 550',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_5Millibar',
+       'name': 'Absolute Vorticity: Millibar 5',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_600Millibar',
+       'name': 'Absolute Vorticity: Millibar 600',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_650Millibar',
+       'name': 'Absolute Vorticity: Millibar 650',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_700Millibar',
+       'name': 'Absolute Vorticity: Millibar 700',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_70Millibar',
+       'name': 'Absolute Vorticity: Millibar 70',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_750Millibar',
+       'name': 'Absolute Vorticity: Millibar 750',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_7Millibar',
+       'name': 'Absolute Vorticity: Millibar 7',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_800Millibar',
+       'name': 'Absolute Vorticity: Millibar 800',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_850Millibar',
+       'name': 'Absolute Vorticity: Millibar 850',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_900Millibar',
+       'name': 'Absolute Vorticity: Millibar 900',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_925Millibar',
+       'name': 'Absolute Vorticity: Millibar 925',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_950Millibar',
+       'name': 'Absolute Vorticity: Millibar 950',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'AbsoluteVorticity_Place_975Millibar',
+       'name': 'Absolute Vorticity: Millibar 975',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Adjusted_GrowthRate_GrossDomesticProduct_EconomicActivity_QuarterOnChange',
+       'name': 'Adjusted GDP Growth Rate (Quarter-over-Quarter)',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+     ]}}==,
+     ...
+  'nextToken': 'H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=='
+  }
 ```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+#### Example 4: Get a list of all statistical variables, filtered by 2 property values
+
+This example gets all nodes of type `StatisticalVariable`, filtered by gender and population type. 
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch(node_dcids=["StatisticalVariable"], expression="<-typeOf{gender:Female,populationType:Student}", all_pages=False)
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+(truncated)
+
+```jsonc
 {
-  "data": {
-    "StatisticalVariable": {
-      "arcs": {
-        "typeOf": {
-          "nodes": [
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate1990_Max_Temperature",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To 1990, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP45",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 4.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006To2020_Max_Temperature_RCP85",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To Between 2006 And 2020, Based on RCP 8.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP45",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 4.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            {
-              "dcid": "AggregateMax_MedianAcrossModels_DifferenceRelativeToBaseDate2006_Max_Temperature_RCP85",
-              "name": "Max Temperature (Difference Relative To Base Date): Relative To 2006, Based on RCP 8.5, Highest Value, Median Across Models",
-              "provenanceId": "dc/base/HumanReadableStatVars",
-              "types": [
-                "StatisticalVariable"
-              ]
-            },
-            ...
-            "nextToken": "H4sIAAAAAAAA/2zJsQ6CMBQFUHut9fp0MNcPcyBhf5CSNOlA4C38PT/AfGyx3xAebY82ex99az71aiWOtf6vUTdlpm8SCIF3gVngQ2AR+BRIgS+BJvAt8HMCAAD//wEAAP//522gCWgAAAA="
+  'data': {'StatisticalVariable': {'arcs': {'typeOf': {'nodes': [
+      {'dcid': 'Count_Student_6To12Years_Female_PrimaryEducation',
+       'name': 'Count of Student: Years 6 To 12, Female, Primary Education',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 3 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade3_Mathematics',
+       'name': 'Number of female students in school grade 3, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 4 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade4_Mathematics',
+       'name': 'Number of female students in school grade 4, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade5_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 5 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade5_Mathematics',
+       'name': 'Number of female students in school grade 5, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade6_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 6 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade6_Mathematics',
+       'name': 'Number of female students in school grade 6, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade7_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 7 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade7_Mathematics',
+       'name': 'Number of female students in school grade 7, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade8_EnglishLanguageArts',
+       'name': 'Number of female students in school grade 8 who completed an academic assessment in english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AcademicAssessmentEvent_Female_SchoolGrade8_Mathematics',
+       'name': 'Number of female students in school grade 8, mathematics',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      {'dcid': 'Count_Student_AssessmentLevel1_Female_SchoolGrade3_EnglishLanguageArts',
+       'name': 'Number of Female students who achieved Assessment Level 1 in school grade 3, english language arts',
+       'provenanceId': 'dc/base/Schema',
+       'types': ['StatisticalVariable']},
+      ]}}}},
+      ...
+ 'nextToken': 'H4sIAAAAAAAA/+Ly5/IoLkjMy0st0i0oys9KTS4p1k9JLEnOz9UtLskvStXPzCsuScxLTi3WT0nWTS9KLMgAKUwBKUpMSiwGi8eDxaWYOb4wAwAAAP//AQAA//9rtwC6UQAAAA=='
+ }
+```
+{: .example-box-content .scroll}
+
+
+{: .no_toc}
+#### Example 5: Get the hierarchy of a node
+
+This example uses recursive chaining to get all subclasses of the class `Person`.
+
+Request:
+{: .example-box-title}
+
+```python
+client.node.fetch(node_dcids=["Person"], expression="<-subClassOf+")
+```
+{: .example-box-content .scroll}
+
+Response:
+{: .example-box-title}
+
+
+```json
+{
+  'data': 
+  {'Person': {'arcs': {'subClassOf+': {'nodes': 
+      [{'dcid': 'ACSEDChild', 'name': 'ACSEDChild', 'types': ['Class']},
+      {'dcid': 'ACSEDParent', 'name': 'ACSEDParent', 'types': ['Class']},
+      {'dcid': 'BLSWorker', 'name': 'BLSWorker', 'types': ['Class']},
+      {'dcid': 'Child', 'name': 'Child', 'types': ['Class']},
+      {'dcid': 'Consumer', 'name': 'Consumer', 'types': ['Class']},
+      {'dcid': 'ElectricityConsumer', 'name': 'ElectricityConsumer', 'types': ['Class']},
+      {'dcid': 'Faculty', 'name': 'Faculty', 'types': ['Class']},
+      {'dcid': 'HealthcareWorker', 'name': 'HealthcareWorker', 'types': ['Class']},
+      {'dcid': 'Infant', 'name': 'Infant', 'types': ['AgeGroupClassificationEnum', 'Class']},
+      {'dcid': 'MedicareEnrollee', 'name': 'MedicareEnrollee', 'types': ['Class']},
+      {'dcid': 'MenstrualWoman', 'name': 'MenstrualWoman', 'types': ['Class']},
+      {'dcid': 'Mother', 'name': 'Mother', 'types': ['Class']},
+      {'dcid': 'NonPregnantWoman', 'name': 'NonPregnantWoman', 'types': ['Class']},
+      {'dcid': 'PregnantWoman', 'name': 'PregnantWoman', 'types': ['Class']},
+      {'dcid': 'Student', 'name': 'Student', 'types': ['Class']},
+      {'dcid': 'USCWorker', 'name': 'USCWorker', 'types': ['Class']},
+      {'dcid': 'UrbanConsumer', 'name': 'UrbanConsumer', 'types': ['Class']},
+      {'dcid': 'UrbanWageEarnerAndClericalWorker', 'name': 'UrbanWageEarnerAndClericalWorker', 'types':['Class']}]
+  }}}}
 }
 ```
 {: .example-box-content .scroll}
+
 
 ## fetch_property_labels
 
@@ -11446,9 +12134,9 @@ Custom Data Commons requires that you provide your data in a specific schema, fo
 
 At a high level, you need to provide the following:
 
-- If you need to define your own statistical variables (metrics), you need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
-- All observations data must be in CSV format, using the schema described later. 
-- You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
+* If you need to define your own statistical variables (metrics), you need to provide [MCF (Meta Content Framework)](https://en.wikipedia.org/wiki/Meta_Content_Framework){: target="_blank"} files.
+* All observations data must be in CSV format, using the schema described later.
+* You must also provide a JSON configuration file, named `config.json`, that specifies how to map and resolve the CSV contents to the Data Commons schema knowledge graph. The contents of the JSON file are described below.
 
 If you need to define new entities, please see [Define custom entities](custom_entities.md) for details.
 
@@ -11468,9 +12156,10 @@ my_data/
     ├── datafile3.csv
     └── datafile4.csv
 ```
+
 The top-level directory (e.g. `my_data`) can live anywhere in the file system; you will specify the full path to it when you [configure your input directory](#env). When you set up your files in Google Cloud Storage using the Terraform script, it will automatically create a top-level directory in your bucket called `input`.
 
-The following sections walk you through the process of setting up your data. 
+The following sections walk you through the process of setting up your data.
 
 ## Prerequisite steps
 
@@ -11481,13 +12170,13 @@ The following sections describe the high-level conceptual work you need to do be
 
 Data Commons is optimized to support aggregations of data at geographical levels, such as city, state, country, and so on. If your data is aggregated by place, these are supported as entities out of the box. If, however, you want to aggregate data for entities that are _not_ places, then you may need to define new entities, and possibly even entity types.
 
-In addition, even if you aggregate by geographical area, you may want to measure things (known as a "population type" in the graph) that are not already in the graph. In that case, you might want to to define a new entity type, so that you can join with other data sets that measure the same thing. For example, let's say you have a metric that counts the number of beds in hospitals. The existence of the `Bed` entity type allows you to join your data with other sources with a similar metric. 
+In addition, even if you aggregate by geographical area, you may want to measure things (known as a "population type" in the graph) that are not already in the graph. In that case, you might want to to define a new entity type, so that you can join with other data sets that measure the same thing. For example, let's say you have a metric that counts the number of beds in hospitals. The existence of the `Bed` entity type allows you to join your data with other sources with a similar metric.
 
 #### Entities and entity types
 
 Schema.org and the base Data Commons knowledge graph define entity types for just about everything in the world. An _entity type_ is a high-level concept, and is derived directly from a [`Class`](https://datacommons.org/browser/Class){: target="_blank"} type. Non-place entities are of two types:
-- The thing you are measuring, known as the `populationType` in Data Commons. Often this is a `Person`, which is a commonly used population in Data Commons. But it could be something else entirely, like the beds in a hospital, the price of a commodity, Olympic medals won by a country, or the surface area of an ocean. 
-- The level at which you want to aggregate the data. Most commonly in Data Commons this is a place type such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc. 
+* The thing you are measuring, known as the `populationType` in Data Commons. Often this is a `Person`, which is a commonly used population in Data Commons. But it could be something else entirely, such as hospital beds, consumer commodities, Olympic medals, oceans, etc..
+* The level at which you want to aggregate the data. Most commonly in Data Commons this is a place type such as `City`, `Country`, `AdministrativeArea1`, etc. Examples of other entity types are `Hospital`, `PublicSchool`, `Company`, `BusStation`, `Campground`, `Library` etc.
 It is rare that you would need to create a new entity type, unless you are working in a highly specialized domain.
 
 An _entity_ is an instance of an entity type. For example, for `PublicSchool`, base Data Commons has many U.S. schools in its knowledge graph, such as [`nces/010162001665`](https://datacommons.org/browser/nces/010162001665){: target="_blank"} (Adams Elementary School) or [`nces/010039000201`](https://datacommons.org/browser/nces/010039000201){: target="_blank"} (Wylam Elementary School). Base Data Commons contains thousands of places and other entities, but it's possible that it does not have specific entities that you need. For example, it has about 100 instances of `Company`, but you may want data for other companies besides those. As another example, let's say your organization wants to collect (possibly private) data about different divisions or departments of your org; in this case you would need to define entities for them.
@@ -11497,33 +12186,37 @@ An _entity_ is an instance of an entity type. For example, for `PublicSchool`, b
 {: #search}
 #### Search for an existing entity / entity type
 
-Unfortunately, it is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs. 
+It is currently not possible to get a full list of entity types or entities in the Data Commons UI. To do a complete search for an entity type or entity, you need to use the REST or Python APIs.
 
 To search using the REST APIs:
 
-1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md). 
+1. Use the Node API through your browser to get a complete list of entity types: see [Get a list of all existing entity types](/api/rest/v2/node.html#list-entity-types) in the REST API V2 reference. Be sure to set the `nextToken` parameter until you find the relevant entity type or no `nextToken` is returned in the response. If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md).
 1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
-1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property: 
+1. Use the Node API through your browser to look up all incoming arcs by the `typeof` property:
 
     <pre>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>ENTITY_TYPE</var>&property=<-typeOf</pre>
     _ENTITY_TYPE_ is the DCID you've obtained in the previous step, such as `Hospital` or `PublicSchool`. For example:
+
     ```
     https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=PublicSchool&property=<-typeOf
     ```
+
 1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
 
 To search using the Python APIs:
 
 1. Start your Python interactive environment and [create a client for the base Data Commons](/api/python/v2/index.html).
-1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.) If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md). 
+1. Call the `Node` method `fetch_all_classes`: see [Get node properties](https://docs.datacommons.org/api/python/v2/node.html#fetch_all_classes) for details. (Tip: Use the `to_dict()` method on the response to get readable output.) If you don't find an entity type that matches your needs (very rare), you will need to [create one](custom_entities.md).
 1. If you find a relevant entity type, note the DCID of the entity type of interest. The DCID of entity types is usually a meaningful name, capitalized, such as `Hospital` or `PowerPlant` or `PublicSchool`.
 1. Use the `fetch_property_values` method to find all the instances of the type:
 
     <pre>client.node.fetch_property_values(node_dcids="<var>ENTITY_TYPE</var>", properties="typeOf", out=False)</pre>
     _ENTITY_TYPE_ is the DCID you've obtained in the previous step. For example:
+
     ```
     client.node.fetch_property_values(node_dcids="PublicSchool", properties="typeOf", out=False)
     ```
+
 1. If your entity is listed, note its DCID. If you are unable to find a relevant entity, you will need to create one. See [Work with custom entities](custom_entities.md) for complete information.
 
 ### Step 0.2: Identify your statistical variables
@@ -11550,12 +12243,12 @@ If you do need to define new variables, they must follow a certain model. The va
 | San Jose | 2023 | private | secondary | 100 |
 
 The measure here is a simple count; the set of things is "schools"; and the constraints are the type and levels of the schools, namely "public", "private", "elementary", "middle" and "secondary". All of these things must be encoded as separate variables. Therefore, although the _properties_ of school type and school level may already be defined in the Data Commons knowledge graph (or you may need to define them), they _cannot_ be present as columns in the CSV files that you store in Data Commons. Instead, you must create separate "count" variables to represent each case. In our example, you would actually need 6 different variables:
-- `Count_School_Public_Elementary`
-- `Count_School_Public_Middle`
-- `Count_School_Public_Secondary`
-- `Count_School_Private_Elementary`
-- `Count_School_Private_Middle`
-- `Count_School_Private_Secondary`
+* `Count_School_Public_Elementary`
+* `Count_School_Public_Middle`
+* `Count_School_Public_Secondary`
+* `Count_School_Private_Elementary`
+* `Count_School_Private_Middle`
+* `Count_School_Private_Secondary`
 
 If you wanted totals or subtotals of combinations, you would need to create additional variables for these as well.
 
@@ -11584,7 +12277,7 @@ Data Commons uses a schema that is called "variable-per-row". This means that ev
 
 The names and order of the columns aren't important, as you can map them to the expected columns in the JSON file. However, the city and variable names must be existing DCIDs. If such DCIDs don't already exist in the base Data Commons, you must provide definitions of them in MCF files.
 
-> **Tip:** If your raw data does not conform to this structure (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel. 
+> **Tip:** If your raw data does not conform to this structure (which is typically the case if you have relational data), you can usually easily convert the data by creating a pivot table (and renaming some columns) in a tool like Google Sheets or Microsoft Excel.
 
 ## Prepare your data
 
@@ -11595,79 +12288,127 @@ In this section, we will walk you through a concrete example of how to go about 
 
 If you are only reusing existing variables, you can skip this step entirely.
 
-Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF) files. If you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID. 
+Nodes in the Data Commons knowledge graph are defined in Metadata Content Format (MCF) files. If you need to define new statistical variables, you must define them as new _nodes_ using MCF. When you define any variable in MCF, you explicitly assign it a DCID.
 
 > **Note:** You cannot "override" a variable definition by changing the value of existing fields. If you need to override the values of existing fields, you should create a new variable, with a new DCID.
 
 You can define your statistical variables in a single MCF file, or split them into as many separate MCF files as you like. MCF files must have a `.mcf` suffix. The importer will automatically find them when you start the Docker data container.
 
-Here's an example of defining some statistical variables representing data in a UN WHO dataset. It defines 3 new statistical variable nodes. 
+Let's look at an example from a WHO dataset that reports the [prevalence of smoking among adolescents](https://platform.who.int/data/maternal-newborn-child-adolescent-ageing/indicator-explorer-new/MCA/prevalence-of-current-cigarette-smoking-among-adolescents){: target="_blank"} (adolescents are age 13 - 17).
+
+| Indicator | Year | Country code | Country | Sex | Value |
+|-----------|------|--------------|---------|-----|-------|
+| Prevalence of current cigarette smoking among adolescents | 2018 | ARG | Argentina | Male | 15.5 |
+| Prevalence of current cigarette smoking among adolescents | 2018 | ARG | Argentina | Female | 20 |
+| Prevalence of current cigarette smoking among adolescents | 2018 | ARG | Argentina | Both sexes | 18 |
+| Prevalence of current cigarette smoking among adolescents | 2022 | ARM | Armenia | Male | 17 |
+| Prevalence of current cigarette smoking among adolescents | 2022 | ARM | Armenia | Female | 0 |
+| Prevalence of current cigarette smoking among adolescents | 2024 | AUT | Austria | Male | 17.2 |
+| Prevalence of current cigarette smoking among adolescents | 2024 | AUT | Austria | Female | 21.3 |
+| Prevalence of current cigarette smoking among adolescents | 2024 | AUT | Austria | Both sexes | 19.5 |
+
+The first thing to notice is that there is a breakdown by sex. Therefore, we'll need 3 different variables to represent that dimension: 1 variable for males, 1 variable for females, and 1 variable for both.
+
+The second thing is figure out if there are existing entities or properties we can use to represent cigarette smoking, adolescents, and sex. It turns out that there are!
+
+* Adolescence is represented by [`Adolescents`](https://datacommons.org/browser/Adolescents){: target="_blank"}, which is a member of the [`AgeGroupClassificationEnum`](https://datacommons.org/browser/AgeGroupClassificationEnum){: target="_blank"}.
+* Sex is represented by an existing property, [gender](https://datacommons.org/browser/gender){: target="_blank"}, which is of type [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"}, an enumeration. Its members [Female](https://datacommons.org/browser/Female){: target="_blank"} and [Male](https://datacommons.org/browser/Male){: target="_blank"} already exist as well.
+* [Smoking](https://datacommons.org/browser/Smoking){: target="_blank"}, which is a member of the enumeration [HealthBehaviorEnum](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}.
+
+The MCF would therefore look like this:
 
 ```
-Node: dcid:who/Adult_curr_cig_smokers
-typeOf: dcid:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adults (%)"
-populationType: dcid:Person
-measuredProperty: dcid:percent
+Node: dcid:who/Ratio_Smokers_Adolescents
+typeOf: schema:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adolescents"
+description: "Percentage of all adolescents who are current cigarette smokers"
+populationType: dcid:Adolescents
+measuredProperty: dcid:Smoking
+statType: dcid:Ratio
+measurementDenominator: dcid:Count_Person_13To17Years
 
-Node: dcid:who/Adult_curr_cig_smokers_female
-typeOf: dcid:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adults (%) [Female]"
-populationType: dcid:Person
-measuredProperty: dcid:percent
+Node: dcid:who/Ratio_Smokers_Adolescents_Female
+typeOf: schema:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adolescents (female)"
+description: "Percentage of adolescents who are current cigarette smokers among all female adolescents"
+populationType: schema:Adolescents
+measuredProperty: dcid:Smoking
+statType: dcs:Ratio
+constraintProperties: dcid:gender
 gender: dcid:Female
+measurementDenominator: dcid:Count_Person_13To17Years_Female
 
-Node: dcid:who/Adult_curr_cig_smokers_male
-typeOf: dcid:StatisticalVariable
-name: "Prevalence of current cigarette smoking among adults (%) [Male]"
-populationType: dcid:Person
-measuredProperty: dcid:percent
+Node: dcid:who/Ratio_Smokers_Adolescents_Male
+typeOf: schema:StatisticalVariable
+name: "Prevalence of current cigarette smoking among adolescents (male)"
+description: "Percentage of adolescents who are current cigarette smokers among all male adolescents"
+populationType: schema:Adolescents
+measuredProperty: dcid:Smoking
+statType: dcs:Ratio
+constraintProperties: dcid:gender
 gender: dcid:Male
+measurementDenominator: dcid:Count_Person_13To17Years_Male
 ```
+
 The order of nodes and fields within nodes does not matter.
 
 The following fields are always required:
-- `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
+
+* `Node`: This is the DCID of the entity you are defining. DCIDs can be a maximum of 256 characters long. It must be preceded by the prefix `dcid:`. We recommend that you add an optional prefix, separated by a slash (/), for example, `who/`, to differentiate your custom variables from base DC variables. The prefix acts as a namespace, and should represent your organization, dataset, project, or whatever makes sense for you.  
    > Note: If you plan to contribute your data to base Data Commons, DCIDs should follow the [DCID naming conventions](#naming). Otherwise, you can name them however you want.
-- `typeOf`: In the case of statistical variable, this is always `dcid:StatisticalVariable`. 
-- `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI. 
-- `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` type. In this example it is `dcid:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
-- `measuredProperty`: This is a property of the thing being measured. It must be a `domainIncludes` property of the `populationType` you have specified. In this example, it is the `percent` of persons being measured. 
-  You can see the set of `domainIncludes` properties for a given `populationType`, using either of the following methods:
-  - Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example: 
+* `typeOf`: In the case of statistical variable, this is always `schema:StatisticalVariable`.
+* `name`: This is the descriptive name of the variable, that is displayed in the Statistical Variable Explorer and various other places in the UI.
+* `populationType`: This is the type of the thing being measured, and its value must be an existing `Class` or `Enumeration` type. In this example it is `schema:Person`. To get a full list of existing entity types, see the section on [searching](#search) above. If the thing you are measuring does not exist in the knowledge graph, you will need to create a new [entity type](custom_entities.md#entity-type) for it.
+* `measuredProperty`: This is a property of the thing being measured. It must be defined as a `schema:Property` of the `populationType` you have specified. In this example, it is the prevalence of smoking. The node [`Smoking`](https://datacommons.org/browser/Smoking){: target="_blank"} is a member of the [`HealthBehaviorEnum`](https://datacommons.org/browser/HealthBehaviorEnum){: target="_blank"}, which is a property of `Person`. To view the list of properties for a given `populationType`, use either of the following methods:
+  * Go to <code>https://datacommons.org/browser/<var>POPULATION_TYPE</var></code>, e.g. <https://datacommons.org/browser/Person>{: target="_blank"} and scroll to the **domainIncludes** section of the page. For example:
 
     ![domain incudes](/assets/images/custom_dc/customdc_screenshot9.png){: width="800"}
 
-  - Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
+  * Use the [Node API](/api/rest/v2/node.html#wildcard), filtering on `domainIncludes` incoming arcs: <code>https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=<var>POPULATION_TYPE</var>&property=%3C-domainIncludes</code>, e.g. <https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=%3C-domainIncludes>{: target="_blank"}.
+  If the `measuredProperty` is essentially the same thing as the `populationType` omit it. For example, `Count_Person` has no property being measured; it is just a count of the population.
+* `statType`: This is the measurement represented by this variable. It could be a count, an average, a rate, a ratio, etc. For historical reasons, stat type properties are dispersed around the graph: you can see some at  <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"} and its older, deprecated counterpart <https://datacommons.org/browser/StatisticalPopulation>{: target="_blank"}, under the **domainIncludes** section of the page. Some stat types are part of various enums, such as [`BinaryOperatorEnum`](https://datacommons.org/browser/BinaryOperatorEnum){: target="_blank"}.
 
-Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:`, which are interchangeable. All fields that do not reference another node must be in quotation marks.
+Note that all fields that reference another node in the graph must be prefixed by `dcid:` or `dcs:` or `schema:`. Use the following guidelines to determine which to use:
+
+* If the node exists in [schema.org](https://schema.org/docs/schemas.html){: target="_blank"} (you can look them up in the **Term Finder**), use `schema`.
+* If the node exists in the core Data Commons schema, [dcschema.mcf](https://github.com/datacommonsorg/schema/blob/main/core/dcschema.mcf){: target="blank"}, use `dcs`.
+* Otherwise, use `dcid` for all others.
+All fields that do not reference another node must be in quotation marks.
 
 The following fields are optional:
-- `description`: A more detailed textual description of the variable.
-- `statType`: By default, if not specified, this is `dcid:measuredValue`, which is simply a raw value of an observation. If your variable is a calculated value, such as an average, a minimum or maximum, you can use `minValue`, `maxValue`, `meanValue`, `medianValue`, `sumvalue`, `varianceValue`, `marginOfError`, `stdErr` and so on. If you use a calculated value, your data set should only include the observations that correspond to those calculated values. You can see the full set of allowable values by going to <https://datacommons.org/browser/StatisticalVariable>{: target="_blank"}, and scrolling to the **domainIncludes** section of the page.
-- `measurementQualifier`: This is similar to the [`observationPeriod`](#exp_csv) field for CSV files and applies to all observations of the variable. It can be any string representing additional properties of the variable, e.g. `Weekly`, `Monthly`, `Annual`. For instance, if the `measuredProperty` is income, you can use `Annual` or `Monthly` to distinguish income over different periods. If the time interval affects the meaning of variable and and values change significantly by the time period, you should use this field keep them separate.
-- `measurementDenominator`: For percentages or ratios, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 
-Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our example, there is one constraint property, `gender`, which is a property of `Person`. The constraint property values are typically enumerations; such as `genderType`, which is a `rangeIncludes` property of `gender`. 
+* `description`: A more detailed textual description of the variable. Although this is optional, it is highly recommended, as the description is used to generate embeddings for natural-language search.
+* `measurementQualifier`: This is used to qualify the measurement in a more specific way, to express aspects such as temporal adjustments, aggregation periods, financial specifications, and so on. The value should be a member of an enumeration, such as:
+  * Members of the [StatAccumulationPeriodEnum](https://datacommons.org/browser/StatAccumulationPeriodEnum){: target="_blank"} type: `dcid:Weekly`, `dcid:Monthly`, and `dcid:Annual`
+  * Members of the [CurrencyUnitStandardizationEnum](https://datacommons.org/browser/CurrencyUnitStandardizationEnum){: target="_blank"} type: `dcid:LocalCurrency`, `dcid:StandardizedCurrency`.
+  * Members of the [EconomicMetricEnum](https://datacommons.org/browser/EconomicMetricEnum){: target="_blank"} type: `dcid:Nominal`, `dcid:Gross`, `dcid:RealValue`, etc.
+  Note: Don't use this field for additional constraints that should be specifed as `constraintProperties`.
+* `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
+* `comparisonPeriod`: For a variable measuring a change over time, such as a price or a growth rate, you can use members of the [ComparisonPeriodEnum)](https://datacommons.org/browser/ComparisonPeriodEnum){: target="_blank"} to specify the time period. Supported values are `dcid:MonthOnChange`, `dcid:QuarterOnChange`, and `dcid:YearOnChange`.
+
+#### Constraint properties
+
+Additionally, you can specify any number of property-value pairs representing the constraints (known as `constraintProperties` in the schema) on the type identified by `populationType`. In our examples above, we use the constraint property `gender` which is an indirect property. Constraint property values are typically enumerations: [`GenderType`](https://datacommons.org/browser/GenderType){: target="_blank"} is an enum that serves as the type of `gender`. 
+
+> **Tip:** If you're not sure whether a property should be a `measuredProperty` or a constraint property, use this rule of thumb: `measuredProperty` is the key attribute that's being measured, while constraint properties are ways of slicing the data into segments, but aren't key attributes. For example, if you were measuring the average age of a population, "age" would be a measured property because it is the main metric. But for a metric that counts the number of smokers in a population, it's the smoking behavior that is the key metric; the age is a secondary dimension and is hence a constraint property.
 
 {: #naming}
 #### Variable DCID naming conventions
 
-- Variable DCIDs should be in PascalCase with underscores between properties.
-- For a basic variable without `measurementQualifier` or `measurementDenominator` properties, it should look like this:
+* Variable DCIDs should be in PascalCase with underscores between properties.
+* For a basic variable without `measurementQualifier` or `measurementDenominator` properties, it should look like this:
 
-  _`statType_measuredProperty_populationType_constraintValue1_constraintValue2`_
+  _`[measurementQualifier]_statType_[measuredProperty]_populationType[_constraintValue1_constraintValue2]`_
 
-  Example: `GrowthRate_Amount_EconomicActivity_GrossDomesticProduction`
+  Example: `GrowthRate_Amount_GrossDomesticProduction_`
 
-- If the `statType` is the default, `measuredValue`, omit it. For example: `Count_Person_Male_AsianAlone`
-- For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
-  - `Annual_Average_RetailPrice_Electricity`
-  - `Annual_Average_Wage`
-- For a variable with a `measurementDenominator` property, add the suffix `AsAFractionOf_`_`measurementDenominator`_. Examples: 
-  - `Count_Death_Female_AsAFractionOf_Count_Person_Female`
-  - `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
-- Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
+* For a variable with a `measurementQualifier` property, add the value to the prefix. Examples:
+  * `Annual_Average_RetailPrice_Electricity`
+  * `Annual_Average_Wage`
+* For a variable with a `measurementDenominator` property, add the suffix `AsAFractionOf_`_`measurementDenominator`_. Examples:
+  * `Count_Death_Female_AsAFractionOf_Count_Person_Female`
+  * `Difference_Between_Median_Male_And_Female_Wages_AsAFractionOf_Median_Male_Wages`
+* Multiple constraint values should be ordered according to the alphabetical precedence of the property name. For example, the property `gender` precedes `race` alphabetically, so constraint value `Male` would come before constraint value `AsianAlone`. For example: `Count_Person_Male_AsianAlone`.
 
 ### Step 2 (optional): Define a statistical variable group {#statvar-group}
 
@@ -11676,15 +12417,15 @@ By default, existing variables are shown in the Statistical Variable Explorer in
 Here is an example that defines a single group node with the heading "WHO" and assigns all 3 statistical variables to the same group.
 
 ```
-Node: dcid:who/Adult_curr_cig_smokers
+Node: dcid:who/Ratio_Smokers_Adolescents
 ...
 memberOf: dcid:who/g/WHO
 
-Node: dcid:who/Adult_curr_cig_smokers_female
+Node: dcid:who/Ratio_Smokers_Adolescents_Female
 ...
 memberOf:dcid:who/g/WHO
 
-Node: dcid:who/Adult_curr_cig_smokers_male
+Node: dcid:who/Ratio_Smokers_Adolescents_Male
 ...
 memberOf: dcid:who/g/WHO
 
@@ -11694,12 +12435,13 @@ name: "WHO"
 specializationOf: dcid:dc/g/Root
 
 ```
+
 You can define as many statistical variable group nodes as you like. Each must include the following fields:
 
-- `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
-- `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`. 
-- `name`: This is the name of the heading that will appear in the Statistical Variable Explorer. 
-- `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
+* `Node`: This is the DCID of the group you are defining. It must be prefixed by `g/` and may include an additional prefix before the `g`.
+* `typeOf`: In the case of statistical variable group, this is always `dcid:StatVarGroup`.
+* `name`: This is the name of the heading that will appear in the Statistical Variable Explorer.
+* `specializationOf`: For a top-level group, this must be `dcid:dc/g/Root`, which is the root group in the statistical variable hierarchy in the Knowledge Graph.To create a sub-group, specify the DCID of another node you have already defined. For example, if you wanted to create a sub-group of `WHO` called `Smoking`, you would create a "Smoking" node with `specializationOf: dcid:who/g/WHO`. Here's an example:
 
   ```
   Node: dcid:who/g/WHO
@@ -11716,15 +12458,15 @@ You can define as many statistical variable group nodes as you like. Each must i
 You can also assign a variable to as many group nodes as you like: simply specify a comma-separated list of group DCIDs in the `memberOf`. For example, to assign the 3 variables to both groups:
 
 ```
-Node: dcid:who/Adult_curr_cig_smokers
+Node: dcid:who/Ratio_Smokers_Adolescents
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Adult_curr_cig_smokers_female
+Node: dcid:who/Ratio_Smokers_Adolescents_Female
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 
-Node: dcid:who/Adult_curr_cig_smokers_male
+Node: dcid:who/Ratio_Smokers_Adolescents_Male
 ...
 memberOf: dcid:who/g/WHO, dcid:who/g/Smoking
 ```
@@ -11738,7 +12480,7 @@ name: "My variables"
 specializationOf: dcid:dc/g/Root
 
 Node: dcid:GenderIncomeInequality_Person_15OrMoreYears_WithIncome
-typeOf: dcs:StatisticalVariable
+typeOf: schema:StatisticalVariable
 memberOf: dcid:MyVariables
 ```
 
@@ -11752,39 +12494,47 @@ CSV files contain the following columns using the following headings:
 The columns can be in any order, and you can specify custom names for the headings and use the `columnMappings` field in the JSON file to map them accordingly (see below for details).
 
 These columns are required:
-- `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place.
-- `variable`: The DCID of an existing variable or the node you have defined in the MCF
-- `date`: The date of the observation. This should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_. 
-- `value`: See [Observation values](#obs) for valid values of this column. 
+* `entity`: The DCID of an existing entity in the Data Commons knowledge graph, typically a place.
+* `variable`: The DCID of an existing variable or the node you have defined in the MCF
+* `date`: The date of the observation. This should be in the format _YYYY_, _YYYY_-_MM_, or _YYYY_-_MM_-_DD_.
+* `value`: See [Observation values](#obs) for valid values of this column.
 
 > **Note:** The type of the entities in a single file should be unique; do not mix multiple entity types in the same CSV file. For example, if you have observations for cities and counties, put all the city data in one CSV file and all the county data in another one.
 
 These columns are optional, and allow you to specify additional per-observation properties:
 
-- [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
-- [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
-- [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
-- [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`. 
+* [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
+* [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
+* [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
+* [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`.
 
-Here is an example of some real-world data from the WHO on the prevalance of smoking in adult populations, broken down by sex, in the correct CSV format:
+Here is our above example in the correct CSV format:
 
 ```csv
-SERIES,GEOGRAPHY,TIME_PERIOD,OBS_VALUE
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/AFG,2019,1.2
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/AFG,2019,13.4
-dcs:who/Adult_curr_cig_smokers,dcid:country/AFG,2019,7.5
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/AGO,2016,1.8
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/AGO,2016,14.3
-dcs:who/Adult_curr_cig_smokers_female,dcid:country/ALB,2018,4.5
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/ALB,2018,35.7
-dcs:who/Adult_curr_cig_smokers_male,dcid:country/ARE,2018,11.1
-dcs:who/Adult_curr_cig_smoking_female,dcid:country/ARE,2018,1.6
-dcs:who/Adult_curr_cig_smokers,dcid:country/ARE,2018,6.3
+Indicator,Year,Country,Value
+Ratio_Smokers_Adolescents_Female,2022,country/ALB,8
+Ratio_Smokers_Adolescents_Male,2022,country/ALB,18
+Ratio_Smokers_Adolescents,2016,country/ARE,8.1
+Ratio_Smokers_Adolescents_Female,2016,country/ARE,5
+Ratio_Smokers_Adolescents_Male,2016,country/ARE,11.3
+Ratio_Smokers_Adolescents,2018,country/ARG,18
+Ratio_Smokers_Adolescents_Female,2018,country/ARG,20
+Ratio_Smokers_Adolescents_Male,2018,country/ARG,15.5
+Ratio_Smokers_Adolescents_Female,2022,country/ARM,0
+Ratio_Smokers_Adolescents_Male,2022,country/ARM,17
+Ratio_Smokers_Adolescents,2017,country/ATG,1.4
+Ratio_Smokers_Adolescents_Female,2017,country/ATG,1.2
+Ratio_Smokers_Adolescents_Male,2017,country/ATG,1.5
+Ratio_Smokers_Adolescents,2024,country/AUT,19.5
+Ratio_Smokers_Adolescents_Female,2024,country/AUT,21.3
+Ratio_Smokers_Adolescents_Male,2024,country/AUT,17.2
+...
 ```
 
 In this case, the columns need to be mapped to the expected columns listed above; see below for details.
 
-#### Observation values {#obs}
+{: #obs}
+#### Observation values
 
 Here are the rules for observation values:
 - Variable values must be numeric. Do not include any special characters such as `*` or `#`.
@@ -11805,14 +12555,14 @@ Here is an example of how the config file would look for the CSV file we defined
 ```json
 {
   "inputFiles": {
-    "adult_cig_smoking.csv": {
+    "adolescent_smoking.csv": {
       "provenance": "UN_WHO",
       "format": "variablePerRow",
       "columnMappings": {
-        "variable": "SERIES",
-        "entity": "GEOGRAPHY",
-        "date": "TIME_PERIOD",
-        "value": "OBS_VALUE"
+        "variable": "Indicator",
+        "entity": "Country",
+        "date": "Year",
+        "value": "Value"
       }
     }
   },
@@ -11829,12 +12579,12 @@ Here is an example of how the config file would look for the CSV file we defined
 ```
 
 The following fields are required:
-- `input_files`:
-  - `format` must be `variablePerRow`
-  - `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
+* `input_files`:
+  * `format` must be `variablePerRow`
+  * `columnMappings` are required if you have used custom column heading names. The format is <var>DEFAULT_NAME</var> : <var>CUSTOM_NAME</var>.
 
 The following is optional:
-- `groupStatVarsByProperty` allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
+* `groupStatVarsByProperty` allows you to group your variables together according to population type. They will be displayed together in the Statistical Variable Explorer.
 
 Note that you don't specify your MCF files as input files; the Data Commons importer will identify them automatically.
 
@@ -11851,8 +12601,8 @@ To load data in Google Cloud, see instead [Load data in Google Cloud](/custom_dc
 ### Configure environment variables
 
 Edit the `env.list` file you created [previously](/custom_dc/quickstart.html#env-vars) as follows:
-- Set the `INPUT_DIR` variable to the full path to the directory where your input files are stored. 
-- Set the `OUTPUT_DIR` variable to the full path to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
+* Set the `INPUT_DIR` variable to the full path to the directory where your input files are stored.
+* Set the `OUTPUT_DIR` variable to the full path to the directory where you would like the output files to be stored. This can be the same or different from the input directory. When you rerun the Docker data management container, it will create a `datacommons` subdirectory under this directory.
 
 ### Start the Docker containers with local custom data {#docker-data}
 
@@ -11883,7 +12633,7 @@ Once you have configured everything, just run the `run_cdc_dev_docker.sh` script
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
     gcr.io/datcom-ci/datacommons-services:stable
-    </pre>   
+    </pre>
    </div>
   </div>
 </div>
@@ -11921,7 +12671,7 @@ If you have tried to start a container, and have received a `SQL check failed` e
     -v <var>INPUT_DIRECTORY</var>:<var>INPUT_DIRECTORY</var> \
     -v <var>OUTPUT_DIRECTORY</var>:<var>OUTPUT_DIRECTORY</var> \
     gcr.io/datcom-ci/datacommons-services:stable
-    </pre>   
+    </pre>
    </div>
   </div>
 </div>
@@ -11934,6 +12684,7 @@ If the servers have started up without errors, check to ensure that your data is
 1. Verify statistical variables: go to the [Statistical Variable Explorer](https://localhost:8080/tools/statvar){: target="_blank"} to verify that your statistical variables are showing up correctly. You should see something like this:
 
   ![](/assets/images/custom_dc/customdc_screenshot11.png){: width="400"}
+
 1. Click on a variable name to get more information on the right panel.
 1. Verify that your observations are loaded: Click on an **Example Place** link to open the detailed page for that place. Scroll to the bottom, where you should see a timeline graph of observations for the selected place.
 1. Verify natural-language querying: go to the [Search page](https://localhost:8080/tools/explore){: target="_blank"} and enter a query related to your data. You should get relevant graphs using your data.
@@ -11954,6 +12705,7 @@ At the prompt, enter SQL queries. For example, for the sample OECD data, this qu
 ```shell
 sqlite> select * from observations limit 10;
 ```
+
 returns output like this:
 
 ```shell
@@ -14587,19 +15339,14 @@ A statistical variable can be simple, such as [`Total Population`](https://datac
 
 ### Task: Find places available for a statistical variable {#find-places}
 
-Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you can do the following:
+Note that not all statistical variables have observations for all places or other entities. To find out which places have data for a given variable, you have to use the APIs to do so.
 
-1. Open the [Statistical Variable Explorer](https://datacommons.org/tools/statvar){: target="_blank"}, and search for a variable of interest.
-1. Optionally, filter by data source and data set.
-1. Scroll to the **Places** section.
+> Tip: You can also use an agent to query the [MCP server](/mcp/run_tools.html) for this information.
 
-For example, inspecting [Health > Health Insurance (Household) > No Health Insurance > Households Without Health Insurance](https://datacommons.org/tools/statvar#sv=Count_Household_NoHealthInsurance){: target="_blank"} shows us that the statistical variable `Count_Household_NoHealthInsurance` is available in the United States at state, county, and city levels:
+To use the APIs to look up places available for statistical variables:
 
-![Stat Var Explorer](/assets/images/dc/concept4.png){: width="900"}
-
-On the other hand, the [Average Retail Price of Electricity](https://datacommons.org/tools/statvar#Quarterly_Average_RetailPrice_Electricity=&sv=Quarterly_Average_RetailPrice_Electricity){: target="_blank"}, or `Quarterly_Average_RetailPrice_Electricity`, is only available at the state level states in the US but not at the city or county level. 
-
-![Stat Var Explorer](/assets/images/dc/concept5.png){: width="900"}
+- Use the REST v2 [Observation API](/api/rest/v2/observation.html) with an entity expression and `containedInPlace` filter, either interactively (e.g. using curl or the browser address bar) or programmatically.
+- Use the Python v2 [`observation.fetch`](/api/python/v2/observation.html#fetch) API method with an entity expression, either interactively or programmatically.
 
 ## Unique identifier: DCID
 
@@ -14988,7 +15735,7 @@ If you are using a Custom Data Commons instance, make sure to indicate that the 
 
 ## Email support forum
 
-For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons">404: Not Found</doc></background, concepts, data model><optional><doc title="Web Components" desc="Embed Data Commons charts in your own website.">---
+For technical questions that you can't find answers to in this documentation, you can email support@datacommons.org.</doc><doc title="Contribute to Data Commons" desc="Contribute data, code, or documentation to Data Commons.">404: Not Found</doc><doc title="Cite Data Commons" desc="Provide correct attributions for Data Commons data used in your site or app.">404: Not Found</doc></background, concepts, data model><optional><doc title="Web Components" desc="Embed Data Commons charts in your own website.">---
 layout: default
 title: Embed data and visualizations in your own website
 nav_order: 60
