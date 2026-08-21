@@ -42,7 +42,7 @@ This is required for all agents, regardless of the server deployment:
          "datacommons-mcp": {
             "serverUrl": "https://api.datacommons.org/mcp",
             "headers": {
-            "X-API-Key": "<var>YOUR_DATA_COMMONS_API KEY</var>"
+            "X-API-Key": "<var>YOUR_DATA_COMMONS_API_KEY</var>"
           }
          }
       }
