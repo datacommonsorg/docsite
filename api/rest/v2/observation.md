@@ -10,9 +10,7 @@ published: true
 {: .no_toc}
 # /v2/observation
 
-The Observation API fetches statistical observations. An observation is associated with an
-entity and a variable at a particular date: for example, "population of USA in
-2020", "GDP of California in 2010", and so on. You can also use this API to just look up the data available for given entities (places) and variables.
+The Observation API fetches statistical observations. An observation is associated with an entity and a variable at a particular date: for example, "population of USA in 2020", "GDP of California in 2010", and so on. You can also use this API to just look up the data available for given entities (places) and variables.
 
 * TOC
 {:toc}
@@ -87,7 +85,7 @@ JSON data:
 | variable.dcids <br /><optional-tag>Optional</optional-tag> | list of strings | List of [DCIDs](/glossary.html#dcid) for the statistical variable to be queried. Required for retrieving observations. To just get a list of variables associated with given entities, you can omit it. |
 | entity.dcids  | list of strings | Comma-separated list of [DCIDs](/glossary.html#dcid) of entities to query. One of `entity.dcids` or `entity.expression` is required. Multiple `entity.dcids` parameters are allowed. |
 | entity.expression | string | [Relation expression](/api/rest/v2/index.html#relation-expressions) that represents the  entities to query.  One of `entity.dcids` or `entity.expression` is required.|
-| select <br /><optional-tag>Optional</optional-tag>  | string literal | With no 'select' parameters, only checks whether a given entity (or entities) has data for a given variable or variables. With 'select=facet', the available facets are also returned with the response. To get actual observations, both 'select=date' and 'select=value' are required. 'select=entity' and 'select=variable' are optional in all requests.<br/><br/><b>Note:</b> For Custom Data Commons instances, 'select=date' and 'select=value' are required in all requests.  |
+| select <br /><optional-tag>Optional</optional-tag>  | string literal | With no `select` parameters, only checks whether a given entity (or entities) has data for a given variable or variables. With `select=facet`, the available facets are also returned with the response. To get actual observations, both `select=date` and `select=value` are required. `select=entity` and `select=variable` are optional in all requests.<br/><br/><b>Note:</b> For Custom Data Commons instances, `select=date` and `select=value` are required in all requests.  |
 | filter.facet_domains <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of domain names. You can use this to filter results by provenance URL. See [Response](#response) below for more details. |
 | filter.facet_ids <br /><optional-tag>Optional</optional-tag> | list of strings | Comma-separated list of existing _facet IDs_ that you have obtained from previous observation API calls. You can use this to filter results by several properties, including dataset name, provenance, measurement method, etc. See [Response](#response) below for more details. |
 {: .doc-table }
