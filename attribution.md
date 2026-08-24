@@ -23,10 +23,6 @@ All uses of Data Commons data must be accompanied by a citation that provides a 
 
 If you use Data Commons data in a public website, the citation should appear on the same page where the data information is presented. The citation can be either directly next to the data or on a second line after the data is presented, using a reference number or link via an icon. The citation can be displayed behind a modal pop-in via an icon or a footnote on the same page. 
 
-Here is an example in Google Search AI Mode that uses several links that go to the Data Commons place page for the relevant query:
-
-![Example of citations in Google Search AI Mode](/assets/citation.png){: width="800"}
-
 The link should go to a Data Commons page which contains the same graph seen on the referring site. This is typically a set of URL parameters on the `explore` endpoint (the natural search query interface in datacommons.org); for example, `https://datacommons.org/explore?#q=population%20of%20Vietnam%20since%201955`. All charts in Data Commons come with an **About this data** pop-up-link that displays all the associated metadata, including the URL for the original source. 
 
 ### Citations from a document
