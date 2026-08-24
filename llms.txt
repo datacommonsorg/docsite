@@ -9,6 +9,8 @@ Links below point to GitHub raw Markdown on the master branch for the freshest a
 - Use **Build a Custom Data Commons** for local and cloud deployment, configuration, data imports, and UI customization of Custom Data Commons instances.
 - Use **Background, concepts, data model** for concepts, glossary, datasets, and background material.
 
+For a single file with all Markdown content, see <https://raw.githubusercontent.com/datacommonsorg/docsite/master/llms-full.txt>.
+
 ## Query data with agents
 
 - [MCP - Query data interactively with an AI agent](https://raw.githubusercontent.com/datacommonsorg/docsite/master/mcp/index.md): Overview of Data Commons MCP and supported tools.
@@ -58,6 +60,7 @@ Links below point to GitHub raw Markdown on the master branch for the freshest a
 - [Place types](https://raw.githubusercontent.com/datacommonsorg/docsite/master/place_types.md): Reference for place types in Data Commons.
 - [Get support](https://raw.githubusercontent.com/datacommonsorg/docsite/master/support.md): Support channels and feedback paths.
 - [Contribute to Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/contributing.md): Contribute data, code, or documentation to Data Commons.
+- [Cite Data Commons](https://raw.githubusercontent.com/datacommonsorg/docsite/master/attribution.md): Provide correct attributions for Data Commons data used in your site or app.
 
 ## Optional
 
