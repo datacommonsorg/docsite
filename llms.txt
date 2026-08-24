@@ -35,7 +35,7 @@ For a single file with all Markdown content, see <https://raw.githubusercontent.
 - [Migrate from V1 to V2 - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/migration.md): Guidance for migrating from Python client library V1 to V2.
 - [SDMX 3.0](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/index.md): Overview of the Data Commons SDMX API, including endpoints and authentication.
 - [Find available data - SDMX](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/avilability.md): SDMX API reference and examples for getting information about available data.
-- [Get statistical observations] (https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/data.md): SDMX API reference and examples for querying timeseries or observations data.
+- [Get statistical observations - SDMX](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/data.md): SDMX API reference and examples for querying timeseries or observations data.
 
 ## Build a Custom Data Commons
 
