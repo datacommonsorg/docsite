@@ -37,7 +37,7 @@ When referencing a specific data point within a written document, report, or pre
 * (Optional) Dataset name 
 * Text “With minor processing by Data Commons”, ideally with a deep link that goes to the actual data in Data Commons
 
-In the below example, the source and year are both in the sentence and may therefore be dropped from the citation. 
+In the example below, the source and year are both placed inline in the sentence. 
 
 _According to the US Census Bureau, the median income for households in Santa Clara County was $130,875 in 2021 (source: U.S. Census Population, 2021-2022, with minor processing by Data Commons)._
 
