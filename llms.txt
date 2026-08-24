@@ -33,6 +33,9 @@ For a single file with all Markdown content, see <https://raw.githubusercontent.
 - [Resolve entities - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/resolve.md): Python client reference and examples for resolving entities to DCIDs.
 - [Get node properties - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/node.md): Python client reference and examples for exploring properties and relationships of nodes in the knowledge graph.
 - [Migrate from V1 to V2 - Python](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/python/v2/migration.md): Guidance for migrating from Python client library V1 to V2.
+- [SDMX 3.0](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/index.md): Overview of the Data Commons SDMX API, including endpoints and authentication.
+- [Find available data - SDMX](https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/avilability.md): SDMX API reference and examples for getting information about available data.
+- [Get statistical observations] (https://raw.githubusercontent.com/datacommonsorg/docsite/master/api/sdmx/data.md): SDMX API reference and examples for querying timeseries or observations data.
 
 ## Build a Custom Data Commons
 
