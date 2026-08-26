@@ -47,7 +47,7 @@ At this time, the following parameters are accepted but redundant:
 *  `dimensions`: only the default `dsd` is supported
 *  `format`: only `csv` is supported
 
-The only supported operator is `eq` (which is the same as `=`).
+Explicit SDMX operators, including `eq:`, are not currently supported. Unprefixed values use equality semantics.
 
 ### Response format
 
