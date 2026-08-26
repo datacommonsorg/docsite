@@ -147,7 +147,7 @@ To connect to a server running in Google Cloud, see [Connect an AI agent to the 
 
 1. Download and install Google Antigravity from <https://antigravity.google/download>.
 1. Start the service container if it's not already running.
-1. Configure Antigravity to connect to the Data Commons server: use the IDE or a text editor to open `~/.gemini/config/mcp_config.json` and add the following:
+1. Configure Antigravity to connect to the MCP server: use the IDE or a text editor to open `~/.gemini/config/mcp_config.json` and add the following:
    <pre>
   {
     "mcpServers": {
