@@ -272,7 +272,6 @@ The following fields are optional:
   Note: Don't use this field for additional constraints that should be specifed as `constraintProperties`.
 * `measurementDenominator`: For ratios or rates, this refers to another statistical variable DCID. For example, for per-capita, the `measurementDenominator` is `Count_Person`.
 * `comparisonPeriod`: For a variable measuring a change over time, such as a price or a growth rate, you can use members of the [ComparisonPeriodEnum)](https://datacommons.org/browser/ComparisonPeriodEnum){: target="_blank"} to specify the time period. Supported values are `dcid:MonthOnChange`, `dcid:QuarterOnChange`, and `dcid:YearOnChange`.
-* [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
 
 #### Constraint properties
 
@@ -393,6 +392,7 @@ These columns are optional, and allow you to specify additional per-observation 
 
 * [`unit`](/glossary.html#unit): The unit of measurement used in the observations. This is a string representing a currency, area, weight, volume, etc. For example, `SquareFoot`, `USD`, `Barrel`, etc.
 * [`observationPeriod`](/glossary.html#observation-period): The period of time in which the observations were recorded. This must be in ISO duration format, namely `P[0-9][Y|M|D|h|m|s]`. For example, `P1Y` is 1 year, `P3M` is 3 months, `P3h` is 3 hours.
+* [`measurementMethod`](/glossary.html#measurement-method): The method used to gather the observations. This can be a random string or an existing DCID of [`MeasurementMethodEnum`](https://datacommons.org/browser/MeasurementMethodEnum){: target="_blank"} type; for example, `EDA_Estimate` or `WorldBankEstimate`.
 * [`scalingFactor`](/glossary.html#scaling-factor): An integer representing the denominator used in measurements involving ratios or percentages. For example, for percentages, the denominator would be `100`.
 
 Here is our above example in the correct CSV format:
