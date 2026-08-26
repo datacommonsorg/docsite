@@ -159,7 +159,7 @@ To connect to a server running in Google Cloud, see [Connect an AI agent to the 
   </pre>
     The server name can be anything you want; for example, `datacommons-mcp-local`.
 1. Run the IDE or CLI as usual.
-1. Start sending [natural-language queries](#sample-queries).
+1. Start sending [natural-language queries](/mcp/run_tools.html#sample-queries).
 
 ### Use the sample agent
 

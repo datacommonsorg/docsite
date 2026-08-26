@@ -33,7 +33,7 @@ In addition to a [Data Commons API key](run_tools.md#prerequisites), you will ne
 
 ### Google Antigravity
 
-To instruct Antigravity to start up a local server using Stdio, replace the `datacommons-mcp` section in your `mcp_config.json` file as follows:
+To instruct Antigravity to start up a local server using Stdio, replace the `datacommons-mcp` section in your `~/.gemini/config/mcp_config.json` file as follows:
 
 <pre>
 {
@@ -108,7 +108,7 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
 
 #### Google Antigravity
 
-1. Replace the `datacommons-mcp` section in your `mcp_config.json` file as follows:
+1. Replace the `datacommons-mcp` section in your `~/.gemini/config/mcp_config.json` file as follows:
    <pre>
    {
       "mcpServers": {
