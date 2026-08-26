@@ -3837,14 +3837,14 @@ Response:
 
 This example gets all incoming linked nodes of node `Class`, with the `typeof` property. Since `Class` is the top-level entity in the knowledge graph, getting all directly linked nodes effectively gets all entity types.
 
-Also note that the response contains a `nextToken`, so you need to send additional requests with the continuation tokens to get all the data.
+This example uses recursive chaining to get all subclasses of the class `Person`.
 
 Parameters:
 {: .example-box-title}
 
 ```bash
-nodes: "Class"
-property: "<-typeOf"
+nodes: "Person"
+property: "<-subClassOf+"
 ```
 
 GET Request:
@@ -3852,7 +3852,8 @@ GET Request:
 
 ```bash
 curl --request GET --url \
-  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Class&property=%3C-typeOf'
+  'https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&nodes=Person&property=<-subClassOf%2B'
+
 ```
 
 POST Request:
@@ -3861,18 +3862,18 @@ POST Request:
 ```bash
 curl -X POST -H "X-API-Key: AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI" \
   https://api.datacommons.org/v2/node \
-  -d '{"nodes": ["Class"], "property": "<-typeOf"}'
+  -d '{"nodes": ["Person"], "property": "<-subClassOf+"}'
 ```
 
 Response:
 {: .example-box-title}
 
-```json
+```jsonc
 {
   "data": {
-    "Class": {
+    "Person": {
       "arcs": {
-        "typeOf": {
+        "subClassOf+": {
           "nodes": [
             {
               "name": "ACLGroup",
@@ -4111,6 +4112,7 @@ Response:
             {
               "name": "MenstrualWoman",
               "types": [
+                "AgeGroupClassificationEnum",
                 "Class"
               ],
               "dcid": "MenstrualWoman"
