@@ -133,4 +133,4 @@ USA -- containedInPlace --> northamerica
 ### [Unit](https://datacommons.org/browser/unit){: target="_blank"}
 {: #unit}
 
-The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour){: target="_blank"}, [inches](https://datacommons.org/browser/Inch){: target="_blank"}, and [Indian Rupees](https://datacommons.org/browser/IndianRupee){: target="_blank"}. A complete list of properties can be found in the [Knowledge Graph](https://datacommons.org/browser/unit){: target="_blank"}.
+The unit of measurement. Examples include [kilowatt hours](https://datacommons.org/browser/KilowattHour){: target="_blank"}, [inches](https://datacommons.org/browser/Inch){: target="_blank"}, and [Indian Rupees](https://datacommons.org/browser/IndianRupee){: target="_blank"}. You can see a full list of existing units in the Knowledge Graph page for [UnitOfMeasure](https://datacommons.org/browser/UnitOfMeasure){: target="_blank"} in the **typeOf** table.
