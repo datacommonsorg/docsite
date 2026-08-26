@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get support
-nav_order: 6
+nav_order: 7
 parent: How to use Data Commons
 ---
 

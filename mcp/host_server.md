@@ -19,7 +19,7 @@ We provide procedures for the following scenarios:
 - Local server and local agent: The agent spawns the server in a subprocess using Stdio as the transport protocol.
 - Remote server and local agent: You start up the server as a standalone process and then connect the agent to it using streaming HTTP as the protocol.
 
-For both scenarios, we use Gemini CLI and the sample agent as examples. You should be able to adapt the configurations to other MCP-compliant agents/clients.
+For both scenarios, we use Google Antigravity and the sample agent as examples. You should be able to adapt the configurations to other MCP-compliant agents/clients.
 
 > **Tip:** For an end-to-end tutorial using a locally running server and agent over HTTP, see the sample Data Commons Colab notebook, [Try Data Commons MCP Tools with a Custom Agent](https://github.com/datacommonsorg/agent-toolkit/blob/main/notebooks/datacommons_mcp_tools_with_custom_agent.ipynb){: target="_blank"}.
 
@@ -31,13 +31,12 @@ In addition to a [Data Commons API key](run_tools.md#prerequisites), you will ne
 
 ## Run a local server and agent
 
-### Gemini CLI
+### Google Antigravity
 
-To instruct Gemini CLI to start up a local server using Stdio, replace the `datacommons-mcp` section in your `settings.json` file as follows:
+To instruct Antigravity to start up a local server using Stdio, replace the `datacommons-mcp` section in your `~/.gemini/config/mcp_config.json` file as follows:
 
 <pre>
 {
-   ...
    "mcpServers": {
       // This can be any name you want, e.g. 'datacommons-mcp-local'
       "<var>SERVER_NAME</var>": {
@@ -47,16 +46,15 @@ To instruct Gemini CLI to start up a local server using Stdio, replace the `data
             "serve",
             "stdio"
          ],
-         // Only needed if you have not set the key in your environment
-         "env": "<var>YOUR DC API KEY</var>"
+         "env": {
+            "DC_API_KEY": "<var>YOUR_DATA_COMMONS_API_KEY</var>"
+         }
       }
    }
-   ...
-}
-
+}  
 </pre>
 
-[Run Gemini CLI](run_tools.md#run-gemini) as usual.
+Run the IDE or CLI as usual.
 
 ### Sample agent
 
@@ -108,15 +106,15 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
 {: #standalone-client}
 ### Step 2: Configure an agent to connect to the running server
 
-#### Gemini CLI
+#### Google Antigravity
 
-1. Replace the `datacommons-mcp` section in your `settings.json` file as follows:
+1. Replace the `datacommons-mcp` section in your `~/.gemini/config/mcp_config.json` file as follows:
    <pre>
    {
       "mcpServers": {
          // This can be anything you want, e.g. 'datacommons-mcp-remote'
          "<var>SERVER_NAME</var>": {
-           "httpUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
+           "serverUrl": "http://<var>HOST</var>:<var>PORT</var>/mcp",
            "headers": {
              "Accept": "application/json, text/event-stream"
             }
@@ -125,7 +123,7 @@ The server is addressable with the endpoint `mcp`. For example, `http://my-mcp-s
    }
    </pre>
 
-1. [Run Gemini CLI](run_tools.md#run-gemini) as usual.
+1. Run the IDE or CLI as usual.
 
 #### Sample agent
 

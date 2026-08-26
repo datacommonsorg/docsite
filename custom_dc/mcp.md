@@ -9,17 +9,14 @@ redirect_from: /run_mcp_tools
 {:.no_toc}
 # Configure the MCP server
 
-The Custom Data Commons services container includes the [Data Commons MCP server](/mcp/index.html) as a component. This page describes how to connect from an AI agent to a local MCP server. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
+The Custom Data Commons services container includes the [Data Commons MCP server](/mcp/index.html) as a component. This page describes how to set additional options on the server and connect from an AI agent to a locally running server. This is step 3 of the [recommended workflow](/custom_dc/index.html#workflow).
 
-> **Important**: 
-> This feature is available starting from the stable release of 2026-02-10. To use it, you must [sync your code](/custom_dc/image.html#sync-code-to-the-stable-branch) to a stable release from that date or later, [rebuild your image](/custom_dc/image.html#build-package), and [redeploy](/custom_dc/deploy_cloud.html#manage-your-service).
+The MCP server runs by default, in HTTP streaming mode, when you start up the services. You don't need an API key for the server or for any agent connecting to it. You can use any MCP-compliant agent. See [Query data interactively with an AI agent](/mcp/run_tools.html) for examples, and substitute your own application URL.
 
 * TOC
 {:toc}
 
 ## Set options
-
-The MCP server runs by default, in HTTP streaming mode, when you start up the services. You don't need an API key for the server or for any agent connecting to it.
 
 There are a few additional environment variables you can configure, all of which are optional:
 -  `ENABLE_MCP`: By default this is set to true. If you want to disable the MCP server from running, set it to false.
@@ -134,6 +131,7 @@ INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.
 ```
 
 To specify custom instructions on a Cloud Run server, see [Provide custom MCP instructions files](deploy_cloud.md#instructions). 
+
 To specify custom instructions hosted in Cloud Storage but loaded by a local server, see [Running the service container locally, and custom MCP instructions in Google Cloud](advanced.md#instructions)
 
 {: #agent}
@@ -141,29 +139,27 @@ To specify custom instructions hosted in Cloud Storage but loaded by a local ser
 
 You can use any AI agent to connect to the MCP server. The server is accessible at the `/mcp` endpoint. 
 
-Below we provide procedures for Gemini CLI and for a sample Google ADK agent provided in the GitHub Data Commons [`agent-toolkit` repo](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent){: target="_blank"}. You should be able to adapt the configuration to any other MCP-compliant agent, including your own custom-built agent.
+Below we provide procedures for Google Antigravity and for a sample Google ADK agent provided in the GitHub Data Commons [`agent-toolkit` repo](https://github.com/datacommonsorg/agent-toolkit/tree/main/packages/datacommons-mcp/examples/sample_agents/basic_agent){: target="_blank"}. You should be able to adapt the configuration to any other MCP-compliant agent, including your own custom-built agent.
 
 To connect to a server running in Google Cloud, see [Connect an AI agent to the MCP server](deploy_cloud.md#mcp).
 
-### Use Gemini CLI
+### Use Google Antigravity
 
-1. If you don't have it on your system, install [Node.js](https://nodejs.org/en/download){: target="_blank"}.
-1. Install [Google Gemini CLI](https://geminicli.com/docs/get-started/installation/){: target="_blank"}.
+1. Download and install Google Antigravity from <https://antigravity.google/download>.
 1. Start the service container if it's not already running.
-1. Configure Gemini CLI to connect to the Data Commons MCP server: edit the relevant `settings.json` file (e.g. `~/.gemini/settings.json`) to add the following:
-    <pre>
-    {
-      ...
-      "mcpServers": {
-          "<var>SERVER_NAME</var>": {         
-             "httpUrl": "http://localhost:8080/mcp"
-          }
+1. Configure Antigravity to connect to the MCP server: use the IDE or a text editor to open `~/.gemini/config/mcp_config.json` and add the following:
+   <pre>
+  {
+    "mcpServers": {
+      "<var>SERVER_NAME</var>": {
+        "serverUrl": "http://localhost:8080/mcp"
       }
-      ...
     }
-    </pre>
+  }
+  </pre>
     The server name can be anything you want; for example, `datacommons-mcp-local`.
-1. From any directory, start Gemini as described in [Run Gemini CLI](/mcp/run_tools.html#run-gemini). 
+1. Run the IDE or CLI as usual.
+1. Start sending [natural-language queries](/mcp/run_tools.html#sample-queries).
 
 ### Use the sample agent
 

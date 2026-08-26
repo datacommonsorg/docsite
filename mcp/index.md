@@ -63,7 +63,7 @@ If you're curious, you can see the library at <https://github.com/datacommonsorg
 
 ## Clients
 
-To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. See [Use MCP tools](run_tools.md) for procedures for using [Gemini CLI](https://github.com/google-gemini/gemini-cli) and the [Gemini CLI Data Commons extension](https://geminicli.com/extensions/) with the hosted server.
+To connect to the Data Commons MCP Server, you can use any available AI application that supports MCP, or your own custom agent. See [Use MCP tools](run_tools.md) for procedures for using [Google Antigravity](https://antigravity.google/).
 
 For self-hosted deployments, the server supports both standard MCP [transport protocols](https://modelcontextprotocol.io/docs/learn/architecture#transport-layer):
 - Streamable HTTP: For clients that connect remotely or otherwise require HTTP (e.g. Typescript)
