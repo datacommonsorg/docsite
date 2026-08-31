@@ -45,9 +45,6 @@ permalink: /api/web_components/bar
 ```
 {: #contained-in .api-tabcontent}
 
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
-
 ## Attributes
 
 ### Required

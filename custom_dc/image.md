@@ -177,5 +177,3 @@ Once the services are up and running, visit your local instance by pointing your
 To upload and deploy the container to the Cloud, see [Deploy services to Google Cloud](/custom_dc/deploy_cloud.html) for procedures.
 
 If you encounter any issues, look at the detailed output log on the console, and visit the [Troubleshooting Guide](/custom_dc/troubleshooting.html) for detailed solutions to common problems.
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>

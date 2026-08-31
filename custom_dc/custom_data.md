@@ -606,5 +606,3 @@ country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ```
 
 To exit the sqlite shell, press `Ctrl-D`.
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>

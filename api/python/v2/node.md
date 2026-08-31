@@ -1810,6 +1810,4 @@ To get the next set of entries, repeat the request with the `next_token` paramet
 while response.nextToken is not None:
    response = client.node.fetch(node_dcids="geoId/06", expression="<-*", all_pages=False, next_token=response.nextToken)
 ```
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 

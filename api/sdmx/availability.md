@@ -47,9 +47,6 @@ At this time, the following parameters are accepted but redundant:
 
 Explicit SDMX operators, including `eq:`, are not currently supported. Unprefixed values use equality semantics.
 
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
-
 ## Response format
 
 The Availability API returns responses in SDMX-JSON format 2.0.0. It looks like this:

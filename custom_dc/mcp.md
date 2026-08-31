@@ -184,5 +184,3 @@ git clone https://github.com/datacommonsorg/agent-toolkit.git
    </pre>
 1. Customize the agent as desired, as described in [Customize the agent](/mcp/run_tools.html#customize-agent).
 1. Start the agent as described in [Run the startup commands](/mcp/run_tools.html#run-sample).
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>

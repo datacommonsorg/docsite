@@ -263,6 +263,3 @@ Response:
 {: .example-box-content .scroll}
 
 > **Note:** On the endpoint reference pages we will show all responses using this format, but will leave out the response methods for succinctness.
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>

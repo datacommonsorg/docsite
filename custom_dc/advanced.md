@@ -221,5 +221,3 @@ INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.
 ### Step 4: Connect an agent to the server
 
 Follow any of the procedures in [Connect an AI agent to a local server](mcp.md#agent).
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>
