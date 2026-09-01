@@ -298,7 +298,7 @@ If the link is not clickable and the service is not running, go back to the Cons
 
 ## Manage your service {#service}
 
-By default, the Terraform scripts create a Cloud Run service named code><span class="dyn-var" data-var="namespace">Your DC namespace</span>-datacommons-web-service</code>.
+By default, the Terraform scripts create a Cloud Run service named <code><span class="dyn-var" data-var="namespace">Your DC namespace</span>-datacommons-web-service</code>.
 
 You need to restart the service every time you do any of the following:
 * (Re)run the [data management job](#run-job) to process new data: see [Restart the services container](#start-service)
