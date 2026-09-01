@@ -5,6 +5,7 @@ nav_order: 6
 parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true
+include_scripts: /assets/js/syntax_highlighting.js
 ---
 
 {:.no_toc}

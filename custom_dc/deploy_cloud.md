@@ -3,6 +3,11 @@ layout: default
 title: Deploy to Google Cloud
 nav_order: 9
 parent: Build your own Data Commons
+include_scripts: 
+  - /assets/js/user-supplied-variables.js
+  - /assets/js/customdc-doc-tabs.js
+  - /assets/js/syntax_highlighting.js
+
 ---
 
 {: .no_toc}

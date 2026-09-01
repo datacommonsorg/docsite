@@ -3,6 +3,7 @@ layout: default
 title: Advanced (hybrid) setups
 nav_order: 11
 parent: Build your own Data Commons
+include_scripts: /assets/js/customdc-doc-tabs.js
 ---
 
 {: .no_toc}

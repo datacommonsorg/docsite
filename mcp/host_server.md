@@ -3,6 +3,7 @@ layout: default
 title: Run an MCP Server
 nav_order: 3
 parent: MCP - Query data interactively with an AI agent
+include_scripts: /assets/js/customdc-doc-tabs.js
 ---
 
 {:.no_toc}

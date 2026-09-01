@@ -5,6 +5,9 @@ nav_order: 999
 parent: REST
 grand_parent: API
 published: false
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # /_VERSION_/_ENDPOINT_

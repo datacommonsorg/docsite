@@ -5,6 +5,9 @@ nav_order: 9
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/slider
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # Data Commons slider Web Component

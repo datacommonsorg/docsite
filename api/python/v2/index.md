@@ -7,6 +7,9 @@ has_children: true
 published: true
 redirect_from: 
    /api/python/index
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 {:.no_toc}

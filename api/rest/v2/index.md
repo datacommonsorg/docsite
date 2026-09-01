@@ -9,6 +9,7 @@ redirect_from:
    /api/rest/v1/getting_started
    /api/rest/index
    /api/rest/v1/index
+include_scripts: /assets/js/syntax_highlighting.js
 ---
 
 {:.no_toc}

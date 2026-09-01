@@ -5,6 +5,9 @@ nav_order: 2
 parent: SDMX 3.0
 grand_parent: API - Query data programmatically
 published: true
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 {: .no_toc}

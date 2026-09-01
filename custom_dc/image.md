@@ -4,6 +4,9 @@ title: Build and run images
 nav_order: 8
 parent: Build your own Data Commons
 redirect_from: /build_image
+include_scripts: 
+   - /assets/js/customdc-doc-tabs.js
+   - /assets/js/syntax_highlighting.js
 ---
 
 {:.no_toc}
