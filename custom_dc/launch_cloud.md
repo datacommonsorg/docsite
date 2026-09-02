@@ -10,8 +10,8 @@ include_scripts: /assets/js/customdc-doc-tabs.js
 
 # Launch your Data Commons
 
-- TOC
-  {: toc}
+* TOC
+{:toc}
 
 ## Overview
 

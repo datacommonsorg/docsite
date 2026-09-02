@@ -15,15 +15,6 @@ function sanitizeValue(val) {
     return '';
   }
 
-  // Basic HTML entity encoding
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
 // Function to update all placeholders for a specific variable
 function updateDynamicVar(varName, value, syncUrl = true) {
   if (!varName || !/^[a-zA-Z0-9_-]+$/.test(varName)) {
