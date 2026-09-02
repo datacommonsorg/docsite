@@ -210,7 +210,7 @@ Once you have uploaded the new data, you must [rerun the data management Cloud R
 
 ### Run the data management container {#run-job}
 
-By default, the Terraform scripts create and run a Google Run job called <code><span class="dyn-var" data-var="project_id">Your GCP project ID</span>-datacommons-data-job</code>. When you run the data management job, it converts CSV (and MCF) data into tables in the Cloud SQL database and generates embeddings in the `output` folder of the Cloud Storage bucket.
+By default, the Terraform scripts create and run a Google Run job called <code><span class="dyn-var" data-var="namespace">Your Data Commons namespace</span>-datacommons-data-job</code>. When you run the data management job, it converts CSV (and MCF) data into tables in the Cloud SQL database and generates embeddings in the `output` folder of the Cloud Storage bucket.
 
 Every time you upload new input files to Google Cloud Storage, you will need to rerun the job. You can simply run `terraform apply` again, or use any of the other methods described below.
 
