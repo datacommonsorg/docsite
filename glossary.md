@@ -66,7 +66,7 @@ Traditionally, the Data Commons schema supported observations about a single pla
 
 ### Multi-entity statistical variable
 
-A multi-entity statistical variable declares multiple properties as `observationProperties`. Rather than define the value of each property in the variable (as done for [constraint properties](#constraint-properties)) itself, each value is provided observations.
+A multi-entity statistical variable declares multiple properties as `observationProperties`. Rather than the  value of each property being defined in the variable (as done for [constraint properties](#constraint-properties)) itself, each value is provided in observations.
 
 ### [Observation (Statistical variable observation)](https://datacommons.org/browser/StatVarObservation){: target="_blank"}
 {: #observation}
