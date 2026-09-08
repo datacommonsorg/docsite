@@ -12,8 +12,8 @@ redirect_from:
 # Key concepts and common tasks
 
 Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
-- If you are only using Data Commons interactive tools, Google Sheets or CSV download, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
-- If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
+- If you are only using Data Commons interactive tools, Google Sheets or CSV download, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical*variable). You may wish to just skip directly to those sections.
+* If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page. 
 
 {:toc}
 * TOC
@@ -30,18 +30,18 @@ Data Commons models the world as a directed labeled graph, consisting of a set o
 
 As a simple example, here are a set of nodes and edges that represent the following statements:
 
--  California is a state
--  Santa Clara county and Berkeley are contained in the state of California
--  The latitude of Berkeley, CA is 37.8703
+*  California is a state
+*  Santa Clara county and Berkeley are contained in the state of California
+*  The latitude of Berkeley, CA is 37.8703
 
 ![knowledge graph](/assets/images/dc/concept1.png){: width="600"}
 
 Each node consists of some kind of entity or value, and each edge describes some kind of property. More specifically, each node consists of the following objects:
 
--  One or more [types](#type): an [entity](#entity), [event](#event), [statistical variable](#statistical-variable), or [statistical observation](#observation)
--  A [unique identifier](#unique-identifier-dcid), known as a DCID
--  Various [properties](#property)
--  A [provenance](#provenance-source-dataset)
+*  One or more [types](#type): an [entity](#entity), [event](#event), [statistical variable](#statistical-variable), or [statistical observation](#observation)
+*  A [unique identifier](#unique-identifier-dcid), known as a DCID
+*  Various [properties](#property)
+*  A [provenance](#provenance-source-dataset)
 
 As in other knowledge graphs, each pair of connected nodes is a _triple_ consisting of a subject node, predicate (or "edge") and object node. The Data Commons knowledge graph is made up of billions of triples. The triple is not generally exposed in Data Commons as a concept that you need to know.
 
@@ -71,7 +71,11 @@ Data Commons comprises hundreds of thousands of statistical variables, which you
 
 The type of a statistical variable is always the special sub-class [`StatisticalVariable`](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}. For example, the metric [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"} is a node whose type is a statistical variable. 
 
-A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person){: target="_blank"}, or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino){: target="_blank"}. Complex variables may be broken down into constituent parts, or not.  
+A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person){: target="_blank"}, or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino){: target="_blank"}. Complex variables may be broken down into constituent parts, or not. 
+
+The constituent parts, or dimensions, are represented as "constraint properties" or "observation properties". (The latter is a newer feature of the Data Commons graph). With _constraint properties_, the actual values of each property are specified in the statistical variable itself. For example, with the aforementioned [`Hispanic Female Population`](https://datacommons.org/browser/Count_Person_Female_HispanicOrLatino){: target="_blank"} variable, there are two constraint properties: `gender` and `race`. Both have defined values, `Female` and `HispanicOrLatino`. With constraint properties, a separate variable is required for each combination of property values.
+
+With _observation properties_, the values of each property are not specified in the variable itself, but in the [observations](#observation). Instead of needing a separate variable for every combination of male/female and every race, the `Hispanic Female Population` variable could be simply defined as a single `Population` variable with two observation properties, `gender` and `race`. The individual observations for the variable would specify the values of each property (e.g. male, female, Hispanic/Latino, etc.).
 
 ### Task: Find places available for a statistical variable {#find-places}
 
@@ -81,8 +85,9 @@ Note that not all statistical variables have observations for all places or othe
 
 To use the APIs to look up places available for statistical variables:
 
-- Use the REST v2 [Observation API](/api/rest/v2/observation.html) with an entity expression and `containedInPlace` filter, either interactively (e.g. using curl or the browser address bar) or programmatically.
-- Use the Python v2 [`observation.fetch`](/api/python/v2/observation.html#fetch) API method with an entity expression, either interactively or programmatically.
+* Use the REST v2 [Observation API](/api/rest/v2/observation.html) with an entity expression and `containedInPlace` filter, either interactively (e.g. using curl or the browser address bar) or programmatically.
+* Use the Python v2 [`observation.fetch`](/api/python/v2/observation.html#fetch) API method with an entity expression, either interactively or programmatically.
+* Use the SDMX [Availability API](api/sdmx/availability.html) with a place ID or `containedInPlace` filter, either interactively or programmatically
 
 ## Unique identifier: DCID
 
@@ -109,9 +114,8 @@ To find the DCID for a place using the datacommons.org website:
 
 To find the DCID for a place using other methods:
 
-- Use the [Google Sheets add-on](/api/sheets/index.html#find-dcid) **Fill place dcids** feature.
-- Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
-- Use the Python v2 [`resolve.fetch_dcids_by_name`](/api/python/v2/resolve.html#fetch_dcids_by_name) API method, either interactively or programmatically.
+* Use the REST v2 [Resolve API](/api/rest/v2/resolve.html), either interactively (e.g. using curl or the browser address bar) or programmatically.
+* Use the Python v2 [`resolve.fetch_dcids_by_name`](/api/python/v2/resolve.html#fetch_dcids_by_name) API method, either interactively or programmatically.
 
 To find the DCID for a statistical variable using the datacommons.org website:
 
@@ -123,8 +127,8 @@ To find the DCID for a statistical variable using the datacommons.org website:
 
 To find the DCID for a statistical variable using other methods:
 
-- Use the REST v2 [Resolve API](/api/rest/v2/resolve.html) with the `resolver=indicator` option.
-- Use the Python v2 [`resolve.fetch_indicators`](/api/python/v2/resolve.html#fetch_indicators) API method.
+* Use the REST v2 [Resolve API](/api/rest/v2/resolve.html) with the `resolver=indicator` option.
+* Use the Python v2 [`resolve.fetch_indicators`](/api/python/v2/resolve.html#fetch_indicators) API method.
 
 ## Property
 
@@ -140,7 +144,7 @@ Note that the DCID for a property is the same as its name.
 
 ## Observation
 
-An _observation_ is a single measured value for a statistical variable, at or during a specified period of time, for a specific entity.
+An _observation_ is a single measured value for a statistical variable, at or during a specified period of time, for a specific entity (or entities).
 
 For example, the value of the statistical variable [`Median Age of Female Population`](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"} for the city of San Antonio, Texas in 2014 could have an observation `Observation_Median_Age_Person_Female_SanAntonio_TX_2014`. The type of an observation is always the special sub-class [`StatVarObservation`](https://datacommons.org/browser/StatVarObservation){: target="_blank"}.
 
@@ -153,9 +157,9 @@ Time series made up of many observations underlie the data available in the [Tim
 
 Every node and triple also have some important properties that indicate the origin of the data. 
 
--  [`Source`](https://datacommons.org/browser/Source){: target="_blank"}: This is the organization that provides the data, and is usually specified as the name of the organization; for example, [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics){: target="_blank"}.
--  [`Dataset`](https://datacommons.org/browser/Dataset){: target="_blank"}: This is the name of a specific dataset provided by a source. In relational database terminology, a `dataset` roughly corresponds to a "database". Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, [Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics){: target="_blank"}, and [Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries){: target="_blank"}.
--  [`Provenance`](https://datacommons.org/browser/Provenance){: target="_blank"}: A provenance is a subset of a dataset. For small datasets, it may represent the entire dataset. For example, Sweden Census is both a [dataset](https://datacommons.org/browser/dc/d/StatisticsSweden_SwedenCensus){: target="_blank"} and a [provenance](https://datacommons.org/browser/dc/base/Sweden_Census){: target="_blank"}.
+*  [`Source`](https://datacommons.org/browser/Source){: target="_blank"}: This is the organization that provides the data, and is usually specified as the name of the organization; for example, [Australian Bureau of Statistics](https://datacommons.org/browser/dc/s/AustralianBureauOfStatistics){: target="_blank"}.
+*  [`Dataset`](https://datacommons.org/browser/Dataset){: target="_blank"}: This is the name of a specific dataset provided by a source. In relational database terminology, a `dataset` roughly corresponds to a "database". Many sources provide multiple datasets. For example, the source Australian Bureau of Statistics provides two datasets, [Australia Statistics](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaStatistics){: target="_blank"}, and [Australia Subnational Administrative Boundaries](https://datacommons.org/browser/dc/d/AustralianBureauOfStatistics_AustraliaSubnationalAdministrativeBoundaries){: target="_blank"}.
+*  [`Provenance`](https://datacommons.org/browser/Provenance){: target="_blank"}: A provenance is a subset of a dataset. For small datasets, it may represent the entire dataset. For example, Sweden Census is both a [dataset](https://datacommons.org/browser/dc/d/StatisticsSweden_SwedenCensus){: target="_blank"} and a [provenance](https://datacommons.org/browser/dc/base/Sweden_Census){: target="_blank"}.
   
    For larger datasets, a provenance usually represents a subset of the dataset, roughly corresponding to a "table" in relational database terminology. Thus, there may be several provenances for a given dataset. For example, [Brazil VIS DATA 3](https://datacommons.org/browser/dc/d/BrazilMinistryOfDevelopmentAndSocialAssistanceFamilyAndFightAgainstHunger_BrazilVisData3){: target="_blank"} is a dataset that comprises 2 provenances: [Brazil Food Distribution](https://datacommons.org/browser/dc/base/Brazil_FoodDsitribution){: target="_blank"} and [Brazil Rural Development Program](https://datacommons.org/browser/dc/base/Brazil_RuralDevelopmentProgram){: target="_blank"}. 
   
@@ -169,7 +173,7 @@ Note that a given statistical variable may have multiple provenances, since many
 
 You can see a list of all sources and data sets in several places:
 
--  The [Data Sources](https://datacommons.org/data/){: target="_blank"} pages
--  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer
+*  The [Data Sources](https://datacommons.org/data/){: target="_blank"} pages
+*  The **Data source** and **Dataset** drop-down menus in the Statistical Variable Explorer
 
 ![Stat Var Explorer](/assets/images/dc/concept14.png){: width="600"}

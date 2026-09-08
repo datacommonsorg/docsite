@@ -21,8 +21,6 @@ For example, if you wanted to get [population stats, poverty and unemployment ra
 
 ![Google Search query result]({{site.url}}/assets/images/dc/dcoverview1.png){:width="640"}
 
-
-
 ## A standards-based knowledge graph, schema, and APIs
 
 Data Commons needs to be able to stitch together data from disparate data sets in different formats and encodings, in a wide range of domains, from time series about demographics and employment, to hurricanes, to protein structures. To do so, it models the world as a [knowledge graph](https://blog.google/products/search/introducing-knowledge-graph-things-not/){: target="_blank"} consisting of nodes, or entities, with properties (attributes) and relationships between them forming directed edges between the nodes. The data model is based on the [Schema.org](https://www.schema.org){: target="_blank"} framework, an open framework used by over 40M websites; its schema is an extension of [Schema.org](https://www.schema.org/docs/schemas.html){: target="_blank"} constructs, introducing both general constructs (such as intervals) and values for common properties. 
@@ -47,13 +45,14 @@ Finally, Data Commons provides an open-source, [customizable implementation](/cu
 
 Here are just some of the unique features of Data Commons:
 
--  Reliable data from official sources such as governmental agencies and NGOs 
--  Out-of-the-box visualizations, such as timeline charts, scatter plots, and maps.
--  Natural-language query interface offers a Google Search-like experience, allowing users to answer high-level queries with low latency
--  Massive scale, with over 100 datasets and 250 billion data points
--  Support for interactive and programmatic querying, ad hoc and bulk data downloads.
--  Easily customizable website implementation that can be adapted for specific data needs
--  Integration with the Google Search stack 
+*  Reliable data from official sources such as governmental agencies and NGOs 
+*  Out-of-the-box visualizations, such as timeline charts, scatter plots, and maps.
+*  Natural-language query interface offers a Google Search-like experience, allowing users to answer high-level queries with low latency
+*  Massive scale, with over 100 datasets and 250 billion data points
+*  Support for interactive and programmatic querying, ad hoc and bulk data downloads.
+*  Easily customizable website implementation that can be adapted for specific data needs
+*  Integration with the Google Search stack 
+*  Hosted MCP server for agentic querying
 
 ## Learn more
 
