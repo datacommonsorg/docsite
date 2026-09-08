@@ -87,7 +87,7 @@ To use the APIs to look up places available for statistical variables:
 
 * Use the REST v2 [Observation API](/api/rest/v2/observation.html) with an entity expression and `containedInPlace` filter, either interactively (e.g. using curl or the browser address bar) or programmatically.
 * Use the Python v2 [`observation.fetch`](/api/python/v2/observation.html#fetch) API method with an entity expression, either interactively or programmatically.
-* Use the SDMX [Availability API](api/sdmx/availability.html) with a place ID or `containedInPlace` filter, either interactively or programmatically
+* Use the SDMX [Availability API](/api/sdmx/availability.html) with a place ID or `containedInPlace` filter, either interactively or programmatically.
 
 ## Unique identifier: DCID
 
