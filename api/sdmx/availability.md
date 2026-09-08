@@ -5,6 +5,9 @@ nav_order: 2
 parent: SDMX 3.0
 grand_parent: API - Query data programmatically
 published: true
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 {: .no_toc}
@@ -46,9 +49,6 @@ At this time, the following parameters are accepted but redundant:
 * `format`: only `sdmx-json` is supported
 
 Explicit SDMX operators, including `eq:`, are not currently supported. Unprefixed values use equality semantics.
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ## Response format
 

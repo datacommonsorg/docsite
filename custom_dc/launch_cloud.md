@@ -3,14 +3,15 @@ layout: default
 title: Launch your Data Commons
 nav_order: 10
 parent: Build your own Data Commons
+include_scripts: /assets/js/customdc-doc-tabs.js
 ---
 
 {: .no_toc}
 
 # Launch your Data Commons
 
-- TOC
-  {: toc}
+* TOC
+{:toc}
 
 ## Overview
 
@@ -390,8 +391,6 @@ Enable tracking:
 1. Switch to the production workspace and [run the Terraform deployment](deploy_cloud.md#multiple) as usual.
 
 Data collection will take a day or two to start and begin showing up in your reports.
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>
 
 ### Report on custom dimensions {#custom-dimensions}
 

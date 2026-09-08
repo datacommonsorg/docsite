@@ -3,6 +3,7 @@ layout: default
 title: Data config file reference
 nav_order: 5
 parent: Build your own Data Commons
+include_scripts: /assets/js/syntax_highlighting.js
 ---
 
 {:.no_toc}

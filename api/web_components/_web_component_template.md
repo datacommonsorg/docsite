@@ -6,6 +6,9 @@ parent: Web Components
 grand_parent: API
 published: false
 permalink: /api/web_components/page_template
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # TYPE Tiles
@@ -52,9 +55,6 @@ that should be done here as well.
 </datacommons-TYPE>
 ```
 {: #contained-in .api-tabcontent}
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ## Attributes
 

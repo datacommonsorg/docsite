@@ -5,6 +5,9 @@ nav_order: 5
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/map
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # Data Commons map chart Web Component
@@ -28,9 +31,6 @@ permalink: /api/web_components/map
 ></datacommons-map>
 ```
 {: #contained-in .api-tabcontent}
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ## Attributes
 

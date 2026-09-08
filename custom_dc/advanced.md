@@ -3,6 +3,9 @@ layout: default
 title: Advanced (hybrid) setups
 nav_order: 11
 parent: Build your own Data Commons
+include_scripts: 
+  - /assets/js/customdc-doc-tabs.js
+  - /assets/js/user-supplied-variables.js
 ---
 
 {: .no_toc}
@@ -12,6 +15,16 @@ This page covers hybrid setups that are not recommended for most use cases, but 
 - [Running the data management container locally, and the service container in Google Cloud](#run-local). In this scenario, you store your input data locally, and write the output to Cloud Storage and Cloud SQL. This might be useful for users with very large data sets, that would like to cut down on output generation times and the cost of storing input data in addition to output data.
 - [Running the service container locally, and the data management container in Google Cloud](#local-services). If you have already set up a data processing pipeline to send your input data to Google Cloud, but are still iterating on the website code, this might be a useful option.
 - [Running the service container locally, and custom MCP instructions in Google Cloud](#instructions). If you're already using Google Cloud Storage but want to test the server locally, you can use this option.
+
+## (Optional) Set common variable values for this page
+
+If you would like to more easily copy and paste commands from this page, supply the values you've provided for Terraform for the following fields. The page will automatically populate all occurrences.
+
+<label for="namespace">Data Commons namespace:</label>
+<input type="text" id="namespace" class="dyn-input" data-var="namespace" placeholder="Your DC namespace" />
+<br/>
+<label for="region">Region:</label>
+<input type="text" id="region" class="dyn-input" data-var="region" placeholder="Your GCP region" />
 
 ## Run the data management container locally and the service container in the cloud {#run-local}
 
@@ -36,7 +49,7 @@ To run a local instance of the data management container, you need to set all of
             <ol>
               <li>Go to <a href="https://console.cloud.google.com/run/jobs" target="_blank">https://console.cloud.google.com/run/jobs</a> for your project, select the relevant job from the list, and click <b>View and edit job configuration</b>. </li>
                <li>Under the <b>Containers</b> tab, select the <b>Variables & Secrets</b> tab. </li>
-              <li>Look up the name of the secret for the <code>DB_PASS</code> variable. It is in the form <code><var>NAMESPACE</var>-datacommons-mysql-password</code>.</li>
+              <li>Look up the name of the secret for the <code>DB_PASS</code> variable. It is in the form <code><span class="dyn-var" data-var="namespace">Your Data Commons namespace</span>-datacommons-mysql-password</code>.</li>
               <li>Go to <a href="https://console.cloud.google.com/secret-manager" target="_blank">https://console.cloud.google.com/secret-manager</a> and in the list of secrets, click on the link of the secret name. </li>
               <li>Select <b>Actions</b> > <b>View secret value</b>. Copy the value to your <code>env.list</code> file.</li>
             </ol>
@@ -44,8 +57,8 @@ To run a local instance of the data management container, you need to set all of
           <div>
             <ol>
           <li>Run the following command:
-              <pre>gcloud run jobs describe <var>JOB_NAME</var> --region <var>REGION</var></pre></li>
-          <li>From the <code>Secrets</code> section of the output, note the name of the <code>DB_PASS</code> secret. It is in the form <code><var>NAMESPACE</var>-datacommons-mysql-password</code>.</li>
+              <pre>gcloud run jobs describe <var>JOB_NAME</var> --region <span class="dyn-var" data-var="region">us-central1</span></pre></li>
+          <li>From the <code>Secrets</code> section of the output, note the name of the <code>DB_PASS</code> secret. It is in the form <code><span class="dyn-var" data-var="namespace">Your Data Commons namespace</span>-datacommons-mysql-password</code>.</li>
           <li>Run this command to obtain its value:
               <pre>gcloud secrets versions access latest --secret=<var>SECRET_ID</var></pre></li>
               </ol></div></div></div>
@@ -135,7 +148,7 @@ To run a local instance of the services container, you need to set all of the GC
               <li>Go to <a href="https://console.cloud.google.com/run/services" target="_blank">https://console.cloud.google.com/run/services</a> for your project, and select the relevant service from the list.</li>
               <li>In the <b>Service details</b> screen, click the <b>Revisions</b> tab.</li>
               <li>In the right-hand window, select the <b>Containers</b> tab and scroll down to the <b>Environment variables</b> section.</li>
-              <li>Look up the name of the secret for the <code>DB_PASS</code> variable. It is in the form <code><var>NAMESPACE</var>-datacommons-mysql-password</code>.</li>
+              <li>Look up the name of the secret for the <code>DB_PASS</code> variable. It is in the form <code><span class="dyn-var" data-var="namespace">Your Data Commons namespace</span>-datacommons-mysql-password</code>.</li>
               <li>Go to <a href="https://console.cloud.google.com/secret-manager" target="_blank">https://console.cloud.google.com/secret-manager</a> and in the list of secrets, click on the link of the secret name. </li>
               <li>Select <b>Actions</b> > <b>View secret value</b>.</li>
             </ol>
@@ -143,8 +156,8 @@ To run a local instance of the services container, you need to set all of the GC
           <div>
             <ol>
           <li>Run the following command:
-              <pre>gcloud run services describe <var>SERVICE_NAME</var> --region <var>REGION</var></pre></li>
-           <li>From the <code>Secrets</code> section of the output, note the name of the <code>DB_PASS</code> secret. It is in the form <code><var>NAMESPACE</var>-datacommons-mysql-password</code>.</li>
+              <pre>gcloud run services describe <var>SERVICE_NAME</var> --region <span class="dyn-var" data-var="region">us-central1</span></pre></li>
+           <li>From the <code>Secrets</code> section of the output, note the name of the <code>DB_PASS</code> secret. It is in the form <code><span class="dyn-var" data-var="namespace">Your Data Commons namespace</span>-datacommons-mysql-password</code>.</li>
           <li>Run this command to obtain its value:
               <pre>gcloud secrets versions access latest --secret=<var>SECRET_ID</var></pre></li>
               </ol></div></div></div>
@@ -221,5 +234,3 @@ INFO:datacommons_mcp.app:Loaded custom instructions for tools/search_indicators.
 ### Step 4: Connect an agent to the server
 
 Follow any of the procedures in [Connect an AI agent to a local server](mcp.md#agent).
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>
