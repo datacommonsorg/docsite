@@ -11,9 +11,7 @@ redirect_from:
 {: .no_toc}
 # Key concepts and common tasks
 
-Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. Use the following guidance:
-* If you are only using Data Commons interactive tools, Google Sheets or CSV download, you should at least be familiar with [entities](#entity) and [statistical variables](#statistical-variable). You may wish to just skip directly to those sections.
-* If you plan to use the programmatic APIs, contribute data, or run your own Data Commons, you should read this entire page.
+Whether you're just exploring the data on [datacommons.org](http://datacommons.org), using the programmatic APIs, or contributing data, it's helpful to have a basic understanding of some of the key concepts in Data Commons. 
 
 {:toc}
 * TOC
@@ -73,9 +71,9 @@ The type of a statistical variable is always the special sub-class [`Statistical
 
 A statistical variable can be simple, such as [`Total Population`](https://datacommons.org/browser/Count_Person){: target="_blank"}, or more complex, such as [`Hispanic Female Population`](https://datacommons.org/tools/statvar#Count_Household_NoHealthInsurance=&sv=Count_Person_Female_HispanicOrLatino){: target="_blank"}. Complex variables may be broken down into constituent parts, or not. 
 
-The constituent parts, or dimensions, are represented as "constraint properties" or "observation properties". (The latter is a newer feature of the Data Commons graph). With _constraint properties_, the actual values of each property are specified in the statistical variable itself. For example, with the aforementioned [`Hispanic Female Population`](https://datacommons.org/browser/Count_Person_Female_HispanicOrLatino){: target="_blank"} variable, there are two constraint properties: `gender` and `race`. Both have defined values, `Female` and `HispanicOrLatino`. With constraint properties, a separate variable is required for each combination of property values.
+The constituent parts, or dimensions, are represented as "constraint properties" or "observation properties". (The latter is a newer feature of the Data Commons graph). With _constraint properties_, the actual values of each property are specified in the statistical variable itself. For example, with the aforementioned [`Hispanic Female Population`](https://datacommons.org/browser/Count_Person_Female_HispanicOrLatino){: target="_blank"} variable, there are two constraint properties: `gender` and `race`. Both have defined values, `Female` and `HispanicOrLatino`. With constraint properties, a separate variable is required for each combination of property values. This feature is best used with properties that have low cardinality, such as gender.
 
-With _observation properties_, the values of each property are not specified in the variable itself, but in the [observations](#observation). Instead of needing a separate variable for every combination of male/female and every race, the `Hispanic Female Population` variable could be simply defined as a single `Population` variable with two observation properties, `gender` and `race`. The individual observations for the variable would specify the values of each property (e.g. male, female, Hispanic/Latino, etc.).
+With _observation properties_, the values of each property are not specified in the variable itself, but in the [observations](#observation). Instead of needing a separate variable for every combination of all the values of two or more properties, this feature allows you to limit the number of total variables needed. It is most useful for properties that have high cardinality. As an example, imagine a variable that measures the age groups of teachers in schools, where schools are the primary entity. With constraint properties, there would need to be a separate variable for every combination of every school and age group: `Count_Teachers_Age25To30_NorthernSecondarySchool` and so on. This would require an explosion of thousands of variables. With observation properties, a single variable can be defined, such as `Count_Teachers`. `school` and `age group` become columns within a set of observations (timeseries). Each individual observation specifies the values of the relevant values for that observation.
 
 ### Task: Find places available for a statistical variable {#find-places}
 
