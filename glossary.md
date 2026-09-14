@@ -62,11 +62,11 @@ The technique used for measuring a [variable](#variable). Describes how a measur
 
 ### Multi-entity observation
 
-Traditionally, the Data Commons schema supported observations about a single place or non-place entity (such as a school or hospital, etc.) More recently, the schema supports observations with combinations of multiple entities. These entities are represented as "observation properties". Each observation property is a separate column in the observation, and can have multiple values.
+Traditionally, the Data Commons schema supported [observations](#observation) about a single place or non-place entity (such as a school or hospital, etc.) More recently, the schema supports observations with combinations of multiple entities. These entities are represented as ["observation properties"](#observation-properties). Each observation property is a separate column in the observation, and can have multiple values.
 
 ### Multi-entity statistical variable
 
-A multi-entity statistical variable declares multiple properties as `observationProperties`. Rather than the  value of each property being defined in the variable (as done for [constraint properties](#constraint-properties)) itself, each value is provided in observations.
+A multi-entity [statistical variable](#statistical-variable) declares multiple properties as `observationProperties`. Rather than the  value of each property being defined in the variable itself (as done for [constraint properties](#constraint-properties)), each value is provided in observations.
 
 ### [Observation (Statistical variable observation)](https://datacommons.org/browser/StatVarObservation){: target="_blank"}
 {: #observation}
@@ -77,6 +77,10 @@ A measurement of a [variable](#variable) for a particular place and time. For ex
 {: #observation-period}
 
 The time period over which an [observation](#observation) is made. Specified in [ISO 8601 formatting for durations](https://en.wikipedia.org/wiki/ISO_8601#Durations){: target="_blank"}.
+
+### Observation properties
+
+Observation properties are a newer feature, that allow ["multi-entity" observations](#multi-entity-observation) to report values for more than one value of a property besides the main "entity". In the original schema, [statistical variables](#statistical-variable) could only define a single "entity" (or place) whose values would be provided in separate rows in the observations table. For any additional dimensions (represented as [constraint properties](#constraint-properties)), it was necessary to create a separate variable for each value of the dimension. For example, to represent age groups, a separate variable was needed for each grouping. To prevent statistical variable explosion, observation properties were added, to allow up to 3 different dimensions whose values can be provided in the observations. Thus, instead of requiring different variables for each grouping, a single variable can be defined, with a single property, "age group". The observations would provide the values of the age group in separate rows. 
 
 ### Place
 {: #place}
