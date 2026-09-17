@@ -28,6 +28,11 @@ A collection of data, provided by a [source](#source). For example, [Brazil Cens
 
 The date of measurement. Specified in ISO 8601 format. Examples include `2011` (the year 2011), `2019-06` (the month of June in the year 2019), and `2019-06-05T17:21:00-06:00` (5:17PM on June 5, 2019, in CST).
 
+### [Constraint properties](https://datacommons.org/browser/constraintProperties){: target="_blank"}
+{: #constraint-properties}
+
+Additional properties (dimensions) of a statistical variable to more specifically define the population type. For example, a constraint property could be "gender", with a value of "female" or "male" for a given variable. Normally the value of the constraint property is captured in the name of the variable. For example, [`Median_Age_Person_Female`](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"} has a constraint property of `gender`, for which the value is `Female`.
+
 ### DCID
 {: #dcid}
 
@@ -45,32 +50,44 @@ An entity represented by a node in the Data Commons knowledge graph. These can r
 
 Metadata on properties of the data and its provenance. For example, multiple sources might provide data on the same variable, but use different measurement methods, cover data spanning different time spans, use different units of measurement. Data Commons uses "facet" to refer to a dataset's source and its associated metadata.
 
-### [Measurement Denominator](https://datacommons.org/browser/measurementDenominator){: target="_blank"}
+### [Measurement denominator](https://datacommons.org/browser/measurementDenominator){: target="_blank"}
 {: #measurement-denominator}
 
 The denominator of a fractional measurement.
 
-### [Measurement Method](https://datacommons.org/browser/measurementMethod){: target="_blank"}
+### [Measurement method](https://datacommons.org/browser/measurementMethod){: target="_blank"}
 {: #measurement-method}
 
 The technique used for measuring a [variable](#variable). Describes how a measurement is made, whether by count or estimate or some other approach. May name the group making the measurement to indicate a certain organizational method of measurement is used. Examples include [the American Community Survey](https://datacommons.org/browser/dc/gg17432){: target="_blank"} and [`WorldHealthOrganizationEstimates`](https://datacommons.org/browser/WorldHealthOrganizationEstimates){: target="_blank"}. Multiple measurement methods may be specified for any given node.
 
-### [Observation (Statistical Variable Observation)](https://datacommons.org/browser/StatVarObservation){: target="_blank"}
+### Multi-entity observation
+
+Traditionally, the Data Commons schema supported [observations](#observation) about a single place or non-place entity (such as a school or hospital, etc.) More recently, the schema supports observations with combinations of multiple entities. These entities are represented as ["observation properties"](#observation-properties). Each observation property is a separate column in the observation, and can have multiple values.
+
+### Multi-entity statistical variable
+
+A multi-entity [statistical variable](#statistical-variable) declares multiple properties as `observationProperties`. Rather than the  value of each property being defined in the variable itself (as done for [constraint properties](#constraint-properties)), each value is provided in observations.
+
+### [Observation (Statistical variable observation)](https://datacommons.org/browser/StatVarObservation){: target="_blank"}
 {: #observation}
 
 A measurement of a [variable](#variable) for a particular place and time. For example, a `StatVarObservation` of the `StatisticalVariable` `Median_Income_Person` for Brookmont, Maryland, in the year 2018 would be $126,199. A complete list of properties of statistical variable observations can be found in the [Knowledge Graph](https://datacommons.org/browser/StatVarObservation){: target="_blank"}.
 
-### [Observation Period](https://datacommons.org/browser/observationPeriod){: target="_blank"}
+### [Observation period](https://datacommons.org/browser/observationPeriod){: target="_blank"}
 {: #observation-period}
 
 The time period over which an [observation](#observation) is made. Specified in [ISO 8601 formatting for durations](https://en.wikipedia.org/wiki/ISO_8601#Durations){: target="_blank"}.
+
+### Observation properties
+
+Observation properties are a newer feature, that allow ["multi-entity" observations](#multi-entity-observation) to report values for more than one value of a property besides the main "entity". In the original schema, [statistical variables](#statistical-variable) could only define a single "entity" (or place) whose values would be provided in separate rows in the observations table. For any additional dimensions (represented as [constraint properties](#constraint-properties)), it was necessary to create a separate variable for each value of the dimension. For example, to represent age groups, a separate variable was needed for each grouping. To prevent statistical variable explosion, observation properties were added, to allow up to 3 different dimensions whose values can be provided in the observations. Thus, instead of requiring different variables for each grouping, a single variable can be defined, with a single property, "age group". The observations would provide the values of the age group in separate rows. 
 
 ### Place
 {: #place}
 
 Entities that describe specific geographic locations. Use the search box in [Place Explorer](https://datacommons.org/place){: target="_blank"} to search for places in the graph, or view the [Knowledge Graph entry for Place](https://datacommons.org/browser/Place){: target="_blank"} for a full view of the node. To learn more about place types, take a look at the [place types page](/place_types.html).
 
-### Preferred Facet
+### Preferred facet
 {: #preferred-facet}
 
 When a variable has values from multiple [facets](#facet), one facet is designated the preferred facet. The preferred facet is selected by an internal ranking system which prioritizes the completeness and quality of the data. Unless otherwise specified, endpoints will default to returning values from preferred facets.
@@ -84,7 +101,7 @@ Attributes of the entities in the Data Common knowledge graph. Instead of statis
 
 A subset of data in a [dataset](#dataset). For small datasets, the provenance may represent the entire dataset. Larger datasets may comprise multiple provenances. See [Key concepts](data_model.md#sources) for more details.
 
-### [Scaling Factor](https://datacommons.org/browser/scalingFactor){: target="_blank"}
+### [Scaling factor](https://datacommons.org/browser/scalingFactor){: target="_blank"}
 {: #scaling-factor}
 
 Property of [variables](#variable) that measure proportions, used in conjunction with the measurementDenominator property to indicate the multiplication factor applied to the proportion's denominator (with the measurement value as the final result of the multiplication) when the numerator and denominator are not equal.
@@ -96,12 +113,12 @@ As an example, in 1999, [approximately 36% of Canadians were Internet users](htt
 
 The provider of a dataset, usually an organization or agency. For example, [Brazilian Institute of Geography and Statistics](https://datacommons.org/browser/dc/s/BrazilianInstituteOfGeographyAndStatisticsIbge) is a source that provides census and statistical datasets. See [Key concepts](data_model.md#sources) for more details.
 
-### [Statistical Variable](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}
+### [Statistical variable](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}
 {: #variable}
 
 Any type of metric, statistic, or measure that can be measured for a specific entity (most typically a place, but could be any other entity in the graph, such as a school or power plant) and time. Examples include [median income of persons older than 16](https://datacommons.org/browser/Median_Income_Person_16OrMoreYears){: target="_blank"}, [number of female high school graduates aged 18 to 24](https://datacommons.org/browser/Count_Person_18To24Years_EducationalAttainmentHighSchoolGraduateIncludesEquivalency_Female){: target="_blank"}, [unemployment rate](https://browser.datacommons.org/browser/UnemploymentRate_Person){: target="_blank"}, or [percentage of persons with diabetes](https://browser.datacommons.org/browser/Percent_Person_WithDiabetes){: target="_blank"}. A complete list of variables can be found in the [Knowledge Graph](https://datacommons.org/browser/StatisticalVariable){: target="_blank"}.
 
-### [Statistical Variable Group](https://datacommons.org/browser/StatVarGroup){: target="_blank"}
+### [Statistical variable group](https://datacommons.org/browser/StatVarGroup){: target="_blank"}
 {: #variable-group}
 
 Represents a grouping of variables that are conceptually related, used for display purposes in the [Statistical Variable Explorer](https://datacommons.org/tools/statvar). For example, variable group [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"} consists of variables like [Female Median Age](https://datacommons.org/browser/Median_Age_Person_Female){: target="_blank"}, [Female Median Income](https://datacommons.org/browser/Median_Income_Person_15OrMoreYears_Female_WithIncome){: target="_blank"} etc. A variable group could also have child variable groups, which describe a subset of the parent variable group. For example, variable group [Person With Age, Gender = Female](https://datacommons.org/browser/dc/g/Person_Age_Gender-Female){: target="_blank"} is a child of [Person With Gender = Female](https://datacommons.org/browser/dc/g/Person_Gender-Female){: target="_blank"}. It contains variables that have age constraints.
