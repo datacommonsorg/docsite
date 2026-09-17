@@ -5,6 +5,9 @@ nav_order: 999
 parent: REST
 grand_parent: API
 published: false
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # /_VERSION_/_ENDPOINT_
@@ -47,9 +50,6 @@ JSON data:
   "<var>PARAM2</var>": "..."
 }
 </div>
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ### Path parameters
 

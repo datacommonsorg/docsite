@@ -5,6 +5,9 @@ nav_order: 4
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/line
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # Data Commons line chart Web Component
@@ -40,9 +43,6 @@ permalink: /api/web_components/line
 ></datacommons-line>
 ```
 {: #contained-in .api-tabcontent}
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ## Attributes
 

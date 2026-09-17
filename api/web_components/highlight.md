@@ -5,6 +5,9 @@ nav_order: 3
 parent: Embed data and visualizations in your own website
 published: true
 permalink: /api/web_components/highlight
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 # Data Commons highlight chart Web Component
@@ -28,9 +31,6 @@ variable value from a specific variable about a single place.
 ></datacommons-highlight>
 ```
 {: #single-place .api-tabcontent .api-signature}
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ## Attributes
 

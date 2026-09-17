@@ -3,6 +3,9 @@ layout: default
 title: Prepare and load your own data
 nav_order: 3
 parent: Build your own Data Commons
+include_scripts: 
+  - /assets/js/customdc-doc-tabs.js
+  - /assets/js/syntax_highlighting.js
 ---
 
 {:.no_toc}
@@ -606,5 +609,3 @@ country/BEL|average_annual_wage|2005|55662.21541|c/p/1
 ```
 
 To exit the sqlite shell, press `Ctrl-D`.
-
-<script src="/assets/js/customdc-doc-tabs.js"></script>

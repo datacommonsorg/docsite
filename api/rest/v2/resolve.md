@@ -5,6 +5,9 @@ nav_order: 4
 parent: REST (V2)
 grand_parent: API - Query data programmatically
 published: true
+include_scripts:
+  - /assets/js/syntax_highlighting.js
+  - /assets/js/api-doc-tabs.js
 ---
 
 {: .no_toc}
@@ -53,9 +56,6 @@ JSON data:
 }
 
 </div>
-
-<script src="/assets/js/syntax_highlighting.js"></script>
-<script src="/assets/js/api-doc-tabs.js"></script>
 
 ### Query parameters
 

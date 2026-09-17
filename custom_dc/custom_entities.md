@@ -3,6 +3,7 @@ layout: default
 title:  Define custom entities
 nav_order: 4
 parent: Build your own Data Commons
+include_scripts: /assets/js/syntax_highlighting.js
 ---
 
 {: .no_toc}
