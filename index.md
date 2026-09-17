@@ -1,12 +1,12 @@
 ---
 layout: default
-title: How to use Data Commons
+title: How to use Data Commons by Google
 nav_order: 1
 has_children: true
 redirect_from: /how_to_use
 ---
 
-# How to use Data Commons
+# How to use Data Commons by Google
 
 Data Commons offers many different ways to consume its data: 
 
