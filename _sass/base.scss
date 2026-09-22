@@ -98,10 +98,12 @@ $container-max-widths: (
   &:hover {
     text-decoration: none;
   }
+  padding-top: 4px;
 }
 
 #main-nav .navbar-brand span {
   margin-left: 0.35rem;
+  padding-top: 4px;
 }
 
 #main-nav .navbar-brand span.separator {
@@ -115,7 +117,6 @@ $container-max-widths: (
 }
 
 #main-header #main-header-logo {
-  display: flex;
   align-items: center;
   img {
     height: 28px;
