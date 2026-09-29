@@ -91,24 +91,19 @@ $container-max-widths: (
 
 #main-nav .navbar-brand a {
   color: #000;
-  font-family: $font-family-sans-serif;
-  font-size: 22px;
+  font-family: "Google Sans", sans-serif;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   &:hover {
     text-decoration: none;
   }
-}
-
-#main-nav .navbar-brand a {
-  color: #000;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
+  padding-top: 4px;
 }
 
 #main-nav .navbar-brand span {
   margin-left: 0.35rem;
+  padding-top: 4px;
 }
 
 #main-nav .navbar-brand span.separator {
@@ -116,12 +111,12 @@ $container-max-widths: (
 }
 
 #main-nav .navbar-brand span a {
-  font-family: $font-family-base;
+  color: #5E5E5E;
+  font-family: "Google Sans", sans-serif;
   font-weight: 200;
 }
 
 #main-header #main-header-logo {
-  display: flex;
   align-items: center;
   img {
     height: 28px;
