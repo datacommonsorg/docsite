@@ -10,8 +10,6 @@ parent: MCP - Query data interactively with an AI agent
 
 This page describes how to run a local agent and connect to a Data Commons MCP server to query datacommons.org, using the centrally hosted server at `https://api.datacommons.org/mcp`. 
 
-For advanced use cases, such as developing a custom agent, [Run a self-hosted MCP server](host_server.md) describes how to run your own local server and connect to it from an agent. 
-
 For procedures for Custom Data Commons instances, please see instead [Use MCP tools](/custom_dc/mcp.html).
 
 * TOC
