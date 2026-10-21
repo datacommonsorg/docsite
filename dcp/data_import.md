@@ -3,9 +3,17 @@ layout: default
 title: Import your data
 nav_exclude: true
 noindex: true
+include_scripts: 
+  - /assets/js/user-supplied-variables.js
+  - /assets/js/syntax_highlighting.js
 ---
 
-# Import your data {#import-your-data}
+[TOC]
+
+{:.no_toc}
+# Import your data
+
+> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
 
 ## Step 1: Upload your data files {#upload}
 
@@ -13,31 +21,31 @@ In this step, you upload your CSV, MCF and `config.json` files to a new or exist
 
 > **Note:** The artifacts bucket enforces public access prevention and uniform bucket-level access. To upload data files or inspect artifacts, individual users or operators must be granted either the Storage Object User (`roles/storage.objectUser`) or Storage Object Admin (`roles/storage.objectAdmin`) role directly on the bucket (or project).
 >
-> If you need to grant this permission to a user:
-> ```bash
-> gcloud storage buckets add-iam-policy-binding gs://<var>GCS_BUCKET</var> \
+> If you need to grant this permission to a user, run the following command:
+> ```shell
+> gcloud storage buckets add-iam-policy-binding gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span> \
 >   --member="user:<var>USER_EMAIL</var>" \
 >   --role="roles/storage.objectUser"
 > ```
 
 If you created a new bucket:
 
-* The name is set by the Terraform `storage_artifacts_bucket_name` variable. If you didn't set this explicitly, the default is <code><var>INSTANCE_NAME</var>-dc-artifacts-<var>PROJECT_ID. </var></code>
+* The name is set by the Terraform `storage_artifacts_bucket_name` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-artifacts-<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
 * The <code><var>INGESTION_BASE</var></code> is set by the Terraform `ingestion_input_path` variable. If you didn't set this explicitly, the default is `ingestion/input`.
 
 To look up your bucket name and ingestion base folder name, from your Terraform directory, run:
 
-```
+```shell
 terraform output storage_artifacts_bucket_name
 terraform output ingestion_input_path
 ```
 
-Here we give gcloud commands for uploading files from a local directory or transferring files from another Cloud Storage bucket and/or directory. To transfer files from other source types, you can use the Cloud Console to do so; go to <code>https://console.cloud.google.com/storage/browser/<var>GCS_BUCKET </var></code>and select **Transfer** > **Transfer in**.
+Here we give gcloud commands for uploading files from a local directory or transferring files from another Cloud Storage bucket and/or directory. To transfer files from other source types, you can use the Cloud Console to do so; go to <code>https://console.cloud.google.com/storage/browser/<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span></code>and select **Transfer** > **Transfer in**.
 
 > **Note:** As part of the import process, you must add a subdirectory under the ingestion base path. You can create it in the same command as uploading your files below. Alternatively, you can create it as a first step by running the following command:
 
   <pre>
-  gcloud storage folders create gs://<var>GCS_BUCKET</var>/<var>INGESTION_BASE</var>/<var>IMPORT_FOLDER</var></pre>
+  gcloud storage folders create gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span>/<var>INGESTION_BASE</var>/<var>IMPORT_FOLDER</var></pre>
 
 To upload files from a local directory:
 
@@ -45,17 +53,17 @@ To upload files from a local directory:
 2. Run the following command:
 
     <pre>
-    gcloud storage cp -R * gs://<var>GCS_BUCKET</var>/<var>INGESTION_BASE</var>/<var>IMPORT_FOLDER</var>/</pre>
+    gcloud storage cp -R * gs://<var>IMPORT_FOLDER</var>/</pre>
 
 To copy files from another Cloud Storage bucket and/or folder:
 
 From any directory, run the following command:
 
 <pre>
-gcloud storage cp -r gs://<var>SOURCE_GCS_BUCKET</var>/<var>FOLDER</var>/* gs://<var>GCS_BUCKET</var>/<var>INGESTION_BASE</var>/<var>IMPORT_FOLDER</var>/
+gcloud storage cp -r gs://<var>SOURCE_GCS_BUCKET</var>/<var>FOLDER</var>/* gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span>/<var>INGESTION_BASE</var>/<var>IMPORT_FOLDER</var>/
 </pre>
 
-To verify that your files are uploaded correctly, go to <code>https://console.cloud.google.com/storage/browser/<var>GCS_BUCKET.</var></code>
+To verify that your files are uploaded correctly, go to <code>https://console.cloud.google.com/storage/browser/<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span></code>.
 
 ## Step 2: Run the ingestion workflow {#workflow}
 
@@ -63,7 +71,7 @@ This step runs the pipeline to convert your data files into Spanner table data. 
 
 From any directory, run:
 
-```
+```shell
 uvx datacommons-cli admin ingest start --imports ALL_IMPORTS 
 ```
 or
@@ -84,7 +92,7 @@ To verify that the workflow has completed, click the `Workflow Console Link` in 
 
 > **Note:** If you need to restart the workflow for any reason, never try to execute it from the Cloud Console, but be sure to use the `datacommons-cli` command. The CLI passes in parameters that are needed for the workflow, so if you try to run the workflow without the CLI, the workflow will fail.
 
-> **Important!:** Do not manually cancel a workflow anytime after the **run_preprocessing** stage, or your database will be corrupted. If you do need to cancel a workflow at this stage, you won't be able to restart it without clearing the database lock. See [Release database lock from ingestion workflow](#release) for the procedure.
+> **Important!:** Do not manually cancel a workflow anytime after the **run_preprocessing** stage, or your database will be corrupted. If you do need to cancel a workflow at this stage, you won't be able to restart it without clearing the database lock. See [Release database lock from ingestion workflow](emergency.md#release) for the procedure.
 
 If you encounter workflow failures, see the [Troubleshoot problems](#troubleshoot-problems) section for tips on debugging configuration or data issues.
 
@@ -119,7 +127,7 @@ To ensure that the entities in the shared schema are created _before_ dependent 
 
 To verify that the data has been imported correctly:
 
-1. Go to <code>https://console.cloud.google.com/spanner/instances/<var>INSTANCE</var>/databases/<var>DATABASE</var>/details/table</code>.
+1. Go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/databases/<var>DATABASE</var>/details/table</code>.
 2. From the list of tables, click the **Timeseries** table link.
 3. From the left pane menu, click **Data** to view data.
 

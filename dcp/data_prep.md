@@ -3,12 +3,13 @@ layout: default
 title: Prepare your data
 nav_exclude: true
 noindex: true
+include_scripts: /assets/js/syntax_highlighting.js
 ---
 
 [TOC]
 
 {:.no_toc}
-# Prepare your data {#prepare-your-data}
+# Prepare your data
 
 The following procedures assume that you are familiar with defining nodes in MCF, structuring CSV file data, and the structure of the config.json file. If not, please familiarize yourself with [Prepare your own data](https://docs.datacommons.org/custom_dc/custom_data.html) in the Custom Data Commons documentation before proceeding.
 
@@ -141,7 +142,7 @@ A provenance must be linked to a specific source. Your source may already exist 
 2. In your browser bar, enter the following API query:
 
     <pre>
-    https://api.datacommons.org/v2/node?key=<var>YOUR_DATA_COMMONS_API_KEY</var>&nodes=Source&property=%3C-typeOf</pre>
+    https://api.datacommons.org/v2/node?key=<var>YOUR_API_KEY</var>&nodes=Source&property=%3C-typeOf</pre>
     If you don't find your source here, you will need to define one.
 
 You define your source(s) in MCF. For example, let's say you get data from the International Olympic Committee (which is not in base Data Commons). You could define the following source:
@@ -371,7 +372,7 @@ ingestion_base /
 
 The config.json file would be as follows:
 
-```
+```json
 {
   "inputFiles": [
     {
@@ -425,7 +426,7 @@ ingestion_base /
 
 The config.json file could be as follows:
 
-```
+```json
 {
   "includeInputSubdirs": true,
   "inputFiles": [
@@ -475,7 +476,7 @@ my_import_directory /
 
 The `config.json `file would look like this:
 
-```
+```json
 {
   "includeInputSubdirs": true,
   "inputFiles": [

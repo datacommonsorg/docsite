@@ -3,23 +3,28 @@ layout: default
 title: Update your instance
 nav_exclude: true
 noindex: true
+include_scripts: 
+  - /assets/js/user-supplied-variables.js
+  - /assets/js/syntax_highlighting.js
 ---
 
 [TOC]
 
 {:.no_toc}
-# Update your instance {#update-your-instance}
+# Update your instance
+
+> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
 
 ## Update imported data or add new imports
 
 To update data you've already imported:
 
 1. If necessary, make changes to your schema MCF file(s). If you make changes to MCF files contained in an import that are referenced by other imports, see the note below.
-2. If necessary, make changes to your [`config.json` file(s)](#config) (e.g. to add new CSV files, new directories, etc.).
-3. [Upload the new/updated files to Cloud Storage](#upload).
-4. [Run the ingestion workflow](#workflow) as usual. 
+2. If necessary, make changes to your [`config.json` file(s)](data_prep.md#config) (e.g. to add new CSV files, new directories, etc.).
+3. [Upload the new/updated files to Cloud Storage](data_import.md#upload).
+4. [Run the ingestion workflow](data_import.md#workflow) as usual. 
 
-> **Note:** If your import depends on "shared" MCF files in a different import, you do not need to reingest the shared files unless they have changed. Conversely, if you do make changes to the shared files, you will also need to reingest all imports that depend on them. Be sure to run the ingestion command(s) correctly; see [Imports with dependencies](#dependencies) for details.
+> **Note:** If your import depends on "shared" MCF files in a different import, you do not need to reingest the shared files unless they have changed. Conversely, if you do make changes to the shared files, you will also need to reingest all imports that depend on them. Be sure to run the ingestion command(s) correctly; see [Imports with dependencies](data_import.md#dependencies) for details.
 
 ## Delete data
 
@@ -33,21 +38,21 @@ The general procedure for deleting data at the file level is as follows:
 
 1. For the relevant import, delete all nodes (statistical variables, entities, properties, statistical variable groups) from the schema MCF file(s) that pertain to the CSV observation file(s) you want to remove — _except_ the provenance definition. See below for examples.
 2. In the `config.json `file, remove the entries for the CSV files to remove. You may need to revise patterns to no longer match those files. See below for examples. 
-3. [Upload the new/updated files to Cloud Storage](#upload).
-4. [Run the ingestion workflow](#workflow) as usual.
+3. [Upload the new/updated files to Cloud Storage](data_import.md#upload).
+4. [Run the ingestion workflow](data_import.md#workflow) as usual.
 
 ### Examples
 
 #### Example 1: Delete all data from an import with a single MCF file
 
-For [example 1](#ex1) above, you would do the following:
+For [example 1](data_prep.md#ex1), you would do the following:
 
 * Delete all definitions from the `schema.mcf` file except the provenance. 
 * Remove the CSV input files from the `config.json` file. 
 
 The `config.json` would look like this:
 
-```
+```json
 {
   "inputFiles": [
     {
@@ -60,14 +65,14 @@ The `config.json` would look like this:
 
 #### Example 2: Delete all data from an import with 2 data-specific MCFs
 
-For [example 3](#ex3) above, you would do the following:
+For [example 3](data_prep.md#ex3) above, you would do the following:
 
 * Delete all the definitions from the MCF files in the subdirectories (`provenance1/schema1.mcf` and `provenance2/schema2.mcf`), except the provenances. 
 * Revise the input file patterns in `config.json` to only reference the MCF files.
 
 The `config.json` would look like this:
 
-```
+```json
 {
   "includeInputSubdirs": true,
   "inputFiles": [
@@ -85,7 +90,7 @@ The `config.json` would look like this:
 
 #### Example 3: Delete one CSV file from an import with 1 shared MCF 
 
-For [example 1](#ex1) above, let's assume you want to remove `smokers_single_entity.csv`.
+For [example 1](data_prep.md#ex1), let's assume you want to remove `smokers_single_entity.csv`.
 
 You would do the following:
 
@@ -94,7 +99,7 @@ You would do the following:
 
 The `config.json` file would look like this:
 
-```
+```json
 {
   "inputFiles": [
     {
@@ -118,14 +123,14 @@ The `config.json` file would look like this:
 
 #### Example 4: Delete 1 CSV file in an import with 1 shared MCF and 2 data-specific MCFs
 
-For [example 2](#ex2) above, let's assume you want to remove the file `single_entity_files/smokers_single_entity.csv`. To do so, you would:
+For [example 2](data_prep.md#ex2), let's assume you want to remove the file `single_entity_files/smokers_single_entity.csv`. To do so, you would:
 
 * Remove the file `single_entity_files/single_entity_schema.mcf`.
 * Remove the entry for `single_entity_files/smokers_single_entity.csv` in the `config.json` file.
 
 The config.json would look like this:
 
-```
+```json
 {
   "includeInputSubdirs": true,
   "inputFiles": [
@@ -164,7 +169,7 @@ To make deployment changes:
 4. Run `terraform apply`.
 5. If you have made data changes, rerun the data ingestion workflow, which automatically restarts the web service as well:
 
-  ```
+  ```shell
   uvx datacommons-cli ingest start
   ```
 
@@ -191,7 +196,7 @@ Terraform maintains state across the lifecycle of a deployment. For stateful and
     The safest way to ensure that all updates and future deployments do not set the variable incorrectly is to remove the resource from Terraform state tracking after it's created. After the first time you have created the reservation, do the following: 
 
 1. From your Terraform directory, run:
-    ```
+    ```shell
     terraform state rm module.stack.module.spanner[0].google_bigquery_reservation.default[0]
     terraform state rm module.stack.module.spanner[0].google_bigquery_reservation_assignment.project_assignment[0]
     ```
@@ -205,24 +210,24 @@ Data Commons Platform is under ongoing development, with new versions being rele
 To migrate your system to the latest version of the platform, follow this procedure:
 
 1. Go to your project's root directory:
-   <pre>cd <var>INSTANCE_NAME</var>
+   <pre>cd <span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>
    </pre>
 1. Back up your Terraform variables file:
-   ```
+   ```shell
    cp terraform.tfvars terraform.tfvars.backup
    ```
 1. Re-generate the Terraform files for the target version:
     <pre>
     uvx datacommons-cli@<var>VERSION_NUMBER</var> admin init \
-    --project-id "<var>PROJECT_ID</var>" \
-    --instance-name "<var>INSTANCE_NAME></var>" \
+    --project-id "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
+    --instance-name "<span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>" \
     --force </pre>
 1. Restore your variables file from backup:
-   ```
+   ```shell
    cp terraform.tfvars.backup terraform.tfvars
    ```
 1. Optionally, verify that all version tags are updated to the correct number:
-    ```
+    ```shell
     cat variables.tf
     cat terraform.tfvars 
     ```

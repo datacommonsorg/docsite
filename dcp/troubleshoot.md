@@ -3,19 +3,22 @@ layout: default
 title: Troubleshoot problems
 nav_exclude: true
 noindex: true
+include_scripts: /assets/js/user-supplied-variables.js
 ---
 
 [TOC]
 
 {:.no_toc}
-# Troubleshoot problems {#troubleshoot-problems}
+# Troubleshoot problems
 
 In general, to troubleshoot any GCP problems, you should go to the Cloud Console for the component causing issues, and find the **Observability** > **Logs** page to look for service errors.
+
+> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
 
 ## Ingestion workflow fails
 
 1. Go to the link for the workflow output by the  `datacommons ingest start` command.
-2. Under **State**, find the stage that has failed. If it fails on **run_preprocessing**, go to the [Cloud Console Batch ](https://console.cloud.google.com/) page for your project, and under **Job list**, look up the processing job. Each workflow run creates a new job named <code><var>INSTANCE_NAME</var>-prep-<var>TIMESTAMP</var></code>.
+2. Under **State**, find the stage that has failed. If it fails on **run_preprocessing**, go to the [Cloud Console Batch ](https://console.cloud.google.com/) page for your project, and under **Job list**, look up the processing job. Each workflow run creates a new job named <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-prep-<var>TIMESTAMP</var></code>.
 3. Select the **Logs** tab and check for any errors. Expand the error entries to get more details. See below for solutions to common Data Commons data job errors.
 
 ### 401: Unauthorized
@@ -33,7 +36,7 @@ This normally indicates a missing, invalid, or expired API key. To check if the 
     ```
     {"message": "UNAUTHENTICATED: Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API. Visit apikeys.datacommons.org to create or manage API keys.", "code": 401}
     ```
-2. To look up your key, go to [apikeys.datacommons.org](http://apikeys.datacommons.org), sign in, select your app, and check the status of the key. If it has expired, refresh it. 
+2. To look up your key, go to [apikeys.datacommons.org](http://apikeys.datacommons.org){: target="_blank"}, sign in, select your app, and check the status of the key. If it has expired, refresh it. 
 3. Copy the key to the `auth-dc-api-key` variable in your `terraform.tfvars` file and rerun `terraform apply`.
 4. Rerun `datacommons ingest start`.
 
@@ -63,7 +66,7 @@ If your Cloud Workflow fails with the following error:
 
 This likely indicates that the BigQuery reservation for your project was deleted from the Terraform deployment where it was originally set, or was never created, in the location where the ingestion workflow runs. To verify that this is the problem:
 
-1. Go to <code>https://console.cloud.google.com/bigquery?project=<var>YOUR_PROJECT_ID.</var></code>
+1. Go to <code>https://console.cloud.google.com/bigquery?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
 2. From the left panel, select **Workload management**.
 3. From the **Capacity Management** tab, from the **Location** menu, select a location.
 4. Under **Slot Reservations**, you should see a default entry. If you don't, check all the other locations. If there is no reservation, you need to create one: In your Terraform configuration, set `spanner_create_bigquery_reservation = true` and rerun `terraform apply`. Also see [Handle resource creation variables](update.md#handle) for further details.

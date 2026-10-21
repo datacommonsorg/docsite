@@ -3,6 +3,7 @@ layout: default
 title: Query your data with SDMX
 nav_exclude: true
 noindex: true
+include_scripts: /assets/js/syntax_highlighting.js
 ---
 
 [TOC]
@@ -60,7 +61,7 @@ curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/availability/datafl
 
 ##### Response
 
-```
+```json
 {
    "data" : {
       "dataConstraints" : [
@@ -121,7 +122,7 @@ https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/availability/dataflow/DC/DF_
 
 ##### Response
 
-```
+```json
 {
    "data" : {
       "dataConstraints" : [
@@ -181,7 +182,7 @@ curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/data/dataflow/DC/DF
 
 ##### Response
 
-```
+```csv
 STRUCTURE,STRUCTURE_ID,ACTION,variableMeasured,country,gender,unit,measurementMethod,observationPeriod,provenance,TIME_PERIOD,OBS_VALUE,scalingFactor,facetId
 dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/ALB,Female,NotApplicable,NotApplicable,NotApplicable,UN_WHO,2018,4.5,,13905847005863890490
 dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/ALB,Male,NotApplicable,NotApplicable,NotApplicable,UN_WHO,2018,35.7,,13905847005863890490
@@ -199,7 +200,7 @@ curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/data/dataflow/DC/DF
 
 ##### Response
 
-```
+```csv
 STRUCTURE,STRUCTURE_ID,ACTION,variableMeasured,country,gender,unit,measurementMethod,observationPeriod,provenance,TIME_PERIOD,OBS_VALUE,scalingFactor,facetId
 dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/ALB,Female,NotApplicable,NotApplicable,NotApplicable,UN_WHO,2018,4.5,,13905847005863890490
 ```
@@ -216,7 +217,7 @@ curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/data/dataflow/DC/DF
 
 ##### Response
 
-```
+```csv
 STRUCTURE,STRUCTURE_ID,ACTION,variableMeasured,country,gender,unit,measurementMethod,observationPeriod,provenance,TIME_PERIOD,OBS_VALUE,scalingFactor,facetId
 dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/ALB,Female,NotApplicable,NotApplicable,NotApplicable,UN_WHO,2018,4.5,,13905847005863890490
 ```

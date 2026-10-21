@@ -3,6 +3,9 @@ layout: default
 title: Install Data Commons Platform
 nav_exclude: true
 noindex: true
+include_scripts: 
+  - /assets/js/user-supplied-variables.js
+  - /assets/js/syntax_highlighting.js
 ---
 
 [TOC]
@@ -81,20 +84,9 @@ This step does the following:
 
 If you're happy with the settings as they are, you can skip ahead to step 4. More likely, you will want to change some of the default settings in step 3 before proceeding.
 
-## Step 2a: (Optional) Set common variable values for this page
+## Step 2a: (Optional) Set common variable values for all pages in this doc set
 
-If you would like to more easily copy and paste commands from this page, supply the values you've provided for Terraform for the following fields. The page will automatically populate all occurrences.
-
-<label for="user">User account:</label>
-<input type="text" id="user" class="dyn-input" data-var="user" placeholder="Your Google user account" />
-<label for="projectId">GCP project ID:</label>
-<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
-<br/>
-<label for="instance-name">Data Commons instance name:</label>
-<input type="text" id="instanceName" class="dyn-input" data-var="instance_name" placeholder="Your Data Commons instance name" />
-<br/>
-<label for="region">Region:</label>
-<input type="text" id="region" class="dyn-input" data-var="region" placeholder="Your GCP region" />
+If you would like to more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. The page will automatically populate all occurrences.
 
 ## Step 3: Set/edit optional Terraform variables
 
@@ -216,7 +208,7 @@ To verify that your account has been added as a principal to the service account
 
 From the directory where your Terraform configuration is stored, run the following command:
 
-```
+```shell
 uvx datacommons-cli admin init-db
 ```
 
@@ -227,12 +219,12 @@ When it completes, verify that the tables are created correctly:
 Go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/databases/<var>DATABASE</var>/details/tables?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>
 
 * Your <code><var>SPANNER_INSTANCE</var> is set by the Terraform `spanner_instance_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-instance</code>. To look it up, from your Terraform directory, you can run:
-  ```
+  ```shell
     terraform output spanner_instance_id
   ```
 * The _`DATABASE`_ is set by the Terraform `spanner_database_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-db.</code> To look it up, from your Terraform directory, you can run:
 
-  ```
+  ```shell
     terraform output spanner_database_id
   ```
   You should see a list of tables at the bottom of the page.
