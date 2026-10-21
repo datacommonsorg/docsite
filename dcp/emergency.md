@@ -6,7 +6,8 @@ noindex: true
 include_scripts: /assets/js/user-supplied-variables.js
 ---
 
-[TOC]
+* TOC
+{:toc}
 
 {:.no_toc}
 # Emergency procedures

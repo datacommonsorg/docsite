@@ -5,7 +5,8 @@ nav_exclude: true
 noindex: true
 ---
 
-[TOC]
+* TOC
+{:toc}
 
 {:.no_toc}
 # About Data Commons Platform

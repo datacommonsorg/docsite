@@ -8,7 +8,8 @@ include_scripts:
   - /assets/js/syntax_highlighting.js
 ---
 
-[TOC]
+* TOC
+{:toc}
 
 {:.no_toc}
 # Update your instance
