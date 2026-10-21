@@ -14,7 +14,6 @@ include_scripts:
 {:.no_toc}
 # Update your instance
 
-> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
 
 ## Update imported data or add new imports
 
@@ -196,7 +195,7 @@ Terraform maintains state across the lifecycle of a deployment. For stateful and
     2. Make any other changes to Terraform variables.
     3. Rerun `terraform apply`.
 
-* `spanner_create_bigquery_reservation`. This variable is similar to the above, but has additional complications because there can only be a single capacity reservation shared* across an entire project* in the same region. If you try to create additional reservations in the same project, the ingestion workflows will fail. However, like the variables above, if you set it to `false` on the next update, the resource will be destroyed for all deployments.
+* `spanner_create_bigquery_reservation`. This variable is similar to the above, but has additional complications because there can only be a single capacity reservation shared *across an entire project* in the same region. If you try to create additional reservations in the same project, the ingestion workflows will fail. However, like the variables above, if you set it to `false` on the next update, the resource will be destroyed for all deployments.
 
     The safest way to ensure that all updates and future deployments do not set the variable incorrectly is to remove the resource from Terraform state tracking after it's created. After the first time you have created the reservation, do the following: 
 
@@ -205,8 +204,8 @@ Terraform maintains state across the lifecycle of a deployment. For stateful and
     terraform state rm module.stack.module.spanner[0].google_bigquery_reservation.default[0]
     terraform state rm module.stack.module.spanner[0].google_bigquery_reservation_assignment.project_assignment[0]
     ```
-3. Set `spanner_create_bigquery_reservation = false` before running `terraform apply` again.
-4. In any new deployments in the same project and region, set the variable to `false` from the very start.
+1. Set `spanner_create_bigquery_reservation = false` before running `terraform apply` again.
+1. In any new deployments in the same project and region, set the variable to `false` from the very start.
 
 ## Upgrade your instance to a new version
 

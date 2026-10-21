@@ -199,7 +199,7 @@ dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/A
 ```
 
 {:.no_toc}
-##### Example 2: Get all the observations for a specific property for 2 entities (places)
+#### Example 2: Get all the observations for a specific property for 2 entities (places)
 
 This example gets all observations about females in Albania, for a multi-entity variable `who:Ratio_CigaretteSmoking_Adults_ByGender`.
 

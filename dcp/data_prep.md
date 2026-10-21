@@ -12,7 +12,7 @@ include_scripts: /assets/js/syntax_highlighting.js
 {:.no_toc}
 # Prepare your data
 
-The following procedures assume that you are familiar with defining nodes in MCF, structuring CSV file data, and the structure of the `config.jso`n file. If not, please familiarize yourself with [Prepare your own data](https://docs.datacommons.org/custom_dc/custom_data.html) in the Custom Data Commons documentation before proceeding.
+The following procedures assume that you are familiar with defining nodes in MCF, structuring CSV file data, and the structure of the `config.json` file. If not, please familiarize yourself with [Prepare your own data](https://docs.datacommons.org/custom_dc/custom_data.html) in the Custom Data Commons documentation before proceeding.
 
 If you'd like to just start with some sample data, you can download the files from [https://github.com/datacommonsorg/datacommons/tree/main/samples/](https://github.com/datacommonsorg/datacommons/tree/main/samples/){: target="_blank"} and skip to [Import your data](data_import.md).
 
@@ -38,7 +38,7 @@ When you organize your files into directories, keep in mind the following:
 
 Let's look at a few illustrative examples representing possible import structures and patterns. The methods for configuring these structures are provided in [Step 6: Write your config.json file](#config).
 
-> **Note:** In the following examples, `ingestion_base` is the equivalent of `ingestion/input` or a custom directory you specified in the` ingestion_input_path` Terraform variable. You will store your files in at least one subdirectory of this path.
+> **Note:** In the following examples, `ingestion_base` is the equivalent of `ingestion/input` or a custom directory you specified in the `ingestion_input_path` Terraform variable. You will store your files in at least one subdirectory of this path.
 
 {:.no_toc}
 ### Example 1: Single import, single provenance
