@@ -14,12 +14,10 @@ include_scripts: /assets/js/user-supplied-variables.js
 
 In general, to troubleshoot any GCP problems, you should go to the Cloud Console for the component causing issues, and find the **Observability** > **Logs** page to look for service errors.
 
-> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
-
 ## Ingestion workflow fails
 
 1. Go to the link for the workflow output by the  `datacommons ingest start` command.
-2. Under **State**, find the stage that has failed. If it fails on **run_preprocessing**, go to the [Cloud Console Batch ](https://console.cloud.google.com/) page for your project, and under **Job list**, look up the processing job. Each workflow run creates a new job named <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-prep-<var>TIMESTAMP</var></code>.
+2. Under **State**, find the stage that has failed. If it fails on **run_preprocessing**, go to the [Cloud Console Batch ](https://console.cloud.google.com/) page for your project, and under **Job list**, look up the processing job. Each workflow run creates a new job named <var>INSTANCE</var>-prep-<var>TIMESTAMP</var></code>.
 3. Select the **Logs** tab and check for any errors. Expand the error entries to get more details. See below for solutions to common Data Commons data job errors.
 
 ### 401: Unauthorized
@@ -67,7 +65,7 @@ If your Cloud Workflow fails with the following error:
 
 This likely indicates that the BigQuery reservation for your project was deleted from the Terraform deployment where it was originally set, or was never created, in the location where the ingestion workflow runs. To verify that this is the problem:
 
-1. Go to <code>https://console.cloud.google.com/bigquery?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
+1. Go to [https://console.cloud.google.com/bigquery](https://console.cloud.google.com/bigquery){: target="_blank"} for your project.
 2. From the left panel, select **Workload management**.
 3. From the **Capacity Management** tab, from the **Location** menu, select a location.
 4. Under **Slot Reservations**, you should see a default entry. If you don't, check all the other locations. If there is no reservation, you need to create one: In your Terraform configuration, set `spanner_create_bigquery_reservation = true` and rerun `terraform apply`. Also see [Handle resource creation variables](update.md#handle) for further details.

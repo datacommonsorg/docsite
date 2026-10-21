@@ -212,6 +212,15 @@ Terraform maintains state across the lifecycle of a deployment. For stateful and
 
 Data Commons Platform is under ongoing development, with new versions being released frequently, as well as database schema changes that require migration. All container images and the Dataflow template are versioned with the same numbering system, represented as a tag at the end of the image name; for example, <code><var>IMAGE_NAME</var>:1.1.4</code>.
 
+If you'd like to copy and paste the commands below directly to a command line interface, provide the values for the following variables; this will automatically populate all occurrences.
+
+<label for="projectId">Google Cloud Platform project ID:</label>
+<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
+<br/>
+<label for="namespace">Data Commons Platform instance:</label>
+<input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<br/>
+
 To migrate your system to the latest version of the platform, follow this procedure:
 
 1. Go to your project's root directory:

@@ -12,7 +12,13 @@ include_scripts: /assets/js/user-supplied-variables.js
 {:.no_toc}
 # Emergency procedures
 
-> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
+## (Optional) Set variable values for this page
+
+If you'd like to copy and paste commands directly from this page to a command line interface, provide the value of the following variable; this will automatically populate all occurrences on this page.
+
+<label for="instance">Data Commons Platform instance:</label>
+<input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<br/>
 
 ## Restore database from backup {#restore}
 

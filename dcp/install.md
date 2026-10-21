@@ -87,9 +87,6 @@ This step does the following:
 
 If you're happy with the settings as they are, you can skip ahead to step 4. More likely, you will want to change some of the default settings in step 3 before proceeding.
 
-## Step 2a: (Optional) Set common variable values for all pages in this doc set
-
-If you would like to more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. The page will automatically populate all occurrences.
 
 ## Step 3: Set/edit optional Terraform variables
 
@@ -114,6 +111,20 @@ Here are some variables you may wish to modify:
 | `stateful_deletion_protection`  | `false` | Determines whether you will be allowed to destroy your "stateful" resources which are Spanner, and the artifacts GCS bucket. We recommend setting this to `true` for production. | 
 | `stateless_deletion_protection` |  `false` | Determines whether you will be allowed to `destroy` your "stateless" resources which are the resources that can be re-spun up with no data loss (Cloud Run Services and Jobs, Redis, Workflows). We recommend setting this to true for production. | 
 | `spanner_version_retention_period` | `24h` | The Spanner database is configured to retain data for this period. Within this time frame, all mutations are kept and there is the ability to do point-in-time-restore.<br/>It also provides the ability to query Spanner at any timestamp within the time frame.This means that data can be queried even during ingestion of large imports, without the risk of serving from a corrupted database while data is being modified.<br/>In case of failures mid-ingestion, you have the time of this retention period to resolve it before your requests start to serve data on  a potentially corrupted database. (See [Restore database from backup](emergency.md#restore) for details.)<br/>You can increase the value up to 7 days, but it does incur additional cost. To learn more, see [Point-in-time recovery (PITR) overview](https://docs.cloud.google.com/spanner/docs/pitr){: target="_blank"}. |
+
+## (Optional) Step 3a: Set variable values for this page
+
+If you'd like to copy and paste commands directly from this page to a command line interface, provide the values for the following variables; this will automatically populate all occurrences on this page.
+
+<label for="projectId">Google Cloud Platform project ID:</label>
+<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
+<br/>
+<label for="user">Google user account:</label>
+<input type="text" id="user" class="dyn-input" data-var="user" placeholder="Your Google user account" />
+<br/>
+<label for="instance">Data Commons Platform instance:</label>
+<input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<br/>
 
 ## Step 4: Run the Terraform deployment
 

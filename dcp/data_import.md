@@ -14,7 +14,14 @@ include_scripts:
 {:.no_toc}
 # Import your data
 
-> **Tip:**: To more easily copy and paste commands from from this page, go to [Auto-populate variables](variables.md) to supply the values you've provided for Terraform. This page will automatically populate all occurrences.
+
+## (Optional) Step 0: Set variable values for this page
+
+If you'd like to copy and paste commands directly from this page to a command line interface, provide the value of the following variable; this will automatically populate all occurrences on this page.
+
+<label for="storageBucket">Google Cloud Storage bucket name:</label>
+<input type="text" id="storageBucket" class="dyn-input" data-var="storage_bucket" placeholder="Your GCS bucket" />
+<br/>
 
 ## Step 1: Upload your data files {#upload}
 
