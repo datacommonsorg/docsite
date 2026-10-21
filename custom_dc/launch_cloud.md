@@ -7,6 +7,7 @@ include_scripts: /assets/js/customdc-doc-tabs.js
 ---
 
 {: .no_toc}
+
 # Launch your Data Commons
 
 * TOC
