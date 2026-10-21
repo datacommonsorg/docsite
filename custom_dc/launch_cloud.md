@@ -3,7 +3,9 @@ layout: default
 title: Launch your Data Commons
 nav_order: 10
 parent: Build your own Data Commons
-include_scripts: /assets/js/customdc-doc-tabs.js
+include_scripts: 
+  - /assets/js/user-supplied-variables.js
+  - /assets/js/customdc-doc-tabs.js
 ---
 
 {: .no_toc}
@@ -279,7 +281,7 @@ Google Cloud Run services use [auto-scaling](https://cloud.google.com/run/docs/a
 
 We recommend that you use a caching layer to improve the performance of your database. We recommend [Google Cloud Redis Memorystore](https://cloud.google.com/memorystore){: target="\_blank"}, a fully managed solution, which will boost the performance of both natural-language searches and regular database lookups in your site. Redis Memorystore runs as a standalone instance in a Google-managed virtual private cloud (VPC), and connects to your VPC network ("default" or otherwise) via [direct peering](https://cloud.google.com/vpc/docs/vpc-peering){: target="\_blank"}. Your Cloud Run service and job connect to the instance using a [Direct VPC egress](https://cloud.google.com/run/docs/configuring/vpc-direct-vpc){: target="\_blank"}.
 
-The Terraform scripts set up a single Redis instance called <code><var>NAMESPACE</var>-datacommons-redis-instance</code>.
+The Terraform scripts set up a single Redis instance called <code><span class="dyn-var" data-var="namespace">Your DC namespace</span>-datacommons-redis-instance</code>.
 
 To configure caching using Terraform:
 

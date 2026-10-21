@@ -17,6 +17,9 @@
   {% if page.url == "/datasets/" or page.parent == "Data Sources" %}
   <script src="https://public.flourish.studio/resources/embed.js"></script>
   {% endif %}
+  {% if page.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {% endif %}
 </head>
 <body>
   <div id="main">
