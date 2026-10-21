@@ -66,12 +66,14 @@ This step does the following:
     [--no-tf-remote-state] | [--tf-state-bucket "<var>BUCKET_NAME</var>"] \
     [--tf-state-bucket-location "<var>REGION</var>" ]
     </pre>
+
     * _`INSTANCE_NAME`_ should be a meaningful name that will be used as a prefix for various resource names. If you intend to set up multiple deployments (e.g. "staging", "production", etc.), it's a good idea to include the environment in the name.
 
         > **WARNING:** You _must_ provide a name that is different from any Terraform namespaces you have used previously, to avoid destroying or corrupting existing components.
 
     * To reuse an existing bucket, or to create a new bucket with a specified name, provide a bucket name with `–-tf-state-bucket`. If you omit this flag, the tool creates a new bucket using the format <code><var>INSTANCE_NAME</var>-datacommons-data-<var>PROJECT_ID</var></code>.
-    * If you are creating a new bucket, by default it is created in the `US` location, which is a [multi-region zone](https://docs.cloud.google.com/storage/docs/locations#location-dr){: target="_blank"}. To specify an alternate location, use `--tf-state-bucket-location`. (See [Bucket locations | Cloud Storage](https://docs.cloud.google.com/storage/docs/locations){: target="_blank"} for supported locations.)
+
+    * If you are creating a new bucket, by default it is created in the `US` location, which is a [multi-region zone](https://docs.cloud.google.com/storage/docs/locations#location-dr){: target="_blank"}. To specify an alternate location, use `--tf-state-bucket-location`. (See [Bucket locations -- Cloud Storage](https://docs.cloud.google.com/storage/docs/locations){: target="_blank"} for supported locations.)
 
     A new subdirectory is created named according to your instance name, and a basic `terraform.tfvars` file is created with required variables set. 
 
@@ -168,26 +170,25 @@ To run these commands, your user account must have the following Spanner IAM rol
 
 You can grant these roles as follows:
 
-1. Ensure you have authenticated as in [step 1](#step1).
-1. From any directory, run the following commands:
-  <pre>
-  gcloud projects add-iam-policy-binding "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
-  --member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
-  --role="roles/spanner.databaseAdmin"
+From any directory, run the following commands:
 
-  gcloud projects add-iam-policy-binding "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
-  --member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
-  --role="roles/spanner.databaseUser"
-  </pre>
+<pre>
+gcloud projects add-iam-policy-binding "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
+--member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
+--role="roles/spanner.databaseAdmin"
+
+gcloud projects add-iam-policy-binding "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
+--member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
+--role="roles/spanner.databaseUser"
+</pre>
 
 ### 2. Permissions for workflow execution
 
 Terraform creates a project-wide [service account](https://docs.cloud.google.com/iam/docs/service-account-overview){: target="_blank"} to run the data ingestion workflow:
-<code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-ing-wf-sa@<span class="dyn-var" data-var="project_id">Your GCP project ID</span>.iam.gserviceaccount.com</code>.
+<code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ing-wf-sa@<span class="dyn-var" data-var="project_id">Your GCP project ID</span>.iam.gserviceaccount.com</code>.
 
 To run the `datacommons admin ingest start` command, you need to impersonate this service account using your own credentials. To do so, create an IAM binding giving your account the Token Creator role:
 
-1. Ensure you have authenticated as in [step 1](#step1).
 1. Optionally, from your Terraform directory, run the following to get the name of the service account:
    ```shell
    terraform output ingestion_workflow_service_account_email
@@ -202,7 +203,7 @@ To run the `datacommons admin ingest start` command, you need to impersonate thi
 To verify that your account has been added as a principal to the service account, you can look up the details as follows:
 
 1. Go to <code>https://console.cloud.google.com/iam-admin/serviceaccounts?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
-1. From the list of service accounts, click on the <code>span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-ing-wf</code> account and select **Principals with access**. You should see your user account in the list.
+1. From the list of service accounts, click on the <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ing-wf</code> account and select **Principals with access**. You should see your user account in the list.
 
 ## Step 6: Create the Spanner schema and tables
 
@@ -218,11 +219,12 @@ When it completes, verify that the tables are created correctly:
 
 Go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/databases/<var>DATABASE</var>/details/tables?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>
 
-* Your <code><var>SPANNER_INSTANCE</var> is set by the Terraform `spanner_instance_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-instance</code>. To look it up, from your Terraform directory, you can run:
+* Your <code><var>SPANNER_INSTANCE</var></code> is set by the Terraform `spanner_instance_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-instance</code>. To look it up, from your Terraform directory, you can run:
+
   ```shell
     terraform output spanner_instance_id
   ```
-* The _`DATABASE`_ is set by the Terraform `spanner_database_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-db.</code> To look it up, from your Terraform directory, you can run:
+* The _`DATABASE`_ is set by the Terraform `spanner_database_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-db.</code> To look it up, from your Terraform directory, you can run:
 
   ```shell
     terraform output spanner_database_id

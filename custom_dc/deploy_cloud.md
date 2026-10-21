@@ -121,7 +121,7 @@ All of the deployment options you can configure are listed in [deploy/terraform-
 | `gcs_data_bucket_location` | `US` | Specifies where your uploaded data is stored. |
 | `gcs_data_bucket_input_folder` | `input` | The GCS folder to which you will upload your data and config files. If you have subfolders, you create these manually. |
 | `gcs_data_bucket_output_folder` | `output` | The GCS folder where NL embeddings will be stored. |
-| `mysql_instance_name` | <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> | Cloud SQL instance name. You can override the `datacommons-mysql-instance` portion of the name. |
+| `mysql_instance` | <code><var>NAMESPACE</var>-datacommons-mysql-instance</code> | Cloud SQL instance name. You can override the `datacommons-mysql-instance` portion of the name. |
 | `mysql_database_name` | `datacommons` | The MySQL database managed by Cloud SQL. |
 | `mysql_user` | `datacommons` | The default user of the MySQL database. |
 | `dc_web_service_image` | `gcr.io/datcom-ci/datacommons-services:stable` | Specifies the image for the Docker services container. You will want to change this to a custom image once you have created it in [Upload a custom Docker image](#upload). |

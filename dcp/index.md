@@ -8,7 +8,7 @@ noindex: true
 [TOC]
 
 {:.no_toc}
-# About Data Commons Platform {#architecture}
+# About Data Commons Platform
 
 The following diagram shows the architecture of Data Commons Platform.
 

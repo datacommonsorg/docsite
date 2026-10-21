@@ -210,7 +210,7 @@ Data Commons Platform is under ongoing development, with new versions being rele
 To migrate your system to the latest version of the platform, follow this procedure:
 
 1. Go to your project's root directory:
-   <pre>cd <span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>
+   <pre>cd <span class="dyn-var" data-var="instance">Your Data Commons instance name</span>
    </pre>
 1. Back up your Terraform variables file:
    ```shell
@@ -220,7 +220,7 @@ To migrate your system to the latest version of the platform, follow this proced
     <pre>
     uvx datacommons-cli@<var>VERSION_NUMBER</var> admin init \
     --project-id "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
-    --instance-name "<span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>" \
+    --instance-name "<span class="dyn-var" data-var="instance">Your Data Commons instance name</span>" \
     --force </pre>
 1. Restore your variables file from backup:
    ```shell

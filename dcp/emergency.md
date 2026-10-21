@@ -20,15 +20,15 @@ Many conditions can cause your database to get into a corrupted state. These inc
 * Malformed input. 
 * Partial ingestion workflow completions. Data corruption can occur in these conditions:
     * The Dataflow component of the ingestion workflow has started deletion stages but did not complete write stages. To check for this condition:
-        1. Go to [https://console.cloud.google.com/workflows/workflow/](https://console.cloud.google.com/workflows/workflow/){: target="_blank"} for your project and select your workflow from the list. It is named <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-ingestion-workflow</code>. 
+        1. Go to [https://console.cloud.google.com/workflows/workflow/](https://console.cloud.google.com/workflows/workflow/){: target="_blank"} for your project and select your workflow from the list. It is named <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ingestion-workflow</code>. 
         2. If a recent workflow execution is listed as **failed**, click on the link to view details.
-        3. In the **Visualization** panel, check the status of the `Run Postprocessing` stage.
-    * The `Run Postprocessing` stage of the workflow did not complete. To check for this condition:
-        4. Go to [https://console.cloud.google.com/dataflow/jobs/](https://console.cloud.google.com/dataflow/jobs/){: target="_blank"} for your project and select your job from the list. It is named <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-<var>IMPORT_NAME</var>-<var>NNNNNNNNNN</var></code>. 
-        5. Click the **Job Graph** link to view the status of the job stages. Look for the `Delete Edges` and `Delete Observations` stages.
-        6. If either started, check the status of the `Write Edges` and `Write Observations` stages.
+        3. In the **Visualization** panel, check the status of the **Run Postprocessing** stage.
+    * The Run Postprocessing stage of the workflow did not complete. To check for this condition:
+        4. Go to [https://console.cloud.google.com/dataflow/jobs/](https://console.cloud.google.com/dataflow/jobs/){: target="_blank"} for your project and select your job from the list. It is named <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-<var>IMPORT_NAME</var>-<var>NNNNNNNNNN</var></code>. 
+        5. Click the **Job Graph** link to view the status of the job stages. Look for the **Delete Edges** and **Delete Observations** stages.
+        6. If either started, check the status of the **Write Edges** and `Write Observations` stages.
 
-However, Data Commons will not start serving such corrupted data for the duration of the Spanner retention period since the last import. By default, this is set to 6 hours. (You can adjust it with the Terraform `spanner_version_retention_period variable`.) If you are able to rerun the data ingestion workflow within that period, there will not be any issue: Data Commons will pick up the new data as soon as it's imported.
+However, Data Commons will not start serving such corrupted data for the duration of the Spanner retention period since the last import. By default, this is set to 24 hours. (You can adjust it with the Terraform `spanner_version_retention_period variable`.) If you are able to rerun the data ingestion workflow within that period, there will not be any issue: Data Commons will pick up the new data as soon as it's imported.
 
 However, if you are *not* able to successfully reimport data before the retention period expires, you will incur data loss and/or corruption. To mitigate data loss and/or corruption if it has occurred, you can restore from a backup with the last known good data: by default, Spanner does daily full backups. To restore from a backup:
 
@@ -43,7 +43,7 @@ If you import data more frequently than once a day, you will need to create manu
 
 If you cancel the ingestion workflow (accidentally or otherwise) after it has gone into the "acquire lock" or later stage, you won't be able to restart it because the Spanner database is locked. To release the lock, you can use this manual procedure:
 
-1. Go to the Cloud Console Run service page for the ingestion helper service. It is called <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-ingestion-helper</code>.
+1. Go to the Cloud Console Run service page for the ingestion helper service. It is called <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ingestion-helper</code>.
 2. Click on **Observability** > **Logs**.
 3. Look for a log entry that looks like the following (you can search for the text "Lock is currently held by" or look for a yellow warning icon):
     ```

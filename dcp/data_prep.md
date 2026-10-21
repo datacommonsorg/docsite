@@ -11,9 +11,9 @@ include_scripts: /assets/js/syntax_highlighting.js
 {:.no_toc}
 # Prepare your data
 
-The following procedures assume that you are familiar with defining nodes in MCF, structuring CSV file data, and the structure of the config.json file. If not, please familiarize yourself with [Prepare your own data](https://docs.datacommons.org/custom_dc/custom_data.html) in the Custom Data Commons documentation before proceeding.
+The following procedures assume that you are familiar with defining nodes in MCF, structuring CSV file data, and the structure of the `config.jso`n file. If not, please familiarize yourself with [Prepare your own data](https://docs.datacommons.org/custom_dc/custom_data.html) in the Custom Data Commons documentation before proceeding.
 
-If you'd like to just start with some sample data, you can download the files from [https://github.com/datacommonsorg/datacommons/tree/main/samples/OECD_wage_data](https://github.com/datacommonsorg/datacommons/tree/main/samples/OECD_wage_data){: target="_blank"} and skip to [Import your data](data_import.md).
+If you'd like to just start with some sample data, you can download the files from [https://github.com/datacommonsorg/datacommons/tree/main/samples/](https://github.com/datacommonsorg/datacommons/tree/main/samples/){: target="_blank"} and skip to [Import your data](data_import.md).
 
 ## Step 1: Decide on a file and directory structure for your data
 

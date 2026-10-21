@@ -20,17 +20,14 @@ include_scripts:
 In this step, you upload your CSV, MCF and `config.json` files to a new or existing Google Cloud Storage bucket.
 
 > **Note:** The artifacts bucket enforces public access prevention and uniform bucket-level access. To upload data files or inspect artifacts, individual users or operators must be granted either the Storage Object User (`roles/storage.objectUser`) or Storage Object Admin (`roles/storage.objectAdmin`) role directly on the bucket (or project).
->
 > If you need to grant this permission to a user, run the following command:
-> ```shell
-> gcloud storage buckets add-iam-policy-binding gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span> \
+> <pre>gcloud storage buckets add-iam-policy-binding gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span> \
 >   --member="user:<var>USER_EMAIL</var>" \
->   --role="roles/storage.objectUser"
-> ```
+>   --role="roles/storage.objectUser" </pre>
 
 If you created a new bucket:
 
-* The name is set by the Terraform `storage_artifacts_bucket_name` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance_name">Your Data Commons instance name</span>-dc-artifacts-<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
+* The name is set by the Terraform `storage_artifacts_bucket_name` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-artifacts-<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
 * The <code><var>INGESTION_BASE</var></code> is set by the Terraform `ingestion_input_path` variable. If you didn't set this explicitly, the default is `ingestion/input`.
 
 To look up your bucket name and ingestion base folder name, from your Terraform directory, run:
