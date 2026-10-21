@@ -3,13 +3,10 @@ layout: default
 title: Launch your Data Commons
 nav_order: 10
 parent: Build your own Data Commons
-include_scripts: 
-  - /assets/js/user-supplied-variables.js
-  - /assets/js/customdc-doc-tabs.js
+include_scripts: /assets/js/customdc-doc-tabs.js
 ---
 
 {: .no_toc}
-
 # Launch your Data Commons
 
 * TOC
