@@ -40,6 +40,7 @@ Let's look at a few illustrative examples representing possible import structure
 
 > **Note:** In the following examples, `ingestion_base` is the equivalent of `ingestion/input` or a custom directory you specified in the` ingestion_input_path` Terraform variable. You will store your files in at least one subdirectory of this path.
 
+{:.no_toc}
 ### Example 1: Single import, single provenance
 
 A single import with a single provenance can have all CSV files in the same directory, or split up into several subdirectories. All files are ingested together as a self-contained import. 
@@ -59,6 +60,7 @@ ingestion_base /
          |- config.json 
 ```
 
+{:.no_toc}
 ### Example 2: Single import, multiple provenances
 
 If you have data files from multiple provenances, it's a good idea to keep them in separate directories. Here's an example of a single import consisting of 2 provenances. In this case, all files are ingested as a single import during a workflow run.
@@ -75,6 +77,8 @@ ingestion_base/
         |– data2.csv
         |- prov2_schema.mcf
 ```
+
+{:.no_toc}
 ### Example 3: Multiple imports, one provenance per import
 
 In this case, each import corresponds to a single provenance. When you run a workflow, you can select whether to import #1 or #2 or both.
@@ -91,6 +95,7 @@ ingestion_base /
     |– data2.csv
 ```
 
+{:.no_toc}
 ### Example 4: Single schema-only import, multiple data imports {#example4}
 
 In this example, the MCF file is shared across multiple imports.
@@ -357,6 +362,7 @@ Here is the general structure of the file:
 
 In the following examples, all files constitute a single import.
 
+{:.no_toc}
 #### Example 1: 1 shared MCF file, mixed-entity CSV files, single provenance {#ex1}
 
 This uses the MCF and CSV examples listed above. There is a single MCF file that defines all nodes (variables, provenances, statvar groups) for all observations. Let's say the the files are organized into the same directory, as follows:
@@ -405,6 +411,7 @@ The config.json file would be as follows:
 }
 ```
 
+{:.no_toc}
 #### Example 2: 1 shared MCF file, 2 specific MCF files, mixed-entity CSV files, 1 provenance {#ex2}
 
 In this example, we imagine this scenario, which is a good design pattern:
@@ -460,6 +467,7 @@ The config.json file could be as follows:
 }
 ```
 
+{:.no_toc}
 #### Example 3: 2 specific MCF files, 2 single-entity CSV files, 2 provenances, 2 subdirectories {#ex3}
 
 This example is similar to the one above, except it uses different provenances instead of different types of variables. We'll imagine that there are no shared nodes, so no shared, top-level MCF file. Instead, there is one MCF file for one provenance and its variables, and a second MCF for a second provenance and its variables. The file structure is like this:

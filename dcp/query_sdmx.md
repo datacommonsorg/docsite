@@ -50,16 +50,19 @@ For details on request syntax, query parameters, response format, and single-ent
 
 ### Multi-entity variable examples
 
+{:.no_toc}
 #### Example 1: Get all the entities that have data for a specific value of a custom property
 
 This example gets all the countries that have data about females for a multi-entity variable, `who:Ratio_CigaretteSmoking_Adults_ByGender`. This variable is defined with 2 custom properties:` country` and `gender`.
 
+{:.no_toc}
 ##### Request
 
 <pre>
 curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/country?c[variableMeasured]=who:Ratio_CigaretteSmoking_Adults_ByGender&c[gender]=Female"
 </pre>
 
+{:.no_toc}
 ##### Response
 
 ```json
@@ -111,16 +114,19 @@ curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/availability/datafl
 }
 ```
 
+{:.no_toc}
 #### Example 2: Get the entities that have data for a specific property, filtered by entity (place) type and parent
 
 This example gets the countries in Europe that have data about females, for a multi-entity variable, `who:Ratio_CigaretteSmoking_Adults_ByGender`.
 
+{:.no_toc}
 ##### Request
 
 <pre>
 https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/availability/dataflow/DC/DF_OBS/1.0.0/*/country?c[variableMeasured]=who:Ratio_CigaretteSmoking_Adults_ByGender&c[gender]=Female&c[country.containedInPlace+]=europe&c[country.typeOf]=Country
 </pre>
 
+{:.no_toc}
 ##### Response
 
 ```json
@@ -171,16 +177,19 @@ For details on request syntax, query parameters, response format, and single-ent
 
 ### Multi-entity variable query examples
 
+{:.no_toc}
 #### Example 1: Get all the observations for 1 variable for 1 entity (place) 
 
 This example gets all observations for Albania, for a multi-entity variable `who:Ratio_CigaretteSmoking_Adults_ByGender`.
 
+{:.no_toc}
 ##### Request
 
 <pre>
 curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/data/dataflow/DC/DF_OBS/1.0.0/*?c[variableMeasured]=who:Ratio_CigaretteSmoking_Adults_ByGender&c[country]=country/ALB"
 </pre>
 
+{:.no_toc}
 ##### Response
 
 ```csv
@@ -189,16 +198,19 @@ dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/A
 dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/ALB,Male,NotApplicable,NotApplicable,NotApplicable,UN_WHO,2018,35.7,,13905847005863890490
 ```
 
+{:.no_toc}
 ##### Example 2: Get all the observations for a specific property for 2 entities (places)
 
 This example gets all observations about females in Albania, for a multi-entity variable `who:Ratio_CigaretteSmoking_Adults_ByGender`.
 
+{:.no_toc}
 ##### Request
 
 <pre>
 curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/data/dataflow/DC/DF_OBS/1.0.0/*?c[variableMeasured]=who:Ratio_CigaretteSmoking_Adults_ByGender&c[country]=country/ALB&c[gender]=Female"
 </pre>
 
+{:.no_toc}
 ##### Response
 
 ```csv
@@ -206,16 +218,19 @@ STRUCTURE,STRUCTURE_ID,ACTION,variableMeasured,country,gender,unit,measurementMe
 dataflow,DC:DF_OBS(1.0.0),I,who:Ratio_CigaretteSmoking_Adults_ByGender,country/ALB,Female,NotApplicable,NotApplicable,NotApplicable,UN_WHO,2018,4.5,,13905847005863890490
 ```
 
+{:.no_toc}
 #### Example 3: Get all the observations for females for places of a specific type and parent
 
 This example gets all observations about women in European countries, for a multi-entity variable `who:Ratio_CigaretteSmoking_Adults_ByGender`.
 
+{:.no_toc}
 ##### Request
 
 <pre>
 curl -g "https://<var>APPLICATION_URL</var>/core/api/sdmx/v3/data/dataflow/DC/DF_OBS/1.0.0/*?c[variableMeasured]=who:Ratio_CigaretteSmoking_Adults_ByGender&c[country.containedInPlace+]=europe&c[country.typeOf]=Country&c[gender]=Female"
 </pre>
 
+{:.no_toc}
 ##### Response
 
 ```csv

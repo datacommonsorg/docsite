@@ -44,6 +44,7 @@ The general procedure for deleting data at the file level is as follows:
 
 ### Examples
 
+{:.no_toc}
 #### Example 1: Delete all data from an import with a single MCF file
 
 For [example 1](data_prep.md#ex1), you would do the following:
@@ -64,6 +65,7 @@ The `config.json` would look like this:
 } 
 ```
 
+{:.no_toc}
 #### Example 2: Delete all data from an import with 2 data-specific MCFs
 
 For [example 3](data_prep.md#ex3) above, you would do the following:
@@ -89,6 +91,7 @@ The `config.json` would look like this:
 }
 ```
 
+{:.no_toc}
 #### Example 3: Delete one CSV file from an import with 1 shared MCF 
 
 For [example 1](data_prep.md#ex1), let's assume you want to remove `smokers_single_entity.csv`.
@@ -122,6 +125,7 @@ The `config.json` file would look like this:
 }
 ```
 
+{:.no_toc}
 #### Example 4: Delete 1 CSV file in an import with 1 shared MCF and 2 data-specific MCFs
 
 For [example 2](data_prep.md#ex2), let's assume you want to remove the file `single_entity_files/smokers_single_entity.csv`. To do so, you would:
