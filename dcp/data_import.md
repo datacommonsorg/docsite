@@ -27,7 +27,7 @@ If you'd like to copy and paste commands directly from this page to a command li
 
 In this step, you upload your CSV, MCF and `config.json` files to a new or existing Google Cloud Storage bucket.
 
-> **Note:** The artifacts bucket enforces public access prevention and uniform bucket-level access. To upload data files or inspect artifacts, individual users or operators must be granted either the Storage Object User (`roles/storage.objectUser`) or Storage Object Admin (`roles/storage.objectAdmin`) role directly on the bucket (or project).
+> **Note:** The artifacts bucket inherits bucket access settings defined for the project. To upload data files or inspect artifacts, individual users or operators must be granted either the Storage Object User (`roles/storage.objectUser`) or Storage Object Admin (`roles/storage.objectAdmin`) role directly on the bucket (or project).
 > If you need to grant this permission to a user, run the following command:
 > <pre>gcloud storage buckets add-iam-policy-binding gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span> \
 >   --member="user:<var>USER_EMAIL</var>" \
@@ -58,7 +58,7 @@ To upload files from a local directory:
 2. Run the following command:
 
     <pre>
-    gcloud storage cp -R * gs://<var>IMPORT_FOLDER</var>/</pre>
+    gcloud storage cp -R * gs://<span class="dyn-var" data-var="storage_bucket">Your GCS bucket</span>/<var>INGESTION_BASE</var>/<var>IMPORT_FOLDER</var>/</pre>
 
 To copy files from another Cloud Storage bucket and/or folder:
 
@@ -141,3 +141,145 @@ To issue SQL or GQL queries, go back to the table details page and click **Spann
 * To verify the creation of new nodes, such as statistical variables, provenances or new classes/entities, use the **Node** table.
 * To verify the creation of new properties and view triples, use the **Edge** table.
 * To verify observations data, use the **TimeSeries** and **Observation** table. 
+
+## Update imported data or add new imports
+
+To update data you've already imported:
+
+1. If necessary, make changes to your schema MCF file(s). If you make changes to MCF files contained in an import that are referenced by other imports, see the note below.
+2. If necessary, make changes to your [`config.json` file(s)](data_prep.md#config) (e.g. to add new CSV files, new directories, etc.).
+3. [Upload the new/updated files to Cloud Storage](data_import.md#upload).
+4. [Run the ingestion workflow](#workflow) as usual. 
+
+> **Note:** If your import depends on "shared" MCF files in a different import, you do not need to reingest the shared files unless they have changed. Conversely, if you do make changes to the shared files, you will also need to reingest all imports that depend on them. Be sure to run the ingestion command(s) correctly; see [Imports with dependencies](#dependencies) for details.
+
+## Delete data
+
+When you remove data from an import, edges, observations and timeseries are removed from Spanner and are no longer available to the web services.
+
+Deleting row-level data is straightforward: you simply remove the necessary rows from the input CSVs and rerun the ingestion workflow. You aren't changing any nodes in the graph, so you don't need to do anything else.
+
+For removing a subset of file data or all data from an import, you also need to remove the relevant nodes and edges from the graph. (You shouldn't keep dangling nodes/edges in the graph.) To do so, follow this general procedure: 
+
+The general procedure for deleting data at the file level is as follows:
+
+1. For the relevant import, delete all nodes (statistical variables, entities, properties, statistical variable groups) from the schema MCF file(s) that pertain to the CSV observation file(s) you want to remove — _except_ the provenance definition. See below for examples.
+2. In the `config.json `file, remove the entries for the CSV files to remove. You may need to revise patterns to no longer match those files. See below for examples. 
+3. [Upload the new/updated files to Cloud Storage](#upload).
+4. [Run the ingestion workflow](#workflow) as usual.
+
+### Examples
+
+{:.no_toc}
+#### Example 1: Delete all data from an import with a single MCF file
+
+For [example 1](data_prep.md#ex1), you would do the following:
+
+* Delete all definitions from the `schema.mcf` file except the provenance. 
+* Remove the CSV input files from the `config.json` file. 
+
+The `config.json` would look like this:
+
+```json
+{
+  "inputFiles": [
+    {
+      "pattern": "schema.mcf",
+      "provenance": "who:UN_WHO"
+    }
+  ]
+} 
+```
+
+{:.no_toc}
+#### Example 2: Delete all data from an import with 2 data-specific MCFs
+
+For [example 3](data_prep.md#ex3) above, you would do the following:
+
+* Delete all the definitions from the MCF files in the subdirectories (`provenance1/schema1.mcf` and `provenance2/schema2.mcf`), except the provenances. 
+* Revise the input file patterns in `config.json` to only reference the MCF files.
+
+The `config.json` would look like this:
+
+```json
+{
+  "includeInputSubdirs": true,
+  "inputFiles": [
+    {
+      "pattern": "provenance1/schema1.mcf",
+      "provenance": "oecd:OECDWages"
+     },
+    {
+      "pattern": "provenance2/schema2.mcf",
+      "provenance": "oecd:OECDGenderWageGap"
+    }
+  ]
+}
+```
+
+{:.no_toc}
+#### Example 3: Delete one CSV file from an import with 1 shared MCF 
+
+For [example 1](data_prep.md#ex1), let's assume you want to remove `smokers_single_entity.csv`.
+
+You would do the following:
+
+* Delete any nodes (statistical variables, entities, properties, provenances) in `schema.mcf` that are solely associated with `smokers_single_entity.csv`. 
+* Remove the `smokers_single_entity.csv` entry from the `config.json` file. 
+
+The `config.json` file would look like this:
+
+```json
+{
+  "inputFiles": [
+    {
+      "pattern": "schema.mcf",
+      "provenance": "who:UN_WHO"
+     },
+    {
+      "pattern": "smokers_multi_entity.csv",
+      "provenance": "who:UN_WHO",
+      "columnMappings": {
+        "dcid:variableMeasured": "variable",
+        "dcid:country": "country",
+        "dcid:gender": "gender",
+        "dcid:observationDate": "year",
+        "dcid:value": "value"
+      }
+    }
+  ]
+}
+```
+
+{:.no_toc}
+#### Example 4: Delete 1 CSV file in an import with 1 shared MCF and 2 data-specific MCFs
+
+For [example 2](data_prep.md#ex2), let's assume you want to remove the file `single_entity_files/smokers_single_entity.csv`. To do so, you would:
+
+* Remove the file `single_entity_files/single_entity_schema.mcf`.
+* Remove the entry for `single_entity_files/smokers_single_entity.csv` in the `config.json` file.
+
+The config.json would look like this:
+
+```json
+{
+  "includeInputSubdirs": true,
+  "inputFiles": [
+    {
+      "pattern": "shared.mcf",
+      "provenance": "who:UN_WHO"
+    },
+    {
+      "pattern": "multi_entity_files/*",
+      "provenance": "who:UN_WHO",
+      "columnMappings": {
+        "dcid:variableMeasured": "variable",
+        "dcid:country": "country",
+        "dcid:gender": "gender",
+        "dcid:observationDate": "year",
+        "dcid:value": "value"
+      }
+    }
+  ]
+}
+```

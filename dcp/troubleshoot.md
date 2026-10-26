@@ -60,7 +60,7 @@ If your Cloud Workflow fails with the following error:
 "context": "RuntimeError: \"branch error\"\nin step \"run_postprocessings\", routine \"main\", line: 145",
         "payload": {
           "body": {
-            "detail": "Aggregation failed: 400 GET https://bigquery.googleapis.com/bigquery/v2/projects/datcom-website-dev/queries/bd29a723-6c80-4ca2-9bb9-060641ab0d3e?maxResults=0&location=us-central1&prettyPrint=false: Resource Exporting to Cloud Spanner requires a reservation with ENTERPRISE edition or higher."
+            "detail": "Aggregation failed: 400 GET https://bigquery.googleapis.com/bigquery/v2/projects/...: Resource Exporting to Cloud Spanner requires a reservation with ENTERPRISE edition or higher."
 ```
 
 This likely indicates that the BigQuery reservation for your project was deleted from the Terraform deployment where it was originally set, or was never created, in the location where the ingestion workflow runs. To verify that this is the problem:

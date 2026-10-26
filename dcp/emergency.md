@@ -14,10 +14,13 @@ include_scripts: /assets/js/user-supplied-variables.js
 
 ## (Optional) Set variable values for this page
 
-If you'd like to copy and paste commands directly from this page to a command line interface, provide the value of the following variable; this will automatically populate all occurrences on this page.
+If you'd like to copy and paste commands directly from this page to a command line interface, provide the values of the following variables; this will automatically populate all occurrences on this page.
 
 <label for="instance">Data Commons Platform instance:</label>
 <input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<br/>
+<label for="projectId">Google Cloud Platform project ID:</label>
+<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
 <br/>
 
 ## Restore database from backup {#restore}
@@ -25,8 +28,8 @@ If you'd like to copy and paste commands directly from this page to a command li
 Many conditions can cause your database to get into a corrupted state. These include:
 
 * Malformed input. 
-* Partial ingestion workflow completions. Data corruption can occur in these conditions:
-    * The Dataflow component of the ingestion workflow has started deletion stages but did not complete write stages. To check for this condition:
+* Partial ingestion workflow completions. Data corruption can occur in the case that the
+    * The Postprocessing component of the ingestion workflow has started deletion stages but did not complete write stages. To check for this condition:
         1. Go to [https://console.cloud.google.com/workflows/workflow/](https://console.cloud.google.com/workflows/workflow/){: target="_blank"} for your project and select your workflow from the list. It is named <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ingestion-workflow</code>. 
         2. If a recent workflow execution is listed as **failed**, click on the link to view details.
         3. In the **Visualization** panel, check the status of the **Run Postprocessing** stage.
@@ -37,10 +40,16 @@ Many conditions can cause your database to get into a corrupted state. These inc
 
 However, Data Commons will not start serving such corrupted data for the duration of the Spanner retention period since the last import. By default, this is set to 24 hours. (You can adjust it with the Terraform `spanner_version_retention_period variable`.) If you are able to rerun the data ingestion workflow within that period, there will not be any issue: Data Commons will pick up the new data as soon as it's imported.
 
-However, if you are *not* able to successfully reimport data before the retention period expires, you will incur data loss and/or corruption. To mitigate data loss and/or corruption if it has occurred, you can restore from a backup with the last known good data: by default, Spanner does daily full backups. To restore from a backup:
+However, if you are *not* able to successfully reimport data before the retention period expires, you will incur data loss and/or corruption. To mitigate data loss and/or corruption if it has occurred, you can restore from a backup with the last known good data: by default, Spanner does daily full backups. Note that if when you restore from backup, this will delete the current, corrupted version. If you want to keep it in 
+
+To restore from a backup:
 
 1. Go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/details/backups/list</code> to view saved backups.
-2. Follow any of the procedures in [Restore from a backup](https://docs.cloud.google.com/spanner/docs/backup/restore-backups#restore-database-backup){: target="_blank"}.
+2. Follow any of the procedures in [Restore from a backup](https://docs.cloud.google.com/spanner/docs/backup/restore-backups#restore-database-backup){: target="_blank"}. This will delete the corrupted version of the database. 
+
+3. Optionally, if you want to keep the cIf you want to keep it in GCP (but not in Terraform), you can run:
+
+
 3. In your Terraform configuration file, update the `spanner-database-id` variable to the new destination database name you have specified, and run `terraform apply`.
 
 If you import data more frequently than once a day, you will need to create manual backups immediately after every successful ingestion. See [Create backups](https://docs.cloud.google.com/spanner/docs/backup/create-backups){: target="_blank"} for details.
@@ -57,14 +66,14 @@ If you cancel the ingestion workflow (accidentally or otherwise) after it has go
     2026-07-23T00:39:09.717946Z INFO:root:Lock is currently held by 7e3f4639-6ad1-434a-9f00-72abbd0f8fd1
     ```
 4. Note the ID.
-5. From a command line, run the following:
+5. From a command line, run the following (substitute the Spanner instance and database names if you are not using the defaults):
 
     <pre>
-    curl -X POST INGESTION_HELPER_SERVICE_URL/database/lock/release \
-    -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
-    -H "Content-Type: application/json" \
-    -d '{"workflowId": "<var>BLOCKING_ID</var>"}'
+    gcloud spanner databases execute-sql <span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-db
+--instance=<span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-instance --project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span>
+--sql="UPDATE IngestionLock SET LockOwner = NULL, AcquiredTimestamp = NULL WHERE LockID = 'global_ingestion_lock' AND LockOwner = '<var>LOCK_OWNER</var>'"
     </pre>
+    The *LOCK_OWNER* is the ID you obtained in step 4.
 
 You should see a confirmation message. 
 
