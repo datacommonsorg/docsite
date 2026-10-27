@@ -3,7 +3,6 @@ layout: default
 title: Troubleshoot problems
 nav_exclude: true
 noindex: true
-include_scripts: /assets/js/user-supplied-variables.js
 ---
 
 * TOC

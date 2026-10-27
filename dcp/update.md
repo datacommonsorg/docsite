@@ -70,15 +70,17 @@ Data Commons Platform is under ongoing development, with new versions being rele
 
 If you'd like to copy and paste the commands below directly to a command line interface, provide the values for the following variables; this will automatically populate all occurrences.
 
-<label for="projectId">Google Cloud Platform project ID:</label><input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
+<label for="project">Google Cloud Platform project ID:</label>
+<input type="text" id="project" data-bind="project" placeholder="Your GCP project ID" />
 <br/>
-<label for="instance">Data Commons Platform instance:</label><input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<label for="instance">Data Commons Platform instance:</label>
+<input type="text" id="instance" data-bind="instance" placeholder="Your DCP instance" />
 <br/>
 
 To migrate your system to the latest version of the platform, follow this procedure:
 
 1. Go to your project's root directory:
-   <pre>cd <span class="dyn-var" data-var="instance">Your Data Commons instance name</span>
+   <pre>cd <span data-var="instance">Your Data Commons instance name</span>
    </pre>
 1. Back up your Terraform variables file:
    ```shell
@@ -87,8 +89,8 @@ To migrate your system to the latest version of the platform, follow this proced
 1. Re-generate the Terraform files for the target version:
     <pre>
     uvx datacommons-cli@<var>VERSION_NUMBER</var> admin init \
-    --project-id "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
-    --instance-name "<span class="dyn-var" data-var="instance">Your Data Commons instance name</span>" \
+    --project-id "<span data-var="project">Your GCP project ID</span>" \
+    --instance-name "<span data-var="instance">Your Data Commons instance name</span>" \
     --force </pre>
 1. Restore your variables file from backup:
    ```shell

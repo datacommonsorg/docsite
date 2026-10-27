@@ -19,8 +19,8 @@ If you'd like to copy and paste commands directly from this page to a command li
 <label for="instance">Data Commons Platform instance:</label>
 <input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
 <br/>
-<label for="projectId">Google Cloud Platform project ID:</label>
-<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
+<label for="project">Google Cloud Platform project ID:</label>
+<input type="text" id="project" class="dyn-input" data-var="project" placeholder="Your GCP project ID" />
 <br/>
 
 ## Restore database from backup {#restore}
@@ -70,7 +70,7 @@ If you cancel the ingestion workflow (accidentally or otherwise) after it has go
 
     <pre>
     gcloud spanner databases execute-sql <span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-db
---instance=<span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-instance --project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span>
+--instance=<span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-instance --project=<span class="dyn-var" data-var="project">Your GCP project ID</span>
 --sql="UPDATE IngestionLock SET LockOwner = NULL, AcquiredTimestamp = NULL WHERE LockID = 'global_ingestion_lock' AND LockOwner = '<var>LOCK_OWNER</var>'"
     </pre>
     The *LOCK_OWNER* is the ID you obtained in step 4.

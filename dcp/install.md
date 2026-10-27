@@ -116,14 +116,14 @@ Here are some variables you may wish to modify:
 
 If you'd like to copy and paste commands directly from this page to a command line interface, provide the values for the following variables; this will automatically populate all occurrences on this page.
 
-<label for="projectId">Google Cloud Platform project ID:</label>
-<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
+<label for="project">Google Cloud Platform project ID:</label>
+<input type="text" id="project" data-bind="project" placeholder="Your GCP project ID" />
 <br/>
 <label for="user">Google user account:</label>
-<input type="text" id="user" class="dyn-input" data-var="user" placeholder="Your Google user account" />
+<input type="text" id="user" data-bind="user" placeholder="Your Google user account" />
 <br/>
 <label for="instance">Data Commons Platform instance:</label>
-<input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<input type="text" id="instance" data-bind="instance" placeholder="Your DCP instance" />
 <br/>
 
 ## Step 4: Run the Terraform deployment
@@ -185,19 +185,19 @@ You can grant these roles as follows:
 From any directory, run the following commands:
 
 <pre>
-gcloud projects add-iam-policy-binding "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
---member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
+gcloud projects add-iam-policy-binding "<span data-var="project">Your GCP project ID</span>" \
+--member="user:<span data-var="user">Your user account</span>" \
 --role="roles/spanner.databaseAdmin"
 
-gcloud projects add-iam-policy-binding "<span class="dyn-var" data-var="project_id">Your GCP project ID</span>" \
---member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
+gcloud projects add-iam-policy-binding "<span data-var="project">Your GCP project ID</span>" \
+--member="user:<span data-var="user">Your user account</span>" \
 --role="roles/spanner.databaseUser"
 </pre>
 
 ### 2. Permissions for workflow execution
 
 Terraform creates a project-wide [service account](https://docs.cloud.google.com/iam/docs/service-account-overview){: target="_blank"} to run the data ingestion workflow:
-<code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ing-wf-sa@<span class="dyn-var" data-var="project_id">Your GCP project ID</span>.iam.gserviceaccount.com</code>.
+<code><span data-var="instance">Your Data Commons instance name</span>-dc-ing-wf-sa@<span data-var="project">Your GCP project ID</span>.iam.gserviceaccount.com</code>.
 
 To run the `datacommons admin ingest start` command, you need to impersonate this service account using your own credentials. To do so, create an IAM binding giving your account the Token Creator role:
 
@@ -208,14 +208,14 @@ To run the `datacommons admin ingest start` command, you need to impersonate thi
 1. Run the following command:
    <pre>
    gcloud iam service-accounts add-iam-policy-binding "<var>SERVICE_ACCOUNT</var>" \
-    --member="user:<span class="dyn-var" data-var="user">Your user account</span>" \
+    --member="user:<span data-var="user">Your user account</span>" \
     --role="roles/iam.serviceAccountTokenCreator" \
-    --project="<span class="dyn-var" data-var="project_id">Your GCP project ID</span>"</pre>
+    --project="<span data-var="project">Your GCP project ID</span>"</pre>
 
 To verify that your account has been added as a principal to the service account, you can look up the details as follows:
 
-1. Go to <code>https://console.cloud.google.com/iam-admin/serviceaccounts?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>.
-1. From the list of service accounts, click on the <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-ing-wf</code> account and select **Principals with access**. You should see your user account in the list.
+1. Go to <code>https://console.cloud.google.com/iam-admin/serviceaccounts?project=<span data-var="project">Your GCP project ID</span></code>.
+1. From the list of service accounts, click on the <code><span data-var="instance">Your Data Commons instance name</span>-dc-ing-wf</code> account and select **Principals with access**. You should see your user account in the list.
 
 ## Step 6: Create the Spanner schema and tables
 
@@ -229,14 +229,14 @@ This command connects directly to Cloud Spanner using your authenticated credent
 
 When it completes, verify that the tables are created correctly:
 
-Go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/databases/<var>DATABASE</var>/details/tables?project=<span class="dyn-var" data-var="project_id">Your GCP project ID</span></code>
+Go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/databases/<var>DATABASE</var>/details/tables?project=<span data-var="project">Your GCP project ID</span></code>
 
-* Your <code><var>SPANNER_INSTANCE</var></code> is set by the Terraform `spanner_instance_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-instance</code>. To look it up, from your Terraform directory, you can run:
+* Your <code><var>SPANNER_INSTANCE</var></code> is set by the Terraform `spanner_instance_id` variable. If you didn't set this explicitly, the default is <code><span data-var="instance">Your Data Commons instance name</span>-dc-instance</code>. To look it up, from your Terraform directory, you can run:
 
   ```shell
     terraform output spanner_instance_id
   ```
-* The _`DATABASE`_ is set by the Terraform `spanner_database_id` variable. If you didn't set this explicitly, the default is <code><span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-db.</code> To look it up, from your Terraform directory, you can run:
+* The _`DATABASE`_ is set by the Terraform `spanner_database_id` variable. If you didn't set this explicitly, the default is <code><span data-var="instance">Your Data Commons instance name</span>-dc-db.</code> To look it up, from your Terraform directory, you can run:
 
   ```shell
     terraform output spanner_database_id
