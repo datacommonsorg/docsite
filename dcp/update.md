@@ -70,11 +70,9 @@ Data Commons Platform is under ongoing development, with new versions being rele
 
 If you'd like to copy and paste the commands below directly to a command line interface, provide the values for the following variables; this will automatically populate all occurrences.
 
-<label for="projectId">Google Cloud Platform project ID:</label>
-<input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
+<label for="projectId">Google Cloud Platform project ID:</label><input type="text" id="projectId" class="dyn-input" data-var="project_id" placeholder="Your GCP project ID" />
 <br/>
-<label for="instance">Data Commons Platform instance:</label>
-<input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
+<label for="instance">Data Commons Platform instance:</label><input type="text" id="instance" class="dyn-input" data-var="instance" placeholder="Your DCP instance" />
 <br/>
 
 To migrate your system to the latest version of the platform, follow this procedure:
