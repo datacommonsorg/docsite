@@ -64,7 +64,7 @@ If your Cloud Workflow fails with the following error:
 
 This likely indicates that the BigQuery reservation for your project was deleted from the Terraform deployment where it was originally set, or was never created, in the location where the ingestion workflow runs. To verify that this is the problem:
 
-1. Go to [https://console.cloud.google.com/bigquery](https://console.cloud.google.com/bigquery){: target="_blank"} for your project.
+1. Go to [https://console.cloud.google.com/bigquery](https://console.cloud.google.com/bigquery/admin/reservations){target="_blank"} for your project.
 2. From the left panel, select **Workload management**.
 3. From the **Capacity Management** tab, from the **Location** menu, select a location.
 4. Under **Slot Reservations**, you should see a default entry. If you don't, check all the other locations. If there is no reservation, you need to create one: In your Terraform configuration, set `spanner_create_bigquery_reservation = true` and rerun `terraform apply`. Also see [Handle resource creation variables](update.md#handle) for further details.

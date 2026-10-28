@@ -92,11 +92,9 @@ To migrate your system to the latest version of the platform, follow this proced
     --project-id "<span data-var="project">Your GCP project ID</span>" \
     --instance-name "<span data-var="instance">Your Data Commons instance name</span>" \
     --force </pre>
-1. Restore your variables file from backup:
-   ```shell
-   cp terraform.tfvars.backup terraform.tfvars
-   ```
-1. Optionally, verify that all version tags are updated to the correct number:
+1. Check if there are any new variables in the `terraform.tfvars.template` file that you want to add to your backup file
+1. Merge the contents of the backup file with the new `terraform.tfvars` file.
+Optionally, verify that all version tags are updated to the correct number:
     ```shell
     cat variables.tf
     cat terraform.tfvars 
