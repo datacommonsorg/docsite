@@ -39,8 +39,8 @@ If your workflow takes longer to run than you would like, you can boost the numb
 
 | Variable | Default setting | Recommended production setting | Notes |
 |----------|-----------------|--------------------------------|-------|
-| ingestion_preprocessing_job_cpu  |  "8000" |  "16000" | Values are expressed in milliCPUs. 8 CPUs = 8000; 16 CPUs = 16000 |
-| ingestion_preprocessing_job_memory | "32768" | "65536" | Values are expressed in MiB. 32 GiB = 32768 MiB; 64 GiB = 65536 MiB |
+| ingestion_preprocessing_job_cpu  |  "8000" |  "16000" | Values are expressed in milliCPUs. 8 CPUs = 8000; 16 CPUs = 16000 </br> Setting compute requirements too high in regions with tight VM availability can result in resource exhaustion errors from Compute Engine. Don't exceed 16 CPUs unless you are running verified high-capacity workloads.|
+| ingestion_preprocessing_job_memory | "32768" | "65536" | Values are expressed in MiB. 32 GiB = 32768 MiB; 64 GiB = 65536 MiB </br> Setting compute requirements too high in regions with tight VM availability can result in resource exhaustion errors from Compute Engine. Don't exceed 64 GiB unless you are running verified high-capacity workloads. |
 | ingestion_dataflow_num_workers  | 4 | 10 | For Dataflow auto-scaling, this is the number of workerw to start with. Upping to 10 enables a fast initial start without a cold delay. |
 | ingestion_dataflow_max_workers  |  20 | 50  | This is the maximum number of workers to which Dataflow should autoscale. 50 is recommended for large datasets. |
 | ingestion_dataflow_worker_machine_type | "n2-standard-4" | "n2-standard-8" | Dataflow runs on Google Cloud Compute Engine [machines](https://docs.cloud.google.com/compute/docs/general-purpose-machines#n2_machine_types){: target="_blank"}. n2-standard-4 = 4 vCPUs, 16 GB RAM per worker; n2-standard-8 =  8 vCPUs, 32 GB RAM per worker |
