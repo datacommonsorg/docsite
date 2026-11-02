@@ -33,7 +33,7 @@ The time it takes to run the ingestion workflow end to end is directly proportio
 
 * The Cloud Batch preprocessing job, default name <code><span data-var="instance">Your DCP instance</span></code>-prep-<var>TIMESTAMP</var></code>. This job parses input files and writes out temporary files to GCS. It accounts for a very small proportion of processing time. To view timing information for your job, go to https://console.google.com/batch/jobs for your project, and look at the **Runtime** column for the preprocessing job.
 * The Cloud Dataflow job, default name <code><span data-var="instance">Your DCP instance</span>-<var>IMPORT_NAME</var>-<var>TIMESTAMP</var></code>. This job writes nodes, edges, observations and embeddings to Spanner. It takes the bulk of the processing time. To view timing information for your job, go to https://console.google.com/dataflow/jobs for your project, click on your Dataflow job, and in the **Job info** panel, look for **Elapsed time**.
-* The Spanner instance, which processes the incoming mutations. Spanner writes are constrained by CPU resources. To view CPU utilization for read-write/commit operations, go to https://pantheon.corp.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/details/system-insights. Look at the CPU ci
+* The Spanner instance, which processes the incoming mutations. Spanner writes are constrained by CPU resources. To view CPU utilization for read-write/commit operations, go to https://pantheon.corp.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/details/system-insights. Look at the **CPU utilization by operation type** and select **beginorcommit** and **executesql_select_readwrite**.
 
 If your workflow takes longer to run than you would like, you can boost the number of resources configured for the above components. For production purposes, we recommend that you configure these resource reservations in any case. Please see the following section for cost considerations. 
 
@@ -61,7 +61,6 @@ These components incur charges only while an ingestion workflow is actively runn
 
 * **Cloud Batch preprocessing job**: These resources are billed for Compute Engine VM per-second compute usage, only for the minutes/hours the batch container runs. There are no ongoing idle charges. See [Batch pricing](https://cloud.google.com/batch/pricing){: target="_blank"} for more details.
 * **Cloud Dataflow ingestion workers**: These resources are billed for Google Compute Engine VM per-second usage and Dataflow Service Units (DFUs) for the duration of the ingestion pipeline. See [Dataflow compute resources](https://cloud.google.com/dataflow/pricing?hl=en#dataflow-compute-resources){: target="_blank"} for more details.
-
-**Spanner capacity**, on the other hand, is the highest continuous cost driver. Spanner bills per node-hour; scaling from development (1000 PUs/1 node) to production (2000 PUs/2 nodes) doubles fixed Spanner costs. See [Spanner compute capacity](https://cloud.google.com/spanner/pricing#compute-capacity){: target="_blank"} for details on hourly rates by region and edition. Data Commons provisions the Enterprise edition. 
+* **Spanner capacity**, on the other hand, is the highest continuous cost driver. Spanner bills per node-hour; scaling from development (100 PUs/.1 node) to production (2000 PUs/2 nodes) substantially increases fixed Spanner costs. See [Spanner compute capacity](https://cloud.google.com/spanner/pricing#compute-capacity){: target="_blank"} for details on hourly rates by region and edition. Data Commons provisions the Enterprise edition. 
 
 
