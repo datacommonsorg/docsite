@@ -27,7 +27,7 @@ If you'd like to copy and paste commands directly from this page to a command li
 <input type="text" id="instance" data-bind="instance" placeholder="Your DCP instance" />
 <br/>
 
-## (Optional) Improve ingestion processing times {#ingestion-scaling}
+## (Optional) Boost ingestion resources {#ingestion-scaling}
 
 If you are ingesting large volumes of data and your workflow takes longer to run than you would like, you may want to boost the resources assigned to several components in the workflow. In particular, the ingestion workflow is constrained by the following components:
 
