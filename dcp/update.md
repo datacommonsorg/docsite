@@ -79,31 +79,37 @@ If you'd like to copy and paste the commands below directly to a command line in
 
 To migrate your system to the latest version of the platform, follow this procedure:
 
-1. Go to your project's root directory:
-   <pre>cd <span data-var="instance">Your Data Commons instance name</span>
+1. Go to your project (instance) directory:
+   <pre>cd <span data-var="instance"><var>Your Data Commons instance name</var></span>
    </pre>
 1. Back up your Terraform variables file:
    ```shell
    cp terraform.tfvars terraform.tfvars.backup
    ```
+1. Go to the parent directory of your instance directory:
+   ```
+   cd ..
+   ```
 1. Re-generate the Terraform files for the target version:
     <pre>
     uvx datacommons-cli@<var>VERSION_NUMBER</var> admin init \
-    --project-id "<span data-var="project">Your GCP project ID</span>" \
-    --instance-name "<span data-var="instance">Your Data Commons instance name</span>" \
+    --project-id "<span data-var="project"><var>Your GCP project ID</var></span>" \
+    --instance-name "<span data-var="instance"><var>Your Data Commons instance name</var></span>" \
     --force </pre>
-1. Check if there are any new variables in the `terraform.tfvars.template` file that you want to add to your backup file
-1. Merge the contents of the backup file with the new `terraform.tfvars` file.
-Optionally, verify that all version tags are updated to the correct number:
+1. Go back to your instance directory:
+   <pre>cd <span data-var="instance"><var>Your Data Commons instance name</var></span>
+   </pre>
+1. Optionally, verify that all version tags are updated to the correct number:
     ```shell
     cat variables.tf
-    cat terraform.tfvars 
     ```
-1. Migrate the database by running:
-   <pre>
-   uvx datacommons-cli@<var>VERSION_NUMBER</var> admin migrate-db</pre>
+1. Merge the contents of the backup file with the new `terraform.tfvars` file.
 1. Redeploy all infrastructure by running:
    <pre>
    terraform init -upgrade
    terraform apply
    </pre>
+1. Migrate the database by running:
+   <pre>
+   uvx datacommons-cli@<var>VERSION_NUMBER</var> admin migrate-db</pre>
+
