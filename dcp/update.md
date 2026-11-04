@@ -31,7 +31,7 @@ To make deployment changes:
 5. If you have made data changes, rerun the data ingestion workflow, which automatically restarts the web service as well:
 
   ```shell
-  uvx datacommons-cli ingest start
+  uvx datacommons-cli admin ingest start
   ```
 
 If you have only made changes affecting the web service (such as updating the image container tag) and want to skip running the full ingestion workflow, simply rerun `terraform apply`.
@@ -52,17 +52,18 @@ Terraform maintains state across the lifecycle of a deployment. For stateful and
     2. Make any other changes to Terraform variables.
     3. Rerun `terraform apply`.
 
+
 * `spanner_create_bigquery_reservation`. This variable is similar to the above, but has additional complications because there can only be a single capacity reservation shared *across an entire project* in the same region. If you try to create additional reservations in the same project, the ingestion workflows will fail. However, like the variables above, if you set it to `false` on the next update, the resource will be destroyed for all deployments.
 
     The safest way to ensure that all updates and future deployments do not set the variable incorrectly is to remove the resource from Terraform state tracking after it's created. After the first time you have created the reservation, do the following: 
 
-1. From your Terraform directory, run:
-    ```shell
-    terraform state rm module.stack.module.spanner[0].google_bigquery_reservation.default[0]
-    terraform state rm module.stack.module.spanner[0].google_bigquery_reservation_assignment.project_assignment[0]
-    ```
-1. Set `spanner_create_bigquery_reservation = false` before running `terraform apply` again.
-1. In any new deployments in the same project and region, set the variable to `false` from the very start.
+    1. From your Terraform directory, run:
+        ```shell
+        terraform state rm module.stack.module.spanner[0].google_bigquery_reservation.default[0]
+        terraform state rm module.stack.module.spanner[0].google_bigquery_reservation_assignment.project_assignment[0]
+        ```
+    1. Set `spanner_create_bigquery_reservation = false` before running `terraform apply` again.
+    1. In any new deployments in the same project and region, set the variable to `false` from the very start.
 
 ## Upgrade your instance to a new version
 
@@ -87,9 +88,10 @@ To migrate your system to the latest version of the platform, follow this proced
    cp terraform.tfvars terraform.tfvars.backup
    ```
 1. Go to the parent directory of your instance directory:
-   ```
+   ```shell
    cd ..
    ```
+   **Important!** Don't try to run the next step from your instance directory, or it will create a duplicate instance in a subdirectory.
 1. Re-generate the Terraform files for the target version:
     <pre>
     uvx datacommons-cli@<var>VERSION_NUMBER</var> admin init \
@@ -97,19 +99,18 @@ To migrate your system to the latest version of the platform, follow this proced
     --instance-name "<span data-var="instance"><var>Your Data Commons instance name</var></span>" \
     --force </pre>
 1. Go back to your instance directory:
-   <pre>cd <span data-var="instance"><var>Your Data Commons instance name</var></span>
-   </pre>
-1. Optionally, verify that all version tags are updated to the correct number:
+   <pre>cd <span data-var="instance"><var>Your Data Commons instance name</var></span></pre>
+1. Optionally, verify that version tags are updated to the correct number:
     ```shell
     cat variables.tf
     ```
 1. Merge the contents of the backup file with the new `terraform.tfvars` file.
 1. Redeploy all infrastructure by running:
-   <pre>
+   ```shell
    terraform init -upgrade
    terraform apply
-   </pre>
-1. Migrate the database by running:
+   ```
+1. If necessary, migrate the database by running:
    <pre>
    uvx datacommons-cli@<var>VERSION_NUMBER</var> admin migrate-db</pre>
 
