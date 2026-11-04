@@ -105,12 +105,12 @@ To migrate your system to the latest version of the platform, follow this proced
     cat variables.tf
     ```
 1. Merge the contents of the backup file with the new `terraform.tfvars` file.
+1. If necessary, migrate the database by running:
+   <pre>
+   uvx datacommons-cli@<var>VERSION_NUMBER</var> admin migrate-db</pre>
 1. Redeploy all infrastructure by running:
    ```shell
    terraform init -upgrade
    terraform apply
    ```
-1. If necessary, migrate the database by running:
-   <pre>
-   uvx datacommons-cli@<var>VERSION_NUMBER</var> admin migrate-db</pre>
 
