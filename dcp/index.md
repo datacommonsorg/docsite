@@ -13,5 +13,6 @@ noindex: true
 - [Import your data](/dcp/data_import.html)
 - [Query your data with SDMX](/dcp/query_sdmx.html)
 - [Update your instance](/dcp/update.html)
+- [Productionize your instance](/dcp/production.html)
 - [Troubleshoot problems](/dcp/troubleshoot.html)
 - [Emergency procedures](/dcp/emergency.html)

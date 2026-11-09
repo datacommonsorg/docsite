@@ -13,7 +13,7 @@ noindex: true
 
 In general, to troubleshoot any GCP problems, you should go to the Cloud Console for the component causing issues, and find the **Observability** > **Logs** page to look for service errors.
 
-## Ingestion workflow fails
+## Preprocessing job failures
 
 1. Go to the link for the workflow output by the  `datacommons ingest start` command.
 2. Under **State**, find the stage that has failed. If it fails on **run_preprocessing**, go to the [Cloud Console Batch ](https://console.cloud.google.com/) page for your project, and under **Job list**, look up the processing job. Each workflow run creates a new job named <var>INSTANCE</var>-prep-<var>TIMESTAMP</var></code>.
@@ -51,7 +51,7 @@ If you have actually defined referenced provenances in MCF files, check for the 
 
 This normally indicates that there is a mismatch between the names of the columns you have defined in the `columnMappings` section of your `config.json` file and the actual CSV heading column names. Check for typos and other name errors in your config file.
 
-## Cloud workflow fails
+## Cloud workflow failures
 
 If your Cloud Workflow fails with the following error:
 
