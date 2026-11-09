@@ -27,6 +27,20 @@ If you'd like to copy and paste commands directly from this page to a command li
 <input type="text" id="instance" data-bind="instance" placeholder="Your DCP instance" />
 <br/>
 
+## Prevent accidental infrastructure deletion
+
+By default, the Terraform configuration allows you to run `terraform destroy` against stateful or stateless resources, for ease and speed of development. Stateful resources are Cloud Spanner and Cloud Storage; stateless resources are all the rest. 
+
+Once you have finalized your data, to prevent data loss, you should set the relevant variable to disallow an operator to destroy stateful resources. Once you are serving live traffic, to prevent service outages, you should also set the relevant variable accordingly. 
+
+These involve only Terraform configuration, so there is no associated GCP cost to setting these options.
+
+In your `terraform.tfvars` file, set these variables:
+```
+stateful_deletion_protection = true
+stateless_deletion_protection = true
+```
+
 ## (Optional) Boost ingestion resources {#ingestion-scaling}
 
 If you are ingesting large volumes of data and your workflow takes longer to run than you would like, you may want to boost the resources assigned to several components in the workflow. In particular, the ingestion workflow is constrained by the following components:
@@ -47,7 +61,7 @@ To diagnose whether adding more resources would improve workflow latency, you ca
 
 ### Set Terraform variables
 
-If you believe increasing resources on these components, here are possible options. Please see the following section for cost considerations. 
+If you believe increasing resources on these components will decrease your workflow durations, here are possible options. Please see the following section for cost considerations. 
 
 | Variable | Default setting | Possible production setting | Notes |
 |----------|-----------------|--------------------------------|-------|
@@ -56,14 +70,31 @@ If you believe increasing resources on these components, here are possible optio
 | ingestion_dataflow_num_workers  | 4 | 10 | For Dataflow auto-scaling, this is the number of workers to start with. Upping to 10 enables a fast initial start without a cold delay. |
 | ingestion_dataflow_max_workers  |  20 | 50  | This is the maximum number of workers to which Dataflow should autoscale. 50 is recommended for large datasets. |
 | ingestion_dataflow_worker_machine_type | "n2-standard-4" | "n2-standard-8" | Dataflow runs on Google Cloud Compute Engine [machines](https://docs.cloud.google.com/compute/docs/general-purpose-machines#n2_machine_types){: target="_blank"}. n2-standard-4 = 4 vCPUs, 16 GB RAM per worker; n2-standard-8 =  8 vCPUs, 32 GB RAM per worker |
-| spanner_processing_units | 1000 | 2000 | 2000 PUs = 2 Spanner nodes. You may need to scale even higher for heavy bulk imports.  |
+| spanner_processing_units | 1000 | 2000 | 2000 PUs = 2 Spanner nodes. You may need to scale even higher for heavy bulk imports. |
 
 ### Costs
 
-These components incur charges only while an ingestion workflow is actively running:
-
+The following components incur charges only while an ingestion workflow is actively running:
 * Cloud Batch preprocessing job: These resources are billed for Compute Engine VM per-second compute usage, only for the minutes/hours the batch container runs. There are no ongoing idle charges. See [Batch pricing](https://cloud.google.com/batch/pricing){: target="_blank"} for more details.
-
 * Cloud Dataflow ingestion workers: These resources are billed for Google Compute Engine VM per-second usage and Dataflow Service Units (DFUs) for the duration of the ingestion pipeline. See [Dataflow compute resources](https://cloud.google.com/dataflow/pricing?hl=en#dataflow-compute-resources){: target="_blank"} for more details.
 
-* Spanner capacity, on the other hand, is the highest continuous cost driver. Spanner bills per node-hour; scaling from development (100 PUs/.1 node) to production (2000 PUs/2 nodes) substantially increases fixed Spanner costs. See [Spanner compute capacity](https://cloud.google.com/spanner/pricing#compute-capacity){: target="_blank"} for details on hourly rates by region and edition. Data Commons provisions the Enterprise edition. 
+Spanner capacity, on the other hand, is the highest continuous cost driver. Spanner bills per node-hour; scaling from development (100 PUs/.1 node) to production (2000 PUs/2 nodes) substantially increases fixed Spanner costs. See [Spanner compute capacity](https://cloud.google.com/spanner/pricing#compute-capacity){: target="_blank"} for details on hourly rates by region and edition. Data Commons provisions the Enterprise edition. 
+
+## (Optional) Increase the Spanner data retention period (#retention-period)
+
+Cloud Spanner keeps all versions of data (mutations) for a configurable retention period. This allows for the[point-in-time recovery](https://docs.cloud.google.com/spanner/docs/pitr){: target="_blank"}(PITR) feature and "stale" reads, allowing data to be queried even during ingestion of large imports, without the risk of serving from a corrupted database while data is being modified. In case of failures mid-ingestion, Data Commons will automatically perform point-in-time recovery, reverting to the last known good timestamp within the retention period for all rows.
+
+By default Data Commons sets the retention period to 24 hours. (This is in addition to the default full database backups that are performed daily.) You can change this to be up to 7 days, to maximize the PITR safety window. 
+
+You can also configure alerts to be sent in the case that ...
+
+To set the terraform variable, in your `terraform.tfvars` file, add the following line:
+```
+spanner_version_retention_period = "7d"
+```
+
+### Costs
+
+Increasing the retention period this does involve additional cost; Spanner storage charges increase proportionally with mutation volume. You may also need to increase the number of [Spanner processing units](#ingestion-scaling). If your database undergoes frequent large-scale bulk updates, the cost increase may be substantial. See [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage.  
+
+## (Optional) Enable alerts on ingestion retention lock issues
