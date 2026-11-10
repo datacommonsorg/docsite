@@ -5,7 +5,7 @@ nav_exclude: true
 noindex: true
 include_scripts: 
   - /assets/js/user-supplied-variables.js
-  - /assets/js/syntax_highlighting.js
+  - /assets/js/customdc-doc-tabs.js
 ---
 
 * TOC
@@ -53,9 +53,9 @@ If you are ingesting large volumes of data and your workflow takes longer to run
 
 To diagnose whether adding more resources would improve workflow latency, you can look at the following:
 
-* For the preprocessing job, you can view timing information, to see whether it accounts for an unacceptable amount of latency. Go to <https://console.cloud.google.com/batch/jobs>{: target="_blank"} for your project, and look at the **Runtime** column for the preprocessing job. (Its default name <code><span data-var="instance"><var>Your DCP instance</var></span>-prep-<var>TIMESTAMP</var></code>.) To understand resource usage, see [Monitor and optimize job resources by viewing metrics](https://docs.cloud.google.com/batch/docs/monitor-job-resources-using-metrics){: target="_blank"} for how to set up Ops Agent and/or view dashboards.
+* For the preprocessing job, you can view timing information, to see whether it accounts for an unacceptable amount of latency. Go to <https://console.cloud.google.com/batch/jobs>{: target="_blank"} for your project, and look at the **Runtime** column for the preprocessing job (<code><span data-var="instance"><var>Your DCP instance</var></span>-prep-<var>TIMESTAMP</var></code>.) To understand resource usage, see [Monitor and optimize job resources by viewing metrics](https://docs.cloud.google.com/batch/docs/monitor-job-resources-using-metrics){: target="_blank"} for how to set up Ops Agent and/or view dashboards.
 
-* Cloud Dataflow provides detailed resource usage information and even recommendations for optimizing performance, including cost tradeoffs of adding resources. To view timing information for your Dataflow job, go to <https://console.cloud.google.com/dataflow/jobs>{: target="_blank"} for your project, click on your Dataflow job (its default name is <code><span data-var="instance"><var>Your DCP instance</var></span>-<var>IMPORT_NAME</var>-<var>TIMESTAMP</var></code>), and in the **Job info** panel, look for **Elapsed time**. To get more detailed information, click the **Job metrics** tab, and look at the graphs for **Autoscaling**, **CPU utilization** and **Memory utilization**. Also click the **Recommendations** tab to view any insights that might be relevant.
+* Cloud Dataflow provides detailed resource usage information and even recommendations for optimizing performance, including cost tradeoffs of adding resources. To view timing information for your Dataflow job, go to <https://console.cloud.google.com/dataflow/jobs>{: target="_blank"} for your project, click on your Dataflow job  (<code><span data-var="instance"><var>Your DCP instance</var></span>-<var>IMPORT_NAME</var>-<var>TIMESTAMP</var></code>), and in the **Job info** panel, look for **Elapsed time**. To get more detailed information, click the **Job metrics** tab, and look at the graphs for **Autoscaling**, **CPU utilization** and **Memory utilization**. Also click the **Recommendations** tab to view any insights that might be relevant.
 
 * Spanner provides exhaustive system performance graphs. To view CPU utilization for read-write/commit operations, go to <code>https://console.cloud.google.com/spanner/instances/<var>SPANNER_INSTANCE</var>/details/system-insights</code>. (The default name of the Spanner instance is <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-instance</code>.) Look at the **CPU utilization by operation type** graph and select **beginorcommit** and **executesql_select_readwrite**.
 
@@ -80,21 +80,70 @@ The following components incur charges only while an ingestion workflow is activ
 
 Spanner capacity, on the other hand, is the highest continuous cost driver. Spanner bills per node-hour; scaling from development (100 PUs/.1 node) to production (2000 PUs/2 nodes) substantially increases fixed Spanner costs. See [Spanner compute capacity](https://cloud.google.com/spanner/pricing#compute-capacity){: target="_blank"} for details on hourly rates by region and edition. Data Commons provisions the Enterprise edition. 
 
-## (Optional) Increase the Spanner data retention period (#retention-period)
+## Manage Spanner data retention {#retention}
 
-Cloud Spanner keeps all versions of data (mutations) for a configurable retention period. This allows for the[point-in-time recovery](https://docs.cloud.google.com/spanner/docs/pitr){: target="_blank"}(PITR) feature and "stale" reads, allowing data to be queried even during ingestion of large imports, without the risk of serving from a corrupted database while data is being modified. In case of failures mid-ingestion, Data Commons will automatically perform point-in-time recovery, reverting to the last known good timestamp within the retention period for all rows.
+Cloud Spanner keeps all mutations (versioned by timestamp) for a configurable retention period. This allows for [point-in-time recovery](https://docs.cloud.google.com/spanner/docs/pitr){: target="_blank"}(PITR) and "stale" reads. PITR provides the ability to automatically roll back data to a previously known good timestamp, in the case of data corruption. Stale reads enable data to be queried even during ingestion of large imports, without the risk of serving from inconsistent or corrupted data while it is being modified. In case of failures mid-ingestion, Data Commons will automatically perform point-in-time recovery, reverting to the last known good timestamp within the retention period for all rows. Once the retention period expires, Spanner wipes previous versions of the data from the database, and the point-in-time recovery facility is lost.
 
-By default Data Commons sets the retention period to 24 hours. (This is in addition to the default full database backups that are performed daily.) You can change this to be up to 7 days, to maximize the PITR safety window. 
+### (Optional) Adjust the data retention period
 
-You can also configure alerts to be sent in the case that ...
+By default Data Commons sets the retention period to 24 hours. (This is in addition to the default full database backups that are performed daily.) This means that any time you run a workflow, if any type of corruption occurs, Data Commons will automatically restore all data according to the last-known good timestamp -- provided that not more than 24 hours have passed since the last workflow run. 
 
-To set the terraform variable, in your `terraform.tfvars` file, add the following line:
+Therefore, to maximize the PITR safety window, we recommend you set it to 7 days. To do so, in your `terraform.tfvars` file, add the following line:
 ```
 spanner_version_retention_period = "7d"
 ```
+However, this does increase involve additional cost; Spanner storage charges increase proportionally with mutation volume. (See [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage.) If you are running very frequent ingestions, say, every hour, and the time a workflow takes to succesfully complete is less than an hour, you probably don't need more than 24 hours worth of data. If you are sensitive to cost and more tolerant of risk you you could set the time period to a value greater than the slowest observed workflow execution. 
 
-### Costs
+You can also set up alerts to warn you of imminent retention expiries, so you can take action before the expiry, as described below.
 
-Increasing the retention period this does involve additional cost; Spanner storage charges increase proportionally with mutation volume. You may also need to increase the number of [Spanner processing units](#ingestion-scaling). If your database undergoes frequent large-scale bulk updates, the cost increase may be substantial. See [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage.  
+### (Optional) Enable alerts on data retention 
 
-## (Optional) Enable alerts on ingestion retention lock issues
+Data Commons guarantees data consistency by enforcing strict serialization of writes to Spanner: only a single workflow may write to Spanner at any time. To implement this enforcement, Data Commons implements a global shared lock mechanism. (This is orthogonal to Spanner's own transaction locking mechanism.) Only one workflow can hold the lock at a time, or to act as the _owner_ of the lock; a workflow owner must _release_ the lock before another workflow can obtain it. (Note that the lock obtainment actually happens after preprocessing is complete, not at the very beginning of the workflow. Preprocessing can be run by more than one workflow concurrently.)
+
+If an ingestion run crashes, stalls, or hangs while holding the lock, and the lock duration exceeds the Spanner version retention horizon, the previous database snapshot passes outside the retention window. This can happen due to:
+* A workflow holding a lock for longer than the retention period because it is taking too to complete (possibly due to insufficient resources).
+* A worklow abandoning but not releasing the lock because of a system failure even such as a network outage/timeout, or a crash of the ingestion components that handle Spanner writes.
+Once the snapshot expires past the retention window, point-in-time recovery (PITR) is no longer possible, and Data Commons cannot automatically roll back the database to its pre-ingestion state if corruption occurs. In addition, once the snapshot expires past the retention window, the Mixer will start reading from the latest timestamp which could be for a database that is actively being modified, returning bad data.
+
+So that you can take action before your database gets into such a state, Data Commons allows you to set up [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring. Data Commons logs 
+
+While an ingestion workflow is running, the Ingestion Helper Cloud Run Service (called <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-helper</code>) regularly evaluates the active lock duration, calculates elapsed percentage against the Spanner retention window, and emits structured audit logs that trigger the Cloud Monitoring alert policies.
+
+To detect abandoned locks even when no ingestion workflows are active, when you enable the Terraform alerts module, it provisions a Cloud Scheduler job (<code><span data-var="instance"><var>Your DCP instance</var></span>-dc-lock-status-probe</code>) that periodically (by default, every 10 minutes) pings the Ingestion Helper to get the lock status. You can also configure a different ping schedule.
+
+### Costs 
+The cost of the additional job running every ten minutes falls well 
+Ingestion Retention Alerts & Health Prober: Cloud Monitoring log-based alert policies are included in standard GCP logging quotas; Cloud Scheduler running every 10 minutes generates ~4,320 calls/month (well within Google Cloud Scheduler's free tier of 3 free jobs per account).
+
+### Alerting thresholds
+
+When you enable the alerts module, Data Commons provisions three graduated log-based alert policies in Cloud Monitoring. They are represented by the following Terraform variables. All are set to true by default, but you can disable one or two if you want to receive fewer notifications.
+
+50% Warning Alert (INGESTION_LOCK_HELD_50PCT_WARNING):
+Triggers when lock duration exceeds 50% of the retention horizon (e.g. 30 minutes into a 1-hour window).
+Severity: WARNING.
+Purpose: Early warning that a long-running import is consuming half of the rollback window.
+90% Urgent Warning Alert (INGESTION_LOCK_HELD_90PCT_WARNING):
+Triggers when lock duration exceeds 90% of the retention horizon (e.g. 54 minutes into a 1-hour window).
+Severity: WARNING.
+Purpose: Escalation warning that only 10% of rollback window remains.
+100% Critical Alert (INGESTION_LOCK_HELD_100PCT_CRITICAL):
+Triggers when lock duration reaches or exceeds 100% of the retention horizon.
+Severity: CRITICAL.
+Purpose: Informs operators that Point-in-Time Recovery is permanently lost for pre-ingestion states.
+They should consider themselves at a state of likely outage. Page worthy.
+
+
+| Variable | Default setting | Explanation
+
+**Prerequisite**: To take advantage of lock retention alerting, you must already have one or more Google Cloud Monitoring notification channels for your project, such as email, pager, chat, etc. If you don't, see [Create and manage notification channels](https://docs.cloud.google.com/monitoring/support/notification-options){: target="_blank"} to set one up.
+
+1. To enable alerting, in your `terraform.tfvars` file, add the following lines:
+  ```
+  ingestion_enable_lock_retention_alerts = true
+  ingestion_enable_lock_status_scheduler = true
+  ```
+1. Optionally, disable any of the following variables to set the alerting thresholds:
+
+
+
