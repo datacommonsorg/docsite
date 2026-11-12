@@ -140,7 +140,7 @@ Whether you need all such policies depends on your Spanner retention configurati
 
 > **Prerequisite**: To enable lock retention alerting, you must already have configured one or more Google Cloud Monitoring notification channels for your project, such as email, pager, chat, etc. If you don't yet have any channels, see [Create and manage notification channels](https://docs.cloud.google.com/monitoring/support/notification-options){: target="_blank"} to set one up.
 
-Once you've set up at one or more notification channels, do the following:
+Once you've set up one or more notification channels, do the following:
 1. Obtain the full resource name(s) of one or more notification channels by running:
    <pre>
    gcloud monitoring channels list --project=<span data-var="project"><var>Project ID</var></span></pre>
