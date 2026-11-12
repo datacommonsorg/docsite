@@ -25,7 +25,9 @@ If you'd like to copy and paste commands directly from this page to a command li
 
 ## Release the global ingestion lock from a workflow {#release}
 
-If you cancel the ingestion workflow (accidentally or otherwise) after it has gone into the "acquire lock" or later stage, or if the workflow gets stalled or crashes, you won't be able to run another workflow because ingestion is locked. If your [Spanner data retention period](/dcp/production.html#retention) has not expired, you may be able to remediate any database issues by releasing the lock and re-running the workflow; this allows Data Commons to perform a point-in-time restore if necessary. If the retention period has expired, it is likely that your database is in an inconsistent state, and you will need to additionally perform an [emergency restore from backup](#restore).
+If you cancel the ingestion workflow (accidentally or otherwise) after it has gone into the "acquire lock" or later stage, or if the workflow gets stalled or crashes, you won't be able to run another workflow because ingestion is locked. If your [Spanner data retention period](/dcp/production.html#retention) has not expired, you may be able to remediate any database issues by releasing the lock and re-running the workflow; this allows Data Commons to perform a point-in-time restore if necessary. 
+
+If the retention period has expired, it is likely that your database is in an inconsistent state, and you will need to additionally perform an [emergency restore from backup](#restore).
 
 To release the ingestion lock, you can use this manual procedure:
 
@@ -41,11 +43,10 @@ To release the ingestion lock, you can use this manual procedure:
     <pre>
     gcloud spanner databases execute-sql <span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-db
 --instance=<span class="dyn-var" data-var="instance">Your Data Commons instance name</span>-dc-instance --project=<span class="dyn-var" data-var="project">Your GCP project ID</span>
---sql="UPDATE IngestionLock SET LockOwner = NULL, AcquiredTimestamp = NULL WHERE LockID = 'global_ingestion_lock' AND LockOwner = '<var>LOCK_OWNER</var>'"
-    </pre>
+--sql="UPDATE IngestionLock SET LockOwner = NULL, AcquiredTimestamp = NULL WHERE LockID = 'global_ingestion_lock' AND LockOwner = '<var>LOCK_OWNER</var>'"</pre>
     The *LOCK_OWNER* is the ID you obtained in step 4.
 
-You should see a confirmation message. 
+    You should see a confirmation message. 
 
 ## Restore database from backup {#restore}
 
@@ -55,11 +56,7 @@ However, in the case of a serious ingestion workflow failure, your database coul
 
 However, if you are *not* able to successfully reimport data before the retention period expires, you will incur data loss and/or corruption. Once PITR is lost, to repair any issues you will need to restore from a full database backup with the last known good data. By default, Spanner does daily full backups. 
 
-Note that if when you restore from backup, this will delete the current, corrupted version. If you want to keep it in GCP (but not in Terraform), you can run the following command at any time (before or after the restore):
-
-```
-terraform state rm module.stack.module.spanner[0].google_spanner_database.database[0]
-```
+> **Note**: If you import data more frequently than once a day, you should create manual backups immediately after every successful ingestion. See [Create backups](https://docs.cloud.google.com/spanner/docs/backup/create-backups){: target="_blank"} for details.
 
 To restore from a backup:
 
@@ -70,6 +67,8 @@ To restore from a backup:
    * Set the `spanner_create_database` variable to `false`.
 1. Run `terraform apply`.
 
-If you import data more frequently than once a day, you will need to create manual backups immediately after every successful ingestion. See [Create backups](https://docs.cloud.google.com/spanner/docs/backup/create-backups){: target="_blank"} for details.
+When you restore from backup, this will delete the current, corrupted version. If you want to keep it in GCP (but not in Terraform), you can run the following command at any time (before or after the restore):
 
-
+```
+terraform state rm module.stack.module.spanner[0].google_spanner_database.database[0]
+```
