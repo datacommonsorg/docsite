@@ -110,39 +110,37 @@ So that you can take action before your database gets into such a state, Data Co
 * The Ingestion Helper Cloud Run Service (called <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-helper</code>) regularly evaluates the active lock duration and the percentage of elapsed time against the Spanner retention window. It emits structured Cloud Monitoring audit logs and triggers alerts (described below) according to policies set by Terraform variables (described below).
 * To check for abandoned locks even when no ingestion workflows are active, Data Commons provisions a Cloud Scheduler job (<code><span data-var="instance"><var>Your DCP instance</var></span>-dc-lock-status-probe</code>) that periodically calls the Ingestion Helper to check the lock status and write the logs. By default, this is every 10 minutes, but you can configure a different ping schedule.
 
-### Alerting thresholds
+#### Alerting thresholds
 
 Alerting policies are represented by Terraform variables that set predefined thresholds of elapsed time. All are set to true by default, but you can disable one or two if you want to receive fewer notifications. When an alert fires, a notification is sent to all the notification channgels you specify in Terraform until you close it or it is auto-closed by the system. 
 
 Here is a detailed description of the policies:
 
-| Variable | Severity | Description | Notification frequency | Automatic closure |
-|----------|-----------|------------|-------------------|------------------------|
+| Variable | Severity | Description        | Notification frequency | Automatic closure |
+|----------|----------|--------------------|------------------------|-------------------|
 | ingestion_enable_lock_retention_alert_50pct | Warning | Triggers when the lock hold duration exceeds 50% of the Spanner retention window; for example, 12 hours into a 24-hour window. This is intended to provide an early warning that a long-running import is consuming half of the rollback window. | Every 60 minutes | The number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 24 hours after the first one. | 
 | ingestion_enable_lock_retention_alert_90pct  | Warning | Triggers when the lock hold duration exceeds 90% of the Spanner retention window; for example, 21.6 hours into a 24-hour window. This is an escalation warning that only 10% of the rollback window remains. | Every 30 minutes | Same as above |
 | ingestion_enable_lock_retention_alert_50pct | Critical | Triggers when the lock hold duration reaches or exceeds 100% of the Spanner retention window; for example, 24 hours into a 24-hour window. This informs operators that point-in-time recovery is permanently lost for pre-ingestion states. | Every 15 minutes | 2 times the number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 48 hours after the first one. |
 
-### Set Terraform variables
+#### Set Terraform variables
 
-**Prerequisite**: To enable lock retention alerting, you must already have one or more Google Cloud Monitoring notification channels for your project, such as email, pager, chat, etc. If you don't, see [Create and manage notification channels](https://docs.cloud.google.com/monitoring/support/notification-options){: target="_blank"} to set one up.
+> **Prerequisite**: To enable lock retention alerting, you must already have one or more Google Cloud Monitoring notification channels for your project, such as email, pager, chat, etc. If you don't, see [Create and manage notification channels](https://docs.cloud.google.com/monitoring/support/notification-options){: target="_blank"} to set one up.
 
 Once you've set up at one or more notification channels, do the following:
-1> Obtain the full resource name(s) of one or more notification channels by running:
-<pre>
-gcloud monitoring channels list --project=<span data-var="project"><var>Project ID</var>
-</pre>
-2. From the `name` field(s) in the response, note the value(s). The name is in the form <code>projects/<span data-var="project"><var>Project ID</var>/notificationChannels/XXXXXXXX</code>.
+1. Obtain the full resource name(s) of one or more notification channels by running:
+   <pre>
+   gcloud monitoring channels list --project=<span data-var="project"><var>Project ID</var></span></pre>
+2. From the `name` field(s) in the response, note the value(s). The name is in the form <code>projects/<span data-var="project"><var>Project ID</var></span>/notificationChannels/XXXXXXXX</code>.
 3. Add the following lines to your `terraform.tfvars` file:
-<pre>
-ingestion_enable_lock_retention_alerts = true
-ingestion_lock_alert_notification_channels = [ "<var>NOTIFICATION_CHANNEL_NAME</var>" ]
-</pre>
+   <pre>
+   ingestion_enable_lock_retention_alerts = true
+   ingestion_lock_alert_notification_channels = [ "<var>NOTIFICATION_CHANNEL_NAMES</var>" ]</pre>
 4. Optionally disable any of the above-listed alert policies by setting them to false.
-5. Optionally, set the `ingestion_lock_status_ping_schedule` to adjust the ping frequency, in crontab format. For example, to reduce the schedule to once an hour:
-```
-ingestion_lock_status_ping_schedule "*/60 * * * *"
-```
+5. Optionally, set `ingestion_lock_status_ping_schedule` to adjust the ping frequency, in crontab format. For example, to reduce the schedule to once an hour:
+   ```
+   ingestion_lock_status_ping_schedule "*/60 * * * *"
+   ```
 
 ### Costs 
 
-The cost of enabling alerting is negligible. Cloud Monitoring log-based alert policies are included in standard GCP logging quotas. Cloud Scheduler running every 10 minutes generates ~4,320 calls/month, which is well within Google Cloud Scheduler's free tier of 3 free jobs per account.
+The cost of enabling alerting is negligible. Cloud Monitoring log-based alert policies are included in standard GCP logging quotas. Cloud Scheduler running every 10 minutes generates ~4,320 calls per month, which is well within Google Cloud Scheduler's free tier of 3 free jobs per account.
