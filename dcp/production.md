@@ -92,7 +92,7 @@ You can set the retention period to any value between 1 hour and 7 days. If you 
 ```
 spanner_version_retention_period = "7d"
 ```
-However, this does increase involve additional cost; Spanner storage charges increase proportionally with mutation volume. (See [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage.) If you are running very frequent ingestions, say, every hour, and the time a workflow takes to succesfully complete is less than an hour, you probably don't need more than 24 hours worth of data. 
+However, this does involve additional cost: Spanner storage charges increase proportionally with mutation volume -- see [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage. If you are running very frequent ingestions, say, every hour, and the time a workflow takes to succesfully complete is less than an hour, you probably don't need more than 24 hours worth of data. 
 
 If you are sensitive to cost and more tolerant of risk you you could set the time period to a value greater than the slowest observed workflow execution. 
 
@@ -104,11 +104,11 @@ Data Commons guarantees data consistency by enforcing strict serialization of wr
 
 Only one workflow can hold the lock at a time, or to act as the _owner_ of the lock; a workflow must _release_ the lock before another workflow can obtain it. (Note that the lock acquisition actually happens after preprocessing is complete, not at the very beginning of the workflow. Preprocessing can be run by more than one workflow concurrently.)
 
-If an ingestion run crashes, stalls, or hangs while holding the lock, and the lock has been held for longer than the Spanner version retention horizon, the previous data snapshot expires. This situation can arise due to:
-* A workflow holding the lock for longer than the retention period because it is taking too long to complete (possibly due to insufficient resources).
-* The lock being "abandoned" but not released because a workflow underwent a system failure such as a network outage/timeout or crash of the ingestion components that handle Spanner writes.
+If a snapshot expires before or during an ingestion run, and that run crashes, stalls, or hangs while holding the lock, your database will be in an inconsistent state. This can happen in both of the following cases:
+* A workflow holds the lock for longer than the retention period because it is taking too long to complete (possibly due to insufficient resources).
+* The lock is "abandoned" but not released because a workflow experienced a system failure such as a network outage/timeout or crash of the ingestion components that handle Spanner writes.
 
-Once the snapshot passes the retention window, point-in-time recovery (PITR) is no longer possible, and Data Commons cannot automatically roll back the database to its pre-ingestion state if corruption occurs. In addition, after the retention window expires, the Mixer will start reading from the latest timestamp, which could be for a database that is actively being modified, returning bad data.
+Once the snapshot passes the retention window, point-in-time recovery (PITR) is no longer possible, and Data Commons cannot automatically roll back the database to its pre-ingestion state. In addition, after the retention window expires, user queries will be answered with data with the latest timestamp; if this happens when a database is actively being modified, bad data could be returned.
 
 To allow you to take action before your database gets into such a state, Data Commons defines [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring but the lock is still being held. When you enable the alerts Terraform module, the following functionality is activated:
 * The Ingestion Helper Cloud Run Service (called <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-helper</code>) regularly evaluates the active lock duration and the percentage of elapsed time against the Spanner retention window. It emits structured Cloud Monitoring audit logs and triggers alerts (described below) according to policies set by Terraform variables (described below).
@@ -116,7 +116,7 @@ To allow you to take action before your database gets into such a state, Data Co
 
 #### Alerting thresholds
 
-Alerting policies are represented by Terraform variables that set predefined thresholds of elapsed time. When an alert fires, a notification is sent to all the notification channels you specify in Terraform until you close it or it is auto-closed by the system. All of the policies are set to true by default, but you can disable one or two to false if you want to receive fewer notifications.
+Alerting policies are represented by Terraform variables that set predefined thresholds of elapsed time. When an alert fires, a notification is sent to all notification channels that you configure, until you close it or it is auto-closed by the system. All of the policies are set to true by default, but you can disable one or two to false if you want to receive fewer notifications.
 
 Here is a detailed description of the policies:
 
@@ -124,13 +124,13 @@ Here is a detailed description of the policies:
 |----------|----------|--------------------|------------------------|-------------------|
 | ingestion_enable_lock_retention_alert_50pct | Warning | Triggers when the lock hold duration exceeds 50% of the Spanner retention window; for example, 12 hours into a 24-hour window. This is intended to provide an early warning that a long-running import is consuming half of the rollback window. | Every 60 minutes | The number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 24 hours after the first one. | 
 | ingestion_enable_lock_retention_alert_90pct  | Warning | Triggers when the lock hold duration exceeds 90% of the Spanner retention window; for example, 21.6 hours into a 24-hour window. This is an escalation warning that only 10% of the rollback window remains. | Every 30 minutes | Same as above |
-| ingestion_enable_lock_retention_alert_50pct | Critical | Triggers when the lock hold duration reaches or exceeds 100% of the Spanner retention window; for example, 24 hours into a 24-hour window. This informs operators that point-in-time recovery is permanently lost for pre-ingestion states. | Every 15 minutes | 2 times the number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 48 hours after the first one. |
+| ingestion_enable_lock_retention_alert_50pct | Critical | Triggers when the lock hold duration reaches or exceeds 100% of the Spanner retention window; for example, 24 hours into a 24-hour window. This informs you that point-in-time recovery is lost. | Every 15 minutes | 2 times the number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 48 hours after the first one. |
 
 Whether you need all such policies depends on your Spanner retention configuration and the typical reaction time of oncall engineers. For example, if you set the retention period to 1 hour, you will for sure want to set the 50% policy, since that gives you only 30 minutes to handle a potential data loss or corruption event. Conversely, if you set the retention period to 7 days, you may not need 3.5 days of advance warning.
 
 #### Set Terraform variables
 
-> **Prerequisite**: To enable lock retention alerting, you must already have one or more Google Cloud Monitoring notification channels for your project, such as email, pager, chat, etc. If you don't, see [Create and manage notification channels](https://docs.cloud.google.com/monitoring/support/notification-options){: target="_blank"} to set one up.
+> **Prerequisite**: To enable lock retention alerting, you must already have configured one or more Google Cloud Monitoring notification channels for your project, such as email, pager, chat, etc. If you don't yet have any channels, see [Create and manage notification channels](https://docs.cloud.google.com/monitoring/support/notification-options){: target="_blank"} to set one up.
 
 Once you've set up at one or more notification channels, do the following:
 1. Obtain the full resource name(s) of one or more notification channels by running:
@@ -141,12 +141,15 @@ Once you've set up at one or more notification channels, do the following:
    <pre>
    ingestion_enable_lock_retention_alerts = true
    ingestion_lock_alert_notification_channels = [ "<var>NOTIFICATION_CHANNEL_NAMES</var>" ]</pre>
-4. Optionally disable any of the above-listed alert policies by setting them to false.
-5. Optionally, set `ingestion_lock_status_ping_schedule` to adjust the ping frequency, in crontab format. For example, to reduce the schedule to once an hour:
+4. Optionally disable any of the above-listed alert policies by setting them to `false`. For example, to disable alerting at 50% of the retention window, add this line:
+  ```
+  ingestion_enable_lock_retention_alert_50pct = false
+  ```
+5. Optionally, to adjust the prober ping frequency, set    `ingestion_lock_status_ping_schedule` to the desired schedule, in crontab format. For example, to reduce the ping frequency to once per hour, add this line:
    ```
-   ingestion_lock_status_ping_schedule "*/60 * * * *"
+   ingestion_lock_status_ping_schedule = "*/60 * * * *"
    ```
 
 ### Costs 
 
-The cost of enabling alerting is negligible. Cloud Monitoring log-based alert policies are included in standard GCP logging quotas. Cloud Scheduler running every 10 minutes generates ~4,320 calls per month, which is well within Google Cloud Scheduler's free tier of 3 free jobs per account.
+The cost of enabling alerting is negligible. Cloud Monitoring log-based alert policies are included in standard GCP logging quotas. Cloud Scheduler running every 10 minutes generates approximately 4,320 calls per month, which is well within Google Cloud Scheduler's free tier of 3 free jobs per account.
