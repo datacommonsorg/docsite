@@ -5,7 +5,7 @@ nav_exclude: true
 noindex: true
 include_scripts: 
   - /assets/js/user-supplied-variables.js
-  - /assets/js/customdc-doc-tabs.js
+  - /assets/js/syntax_highlighting.js
 ---
 
 * TOC
