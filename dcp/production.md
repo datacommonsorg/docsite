@@ -26,6 +26,9 @@ If you'd like to copy and paste commands directly from this page to a command li
 <label for="instance">Data Commons Platform instance:</label>
 <input type="text" id="instance" data-bind="instance" placeholder="Your DCP instance" />
 <br/>
+<label for="region">GCP region:</label>
+<input type="text" id="region" data-bind="region" placeholder="Your GCP region" />
+<br/>
 
 ## Prevent accidental infrastructure deletion
 
@@ -36,6 +39,7 @@ Once you have finalized your data, to prevent data loss, you should set the rele
 These involve only Terraform configuration, so there is no associated GCP cost to setting these options.
 
 In your `terraform.tfvars` file, set these variables:
+
 ```
 stateful_deletion_protection = true
 stateless_deletion_protection = true
@@ -110,9 +114,13 @@ If a snapshot expires before or during an ingestion run, and that run crashes, s
 
 Once the snapshot passes the retention window, point-in-time recovery (PITR) is no longer possible, and Data Commons cannot automatically roll back the database to its pre-ingestion state. In addition, after the retention window expires, user queries will be answered with data with the latest timestamp; if this happens when a database is actively being modified, bad data could be returned.
 
-To allow you to take action before your database gets into such a state, Data Commons defines [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring but the lock is still being held. When you enable the alerts Terraform module, the following functionality is activated:
+To allow you to take action before your instance starts serving bad data, Data Commons defines [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring but the lock is still being held. When you enable the alerts Terraform module, the following functionality is activated:
 * The Ingestion Helper Cloud Run Service (called <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-helper</code>) regularly evaluates the active lock duration and the percentage of elapsed time against the Spanner retention window. It emits structured Cloud Monitoring audit logs and triggers alerts (described below) according to policies set by Terraform variables (described below).
 * To check for abandoned locks even when no ingestion workflows are active, Data Commons provisions a Cloud Scheduler job (<code><span data-var="instance"><var>Your DCP instance</var></span>-dc-lock-status-probe</code>) that periodically calls the Ingestion Helper to check the lock status and write the logs. By default, this is every 10 minutes, but you can configure a different ping schedule.
+
+#### Costs 
+
+The cost of enabling alerting is negligible. Cloud Monitoring log-based alert policies are included in standard GCP logging quotas. Cloud Scheduler running every 10 minutes generates approximately 4,320 calls per month, which is well within Google Cloud Scheduler's free tier of 3 free jobs per account.
 
 #### Alerting thresholds
 
@@ -150,6 +158,14 @@ Once you've set up at one or more notification channels, do the following:
    ingestion_lock_status_ping_schedule = "*/60 * * * *"
    ```
 
-### Costs 
+#### Take remedial action
 
-The cost of enabling alerting is negligible. Cloud Monitoring log-based alert policies are included in standard GCP logging quotas. Cloud Scheduler running every 10 minutes generates approximately 4,320 calls per month, which is well within Google Cloud Scheduler's free tier of 3 free jobs per account.
+If you receive an alert, you will need to take some remedial action. The first thing to check is the stage at which a failed workflow got stuck:
+1. Go to the Cloud Console page for your workflow: if you're using the default workflow name, this is <code>https://pantheon.corp.google.com/workflows/workflow/<span data-var="region"><var>GCP region</var></span>/<span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-workflow/executions?project=<span data-var="project"><var>Project ID</var></span></code>.
+2. Click on the latest stalled or failed execution.
+3. Click the **Steps** tab. If the **launch_and_poll_dataflow** and **run_postprocessing_job** steps succeeded, the database should be in an OK state: [Release the lock](/dcp/emergency.html#release) and use the `datacommons` CLI to run the workflow again. 
+
+   If the **launch_and_poll_dataflow** or **run_postprocessing_job** step failed, PITR was not possible, and the database is likely in an inconsistent state. You need to perform an emergency procedure to recover:
+      1. If the workflow is stuck but has not exited, manually cancel it from the console.
+      1. [Release the ingestion lock](/dcp/emergency.html#release).
+      1. Perform a full [restore from backup](/dcp/emergency.html#restore).
