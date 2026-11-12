@@ -82,37 +82,41 @@ Spanner capacity, on the other hand, is the highest continuous cost driver. Span
 
 ## Manage Spanner data retention {#retention}
 
-Cloud Spanner keeps all mutations (versioned by timestamp) for a configurable retention period. This allows for [point-in-time recovery](https://docs.cloud.google.com/spanner/docs/pitr){: target="_blank"}(PITR) and "stale" reads. PITR provides the ability to automatically roll back data to a previously known good timestamp, in the case of data corruption. Stale reads enable data to be queried even during ingestion of large imports, without the risk of serving from inconsistent or corrupted data while it is being modified. In case of failures mid-ingestion, Data Commons will automatically perform point-in-time recovery, reverting to the last known good timestamp within the retention period for all rows. Once the retention period expires, Spanner wipes previous versions of the data from the database, and the point-in-time recovery facility is lost.
+Cloud Spanner keeps all mutations (versioned by timestamp) for a configurable retention period. This allows for [point-in-time recovery](https://docs.cloud.google.com/spanner/docs/pitr){: target="_blank"} (PITR) and "stale" reads. PITR provides the ability to automatically roll back data to a previously known good timestamp, in the case of data corruption. Stale reads enable data to be queried even during ingestion of large imports, without the risk of serving from inconsistent or corrupted data while it is being modified. In case of failures mid-ingestion, Data Commons will automatically perform point-in-time recovery, reverting to the last known good timestamp within the retention period for all rows. Once the retention period expires, Spanner wipes previous versions of the data from the database, and the point-in-time recovery facility is lost.
 
 ### (Optional) Adjust the data retention period
 
 By default Data Commons sets the retention period to 24 hours. (This is in addition to the default full database backups that are performed daily.) This means that any time you run a workflow, if any type of corruption occurs, Data Commons will automatically restore all data according to the last-known good timestamp -- provided that not more than 24 hours have passed since the last workflow run. 
 
-Therefore, to maximize the PITR safety window, we recommend you set it to 7 days. To do so, in your `terraform.tfvars` file, add the following line:
+You can set the retention period to any value between 1 hour and 7 days. If you want to maximize the PITR safety window, set it to 7 days. In your `terraform.tfvars` file, add the following line:
 ```
 spanner_version_retention_period = "7d"
 ```
-However, this does increase involve additional cost; Spanner storage charges increase proportionally with mutation volume. (See [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage.) If you are running very frequent ingestions, say, every hour, and the time a workflow takes to succesfully complete is less than an hour, you probably don't need more than 24 hours worth of data. If you are sensitive to cost and more tolerant of risk you you could set the time period to a value greater than the slowest observed workflow execution. 
+However, this does increase involve additional cost; Spanner storage charges increase proportionally with mutation volume. (See [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage.) If you are running very frequent ingestions, say, every hour, and the time a workflow takes to succesfully complete is less than an hour, you probably don't need more than 24 hours worth of data. 
+
+If you are sensitive to cost and more tolerant of risk you you could set the time period to a value greater than the slowest observed workflow execution. 
 
 You can also set up alerts to warn you of imminent retention expiries, so you can take action before the expiry, as described below.
 
 ### (Optional) Enable monitoring alerts on ingestion lock holds
 
-Data Commons guarantees data consistency by enforcing strict serialization of writes to Spanner: only a single workflow may write to Spanner at any time. To implement this enforcement, Data Commons implements a global shared lock mechanism. (This is orthogonal to Spanner's own transaction locking mechanism.) Only one workflow can hold the lock at a time, or to act as the _owner_ of the lock; a workflow must _release_ the lock before another workflow can obtain it. (Note that the lock acquisition actually happens after preprocessing is complete, not at the very beginning of the workflow. Preprocessing can be run by more than one workflow concurrently.)
+Data Commons guarantees data consistency by enforcing strict serialization of writes to Spanner: only a single workflow may write to Spanner at any time. To implement this enforcement, Data Commons uses a global shared lock mechanism. (This is orthogonal to Spanner's own transaction locking mechanism.) 
 
-If an ingestion run crashes, stalls, or hangs while holding the lock, and the lock duration exceeds the Spanner version retention horizon, the previous database snapshot passes outside the retention window. This can happen in these conditions:
-* A workflow holds the lock for longer than the retention period because it is taking too long to complete (possibly due to insufficient resources).
-* The lock is "abandoned" but not released because a workflow underwent a system failure such as a network outage/timeout, or a crash of the ingestion components that handle Spanner writes.
+Only one workflow can hold the lock at a time, or to act as the _owner_ of the lock; a workflow must _release_ the lock before another workflow can obtain it. (Note that the lock acquisition actually happens after preprocessing is complete, not at the very beginning of the workflow. Preprocessing can be run by more than one workflow concurrently.)
 
-Once the snapshot expires past the retention window, point-in-time recovery (PITR) is no longer possible, and Data Commons cannot automatically roll back the database to its pre-ingestion state if corruption occurs. In addition, once the snapshot expires past the retention window, the Mixer will start reading from the latest timestamp which could be for a database that is actively being modified, returning bad data.
+If an ingestion run crashes, stalls, or hangs while holding the lock, and the lock has been held for longer than the Spanner version retention horizon, the previous data snapshot expires. This situation can arise due to:
+* A workflow holding the lock for longer than the retention period because it is taking too long to complete (possibly due to insufficient resources).
+* The lock being "abandoned" but not released because a workflow underwent a system failure such as a network outage/timeout or crash of the ingestion components that handle Spanner writes.
 
-So that you can take action before your database gets into such a state, Data Commons allows you to set up [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring but the lock is still being held. When you enable the alerts module, the following functionality is activated:
+Once the snapshot passes the retention window, point-in-time recovery (PITR) is no longer possible, and Data Commons cannot automatically roll back the database to its pre-ingestion state if corruption occurs. In addition, after the retention window expires, the Mixer will start reading from the latest timestamp, which could be for a database that is actively being modified, returning bad data.
+
+To allow you to take action before your database gets into such a state, Data Commons defines [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring but the lock is still being held. When you enable the alerts Terraform module, the following functionality is activated:
 * The Ingestion Helper Cloud Run Service (called <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-helper</code>) regularly evaluates the active lock duration and the percentage of elapsed time against the Spanner retention window. It emits structured Cloud Monitoring audit logs and triggers alerts (described below) according to policies set by Terraform variables (described below).
 * To check for abandoned locks even when no ingestion workflows are active, Data Commons provisions a Cloud Scheduler job (<code><span data-var="instance"><var>Your DCP instance</var></span>-dc-lock-status-probe</code>) that periodically calls the Ingestion Helper to check the lock status and write the logs. By default, this is every 10 minutes, but you can configure a different ping schedule.
 
 #### Alerting thresholds
 
-Alerting policies are represented by Terraform variables that set predefined thresholds of elapsed time. All are set to true by default, but you can disable one or two if you want to receive fewer notifications. When an alert fires, a notification is sent to all the notification channgels you specify in Terraform until you close it or it is auto-closed by the system. 
+Alerting policies are represented by Terraform variables that set predefined thresholds of elapsed time. When an alert fires, a notification is sent to all the notification channels you specify in Terraform until you close it or it is auto-closed by the system. All of the policies are set to true by default, but you can disable one or two to false if you want to receive fewer notifications.
 
 Here is a detailed description of the policies:
 
@@ -121,6 +125,8 @@ Here is a detailed description of the policies:
 | ingestion_enable_lock_retention_alert_50pct | Warning | Triggers when the lock hold duration exceeds 50% of the Spanner retention window; for example, 12 hours into a 24-hour window. This is intended to provide an early warning that a long-running import is consuming half of the rollback window. | Every 60 minutes | The number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 24 hours after the first one. | 
 | ingestion_enable_lock_retention_alert_90pct  | Warning | Triggers when the lock hold duration exceeds 90% of the Spanner retention window; for example, 21.6 hours into a 24-hour window. This is an escalation warning that only 10% of the rollback window remains. | Every 30 minutes | Same as above |
 | ingestion_enable_lock_retention_alert_50pct | Critical | Triggers when the lock hold duration reaches or exceeds 100% of the Spanner retention window; for example, 24 hours into a 24-hour window. This informs operators that point-in-time recovery is permanently lost for pre-ingestion states. | Every 15 minutes | 2 times the number of minutes/hours/days set for your retention period. For example, if your retention period is 24 hours, notifications are sent until 48 hours after the first one. |
+
+Whether you need all such policies depends on your Spanner retention configuration and the typical reaction time of oncall engineers. For example, if you set the retention period to 1 hour, you will for sure want to set the 50% policy, since that gives you only 30 minutes to handle a potential data loss or corruption event. Conversely, if you set the retention period to 7 days, you may not need 3.5 days of advance warning.
 
 #### Set Terraform variables
 
