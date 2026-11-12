@@ -110,7 +110,7 @@ Here are some variables you may wish to modify:
 | `enable_redis` | `false` | Google Cloud [Memorystore for Redis](https://docs.cloud.google.com/memorystore/docs/redis/memorystore-for-redis-overview){: target="_blank"} is a caching service that speeds up website and API performance. We recommend keeping it disabled during development. When you launch to production, depending on your traffic load, you may wish to enable it. | 
 | `stateful_deletion_protection`  | `false` | Determines whether you will be allowed to destroy your "stateful" resources which are Spanner, and the artifacts GCS bucket. We recommend setting this to `true` for production. | 
 | `stateless_deletion_protection` |  `false` | Determines whether you will be allowed to `destroy` your "stateless" resources which are the resources that can be re-spun up with no data loss (Cloud Run Services and Jobs, Redis, Workflows). We recommend setting this to `true` for production. | 
-| `spanner_version_retention_period` | `"24h"` | The Spanner database is configured to retain data for this period. You can set this to up to `"7d"`. See [Increase the Spanner data retention period](/dcp/production.html#retention-period) for more information. |
+| `spanner_version_retention_period` | `"24h"` | The Spanner database is configured to retain data for this period. You can set this to up to `"7d"`. See [Increase the Spanner data retention period](/dcp/production.html#retention) for more information. |
 
 ## (Optional) Step 3a: Set variable values for this page
 
