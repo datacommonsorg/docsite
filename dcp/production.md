@@ -98,7 +98,7 @@ spanner_version_retention_period = "7d"
 ```
 However, this does involve additional cost: Spanner storage charges increase proportionally with mutation volume -- see [Performance considerations](https://docs.cloud.google.com/spanner/docs/pitr#performance){: target="_blank"} for more details on the effects of the retention period on resource usage. If you are running very frequent ingestions, say, every hour, and the time a workflow takes to succesfully complete is less than an hour, you probably don't need more than 24 hours worth of data. 
 
-If you are sensitive to cost and more tolerant of risk you you could set the time period to a value greater than the slowest observed workflow execution. 
+If you are sensitive to cost and more tolerant of risk, you could set the time period to a value greater than the slowest observed workflow execution. 
 
 You can also set up alerts to warn you of imminent retention expiries, so you can take action before the expiry, as described below.
 
