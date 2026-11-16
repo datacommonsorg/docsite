@@ -85,10 +85,10 @@ uvx datacommons-cli admin ingest start --imports <var>IMPORT_PATH1</var>[,<var>I
 
 The *IMPORT_PATH* is the directory containing a `config.json` file, and is relative to the value of the `ingestion_input_path` Terraform variable. So, for example, if you provide a single config.json file in `ingestion/input/myimport`, you would specify `--imports myimport`. 
 
-* To ingest multiple imports, specify comma-separated values for each `config.json` directory you would like to ingest now; for example `–-imports import1,import2.`
+* To ingest multiple imports, specify comma-separated values for each `config.json` directory you would like to ingest now; for example `–-imports import1,import2.` 
 * To ingest all data imports, specify `–-imports ALL_IMPORTS`.
 
-> **Note:** If you have imports with dependencies on each other, follow the procedure in [Imports with dependencies](#dependencies) below.
+> **Note:** When you combine multiple imports in the same command, they are ingested concurrently and there is no guarantee of processing order. If processing order is important because, for example, you have imports with dependencies on each other, follow the procedure in [Imports with dependencies](#dependencies) below.
 
 Depending on the amount of data being processed, it can take anywhere from 10 minutes to over an hour to complete. You can verify the processing by clicking on any of the output links to see the workflow's progress at any time.
 
