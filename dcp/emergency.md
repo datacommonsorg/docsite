@@ -25,9 +25,7 @@ If you'd like to copy and paste commands directly from this page to a command li
 
 ## Release the global ingestion lock from a workflow {#release}
 
-If you cancel the ingestion workflow (accidentally or otherwise) after it has gone into the "acquire lock" or later stage, or if the workflow gets stalled or crashes, you won't be able to run another workflow because ingestion is locked. If your [Spanner data retention period](/dcp/production.html#retention) has not expired, you may be able to remediate any database issues by releasing the lock and re-running the workflow; this allows Data Commons to perform a point-in-time restore if necessary. 
-
-If the retention period has expired, it is likely that your database is in an inconsistent state, and you will need to additionally perform an [emergency restore from backup](#restore).
+If you cancel the ingestion workflow (accidentally or otherwise) after it has gone into the "acquire lock" or later stage, or if the workflow gets stalled or crashes, you won't be able to run another workflow because ingestion is locked. At this point, it is likely that your database is in an inconsistent state, and you will need to additionally perform an [emergency restore from backup](#restore).
 
 To release the ingestion lock, you can use this manual procedure:
 
@@ -55,8 +53,6 @@ In the case of a faulty ingestion run, Data Commons utilizes Spanner's point-in-
 However, in the case of a serious ingestion workflow failure, your database could get into a corrupted state. Data Commons will not start serving such corrupted data for the duration of the Spanner retention period since the last import. By default, this is set to 24 hours. (You can adjust it with the Terraform `spanner_version_retention_period variable`.) If you are able to rerun the data ingestion workflow within that period, there will not be any issue: Data Commons will pick up the new data as soon as it's imported. 
 
 However, if you are *not* able to successfully reimport data before the retention period expires, you will incur data loss and/or corruption. Once PITR is lost, to repair any issues you will need to restore from a full database backup with the last known good data. By default, Spanner does daily full backups. 
-
-> **Note**: If you import data more frequently than once a day, you should create manual backups immediately after every successful ingestion. See [Create backups](https://docs.cloud.google.com/spanner/docs/backup/create-backups){: target="_blank"} for details.
 
 To restore from a backup:
 

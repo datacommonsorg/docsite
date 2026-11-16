@@ -116,7 +116,7 @@ Once the snapshot passes the retention window, point-in-time recovery (PITR) is 
 
 To allow you to take action before your instance starts serving bad data, Data Commons defines [Google Cloud Monitoring](https://cloud.google.com/monitoring){: target="_blank"} [alert policies](https://docs.cloud.google.com/monitoring/alerts?hl=en){: target="_blank"} to send notifications when a data retention period is close to expiring but the lock is still being held. When you enable the alerts Terraform module, the following functionality is activated:
 * The Ingestion Helper Cloud Run Service (called <code><span data-var="instance"><var>Your DCP instance</var></span>-dc-ingestion-helper</code>) regularly evaluates the active lock duration and the percentage of elapsed time against the Spanner retention window. It emits structured Cloud Monitoring audit logs and triggers alerts (described below) according to policies set by Terraform variables (described below).
-* To check for abandoned locks even when no ingestion workflows are active, Data Commons provisions a Cloud Scheduler job (<code><span data-var="instance"><var>Your DCP instance</var></span>-dc-lock-status-probe</code>) that periodically calls the Ingestion Helper to check the lock status and write the logs. By default, this is every 10 minutes, but you can configure a different ping schedule.
+* To check for abandoned locks even when no ingestion workflows are active, Data Commons provisions a Cloud Scheduler job (<code><span data-var="instance"><var>Your DCP instance</var></span>-dc-lock-status-probe</code>) that periodically (every 10 minutes by default) calls the Ingestion Helper to check the lock status and write the logs. 
 
 #### Costs 
 
@@ -153,10 +153,6 @@ Once you've set up one or more notification channels, do the following:
   ```
   ingestion_enable_lock_retention_alert_50pct = false
   ```
-5. Optionally, to adjust the prober ping frequency, set    `ingestion_lock_status_ping_schedule` to the desired schedule, in crontab format. For example, to reduce the ping frequency to once per hour, add this line:
-   ```
-   ingestion_lock_status_ping_schedule = "*/60 * * * *"
-   ```
 
 #### Take remedial action
 
